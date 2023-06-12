@@ -1,0 +1,43 @@
+{
+  "name": "@grft/core",
+  "type": "module",
+  "version": "0.32.0",
+  "description": "Generate readme from template core",
+  "license": "MIT",
+  "homepage": "https://github.com/rjoydip/grft/tree/main/packages/core#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rjoydip/grft.git",
+    "directory": "packages/core"
+  },
+  "bugs": {
+    "url": "https://github.com/rjoydip/grft/issues"
+  },
+  "sideEffects": true,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./*": "./*"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "*.d.ts"
+  ],
+  "scripts": {
+    "build": "rimraf dist && tsup",
+    "dev": "tsup --watch",
+    "prepublishOnly": "pnpm build"
+  },
+  "dependencies": {
+    "mustache": "^4.2.0",
+    "tiny-glob": "^0.2.9"
+  },
+  "devDependencies": {
+    "@types/mustache": "^4.2.2"
+  }
+}

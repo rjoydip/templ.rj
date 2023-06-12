@@ -1,11 +1,31 @@
 {
-    "include": [
-      "./src/*"
-    ],
-    "compilerOptions": {
-      "lib": [
-        "esnext"
-      ],
-      "esModuleInterop": true
-    }
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "lib": ["esnext", "dom"],
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "resolveJsonModule": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "outDir": "./dist",
+    "declaration": true,
+    "inlineSourceMap": true,
+    "paths": {
+      "@grft/cli": ["./packages/cli/index.ts"],
+      "@grft/core": ["./packages/core/index.ts"],
+    },
+    "types": [
+      "node",
+    ]
+  },
+  "exclude": [
+    "**/dist/**",
+    "./packages/cli/dist/**",
+    "./packages/core/dist/**",
+    "./packages/*/*.d.ts",
+    "./packages/*/*.d.cts"
+  ]
 }

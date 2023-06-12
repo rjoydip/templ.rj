@@ -1,0 +1,36 @@
+{
+  "name": "@grft/cli",
+  "type": "module",
+  "version": "0.0.0",
+  "description": "Generate readme from template cli",
+  "license": "MIT",
+  "homepage": "https://github.com/rjoydip/grft/tree/main/packages/cli#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rjoydip/grft.git",
+    "directory": "packages/cli"
+  },
+  "bugs": {
+    "url": "https://github.com/rjoydip/grft/issues"
+  },
+  "sideEffects": true,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./*": "./*"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "*.d.ts"
+  ],
+  "scripts": {
+    "build": "rimraf dist && tsup",
+    "dev": "tsup --watch",
+    "prepublishOnly": "pnpm build"
+  }
+}
