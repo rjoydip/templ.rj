@@ -14,8 +14,8 @@
     "declaration": true,
     "inlineSourceMap": true,
     "paths": {
-      "@grft/cli": ["./packages/cli/index.ts"],
-      "@grft/core": ["./packages/core/index.ts"],
+      "@grft/cli": ["./packages/cli/src/cli.ts"],
+      "@grft/core": ["./packages/core/src/index.ts"],
     },
     "types": [
       "node",

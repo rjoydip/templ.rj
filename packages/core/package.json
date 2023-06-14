@@ -29,9 +29,10 @@
     "*.d.ts"
   ],
   "scripts": {
-    "build": "rimraf dist && tsup",
-    "dev": "tsup --watch",
-    "prepublishOnly": "pnpm build"
+    "build": "rm -rf dist && tsup",
+    "clean": "rm -rf dist node_modules",
+    "dev:watch": "tsup --watch",
+    "prepublishOnly": "nr build"
   },
   "dependencies": {
     "mustache": "^4.2.0",

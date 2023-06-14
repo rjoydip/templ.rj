@@ -24,13 +24,24 @@
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "bin": {
+    "grft": "bin/grft.mjs"
+  },
   "files": [
     "dist",
     "*.d.ts"
   ],
   "scripts": {
-    "build": "rimraf dist && tsup",
-    "dev": "tsup --watch",
-    "prepublishOnly": "pnpm build"
+    "build": "rm -rf dist && tsup",
+    "clean": "rm -rf dist node_modules",
+    "dev": "esno ./src/cli.ts",
+    "prepublishOnly": "nr build",
+    "test": "npm link && grft && npm unlink grft"
+  },
+  "dependencies": {
+    "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "@types/prompts": "^2.4.4"
   }
 }

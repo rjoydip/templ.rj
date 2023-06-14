@@ -2,12 +2,12 @@ import { defineConfig } from 'tsup'
 
 export default defineConfig((options) => {
   return {
-    entry: ['src/index.ts'],
+    entry: ['src/cli.ts'],
     splitting: false,
     sourcemap: false,
     clean: true,
-    dts: true,
+    dts: false,
     minify: !options.watch,
-    format: ['cjs', 'esm', 'iife'],
+    format: ['esm'],
   }
 })
