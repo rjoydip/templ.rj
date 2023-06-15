@@ -9,5 +9,10 @@ export default defineConfig((options) => {
     dts: false,
     minify: !options.watch,
     format: ['esm'],
+    target: 'esnext',
+    platform: 'node',
+    banner: {
+      js: 'import { createRequire } from \'module\';const require = createRequire(import.meta.url);',
+    },
   }
 })

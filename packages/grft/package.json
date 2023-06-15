@@ -1,14 +1,14 @@
 {
-  "name": "@grft/core",
+  "name": "grft",
   "type": "module",
   "version": "0.1.0",
-  "description": "Grft core service",
+  "description": "Generate readme from template",
   "license": "MIT",
-  "homepage": "https://github.com/rjoydip/grft/tree/main/packages/core#readme",
+  "homepage": "https://github.com/rjoydip/grft/tree/main/packages/grft#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rjoydip/grft.git",
-    "directory": "packages/core"
+    "directory": "packages/grft"
   },
   "bugs": {
     "url": "https://github.com/rjoydip/grft/issues"
@@ -30,15 +30,10 @@
   ],
   "scripts": {
     "build": "rm -rf dist && tsup",
-    "clean": "rm -rf dist node_modules",
     "dev": "esno ./src/index.ts",
     "prepublishOnly": "nr build"
   },
   "dependencies": {
-    "mustache": "^4.2.0",
-    "tiny-glob": "^0.2.9"
-  },
-  "devDependencies": {
-    "@types/mustache": "^4.2.2"
+    "@grft/core": "workspace:*"
   }
 }

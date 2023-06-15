@@ -1,38 +1,18 @@
-import { parse, resolve } from 'path'
-import { readdir } from 'fs/promises'
+import { join, parse } from 'path'
 import { describe, expect, test } from 'vitest'
-import { generateOutput, getData, getTemplateFiles, writeOutput } from '../../packages/core/src'
+import { DEFAULT_DATA_DIR, DEFAULT_DATA_FILE_EXTENSION, DEFAULT_TEMPLATE_DIR, DEFAULT_TEMPLATE_FILE_EXTENSION, generateOutput, getData, getTemplateFiles } from '../../packages/core/src'
 
 describe('Core', async () => {
-  let tmplFiles: any[] = []
+  const tmplMdExt = DEFAULT_TEMPLATE_FILE_EXTENSION
+  const jsonExt = DEFAULT_DATA_FILE_EXTENSION
 
-  const mdExt = '.md'
-  const tmplMdExt = '.tmpl.md'
-  const jsonExt = '.json'
-
-  const dataDir = `${resolve(__dirname)}/data`
-  const outputDir = `${resolve(__dirname)}/output`
-  const tmplDir = `${resolve(__dirname)}/templates`
-
-  tmplFiles = await getTemplateFiles(tmplDir, tmplMdExt)
-
-  test('Extension', () => {
-    expect(mdExt).toContain('.md')
-    expect(tmplMdExt).toContain('.tmpl.md')
-    expect(jsonExt).toContain('.json')
-  })
-
-  test('Directory', () => {
-    expect(dataDir).toContain('data')
-    expect(outputDir).toContain('output')
-    expect(tmplDir).toContain('templates')
-  })
-
-  test('Template files', async () => {
-    expect(tmplFiles.length).toBe(2)
-  })
+  const dataDir = join('test', 'fixtures', DEFAULT_DATA_DIR)
+  const tmplDir = join('test', 'fixtures', DEFAULT_TEMPLATE_DIR)
 
   test('Output', async () => {
+    const tmplFiles = await getTemplateFiles(tmplDir, tmplMdExt)
+    expect(tmplFiles.length).toBe(2)
+
     return await Promise.all([
       ...tmplFiles.map(async (fileName: string) => {
         const fName = parse(parse(fileName).name).name
@@ -50,8 +30,6 @@ describe('Core', async () => {
         )
         expect(generatedOp).toBeDefined()
         expect(generatedOp).not.toBeUndefined()
-        await writeOutput(outputDir, fName, mdExt, generatedOp)
-        expect((await readdir(outputDir)).length - 1).toBe(2)
       }),
     ])
   })

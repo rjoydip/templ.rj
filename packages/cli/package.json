@@ -1,8 +1,9 @@
 {
   "name": "@grft/cli",
   "type": "module",
-  "version": "0.0.0",
-  "description": "Generate readme from template cli",
+  "version": "0.1.0",
+  "cliname": "grft",
+  "description": "Grft cli service",
   "license": "MIT",
   "homepage": "https://github.com/rjoydip/grft/tree/main/packages/cli#readme",
   "repository": {
@@ -15,15 +16,10 @@
   },
   "sideEffects": true,
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
-    },
     "./*": "./*"
   },
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/cli.js",
+  "module": "./dist/cli.js",
   "bin": {
     "grft": "bin/grft.mjs"
   },
@@ -34,14 +30,11 @@
   "scripts": {
     "build": "rm -rf dist && tsup",
     "clean": "rm -rf dist node_modules",
-    "dev": "esno ./src/cli.ts",
+    "dev": "esno ./src/cli.ts -v",
     "prepublishOnly": "nr build",
-    "test": "npm link && grft && npm unlink grft"
+    "test": "nr build && npm link && grft -v && npm unlink grft"
   },
   "dependencies": {
-    "prompts": "^2.4.2"
-  },
-  "devDependencies": {
-    "@types/prompts": "^2.4.4"
+    "sade": "^1.8.1"
   }
 }

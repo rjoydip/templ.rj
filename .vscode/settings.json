@@ -2,14 +2,16 @@
   "cSpell.words": [
     "antfu",
     "bumpp",
+    "cliname",
     "esno",
+    "execa",
     "grft",
     "iife",
     "onwarn",
     "tmpl",
     "typecheck",
     "tsup",
-    "unmock",
+    "unmock"
   ],
   "editor.formatOnSave": false,
   "[json]": {

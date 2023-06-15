@@ -35,18 +35,3 @@ runs:
     - name: Print versions
       shell: bash
       run: echo "${{ toJson(steps.resolve-package-versions.outputs) }}"
-
-    - name: Check resolved package versions
-      shell: bash
-      if: |
-        contains(fromJSON('[null, "", "undefined"]'), steps.resolve-package-versions.outputs.CYPRESS_VERSION) ||
-      run: echo "Failed to resolve package versions. See log above." && exit 1
-
-    # - name: Cache Cypress v${{ steps.resolve-package-versions.outputs.CYPRESS_VERSION }}
-    #   uses: actions/cache@v3
-    #   id: cypress-cache
-    #   with:
-    #     path: ${{ env.CYPRESS_CACHE_FOLDER }}
-    #     key: ${{ runner.os }}-cypress-${{ steps.resolve-package-versions.outputs.CYPRESS_VERSION }}
-    #     restore-keys: |
-    #       ${{ runner.os }}-cypress-
