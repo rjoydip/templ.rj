@@ -1,5 +1,5 @@
-# @grft/cli
+# grft
 
-Grft cli module.
+Grft module.
 
 [GitHub](https://github.com/rjoydip/grft)

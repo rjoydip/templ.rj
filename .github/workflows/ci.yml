@@ -99,7 +99,7 @@ jobs:
         run: pnpm i
 
       - name: Build
-        run: pnpm run buil
+        run: pnpm run build
 
       - name: Test
         run: pnpm run ci

@@ -44,7 +44,7 @@
     "vitest": "^0.32.0"
   },
   "simple-git-hooks": {
-    "pre-commit": "pnpm ci && npx lint-staged"
+    "pre-commit": "npx lint-staged"
   },
   "lint-staged": {
     "*.{[jt]s?(x),md}": [
