@@ -1,4 +1,4 @@
-import { join, parse } from 'path'
+import { join, parse } from 'node:path'
 import { describe, expect, test } from 'vitest'
 import { DEFAULT_DATA_DIR, DEFAULT_DATA_FILE_EXTENSION, DEFAULT_TEMPLATE_DIR, DEFAULT_TEMPLATE_FILE_EXTENSION, generateOutput, getData, getTemplateFiles } from '../../packages/core/src'
 

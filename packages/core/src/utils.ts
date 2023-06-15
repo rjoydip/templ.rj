@@ -1,4 +1,4 @@
-import { existsSync, mkdirSync } from 'fs'
+import { existsSync, mkdirSync } from 'node:fs'
 
 export const isJSONFile = (filename: string) => !!filename.endsWith('.json')
 export const isMarkdownFile = (filename: string) => !!filename.endsWith('.md')

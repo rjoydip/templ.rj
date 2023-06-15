@@ -1,5 +1,5 @@
 # grft
 
-Grft module.
+Generate readme from template.
 
 [GitHub](https://github.com/rjoydip/grft)

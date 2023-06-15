@@ -1,5 +1,5 @@
-import { parse } from 'path'
-import { writeFile } from 'fs/promises'
+import { parse } from 'node:path'
+import { writeFile } from 'node:fs/promises'
 import { DEFAULT_DATA_DIR, DEFAULT_DATA_FILE_EXTENSION, DEFAULT_OUTPUT_FILE_EXTENSION, DEFAULT_TEMPLATE_DIR, DEFAULT_TEMPLATE_FILE_EXTENSION, createDirectory, generateOutput, getData, getTemplateFiles, isDataDirectoryExists, isOutputDirectoryExists, isTemplateDirectoryExists } from '@grft/core'
 
 export async function generateReport({

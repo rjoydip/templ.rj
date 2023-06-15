@@ -1,4 +1,4 @@
-import { randomUUID } from 'crypto'
+import { randomUUID } from 'node:crypto'
 import { $ } from 'execa'
 import { serializeError } from 'serialize-error'
 import { beforeAll, beforeEach, describe, expect, test } from 'vitest'
