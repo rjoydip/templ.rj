@@ -1,7 +1,7 @@
 {
   "name": "@grft/cli",
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.2.0-beta.0",
   "cliname": "grft",
   "description": "Grft cli service",
   "license": "MIT",
@@ -33,11 +33,13 @@
     "clean": "rm -rf dist node_modules",
     "dev": "esno ./src/cli.ts -v",
     "prepublishOnly": "nr build",
+    "release": "bumpp package.json --commit --push --tag && pnpm -r publish --access public",
     "test": "ni && nr build && pnpm link . && npx grft -v && rm -r node_modules/{@grft,.bin/*grft*}"
   },
   "dependencies": {
     "@grft/core": "file:../core",
-    "sade": "^1.8.1"
+    "sade": "^1.8.1",
+    "serialize-error": "^11.0.0"
   },
   "devDependencies": {
     "execa": "^7.1.1"
