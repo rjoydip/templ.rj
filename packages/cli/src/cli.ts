@@ -1,7 +1,9 @@
+import { createRequire } from 'node:module'
 import sade from 'sade'
 import { serializeError } from 'serialize-error'
 import { generateReport } from '@grft/core'
-import pkg from '../package.json'
+const require = createRequire(import.meta.url)
+const pkg = require('../package.json')
 
 const prog = sade(pkg.cliname)
 
