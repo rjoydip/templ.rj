@@ -64,12 +64,10 @@
   },
   "lint-staged": {
     "*": [
-      "prettier --write --cache --ignore-unknown",
-      "git add"
+      "prettier --write --cache --ignore-unknown"
     ],
     "*.{[jt]s?(x)}": [
-      "eslint --cache --fix",
-      "git add"
+      "eslint --cache --fix"
     ]
   },
   "stackblitz": {
