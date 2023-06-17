@@ -11,8 +11,8 @@ node_modules
 .env
 .cache
 dist
-test/fixtures/output/*
-!test/fixtures/output/.gitkeep
+fixtures/output/*
+!fixtures/output/.gitkeep
 .idea
 .vite-node
 ltex*

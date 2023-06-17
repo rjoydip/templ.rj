@@ -10,9 +10,6 @@
   "engines": {
     "node": "^14.18.0 || >=16.0.0"
   },
-  "bin": {
-    "grft": "bin/grft.mjs"
-  },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "postinstall": "simple-git-hooks",
