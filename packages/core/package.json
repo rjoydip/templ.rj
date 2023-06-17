@@ -29,10 +29,10 @@
     "*.d.ts"
   ],
   "scripts": {
+    "prepublishOnly": "nr build",
     "build": "rm -rf dist && tsup",
     "clean": "rm -rf dist node_modules",
-    "dev": "esno ./src/index.ts",
-    "prepublishOnly": "nr build"
+    "dev": "esno ./src/index.ts"
   },
   "dependencies": {
     "mustache": "^4.2.0",

@@ -7,21 +7,18 @@
   "packageRules": [
     {
       "depTypeList": ["peerDependencies"],
-      "enabled": false
+      "enabled": false,
     },
     {
       "packageNames": ["node"],
-      "enabled": false
+      "enabled": false,
     },
     {
       "matchPaths": [],
-      "matchUpdateTypes": [
-        "minor",
-        "patch"
-      ],
+      "matchUpdateTypes": ["minor", "patch"],
       "groupName": "all non-major examples dependencies",
-      "groupSlug": "all-minor-patch-examples"
-    }
+      "groupSlug": "all-minor-patch-examples",
+    },
   ],
-  "ignoreDeps": []
+  "ignoreDeps": [],
 }

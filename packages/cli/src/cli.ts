@@ -1,15 +1,11 @@
-import { createRequire } from 'node:module'
 import sade from 'sade'
 import { serializeError } from 'serialize-error'
-import { generateReport } from 'grft'
-
-const require = createRequire(import.meta.url)
-const pkg = require('../package.json')
+import { generateReport } from '@grft/core'
+import pkg from '../package.json'
 
 const prog = sade(pkg.cliname)
 
-prog
-  .version(pkg.version)
+prog.version(pkg.version)
 
 prog
   .command('generate')
@@ -23,8 +19,7 @@ prog
   .example('generate -data-dir data -output-dir output')
   .action(async (opts) => {
     try {
-      if (!opts.d && !opts.o && !opts.t)
-        throw new Error('No options specified')
+      if (!opts.d && !opts.o && !opts.t) throw new Error('No options specified')
 
       const output = await generateReport({
         output_dir: opts.o || '',
@@ -32,8 +27,7 @@ prog
         data_dir: opts.d || '',
       })
       console.log(output)
-    }
-    catch (err) {
+    } catch (err) {
       const error = new Error(String(err))
       const serialized = serializeError(error)
       console.error(serialized.message)

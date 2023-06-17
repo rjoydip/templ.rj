@@ -1,11 +1,52 @@
 import { existsSync, mkdirSync } from 'node:fs'
+import { readFile } from 'node:fs/promises'
+import mustache from 'mustache'
+import glob from 'tiny-glob'
 
-export const isJSONFile = (filename: string) => !!filename.endsWith('.json')
-export const isMarkdownFile = (filename: string) => !!filename.endsWith('.md')
-export const isMarkdownTemplateFile = (filename: string) => !!filename.endsWith('.tmpl.md')
+export function isJSONFile(filename: string) {
+  return !!filename.endsWith('.json')
+}
+export function isMarkdownFile(filename: string) {
+  return !!filename.endsWith('.md')
+}
+export function isMarkdownTemplateFile(filename: string) {
+  return !!filename.endsWith('.tmpl.md')
+}
 
-export const isDataDirectoryExists = (directory: string) => existsSync(directory)
-export const isOutputDirectoryExists = (directory: string) => existsSync(directory)
-export const isTemplateDirectoryExists = (directory: string) => existsSync(directory)
+export function isDataDirectoryExists(directory: string) {
+  return existsSync(directory)
+}
+export function isOutputDirectoryExists(directory: string) {
+  return existsSync(directory)
+}
+export function isTemplateDirectoryExists(directory: string) {
+  return existsSync(directory)
+}
 
-export const createDirectory = (directory: string) => mkdirSync(directory)
+export function createDirectory(directory: string) {
+  return mkdirSync(directory)
+}
+
+export async function getTemplateFiles(directory: string, extension: string) {
+  return await getFiles(directory, extension)
+}
+
+export async function getFiles(directory: string, extension: string) {
+  return await glob(`*${extension}`, {
+    cwd: directory,
+  })
+}
+
+export async function getData(
+  directory: string,
+  fileName: string,
+  extension = '',
+) {
+  return extension !== '' && fileName !== ''
+    ? (await readFile(`${directory}/${fileName}${extension}`)).toString()
+    : null
+}
+
+export function generateOutput(template: string, data: any): string {
+  return mustache.render(template, data)
+}

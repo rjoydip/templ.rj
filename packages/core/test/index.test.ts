@@ -1,13 +1,21 @@
 import { join, parse } from 'node:path'
 import { describe, expect, test } from 'vitest'
-import { DEFAULT_DATA_DIR, DEFAULT_DATA_FILE_EXTENSION, DEFAULT_TEMPLATE_DIR, DEFAULT_TEMPLATE_FILE_EXTENSION, generateOutput, getData, getTemplateFiles } from '../../packages/core/src'
+import {
+  DEFAULT_DATA_DIR,
+  DEFAULT_DATA_FILE_EXTENSION,
+  DEFAULT_TEMPLATE_DIR,
+  DEFAULT_TEMPLATE_FILE_EXTENSION,
+  generateOutput,
+  getData,
+  getTemplateFiles,
+} from '../src'
 
 describe('Core', async () => {
   const tmplMdExt = DEFAULT_TEMPLATE_FILE_EXTENSION
   const jsonExt = DEFAULT_DATA_FILE_EXTENSION
 
-  const dataDir = join('test', 'fixtures', DEFAULT_DATA_DIR)
-  const tmplDir = join('test', 'fixtures', DEFAULT_TEMPLATE_DIR)
+  const dataDir = join('fixtures', DEFAULT_DATA_DIR)
+  const tmplDir = join('fixtures', DEFAULT_TEMPLATE_DIR)
 
   test('Output', async () => {
     const tmplFiles = await getTemplateFiles(tmplDir, tmplMdExt)
@@ -18,16 +26,13 @@ describe('Core', async () => {
         const fName = parse(parse(fileName).name).name
         expect(fName).toBeDefined()
         expect(fName).not.toBeUndefined()
-        const data = await getData(dataDir, fName, jsonExt) || ''
+        const data = (await getData(dataDir, fName, jsonExt)) || ''
         expect(data).not.toBeUndefined()
         expect(data).toBeDefined()
-        const template = await getData(tmplDir, fName, tmplMdExt) || ''
+        const template = (await getData(tmplDir, fName, tmplMdExt)) || ''
         expect(template).toBeDefined()
         expect(template).not.toBeUndefined()
-        const generatedOp = await generateOutput(
-          template,
-          JSON.parse(data),
-        )
+        const generatedOp = await generateOutput(template, JSON.parse(data))
         expect(generatedOp).toBeDefined()
         expect(generatedOp).not.toBeUndefined()
       }),

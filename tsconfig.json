@@ -2,10 +2,7 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
-    "lib": [
-      "esnext",
-      "dom"
-    ],
+    "lib": ["esnext", "dom"],
     "moduleResolution": "node",
     "esModuleInterop": true,
     "strict": true,
@@ -17,27 +14,15 @@
     "declaration": true,
     "inlineSourceMap": true,
     "paths": {
-      "@grft/cli": [
-        "./packages/cli/src/cli.ts"
-      ],
-      "@grft/core": [
-        "./packages/cli/src/constants.ts",
-        "./packages/core/src/index.ts",
-        "./packages/cli/src/utils.ts"
-      ],
-      "grft": [
-        "./packages/grft/src/index.ts"
-      ]
+      "@grft/cli": ["./packages/cli/src/cli.ts"],
+      "@grft/core": ["./packages/core/src/index.ts"]
     },
-    "types": [
-      "node"
-    ]
+    "types": ["node"]
   },
   "exclude": [
     "**/dist/**",
     "./packages/cli/dist/**",
     "./packages/core/dist/**",
-    "./packages/grft/dist/**",
     "./packages/*/*.d.ts",
     "./packages/*/*.d.cts"
   ]

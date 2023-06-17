@@ -24,6 +24,7 @@
     "grft": "bin/grft.mjs"
   },
   "files": [
+    "bin",
     "dist",
     "*.d.ts"
   ],
@@ -32,9 +33,13 @@
     "clean": "rm -rf dist node_modules",
     "dev": "esno ./src/cli.ts -v",
     "prepublishOnly": "nr build",
-    "test": "nr build && npm link && grft -v && npm unlink grft"
+    "test": "ni && nr build && pnpm link . && npx grft -v && rm -r node_modules/{@grft,.bin/*grft*}"
   },
   "dependencies": {
+    "@grft/core": "file:../core",
     "sade": "^1.8.1"
+  },
+  "devDependencies": {
+    "execa": "^7.1.1"
   }
 }

@@ -7,11 +7,11 @@ describe('Cli', async () => {
   let output_dir: string
 
   beforeAll(async () => {
-    await $`rm -rf test/fixtures/output/*`
+    await $`rm -rf fixtures/output/*`
   })
 
   beforeEach(() => {
-    output_dir = `test/fixtures/output/${randomUUID()}`
+    output_dir = `fixtures/output/${randomUUID()}`
   })
 
   test('Cli version', async () => {
@@ -23,8 +23,7 @@ describe('Cli', async () => {
     try {
       const result = await $`esno packages/cli/src/cli.ts`
       expect(result.failed).toBeTruthy()
-    }
-    catch (err) {
+    } catch (err) {
       const error = new Error(String(err))
       const serialized = serializeError(error)
       expect(serialized.message).toBeDefined()
@@ -38,23 +37,26 @@ describe('Cli', async () => {
   })
 
   test('Data directory missing', async () => {
-    const result = await $`esno packages/cli/src/cli.ts generate -o ${output_dir} -t test/fixtures/template`
-    console.log(result)
+    const result =
+      await $`esno packages/cli/src/cli.ts generate -o ${output_dir} -t fixtures/template`
     expect(result.stderr).toStrictEqual('Error: Data directory not exists')
   })
 
   test('Template directory missing', async () => {
-    const result = await $`esno packages/cli/src/cli.ts generate -d test/fixtures/data -o ${output_dir}`
+    const result =
+      await $`esno packages/cli/src/cli.ts generate -d fixtures/data -o ${output_dir}`
     expect(result.stderr).toStrictEqual('Error: Template directory not exists')
   })
 
   test('Missing output directory > Automatically create', async () => {
-    const result = await $`esno packages/cli/src/cli.ts generate -d test/fixtures/data -t test/fixtures/template`
+    const result =
+      await $`esno packages/cli/src/cli.ts generate -d fixtures/data -t fixtures/template`
     expect(JSON.parse(result.stdout).length).toBe(2)
   })
 
   test('Generate report', async () => {
-    const result = await $`esno packages/cli/src/cli.ts generate -d test/fixtures/data -o ${output_dir} -t test/fixtures/template`
+    const result =
+      await $`esno packages/cli/src/cli.ts generate -d fixtures/data -o ${output_dir} -t fixtures/template`
     expect(JSON.parse(result.stdout).length).toBe(2)
   })
 })

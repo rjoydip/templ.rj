@@ -8,9 +8,11 @@
     "grft",
     "iife",
     "onwarn",
+    "preinstall",
     "tmpl",
     "typecheck",
     "tsup",
+    "stackblitz",
     "unmock"
   ],
   "editor.formatOnSave": false,

@@ -1,5 +1,12 @@
 import { describe, expect, test } from 'vitest'
-import { DEFAULT_DATA_DIR, DEFAULT_DATA_FILE_EXTENSION, DEFAULT_OUTPUT_DIR, DEFAULT_OUTPUT_FILE_EXTENSION, DEFAULT_TEMPLATE_DIR, DEFAULT_TEMPLATE_FILE_EXTENSION } from '../../packages/core/src/constants'
+import {
+  DEFAULT_DATA_DIR,
+  DEFAULT_DATA_FILE_EXTENSION,
+  DEFAULT_OUTPUT_DIR,
+  DEFAULT_OUTPUT_FILE_EXTENSION,
+  DEFAULT_TEMPLATE_DIR,
+  DEFAULT_TEMPLATE_FILE_EXTENSION,
+} from '../src'
 
 describe('Constants', async () => {
   test('File extension', () => {
