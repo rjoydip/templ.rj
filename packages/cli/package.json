@@ -34,7 +34,6 @@
     "clean:nm": "rm -rf node_modules",
     "dev": "esno ./src/cli.ts -v",
     "prepublishOnly": "nr build",
-    "release": "bumpp package.json --commit --push --tag && pnpm -r publish --access public",
     "test": "ni && nr build && pnpm link . && npx grft -v && rm -r node_modules/{@grft,.bin/*grft*}"
   },
   "dependencies": {
