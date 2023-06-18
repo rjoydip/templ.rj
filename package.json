@@ -18,7 +18,7 @@
     "lint:fix": "nr lint --fix",
     "build": "pnpm -r --filter='./packages/**' run build",
     "all": "nr clean && ni && nu && nr typecheck && nr format && nr lint:fix && nr build && nr test:ci",
-    "clean": "pnpm -r --parallel --filter='./packages/**' run clean && rm -r .eslintcache",
+    "clean": "pnpm -r --parallel --filter='./packages/**' run clean",
     "clean:nm": "pnpm -r --parallel --filter='./packages/**' run clean:nm && rm -r packages/node_modules node_modules",
     "dev": "NODE_OPTIONS=\"--max-old-space-size=8192\" pnpm -r --parallel --filter='./packages/**' run dev",
     "test": "vitest --api -r packages",
