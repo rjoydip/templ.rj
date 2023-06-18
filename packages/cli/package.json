@@ -1,7 +1,7 @@
 {
   "name": "@grft/cli",
   "type": "module",
-  "version": "0.2.0-beta.0",
+  "version": "0.1.0",
   "cliname": "grft",
   "description": "Grft cli service",
   "license": "MIT",
