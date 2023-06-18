@@ -29,15 +29,17 @@
     "*.d.ts"
   ],
   "scripts": {
-    "build": "rm -rf dist && tsup",
-    "clean": "rm -rf dist node_modules",
+    "build": "nr clean && tsup",
+    "clean": "rm -rf dist package-lock.json",
+    "clean:nm": "rm -rf node_modules",
     "dev": "esno ./src/cli.ts -v",
     "prepublishOnly": "nr build",
     "test": "ni && nr build && pnpm link . && npx grft -v && rm -r node_modules/{@grft,.bin/*grft*}"
   },
   "dependencies": {
     "@grft/core": "file:../core",
-    "sade": "^1.8.1"
+    "sade": "^1.8.1",
+    "serialize-error": "^11.0.0"
   },
   "devDependencies": {
     "execa": "^7.1.1"

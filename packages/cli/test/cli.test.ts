@@ -1,7 +1,7 @@
 import { randomUUID } from 'node:crypto'
 import { $ } from 'execa'
 import { serializeError } from 'serialize-error'
-import { beforeAll, beforeEach, describe, expect, test } from 'vitest'
+import { afterAll, beforeAll, beforeEach, describe, expect, test } from 'vitest'
 
 describe('Cli', async () => {
   let output_dir: string
@@ -12,6 +12,10 @@ describe('Cli', async () => {
 
   beforeEach(() => {
     output_dir = `fixtures/output/${randomUUID()}`
+  })
+
+  afterAll(async () => {
+    await $`rm -rf fixtures/output/*`
   })
 
   test('Cli version', async () => {

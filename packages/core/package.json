@@ -30,8 +30,9 @@
   ],
   "scripts": {
     "prepublishOnly": "nr build",
-    "build": "rm -rf dist && tsup",
-    "clean": "rm -rf dist node_modules",
+    "build": "nr clean && tsup",
+    "clean": "rm -rf dist",
+    "clean:nm": "rm -rf node_modules",
     "dev": "esno ./src/index.ts"
   },
   "dependencies": {
