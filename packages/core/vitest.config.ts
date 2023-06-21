@@ -1,9 +1,9 @@
-import { defineProject, mergeConfig } from 'vitest/config'
-import configShared from '../../vite.shared'
+import { defineConfig, mergeConfig } from 'vitest/config'
+import configShared from '../../vite.config'
 
 export default mergeConfig(
   configShared,
-  defineProject({
+  defineConfig({
     test: {},
   }),
 )

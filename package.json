@@ -8,7 +8,7 @@
   "license": "MIT",
   "sideEffects": true,
   "engines": {
-    "node": "^14.18.0 || >=16.0.0"
+    "node": ">=16.0.0"
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -18,32 +18,39 @@
     "lint": "eslint --cache .",
     "lint:fix": "nr lint --fix",
     "build": "pnpm -r --filter='./packages/**' run build",
-    "all": "nr clean && ni && nu && nr typecheck && nr format && nr lint:fix && nr build && nr test:ci",
-    "clean": "pnpm -r --parallel --filter='./packages/**' run clean",
-    "clean:nm": "pnpm -r --parallel --filter='./packages/**' run clean:nm && rm -r packages/node_modules node_modules",
     "dev": "NODE_OPTIONS=\"--max-old-space-size=8192\" pnpm -r --parallel --filter='./packages/**' run dev",
-    "release": "bumpp package.json packages/*/package.json --commit --push --tag",
     "publish": "pnpm -r publish --access public",
-    "test": "vitest --api -r packages",
+    "release": "bumpp package.json packages/*/package.json --commit --push --tag",
+    "test": "vitest packages",
+    "test:ci": "CI=true nr test:run",
+    "test:cli": "pnpm -r --stream run test:cli",
+    "test:coverage": "nr test:run --coverage",
+    "test:coverage:preview": "nr test:ui --coverage",
+    "test:ui": "vitest -r packages --ui",
     "test:run": "vitest run -r packages",
-    "test:ci": "CI=true pnpm -r --stream run test && nr test:run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "clean": "pnpm -r --parallel --filter='./packages/**' run clean && rimraf .eslintcache coverage",
+    "clean:nm": "pnpm -r --parallel --filter='./packages/**' run clean:nm && rimraf packages/node_modules node_modules",
+    "all": "nr clean && ni && nu && nr typecheck && nr format && nr lint:fix && nr build && nr test:ci && nr test:coverage"
   },
   "devDependencies": {
     "@antfu/ni": "^0.21.4",
     "@types/node": "^20.3.1",
-    "@typescript-eslint/eslint-plugin": "^5.59.11",
-    "@typescript-eslint/parser": "^5.59.11",
+    "@typescript-eslint/eslint-plugin": "^5.60.0",
+    "@typescript-eslint/parser": "^5.60.0",
+    "@vitest/coverage-v8": "^0.32.2",
+    "@vitest/ui": "^0.32.2",
     "bumpp": "^9.1.1",
     "eslint": "^8.43.0",
-    "eslint-define-config": "^1.20.0",
+    "eslint-define-config": "^1.21.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-n": "^15.7.0",
     "eslint-plugin-regexp": "^1.15.0",
     "esno": "^0.16.3",
     "lint-staged": "^13.2.2",
-    "pnpm": "^8.6.2",
+    "pnpm": "^8.6.3",
     "prettier": "^2.8.8",
+    "rimraf": "^5.0.1",
     "simple-git-hooks": "^2.8.1",
     "tsup": "^6.7.0",
     "typescript": "^5.1.3",
@@ -59,7 +66,6 @@
       "nr format"
     ],
     "*.[jt]s?(x)": [
-      "nr typecheck",
       "nr lint:fix"
     ]
   },

@@ -31,8 +31,8 @@
   "scripts": {
     "prepublishOnly": "nr build",
     "build": "nr clean && tsup",
-    "clean": "rm -rf dist",
-    "clean:nm": "rm -rf node_modules",
+    "clean": "rimraf dist",
+    "clean:nm": "rimraf node_modules",
     "dev": "esno ./src/index.ts"
   },
   "dependencies": {

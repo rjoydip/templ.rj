@@ -1,12 +1,11 @@
 import { parse } from 'node:path'
-import { writeFile } from 'node:fs/promises'
+import { mkdir, writeFile } from 'node:fs/promises'
 import {
   DEFAULT_DATA_DIR,
   DEFAULT_DATA_FILE_EXTENSION,
   DEFAULT_OUTPUT_FILE_EXTENSION,
   DEFAULT_TEMPLATE_DIR,
   DEFAULT_TEMPLATE_FILE_EXTENSION,
-  createDirectory,
   generateOutput,
   getData,
   getTemplateFiles,
@@ -30,22 +29,24 @@ export async function generateReport({
     throw new Error('Template directory not exists')
 
   const tmplFiles = await getTemplateFiles(template_dir, template_ext)
-  return await Promise.all([
-    ...tmplFiles.map(async (fileName: string) => {
-      try {
-        const fName = parse(parse(fileName).name).name
-        const data = (await getData(data_dir, fName, data_ext)) || ''
-        const template =
-          (await getData(template_dir, fName, template_ext)) || ''
-        const generatedOp = await generateOutput(template, JSON.parse(data))
+  const reportPromises = tmplFiles.map(async (fileName: string) => {
+    try {
+      const fName = parse(parse(fileName).name).name
+      const data = (await getData(data_dir, fName, data_ext)) || ''
+      const template = (await getData(template_dir, fName, template_ext)) || ''
+      const generatedOp = await generateOutput(template, JSON.parse(data))
 
-        if (!isOutputDirectoryExists(output_dir)) createDirectory(output_dir)
+      if (!isOutputDirectoryExists(output_dir)) await mkdir(output_dir)
 
-        await writeFile(`${output_dir}/${fName}${output_ext}`, generatedOp)
-        return true
-      } catch (error) {
-        return false
-      }
-    }),
-  ])
+      await writeFile(`${output_dir}/${fName}${output_ext}`, generatedOp)
+      return true
+    } catch (error) {
+      console.error('Error generating report:', error)
+      throw error // Propagate the error further
+    }
+  })
+
+  // eslint-disable-next-line n/no-unsupported-features/es-builtins
+  const results = await Promise.allSettled(reportPromises)
+  return results.map((result: any) => result.status === 'fulfilled')
 }

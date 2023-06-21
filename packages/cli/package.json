@@ -29,12 +29,12 @@
     "*.d.ts"
   ],
   "scripts": {
-    "build": "nr clean && tsup",
-    "clean": "rm -rf dist package-lock.json",
-    "clean:nm": "rm -rf node_modules",
-    "dev": "esno ./src/cli.ts -v",
     "prepublishOnly": "nr build",
-    "test": "ni && nr build && pnpm link . && npx grft -v && rm -r node_modules/{@grft,.bin/*grft*}"
+    "build": "nr clean && tsup",
+    "dev": "esno ./src/cli.ts -v",
+    "clean": "rimraf package-lock.json dist",
+    "clean:nm": "rimraf node_modules",
+    "test:cli": "ni && nr build && pnpm link . && npx grft -v && rm -r node_modules/{@grft,.bin/*grft*}"
   },
   "dependencies": {
     "@grft/core": "file:../core",

@@ -1,4 +1,4 @@
-import { existsSync, mkdirSync } from 'node:fs'
+import { existsSync } from 'node:fs'
 import { readFile } from 'node:fs/promises'
 import mustache from 'mustache'
 import glob from 'tiny-glob'
@@ -6,9 +6,11 @@ import glob from 'tiny-glob'
 export function isJSONFile(filename: string) {
   return !!filename.endsWith('.json')
 }
+
 export function isMarkdownFile(filename: string) {
   return !!filename.endsWith('.md')
 }
+
 export function isMarkdownTemplateFile(filename: string) {
   return !!filename.endsWith('.tmpl.md')
 }
@@ -16,15 +18,13 @@ export function isMarkdownTemplateFile(filename: string) {
 export function isDataDirectoryExists(directory: string) {
   return existsSync(directory)
 }
+
 export function isOutputDirectoryExists(directory: string) {
   return existsSync(directory)
 }
+
 export function isTemplateDirectoryExists(directory: string) {
   return existsSync(directory)
-}
-
-export function createDirectory(directory: string) {
-  return mkdirSync(directory)
 }
 
 export async function getTemplateFiles(directory: string, extension: string) {
@@ -42,9 +42,9 @@ export async function getData(
   fileName: string,
   extension = '',
 ) {
+  /* prettier-ignore */
   return extension !== '' && fileName !== ''
-    ? (await readFile(`${directory}/${fileName}${extension}`)).toString()
-    : null
+    ? (await readFile(`${directory}/${fileName}${extension}`)).toString() : null
 }
 
 export function generateOutput(template: string, data: any): string {
