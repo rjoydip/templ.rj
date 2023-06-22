@@ -10,10 +10,12 @@
     ·
     <a href="https://github.com/rjoydip/grft/issues">Request Feature</a>
   </p>
-</div>
 
 [![CI][ci-shield]][ci-url]
 [![License][license-image]][license-url]
+[![GitHub tag][release-tag-image]][release-url]
+
+</div>
 
 > NOTE: This module is still under active development, and not suitable for use.
 
@@ -38,9 +40,11 @@ Coming soon
 
 ## License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+Released under [MIT](./LICENSE) by [@rjoydip](https://github.com/rjoydip).
 
 [ci-shield]: https://github.com/rjoydip/grft/actions/workflows/ci.yml/badge.svg
 [ci-url]: https://github.com/rjoydip/grft/actions/workflows/ci.yml
 [license-image]: https://img.shields.io/npm/l/markdownlint.svg
 [license-url]: https://github.com/rjoydip/grft/blob/main/LICENSE
+[release-tag-image]: https://img.shields.io/github/tag/rjoydip/grft?include_prereleases=&sort=semver&color=green
+[release-url]: https://github.com/rjoydip/grft/releases

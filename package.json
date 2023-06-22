@@ -26,7 +26,7 @@
     "build": "pnpm -r --filter='./packages/**' run build",
     "dev": "NODE_OPTIONS=\"--max-old-space-size=8192\" pnpm -r --parallel --filter='./packages/**' run dev",
     "publish": "pnpm -r publish --access public",
-    "release": "bumpp package.json packages/*/package.json --commit --push --tag",
+    "release": "bumpp package.json packages/**/package.json --commit --push --tag",
     "test": "vitest packages",
     "test:ci": "CI=true nr test:run",
     "test:cli": "pnpm -r --stream run test:cli",
@@ -34,11 +34,11 @@
     "test:coverage:preview": "nr test:ui --coverage",
     "test:ui": "vitest -r packages --ui",
     "test:run": "vitest run -r packages",
-    "markdown:lint": "markdownlint *.md .github/*.md packages/**/*.md",
     "typecheck": "tsc --noEmit",
+    "markdown:lint": "markdown-link-check *.md .github/*.md packages/*/*.md ",
     "clean": "pnpm -r --parallel --filter='./packages/**' run clean && rimraf .eslintcache coverage",
     "clean:nm": "pnpm -r --parallel --filter='./packages/**' run clean:nm && rimraf packages/node_modules node_modules",
-    "all": "nr clean && ni && nu && nr typecheck && nr format && nr lint:fix && nr build && nr test:ci && nr test:coverage"
+    "all": "nr clean && ni && nu && nr typecheck && nr format && nr lint:fix && nr markdown:lint && nr build && nr test:ci && nr test:coverage"
   },
   "devDependencies": {
     "@antfu/ni": "^0.21.4",
@@ -57,7 +57,7 @@
     "eslint-plugin-regexp": "^1.15.0",
     "esno": "^0.16.3",
     "lint-staged": "^13.2.2",
-    "markdownlint-cli": "^0.35.0",
+    "markdown-link-check": "^3.11.2",
     "pnpm": "^8.6.3",
     "prettier": "^2.8.8",
     "rimraf": "^5.0.1",
@@ -70,12 +70,11 @@
   },
   "simple-git-hooks": {
     "commit-msg": "echo $(cat .git/COMMIT_EDITMSG) | npx commitlint",
-    "pre-commit": "pnpm exec lint-staged --concurrent false"
+    "pre-commit": "pnpm exec lint-staged --concurrent true"
   },
   "lint-staged": {
     "*": [
-      "nr format",
-      "nr markdown:lint"
+      "nr format"
     ],
     "*.[jt]s?(x)": [
       "nr lint:fix"

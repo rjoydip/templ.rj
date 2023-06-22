@@ -1,24 +1,4 @@
 {
-  "cSpell.words": [
-    "antfu",
-    "bumpp",
-    "cliname",
-    "commitlint",
-    "EDITMSG",
-    "endfor",
-    "esno",
-    "execa",
-    "grft",
-    "Joydip",
-    "npmjs",
-    "preinstall",
-    "rjoydip",
-    "stackblitz",
-    "tmpl",
-    "tsup",
-    "typecheck",
-    "unmock"
-  ],
   "editor.formatOnSave": false,
   "[json]": {
     "editor.formatOnSave": false
