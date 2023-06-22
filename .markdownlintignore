@@ -3,3 +3,4 @@ fixtures/
 coverage/
 node_modules/
 packages/**/node_modules/
+.github/**/*.yml

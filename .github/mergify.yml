@@ -1,0 +1,6 @@
+- name: auto merge for dependabot
+  conditions:
+    - author~=^dependabot(|-preview)\[bot\]$
+  actions:
+    merge:
+      method: squash
