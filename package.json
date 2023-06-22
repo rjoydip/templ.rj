@@ -1,5 +1,5 @@
 {
-  "name": "grft-monorepo",
+  "name": "grft",
   "type": "module",
   "version": "0.0.1",
   "private": true,
@@ -7,6 +7,12 @@
   "description": "Generate readme file from template file",
   "license": "MIT",
   "sideEffects": true,
+  "author": {
+    "name": "Joydip Roy",
+    "email": "joydipand@gmail.com",
+    "url": "https://github.com/rjoydip"
+  },
+  "repository": "rjoydip/grft",
   "engines": {
     "node": ">=16.0.0"
   },
@@ -28,6 +34,7 @@
     "test:coverage:preview": "nr test:ui --coverage",
     "test:ui": "vitest -r packages --ui",
     "test:run": "vitest run -r packages",
+    "markdown:lint": "markdownlint *.md .github/*.md packages/**/*.md",
     "typecheck": "tsc --noEmit",
     "clean": "pnpm -r --parallel --filter='./packages/**' run clean && rimraf .eslintcache coverage",
     "clean:nm": "pnpm -r --parallel --filter='./packages/**' run clean:nm && rimraf packages/node_modules node_modules",
@@ -50,6 +57,7 @@
     "eslint-plugin-regexp": "^1.15.0",
     "esno": "^0.16.3",
     "lint-staged": "^13.2.2",
+    "markdownlint-cli": "^0.35.0",
     "pnpm": "^8.6.3",
     "prettier": "^2.8.8",
     "rimraf": "^5.0.1",
@@ -66,7 +74,8 @@
   },
   "lint-staged": {
     "*": [
-      "nr format"
+      "nr format",
+      "nr markdown:lint"
     ],
     "*.[jt]s?(x)": [
       "nr lint:fix"

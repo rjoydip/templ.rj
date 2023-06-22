@@ -2,6 +2,7 @@
 .vscode
 .stackblitz
 .prettierignore
+.markdownlintignore
 dist/
 temp/
 fixtures/
