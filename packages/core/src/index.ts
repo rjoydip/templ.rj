@@ -1,3 +1,3 @@
 export * from './constants'
-export * from './reports'
+export * from './reporter'
 export * from './utils'

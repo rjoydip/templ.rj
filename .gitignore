@@ -18,3 +18,4 @@ fixtures/output/*
 ltex*
 .DS_Store
 .eslintcache
+storybook-static

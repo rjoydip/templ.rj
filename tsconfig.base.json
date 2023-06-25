@@ -14,17 +14,7 @@
     "outDir": "./dist",
     "declaration": true,
     "inlineSourceMap": true,
-    "paths": {
-      "@grft/cli": ["./packages/cli/src/cli.ts"],
-      "@grft/core": ["./packages/core/src/index.ts"]
-    },
     "types": ["node"]
   },
-  "exclude": [
-    "**/dist/**",
-    "./packages/cli/dist/**",
-    "./packages/core/dist/**",
-    "./packages/*/*.d.ts",
-    "./packages/*/*.d.cts"
-  ]
+  "exclude": ["**/dist/**", "./packages/*/*.d.ts", "./packages/*/*.d.cts"]
 }

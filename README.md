@@ -14,6 +14,8 @@
 [![CI][ci-shield]][ci-url]
 [![License][license-image]][license-url]
 [![GitHub tag][release-tag-image]][release-url]
+[![djlint-image][djlint-image]][djlint-url]
+[![MegaLinter][megalinter-image]][megalinter-url]
 
 </div>
 
@@ -48,3 +50,7 @@ Released under [MIT](./LICENSE) by [@rjoydip](https://github.com/rjoydip).
 [license-url]: https://github.com/rjoydip/grft/blob/main/LICENSE
 [release-tag-image]: https://img.shields.io/github/tag/rjoydip/grft?include_prereleases=&sort=semver&color=green
 [release-url]: https://github.com/rjoydip/grft/releases
+[djlint-image]: https://img.shields.io/badge/html%20style-djlint-blue.svg
+[djlint-url]: https://www.djlint.com
+[megalinter-image]: https://github.com/rjoydip/grft/actions/workflows/mega-linter.yml/badge.svg
+[megalinter-url]: https://github.com/rjoydip/grft/actions/workflows/mega-linter.yml

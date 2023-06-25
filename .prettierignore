@@ -4,6 +4,7 @@
 .stackblitz
 .gitignore
 .editorconfig
+.eslintignore
 .gitattributes
 .prettierignore
 .markdownlintignore
@@ -12,6 +13,7 @@ temp/
 fixtures/
 coverage/
 node_modules/
+storybook-static/
 package.json
 pnpm-lock.yaml
 pnpm-workspace.yaml

@@ -19,6 +19,15 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
+    "./reporter": {
+      "import": "./dist/reporter.js"
+    },
+    "./constants": {
+      "import": "./dist/constants.js"
+    },
+    "./utils": {
+      "import": "./dist/utils.js"
+    },
     "./*": "./*"
   },
   "main": "./dist/index.js",
@@ -33,7 +42,8 @@
     "build": "nr clean && tsup",
     "clean": "rimraf dist",
     "clean:nm": "rimraf node_modules",
-    "dev": "esno ./src/index.ts"
+    "dev": "esno ./src/index.ts",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "mustache": "^4.2.0",

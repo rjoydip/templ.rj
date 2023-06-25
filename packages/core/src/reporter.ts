@@ -46,7 +46,6 @@ export async function generateReport({
     }
   })
 
-  // eslint-disable-next-line n/no-unsupported-features/es-builtins
   const results = await Promise.allSettled(reportPromises)
   return results.map((result: any) => result.status === 'fulfilled')
 }

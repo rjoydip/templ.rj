@@ -40,19 +40,6 @@ jobs:
       - name: Build
         run: pnpm run build
 
-  dev:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - uses: ./.github/actions/setup-and-cache
-
-      - name: Install
-        run: pnpm i
-
-      - name: Dev
-        run: pnpm run dev
-
   typecheck:
     runs-on: ubuntu-latest
     steps:
