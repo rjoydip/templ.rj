@@ -29,7 +29,8 @@
     "*.d.ts"
   ],
   "scripts": {
-    "prepublishOnly": "nr build",
+    "prepublish": "nr build",
+    "postinstall": "nr build",
     "build": "nr clean && tsup",
     "dev": "esno ./src/cli.ts -v",
     "clean": "rimraf package-lock.json dist",

@@ -38,7 +38,8 @@
     "*.d.ts"
   ],
   "scripts": {
-    "prepublishOnly": "nr build",
+    "prepublish": "nr build",
+    "postinstall": "nr build",
     "build": "nr clean && tsup",
     "clean": "rimraf dist",
     "clean:nm": "rimraf node_modules",

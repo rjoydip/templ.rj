@@ -18,4 +18,6 @@ fixtures/output/*
 ltex*
 .DS_Store
 .eslintcache
+.nyc_output
+.turbo
 storybook-static

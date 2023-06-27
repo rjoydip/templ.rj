@@ -15,6 +15,10 @@ env:
   SPELL_CSPELL_ARGUMENTS: --root /
   REPOSITORY_TRIVY_ARGUMENTS: --skip-dirs node_modules
   REPOSITORY_CHECKOV_ARGUMENTS: -d . --skip-check CKV2_GHA_1
+  HTML_DJLINT_FILTER_REGEX_EXCLUDE: storybook-static
+  HTML_HTMLHINT_FILTER_REGEX_EXCLUDE: storybook-static
+  SPELL_CSPELL_FILTER_REGEX_EXCLUDE: storybook-static
+  EDITORCONFIG_EDITORCONFIG_CHECKER_FILTER_REGEX_EXCLUDE: storybook-static
   YAML_V8R_FILTER_REGEX_EXCLUDE: (pnpm-lock.yaml|pnpm-workspace.yaml|.github/mergify.yml|.github/ISSUE_TEMPLATE/config.yml|.github/ISSUE_TEMPLATE/bug_report.yml)
 
 
