@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+    "christian-kohler.npm-intellisense",
+    "dbaeumer.vscode-eslint",
+    "davidanson.vscode-markdownlint",
+    "editorconfig.editorconfig",
+    "esbenp.prettier-vscode",
+    "folke.vscode-monorepo-workspace",
+    "zixuanchen.vitest-explorer",
+    "seatonjiang.gitmoji-vscode",
+    "streetsidesoftware.code-spell-checker"
+  ]
+}

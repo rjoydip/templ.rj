@@ -1,0 +1,24 @@
+{
+  "folders": [
+    {
+      "name": "✨ GRFT [root]",
+      "path": "."
+    },
+    {
+      "name": "📦 @grft/core",
+      "path": "packages/core"
+    },
+    {
+      "name": "📟 @grft/cli",
+      "path": "packages/cli"
+    },
+    {
+      "name": "💻 @grft/ui",
+      "path": "packages/ui"
+    },
+    {
+      "name": "🗑️ Fixtures",
+      "path": "fixtures"
+    },
+  ]
+}
