@@ -14,6 +14,7 @@
 [![CI][ci-shield]][ci-url]
 [![License][license-image]][license-url]
 [![GitHub tag][release-tag-image]][release-url]
+[![codecov][codecov-image]][codecov-url]
 [![djlint-image][djlint-image]][djlint-url]
 [![MegaLinter][megalinter-image]][megalinter-url]
 
@@ -54,3 +55,5 @@ Released under [MIT](./LICENSE) by [@rjoydip](https://github.com/rjoydip).
 [djlint-url]: https://www.djlint.com
 [megalinter-image]: https://github.com/rjoydip/grft/actions/workflows/mega-linter.yml/badge.svg
 [megalinter-url]: https://github.com/rjoydip/grft/actions/workflows/mega-linter.yml
+[codecov-image]: https://codecov.io/gh/rjoydip/grft/branch/main/graph/badge.svg?token=YV7AKXYY12
+[codecov-url]: https://codecov.io/gh/rjoydip/grft

@@ -16,6 +16,7 @@
     "autodocs",
     "bumpp",
     "codeflow",
+    "codecov",
     "commitlint",
     "cliname",
     "djlint",
