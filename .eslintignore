@@ -5,3 +5,4 @@ node_modules
 coverage
 output
 storybook-static
+grft.code-workspace

@@ -71,12 +71,6 @@
           "endsPattern": "Waiting for"
         }
       }
-    },
-    {
-      "type": "npm",
-      "script": "ci",
-      "problemMatcher": [],
-      "label": "npm: ci"
     }
   ]
 }
