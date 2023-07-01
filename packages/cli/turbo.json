@@ -1,0 +1,21 @@
+{
+  "extends": ["//"],
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"]
+    },
+    "test:ci": {
+      "dependsOn": ["build", "_ni"]
+    },
+    "test:cli": {
+      "dependsOn": ["build", "_ni"]
+    },
+    "test:coverage": {
+      "dependsOn": ["build", "_ni"]
+    },
+    "typecheck": {
+      "dependsOn": ["build", "_ni"]
+    },
+    "_ni": {}
+  }
+}

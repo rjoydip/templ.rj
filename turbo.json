@@ -1,0 +1,40 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": ["tsconfig.base.json"],
+  "pipeline": {
+    "all": {
+      "dependsOn": ["clean", "build", "typecheck", "test:ci", "test:cli"]
+    },
+    "build": {
+      "cache": false
+    },
+    "typecheck": {
+      "cache": false
+    },
+    "test": {
+      "cache": false
+    },
+    "test:ci": {
+      "cache": false
+    },
+    "test:cli": {
+      "cache": false
+    },
+    "test:coverage": {
+      "cache": false
+    },
+    "test:watch": {
+      "cache": false
+    },
+    "setup": {
+      "cache": false
+    },
+    "clean": {
+      "cache": false
+    },
+    "dev": {
+      "cache": true,
+      "persistent": true
+    }
+  }
+}

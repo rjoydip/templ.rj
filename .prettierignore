@@ -8,6 +8,7 @@
 .gitattributes
 .prettierignore
 .markdownlintignore
+.turbo
 dist/
 temp/
 fixtures/

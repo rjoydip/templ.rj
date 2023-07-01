@@ -14,8 +14,14 @@ describe('Core', async () => {
   const tmplMdExt = DEFAULT_TEMPLATE_FILE_EXTENSION
   const jsonExt = DEFAULT_DATA_FILE_EXTENSION
 
-  const dataDir = join('fixtures', DEFAULT_DATA_DIR)
-  const tmplDir = join('fixtures', DEFAULT_TEMPLATE_DIR)
+  const dataDir = join(process.cwd(), '..', '..', 'fixtures', DEFAULT_DATA_DIR)
+  const tmplDir = join(
+    process.cwd(),
+    '..',
+    '..',
+    'fixtures',
+    DEFAULT_TEMPLATE_DIR,
+  )
 
   test('Output', async () => {
     const tmplFiles = await getTemplateFiles(tmplDir, tmplMdExt)

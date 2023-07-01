@@ -4,17 +4,13 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "prepublish": "nr build",
-    "postinstall": "nr build",
-    "clean": "rimraf dist coverage storybook-static",
-    "clean:nm": "rimraf node_modules",
-    "build": "nr clean && tsup && nr storybook:build",
+    "build": "tsup",
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build",
     "storybook:test": "test-storybook --url http://127.0.0.1:6006 --coverage",
     "storybook:preview": "vite preview --outDir storybook-static --host 0.0.0.0 --port 6006 --strictPort true",
-    "wait-on-tcp": "wait-on tcp:6006",
-    "test": "",
+    "clean:nm": "rimraf node_modules",
+    "clean": "rimraf dist storybook-static",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
@@ -23,6 +19,7 @@
   "devDependencies": {
     "@preact/preset-vite": "^2.5.0",
     "@storybook/addon-actions": "^7.0.23",
+    "@storybook/addon-coverage": "^0.0.8",
     "@storybook/addon-essentials": "^7.0.23",
     "@storybook/addon-interactions": "7.0.23",
     "@storybook/addon-links": "^7.0.23",
@@ -31,7 +28,6 @@
     "@storybook/preact-vite": "7.0.23",
     "@storybook/test-runner": "^0.11.0",
     "@types/react": "^18.2.13",
-    "storybook": "7.0.23",
-    "wait-on": "^7.0.1"
+    "storybook": "7.0.23"
   }
 }
