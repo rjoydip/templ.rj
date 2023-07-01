@@ -1,6 +1,7 @@
 .github
 .vscode
 .npmrc
+.nvmrc
 .stackblitz
 .gitignore
 .editorconfig
@@ -11,6 +12,7 @@
 .turbo
 dist/
 temp/
+scripts/
 fixtures/
 coverage/
 node_modules/

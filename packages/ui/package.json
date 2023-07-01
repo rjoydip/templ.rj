@@ -4,13 +4,13 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
+    "_ni": "ni",
     "build": "tsup",
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build",
     "storybook:test": "test-storybook --url http://127.0.0.1:6006 --coverage",
     "storybook:preview": "vite preview --outDir storybook-static --host 0.0.0.0 --port 6006 --strictPort true",
-    "clean:nm": "rimraf node_modules",
-    "clean": "rimraf dist storybook-static",
+    "clean": "rimraf dist storybook-static node_modules",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

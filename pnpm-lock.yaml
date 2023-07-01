@@ -96,7 +96,7 @@ importers:
   packages/cli:
     dependencies:
       '@grft/core':
-        specifier: workspace:*
+        specifier: workspace:core
         version: link:../core
       sade:
         specifier: ^1.8.1

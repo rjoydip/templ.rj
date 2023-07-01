@@ -7,6 +7,9 @@
   "description": "Generate readme file from template file",
   "license": "MIT",
   "sideEffects": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "author": {
     "name": "Joydip Roy",
     "email": "joydipand@gmail.com",
@@ -30,11 +33,10 @@
     "format": "prettier --write --cache .",
     "lint": "eslint --cache .",
     "lint:fix": "nr lint --fix",
-    "deps:fresh": "taze -r -w && ni",
+    "deps:fresh": "taze -r -w -i",
     "markdown:lint": "markdown-link-check *.md .github/*.md packages/*/*.md",
-    "clean": "turbo run clean && rimraf .eslintcache coverage",
-    "setup": "turbo run clean:nm && rimraf node_modules && pnpm i && nr deps:fresh",
-    "all": "turbo run all && nr format && nr lint:fix && nr markdown:lint"
+    "clean": "turbo run clean && rimraf .eslintcache coverage && scripts/delete-root-nm.sh",
+    "all": "turbo run all && nr format && nr lint:fix && nr markdown:lint && nr deps:fresh"
   },
   "devDependencies": {
     "@antfu/ni": "^0.21.4",

@@ -3,10 +3,11 @@
   "globalDependencies": ["tsconfig.base.json"],
   "pipeline": {
     "all": {
-      "dependsOn": ["clean", "build", "typecheck", "test:ci", "test:cli"]
+      "dependsOn": ["build", "typecheck", "test:ci", "test:cli"]
     },
     "build": {
-      "cache": false
+      "cache": false,
+      "outputs": ["dist/**"]
     },
     "typecheck": {
       "cache": false
@@ -20,14 +21,12 @@
     "test:cli": {
       "cache": false
     },
-    "test:coverage": {
-      "cache": false
-    },
     "test:watch": {
       "cache": false
     },
-    "setup": {
-      "cache": false
+    "test:coverage": {
+      "cache": false,
+      "outputs": ["coverage/**"]
     },
     "clean": {
       "cache": false

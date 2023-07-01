@@ -38,10 +38,10 @@
     "*.d.ts"
   ],
   "scripts": {
+    "_ni": "ni",
     "build": "tsup",
-    "clean": "rimraf dist",
-    "clean:nm": "rimraf node_modules",
-    "dev": "tsup ./src/index.ts",
+    "clean": "rimraf dist node_modules",
+    "dev": "tsup ./src/index.ts --watch",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:ci": "CI=true vitest",
