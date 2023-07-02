@@ -15,6 +15,7 @@
 [![License][license-image]][license-url]
 [![GitHub tag][release-tag-image]][release-url]
 [![codecov][codecov-image]][codecov-url]
+[![PRs Welcome][pr-welcome-image]][pr-welcome-url]
 [![djlint-image][djlint-image]][djlint-url]
 [![MegaLinter][megalinter-image]][megalinter-url]
 
@@ -57,3 +58,5 @@ Released under [MIT](./LICENSE) by [@rjoydip](https://github.com/rjoydip).
 [megalinter-url]: https://github.com/rjoydip/grft/actions/workflows/mega-linter.yml
 [codecov-image]: https://codecov.io/gh/rjoydip/grft/branch/main/graph/badge.svg?token=YV7AKXYY12
 [codecov-url]: https://codecov.io/gh/rjoydip/grft
+[pr-welcome-image]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
+[pr-welcome-url]: http://makeapullrequest.com
