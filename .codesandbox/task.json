@@ -1,0 +1,14 @@
+{
+  "$schema": "https://codesandbox.io/schemas/tasks.json",
+  "setupTasks": ["pnpm run install", "pnpm run build"],
+  "tasks": {
+    "start-storybook": {
+      "name": "Start Storybook",
+      "command": "pnpm run --dir packages/ui storybook",
+      "runAtStart": true,
+      "preview": {
+        "port": 6006
+      }
+    }
+  }
+}
