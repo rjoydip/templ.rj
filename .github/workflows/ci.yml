@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: ./.github/actions/setup-and-cache
+      - uses: ./.github/actions/setup-node
 
       - name: Install
         run: pnpm i
@@ -32,7 +32,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: ./.github/actions/setup-and-cache
+      - uses: ./.github/actions/setup-node
 
       - name: Install
         run: pnpm i
@@ -45,7 +45,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: ./.github/actions/setup-and-cache
+      - uses: ./.github/actions/setup-node
 
       - name: Install
         run: pnpm i
@@ -75,7 +75,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: ./.github/actions/setup-and-cache
+      - uses: ./.github/actions/setup-node
         with:
           node-version: ${{ matrix.node_version }}
 
@@ -109,7 +109,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: ./.github/actions/setup-and-cache
+      - uses: ./.github/actions/setup-node
         with:
           node-version: ${{ matrix.node_version }}
 

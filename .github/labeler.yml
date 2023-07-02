@@ -1,0 +1,17 @@
+docs:
+  - 'docs/**/*'
+  - '**/README.md'
+
+test:
+  - 'tests/**/*'
+  - '**/tests/**/*'
+  - '**/__tests__/**/*'
+
+mod:cli:
+  - 'packages/cli/**/*'
+
+mod:core:
+  - 'packages/core/**/*'
+
+mod:ui:
+  - 'packages/ui/**/*'

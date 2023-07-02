@@ -19,6 +19,8 @@
     "codecov",
     "codesandbox",
     "commitlint",
+    "codeql",
+    "CODEOWNERS",
     "cliname",
     "djlint",
     "EDITMSG",
