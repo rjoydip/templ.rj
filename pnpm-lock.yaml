@@ -153,8 +153,8 @@ importers:
         specifier: ^7.0.24
         version: 7.0.24(preact@10.15.1)
       '@storybook/preact-vite':
-        specifier: 7.0.23
-        version: 7.0.23(@babel/core@7.22.5)(preact@10.15.1)(typescript@5.1.6)(vite@4.3.9)
+        specifier: 7.0.24
+        version: 7.0.24(@babel/core@7.22.5)(preact@10.15.1)(typescript@5.1.6)(vite@4.3.9)
       '@storybook/test-runner':
         specifier: ^0.11.0
         version: 0.11.0(@types/node@20.3.3)(ts-node@10.9.1)
@@ -4218,8 +4218,8 @@ packages:
       - supports-color
     dev: true
 
-  /@storybook/builder-vite@7.0.23(@preact/preset-vite@2.5.0)(typescript@5.1.6)(vite@4.3.9):
-    resolution: {integrity: sha512-2RY0BzXQ5TxwwDwJsTjxxIaCBJlyybfgn/hU7EkRRSaLvJhaUfHVJHoYrbYA2EFOUufRXmvrf/c138D97air7w==}
+  /@storybook/builder-vite@7.0.24(@preact/preset-vite@2.5.0)(typescript@5.1.6)(vite@4.3.9):
+    resolution: {integrity: sha512-pdCHtAe8XhEIajp8s59nzaAJH026ExoRPgBcIuL+H3GyB5xlqf3GbXosFx82X7q1z1HNkGDMoPDiNP9JA2n40g==}
     peerDependencies:
       '@preact/preset-vite': '*'
       typescript: '>= 4.3.x'
@@ -4234,16 +4234,16 @@ packages:
         optional: true
     dependencies:
       '@preact/preset-vite': 2.5.0(@babel/core@7.22.5)(preact@10.15.1)(vite@4.3.9)
-      '@storybook/channel-postmessage': 7.0.23
-      '@storybook/channel-websocket': 7.0.23
-      '@storybook/client-logger': 7.0.23
-      '@storybook/core-common': 7.0.23
-      '@storybook/csf-plugin': 7.0.23
+      '@storybook/channel-postmessage': 7.0.24
+      '@storybook/channel-websocket': 7.0.24
+      '@storybook/client-logger': 7.0.24
+      '@storybook/core-common': 7.0.24
+      '@storybook/csf-plugin': 7.0.24
       '@storybook/mdx2-csf': 1.1.0
-      '@storybook/node-logger': 7.0.23
-      '@storybook/preview': 7.0.23
-      '@storybook/preview-api': 7.0.23
-      '@storybook/types': 7.0.23
+      '@storybook/node-logger': 7.0.24
+      '@storybook/preview': 7.0.24
+      '@storybook/preview-api': 7.0.24
+      '@storybook/types': 7.0.24
       browser-assert: 1.2.1
       es-module-lexer: 0.9.3
       express: 4.18.2
@@ -4283,11 +4283,11 @@ packages:
       telejson: 7.1.0
     dev: true
 
-  /@storybook/channel-websocket@7.0.23:
-    resolution: {integrity: sha512-xjY09pOaE5T5TgC41V3fezzqdrL+aPjiW0q4H/CrPF9Oa87hHBZq2dmq1TU5Wd4GFrW/OHqo2rGemS/bXh8mNg==}
+  /@storybook/channel-websocket@7.0.24:
+    resolution: {integrity: sha512-GKSlWx5FgMQM0TKRCSGNTxLh0YU7xmg7m6FH8b/mvhH0Uido487qcJap2Ma/WOLe8aRiZo9jJpfcbUsKBWhuMg==}
     dependencies:
-      '@storybook/channels': 7.0.23
-      '@storybook/client-logger': 7.0.23
+      '@storybook/channels': 7.0.24
+      '@storybook/client-logger': 7.0.24
       '@storybook/global': 5.0.0
       telejson: 7.1.0
     dev: true
@@ -4417,13 +4417,6 @@ packages:
       util-deprecate: 1.0.2
     dev: true
 
-  /@storybook/core-client@7.0.23:
-    resolution: {integrity: sha512-YKZvUtFl0DH4xq6GkrYTx9UXfJoNlh6ZiybBXkD0eRi2cEo/EFKM6w5IIXYuyfn8uogBX1cUo61FrcRNulS5bw==}
-    dependencies:
-      '@storybook/client-logger': 7.0.23
-      '@storybook/preview-api': 7.0.23
-    dev: true
-
   /@storybook/core-client@7.0.24:
     resolution: {integrity: sha512-uToMHbi5EnOk+8Z941j0hrRE1h9u/QWqCmqS2FBIWrBOeREwy0AAib1/hqihzhO7OzekY5mtLTANiCpIpLHAHQ==}
     dependencies:
@@ -4546,15 +4539,6 @@ packages:
       - encoding
       - supports-color
       - utf-8-validate
-    dev: true
-
-  /@storybook/csf-plugin@7.0.23:
-    resolution: {integrity: sha512-hKlCkZ8NONqRfzt5rdyQznnf/jMbbUF3h8mLxs1nYSevqH8CaHH9w8dYW2y67hyzT7Wt050bqRO2YH8ZQG/VVA==}
-    dependencies:
-      '@storybook/csf-tools': 7.0.23
-      unplugin: 0.10.2
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /@storybook/csf-plugin@7.0.24:
@@ -4717,16 +4701,16 @@ packages:
     resolution: {integrity: sha512-UYMXyEU4nVIKyrlUdIs3NHQmILzrN+EkEDbmeQC2WMMPw+t4GY2cDVmpx90JYYZcn7gY+cNDgQ55iiqbvlamLQ==}
     dev: true
 
-  /@storybook/preact-vite@7.0.23(@babel/core@7.22.5)(preact@10.15.1)(typescript@5.1.6)(vite@4.3.9):
-    resolution: {integrity: sha512-MmNni5bvK8XfyVUQYek/MGiDmBlIN/kKLnW50kUAWvb8PlZO7olMBEqQGYDnUxyP/uu73K6yPq8TOh3Yr6i2iA==}
+  /@storybook/preact-vite@7.0.24(@babel/core@7.22.5)(preact@10.15.1)(typescript@5.1.6)(vite@4.3.9):
+    resolution: {integrity: sha512-roDURShEj7EAPXya/mO6osZuD9rIkEphUfXXmH4eYR2IimK6zhmHn36XFo5z4IVD7zHkjUCeGQ15HGzRB7nV4Q==}
     engines: {node: '>=16'}
     peerDependencies:
       preact: '>=10'
       vite: ^3.0.0 || ^4.0.0
     dependencies:
       '@preact/preset-vite': 2.5.0(@babel/core@7.22.5)(preact@10.15.1)(vite@4.3.9)
-      '@storybook/builder-vite': 7.0.23(@preact/preset-vite@2.5.0)(typescript@5.1.6)(vite@4.3.9)
-      '@storybook/preact': 7.0.23(preact@10.15.1)
+      '@storybook/builder-vite': 7.0.24(@preact/preset-vite@2.5.0)(typescript@5.1.6)(vite@4.3.9)
+      '@storybook/preact': 7.0.24(preact@10.15.1)
       preact: 10.15.1
       vite: 4.3.9(@types/node@20.3.3)
     transitivePeerDependencies:
@@ -4735,20 +4719,6 @@ packages:
       - supports-color
       - typescript
       - vite-plugin-glimmerx
-    dev: true
-
-  /@storybook/preact@7.0.23(preact@10.15.1):
-    resolution: {integrity: sha512-sbiVZcVw0+xar9Oko69akgsKVjTQe+BMAQrTTVNkjxritsZtyFWMxPiafM7b9kVbgm8eZ4QSXrREg96XM1GM1Q==}
-    engines: {node: '>=16.0.0'}
-    peerDependencies:
-      preact: ^8.0.0||^10.0.0
-    dependencies:
-      '@storybook/core-client': 7.0.23
-      '@storybook/global': 5.0.0
-      '@storybook/preview-api': 7.0.23
-      '@storybook/types': 7.0.23
-      preact: 10.15.1
-      ts-dedent: 2.2.0
     dev: true
 
   /@storybook/preact@7.0.24(preact@10.15.1):
@@ -4805,8 +4775,8 @@ packages:
       util-deprecate: 1.0.2
     dev: true
 
-  /@storybook/preview@7.0.23:
-    resolution: {integrity: sha512-D4oDayFOXqNDLJStbZ35Lc0UAXvzdWiij1IE01wH1mzndlEgR+/1ZEPQfm5Leb5LZd7pWmyYLJqh6m/CCK2uPg==}
+  /@storybook/preview@7.0.24:
+    resolution: {integrity: sha512-rej4Wz8Qy4gVuyvg4cpQGkR4wJc3b+0Uv6EYylbmpdj2585cOhFtRBykagDVZteVU4xaLMT7YHIZRnoLmJKIgw==}
     dev: true
 
   /@storybook/react-dom-shim@7.0.24(react-dom@18.2.0)(react@18.2.0):
