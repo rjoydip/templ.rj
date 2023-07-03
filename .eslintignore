@@ -1,9 +1,11 @@
-dist
-node_modules
 *.snap
 *.d.ts
+.turbo
+.dockerignore
+.gitpod.Dockerfile
+grft.code-workspace
+dist
+node_modules
 coverage
 output
 storybook-static
-.turbo
-grft.code-workspace

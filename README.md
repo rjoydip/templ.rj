@@ -18,6 +18,10 @@
 [![PRs Welcome][pr-welcome-image]][pr-welcome-url]
 [![djlint-image][djlint-image]][djlint-url]
 [![MegaLinter][megalinter-image]][megalinter-url]
+[![Gitpod Ready-to-Code][gitpod-image]][gitpod-url]
+[![Node Version][node-image]][node-url]
+[![Typescript][typescript-image]][typescript-url]
+[![Static Badge][pnpm-image]][pnpm-url]
 
 </div>
 
@@ -58,5 +62,13 @@ Released under [MIT](./LICENSE) by [@rjoydip](https://github.com/rjoydip).
 [megalinter-url]: https://github.com/rjoydip/grft/actions/workflows/mega-linter.yml
 [codecov-image]: https://codecov.io/gh/rjoydip/grft/branch/main/graph/badge.svg?token=YV7AKXYY12
 [codecov-url]: https://codecov.io/gh/rjoydip/grft
-[pr-welcome-image]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
+[pr-welcome-image]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg
 [pr-welcome-url]: http://makeapullrequest.com
+[gitpod-image]: https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod
+[gitpod-url]: https://gitpod.io/from-referrer
+[node-image]: https://img.shields.io/badge/node-16%20LTS-brightgreen
+[node-url]: https://nodejs.org/en/blog/release/v16.16.0
+[typescript-image]: https://img.shields.io/badge/typescript-latest-blue
+[typescript-url]: https://www.typescriptlang.org
+[pnpm-image]: https://img.shields.io/badge/pnpm-latest-orange
+[pnpm-url]: https://pnpm.io

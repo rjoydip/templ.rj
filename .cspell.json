@@ -14,6 +14,7 @@
   "words": [
     "antfu",
     "autodocs",
+    "bierner",
     "bumpp",
     "codeflow",
     "codecov",
@@ -22,14 +23,21 @@
     "codeql",
     "CODEOWNERS",
     "cliname",
+    "davidanson",
+    "dbaeumer",
     "djlint",
+    "eamodio",
     "EDITMSG",
     "endfor",
     "envinfo",
+    "esbenp",
     "esno",
     "execa",
+    "folke",
     "grft",
+    "gitmoji",
     "Joydip",
+    "kohler",
     "markdownlint",
     "markdownlintignore",
     "megalinter",
@@ -41,6 +49,7 @@
     "preinstall",
     "preact",
     "rjoydip",
+    "seatonjiang",
     "sirv",
     "stackblitz",
     "taze",
@@ -50,7 +59,8 @@
     "unmock",
     "vite",
     "vitest",
-    "vitejs"
+    "vitejs",
+    "zixuanchen"
   ],
   "version": "0.2"
 }

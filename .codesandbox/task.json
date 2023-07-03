@@ -1,6 +1,6 @@
 {
   "$schema": "https://codesandbox.io/schemas/tasks.json",
-  "setupTasks": ["pnpm run install", "pnpm run build"],
+  "setupTasks": ["pnpm install", "pnpm run build"],
   "tasks": {
     "start-storybook": {
       "name": "Start Storybook",
