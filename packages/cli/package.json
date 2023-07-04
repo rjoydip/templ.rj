@@ -2,7 +2,7 @@
   "name": "@grft/cli",
   "type": "module",
   "version": "0.1.0",
-  "cliname": "grft",
+  "cliname": "GRFT",
   "description": "Grft cli service",
   "license": "MIT",
   "homepage": "https://github.com/rjoydip/grft/tree/main/packages/cli#readme",
@@ -15,23 +15,27 @@
     "url": "https://github.com/rjoydip/grft/issues"
   },
   "sideEffects": true,
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
     "./*": "./*"
   },
-  "main": "./dist/cli.js",
-  "module": "./dist/cli.js",
   "bin": {
-    "grft": "bin/grft.mjs"
+    "grft": "grft.mjs"
   },
   "files": [
-    "bin",
-    "dist",
+    "grft.mjs",
     "*.d.ts"
   ],
   "scripts": {
     "_ni": "ni",
     "build": "tsup",
-    "dev": "esno ./src/cli.ts -v",
+    "dev": "esno ./src/index.ts -v",
     "clean": "rimraf package-lock.json dist node_modules",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
@@ -41,7 +45,8 @@
     "test:cli": "pnpm link . && pnpm grft -v"
   },
   "dependencies": {
-    "@grft/core": "workspace:core",
+    "@grft/core": "workspace:*",
+    "read-pkg-up": "^9.1.0",
     "sade": "^1.8.1",
     "serialize-error": "^11.0.0"
   },

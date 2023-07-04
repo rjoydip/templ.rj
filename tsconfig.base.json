@@ -16,5 +16,5 @@
     "inlineSourceMap": true,
     "types": ["node"]
   },
-  "exclude": ["**/dist/**", "./packages/*/*.d.ts", "./packages/*/*.d.cts"]
+  "exclude": ["**/dist/**", "./packages/**/*.d.ts"]
 }

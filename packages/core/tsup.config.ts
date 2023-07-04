@@ -9,5 +9,7 @@ export default defineConfig((options) => {
     dts: true,
     minify: !options.watch,
     format: ['cjs', 'esm'],
+    target: 'esnext',
+    platform: 'node',
   }
 })

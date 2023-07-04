@@ -2,7 +2,7 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "paths": {
-      "@grft/cli": ["./src/cli.ts"]
+      "@grft/cli": ["./src/index.ts"]
     }
   }
 }

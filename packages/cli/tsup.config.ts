@@ -2,11 +2,11 @@ import { defineConfig } from 'tsup'
 
 export default defineConfig((options) => {
   return {
-    entry: ['src/cli.ts'],
+    entry: ['src/index.ts'],
     splitting: false,
     sourcemap: false,
     clean: true,
-    dts: false,
+    dts: true,
     minify: !options.watch,
     format: ['esm'],
     target: 'esnext',
