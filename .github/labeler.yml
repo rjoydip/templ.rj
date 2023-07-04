@@ -1,17 +1,17 @@
-docs:
+📝docs:
   - 'docs/**/*'
   - '**/README.md'
 
-test:
+🧪test:
   - 'tests/**/*'
   - '**/tests/**/*'
   - '**/__tests__/**/*'
 
-mod:cli:
+♻️mod:cli:
   - 'packages/cli/**/*'
 
-mod:core:
+♻️mod:core:
   - 'packages/core/**/*'
 
-mod:ui:
+♻️mod:ui:
   - 'packages/ui/**/*'
