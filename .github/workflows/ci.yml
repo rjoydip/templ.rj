@@ -86,12 +86,9 @@ jobs:
         run: |
           pnpm run test:coverage
 
-      - name: Coverage
-        if: always()
-        uses: davelosert/vitest-coverage-report-action@v2
-
-      - name: Upload coverage reports to Codecov
+      - name: Codecov
         uses: codecov/codecov-action@v3
+        if: matrix.os == 'ubuntu-latest' && matrix.node_version == 18
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
