@@ -1,14 +1,21 @@
 import { join } from 'node:path'
 import { randomUUID } from 'node:crypto'
 import { $ } from 'execa'
+import { findMonorepoRoot } from 'find-monorepo-root'
 import { serializeError } from 'serialize-error'
 import { afterAll, beforeAll, beforeEach, describe, expect, test } from 'vitest'
-import pkgInfo from '../src/utils/pkg-info'
 
 describe('Cli', async () => {
   let output_dir: string
-  const cliFilePath: string = 'src/index.ts'
-  const fixturesPath = join(process.cwd(), '..', '..', 'fixtures')
+  const rootDir = (await findMonorepoRoot(process.cwd())).dir
+  const fixturesPath = join(rootDir, 'fixtures')
+  const cliFilePath: string = join(
+    rootDir,
+    'packages',
+    'cli',
+    'src',
+    'index.ts',
+  )
 
   beforeAll(async () => {
     await $`rm -rf ${join(fixturesPath, 'output', '*')}`
@@ -23,9 +30,8 @@ describe('Cli', async () => {
   })
 
   test('Version', async () => {
-    const pkg = await pkgInfo()
     const result = await $`esno ${cliFilePath} generate -v`
-    expect(result.stdout).toStrictEqual(`${pkg.name}, ${pkg.version}`)
+    expect(result.stdout).toStrictEqual(`GRFT, 0.1.0`)
   })
 
   test('Without command', async () => {

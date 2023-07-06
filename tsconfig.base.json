@@ -14,7 +14,7 @@
     "outDir": "./dist",
     "declaration": true,
     "inlineSourceMap": true,
-    "types": ["node"]
+    "types": ["node", "vitest/importMeta"]
   },
   "exclude": ["**/dist/**", "./packages/**/*.d.ts"]
 }

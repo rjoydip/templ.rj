@@ -29,14 +29,8 @@
     "*.d.ts"
   ],
   "scripts": {
-    "_ni": "ni",
     "build": "tsup",
-    "clean": "rimraf dist node_modules",
     "dev": "tsup ./src/index.ts --watch",
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "test:ci": "CI=true vitest",
-    "test:coverage": "nr test --coverage",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
@@ -44,6 +38,8 @@
     "tiny-glob": "^0.2.9"
   },
   "devDependencies": {
-    "@types/mustache": "^4.2.2"
+    "@types/mustache": "^4.2.2",
+    "find-monorepo-root": "^1.0.3",
+    "pkg-dir": "^7.0.0"
   }
 }

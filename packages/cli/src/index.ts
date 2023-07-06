@@ -1,7 +1,6 @@
 import sade from 'sade'
 import { serializeError } from 'serialize-error'
 import { generateReport } from '@grft/core'
-import pkgInfo from './utils/pkg-info'
 
 process.on('unhandledRejection', (reason, _) => {
   console.error(reason)
@@ -9,10 +8,8 @@ process.on('unhandledRejection', (reason, _) => {
 })
 
 async function main() {
-  const { name, version } = await pkgInfo()
-
-  const prog = sade(name)
-  prog.version(version)
+  const prog = sade('GRFT')
+  prog.version('0.1.0')
 
   prog
     .command('generate')

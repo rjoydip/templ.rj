@@ -1,4 +1,5 @@
 import { join, parse } from 'node:path'
+import { findMonorepoRoot } from 'find-monorepo-root'
 import { describe, expect, test } from 'vitest'
 import {
   DEFAULT_DATA_DIR,
@@ -11,17 +12,13 @@ import {
 } from '../src'
 
 describe('Core', async () => {
+  const rootDir = (await findMonorepoRoot(process.cwd())).dir
+  const fixturesPath = join(rootDir, 'fixtures')
   const tmplMdExt = DEFAULT_TEMPLATE_FILE_EXTENSION
   const jsonExt = DEFAULT_DATA_FILE_EXTENSION
 
-  const dataDir = join(process.cwd(), '..', '..', 'fixtures', DEFAULT_DATA_DIR)
-  const tmplDir = join(
-    process.cwd(),
-    '..',
-    '..',
-    'fixtures',
-    DEFAULT_TEMPLATE_DIR,
-  )
+  const dataDir = join(fixturesPath, DEFAULT_DATA_DIR)
+  const tmplDir = join(fixturesPath, DEFAULT_TEMPLATE_DIR)
 
   test('Output', async () => {
     const tmplFiles = await getTemplateFiles(tmplDir, tmplMdExt)

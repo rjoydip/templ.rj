@@ -1,9 +1,0 @@
-{
-  "extends": ["//"],
-  "pipeline": {
-    "build": {
-      "dependsOn": ["_ni", "^build"]
-    },
-    "_ni": {}
-  }
-}

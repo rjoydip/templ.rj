@@ -1,4 +1,5 @@
 import { join } from 'node:path'
+import { findMonorepoRoot } from 'find-monorepo-root'
 import { describe, expect, test } from 'vitest'
 import {
   isDataDirectoryExists,
@@ -10,6 +11,8 @@ import {
 } from '../src'
 
 describe('Utils', async () => {
+  const rootDir = (await findMonorepoRoot(process.cwd())).dir
+  const fixturesPath = join(rootDir, 'fixtures')
   test('File extension', () => {
     expect(isJSONFile('test-file.json')).toBeTruthy()
     expect(isMarkdownFile('test-file.md')).toBeTruthy()
@@ -22,37 +25,21 @@ describe('Utils', async () => {
   })
 
   test('Directory', () => {
+    expect(isDataDirectoryExists(join(fixturesPath, 'data'))).toBeTruthy()
+    expect(isOutputDirectoryExists(join(fixturesPath, 'output'))).toBeTruthy()
     expect(
-      isDataDirectoryExists(
-        join(process.cwd(), '..', '..', 'fixtures', 'data'),
-      ),
-    ).toBeTruthy()
-    expect(
-      isOutputDirectoryExists(
-        join(process.cwd(), '..', '..', 'fixtures', 'output'),
-      ),
-    ).toBeTruthy()
-    expect(
-      isTemplateDirectoryExists(
-        join(process.cwd(), '..', '..', 'fixtures', 'template'),
-      ),
+      isTemplateDirectoryExists(join(fixturesPath, 'template')),
     ).toBeTruthy()
 
     // Negative/Falsy
     expect(
-      isDataDirectoryExists(
-        join(process.cwd(), '..', '..', 'fixtures', 'data', 'dump'),
-      ),
+      isDataDirectoryExists(join(fixturesPath, 'data', 'dump')),
     ).toBeFalsy()
     expect(
-      isOutputDirectoryExists(
-        join(process.cwd(), '..', '..', 'fixtures', 'output', 'dump'),
-      ),
+      isOutputDirectoryExists(join(fixturesPath, 'output', 'dump')),
     ).toBeFalsy()
     expect(
-      isTemplateDirectoryExists(
-        join(process.cwd(), '..', '..', 'fixtures', 'template', 'dump'),
-      ),
+      isTemplateDirectoryExists(join(fixturesPath, 'template', 'dump')),
     ).toBeFalsy()
   })
 })

@@ -49,6 +49,7 @@
     "pnpmfile",
     "preinstall",
     "preact",
+    "pretypecheck",
     "rjoydip",
     "seatonjiang",
     "sirv",

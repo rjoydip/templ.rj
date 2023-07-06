@@ -12,6 +12,7 @@ vscode:
     - "editorconfig.editorconfig"
     - "esbenp.prettier-vscode"
     - "folke.vscode-monorepo-workspace"
+    - "foxundermoon.shell-format"
     - "zixuanchen.vitest-explorer"
     - "seatonjiang.gitmoji-vscode"
     - "streetsidesoftware.code-spell-checker"
