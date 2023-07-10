@@ -30,7 +30,8 @@
   },
   "files": [
     "grft.mjs",
-    "*.d.ts"
+    "*.d.ts",
+    "dist"
   ],
   "scripts": {
     "build": "tsup",
