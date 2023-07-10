@@ -26,6 +26,6 @@
     "@storybook/preact-vite": "7.0.24",
     "@storybook/test-runner": "^0.11.0",
     "@types/react": "^18.2.14",
-    "storybook": "7.0.24"
+    "storybook": "7.0.26"
   }
 }
