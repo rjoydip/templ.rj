@@ -46,8 +46,8 @@
     "@commitlint/cli": "^17.6.6",
     "@commitlint/config-conventional": "^17.6.6",
     "@types/node": "^20.4.1",
-    "@typescript-eslint/eslint-plugin": "^5.61.0",
-    "@typescript-eslint/parser": "^5.61.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
     "@vitest/coverage-v8": "^0.33.0",
     "@vitest/ui": "^0.33.0",
     "eslint": "^8.44.0",
@@ -68,7 +68,7 @@
     "typescript": "^5.1.6",
     "vite": "^4.4.2",
     "vite-tsconfig-paths": "^4.2.0",
-    "vitest": "^0.32.4"
+    "vitest": "^0.33.0"
   },
   "simple-git-hooks": {
     "commit-msg": "echo $(cat .git/COMMIT_EDITMSG) | npx commitlint",
