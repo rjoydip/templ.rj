@@ -8,21 +8,20 @@
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build",
     "storybook:test": "test-storybook --url http://127.0.0.1:6006 --coverage",
-    "storybook:preview": "vite preview --outDir storybook-static --host 0.0.0.0 --port 6006 --strictPort true",
-    "typecheck": "tsc --noEmit"
+    "storybook:preview": "vite preview --outDir storybook-static --host 0.0.0.0 --port 6006 --strictPort true"
   },
   "dependencies": {
-    "preact": "^10.15.1"
+    "preact": "^10.16.0"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.5.0",
-    "@storybook/addon-actions": "^7.0.25",
+    "@storybook/addon-actions": "^7.0.26",
     "@storybook/addon-coverage": "^0.0.8",
-    "@storybook/addon-essentials": "^7.0.25",
+    "@storybook/addon-essentials": "^7.0.26",
     "@storybook/addon-interactions": "7.0.26",
-    "@storybook/addon-links": "^7.0.25",
+    "@storybook/addon-links": "^7.0.26",
     "@storybook/blocks": "7.0.26",
-    "@storybook/preact": "^7.0.25",
+    "@storybook/preact": "^7.0.26",
     "@storybook/preact-vite": "7.0.24",
     "@storybook/test-runner": "^0.11.0",
     "@types/react": "^18.2.14",

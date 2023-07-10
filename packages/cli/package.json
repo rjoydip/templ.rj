@@ -36,8 +36,7 @@
     "build": "tsup",
     "dev": "esno ./src/index.ts -v",
     "test:cli": "pnpm link . && pnpm grft -v",
-    "build:core": "pnpm --filter core run build",
-    "typecheck": "nr build:core && ni && nr build && tsc --noEmit"
+    "build:core": "pnpm --filter core run build"
   },
   "dependencies": {
     "@grft/core": "workspace:*",

@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "module": "esnext",
+    "lib": ["esnext"],
+    "moduleResolution": "node",
+    "types": ["node", "vitest/importMeta"]
+  }
+}

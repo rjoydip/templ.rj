@@ -7,7 +7,7 @@ cleanDir() {
     echo ""
     echo "[ SUCESS ✅ ]: Removed $1"
   else
-    echo "[ ERROR 🥅 ]: $1 not exists"
+    echo "[ ERROR 🥅 ]: '$1' not exists"
   fi
 }
 
@@ -31,7 +31,7 @@ cleanFile() {
     echo ""
     echo "[ SUCESS ✅ ]: Removed $1"
   else
-    echo "[ ERROR 🥅 ]: $1 not exists"
+    echo "[ ERROR 🥅 ]: '$1' not exists"
   fi
 }
 
@@ -109,7 +109,6 @@ for arg in "$@"; do
     echo "GRFT commander version 1.0"
     ;;
   -c | --clean)
-    cleaDist
     cleaDist packages
     cleaCoverage
     cleaEslintCache

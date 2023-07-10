@@ -10,7 +10,8 @@ updates:
     versioning-strategy: widen
     target-branch: "main"
     labels:
-      - "npm-deps"
+      - "🏷️npm-deps"
+      - "CI"
 
   - package-ecosystem: "npm"
     directory: "/packages/cli"
@@ -21,7 +22,9 @@ updates:
     versioning-strategy: widen
     target-branch: "main"
     labels:
-      - "🏷️ npm"
+      - "🏷️npm-deps"
+      - "♻️mod:cli"
+      - "CI"
 
   - package-ecosystem: "npm"
     directory: "/packages/core"
@@ -32,4 +35,19 @@ updates:
     versioning-strategy: widen
     target-branch: "main"
     labels:
-      - "🏷️ npm"
+      - "🏷️npm-deps"
+      - "♻️mod:core"
+      - "CI"
+
+  - package-ecosystem: "npm"
+    directory: "/packages/ui"
+    schedule:
+      interval: "weekly"
+      time: "00:10"
+      timezone: "Asia/Calcutta"
+    versioning-strategy: widen
+    target-branch: "main"
+    labels:
+      - "🏷️npm-deps"
+      - "♻️mod:ui"
+      - "CI"

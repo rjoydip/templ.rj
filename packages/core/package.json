@@ -30,8 +30,7 @@
   ],
   "scripts": {
     "build": "tsup",
-    "dev": "tsup ./src/index.ts --watch",
-    "typecheck": "tsc --noEmit"
+    "dev": "tsup ./src/index.ts --watch"
   },
   "dependencies": {
     "mustache": "^4.2.0",

@@ -1,15 +1,13 @@
 import { defineConfig } from 'tsup'
+import { mergeConfig } from 'vitest/config'
+import { config as defaultTsupSharedConfig } from '../../tsup.shared'
 
 export default defineConfig((options) => {
-  return {
-    entry: ['src/index.ts'],
-    splitting: false,
-    sourcemap: false,
-    clean: true,
-    dts: true,
-    minify: !options.watch,
-    format: ['esm'],
-    target: 'esnext',
-    platform: 'node',
-  }
+  return mergeConfig(
+    {
+      minify: !options.watch,
+      format: ['esm'],
+    },
+    defaultTsupSharedConfig,
+  )
 })
