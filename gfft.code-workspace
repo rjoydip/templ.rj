@@ -1,19 +1,19 @@
 {
   "folders": [
     {
-      "name": "✨ GRFT [root]",
+      "name": "✨ GFFT [root]",
       "path": "."
     },
     {
-      "name": "📦 @grft/core",
+      "name": "📦 @gfft/core",
       "path": "packages/core"
     },
     {
-      "name": "📟 @grft/cli",
+      "name": "📟 @gfft/cli",
       "path": "packages/cli"
     },
     {
-      "name": "💻 @grft/ui",
+      "name": "💻 @gfft/ui",
       "path": "packages/ui"
     },
     {

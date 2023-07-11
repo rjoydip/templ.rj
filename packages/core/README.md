@@ -1,5 +1,5 @@
-# @grft/core
+# @gfft/core
 
-Grft core module.
+GFFT core module.
 
-[GitHub](https://github.com/rjoydip/grft)
+[GitHub](https://github.com/rjoydip/gfft)

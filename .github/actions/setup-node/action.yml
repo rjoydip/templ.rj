@@ -1,5 +1,5 @@
 ---
-name: GRFT node setup and cache
+name: GFFT node setup and cache
 description: Setup for node, pnpm and cache configuration
 inputs:
   node-version:

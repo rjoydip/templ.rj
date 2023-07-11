@@ -1,6 +1,6 @@
 import sade from 'sade'
 import { serializeError } from 'serialize-error'
-import { generateReport } from '@grft/core'
+import { generateReport } from '@gfft/core'
 
 process.on('unhandledRejection', (reason, _) => {
   console.error(reason)
@@ -8,7 +8,7 @@ process.on('unhandledRejection', (reason, _) => {
 })
 
 async function main() {
-  const prog = sade('GRFT')
+  const prog = sade('GFFT')
   prog.version('0.1.0')
 
   prog

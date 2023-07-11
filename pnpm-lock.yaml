@@ -101,7 +101,7 @@ importers:
 
   packages/cli:
     dependencies:
-      '@grft/core':
+      '@gfft/core':
         specifier: workspace:*
         version: link:../core
       sade:

@@ -92,7 +92,7 @@ for arg in "$@"; do
     echo "-cnm, --clean-nm : Clean node_modules files."
     ;;
   -v | --version)
-    echo "GRFT commander version 1.0"
+    echo "GFFT commander version 1.0"
     ;;
   -c | --clean)
     cleaDist packages

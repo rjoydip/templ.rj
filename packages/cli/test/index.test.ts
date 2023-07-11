@@ -31,7 +31,7 @@ describe('Cli', async () => {
 
   test('Version', async () => {
     const result = await $`esno ${cliFilePath} generate -v`
-    expect(result.stdout).toStrictEqual(`GRFT, 0.1.0`)
+    expect(result.stdout).toStrictEqual(`GFFT, 0.1.0`)
   })
 
   test('Without command', async () => {

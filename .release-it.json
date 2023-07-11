@@ -1,6 +1,6 @@
 {
   "git": {
-    "requireBranch": "main",
+    "requireBranch": "origin/main",
     "requireCleanWorkingDir": false,
     "requireCommits": true,
     "requireCommitsFail": false,

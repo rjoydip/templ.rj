@@ -1,10 +1,10 @@
 {
-  "name": "grft",
+  "name": "gfft",
   "type": "module",
   "version": "0.0.0",
   "private": true,
   "packageManager": "pnpm@8.6.7",
-  "description": "Generate readme file from template file",
+  "description": "Generate file from template file",
   "license": "MIT",
   "sideEffects": true,
   "workspaces": [
@@ -15,7 +15,7 @@
     "email": "joydipand@gmail.com",
     "url": "https://github.com/rjoydip"
   },
-  "repository": "rjoydip/grft",
+  "repository": "rjoydip/gfft",
   "engines": {
     "node": ">=16",
     "npm": ">=8",
@@ -82,8 +82,7 @@
       "nr format"
     ],
     "packages/**/*.{js,ts,jsx,tsx,json}": [
-      "nr lint",
-      "stop-only --file"
+      "nr lint"
     ],
     "*.{md,mdx}": [
       "nr markdown:lint"

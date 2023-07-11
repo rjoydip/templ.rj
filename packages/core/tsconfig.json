@@ -2,7 +2,7 @@
   "extends": "../../tsconfig/tsconfig.node.json",
   "compilerOptions": {
     "paths": {
-      "@grft/core": ["./src/index.ts"]
+      "@gfft/core": ["./src/index.ts"]
     }
   },
   "exclude": ["dist", "*.d.ts"]

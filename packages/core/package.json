@@ -1,17 +1,17 @@
 {
-  "name": "@grft/core",
+  "name": "@gfft/core",
   "type": "module",
   "version": "0.1.0",
-  "description": "Grft core service",
+  "description": "GFFT core service",
   "license": "MIT",
-  "homepage": "https://github.com/rjoydip/grft/tree/main/packages/core#readme",
+  "homepage": "https://github.com/rjoydip/gfft/tree/main/packages/core#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rjoydip/grft.git",
+    "url": "git+https://github.com/rjoydip/gfft.git",
     "directory": "packages/core"
   },
   "bugs": {
-    "url": "https://github.com/rjoydip/grft/issues"
+    "url": "https://github.com/rjoydip/gfft/issues"
   },
   "sideEffects": true,
   "main": "./dist/index.js",
