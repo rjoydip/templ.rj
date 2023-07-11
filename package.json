@@ -26,8 +26,8 @@
     "pretest": "nr build",
     "preinstall": "npx only-allow pnpm",
     "postinstall": "simple-git-hooks",
-    "lint": "eslint --cache .",
-    "lint:fix": "nr lint --fix",
+    "release": "release-it --ci",
+    "lint": "eslint --cache --fix .",
     "deps:fresh": "taze -r -w -i",
     "format": "prettier --write --cache .",
     "build": "pnpm -r --filter='./packages/**' run build",
@@ -39,12 +39,14 @@
     "markdown:lint": "markdown-link-check *.md .github/*.md packages/*/*.md",
     "clean": "./scripts/commander.sh --clean",
     "clean:nm": "./scripts/commander.sh --clean-nm",
-    "all": "nr clean && nr deps:fresh && nr format && nr lint:fix && nr markdown:lint && nr test:ci && nr test:cli"
+    "all": "nr clean && nr deps:fresh && nr format && nr lint && nr markdown:lint && nr test:ci && nr test:cli"
   },
   "devDependencies": {
     "@antfu/ni": "^0.21.4",
     "@commitlint/cli": "^17.6.6",
     "@commitlint/config-conventional": "^17.6.6",
+    "@release-it/bumper": "^5.0.0",
+    "@release-it/conventional-changelog": "^7.0.0",
     "@types/node": "^20.4.1",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
@@ -61,12 +63,13 @@
     "markdown-link-check": "^3.11.2",
     "pnpm": "^8.6.7",
     "prettier": "^3.0.0",
+    "release-it": "^16.1.0",
     "rimraf": "^5.0.1",
     "simple-git-hooks": "^2.8.1",
     "taze": "^0.11.2",
     "tsup": "^7.1.0",
     "typescript": "^5.1.6",
-    "vite": "^4.4.2",
+    "vite": "^4.4.3",
     "vite-tsconfig-paths": "^4.2.0",
     "vitest": "^0.33.0"
   },
@@ -78,8 +81,12 @@
     "*": [
       "nr format"
     ],
-    "*.[jt]s?(x)": [
-      "nr lint:fix"
+    "packages/**/*.{js,ts,jsx,tsx,json}": [
+      "nr lint",
+      "stop-only --file"
+    ],
+    "*.{md,mdx}": [
+      "nr markdown:lint"
     ]
   },
   "stackblitz": {
