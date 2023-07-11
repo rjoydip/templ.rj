@@ -37,8 +37,8 @@
     "test:watch": "nr build && nr test --watch",
     "test:cli": "nr build && ni && pnpm -r --filter='./packages/cli' run test:cli",
     "markdown:lint": "markdown-link-check *.md .github/*.md packages/*/*.md",
-    "clean": "./scripts/commander.sh --clean",
-    "clean:nm": "./scripts/commander.sh --clean-nm",
+    "clean": "chmod +x ./scripts/cleaner.sh && ./scripts/cleaner.sh --clean",
+    "clean:nm": "chmod +x ./scripts/cleaner.sh && ./scripts/cleaner.sh --clean-nm",
     "all": "nr clean && nr deps:fresh && nr format && nr lint && nr markdown:lint && nr test:ci && nr test:cli"
   },
   "devDependencies": {

@@ -11,7 +11,7 @@ updates:
     target-branch: "main"
     labels:
       - "🏷️npm-deps"
-      - "CI"
+      - "☁︎ci"
 
   - package-ecosystem: "npm"
     directory: "/packages/cli"
@@ -23,8 +23,8 @@ updates:
     target-branch: "main"
     labels:
       - "🏷️npm-deps"
-      - "♻️mod:cli"
-      - "CI"
+      - "📦packages"
+      - "☁︎ci"
 
   - package-ecosystem: "npm"
     directory: "/packages/core"
@@ -36,8 +36,8 @@ updates:
     target-branch: "main"
     labels:
       - "🏷️npm-deps"
-      - "♻️mod:core"
-      - "CI"
+      - "📦packages"
+      - "☁︎ci"
 
   - package-ecosystem: "npm"
     directory: "/packages/ui"
@@ -49,5 +49,5 @@ updates:
     target-branch: "main"
     labels:
       - "🏷️npm-deps"
-      - "♻️mod:ui"
-      - "CI"
+      - "📦packages"
+      - "☁︎ci"

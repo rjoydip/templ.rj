@@ -2,16 +2,16 @@
   - 'docs/**/*'
   - '**/README.md'
 
+🐚shell:
+  - '*.sh*'
+
+☁︎ci:
+  - .github/**/*
+
 🧪test:
   - 'tests/**/*'
   - '**/tests/**/*'
   - '**/__tests__/**/*'
 
-♻️mod:cli:
-  - 'packages/cli/**/*'
-
-♻️mod:core:
-  - 'packages/core/**/*'
-
-♻️mod:ui:
-  - 'packages/ui/**/*'
+📦packages:
+  - 'packages/**/*'
