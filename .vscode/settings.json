@@ -6,5 +6,6 @@
   "[markdown]": {
     "editor.formatOnSave": false
   },
-  "prettier.enable": false
+  "prettier.enable": false,
+  "json.validate.enable": false
 }

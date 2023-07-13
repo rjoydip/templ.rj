@@ -19,4 +19,6 @@ ltex*
 .eslintcache
 .nyc_output
 .turbo
+.pnpm-store
 storybook-static
+node_modules

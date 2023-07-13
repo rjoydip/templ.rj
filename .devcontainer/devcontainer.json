@@ -1,0 +1,36 @@
+{
+  "name": "GFFT",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "args": {
+      "VARIANT": "16"
+    }
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli": "latest",
+    "ghcr.io/devcontainers/features/docker-in-docker": "latest"
+  },
+  "onCreateCommand": "pnpm install",
+  "postAttachCommand": "pnpm build",
+  "waitFor": "onCreateCommand",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "bierner.markdown-emoji",
+        "christian-kohler.npm-intellisense",
+        "dbaeumer.vscode-eslint",
+        "davidanson.vscode-markdownlint",
+        "eamodio.gitlens",
+        "editorconfig.editorconfig",
+        "esbenp.prettier-vscode",
+        "folke.vscode-monorepo-workspace",
+        "ms-vscode-remote.remote-containers",
+        "redhat.vscode-yaml",
+        "zixuanchen.vitest-explorer",
+        "seatonjiang.gitmoji-vscode",
+        "streetsidesoftware.code-spell-checker"
+      ]
+    }
+  },
+  "remoteUser": "root"
+}

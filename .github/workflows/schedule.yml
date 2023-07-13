@@ -1,0 +1,48 @@
+name: 'Close stale issues and PR'
+on:
+  schedule:
+    - cron: "0 0 * * *"
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v8
+        with:
+          stale-issue-message: 'This issue is stale because it has been open 30 days with no activity. Remove stale label or comment or this will be closed in 5 days.'
+          stale-pr-message: 'This PR is stale because it has been open 45 days with no activity. Remove stale label or comment or this will be closed in 10 days.'
+          close-issue-message: 'This issue was closed because it has been stalled for 5 days with no activity.'
+          days-before-stale: 30
+          days-before-close: 5
+          days-before-pr-close: -1
+
+  lock-issues:
+    if: github.repository == 'rjoydip/gfft'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: dessant/lock-threads@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          issue-inactive-days: "14"
+          issue-comment: |
+            This issue has been locked since it has been closed for more than 14 days.
+
+            If you have found a concrete bug or regression related to it, please open a new [bug report](https://github.com/rjoydip/gfft/issues/new/choose) with a reproduction against the latest GFFT version. If you have any other comments you should create a new [discussion](https://github.com/rjoydip/gfft/discussions).
+          issue-lock-reason: ""
+          process-only: issues
+
+  check-need-info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: close-issues
+        uses: actions-cool/issues-helper@v3
+        with:
+          actions: 'close-issues'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          labels: '⚠️need info'
+          inactive-day: 7

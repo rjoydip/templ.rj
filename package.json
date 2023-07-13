@@ -36,10 +36,10 @@
     "test:ci": "nr build && CI=true nr test",
     "test:watch": "nr build && nr test --watch",
     "test:cli": "nr build && ni && pnpm -r --filter='./packages/cli' run test:cli",
-    "markdown:lint": "markdown-link-check *.md .github/*.md packages/*/*.md",
-    "clean": "chmod +x ./scripts/cleaner.sh && ./scripts/cleaner.sh --clean",
-    "clean:nm": "chmod +x ./scripts/cleaner.sh && ./scripts/cleaner.sh --clean-nm",
-    "all": "nr clean && nr deps:fresh && nr format && nr lint && nr markdown:lint && nr test:ci && nr test:cli"
+    "lint:md": "node scripts/markdownlint.js $(glob '{*.md,{.github,packages,fixtures}/**/*.md}' -i '**/node_modules/**')",
+    "clean": "node scripts/commander.js clean",
+    "clean:nm": "node scripts/commander.js clean -nm",
+    "all": "nr clean && nr deps:fresh && nr format && nr lint && nr lint:md && nr test:ci && nr test:cli"
   },
   "devDependencies": {
     "@antfu/ni": "^0.21.4",
@@ -59,12 +59,17 @@
     "eslint-plugin-n": "^16.0.1",
     "eslint-plugin-regexp": "^1.15.0",
     "esno": "^0.16.3",
+    "execa": "^7.1.1",
+    "glob": "^10.3.3",
     "lint-staged": "^13.2.3",
-    "markdown-link-check": "^3.11.2",
+    "markdownlint": "^0.29.0",
+    "ora": "^6.3.1",
     "pnpm": "^8.6.7",
     "prettier": "^3.0.0",
     "release-it": "^16.1.0",
     "rimraf": "^5.0.1",
+    "sade": "^1.8.1",
+    "serialize-error": "^11.0.0",
     "simple-git-hooks": "^2.8.1",
     "taze": "^0.11.2",
     "tsup": "^7.1.0",
@@ -79,13 +84,16 @@
   },
   "lint-staged": {
     "*": [
-      "nr format"
+      "nr format",
+      "git add ."
     ],
     "packages/**/*.{js,ts,jsx,tsx,json}": [
-      "nr lint"
+      "nr lint",
+      "git add ."
     ],
     "*.{md,mdx}": [
-      "nr markdown:lint"
+      "nr lint:md",
+      "git add ."
     ]
   },
   "stackblitz": {
