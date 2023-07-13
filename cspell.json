@@ -1,16 +1,16 @@
 {
-  "ignorePaths": [
-    "**/node_modules/**",
-    "**/vscode-extension/**",
-    "**/.git/**",
-    "**/.pnpm-lock.json",
-    ".vscode",
-    "megalinter",
-    "package-lock.json",
-    "report"
-  ],
+  "version": "0.2",
   "language": "en",
-  "noConfigSearch": true,
+  "ignorePaths": [
+    ".git/**",
+    ".vscode/**",
+    "coverage/**",
+    "fixtures/output/**",
+    "**/node_modules/**",
+    "**/pnpm-lock.yaml/**",
+    "**/package-lock.json/**",
+    "**/dist/**"
+  ],
   "words": [
     "antfu",
     "autodocs",
@@ -37,12 +37,14 @@
     "esno",
     "execa",
     "folke",
+    "foxundermoon",
     "gcov",
     "gfft",
     "gitmoji",
     "infile",
     "Joydip",
     "kohler",
+    "lcov",
     "markdownlint",
     "markdownlintignore",
     "megalinter",
@@ -57,6 +59,7 @@
     "rjoydip",
     "seatonjiang",
     "sirv",
+    "synk",
     "stackblitz",
     "taze",
     "tmpl",
@@ -66,6 +69,5 @@
     "vitest",
     "vitejs",
     "zixuanchen"
-  ],
-  "version": "0.2"
+  ]
 }

@@ -35,14 +35,3 @@ jobs:
             If you have found a concrete bug or regression related to it, please open a new [bug report](https://github.com/rjoydip/gfft/issues/new/choose) with a reproduction against the latest GFFT version. If you have any other comments you should create a new [discussion](https://github.com/rjoydip/gfft/discussions).
           issue-lock-reason: ""
           process-only: issues
-
-  check-need-info:
-    runs-on: ubuntu-latest
-    steps:
-      - name: close-issues
-        uses: actions-cool/issues-helper@v3
-        with:
-          actions: 'close-issues'
-          token: ${{ secrets.GITHUB_TOKEN }}
-          labels: '⚠️need info'
-          inactive-day: 7

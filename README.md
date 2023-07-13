@@ -21,7 +21,6 @@
 [![Gitpod Ready-to-Code][gitpod-image]][gitpod-url]
 [![Node Version][node-image]][node-url]
 [![Typescript][typescript-image]][typescript-url]
-[![actions-cool][actions-cool-image]][actions-cool-url]
 [![PNPM][pnpm-image]][pnpm-url]
 [![VS Code Container][vscode-container-image]][vscode-container-url]
 
@@ -76,5 +75,3 @@ Released under [MIT](./LICENSE) by [@rjoydip](https://github.com/rjoydip).
 [conventional-commits-url]: https://conventionalcommits.org
 [vscode-container-image]: https://img.shields.io/static/v1?label=VS+Code&message=Container&logo=visualstudiocode&color=007ACC&logoColor=007ACC&labelColor=2C2C32
 [vscode-container-url]: https://open.vscode.dev/microsoft/vscode
-[actions-cool-image]: https://img.shields.io/badge/using-actions--cool-blue
-[actions-cool-url]: https://github.com/actions-cool

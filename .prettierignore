@@ -13,7 +13,6 @@
 .dockerignore
 .gitpod.Dockerfile
 dist/
-temp/
 scripts/
 fixtures/
 coverage/

@@ -28,18 +28,19 @@
     "postinstall": "simple-git-hooks",
     "release": "release-it --ci",
     "lint": "eslint --cache --fix .",
+    "lint:spell": "cspell .",
     "deps:fresh": "taze -r -w -i",
     "format": "prettier --write --cache .",
     "build": "pnpm -r --filter='./packages/**' run build",
     "dev": "pnpm -r --filter='./packages/**' run dev",
     "test": "vitest run -r packages",
-    "test:ci": "nr build && CI=true nr test",
+    "test:ci": "nr build && CI=true nr test && size-limit",
     "test:watch": "nr build && nr test --watch",
     "test:cli": "nr build && ni && pnpm -r --filter='./packages/cli' run test:cli",
     "lint:md": "node scripts/markdownlint.js $(glob '{*.md,{.github,packages,fixtures}/**/*.md}' -i '**/node_modules/**')",
     "clean": "node scripts/commander.js clean",
     "clean:nm": "node scripts/commander.js clean -nm",
-    "all": "nr clean && nr deps:fresh && nr format && nr lint && nr lint:md && nr test:ci && nr test:cli"
+    "all": "nr clean && nr deps:fresh && nr format && nr lint && nr lint:md && nr lint:spell && nr test:ci && nr test:cli"
   },
   "devDependencies": {
     "@antfu/ni": "^0.21.4",
@@ -47,11 +48,14 @@
     "@commitlint/config-conventional": "^17.6.6",
     "@release-it/bumper": "^5.0.0",
     "@release-it/conventional-changelog": "^7.0.0",
+    "@size-limit/file": "^8.2.6",
     "@types/node": "^20.4.1",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "@vitest/coverage-v8": "^0.33.0",
     "@vitest/ui": "^0.33.0",
+    "cspell": "^6.31.1",
+    "envinfo": "^7.10.0",
     "eslint": "^8.44.0",
     "eslint-config-turbo": "^1.10.7",
     "eslint-define-config": "^1.21.0",
@@ -71,6 +75,8 @@
     "sade": "^1.8.1",
     "serialize-error": "^11.0.0",
     "simple-git-hooks": "^2.8.1",
+    "size-limit": "^8.2.6",
+    "synk": "^0.0.2",
     "taze": "^0.11.2",
     "tsup": "^7.1.0",
     "typescript": "^5.1.6",
@@ -96,6 +102,20 @@
       "git add ."
     ]
   },
+  "size-limit": [
+    {
+      "path": "./packages/core/dist/index.js",
+      "limit": "800B"
+    },
+    {
+      "path": "./packages/cli/dist/index.js",
+      "limit": "500B"
+    },
+    {
+      "path": "./packages/ui/dist/index.js",
+      "limit": "500B"
+    }
+  ],
   "stackblitz": {
     "startCommand": "nr dev"
   }
