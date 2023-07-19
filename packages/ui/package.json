@@ -39,7 +39,7 @@
     "@storybook/preact-vite": "^7.1.0",
     "@storybook/test-runner": "^0.11.0",
     "@storybook/testing-library": "^0.2.0",
-    "storybook": "7.0.26",
+    "storybook": "7.1.0",
     "vite": "^4.4.4"
   }
 }
