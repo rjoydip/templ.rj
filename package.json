@@ -29,6 +29,7 @@
     "release": "release-it --ci",
     "lint": "eslint --cache --fix .",
     "lint:spell": "cspell .",
+    "lint:secret": "secretlint \"**/*\"",
     "deps:fresh": "taze -r -w -i",
     "format": "prettier --write --cache .",
     "build": "pnpm -r --filter='./packages/**' run build",
@@ -42,7 +43,7 @@
     "lint:md": "node scripts/markdownlint.js $(glob '{*.md,{.github,packages,fixtures}/**/*.md}' -i '**/node_modules/**')",
     "clean": "node scripts/commander.js clean",
     "clean:nm": "node scripts/commander.js clean --nm",
-    "all": "nr clean && nr deps:fresh && nr format && nr lint && nr lint:md && nr test:ci && nr test:cli && nr test:storybook"
+    "all": "nr clean && nr deps:fresh && nr format && nr lint && lint:spell && nr lint:secret && nr lint:md && nr test:ci && nr test:cli && nr test:storybook"
   },
   "devDependencies": {
     "@antfu/ni": "^0.21.5",
@@ -50,6 +51,7 @@
     "@commitlint/config-conventional": "^17.6.7",
     "@release-it/bumper": "^5.0.0",
     "@release-it/conventional-changelog": "^7.0.0",
+    "@secretlint/secretlint-rule-preset-recommend": "^7.0.3",
     "@size-limit/file": "^8.2.6",
     "@types/node": "^20.4.2",
     "@typescript-eslint/eslint-plugin": "^6.1.0",
@@ -76,6 +78,7 @@
     "release-it": "^16.1.2",
     "rimraf": "^5.0.1",
     "sade": "^1.8.1",
+    "secretlint": "^7.0.3",
     "serialize-error": "^11.0.0",
     "simple-git-hooks": "^2.8.1",
     "size-limit": "^8.2.6",

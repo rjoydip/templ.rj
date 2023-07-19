@@ -27,6 +27,8 @@ jobs:
         run: pnpm run lint:md
       - name: Spell Lint
         run: pnpm run lint:spell
+      - name: Secret Lint
+        run: pnpm run lint:secret
 
   build:
     runs-on: ubuntu-latest
