@@ -19,26 +19,27 @@
   ],
   "scripts": {
     "build": "tsup",
-    "storybook": "storybook dev -p 6006",
-    "storybook:build": "storybook build",
-    "storybook:test": "test-storybook --url http://127.0.0.1:6006 --coverage",
-    "storybook:preview": "vite preview --outDir storybook-static --host 0.0.0.0 --port 6006 --strictPort true"
+    "dev:storybook": "storybook dev -p 6006",
+    "build:storybook": "storybook build",
+    "test:storybook": "test-storybook --url http://127.0.0.1:6006 --coverage",
+    "preview:storybook": "nr build:storybook && vite preview --outDir storybook-static --host 0.0.0.0 --port 6006 --strictPort true"
   },
   "dependencies": {
     "preact": "^10.16.0"
   },
   "devDependencies": {
-    "@preact/preset-vite": "^2.5.0",
-    "@storybook/addon-actions": "^7.0.27",
     "@storybook/addon-coverage": "^0.0.8",
-    "@storybook/addon-essentials": "^7.0.27",
+    "@storybook/addon-essentials": "7.0.27",
     "@storybook/addon-interactions": "7.0.26",
-    "@storybook/addon-links": "^7.0.27",
-    "@storybook/blocks": "7.0.26",
-    "@storybook/preact": "^7.0.27",
-    "@storybook/preact-vite": "7.0.26",
+    "@storybook/addon-links": "7.0.27",
+    "@storybook/addon-storysource": "^7.1.0",
+    "@storybook/blocks": "7.0.7",
+    "@storybook/jest": "^0.1.0",
+    "@storybook/preact": "^7.1.0",
+    "@storybook/preact-vite": "^7.1.0",
     "@storybook/test-runner": "^0.11.0",
-    "@types/react": "^18.2.14",
-    "storybook": "7.0.26"
+    "@storybook/testing-library": "^0.2.0",
+    "storybook": "7.0.26",
+    "vite": "^4.4.4"
   }
 }

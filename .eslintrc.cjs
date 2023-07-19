@@ -30,7 +30,6 @@ module.exports = defineConfig({
         destructuring: 'all',
       },
     ],
-
     'n/no-process-exit': 'off',
     'n/no-missing-import': 'off',
     'n/no-missing-require': [
@@ -54,10 +53,6 @@ module.exports = defineConfig({
 
     '@typescript-eslint/ban-ts-comment': 'error',
     '@typescript-eslint/ban-types': 'off', // TODO: we should turn this on in a new PR
-    '@typescript-eslint/explicit-module-boundary-types': [
-      'error',
-      { allowArgumentsExplicitlyTypedAsAny: true },
-    ],
     '@typescript-eslint/no-empty-function': [
       'error',
       { allow: ['arrowFunctions'] },

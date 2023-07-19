@@ -1,3 +1,4 @@
+import { join } from 'node:path'
 import { $ } from 'execa'
 import ora from 'ora'
 import sade from 'sade'
@@ -9,15 +10,21 @@ process.on('unhandledRejection', (reason, _) => {
 })
 
 async function cleanFile(fileName = '') {
+  const spinner = ora(`Cleanup ${fileName} - started`).start()
   await $`rm -f ${fileName}`
+  spinner.succeed(`${fileName} - completed`)
 }
 
 async function cleanDir(dirName = '') {
+  const spinner = ora(`Cleanup ${dirName} - started`).start()
   await $`rm -rf ${dirName}`
+  spinner.succeed(`${dirName} - completed`)
 }
 
 async function cleanNested(src = '', dest = '') {
+  const spinner = ora(`Cleanup ${src}/**/${dest} - started`).start()
   await $`rm -rf ${src}/**/${dest}`
+  spinner.succeed(`${src}/**/${dest} - completed`)
 }
 
 void async function () {
@@ -30,29 +37,27 @@ void async function () {
     .example('clean')
     .example('clean --nm')
     .action(async (opts) => {
-      const spinner = ora()
-      spinner.start(`Cleanup started \n`)
       try {
         if (opts.nm) {
           await Promise.all([
-            cleanDir('node_modules'),
-            cleanNested('packages', 'node_modules'),
+            await cleanDir('node_modules'),
+            await cleanNested('packages', 'node_modules'),
             await $`rm -rf packages/node_modules`
           ])
         } else {
           await Promise.all([
-            cleanDir('coverage'),
-            cleanFile('.eslintcache'),
-            cleanDir('.pnpm-store'),
-            cleanNested('packages', 'dist'),
-            cleanNested('fixtures', 'output')
+            await cleanDir('coverage'),
+            await cleanFile('.eslintcache'),
+            await cleanDir('.pnpm-store'),
+            await cleanDir(join('packages', 'ui', 'storybook-static')),
+            await cleanNested('packages', 'dist'),
+            await cleanNested('fixtures', 'output')
           ])
         }
-        spinner.succeed('Cleanup completed')
       } catch (err) {
         const error = new Error(String(err))
         const serialized = serializeError(error)
-        spinner.fail(serialized.message)
+        ora().fail(serialized.message)
       }
     })
 
