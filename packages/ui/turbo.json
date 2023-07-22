@@ -1,0 +1,16 @@
+{
+  "extends": ["//"],
+  "pipeline": {
+    "build": {
+      "dependsOn": ["build:storybook"],
+      "outputs": ["dist/**"]
+    },
+    "build:storybook": {
+      "outputs": ["storybook-static/**"],
+      "outputMode": "new-only"
+    },
+    "test:storybook": {
+      "dependsOn": ["build:storybook"]
+    }
+  }
+}

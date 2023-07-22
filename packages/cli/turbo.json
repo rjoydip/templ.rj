@@ -1,0 +1,12 @@
+{
+  "extends": ["//"],
+  "pipeline": {
+    "build": {
+      "outputs": ["dist/**"]
+    },
+    "test:cli": {
+      "dependsOn": ["build", "@gfft/core#build", "@gfft/utils#build"],
+      "cache": false
+    }
+  }
+}

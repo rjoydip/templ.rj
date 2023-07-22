@@ -1,19 +1,19 @@
 {
-  "name": "@gfft/core",
+  "name": "@gfft/utils",
   "type": "module",
   "version": "0.1.0",
-  "description": "GFFT core service",
+  "private": true,
+  "description": "GFFT utils service",
   "license": "MIT",
-  "homepage": "https://github.com/rjoydip/gfft/tree/main/packages/core#readme",
+  "homepage": "https://github.com/rjoydip/gfft/tree/main/packages/utils#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rjoydip/gfft.git",
-    "directory": "packages/core"
+    "directory": "packages/utils"
   },
   "bugs": {
     "url": "https://github.com/rjoydip/gfft/issues"
   },
-  "sideEffects": true,
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -32,12 +32,12 @@
     "build": "tsup",
     "dev": "tsup ./src/index.ts --watch"
   },
-  "dependencies": {
-    "@gfft/utils": "workspace:*",
-    "mustache": "^4.2.0"
-  },
   "devDependencies": {
-    "@types/mustache": "^4.2.2",
-    "find-monorepo-root": "^1.0.3"
+    "esno": "^0.16.3",
+    "find-monorepo-root": "^1.0.3",
+    "tsup": "^7.1.0"
+  },
+  "dependencies": {
+    "tiny-glob": "^0.2.9"
   }
 }

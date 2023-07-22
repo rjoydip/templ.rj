@@ -16,24 +16,13 @@ permissions:
 jobs:
   lint:
     runs-on: ubuntu-latest
-    needs: [build]
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup-node
       - name: Install
         run: pnpm i
-      - name: ESlint
+      - name: Lint All
         run: pnpm run lint
-      - name: Markdown
-        run: pnpm run lint:md
-      - name: Spell
-        run: pnpm run lint:spell
-      - name: Secret
-        run: pnpm run lint:secret
-      - name: Size Limit
-        run: |
-          pnpm run build
-          pnpm run lint:size-limit
 
   build:
     runs-on: ubuntu-latest
@@ -47,7 +36,6 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
-    needs: [build]
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup-node
@@ -55,6 +43,7 @@ jobs:
         run: pnpm i
       - name: Test
         run: |
+          pnpm run build
           pnpm run test:ci
       - name: Codecov
         uses: codecov/codecov-action@v3
@@ -63,7 +52,6 @@ jobs:
 
   test-cli:
     runs-on: ${{ matrix.os }}
-    needs: [build]
     timeout-minutes: 10
     strategy:
       matrix:
@@ -83,7 +71,6 @@ jobs:
   test-storybook:
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    needs: ["build"]
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup-node
@@ -92,17 +79,19 @@ jobs:
       - name: Serve Storybook and run tests
         run: pnpm run test:storybook
 
-  security:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      - uses: ./.github/actions/setup-node
-      - name: Install
-        run: pnpm i
-      - name: Snyk monitor
-        run: npx snyk monitor --all-projects
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+  # snyk:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@master
+  #     - uses: ./.github/actions/setup-node
+  #     - name: Install
+  #       run: pnpm i
+  #     - name: Snyk monitor
+  #       run: |
+  #         npx snyk auth SNYK_TOKEN
+  #         npx snyk monitor --all-projects
+  #       env:
+  #         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
   trivy-scan:
     runs-on: ubuntu-latest

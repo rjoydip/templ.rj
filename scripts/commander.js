@@ -40,18 +40,21 @@ void async function () {
       try {
         if (opts.nm) {
           await Promise.all([
-            await cleanDir('node_modules'),
+            await cleanDir('packages/node_modules'),
             await cleanNested('packages', 'node_modules'),
-            await $`rm -rf packages/node_modules`
+            await cleanDir('node_modules'),
           ])
         } else {
           await Promise.all([
-            await cleanDir('coverage'),
+            await cleanDir('.turbo'),
             await cleanFile('.eslintcache'),
             await cleanDir('.pnpm-store'),
-            await cleanDir(join('packages', 'ui', 'storybook-static')),
+            await cleanDir('coverage'),
             await cleanNested('packages', 'dist'),
-            await cleanNested('fixtures', 'output')
+            await cleanNested('packages', '.turbo'),
+            await cleanNested('fixtures', 'output'),
+            await cleanDir(join('packages', 'ui', '.nyc_output')),
+            await cleanDir(join('packages', 'ui', 'storybook-static')),
           ])
         }
       } catch (err) {

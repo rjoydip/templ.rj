@@ -20,23 +20,11 @@ jobs:
     steps:
       - uses: kentaro-m/auto-assign-action@v1.2.4
 
-  pr-title:
+  pr-title-check:
     runs-on: ubuntu-latest
-    if: github.actor != 'dependabot[bot]'
     steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/setup-node
-      - name: Install
-        run: pnpm i
-      - run: echo "${{ github.event.pull_request.title }}" | npx commitlint -g ./.commitlintrc.json
-
-  auto-approve:
-    runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
-    if: github.actor == 'dependabot[bot]'
-    steps:
-      - uses: hmarr/auto-approve-action@v3
+      - uses: thehanimo/pr-title-checker@v1.4.0
         with:
-          review-message: "Auto approved automated PR"
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+            pass_on_octokit_error: false
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            configuration_path: .github/pr-title-checker-config.json

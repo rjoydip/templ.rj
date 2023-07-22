@@ -1,8 +1,5 @@
-
-import markdownlint from 'markdownlint';
-
-// "<binary>" "<path>" "--" "<file1>" "<file2>" "<file…>"
-const files = process.argv.slice(3);
+import { globSync } from 'glob'
+import markdownlint from 'markdownlint'
 
 // https://github.com/DavidAnson/markdownlint#rules
 // https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md
@@ -38,7 +35,7 @@ const config = {
 };
 
 markdownlint({
-  files,
+  files: globSync('{*.md,{.github,packages,fixtures}/**/*.md}', { ignore: ['**/node_modules/**', 'fixtures/output/**'] }),
   frontMatter: /(^---$[\s\S]+?^---\$)?(\r\n|\r|\n)+/m,
   config: config,
 }, function(err, result) {

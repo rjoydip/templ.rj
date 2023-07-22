@@ -36,8 +36,7 @@
   "scripts": {
     "build": "tsup",
     "dev": "esno ./src/index.ts -v",
-    "test:cli": "ni && pnpm link . && pnpm gfft -v",
-    "build:core": "pnpm --filter core run build"
+    "test:cli": "pnpm link . && pnpm gfft -v"
   },
   "dependencies": {
     "@gfft/core": "workspace:*",

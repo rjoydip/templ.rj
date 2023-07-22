@@ -1,4 +1,9 @@
 {
-  "extends": "../../tsconfig/tsconfig.browser",
+  "extends": "../tsconfig/preact.json",
+  "compilerOptions": {
+    "paths": {
+      "@gfft/ui": ["./src/index.ts"]
+    }
+  },
   "exclude": ["dist", "*.d.ts"]
 }

@@ -1,18 +1,22 @@
 import { parse } from 'node:path'
 import { mkdir, writeFile } from 'node:fs/promises'
+import mustache from 'mustache'
 import {
   DEFAULT_DATA_DIR,
   DEFAULT_DATA_FILE_EXTENSION,
   DEFAULT_OUTPUT_FILE_EXTENSION,
   DEFAULT_TEMPLATE_DIR,
   DEFAULT_TEMPLATE_FILE_EXTENSION,
-  generateOutput,
   getData,
   getTemplateFiles,
   isDataDirectoryExists,
   isOutputDirectoryExists,
   isTemplateDirectoryExists,
-} from '.'
+} from '@gfft/utils'
+
+export function generateOutput(template: string, data: any): string {
+  return mustache.render(template, data)
+}
 
 export async function generateReport({
   output_dir = DEFAULT_DATA_DIR,

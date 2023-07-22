@@ -1,0 +1,23 @@
+{
+  "name": "@gfft/scripts",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "GFFT scripts service",
+  "license": "MIT",
+  "homepage": "https://github.com/rjoydip/gfft/tree/main/packages/scripts#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rjoydip/gfft.git",
+    "directory": "packages/scripts"
+  },
+  "bugs": {
+    "url": "https://github.com/rjoydip/gfft/issues"
+  },
+  "scripts": {},
+  "devDependencies": {
+    "@types/prompts": "^2.4.4",
+    "esno": "^0.16.3",
+    "prompts": "^2.4.2"
+  }
+}

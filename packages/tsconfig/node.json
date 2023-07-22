@@ -1,5 +1,7 @@
 {
-  "extends": "./tsconfig.base.json",
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Node",
+  "extends": "./base.json",
   "compilerOptions": {
     "module": "esnext",
     "lib": ["esnext"],

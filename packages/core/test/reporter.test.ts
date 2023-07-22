@@ -6,10 +6,10 @@ import {
   DEFAULT_DATA_FILE_EXTENSION,
   DEFAULT_TEMPLATE_DIR,
   DEFAULT_TEMPLATE_FILE_EXTENSION,
-  generateOutput,
   getData,
   getTemplateFiles,
-} from '../src'
+} from '@gfft/utils'
+import { generateOutput } from '../src'
 
 describe('Core', async () => {
   const rootDir = (await findMonorepoRoot(process.cwd())).dir
@@ -20,7 +20,13 @@ describe('Core', async () => {
   const dataDir = join(fixturesPath, DEFAULT_DATA_DIR)
   const tmplDir = join(fixturesPath, DEFAULT_TEMPLATE_DIR)
 
-  test('Output', async () => {
+  test('Generate Output', async () => {
+    const output = await generateOutput(`Hello {{title}}`, { title: 'world' })
+    expect(output).toBeDefined()
+    expect(output).toBe('Hello world')
+  })
+
+  test('Generate Report', async () => {
     const tmplFiles = await getTemplateFiles(tmplDir, tmplMdExt)
     expect(tmplFiles.length).toBe(2)
 

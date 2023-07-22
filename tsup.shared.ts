@@ -5,4 +5,5 @@ export const config = {
   clean: true,
   dts: true,
   target: 'esnext',
+  format: ['cjs', 'esm'],
 }

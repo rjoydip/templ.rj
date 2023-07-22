@@ -19,10 +19,10 @@
   ],
   "scripts": {
     "build": "tsup",
-    "dev:storybook": "storybook dev -p 6006",
     "build:storybook": "storybook build",
-    "test:storybook": "test-storybook --url http://127.0.0.1:6006 --coverage",
-    "preview:storybook": "nr build:storybook && vite preview --outDir storybook-static --host 0.0.0.0 --port 6006 --strictPort true"
+    "dev:storybook": "storybook dev -p 6006",
+    "preview:storybook": "nr build:storybook && vite preview --outDir storybook-static --host 0.0.0.0 --port 6006 --strictPort true",
+    "test:storybook": "concurrently -k -s first -n \"SB,TEST\" -c \"magenta,blue\" \"nr preview:storybook\" \"npx wait-on tcp:6006 && test-storybook --url http://127.0.0.1:6006 --coverage\""
   },
   "dependencies": {
     "preact": "^10.16.0"
@@ -39,7 +39,9 @@
     "@storybook/preact-vite": "^7.1.0",
     "@storybook/test-runner": "^0.11.0",
     "@storybook/testing-library": "^0.2.0",
+    "concurrently": "^8.2.0",
     "storybook": "7.1.0",
-    "vite": "^4.4.4"
+    "vite": "^4.4.6",
+    "wait-on": "^7.0.1"
   }
 }
