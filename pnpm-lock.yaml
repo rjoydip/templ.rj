@@ -60,8 +60,8 @@ importers:
         specifier: ^1.15.0
         version: 1.15.0(eslint@8.45.0)
       esno:
-        specifier: ^0.16.3
-        version: 0.16.3
+        specifier: ^0.17.0
+        version: 0.17.0
       execa:
         specifier: ^7.1.1
         version: 7.1.1
@@ -161,8 +161,8 @@ importers:
         specifier: ^2.4.4
         version: 2.4.4
       esno:
-        specifier: ^0.16.3
-        version: 0.16.3
+        specifier: ^0.17.0
+        version: 0.17.0
       prompts:
         specifier: ^2.4.2
         version: 2.4.2
@@ -228,8 +228,8 @@ importers:
         version: 0.2.9
     devDependencies:
       esno:
-        specifier: ^0.16.3
-        version: 0.16.3
+        specifier: ^0.17.0
+        version: 0.17.0
       find-monorepo-root:
         specifier: ^1.0.3
         version: 1.0.3
@@ -7702,8 +7702,8 @@ packages:
       - supports-color
     dev: true
 
-  /esno@0.16.3:
-    resolution: {integrity: sha512-6slSBEV1lMKcX13DBifvnDFpNno5WXhw4j/ff7RI0y51BZiDqEe5dNhhjhIQ3iCOQuzsm2MbVzmwqbN78BBhPg==}
+  /esno@0.17.0:
+    resolution: {integrity: sha512-w78cQGlptQfsBYfootUCitsKS+MD74uR5L6kNsvwVkJsfzEepIafbvWsx2xK4rcFP4IUftt4F6J8EhagUxX+Bg==}
     hasBin: true
     dependencies:
       tsx: 3.12.7

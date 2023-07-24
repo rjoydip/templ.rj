@@ -33,7 +33,7 @@
     "dev": "tsup ./src/index.ts --watch"
   },
   "devDependencies": {
-    "esno": "^0.16.3",
+    "esno": "^0.17.0",
     "find-monorepo-root": "^1.0.3",
     "tsup": "^7.1.0"
   },
