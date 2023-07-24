@@ -28,7 +28,7 @@
     "preact": "^10.16.0"
   },
   "devDependencies": {
-    "@storybook/addon-coverage": "^0.0.8",
+    "@storybook/addon-coverage": "^0.0.9",
     "@storybook/addon-essentials": "7.0.27",
     "@storybook/addon-interactions": "7.1.0",
     "@storybook/addon-links": "7.0.27",
