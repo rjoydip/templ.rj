@@ -176,8 +176,8 @@ importers:
         version: 10.16.0
     devDependencies:
       '@storybook/addon-coverage':
-        specifier: ^0.0.8
-        version: 0.0.8
+        specifier: ^0.0.9
+        version: 0.0.9
       '@storybook/addon-essentials':
         specifier: 7.0.27
         version: 7.0.27(react-dom@18.2.0)(react@18.2.0)
@@ -3518,8 +3518,8 @@ packages:
       - supports-color
     dev: true
 
-  /@storybook/addon-coverage@0.0.8:
-    resolution: {integrity: sha512-SVcDZhBybHDxFYjMzPqHPypboRJjSn2xJKxIOTIFONfb//Jg2/3uATyyamBPjvoxWRkNIqBpANGm+BpJlWZtog==}
+  /@storybook/addon-coverage@0.0.9:
+    resolution: {integrity: sha512-+GrNBVRsdc80L9BvKEbMr5HZsK2U/qB4+YfaWfDIpLP7Xa5volBuPdpVh72Ox2ouz2ptyimTIDkJxYXPSgq98A==}
     dependencies:
       '@types/babel__core': 7.20.1
       '@types/istanbul-lib-coverage': 2.0.4
