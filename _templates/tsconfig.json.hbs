@@ -1,8 +1,9 @@
+{{#expect name}}
 {
   "extends": "../config/src/ts/node.json",
   "compilerOptions": {
     "paths": {
-      "@gfft/utils": ["./src/index.ts"]
+      "@gfft/{{ name }}": ["./src/index.ts"]
     }
   },
   "exclude": ["dist", "*.d.ts"]

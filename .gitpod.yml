@@ -3,7 +3,7 @@ image:
 
 tasks:
   - name: Install Dependencies
-    init: pnpm install
+    init: pnpm i --no-frozen-lockfile
 
 vscode:
   extensions:

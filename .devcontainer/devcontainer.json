@@ -10,7 +10,7 @@
     "ghcr.io/devcontainers/features/github-cli": "latest",
     "ghcr.io/devcontainers/features/docker-in-docker": "latest"
   },
-  "onCreateCommand": "pnpm install",
+  "onCreateCommand": "pnpm i --no-frozen-lockfile",
   "postAttachCommand": "pnpm build",
   "waitFor": "onCreateCommand",
   "customizations": {

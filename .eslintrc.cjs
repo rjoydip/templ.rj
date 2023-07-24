@@ -41,7 +41,7 @@ module.exports = defineConfig({
     'n/no-extraneous-import': [
       'error',
       {
-        allowModules: ['execa', 'serialize-error', 'tsup', 'vitest'],
+        allowModules: ['serialize-error', 'tsup', 'vitest'],
       },
     ],
     'n/no-deprecated-api': 'off',

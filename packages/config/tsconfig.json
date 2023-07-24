@@ -1,8 +1,8 @@
 {
-  "extends": "../config/src/ts/preact.json",
+  "extends": "../config/src/ts/node.json",
   "compilerOptions": {
     "paths": {
-      "@gfft/ui": ["./src/index.ts"]
+      "@gfft/config": ["./src/index.ts"]
     }
   },
   "exclude": ["dist", "*.d.ts"]

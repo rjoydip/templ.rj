@@ -1,20 +1,20 @@
+{{#expect name}}
 {
-  "name": "@gfft/cli",
+  "name": "@gfft/{{ name }}",
   "type": "module",
   "version": "0.1.0",
-  "cliname": "GFFT",
-  "description": "GFFT cli service",
+  "private": true,
+  "description": "GFFT {{ name }} service",
   "license": "MIT",
-  "homepage": "https://github.com/rjoydip/gfft/tree/main/packages/cli#readme",
+  "homepage": "https://github.com/rjoydip/gfft/tree/main/packages/{{ name }}#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rjoydip/gfft.git",
-    "directory": "packages/cli"
+    "directory": "packages/{{ name }}"
   },
   "bugs": {
     "url": "https://github.com/rjoydip/gfft/issues"
   },
-  "sideEffects": true,
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -25,25 +25,17 @@
     },
     "./*": "./*"
   },
-  "bin": {
-    "gfft": "gfft.mjs"
-  },
   "files": [
-    "gfft.mjs",
-    "*.d.ts",
-    "dist"
+    "dist",
+    "*.d.ts"
   ],
   "scripts": {
     "build": "tsup",
-    "dev": "esno ./src/index.ts -v",
-    "test:cli": "pnpm link . && pnpm gfft -v"
-  },
-  "dependencies": {
-    "@gfft/core": "workspace:*",
-    "sade": "^1.8.1",
-    "serialize-error": "^11.0.0"
+    "dev": "tsup ./src/index.ts --watch"
   },
   "devDependencies": {
-    "find-monorepo-root": "^1.0.3"
-  }
+    "esno": "^0.16.3",
+    "tsup": "^7.1.0"
+  },
+  "dependencies": {}
 }

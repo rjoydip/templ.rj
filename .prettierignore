@@ -15,6 +15,7 @@
 dist/
 scripts/
 fixtures/
+_templates/
 coverage/
 node_modules/
 storybook-static/

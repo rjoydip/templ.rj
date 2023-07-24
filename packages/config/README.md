@@ -1,5 +1,5 @@
-# @gfft/scripts
+# @gfft/config
 
-GFFT scripts module.
+GFFT config module.
 
 [GitHub](https://github.com/rjoydip/gfft)

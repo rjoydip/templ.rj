@@ -1,5 +1,5 @@
 {
-  "extends": "../tsconfig/node.json",
+  "extends": "../config/src/ts/node.json",
   "compilerOptions": {
     "paths": {
       "@gfft/core": ["./src/index.ts"]

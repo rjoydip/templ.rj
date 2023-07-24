@@ -28,7 +28,7 @@ COPY . .
 
 # Install project dependencies as root user
 USER root
-RUN pnpm install
+RUN pnpm i --no-frozen-lockfile
 
 # Add a HEALTHCHECK instruction
 HEALTHCHECK --interval=30s --timeout=5s --retries=3 \
