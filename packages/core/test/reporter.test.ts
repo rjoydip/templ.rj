@@ -11,7 +11,7 @@ import {
 } from '@gfft/utils'
 import { generateOutput } from '../src'
 
-describe('Core', async () => {
+describe('@gfft/config > reporter', async () => {
   const rootDir = (await findMonorepoRoot(process.cwd())).dir
   const fixturesPath = join(rootDir, 'fixtures')
   const tmplMdExt = DEFAULT_TEMPLATE_FILE_EXTENSION

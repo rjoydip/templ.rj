@@ -10,7 +10,7 @@ import {
   getTemplateFiles,
 } from '../src'
 
-describe('Get', async () => {
+describe('@gfft/utils  > Get', async () => {
   const rootDir = (await findMonorepoRoot(process.cwd())).dir
   const fixturesPath = join(rootDir, 'fixtures')
   const tmplMdExt = DEFAULT_TEMPLATE_FILE_EXTENSION

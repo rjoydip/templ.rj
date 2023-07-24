@@ -6,7 +6,7 @@ import { findMonorepoRoot } from 'find-monorepo-root'
 import { serializeError } from 'serialize-error'
 import { beforeEach, describe, expect, test } from 'vitest'
 
-describe('Cli', async () => {
+describe('@gfft/cli', async () => {
   let output_dir: string
   const $ = promisify(exec)
   const rootDir = (await findMonorepoRoot(process.cwd())).dir

@@ -38,6 +38,7 @@
     "tsup": "^7.1.0"
   },
   "dependencies": {
+    "@gfft/config": "workspace:^",
     "tiny-glob": "^0.2.9"
   }
 }

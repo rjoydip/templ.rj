@@ -39,11 +39,12 @@
     "test:cli": "pnpm link . && pnpm gfft -v"
   },
   "dependencies": {
-    "@gfft/core": "workspace:*",
+    "@gfft/core": "workspace:^",
     "sade": "^1.8.1",
     "serialize-error": "^11.0.0"
   },
   "devDependencies": {
+    "@gfft/config": "workspace:^",
     "find-monorepo-root": "^1.0.3"
   }
 }

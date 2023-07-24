@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest'
 
-describe('', () => {
+describe('@gfft/config', () => {
   test('index', () => {
     expect(true).toBeTruthy()
   })

@@ -10,7 +10,7 @@ import {
   isTemplateDirectoryExists,
 } from '../src'
 
-describe('Is', async () => {
+describe('@gfft/utils > Is', async () => {
   const rootDir = (await findMonorepoRoot(process.cwd())).dir
   const fixturesPath = join(rootDir, 'fixtures')
   test('File extension', () => {

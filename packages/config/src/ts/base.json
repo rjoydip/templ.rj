@@ -9,7 +9,7 @@
     "allowJs": true,
     "strict": true,
     "strictNullChecks": true,
-    "resolveJsonModule": false,
+    "resolveJsonModule": true,
     "skipDefaultLibCheck": true,
     "declaration": true,
     "inlineSourceMap": true,

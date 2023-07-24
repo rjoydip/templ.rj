@@ -33,10 +33,11 @@
     "dev": "tsup ./src/index.ts --watch"
   },
   "dependencies": {
-    "@gfft/utils": "workspace:*",
+    "@gfft/utils": "workspace:^",
     "mustache": "^4.2.0"
   },
   "devDependencies": {
+    "@gfft/config": "workspace:^",
     "@types/mustache": "^4.2.2",
     "find-monorepo-root": "^1.0.3"
   }

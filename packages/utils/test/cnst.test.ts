@@ -8,7 +8,7 @@ import {
   DEFAULT_TEMPLATE_FILE_EXTENSION,
 } from '../src'
 
-describe('Constants', async () => {
+describe('@gfft/utils > Constants', async () => {
   test('File extension', () => {
     expect(DEFAULT_DATA_FILE_EXTENSION).toBe('.json')
     expect(DEFAULT_OUTPUT_FILE_EXTENSION).toBe('.md')

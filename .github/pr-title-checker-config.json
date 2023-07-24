@@ -4,7 +4,7 @@
     "color": "EEEEEE"
   },
   "CHECKS": {
-    "prefixes": ["fix: ", "feat: "],
+    "prefixes": ["fix: ", "feat: ", "chore:", "refactor:", "docs:", "ci:", "revert:", "chore(deps-dev):", "style:", "test:", "modified:"],
     "regexp": "docs\\(v[0-9]\\): ",
     "regexpFlags": "i",
     "ignoreLabels" : []
