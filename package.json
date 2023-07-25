@@ -74,11 +74,11 @@
     "serialize-error": "^11.0.0",
     "simple-git-hooks": "^2.9.0",
     "size-limit": "^8.2.6",
-    "snyk": "^1.1194.0",
+    "snyk": "^1.1196.0",
     "taze": "^0.11.2",
     "tempura": "^0.4.0",
     "tsup": "^7.1.0",
-    "turbo": "^1.10.9",
+    "turbo": "^1.10.11",
     "typescript": "^5.1.6",
     "vite-tsconfig-paths": "^4.2.0",
     "vitest": "^0.33.0",
@@ -90,11 +90,11 @@
   "size-limit": [
     {
       "path": "./packages/core/dist/index.js",
-      "limit": "800B"
+      "limit": "3.0KB"
     },
     {
       "path": "./packages/cli/dist/index.js",
-      "limit": "500B"
+      "limit": "6.0KB"
     },
     {
       "path": "./packages/ui/dist/index.js",

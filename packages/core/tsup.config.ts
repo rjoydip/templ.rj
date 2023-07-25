@@ -1,9 +1,7 @@
-import { defineConfig } from 'tsup'
-import { mergeConfig } from 'vitest/config'
-import { config as defaultTsupSharedConfig } from '../../tsup.shared'
+import { tsupConfig } from '@gfft/config'
 
-export default defineConfig((options) => {
-  return mergeConfig(defaultTsupSharedConfig, {
-    minify: !options.watch,
-  })
+export default tsupConfig({
+  banner: {
+    js: `import { createRequire } from 'module';const require = createRequire(import.meta.url);`,
+  },
 })

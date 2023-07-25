@@ -1,10 +1,3 @@
-import { defineConfig } from 'tsup'
-import { mergeConfig } from 'vitest/config'
-import { config as defaultTsupSharedConfig } from '../../tsup.shared'
+import { tsupConfig } from '@gfft/config'
 
-export default defineConfig((options) => {
-  return mergeConfig(defaultTsupSharedConfig, {
-    splitting: true,
-    minify: !options.watch,
-  })
-})
+export default tsupConfig({})

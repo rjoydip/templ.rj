@@ -5,16 +5,24 @@
       "path": "."
     },
     {
-      "name": "📦 @gfft/core",
+      "name": "☢️ @gfft/core",
       "path": "packages/core"
+    },
+    {
+      "name": "🔧 @gfft/config",
+      "path": "packages/config"
     },
     {
       "name": "📟 @gfft/cli",
       "path": "packages/cli"
     },
     {
-      "name": "💻 @gfft/ui",
+      "name": "🌐 @gfft/ui",
       "path": "packages/ui"
+    },
+    {
+      "name": "🔨 @gfft/utils",
+      "path": "packages/utils"
     },
     {
       "name": "🗑️ Fixtures",

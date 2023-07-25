@@ -2,10 +2,11 @@
   "extends": ["//"],
   "pipeline": {
     "build": {
+      "dependsOn": ["@gfft/config#build", "@gfft/core#build"],
       "outputs": ["dist/**"]
     },
     "test:cli": {
-      "dependsOn": ["build", "@gfft/core#build", "@gfft/utils#build"],
+      "dependsOn": ["build", "@gfft/config#build", "@gfft/core#build"],
       "cache": false
     }
   }
