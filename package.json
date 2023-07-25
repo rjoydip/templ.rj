@@ -41,12 +41,13 @@
     "clean:nm": "node scripts/commander.js clean --nm",
     "lint": "nr eslint && nr lint:spell && nr lint:secret && nr lint:md",
     "test": "nr test:ci && nr test:cli && nr test:storybook",
-    "all": "nr clean && nr deps:fresh && nr format && nr lint && nr build && nr test && nr size-limit"
+    "all": "nr clean && nr deps:fresh && nr build && nr format && nr lint && nr test && nr size-limit"
   },
   "devDependencies": {
     "@antfu/ni": "^0.21.5",
     "@commitlint/cli": "^17.6.7",
     "@commitlint/config-conventional": "^17.6.7",
+    "@gfft/config": "workspace:^",
     "@secretlint/secretlint-rule-preset-recommend": "^7.0.3",
     "@size-limit/file": "^8.2.6",
     "@types/node": "^20.4.4",

@@ -17,6 +17,9 @@ importers:
       '@commitlint/config-conventional':
         specifier: ^17.6.7
         version: 17.6.7
+      '@gfft/config':
+        specifier: workspace:^
+        version: link:packages/config
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: ^7.0.3
         version: 7.0.3

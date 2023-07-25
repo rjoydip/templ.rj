@@ -1,1 +1,2 @@
-export * from './tsup'
+export { prettierConfig } from './prettier'
+export { tsupConfig } from './tsup'
