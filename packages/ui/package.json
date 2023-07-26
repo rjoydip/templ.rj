@@ -43,7 +43,7 @@
     "@templ/config": "workspace:^",
     "concurrently": "^8.2.0",
     "rimraf": "^5.0.1",
-    "storybook": "7.1.0",
+    "storybook": "7.1.1",
     "vite": "^4.4.7",
     "wait-on": "^7.0.1"
   }
