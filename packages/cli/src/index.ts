@@ -7,7 +7,7 @@ process.on('unhandledRejection', (reason, _) => {
 })
 
 async function main() {
-  const prog = sade('TEMPL')
+  const prog = sade('@templ/cli')
   prog.version('0.0.0')
 
   prog

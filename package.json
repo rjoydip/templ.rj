@@ -11,7 +11,7 @@
     "all": "nr clean && nr deps:fresh && nr build && nr format && nr lint && nr test && nr size-limit",
     "build": "turbo run build",
     "clean": "rimraf .turbo .eslintcache .pnpm-store coverage && nr -r clean",
-    "clean:nm": "nr -C scripts clean:nm",
+    "cleanup": "nr -C scripts cleanup",
     "deps:fresh": "taze -r -w -i",
     "dev": "turbo run dev",
     "eslint": "eslint --cache --fix .",

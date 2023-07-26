@@ -12,7 +12,7 @@ describe('@templ/cli', async () => {
 
   test('should match version', async () => {
     const result = await $(`node ${cliFilePath} -v`)
-    expect(result.stdout).toStrictEqual(`TEMPL, 0.0.0\n`)
+    expect(result.stdout).toStrictEqual(`@templ/cli, 0.0.0\n`)
   })
 
   test('should work init command', async () => {
