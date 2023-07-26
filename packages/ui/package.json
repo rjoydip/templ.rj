@@ -32,7 +32,7 @@
     "@storybook/addon-coverage": "^0.0.9",
     "@storybook/addon-essentials": "7.1.0",
     "@storybook/addon-interactions": "7.1.1",
-    "@storybook/addon-links": "7.1.0",
+    "@storybook/addon-links": "7.1.1",
     "@storybook/addon-storysource": "^7.1.1",
     "@storybook/blocks": "7.1.1",
     "@storybook/jest": "^0.1.0",
