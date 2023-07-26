@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest'
 import { defaultConfig, lintStagedConfig } from '../src/lintStaged'
 
-describe('@gfft/config > lintStaged', () => {
+describe('@templ/config > lintStaged', () => {
   test('should return default configuration', () => {
     expect(lintStagedConfig()).toEqual(defaultConfig)
   })
@@ -10,7 +10,7 @@ describe('@gfft/config > lintStaged', () => {
     expect(
       lintStagedConfig({
         '.js': 'eslint --fix',
-      })
+      }),
     ).toEqual({ ...defaultConfig, '.js': 'eslint --fix' })
   })
 })

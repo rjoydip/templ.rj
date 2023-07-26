@@ -1,22 +1,18 @@
 {
-  "name": "@gfft/core",
-  "type": "module",
-  "version": "0.1.0",
-  "description": "GFFT core service",
+  "name": "@templ/core",
+  "version": "0.0.0",
+  "description": "TEMPL core service",
   "license": "MIT",
-  "homepage": "https://github.com/rjoydip/gfft/tree/main/packages/core#readme",
+  "homepage": "https://github.com/rjoydip/templ/tree/main/packages/core#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rjoydip/gfft.git",
+    "url": "git+https://github.com/rjoydip/templ.git",
     "directory": "packages/core"
   },
   "bugs": {
-    "url": "https://github.com/rjoydip/gfft/issues"
+    "url": "https://github.com/rjoydip/templ/issues"
   },
-  "sideEffects": true,
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "type": "module",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -24,21 +20,23 @@
     },
     "./*": "./*"
   },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
   "files": [
-    "dist",
-    "*.d.ts"
+    "*.d.ts",
+    "dist"
   ],
   "scripts": {
     "build": "tsup",
+    "clean": "rimraf dist .turbo",
     "dev": "tsup ./src/index.ts --watch"
   },
-  "dependencies": {
-    "mustache": "^4.2.0"
-  },
+  "sideEffects": true,
+  "types": "./dist/index.d.ts",
+  "dependencies": {},
   "devDependencies": {
-    "@gfft/config": "workspace:^",
-    "@gfft/utils": "workspace:^",
-    "@types/mustache": "^4.2.2",
-    "find-monorepo-root": "^1.0.3"
+    "@templ/config": "workspace:^",
+    "@templ/utils": "workspace:^",
+    "rimraf": "^5.0.1"
   }
 }

@@ -1,45 +1,28 @@
-import { join } from 'node:path'
-import { findMonorepoRoot } from 'find-monorepo-root'
 import { describe, expect, test } from 'vitest'
-import {
-  isDataDirectoryExists,
-  isJSONFile,
-  isMarkdownFile,
-  isMarkdownTemplateFile,
-  isOutputDirectoryExists,
-  isTemplateDirectoryExists,
-} from '../src'
+import { isDefined, isEmpty, isNotDefined, isNotEmpty } from '../src'
 
-describe('@gfft/utils > Is', async () => {
-  const rootDir = (await findMonorepoRoot(process.cwd())).dir
-  const fixturesPath = join(rootDir, 'fixtures')
-  test('File extension', () => {
-    expect(isJSONFile('test-file.json')).toBeTruthy()
-    expect(isMarkdownFile('test-file.md')).toBeTruthy()
-    expect(isMarkdownTemplateFile('test-file.tmpl.md')).toBeTruthy()
-
-    // Negative/Falsy
-    expect(isJSONFile('test-file.jsonp')).toBeFalsy()
-    expect(isMarkdownFile('test-file.mdx')).toBeFalsy()
-    expect(isMarkdownTemplateFile('test-file.tmpl.mdx')).toBeFalsy()
+describe('@templ/utils > Is', () => {
+  test('should match value and type of isDefined', () => {
+    const _isDefined = isDefined('1')
+    expect(typeof _isDefined).toBe('boolean')
+    expect(_isDefined).toBeTruthy()
   })
 
-  test('Directory', () => {
-    expect(isDataDirectoryExists(join(fixturesPath, 'data'))).toBeTruthy()
-    expect(isOutputDirectoryExists(join(fixturesPath, 'output'))).toBeTruthy()
-    expect(
-      isTemplateDirectoryExists(join(fixturesPath, 'template')),
-    ).toBeTruthy()
+  test('should match value and type of isNotDefined', () => {
+    const _isNotDefined = isEmpty(null)
+    expect(typeof _isNotDefined).toBe('boolean')
+    expect(_isNotDefined).toBeTruthy()
+  })
 
-    // Negative/Falsy
-    expect(
-      isDataDirectoryExists(join(fixturesPath, 'data', 'dump')),
-    ).toBeFalsy()
-    expect(
-      isOutputDirectoryExists(join(fixturesPath, 'output', 'dump')),
-    ).toBeFalsy()
-    expect(
-      isTemplateDirectoryExists(join(fixturesPath, 'template', 'dump')),
-    ).toBeFalsy()
+  test('should match value and type of isEmpty', () => {
+    const _isEmpty = isNotDefined(undefined)
+    expect(typeof _isEmpty).toBe('boolean')
+    expect(_isEmpty).toBeTruthy()
+  })
+
+  test('should match value and type of isNotEmpty', () => {
+    const _isNotEmpty = isNotEmpty('1')
+    expect(typeof _isNotEmpty).toBe('boolean')
+    expect(_isNotEmpty).toBeTruthy()
   })
 })

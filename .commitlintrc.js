@@ -1,3 +1,3 @@
-import { commitlintConfig } from '@gfft/config'
+import { commitlintConfig } from '@templ/config'
 
 export default commitlintConfig()

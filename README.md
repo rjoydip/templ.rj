@@ -1,14 +1,14 @@
 <div align="center">
-  <h3 align="center">GFFT</h3>
+  <h3 align="center">TEMPL</h3>
   <p align="center">
-    Generate file from template file.
+    A project template.
     <br />
-    <a href="https://github.com/rjoydip/gfft"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/rjoydip/templ"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/rjoydip/gfft/issues">Report Bug</a>
+    <a href="https://github.com/rjoydip/templ/issues">Report Bug</a>
     ·
-    <a href="https://github.com/rjoydip/gfft/issues">Request Feature</a>
+    <a href="https://github.com/rjoydip/templ/issues">Request Feature</a>
   </p>
 
 [![CI][ci-shield]][ci-url]
@@ -51,16 +51,16 @@ Coming soon
 
 Released under [MIT](./LICENSE) by [@rjoydip](https://github.com/rjoydip).
 
-[ci-shield]: https://github.com/rjoydip/gfft/actions/workflows/ci.yml/badge.svg
-[ci-url]: https://github.com/rjoydip/gfft/actions/workflows/ci.yml
-[codeql-image]: https://github.com/rjoydip/gfft/actions/workflows/codeql.yml/badge.svg
-[codeql-url]: https://github.com/rjoydip/gfft/actions/workflows/codeql.yml
+[ci-shield]: https://github.com/rjoydip/templ/actions/workflows/ci.yml/badge.svg
+[ci-url]: https://github.com/rjoydip/templ/actions/workflows/ci.yml
+[codeql-image]: https://github.com/rjoydip/templ/actions/workflows/codeql.yml/badge.svg
+[codeql-url]: https://github.com/rjoydip/templ/actions/workflows/codeql.yml
 [license-image]: https://img.shields.io/npm/l/markdownlint.svg
-[license-url]: https://github.com/rjoydip/gfft/blob/main/LICENSE
-[release-tag-image]: https://img.shields.io/github/tag/rjoydip/gfft?include_prereleases=&sort=semver&color=green
-[release-url]: https://github.com/rjoydip/gfft/releases
-[codecov-image]: https://codecov.io/gh/rjoydip/gfft/branch/main/graph/badge.svg?token=YV7AKXYY12
-[codecov-url]: https://codecov.io/gh/rjoydip/gfft
+[license-url]: https://github.com/rjoydip/templ/blob/main/LICENSE
+[release-tag-image]: https://img.shields.io/github/tag/rjoydip/templ?include_prereleases=&sort=semver&color=green
+[release-url]: https://github.com/rjoydip/templ/releases
+[codecov-image]: https://codecov.io/gh/rjoydip/templ/branch/main/graph/badge.svg?token=YV7AKXYY12
+[codecov-url]: https://codecov.io/gh/rjoydip/templ
 [pr-welcome-image]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg
 [pr-welcome-url]: http://makeapullrequest.com
 [gitpod-image]: https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod

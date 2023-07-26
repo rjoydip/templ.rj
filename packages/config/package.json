@@ -1,22 +1,19 @@
 {
-  "name": "@gfft/config",
-  "type": "module",
-  "version": "0.1.0",
   "private": true,
-  "description": "GFFT config service",
+  "name": "@templ/config",
+  "version": "0.0.0",
+  "description": "TEMPL config service",
   "license": "MIT",
-  "homepage": "https://github.com/rjoydip/gfft/tree/main/packages/config#readme",
+  "homepage": "https://github.com/rjoydip/templ/tree/main/packages/config#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rjoydip/gfft.git",
+    "url": "git+https://github.com/rjoydip/templ.git",
     "directory": "packages/config"
   },
   "bugs": {
-    "url": "https://github.com/rjoydip/gfft/issues"
+    "url": "https://github.com/rjoydip/templ/issues"
   },
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "type": "module",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -24,16 +21,20 @@
     },
     "./*": "./*"
   },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
   "files": [
-    "dist",
-    "*.d.ts"
+    "*.d.ts",
+    "dist"
   ],
   "scripts": {
     "build": "tsup",
+    "clean": "rimraf dist .turbo",
     "dev": "tsup ./src/index.ts --watch"
   },
+  "types": "./dist/index.d.ts",
   "devDependencies": {
     "deepmerge": "^4.3.1",
-    "esno": "^0.16.3"
+    "rimraf": "^5.0.1"
   }
 }

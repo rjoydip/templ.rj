@@ -1,23 +1,18 @@
 {
-  "name": "@gfft/cli",
-  "type": "module",
-  "version": "0.1.0",
-  "cliname": "GFFT",
-  "description": "GFFT cli service",
+  "name": "@templ/cli",
+  "version": "0.0.0",
+  "description": "TEMPL cli service",
   "license": "MIT",
-  "homepage": "https://github.com/rjoydip/gfft/tree/main/packages/cli#readme",
+  "homepage": "https://github.com/rjoydip/templ/tree/main/packages/cli#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rjoydip/gfft.git",
+    "url": "git+https://github.com/rjoydip/templ.git",
     "directory": "packages/cli"
   },
   "bugs": {
-    "url": "https://github.com/rjoydip/gfft/issues"
+    "url": "https://github.com/rjoydip/templ/issues"
   },
-  "sideEffects": true,
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "type": "module",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -25,26 +20,33 @@
     },
     "./*": "./*"
   },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
   "bin": {
-    "gfft": "gfft.mjs"
+    "templ": "templ.mjs"
   },
   "files": [
-    "gfft.mjs",
     "*.d.ts",
-    "dist"
+    "dist",
+    "templ.mjs"
   ],
   "scripts": {
     "build": "tsup",
-    "dev": "esno ./src/index.ts -v",
-    "test:cli": "pnpm link . && pnpm gfft -v"
+    "clean": "rimraf dist .turbo",
+    "dev": "tsx ./src/index.ts -v",
+    "test:cli": "pnpm link . && pnpm templ -v"
   },
+  "sideEffects": true,
+  "types": "./dist/index.d.ts",
   "dependencies": {
     "sade": "^1.8.1",
     "serialize-error": "^11.0.0"
   },
   "devDependencies": {
-    "@gfft/config": "workspace:^",
-    "@gfft/core": "workspace:^",
-    "find-monorepo-root": "^1.0.3"
-  }
+    "@templ/config": "workspace:^",
+    "find-monorepo-root": "^1.0.3",
+    "rimraf": "^5.0.1",
+    "tsx": "^3.12.7"
+  },
+  "cliname": "TEMPL"
 }

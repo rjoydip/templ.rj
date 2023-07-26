@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest'
 import { commitlintConfig, defaultConfig } from '../src/commitlint'
 
-describe('@gfft/config > commitlint', () => {
+describe('@templ/config > commitlint', () => {
   test('should return default configuration', () => {
     expect(commitlintConfig()).toEqual(defaultConfig)
   })
@@ -14,8 +14,8 @@ describe('@gfft/config > commitlint', () => {
         },
         {
           arrayMerge: 'overwrite',
-        }
-      )
+        },
+      ),
     ).toEqual({ ...defaultConfig, extends: ['other-config'] })
   })
 })

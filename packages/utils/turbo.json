@@ -2,7 +2,7 @@
   "extends": ["//"],
   "pipeline": {
     "build": {
-      "dependsOn": ["@gfft/config#build"]
+      "dependsOn": ["@templ/config#build"]
     }
   }
 }

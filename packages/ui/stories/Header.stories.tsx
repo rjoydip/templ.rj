@@ -16,6 +16,6 @@ export const HeaderComponent: Story = {}
 export const HeaderComponentTest: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
-    await expect(canvas.getByText('Header')).toBeDefined()
+    await expect(canvas.getByText('TEMPL')).toBeDefined()
   },
 }

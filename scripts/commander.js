@@ -2,7 +2,6 @@ import { exec } from 'node:child_process'
 import { join, normalize } from 'node:path'
 import { platform } from 'node:os'
 import { promisify } from 'node:util'
-import { deleteAsync } from 'del'
 import fs from 'fs-extra'
 import { glob } from 'glob'
 import ora from 'ora'
@@ -46,38 +45,31 @@ void async function () {
   const prog = sade('Commander')
 
   prog
-    .command('clean')
+    .command('clean:nm')
     .describe('Clean unnecessary directories')
-    .option('-nm, --nm', 'Clean node_modules directories')
-    .example('clean')
-    .example('clean --nm')
+    .example('clean:nm')
     .action(async (opts) => {
       try {
-        if (z.boolean().safeParse(opts.nm).success) {
-          if (platform() === 'win32') {
-            console.log("[STARTED]: Node modules cleanup")
-            if (process.env.SHELL && process.env.SHELL.includes('bash')) {
-              await $('rm -rf node_modules packages/**/node_modules')
-              console.log("[COMPLETED]: Node modules cleanup")
-            } else {
-              await Promise.allSettled([
-                ...(await glob('packages/**/node_modules', {})).reverse().map(async i => {
-                  await $(`rmdir /S /Q ${join(process.cwd(), i)}`)
-                })
-              ])
-              await $(`rmdir /S /Q ${join(process.cwd(), "node_modules")}`)
-              console.log("[COMPLETED]: Node modules cleanup")
-            }
-          } else if (platform() === 'linux') {
-            if (process.env.SHELL && process.env.SHELL.includes('bash')) {
-              await $('rm -rf node_modules packages/**/node_modules')
-              console.log("[COMPLETED]: Node modules cleanup")
-            }
+        if (platform() === 'win32') {
+          console.log("[STARTED]: Node modules cleanup")
+          if (process.env.SHELL && process.env.SHELL.includes('bash')) {
+            await $('cd .. && rm -rf node_modules packages/**/node_modules')
+            console.log("[COMPLETED]: Node modules cleanup")
+          } else {
+            await Promise.allSettled([
+              ...(await glob('packages/**/node_modules', { cwd: join(process.cwd(), '..') })).reverse().map(async i => {
+                await $(`rmdir /S /Q ${join(normalize(join(process.cwd(), '..')), i)}`)
+              })
+            ])
+            await $(`rmdir /S /Q ${join(normalize(join(process.cwd(), '..')), "node_modules")}`)
+            await $(`rmdir /S /Q ${join(normalize(join(process.cwd(), '..')), "scripts", "node_modules")}`)
+            console.log("[COMPLETED]: Node modules cleanup")
           }
-        } else {
-          const spinner = ora(`[STARTED] Cleanup`).start()
-          await deleteAsync(['.turbo', '.eslintcache', '.pnpm-store', 'coverage', 'packages/**/.nyc_output', 'packages/**/storybook-static', 'packages/**/.turbo', 'packages/**/dist', 'fixtures/output/**'], {});
-          spinner.succeed(`[COMPLETED] Cleanup`)
+        } else if (platform() === 'linux') {
+          if (process.env.SHELL && process.env.SHELL.includes('bash')) {
+            await $('cd .. && rm -rf node_modules packages/**/node_modules')
+            console.log("[COMPLETED]: Node modules cleanup")
+          }
         }
       } catch (err) {
         const error = new Error(String(err))
@@ -107,7 +99,7 @@ void async function () {
           const pkgTemplate = await getTemplateData(join(templatesLocation), 'package.json.hbs', 'utf8')
           const mdTemplate = await getTemplateData(join(templatesLocation), 'README.md.hbs', 'utf8')
           const tsconfigTemplate = await getTemplateData(join(templatesLocation), 'tsconfig.json.hbs', 'utf8')
-          const tsupconfigTemplate = await getTemplateData(join(templatesLocation), 'tsup.config.ts.hbs', 'utf8')
+          const tsupConfigTemplate = await getTemplateData(join(templatesLocation), 'tsup.config.ts.hbs', 'utf8')
           const turboTemplate = await getTemplateData(join(templatesLocation), 'turbo.json.hbs', 'utf8')
           const vitestConfigTemplate = await getTemplateData(join(templatesLocation), 'vitest.config.ts.hbs', 'utf8')
 
@@ -117,7 +109,7 @@ void async function () {
             await setTemplateData(join(outputLocation, name), 'package.json', compile(pkgTemplate)({ name }), 'utf8'),
             await setTemplateData(join(outputLocation, name), 'README.md', compile(mdTemplate)({ name }), 'utf8'),
             await setTemplateData(join(outputLocation, name), 'tsconfig.json', compile(tsconfigTemplate)({ name }), 'utf8'),
-            await setTemplateData(join(outputLocation, name), 'tsup.config.ts', compile(tsupconfigTemplate)({}), 'utf8'),
+            await setTemplateData(join(outputLocation, name), 'tsup.config.ts', compile(tsupConfigTemplate)({}), 'utf8'),
             await setTemplateData(join(outputLocation, name), 'turbo.json', compile(turboTemplate)({}), 'utf8'),
             await setTemplateData(join(outputLocation, name), 'vitest.config.ts', compile(vitestConfigTemplate)({}), 'utf8'),
           ])

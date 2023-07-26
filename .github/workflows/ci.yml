@@ -79,19 +79,19 @@ jobs:
       - name: Serve Storybook and run tests
         run: pnpm run test:storybook
 
-  # snyk:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@master
-  #     - uses: ./.github/actions/setup-node
-  #     - name: Install
-  #       run: pnpm i --no-frozen-lockfile
-  #     - name: Snyk monitor
-  #       run: |
-  #         npx snyk auth SNYK_TOKEN
-  #         npx snyk monitor --all-projects
-  #       env:
-  #         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+  snyk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: ./.github/actions/setup-node
+      - name: Install
+        run: pnpm i --no-frozen-lockfile
+      - name: Snyk monitor
+        run: |
+          npx snyk auth SNYK_TOKEN
+          npx snyk monitor --all-projects
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
   trivy-scan:
     runs-on: ubuntu-latest

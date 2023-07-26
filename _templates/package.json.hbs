@@ -1,19 +1,19 @@
 {{#expect name}}
 {
-  "name": "@gfft/{{ name }}",
+  "name": "@templ/{{ name }}",
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "private": true,
-  "description": "GFFT {{ name }} service",
+  "description": "TEMPL {{ name }} service",
   "license": "MIT",
-  "homepage": "https://github.com/rjoydip/gfft/tree/main/packages/{{ name }}#readme",
+  "homepage": "https://github.com/rjoydip/templ/tree/main/packages/{{ name }}#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rjoydip/gfft.git",
+    "url": "git+https://github.com/rjoydip/templ.git",
     "directory": "packages/{{ name }}"
   },
   "bugs": {
-    "url": "https://github.com/rjoydip/gfft/issues"
+    "url": "https://github.com/rjoydip/templ/issues"
   },
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -33,11 +33,8 @@
     "build": "tsup",
     "dev": "tsup ./src/index.ts --watch"
   },
-  "devDependencies": {
-    "esno": "^0.16.3",
-    "tsup": "^7.1.0"
-  },
+  "devDependencies": {},
   "dependencies": {
-    "@gfft/config": "workspace:^"
+    "@templ/config": "workspace:^"
   }
 }

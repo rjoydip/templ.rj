@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest'
 import { defaultConfig, tsupConfig } from '../src/tsup'
 
-describe('@gfft/config > tsup', () => {
+describe('@templ/config > tsup', () => {
   test('should return default configuration', () => {
     expect(tsupConfig()).toEqual(defaultConfig)
   })

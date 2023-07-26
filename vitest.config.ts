@@ -6,7 +6,7 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 
 export default defineConfig({
   test: {
-    testTimeout: 10000,
+    testTimeout: 100000,
     coverage: {
       enabled: true,
       provider: 'v8',

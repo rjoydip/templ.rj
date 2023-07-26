@@ -1,6 +1,0 @@
-export const DEFAULT_DATA_FILE_EXTENSION = '.json'
-export const DEFAULT_OUTPUT_FILE_EXTENSION = '.md'
-export const DEFAULT_TEMPLATE_FILE_EXTENSION = '.tmpl.md'
-export const DEFAULT_DATA_DIR = 'data'
-export const DEFAULT_OUTPUT_DIR = 'output'
-export const DEFAULT_TEMPLATE_DIR = 'template'

@@ -1,1 +1,3 @@
-export * from './reporter'
+const templ = 'templ'
+
+export { templ }

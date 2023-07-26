@@ -3,7 +3,7 @@
 .turbo
 .dockerignore
 .gitpod.Dockerfile
-gfft.code-workspace
+templ.code-workspace
 dist
 node_modules
 coverage

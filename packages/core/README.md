@@ -1,5 +1,5 @@
-# @gfft/core
+# @templ/core
 
-GFFT core module.
+TEMPL core module.
 
-[GitHub](https://github.com/rjoydip/gfft)
+[GitHub](https://github.com/rjoydip/templ)

@@ -1,0 +1,52 @@
+{
+  "folders": [
+    {
+      "name": "✨ TEMPL [root]",
+      "path": "."
+    },
+    {
+      "name": "☢️ @templ/core",
+      "path": "packages/core"
+    },
+    {
+      "name": "🔧 @templ/config",
+      "path": "packages/config"
+    },
+    {
+      "name": "📟 @templ/cli",
+      "path": "packages/cli"
+    },
+    {
+      "name": "🌐 @templ/ui",
+      "path": "packages/ui"
+    },
+    {
+      "name": "🔨 @templ/utils",
+      "path": "packages/utils"
+    },
+    {
+      "name": "🧩 @templ/docs/api",
+      "path": "docs/api"
+    },
+    {
+      "name": "📃 @templ/docs/typedoc",
+      "path": "docs/typedoc"
+    },
+    {
+      "name": "🌎 @templ/docs/web",
+      "path": "docs/web"
+    },
+    {
+      "name": "🕸️ @templ/apps/web",
+      "path": "apps/web"
+    },
+    {
+      "name": "🖥️ @templ/apps/desktop",
+      "path": "apps/desktop"
+    },
+    {
+      "name": "🗑️ Fixtures",
+      "path": "fixtures"
+    },
+  ]
+}

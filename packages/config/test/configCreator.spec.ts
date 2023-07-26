@@ -8,7 +8,7 @@ const defaultConfig: any = {
 
 const config = configCreator(defaultConfig)
 
-describe('@gfft/config > configCreator', () => {
+describe('@templ/config > configCreator', () => {
   test('should append array', () => {
     expect(config({ arr: [4, 5] })).toEqual({
       obj: { a: 1, b: 2 },

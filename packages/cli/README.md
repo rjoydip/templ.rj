@@ -1,5 +1,5 @@
-# @gfft/cli
+# @templ/cli
 
-GFFT cli module.
+TEMPL cli module.
 
-[GitHub](https://github.com/rjoydip/gfft)
+[GitHub](https://github.com/rjoydip/templ)

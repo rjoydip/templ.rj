@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest'
 import * as baseJSON from '../../src/ts/base.json'
 
-describe('@gfft/config > Base JSON', () => {
+describe('@templ/config > Base JSON', () => {
   test('schema', () => {
     expect(typeof baseJSON.$schema).toBeDefined()
     expect(baseJSON.$schema).toBe('https://json.schemastore.org/tsconfig')

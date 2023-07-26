@@ -1,8 +1,8 @@
 {
-  "extends": "@gfft/config/src/ts/node.json",
+  "extends": "@templ/config/src/ts/node.json",
   "compilerOptions": {
     "paths": {
-      "@gfft/utils": ["./src/index.ts"]
+      "@templ/utils": ["./src/index.ts"]
     }
   },
   "exclude": ["dist", "*.d.ts"]

@@ -1,3 +1,3 @@
-import { tsupConfig } from '@gfft/config'
+import { tsupConfig } from '@templ/config'
 
 export default tsupConfig({})

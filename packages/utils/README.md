@@ -1,5 +1,5 @@
-# @gfft/utils
+# @templ/utils
 
-GFFT utils module.
+TEMPL utils module.
 
-[GitHub](https://github.com/rjoydip/gfft)
+[GitHub](https://github.com/rjoydip/templ)

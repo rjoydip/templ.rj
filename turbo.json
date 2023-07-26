@@ -7,7 +7,7 @@
       "cache": false
     },
     "build": {
-      "dependsOn": ["^build", "@gfft/ui#build:storybook"],
+      "dependsOn": ["^build", "@templ/ui#build:storybook"],
       "outputs": ["dist/**"],
       "outputMode": "new-only"
     },

@@ -1,8 +1,8 @@
 {
-  "extends": "@gfft/config/src/ts/preact.json",
+  "extends": "@templ/config/src/ts/preact.json",
   "compilerOptions": {
     "paths": {
-      "@gfft/ui": ["./src/index.ts"]
+      "@templ/ui": ["./src/index.ts"]
     }
   },
   "exclude": ["dist", "*.d.ts"]

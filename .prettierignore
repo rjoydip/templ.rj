@@ -23,4 +23,4 @@ package.json
 Dockerfile
 pnpm-lock.yaml
 pnpm-workspace.yaml
-gfft.code-workspace
+templ.code-workspace

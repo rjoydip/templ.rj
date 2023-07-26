@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest'
 import * as preactJSON from '../../src/ts/preact.json'
 
-describe('@gfft/config > Preact JSON', () => {
+describe('@templ/config > Preact JSON', () => {
   test('display', () => {
     expect(typeof preactJSON.display).toBe('string')
     expect(preactJSON.display).toBe('Preact')

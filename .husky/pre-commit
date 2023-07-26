@@ -5,3 +5,7 @@ pnpm clean
 pnpm deps:fresh
 pnpm build
 pnpm lint
+pnpm lint:staged
+pnpm test
+pnpm version
+git add .

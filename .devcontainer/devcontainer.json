@@ -1,5 +1,5 @@
 {
-  "name": "GFFT",
+  "name": "TEMPL",
   "build": {
     "dockerfile": "Dockerfile",
     "args": {

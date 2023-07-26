@@ -1,3 +1,2 @@
-export * from './cnst'
+export * from './constants'
 export * from './is'
-export * from './get'

@@ -1,3 +1,3 @@
-import { lintStagedConfig } from '@gfft/config'
+import { lintStagedConfig } from '@templ/config'
 
 export default lintStagedConfig()

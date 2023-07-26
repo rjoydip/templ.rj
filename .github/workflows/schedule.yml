@@ -22,7 +22,7 @@ jobs:
           days-before-pr-close: -1
 
   lock-issues:
-    if: github.repository == 'rjoydip/gfft'
+    if: github.repository == 'rjoydip/templ'
     runs-on: ubuntu-latest
     steps:
       - uses: dessant/lock-threads@v4
@@ -32,6 +32,6 @@ jobs:
           issue-comment: |
             This issue has been locked since it has been closed for more than 14 days.
 
-            If you have found a concrete bug or regression related to it, please open a new [bug report](https://github.com/rjoydip/gfft/issues/new/choose) with a reproduction against the latest GFFT version. If you have any other comments you should create a new [discussion](https://github.com/rjoydip/gfft/discussions).
+            If you have found a concrete bug or regression related to it, please open a new [bug report](https://github.com/rjoydip/templ/issues/new/choose) with a reproduction against the latest TEMPL version. If you have any other comments you should create a new [discussion](https://github.com/rjoydip/templ/discussions).
           issue-lock-reason: ""
           process-only: issues

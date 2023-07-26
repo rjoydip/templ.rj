@@ -1,7 +1,7 @@
 {
   "pnpm": {
     "overrides": {
-      "gfft": "./packages/core"
+      "templ": "./packages/core"
     }
   }
 }

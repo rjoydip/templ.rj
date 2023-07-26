@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest'
 import * as nodeJSON from '../../src/ts/node.json'
 
-describe('@gfft/config > Base JSON', () => {
+describe('@templ/config > Base JSON', () => {
   test('display', () => {
     expect(typeof nodeJSON.display).toBe('string')
     expect(nodeJSON.display).toBe('Node')

@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest'
 import { defaultConfig, prettierConfig } from '../src/prettier'
 
-describe('@gfft/config > prettier', () => {
+describe('@templ/config > prettier', () => {
   test('should return default configuration', () => {
     expect(prettierConfig()).toEqual(defaultConfig)
   })

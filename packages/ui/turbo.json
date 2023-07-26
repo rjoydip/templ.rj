@@ -2,7 +2,7 @@
   "extends": ["//"],
   "pipeline": {
     "build": {
-      "dependsOn": ["@gfft/config#build", "build:storybook"],
+      "dependsOn": ["@templ/config#build", "build:storybook"],
       "outputs": ["dist/**"]
     },
     "build:storybook": {
