@@ -16,7 +16,7 @@
   "type": "module",
   "scripts": {
     "clean": "rimraf .turbo",
-    "clean:nm": "node commander.js clean:nm",
+    "cleanup": "node commander.js cleanup",
     "lint:md": "node markdownlint.js"
   },
   "devDependencies": {

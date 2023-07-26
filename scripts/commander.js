@@ -1,6 +1,5 @@
 import { exec } from 'node:child_process'
 import { join, normalize } from 'node:path'
-import { platform } from 'node:os'
 import { promisify } from 'node:util'
 import fs from 'fs-extra'
 import { glob } from 'glob'
@@ -42,35 +41,25 @@ async function setTemplateData(location, fileName, data, encoding = 'utf8') {
 }
 
 void async function () {
-  const prog = sade('Commander')
+  const prog = sade('templ')
 
   prog
-    .command('clean:nm')
-    .describe('Clean unnecessary directories')
-    .example('clean:nm')
-    .action(async (opts) => {
+    .command('cleanup')
+    .describe('Clean node_modules directories and re-install packages')
+    .example('cleanup')
+    .action(async () => {
       try {
-        if (platform() === 'win32') {
-          console.log("[STARTED]: Node modules cleanup")
-          if (process.env.SHELL && process.env.SHELL.includes('bash')) {
-            await $('cd .. && rm -rf node_modules packages/**/node_modules')
-            console.log("[COMPLETED]: Node modules cleanup")
-          } else {
-            await Promise.allSettled([
-              ...(await glob('packages/**/node_modules', { cwd: join(process.cwd(), '..') })).reverse().map(async i => {
-                await $(`rmdir /S /Q ${join(normalize(join(process.cwd(), '..')), i)}`)
-              })
-            ])
-            await $(`rmdir /S /Q ${join(normalize(join(process.cwd(), '..')), "node_modules")}`)
-            await $(`rmdir /S /Q ${join(normalize(join(process.cwd(), '..')), "scripts", "node_modules")}`)
-            console.log("[COMPLETED]: Node modules cleanup")
-          }
-        } else if (platform() === 'linux') {
-          if (process.env.SHELL && process.env.SHELL.includes('bash')) {
-            await $('cd .. && rm -rf node_modules packages/**/node_modules')
-            console.log("[COMPLETED]: Node modules cleanup")
-          }
-        }
+        console.log("[STARTED]: Node modules cleanup")
+        await Promise.allSettled([
+          ...(await glob('**/node_modules', { cwd: join(process.cwd(), '..') })).reverse().map(async i => {
+            await fs.rm(join(process.cwd(), '..', i), {
+              force: true,
+              recursive: true
+            })
+          })
+        ])
+        console.log("[COMPLETED]: Node modules cleanup")
+        process.exit(0)
       } catch (err) {
         const error = new Error(String(err))
         const serialized = serializeError(error)
