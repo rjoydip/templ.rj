@@ -7,16 +7,25 @@ module.exports = defineConfig({
   extends: [
     'eslint:recommended',
     'plugin:n/recommended',
-    'plugin:@typescript-eslint/recommended',
     'plugin:regexp/recommended',
+    'plugin:@typescript-eslint/recommended',
   ],
-  ignorePatterns: [],
+  ignorePatterns: ['*.d.ts'],
   plugins: ['import', 'regexp'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     sourceType: 'module',
-    ecmaVersion: 2021,
+    ecmaVersion: 'latest',
+    ecmaFeatures: {
+      jsx: true
+    }
   },
+  settings: {
+		react: {
+			pragma: 'h',
+			version: 'detect'
+		}
+	},
   rules: {
     'no-debugger': ['error'],
     'no-empty': ['warn', { allowEmptyCatch: true }],

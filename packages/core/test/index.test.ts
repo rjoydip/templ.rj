@@ -2,7 +2,7 @@ import { describe, expect, test } from 'vitest'
 import { templ } from '../src'
 
 describe('@templ/core', () => {
-  test('core should be exported', () => {
+  test('should be exported core modules', () => {
     expect(templ).toBeDefined()
   })
 })

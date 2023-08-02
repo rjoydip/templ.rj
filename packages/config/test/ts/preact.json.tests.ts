@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest'
-import * as preactJSON from '../../src/ts/preact.json'
+const preactJSON = require('../../src/ts/preact.json')
 
 describe('@templ/config > Preact JSON', () => {
   test('display', () => {

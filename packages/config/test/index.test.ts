@@ -7,7 +7,7 @@ import {
 } from '../src'
 
 describe('@templ/config', () => {
-  test('configs should be exported', () => {
+  test('should be exported config modules', () => {
     expect(commitlintConfig).toBeDefined()
     expect(lintStagedConfig).toBeDefined()
     expect(prettierConfig).toBeDefined()

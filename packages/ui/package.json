@@ -33,18 +33,19 @@
     "@storybook/addon-essentials": "7.1.1",
     "@storybook/addon-interactions": "7.1.1",
     "@storybook/addon-links": "7.1.1",
-    "@storybook/addon-storysource": "^7.1.1",
+    "@storybook/addon-storysource": "^7.2.0",
     "@storybook/blocks": "7.1.1",
     "@storybook/jest": "^0.1.0",
-    "@storybook/preact": "^7.1.1",
-    "@storybook/preact-vite": "^7.1.1",
+    "@storybook/preact": "^7.2.0",
+    "@storybook/preact-vite": "^7.2.0",
     "@storybook/test-runner": "^0.11.0",
     "@storybook/testing-library": "^0.2.0",
     "@templ/config": "workspace:^",
+    "@testing-library/preact": "^3.2.3",
     "concurrently": "^8.2.0",
     "rimraf": "^5.0.1",
     "storybook": "7.1.1",
-    "vite": "^4.4.7",
+    "vite": "^4.4.8",
     "wait-on": "^7.0.1"
   }
 }
