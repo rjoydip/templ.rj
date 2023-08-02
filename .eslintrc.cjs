@@ -17,15 +17,15 @@ module.exports = defineConfig({
     sourceType: 'module',
     ecmaVersion: 'latest',
     ecmaFeatures: {
-      jsx: true
-    }
+      jsx: true,
+    },
   },
   settings: {
-		react: {
-			pragma: 'h',
-			version: 'detect'
-		}
-	},
+    react: {
+      pragma: 'h',
+      version: 'detect',
+    },
+  },
   rules: {
     'no-debugger': ['error'],
     'no-empty': ['warn', { allowEmptyCatch: true }],

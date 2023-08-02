@@ -1,5 +1,3 @@
 export function Templ() {
-  return (
-    <div>TEMPL</div>
-  )
+  return <div>TEMPL</div>
 }

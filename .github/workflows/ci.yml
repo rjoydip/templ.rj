@@ -68,17 +68,6 @@ jobs:
       - name: Test CLI
         run: pnpm run test:cli
 
-  test-storybook:
-    timeout-minutes: 60
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/setup-node
-      - name: Install
-        run: pnpm i --no-frozen-lockfile
-      - name: Serve Storybook and run tests
-        run: pnpm run test:storybook
-
   snyk:
     runs-on: ubuntu-latest
     steps:

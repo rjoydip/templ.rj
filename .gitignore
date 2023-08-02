@@ -20,5 +20,12 @@ ltex*
 .nyc_output
 .turbo
 .pnpm-store
-storybook-static
 node_modules
+
+# Storybook
+storybook-static
+
+# Playwrite
+/packages/**/test-results/
+/packages/**/playwright-report/
+/packages/**/playwright/.cache/

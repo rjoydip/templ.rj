@@ -8,7 +8,7 @@ export default defineWorkspace([
     test: {
       name: 'happy-dom',
       environment: 'happy-dom',
-      include: ['packages/ui/**']
+      include: ['packages/ui/**'],
     },
     plugins: [preact()],
   },
@@ -17,7 +17,12 @@ export default defineWorkspace([
     test: {
       name: 'node',
       environment: 'node',
-      include: ['packages/cli/**', 'packages/core/**', 'packages/config/**', 'packages/utils/**']
-    }
-  }
+      include: [
+        'packages/cli/**',
+        'packages/core/**',
+        'packages/config/**',
+        'packages/utils/**',
+      ],
+    },
+  },
 ])

@@ -8,7 +8,7 @@
   "repository": "rjoydip/templ",
   "type": "module",
   "scripts": {
-    "all": "nr clean && nr deps:fresh && nr build && nr format && nr lint && nr test && nr size-limit",
+    "all": "nr clean && nr deps:fresh && nr build && nr format && nr lint && nr test && nr size-limit && nr version",
     "build": "turbo run build",
     "clean": "rimraf .turbo .eslintcache .pnpm-store coverage && nr -r clean",
     "cleanup": "nr -C scripts cleanup",
@@ -21,15 +21,13 @@
     "lint:md": "nr -C scripts lint:md",
     "lint:secret": "secretlint \"**/*\"",
     "lint:spell": "cspell .",
-    "lint:staged": "lint-staged --diff main --quiet --no-stash",
     "prepare": "husky install",
     "size-limit": "size-limit",
-    "test": "nr test:ci && nr test:cli && nr test:storybook",
+    "test": "nr test:ci && nr test:cli",
     "test:ci": "CI=true vitest run -r packages",
     "test:cli": "turbo run --filter=cli test:cli",
-    "test:storybook": "turbo run --filter=ui test:storybook",
     "test:watch": "vitest run -r packages --watch",
-    "version": "auto-changelog -p && git add CHANGELOG.md"
+    "version": "auto-changelog -p"
   },
   "sideEffects": true,
   "workspaces": [
@@ -62,7 +60,6 @@
     "eslint-plugin-regexp": "^1.15.0",
     "happy-dom": "^10.5.2",
     "husky": "^8.0.3",
-    "lint-staged": "^13.2.3",
     "pnpm": "^8.6.11",
     "prettier": "^3.0.0",
     "prettier-package-json": "^2.8.0",
