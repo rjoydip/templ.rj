@@ -8,6 +8,7 @@
     "editorconfig.editorconfig",
     "esbenp.prettier-vscode",
     "folke.vscode-monorepo-workspace",
+    "ms-playwright.playwright",
     "ms-vscode-remote.remote-containers",
     "foxundermoon.shell-format",
     "folke.vscode-monorepo-workspace",

@@ -13,6 +13,7 @@ vscode:
     - "esbenp.prettier-vscode"
     - "folke.vscode-monorepo-workspace"
     - "foxundermoon.shell-format"
-    - "zixuanchen.vitest-explorer"
+    - "ms-playwright.playwright"
     - "seatonjiang.gitmoji-vscode"
     - "streetsidesoftware.code-spell-checker"
+    - "zixuanchen.vitest-explorer"

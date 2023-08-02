@@ -1,8 +1,8 @@
 import { describe, expect, test } from 'vitest'
-import * as utils from '../'
+import * as utils from '../src'
 
 describe('@templ/utils', () => {
-  test('utils should be exported', () => {
+  test('should be exported utils modules', () => {
     expect(utils).toBeDefined()
   })
 })

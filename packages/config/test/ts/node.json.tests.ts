@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest'
-import * as nodeJSON from '../../src/ts/node.json'
+const nodeJSON = require('../../src/ts/node.json')
 
 describe('@templ/config > Base JSON', () => {
   test('display', () => {

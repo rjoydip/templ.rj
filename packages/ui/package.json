@@ -19,10 +19,8 @@
   "scripts": {
     "build": "tsup",
     "build:storybook": "storybook build",
-    "clean": "rimraf dist .turbo nyc_output storybook-static",
-    "dev:storybook": "storybook dev -p 6006",
-    "preview:storybook": "nr build:storybook && vite preview --outDir storybook-static --host 0.0.0.0 --port 6006 --strictPort true",
-    "test:storybook": "concurrently -k -s first -n \"SB,TEST\" -c \"magenta,blue\" \"nr preview:storybook\" \"npx wait-on tcp:6006 && test-storybook --url http://127.0.0.1:6006 --coverage\""
+    "clean": "rimraf dist .turbo .nyc_output storybook-static",
+    "dev:storybook": "storybook dev -p 6006"
   },
   "types": "./dist/index.d.ts",
   "dependencies": {
@@ -33,18 +31,13 @@
     "@storybook/addon-essentials": "7.1.1",
     "@storybook/addon-interactions": "7.1.1",
     "@storybook/addon-links": "7.1.1",
-    "@storybook/addon-storysource": "^7.1.1",
+    "@storybook/addon-storysource": "^7.2.0",
     "@storybook/blocks": "7.1.1",
-    "@storybook/jest": "^0.1.0",
-    "@storybook/preact": "^7.1.1",
-    "@storybook/preact-vite": "^7.1.1",
-    "@storybook/test-runner": "^0.11.0",
-    "@storybook/testing-library": "^0.2.0",
+    "@storybook/preact": "^7.2.0",
+    "@storybook/preact-vite": "^7.2.0",
     "@templ/config": "workspace:^",
-    "concurrently": "^8.2.0",
+    "@testing-library/preact": "^3.2.3",
     "rimraf": "^5.0.1",
-    "storybook": "7.1.1",
-    "vite": "^4.4.7",
-    "wait-on": "^7.0.1"
+    "storybook": "7.1.1"
   }
 }
