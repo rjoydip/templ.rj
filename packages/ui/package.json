@@ -38,6 +38,6 @@
     "@templ/config": "workspace:^",
     "@testing-library/preact": "^3.2.3",
     "rimraf": "^5.0.1",
-    "storybook": "7.1.1"
+    "storybook": "7.2.0"
   }
 }
