@@ -1,5 +1,7 @@
 import type { StorybookConfig } from '@storybook/preact-vite'
 
+/* The `config` object is a configuration file for Storybook, a tool for building UI components in
+isolation. */
 const config: StorybookConfig = {
   stories: ['../stories/**/*.mdx', '../stories/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
@@ -17,4 +19,5 @@ const config: StorybookConfig = {
     autodocs: 'tag',
   },
 }
+
 export default config

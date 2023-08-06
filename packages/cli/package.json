@@ -40,7 +40,7 @@
   "types": "./dist/index.d.ts",
   "dependencies": {
     "sade": "^1.8.1",
-    "serialize-error": "^11.0.0"
+    "serialize-error": "^11.0.1"
   },
   "devDependencies": {
     "@templ/config": "workspace:^",
