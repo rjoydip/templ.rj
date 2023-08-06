@@ -1,5 +1,7 @@
 import { configCreator } from './configCreator'
 
+/* The code you provided is defining a default configuration object for Prettier, a code formatting
+tool. */
 export const defaultConfig = {
   semi: false,
   tabWidth: 2,

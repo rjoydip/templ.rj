@@ -1,5 +1,6 @@
 {
   "recommendations": [
+    "aaron-bond.better-comments",
     "bierner.markdown-emoji",
     "christian-kohler.npm-intellisense",
     "dbaeumer.vscode-eslint",
@@ -8,6 +9,7 @@
     "editorconfig.editorconfig",
     "esbenp.prettier-vscode",
     "folke.vscode-monorepo-workspace",
+    "mintlify.document",
     "ms-playwright.playwright",
     "ms-vscode-remote.remote-containers",
     "foxundermoon.shell-format",

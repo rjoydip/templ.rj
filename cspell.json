@@ -48,6 +48,7 @@
     "markdownlint",
     "markdownlintignore",
     "mergify",
+    "mintlify",
     "msedge",
     "npmjs",
     "nvmrc",

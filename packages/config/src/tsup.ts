@@ -1,6 +1,7 @@
 import type { Options } from 'tsup'
 import { configCreator } from './configCreator'
 
+/* The code is defining a default configuration object for the `tsup` bundler. */
 export const defaultConfig: Options = {
   entry: ['src/index.ts'],
   splitting: false,

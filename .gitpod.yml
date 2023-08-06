@@ -7,12 +7,14 @@ tasks:
 
 vscode:
   extensions:
+    - "aaron-bond.better-comments"
     - "davidanson.vscode-markdownlint"
     - "eamodio.gitlens"
     - "editorconfig.editorconfig"
     - "esbenp.prettier-vscode"
     - "folke.vscode-monorepo-workspace"
     - "foxundermoon.shell-format"
+    - "mintlify.document"
     - "ms-playwright.playwright"
     - "seatonjiang.gitmoji-vscode"
     - "streetsidesoftware.code-spell-checker"
