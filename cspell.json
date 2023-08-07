@@ -11,6 +11,7 @@
     "**/package-lock.json/**",
     "**/dist/**",
     "third_party",
+    "CHANGELOG.md",
     "packages/ui/storybook-static/**"
   ],
   "words": [
