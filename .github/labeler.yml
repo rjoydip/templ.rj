@@ -15,3 +15,6 @@
 
 📦packages:
   - 'packages/**/*'
+
+🔌third_party:
+  - 'third_party/**/*'
