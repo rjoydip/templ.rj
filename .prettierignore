@@ -24,3 +24,4 @@ Dockerfile
 pnpm-lock.yaml
 pnpm-workspace.yaml
 templ.code-workspace
+third_party

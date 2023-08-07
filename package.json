@@ -34,7 +34,8 @@
     "apps/*",
     "docs/*",
     "packages/*",
-    "scripts"
+    "scripts",
+    "third_party/*"
   ],
   "devDependencies": {
     "@antfu/ni": "^0.21.5",
