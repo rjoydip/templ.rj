@@ -2,22 +2,24 @@
   - '*'
 
 📝docs:
-  - 'docs/**/*'
-  - '**/README.md'
+  - docs/**/*
+  - packages/**/README.md
+  - README.md
 
 🐚shell:
-  - '*.sh*'
+  - *.sh*
 
 ☁︎ci:
-  - .github/**/*
+  - .github/*
 
 🧪test:
-  - 'tests/**/*'
-  - '**/tests/**/*'
-  - '**/__tests__/**/*'
+  - packages/**/test/*
 
 📦packages:
-  - 'packages/**/*'
+  - packages/**/*
+
+📜scripts:
+  - scripts/*
 
 🔌third_party:
-  - 'third_party/**/*'
+  - third_party/**/*
