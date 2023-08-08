@@ -1,3 +1,6 @@
+🌱root:
+  - '*'
+
 📝docs:
   - 'docs/**/*'
   - '**/README.md'
