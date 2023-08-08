@@ -95,6 +95,7 @@ jobs:
         scan-type: 'fs'
         scan-ref: '.'
         trivy-config: trivy.yaml
-        format: 'github'
+        format: 'table'
+        skip-dirs: 'third_party'
         output: 'dependency-results.sbom.json'
         github-pat: ${{ secrets.GITHUB_TOKEN }}
