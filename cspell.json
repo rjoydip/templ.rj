@@ -10,6 +10,8 @@
     "**/pnpm-lock.yaml/**",
     "**/package-lock.json/**",
     "**/dist/**",
+    "third_party",
+    "CHANGELOG.md",
     "packages/ui/storybook-static/**"
   ],
   "words": [
@@ -41,6 +43,7 @@
     "templ",
     "gitmoji",
     "infile",
+    "ignorefile",
     "Joydip",
     "keepachangelog",
     "kohler",
@@ -64,6 +67,7 @@
     "taze",
     "tmpl",
     "trivy",
+    "trivyignore",
     "tsup",
     "vite",
     "vitest",

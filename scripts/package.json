@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "templ/scripts",
+  "name": "@templ/scripts",
   "version": "0.0.0",
   "description": "TEMPL root scripts",
   "license": "MIT",

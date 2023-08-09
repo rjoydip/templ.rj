@@ -29,12 +29,8 @@
       "path": "docs/api"
     },
     {
-      "name": "📃 @templ/docs/typedoc",
-      "path": "docs/typedoc"
-    },
-    {
-      "name": "🌎 @templ/docs/web",
-      "path": "docs/web"
+      "name": "🌎 @templ/docs",
+      "path": "docs"
     },
     {
       "name": "🕸️ @templ/apps/web",
