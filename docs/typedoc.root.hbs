@@ -1,0 +1,25 @@
+{{#expect docs }}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Templ Typedoc</title>
+</head>
+
+<body>
+  <h1>Templ Typedoc!</h1>
+  {{#if docs && docs.length}}
+  <ui class="docs">
+    {{#each docs as doc}}
+    <li>
+      <a href={{ doc.link }}>{{ doc.title }}</a>
+    </li>
+    {{/each}}
+  </ui>
+  {{#else}}
+  <p>No docs links available</p>
+  {{/if}}
+</body>
+
+</html>

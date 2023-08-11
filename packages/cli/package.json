@@ -32,8 +32,10 @@
   ],
   "scripts": {
     "build": "tsup",
-    "clean": "rimraf dist .turbo",
+    "clean": "rimraf .turbo dist docs",
     "dev": "tsx ./src/index.ts -v",
+    "docs:preview": "sirv docs",
+    "docs:build": "typedoc src/index.ts",
     "test:cli": "pnpm link . && pnpm templ -v"
   },
   "sideEffects": true,
@@ -46,7 +48,9 @@
     "@templ/config": "workspace:^",
     "find-monorepo-root": "^1.0.3",
     "rimraf": "^5.0.1",
-    "tsx": "^3.12.7"
+    "sirv-cli": "^2.0.2",
+    "tsx": "^3.12.7",
+    "typedoc": "^0.24.8"
   },
   "cliname": "TEMPL"
 }
