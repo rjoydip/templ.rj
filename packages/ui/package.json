@@ -19,8 +19,10 @@
   "scripts": {
     "build": "tsup",
     "build:storybook": "storybook build",
-    "clean": "rimraf dist .turbo .nyc_output storybook-static",
-    "dev:storybook": "storybook dev -p 6006"
+    "clean": "rimraf .nyc_output .turbo dist docs storybook-static",
+    "dev:storybook": "storybook dev -p 6006",
+    "docs:preview": "sirv docs",
+    "docs:build": "typedoc src/index.ts"
   },
   "types": "./dist/index.d.ts",
   "dependencies": {
@@ -31,13 +33,15 @@
     "@storybook/addon-essentials": "7.2.1",
     "@storybook/addon-interactions": "7.2.1",
     "@storybook/addon-links": "7.2.1",
-    "@storybook/addon-storysource": "^7.2.1",
+    "@storybook/addon-storysource": "^7.2.2",
     "@storybook/blocks": "7.2.1",
-    "@storybook/preact": "^7.2.1",
-    "@storybook/preact-vite": "^7.2.1",
+    "@storybook/preact": "^7.2.2",
+    "@storybook/preact-vite": "^7.2.2",
     "@templ/config": "workspace:^",
     "@testing-library/preact": "^3.2.3",
     "rimraf": "^5.0.1",
-    "storybook": "7.2.1"
+    "sirv-cli": "^2.0.2",
+    "storybook": "7.2.1",
+    "typedoc": "^0.24.8"
   }
 }

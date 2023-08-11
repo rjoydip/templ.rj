@@ -10,6 +10,8 @@
     "**/pnpm-lock.yaml/**",
     "**/package-lock.json/**",
     "**/dist/**",
+    "third_party/**",
+    "packages/**/docs/**",
     "packages/ui/storybook-static/**"
   ],
   "words": [
@@ -34,6 +36,7 @@
     "esbenp",
     "esno",
     "tsx",
+    "finalhandler",
     "folke",
     "foxundermoon",
     "gcov",

@@ -20,6 +20,7 @@ ltex*
 .nyc_output
 .turbo
 .pnpm-store
+packages/**/docs
 node_modules
 
 # Storybook
