@@ -70,6 +70,7 @@ jobs:
 
   snyk:
     runs-on: ubuntu-latest
+    if: github.actor != 'dependabot[bot]'
     steps:
       - uses: actions/checkout@master
       - uses: ./.github/actions/setup-node
@@ -93,7 +94,6 @@ jobs:
         image-ref: '.'
         scan-type: 'fs'
         scan-ref: '.'
-        trivy-config: trivy.yaml
-        format: 'github'
+        skip-dirs: 'third_party'
         output: 'dependency-results.sbom.json'
         github-pat: ${{ secrets.GITHUB_TOKEN }}

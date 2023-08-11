@@ -22,6 +22,7 @@ export default defineConfig({
       '**/*.{mdx,json,md,json,mjs}',
       '**/*.config.ts',
       '**/*.foo.ts',
+      '**/third_party/**',
     ],
   },
   plugins: [tsconfigPaths()],

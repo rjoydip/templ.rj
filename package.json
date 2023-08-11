@@ -8,13 +8,12 @@
   "repository": "rjoydip/templ",
   "type": "module",
   "scripts": {
-    "all": "nr clean && nr deps:fresh && nr build && nr format && nr lint && nr test && nr size-limit && nr version",
-    "build": "turbo run build --filter='./packages/**'",
+    "all": "nr clean && nr deps:fresh && nr build && nr format && nr version && nr size-limit && nr lint && nr test",
+    "build": "turbo run build --filter='./packages/*'",
     "clean": "rimraf .turbo .eslintcache .pnpm-store coverage && nr -r clean",
     "cleanup": "nr -C scripts cleanup",
     "deps:fresh": "taze -r -w -i",
-    "dev": "turbo run dev --filter='./packages/**'",
-    "docs:build": "turbo run docs:build --filter='./packages/**'",
+    "dev": "turbo run dev --filter='./packages/*'",
     "eslint": "eslint --cache --fix .",
     "format": "prettier --write --cache .",
     "preinstall": "npx only-allow pnpm",
@@ -35,7 +34,8 @@
     "apps/*",
     "docs/*",
     "packages/*",
-    "scripts"
+    "scripts",
+    "third_party/*"
   ],
   "devDependencies": {
     "@antfu/ni": "^0.21.5",

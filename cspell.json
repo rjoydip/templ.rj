@@ -12,7 +12,8 @@
     "**/dist/**",
     "third_party/**",
     "packages/**/docs/**",
-    "packages/ui/storybook-static/**"
+    "packages/ui/storybook-static/**",
+    "CHANGELOG.md"
   ],
   "words": [
     "antfu",
@@ -44,6 +45,7 @@
     "templ",
     "gitmoji",
     "infile",
+    "ignorefile",
     "Joydip",
     "keepachangelog",
     "kohler",
@@ -67,6 +69,7 @@
     "taze",
     "tmpl",
     "trivy",
+    "trivyignore",
     "tsup",
     "vite",
     "vitest",
