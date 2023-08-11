@@ -10,9 +10,10 @@
     "**/pnpm-lock.yaml/**",
     "**/package-lock.json/**",
     "**/dist/**",
-    "third_party",
-    "CHANGELOG.md",
-    "packages/ui/storybook-static/**"
+    "third_party/**",
+    "packages/**/docs/**",
+    "packages/ui/storybook-static/**",
+    "CHANGELOG.md"
   ],
   "words": [
     "antfu",
@@ -36,6 +37,7 @@
     "esbenp",
     "esno",
     "tsx",
+    "finalhandler",
     "folke",
     "foxundermoon",
     "gcov",

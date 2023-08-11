@@ -2,8 +2,9 @@
   "extends": "@templ/config/src/ts/node.json",
   "compilerOptions": {
     "paths": {
-      "@templ/utils": ["./src/index.ts"]
+      "@templ/utils": ["src/index.ts"]
     }
   },
+  "include": ["src"],
   "exclude": ["dist", "*.d.ts"]
 }

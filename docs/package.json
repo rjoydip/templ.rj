@@ -1,0 +1,28 @@
+{
+  "private": true,
+  "name": "templ/docs",
+  "version": "0.0.0",
+  "description": "TEMPL docs",
+  "license": "MIT",
+  "homepage": "https://github.com/rjoydip/templ/tree/main/docs#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rjoydip/templ.git",
+    "directory": "docs"
+  },
+  "bugs": {
+    "url": "https://github.com/rjoydip/templ/issues"
+  },
+  "type": "module",
+  "scripts": {
+    "typedoc:preview": "node serve.docs.js"
+  },
+  "devDependencies": {
+    "express": "^4.18.2",
+    "finalhandler": "^1.2.0",
+    "polka": "^0.5.2",
+    "serve-static": "^1.15.0",
+    "st": "^3.0.0",
+    "tempura": "^0.4.0"
+  }
+}

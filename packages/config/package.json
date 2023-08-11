@@ -29,12 +29,16 @@
   ],
   "scripts": {
     "build": "tsup",
-    "clean": "rimraf dist .turbo",
+    "clean": "rimraf .turbo dist docs",
+    "docs:preview": "sirv docs",
+    "docs:build": "typedoc src/index.ts",
     "dev": "tsup ./src/index.ts --watch"
   },
   "types": "./dist/index.d.ts",
   "devDependencies": {
     "deepmerge": "^4.3.1",
-    "rimraf": "^5.0.1"
+    "rimraf": "^5.0.1",
+    "sirv-cli": "^2.0.2",
+    "typedoc": "^0.24.8"
   }
 }

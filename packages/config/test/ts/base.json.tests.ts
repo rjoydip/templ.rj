@@ -32,7 +32,7 @@ describe('@templ/config > Base JSON', () => {
     expect(baseJSON.compilerOptions.strict).toBe(true)
     // strictNullChecks
     expect(typeof baseJSON.compilerOptions.strictNullChecks).toBe('boolean')
-    expect(baseJSON.compilerOptions.strictNullChecks).toBe(true)
+    expect(baseJSON.compilerOptions.strictNullChecks).toBe(false)
     // resolveJsonModule
     expect(typeof baseJSON.compilerOptions.resolveJsonModule).toBe('boolean')
     expect(baseJSON.compilerOptions.resolveJsonModule).toBe(true)

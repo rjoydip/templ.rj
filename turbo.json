@@ -3,8 +3,12 @@
   "baseBranch": "origin/main",
   "pipeline": {
     "dev": {
-      "dependsOn": ["^dev", "^build"],
-      "cache": false
+      "cache": false,
+      "dependsOn": ["^dev", "^build"]
+    },
+    "docs:build": {
+      "outputs": ["docs/**"],
+      "outputMode": "new-only"
     },
     "build": {
       "dependsOn": ["^build", "@templ/ui#build:storybook"],

@@ -28,8 +28,10 @@
   ],
   "scripts": {
     "build": "tsup",
-    "clean": "rimraf dist .turbo",
-    "dev": "tsup ./src/index.ts --watch"
+    "clean": "rimraf .turbo dist docs",
+    "dev": "tsup ./src/index.ts --watch",
+    "docs:preview": "sirv docs",
+    "docs:build": "typedoc src/index.ts"
   },
   "sideEffects": true,
   "types": "./dist/index.d.ts",
@@ -37,6 +39,8 @@
   "devDependencies": {
     "@templ/config": "workspace:^",
     "@templ/utils": "workspace:^",
-    "rimraf": "^5.0.1"
+    "rimraf": "^5.0.1",
+    "sirv-cli": "^2.0.2",
+    "typedoc": "^0.24.8"
   }
 }

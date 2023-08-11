@@ -32,21 +32,22 @@ const config = {
   MD041: false,
   "no-hard-tabs": false,
   whitespace: false
-};
+}
 
+/* The code you provided is using the `markdownlint` library to lint Markdown files. */
 markdownlint({
   files: globSync('{*.md,{.github,packages,fixtures}/**/*.md}', { ignore: ['**/node_modules/**', 'fixtures/output/**'] }),
   frontMatter: /(^---$[\s\S]+?^---\$)?(\r\n|\r|\n)+/m,
   config: config,
 }, function(err, result) {
   if (err) {
-    console.error(err);
-    process.exit(1);
+    console.error(err)
+    process.exit(1)
   }
 
-  const resultString = result.toString();
+  const resultString = result.toString()
   if (resultString) {
-    console.error(resultString);
-    process.exit(1);
+    console.error(resultString)
+    process.exit(1)
   }
-});
+})
