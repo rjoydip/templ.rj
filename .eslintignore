@@ -2,6 +2,7 @@
 *.d.ts
 .turbo
 .dockerignore
+.docusaurus
 .gitpod.Dockerfile
 templ.code-workspace
 dist
@@ -10,3 +11,5 @@ coverage
 output
 storybook-static
 third_party
+docs
+build

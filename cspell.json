@@ -24,6 +24,7 @@
     "commitlint",
     "conventionalcommits",
     "codeql",
+    "clsx",
     "CODEOWNERS",
     "cliname",
     "davidanson",

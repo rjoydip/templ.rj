@@ -6,5 +6,5 @@ export default defineConfig({
   write: true,
   install: true,
   packageMode: {},
-  ignorePaths: ['third_party']
+  ignorePaths: ['third_party/**'],
 })
