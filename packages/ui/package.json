@@ -41,7 +41,7 @@
     "@testing-library/preact": "^3.2.3",
     "rimraf": "^5.0.1",
     "sirv-cli": "^2.0.2",
-    "storybook": "7.2.1",
+    "storybook": "7.2.3",
     "typedoc": "^0.24.8"
   }
 }
