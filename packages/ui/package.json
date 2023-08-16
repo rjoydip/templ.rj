@@ -34,7 +34,7 @@
     "@storybook/addon-interactions": "7.2.1",
     "@storybook/addon-links": "7.2.1",
     "@storybook/addon-storysource": "^7.2.3",
-    "@storybook/blocks": "7.2.1",
+    "@storybook/blocks": "7.3.0",
     "@storybook/preact": "^7.2.3",
     "@storybook/preact-vite": "^7.2.3",
     "@templ/config": "workspace:^",
