@@ -10,8 +10,8 @@ updates:
     versioning-strategy: widen
     target-branch: "main"
     labels:
-      - "🏷️npm-deps"
-      - "☁︎ci"
+      - "🌱root"
+      - "🤖dependabot"
 
   - package-ecosystem: "npm"
     directory: "/packages/cli"
@@ -22,9 +22,8 @@ updates:
     versioning-strategy: widen
     target-branch: "main"
     labels:
-      - "🏷️npm-deps"
       - "📦packages"
-      - "☁︎ci"
+      - "🤖dependabot"
 
   - package-ecosystem: "npm"
     directory: "/packages/core"
@@ -35,12 +34,11 @@ updates:
     versioning-strategy: widen
     target-branch: "main"
     labels:
-      - "🏷️npm-deps"
       - "📦packages"
-      - "☁︎ci"
+      - "🤖dependabot"
 
   - package-ecosystem: "npm"
-    directory: "/packages/ui"
+    directory: "/packages/config"
     schedule:
       interval: "weekly"
       time: "00:10"
@@ -48,6 +46,17 @@ updates:
     versioning-strategy: widen
     target-branch: "main"
     labels:
-      - "🏷️npm-deps"
       - "📦packages"
-      - "☁︎ci"
+      - "🤖dependabot"
+
+  - package-ecosystem: "npm"
+    directory: "/packages/utils"
+    schedule:
+      interval: "weekly"
+      time: "00:10"
+      timezone: "Asia/Calcutta"
+    versioning-strategy: widen
+    target-branch: "main"
+    labels:
+      - "📦packages"
+      - "🤖dependabot"

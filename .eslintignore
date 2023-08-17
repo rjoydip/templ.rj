@@ -9,7 +9,6 @@ dist
 node_modules
 coverage
 output
-storybook-static
 third_party
 docs
 build

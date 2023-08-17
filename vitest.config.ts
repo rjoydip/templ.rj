@@ -18,7 +18,7 @@ export default defineConfig({
     },
     exclude: [
       '**/{.turbo,node_modules,coverage,dist}',
-      'packages/**/{.turbo,.storybook,coverage,dist,src,node_modules,storybook-static,stories}',
+      'packages/**/{.turbo,.storybook,coverage,dist,src,node_modules,stories}',
       '**/*.{mdx,json,md,json,mjs}',
       '**/*.config.ts',
       '**/*.foo.ts',
