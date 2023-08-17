@@ -8,7 +8,7 @@
   "repository": "rjoydip/templ",
   "type": "module",
   "scripts": {
-    "all": "nr clean && nr deps:fresh && nr build && nr docs:build && nr format && nr version && nr size-limit && nr lint && nr test",
+    "all": "nr clean && nr deps:fresh && nr build && nr docs:build && nr format && nr changelog && nr size-limit && nr lint && nr test",
     "build": "turbo run build --filter='./packages/*'",
     "clean": "rimraf .turbo .eslintcache .pnpm-store coverage && nr -r clean",
     "clean:nm": "nr -C scripts clean:nm",
@@ -28,7 +28,7 @@
     "test:ci": "CI=true vitest run -r packages",
     "test:cli": "turbo run --filter=cli test:cli",
     "test:watch": "vitest run -r packages --watch",
-    "version": "auto-changelog -p"
+    "changelog": "auto-changelog -p"
   },
   "sideEffects": true,
   "workspaces": [
