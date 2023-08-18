@@ -11,7 +11,7 @@
       "outputMode": "new-only"
     },
     "build": {
-      "dependsOn": ["^build", "@templ/ui#build:storybook"],
+      "dependsOn": ["^build"],
       "outputs": ["dist/**"],
       "outputMode": "new-only"
     },
