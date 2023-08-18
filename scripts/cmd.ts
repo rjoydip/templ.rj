@@ -1,6 +1,5 @@
-import { exec } from 'node:child_process'
-import { join, normalize } from 'node:path'
-import { promisify } from 'node:util'
+import { lstatSync } from 'node:fs'
+import { join } from 'node:path'
 import fs from 'fs-extra'
 import { glob } from 'glob'
 import ora from 'ora'
@@ -8,8 +7,9 @@ import sade from 'sade'
 import { serializeError } from 'serialize-error'
 import { compile } from 'tempura'
 import { z } from 'zod'
-
-const $ = promisify(exec)
+import { listBranches, pull } from 'isomorphic-git'
+import http from 'isomorphic-git/http/node'
+import { COMPLETED, STARTED } from './constants'
 
 process.on('unhandledRejection', (reason, _) => {
   console.error(reason)
@@ -80,16 +80,29 @@ async function setTemplateData(location, fileName, data, encoding = 'utf8') {
     : Promise.reject(result.error)
 }
 
+/**
+ * The function `logError` logs an error message and exits the process with a failure status.
+ * @param err - The `err` parameter is the error object that you want to log. It can be any type of
+ * error, such as an instance of the `Error` class or a custom error object.
+ */
+function logError(err) {
+  const error = new Error(String(err))
+  const serialized = serializeError(error)
+  ora().fail(serialized.message)
+  process.exit(1)
+}
+
 void (async function () {
   const prog = sade('templ')
 
+  const cleanNMTxt = 'Clean node_modules directories and re-install packages'
   prog
     .command('clean:nm')
-    .describe('Clean node_modules directories and re-install packages')
+    .describe(cleanNMTxt)
     .example('clean:nm')
     .action(async () => {
       try {
-        console.log('[STARTED]: Node modules cleanup')
+        console.log(`[${STARTED}]: ${cleanNMTxt}`)
         await Promise.allSettled([
           ...(await glob('**/node_modules', { cwd: join(process.cwd(), '..') }))
             .reverse()
@@ -100,22 +113,20 @@ void (async function () {
               })
             }),
         ])
-        console.log('[COMPLETED]: Node modules cleanup')
+        console.log(`[${COMPLETED}]: ${cleanNMTxt}`)
         process.exit(0)
-      } catch (err) {
-        const error = new Error(String(err))
-        const serialized = serializeError(error)
-        ora().fail(serialized.message)
+      } catch (error) {
+        logError(error)
       }
     })
 
   prog
-    .command('generate [name]')
+    .command('generate:pkg [name]')
     .describe('Generate new package')
-    .option('-o, --out', 'Output location')
-    .example('generate')
+    .option('-o, --out', 'Output location', 'packages')
+    .example('generate:pkg foo -o packages')
     .action(async (name, opts) => {
-      const spinner = ora(`[STARTED]: Generate ${name} package`).start()
+      const spinner = ora(`[${STARTED}]: Generate ${name} package`).start()
       try {
         const result = z.object({
           name: z.string(),
@@ -123,8 +134,7 @@ void (async function () {
         })
         if (result) {
           const templatesLocation = join(process.cwd(), '_templates')
-          const outputLocation = join(process.cwd(), normalize(opts.out || ''))
-
+          const outputLocation = join('..', opts.out)
           const indexTSTemplate = await getTemplateData(
             join(templatesLocation, 'src'),
             'index.ts.hbs',
@@ -215,15 +225,43 @@ void (async function () {
               'utf8',
             ),
           ])
-          spinner.succeed(`[COMPLETED]: ${name} package generate`)
+          spinner.succeed(`[${COMPLETED}]: ${name} package generate`)
+          process.exit(0)
         } else {
-          throw Error(result.error)
+          throw Error('Type validation failed')
         }
-      } catch (err) {
-        spinner.stop()
-        const error = new Error(String(err))
-        const serialized = serializeError(error)
-        ora().fail(serialized.message)
+      } catch (error) {
+        logError(error)
+      }
+    })
+
+  prog
+    .command('update:third_party')
+    .describe('Update branch for all third_party applications')
+    .example('update:third_party')
+    .action(async () => {
+      try {
+        console.log('[STARTED]: Update branch for all third_party applications')
+        await Promise.allSettled([
+          ...(await glob('third_party/*', { cwd: join(process.cwd(), '..'), absolute: true }))
+            .filter(i => lstatSync(i).isDirectory())
+            .map(async (dir) => {
+              const branches = await listBranches({ fs, dir })
+              const mainOrMasterBranch = branches.filter(i => i.includes('master') || i.includes('main')).pop()
+              await pull({
+                fs,
+                http,
+                dir,
+                ref: mainOrMasterBranch,
+                singleBranch: true
+              })
+              return true
+            }),
+        ])
+        console.log('[COMPLETED]: Update branch for all third_party applications')
+        process.exit(0)
+      } catch (error) {
+        logError(error)
       }
     })
 
