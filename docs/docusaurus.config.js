@@ -44,6 +44,8 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
+          path: 'pages',
+          routeBasePath: 'pages',
           // eslint-disable-next-line no-undef
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
@@ -105,7 +107,7 @@ const config = {
             items: [
               {
                 label: 'Docs',
-                to: '/docs/getting-started',
+                to: '/pages/getting-started',
               },
             ],
           },
@@ -114,7 +116,7 @@ const config = {
             items: [
               {
                 label: 'API',
-                to: '/docs/api',
+                to: '/pages/api',
               },
             ],
           },

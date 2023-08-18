@@ -12,7 +12,6 @@
     "**/dist/**",
     "third_party/**",
     "packages/**/docs/**",
-    "packages/ui/storybook-static/**",
     "CHANGELOG.md"
   ],
   "words": [

@@ -29,12 +29,12 @@
     "test:ci": "CI=true vitest run -r packages",
     "test:cli": "turbo run --filter=cli test:cli",
     "test:watch": "vitest run -r packages --watch",
-    "version": "auto-changelog -p"
+    "changelog": "auto-changelog -p"
   },
   "sideEffects": true,
   "workspaces": [
+    "docs",
     "scripts",
-    "website",
     "apps/*",
     "packages/*",
     "third_party/*"
@@ -96,12 +96,12 @@
       "limit": "3.0KB"
     },
     {
-      "path": "./packages/cli/dist/index.js",
-      "limit": "6.0KB"
+      "path": "./packages/config/dist/index.js",
+      "limit": "1MB"
     },
     {
-      "path": "./packages/ui/dist/index.js",
-      "limit": "500B"
+      "path": "./packages/cli/dist/index.js",
+      "limit": "6.0KB"
     },
     {
       "path": "./packages/utils/dist/index.js",

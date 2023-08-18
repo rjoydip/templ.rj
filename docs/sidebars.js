@@ -41,15 +41,6 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'UI',
-      link: {
-        type: 'doc',
-        id: 'ui',
-      },
-      items: [],
-    },
-    {
-      type: 'category',
       label: 'Utils',
       link: {
         type: 'doc',

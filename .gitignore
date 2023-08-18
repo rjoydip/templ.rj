@@ -23,9 +23,6 @@ ltex*
 packages/**/docs
 node_modules
 
-# Storybook
-storybook-static
-
 # Playwrite
 /packages/**/test-results/
 /packages/**/playwright-report/

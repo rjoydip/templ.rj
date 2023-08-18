@@ -19,7 +19,6 @@ fixtures/**
 _templates/**
 coverage/**
 node_modules/**
-storybook-static/**
 third_party/**
 package.json
 Dockerfile

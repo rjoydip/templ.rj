@@ -17,10 +17,6 @@
       "path": "packages/cli"
     },
     {
-      "name": "🌐 @templ/ui",
-      "path": "packages/ui"
-    },
-    {
       "name": "🔨 @templ/utils",
       "path": "packages/utils"
     },
