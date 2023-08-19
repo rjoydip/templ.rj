@@ -3,6 +3,12 @@
   "pipeline": {
     "build": {
       "dependsOn": ["@templ/config#build", "@templ/utils#build"]
+    },
+    "test": {
+      "dependsOn": ["build"]
+    },
+    "test:ci": {
+      "dependsOn": ["build"]
     }
   }
 }

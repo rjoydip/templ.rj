@@ -9,7 +9,6 @@ export default defineConfig({
     'import.meta.vitest': 'undefined',
   },
   test: {
-    testTimeout: 100000,
     coverage: {
       enabled: true,
       provider: 'v8',

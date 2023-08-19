@@ -14,9 +14,6 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**"],
       "outputMode": "new-only"
-    },
-    "test:ci": {
-      "dependsOn": ["build"]
     }
   }
 }

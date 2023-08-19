@@ -32,7 +32,10 @@
     "clean": "rimraf .turbo dist docs",
     "dev": "tsup ./src/index.ts --watch",
     "docs:preview": "sirv docs",
-    "docs:build": "typedoc src/index.ts"
+    "docs:build": "typedoc src/index.ts",
+    "test": "vitest run",
+    "test:ci": "CI=true vitest run",
+    "test:watch": "vitest run --watch"
   },
   "types": "./dist/index.d.ts",
   "dependencies": {

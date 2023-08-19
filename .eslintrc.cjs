@@ -50,7 +50,12 @@ module.exports = defineConfig({
     'n/no-extraneous-import': [
       'error',
       {
-        allowModules: ['serialize-error', 'tsup', 'vitest'],
+        allowModules: [
+          'serialize-error',
+          'tsup',
+          'vitest',
+          'vite-tsconfig-paths',
+        ],
       },
     ],
     'n/no-deprecated-api': 'off',
@@ -59,7 +64,7 @@ module.exports = defineConfig({
     'n/no-unsupported-features/es-syntax': 'off',
 
     '@typescript-eslint/ban-ts-comment': 'error',
-    '@typescript-eslint/ban-types': 'off', // TODO: we should turn this on in a new PR
+    '@typescript-eslint/ban-types': 'off',
     '@typescript-eslint/no-empty-function': [
       'error',
       { allow: ['arrowFunctions'] },

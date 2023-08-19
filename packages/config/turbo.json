@@ -1,6 +1,12 @@
 {
   "extends": ["//"],
   "pipeline": {
-    "build": {}
+    "build": {},
+    "test": {
+      "dependsOn": ["build"]
+    },
+    "test:ci": {
+      "dependsOn": ["build"]
+    }
   }
 }
