@@ -10,6 +10,11 @@ export default defineConfig({
   test: {
     testTimeout: 100000,
     include: ['test/**/*.ts'],
+    coverage: {
+      enabled: true,
+      provider: 'v8',
+      reporter: ['text', 'json', 'json-summary', 'html', 'lcov'],
+    },
   },
   plugins: [tsconfigPaths()],
 })

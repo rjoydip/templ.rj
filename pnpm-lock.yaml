@@ -281,6 +281,12 @@ importers:
       glob:
         specifier: ^10.3.3
         version: 10.3.3
+      lcov:
+        specifier: ^1.16.0
+        version: 1.16.0
+      lcov-parse:
+        specifier: ^1.0.0
+        version: 1.0.0
       markdownlint:
         specifier: ^0.29.0
         version: 0.29.0
@@ -18875,6 +18881,16 @@ packages:
     dependencies:
       readable-stream: 2.3.8
 
+  /lcov-parse@1.0.0:
+    resolution: {integrity: sha512-aprLII/vPzuQvYZnDRU78Fns9I2Ag3gi4Ipga/hxnVMCZC8DnR2nI7XBqrPoywGfxqIx/DgarGvDJZAD3YBTgQ==}
+    hasBin: true
+    dev: true
+
+  /lcov@1.16.0:
+    resolution: {integrity: sha512-pEUuvik5O5xPeB3z1z8cFWCGtugnPHwR5YhGd1Er6dJqHRb1X/Gvn2ZBbmWn9lVEAf1ivFsR/JGCsVrPBgPy+A==}
+    hasBin: true
+    dev: true
+
   /leven@3.1.0:
     resolution: {integrity: sha512-qsda+H8jTaUaN/x5vzW2rzc+8Rw4TAQ/4KjB46IwK5VH+IlVeeeje/EoZRpiXvIqjFgK84QffqPztGI3VBLG1A==}
     engines: {node: '>=6'}
@@ -26894,7 +26910,7 @@ packages:
       is-arguments: 1.1.1
       is-generator-function: 1.0.10
       is-typed-array: 1.1.10
-      which-typed-array: 1.1.9
+      which-typed-array: 1.1.11
     dev: true
 
   /utila@0.4.0:

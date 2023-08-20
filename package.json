@@ -22,6 +22,7 @@
     "lint:md": "nr -C scripts lint:md",
     "lint:secret": "secretlint \"**/*\"",
     "lint:spell": "cspell .",
+    "copy:lcov": "pnpm run -C scripts copy:lcov",
     "prepare": "husky install",
     "size-limit": "size-limit",
     "test": "turbo run test --filter='./packages/*'",

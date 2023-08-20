@@ -29,7 +29,7 @@
   ],
   "scripts": {
     "build": "tsup",
-    "clean": "rimraf .turbo dist docs",
+    "clean": "rimraf .turbo dist docs coverage",
     "docs:preview": "sirv docs",
     "docs:build": "typedoc src/index.ts",
     "dev": "tsup ./src/index.ts --watch",
