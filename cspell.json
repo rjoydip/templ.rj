@@ -52,6 +52,7 @@
     "lcov",
     "markdownlint",
     "markdownlintignore",
+    "mdlint",
     "mergify",
     "mintlify",
     "msedge",

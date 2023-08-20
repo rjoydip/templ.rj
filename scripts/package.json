@@ -16,18 +16,25 @@
   "type": "module",
   "scripts": {
     "clean": "rimraf .turbo",
-    "clean:nm": "node commander.js cleanup",
-    "lint:md": "node markdownlint.js"
+    "clean:nm": "node --loader tsx ./cmd.ts clean:nm",
+    "generate:pkg": "node --loader tsx ./cmd.ts generate:pkg",
+    "update:third_party": "node --loader tsx ./cmd.ts update:third_party",
+    "lint:md": "node --loader tsx ./mdlint.ts"
   },
   "devDependencies": {
     "del": "^7.0.0",
     "fs-extra": "^11.1.1",
     "glob": "^10.3.3",
+    "isomorphic-git": "^1.24.5",
     "markdownlint": "^0.29.0",
     "ora": "^7.0.1",
     "rimraf": "^5.0.1",
     "sade": "^1.8.1",
+    "simple-git": "^3.19.1",
     "tempura": "^0.4.0",
-    "zod": "^3.21.4"
+    "zod": "^3.22.2"
+  },
+  "dependencies": {
+    "tsx": "^3.12.7"
   }
 }
