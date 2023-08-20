@@ -4,16 +4,16 @@ import { join, parse, sep } from 'node:path'
 import { glob } from 'glob'
 import lcovParse from 'lcov-parse'
 
-const combinedReport = []
-const packagesDir = join(process.cwd(), '..', 'packages')
-const coverageDir = join(process.cwd(), '..', 'coverage')
+const combinedReport: string[] = []
+const packagesDir: string = join(process.cwd(), '..', 'packages')
+const coverageDir: string = join(process.cwd(), '..', 'coverage')
 
 /**
  * The function checks if a folder exists at the specified path and creates it if it doesn't exist.
  * @param folderPath - The `folderPath` parameter is a string that represents the path of the folder
  * you want to create.
  */
-async function createFolderIfNotExists(folderPath) {
+async function createFolderIfNotExists(folderPath: string): Promise<void> {
   if (!existsSync(folderPath)) {
     await mkdir(folderPath, { recursive: true })
     console.log(`Folder "${folderPath}" created.`)
@@ -29,7 +29,7 @@ async function createFolderIfNotExists(folderPath) {
  * @returns a boolean value. It returns true if the file at the given filePath is empty (has a size of
  * 0 bytes), and false otherwise.
  */
-function isFileEmpty(filePath) {
+function isFileEmpty(filePath: string): boolean {
   try {
     const stats = statSync(filePath)
     return stats.size === 0
@@ -46,14 +46,15 @@ function isFileEmpty(filePath) {
  * passed to the `processFile` function.
  * @returns The function `processFile` is returning a Promise.
  */
-function processFile(file) {
-  return new Promise((resolve, reject) => {
+function processFile(file: string): Promise<void> {
+  return new Promise<void>((resolve, reject) => {
     lcovParse(
       file,
       (err, data) => {
         if (err) {
           reject(err)
-        } else {// Convert the parsed data back to LCOV format
+        } else {
+          // Convert the parsed data back to LCOV format
           const lcovContent = data.map((entry) => {
             return `SF:${entry.file}\n${entry.lines.details
               .map((line) => `DA:${line.line},${line.hit}`)
@@ -75,15 +76,16 @@ function processFile(file) {
  * coverage/lcov.info in the packagesDir directory. The resulting file paths are then filtered
  * to exclude any files that are empty.
  */
-async function getLcovFiles() {
-  return (await glob('**/coverage/lcov.info', { cwd: packagesDir, absolute: true })).filter(i => !isFileEmpty(i))
+async function getLcovFiles(): Promise<string[]> {
+  const files: string[] = await glob('**/coverage/lcov.info', { cwd: packagesDir, absolute: true })
+  return files.filter((file) => !isFileEmpty(file))
 }
 
 /**
  * The function copies LCOV files to the root coverage directory.
  */
-async function copyLcovFilesToRootCoverageDir() {
-  const lcovFiles = await getLcovFiles()
+async function copyLcovFilesToRootCoverageDir(): Promise<void> {
+  const lcovFiles: string[] = await getLcovFiles()
   try {
     await createFolderIfNotExists(coverageDir)
     for (const lcovFile of lcovFiles) {
@@ -98,8 +100,8 @@ async function copyLcovFilesToRootCoverageDir() {
 /**
  * The function `mergeLcovFiles` merges multiple LCOV files into a single combined report.
  */
-async function mergeLcovFiles() {
-  const lcovFiles = await getLcovFiles()
+async function mergeLcovFiles(): Promise<void> {
+  const lcovFiles: string[] = await getLcovFiles()
   try {
     for (const lcovFile of lcovFiles) {
       await processFile(lcovFile)
@@ -113,7 +115,7 @@ async function mergeLcovFiles() {
   }
 }
 
-void(async () => {
+(async () => {
   // await mergeLcovFiles()
   await copyLcovFilesToRootCoverageDir()
 })()

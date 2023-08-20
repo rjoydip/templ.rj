@@ -8,7 +8,7 @@
   "repository": "rjoydip/templ",
   "type": "module",
   "scripts": {
-    "all": "nr clean && nr deps:fresh && nr build && nr docs:build && nr format && nr changelog && nr size-limit && nr lint && nr test && nr test:cli",
+    "all": "nr clean && nr deps:fresh && nr build && nr docs:build && nr format && nr changelog && nr size-limit && nr lint && nr test && nr test:cli && nr update:third_party",
     "build": "turbo run build --filter='./packages/*'",
     "clean": "rimraf .turbo .eslintcache .pnpm-store coverage && nr -r clean",
     "clean:nm": "nr -C scripts clean:nm",
@@ -20,6 +20,7 @@
     "preinstall": "npx only-allow pnpm",
     "lint": "nr eslint && nr lint:spell && nr lint:secret && nr lint:md",
     "lint:md": "nr -C scripts lint:md",
+    "update:third_party": "nr -C scripts update:third_party",
     "lint:secret": "secretlint \"**/*\"",
     "lint:spell": "cspell .",
     "copy:lcov": "pnpm run -C scripts copy:lcov",
