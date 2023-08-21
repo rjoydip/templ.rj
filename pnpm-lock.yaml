@@ -229,12 +229,9 @@ importers:
       isomorphic-git:
         specifier: ^1.24.5
         version: 1.24.5
-      lcov-parse:
-        specifier: ^1.0.0
-        version: 1.0.0
       markdownlint:
-        specifier: ^0.29.0
-        version: 0.29.0
+        specifier: ^0.30.0
+        version: 0.30.0
       ora:
         specifier: ^7.0.1
         version: 7.0.1
@@ -445,8 +442,8 @@ importers:
         specifier: ^2.4.1
         version: 2.4.1(esbuild@0.18.10)(react-dom@17.0.2)(react@17.0.2)
       '@tsconfig/docusaurus':
-        specifier: ^1.0.7
-        version: 1.0.7
+        specifier: ^2.0.0
+        version: 2.0.0
       polka:
         specifier: ^0.5.2
         version: 0.5.2
@@ -7901,7 +7898,7 @@ packages:
       memoizee: 0.4.15
       ncjsm: 4.3.2
       node-dir: 0.1.17
-      node-fetch: 2.6.12
+      node-fetch: 2.6.13
       open: 7.4.2
       semver: 7.5.4
       simple-git: 3.19.1(supports-color@8.1.1)
@@ -9091,8 +9088,8 @@ packages:
     engines: {node: '>=10.13.0'}
     dev: false
 
-  /@tsconfig/docusaurus@1.0.7:
-    resolution: {integrity: sha512-ffTXxGIP/IRMCjuzHd6M4/HdIrw1bMfC7Bv8hMkTadnePkpe0lG0oDSdbRpSDZb2rQMAgpbWiR10BvxvNYwYrg==}
+  /@tsconfig/docusaurus@2.0.0:
+    resolution: {integrity: sha512-X5wptT7pXA/46/IRFTW76oR5GNjoy9qjNM/1JGhFV4QAsmLh3YUpJJA+Vpx7Ds6eEBxSxz1QrgoNEBy6rLVs8w==}
     dev: true
 
   /@tsconfig/node10@1.0.9:
@@ -18922,11 +18919,6 @@ packages:
     dependencies:
       readable-stream: 2.3.8
 
-  /lcov-parse@1.0.0:
-    resolution: {integrity: sha512-aprLII/vPzuQvYZnDRU78Fns9I2Ag3gi4Ipga/hxnVMCZC8DnR2nI7XBqrPoywGfxqIx/DgarGvDJZAD3YBTgQ==}
-    hasBin: true
-    dev: true
-
   /leven@3.1.0:
     resolution: {integrity: sha512-qsda+H8jTaUaN/x5vzW2rzc+8Rw4TAQ/4KjB46IwK5VH+IlVeeeje/EoZRpiXvIqjFgK84QffqPztGI3VBLG1A==}
     engines: {node: '>=6'}
@@ -19480,17 +19472,17 @@ packages:
       uc.micro: 1.0.6
     dev: true
 
-  /markdownlint-micromark@0.1.5:
-    resolution: {integrity: sha512-HvofNU4QCvfUCWnocQP1IAWaqop5wpWrB0mKB6SSh0fcpV0PdmQNS6tdUuFew1utpYlUvYYzz84oDkrD76GB9A==}
+  /markdownlint-micromark@0.1.7:
+    resolution: {integrity: sha512-BbRPTC72fl5vlSKv37v/xIENSRDYL/7X/XoFzZ740FGEbs9vZerLrIkFRY0rv7slQKxDczToYuMmqQFN61fi4Q==}
     engines: {node: '>=16'}
     dev: true
 
-  /markdownlint@0.29.0:
-    resolution: {integrity: sha512-ASAzqpODstu/Qsk0xW5BPgWnK/qjpBQ4e7IpsSvvFXcfYIjanLTdwFRJK1SIEEh0fGSMKXcJf/qhaZYHyME0wA==}
+  /markdownlint@0.30.0:
+    resolution: {integrity: sha512-nInuFvI/rEzanAOArW5490Ez4EYpB5ODqVM0mcDYCPx9DKJWCQqCgejjiCvbSeE7sjbDscVtZmwr665qpF5xGA==}
     engines: {node: '>=16'}
     dependencies:
       markdown-it: 13.0.1
-      markdownlint-micromark: 0.1.5
+      markdownlint-micromark: 0.1.7
     dev: true
 
   /marked@4.3.0:
@@ -20571,7 +20563,7 @@ packages:
       ext: 1.7.0
       fs2: 0.3.9
       memoizee: 0.4.15
-      node-fetch: 2.6.12
+      node-fetch: 2.6.13
       semver: 7.5.4
       type: 2.7.2
       validate-npm-package-name: 3.0.0
@@ -24500,7 +24492,7 @@ packages:
       lodash: 4.17.21
       memoizee: 0.4.15
       micromatch: 4.0.5
-      node-fetch: 2.6.12
+      node-fetch: 2.6.13
       npm-registry-utilities: 1.0.0
       object-hash: 3.0.0
       open: 8.4.2
