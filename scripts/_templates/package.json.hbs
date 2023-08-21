@@ -31,10 +31,19 @@
   ],
   "scripts": {
     "build": "tsup",
-    "dev": "tsup ./src/index.ts --watch"
+    "clean": "rimraf .turbo dist docs coverage",
+    "docs:preview": "sirv docs",
+    "docs:build": "typedoc src/index.ts",
+    "dev": "tsup ./src/index.ts --watch",
+    "test": "vitest run",
+    "test:ci": "CI=true vitest run",
+    "test:watch": "vitest run --watch"
   },
-  "devDependencies": {},
-  "dependencies": {
-    "@templ/config": "workspace:^"
+  "devDependencies": {
+    "rimraf": "^5.0.1",
+    "sirv-cli": "^2.0.2",
+    "typedoc": "^0.24.8",
+    "vite-tsconfig-paths": "^4.2.0",
+    "vitest": "^0.34.2"
   }
 }

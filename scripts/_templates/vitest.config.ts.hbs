@@ -1,4 +1,16 @@
-import { mergeConfig } from 'vitest/config'
-import * as configShared from '../../vitest.shared'
+/// <reference types='vitest' />
 
-export default mergeConfig(configShared, {})
+import { defineConfig } from 'vitest/config'
+import tsconfigPaths from 'vite-tsconfig-paths'
+
+export default defineConfig({
+  test: {
+    include: ['test/**/*.ts'],
+    coverage: {
+      enabled: true,
+      provider: 'v8',
+      reporter: ['text', 'json', 'json-summary', 'html', 'lcov'],
+    },
+  },
+  plugins: [tsconfigPaths()],
+})

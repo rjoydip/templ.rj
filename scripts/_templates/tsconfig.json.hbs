@@ -3,8 +3,9 @@
   "extends": "@templ/config/src/ts/node.json",
   "compilerOptions": {
     "paths": {
-      "@templ/{{ name }}": ["./src/index.ts"]
+      "@templ/{{ name }}": ["src/index.ts"]
     }
   },
+  "include": ["src"],
   "exclude": ["dist", "*.d.ts"]
 }

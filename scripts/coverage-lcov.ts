@@ -1,12 +1,12 @@
 import { existsSync, statSync } from 'node:fs'
 import { copyFile, mkdir, writeFile } from 'node:fs/promises'
-import { join, parse, sep } from 'node:path'
+import { join, normalize, parse, sep } from 'node:path'
 import { glob } from 'glob'
 import lcovParse from 'lcov-parse'
 
 const combinedReport: string[] = []
-const packagesDir: string = join(process.cwd(), '..', 'packages')
-const coverageDir: string = join(process.cwd(), '..', 'coverage')
+const packagesDir: string = normalize(join(process.cwd(), '..', 'packages'))
+const coverageDir: string = normalize(join(process.cwd(), '..', 'coverage'))
 
 /**
  * The function checks if a folder exists at the specified path and creates it if it doesn't exist.
@@ -50,11 +50,10 @@ function processFile(file: string): Promise<void> {
   return new Promise<void>((resolve, reject) => {
     lcovParse(
       file,
-      (err, data) => {
+      (err: string, data) => {
         if (err) {
           reject(err)
         } else {
-          // Convert the parsed data back to LCOV format
           const lcovContent = data.map((entry) => {
             return `SF:${entry.file}\n${entry.lines.details
               .map((line) => `DA:${line.line},${line.hit}`)
@@ -116,6 +115,6 @@ async function mergeLcovFiles(): Promise<void> {
 }
 
 (async () => {
-  // await mergeLcovFiles()
+  await mergeLcovFiles()
   await copyLcovFilesToRootCoverageDir()
 })()

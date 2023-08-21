@@ -5,9 +5,11 @@
       "dependsOn": ["@templ/config#build", "@templ/utils#build"]
     },
     "test": {
+      "cache": false,
       "dependsOn": ["build"]
     },
     "test:ci": {
+      "cache": false,
       "dependsOn": ["build"]
     }
   }

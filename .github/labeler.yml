@@ -1,13 +1,12 @@
 🌱root:
-  - '*'
+  - package.json
 
-📝docs:
-  - docs/**/*
-  - packages/**/README.md
-  - README.md
+website:
+  - website
+  - '*README.md'
 
 🐚shell:
-  - '*.sh*'
+  - '*.sh'
 
 ☁︎ci:
   - .github/*
