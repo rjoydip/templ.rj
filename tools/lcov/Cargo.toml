@@ -1,0 +1,11 @@
+[package]
+name = "scripts"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+lcov-parser = "3.2.2"
+
+[[bin]]
+name = "scripts"
+path = "src/merge_lcov_files.rs"

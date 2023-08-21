@@ -21,12 +21,8 @@
       "path": "packages/utils"
     },
     {
-      "name": "🧩 @templ/docs/api",
-      "path": "docs/api"
-    },
-    {
-      "name": "🌎 @templ/docs",
-      "path": "docs"
+      "name": "🌎 @templ/website",
+      "path": "website"
     },
     {
       "name": "🕸️ @templ/apps/web",

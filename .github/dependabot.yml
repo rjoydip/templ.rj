@@ -10,53 +10,9 @@ updates:
     versioning-strategy: widen
     target-branch: "main"
     labels:
-      - "🌱root"
       - "🤖dependabot"
-
-  - package-ecosystem: "npm"
-    directory: "/packages/cli"
-    schedule:
-      interval: "weekly"
-      time: "00:10"
-      timezone: "Asia/Calcutta"
-    versioning-strategy: widen
-    target-branch: "main"
-    labels:
-      - "📦packages"
-      - "🤖dependabot"
-
-  - package-ecosystem: "npm"
-    directory: "/packages/core"
-    schedule:
-      interval: "weekly"
-      time: "00:10"
-      timezone: "Asia/Calcutta"
-    versioning-strategy: widen
-    target-branch: "main"
-    labels:
-      - "📦packages"
-      - "🤖dependabot"
-
-  - package-ecosystem: "npm"
-    directory: "/packages/config"
-    schedule:
-      interval: "weekly"
-      time: "00:10"
-      timezone: "Asia/Calcutta"
-    versioning-strategy: widen
-    target-branch: "main"
-    labels:
-      - "📦packages"
-      - "🤖dependabot"
-
-  - package-ecosystem: "npm"
-    directory: "/packages/utils"
-    schedule:
-      interval: "weekly"
-      time: "00:10"
-      timezone: "Asia/Calcutta"
-    versioning-strategy: widen
-    target-branch: "main"
-    labels:
-      - "📦packages"
-      - "🤖dependabot"
+    ignore:
+      - dependency-name: "react"
+        versions: ["18.x"]
+      - dependency-name: "react-dom"
+        versions: ["18.x"]

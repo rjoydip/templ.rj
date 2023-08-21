@@ -1,14 +1,14 @@
 {
   "private": true,
-  "name": "templ/docs",
+  "name": "@templ/website",
   "version": "0.0.0",
-  "description": "TEMPL docs",
+  "description": "TEMPL website",
   "license": "MIT",
-  "homepage": "https://github.com/rjoydip/templ/tree/main/docs#readme",
+  "homepage": "https://github.com/rjoydip/templ/tree/main/website#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rjoydip/templ.git",
-    "directory": "docs"
+    "directory": "website"
   },
   "bugs": {
     "url": "https://github.com/rjoydip/templ/issues"

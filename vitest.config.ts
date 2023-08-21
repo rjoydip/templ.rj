@@ -5,11 +5,7 @@ import { defineConfig } from 'vitest/config'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
 export default defineConfig({
-  define: {
-    'import.meta.vitest': 'undefined',
-  },
   test: {
-    testTimeout: 100000,
     coverage: {
       enabled: true,
       provider: 'v8',

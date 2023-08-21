@@ -90,8 +90,4 @@ describe('@templ/config > Base JSON', () => {
     expect(typeof baseJSON.compilerOptions.downlevelIteration).toBe('boolean')
     expect(baseJSON.compilerOptions.downlevelIteration).toBe(true)
   })
-  test('exclude', () => {
-    expect(typeof baseJSON.exclude).toBe('object')
-    expect(baseJSON.exclude).toStrictEqual(['node_modules'])
-  })
 })

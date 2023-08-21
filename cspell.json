@@ -10,8 +10,10 @@
     "**/pnpm-lock.yaml/**",
     "**/package-lock.json/**",
     "**/dist/**",
-    "third_party/**",
     "packages/**/docs/**",
+    "third_party/**",
+    "**/target/**",
+    "*Cargo.lock",
     "CHANGELOG.md"
   ],
   "words": [

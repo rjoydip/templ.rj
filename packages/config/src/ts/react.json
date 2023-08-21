@@ -1,0 +1,10 @@
+{
+  "display": "React",
+  "extends": "./base.json",
+  "compilerOptions": {
+    "module": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "moduleResolution": "bundler",
+    "jsx": "react"
+  }
+}

@@ -16,25 +16,24 @@
   "type": "module",
   "scripts": {
     "clean": "rimraf .turbo",
-    "clean:nm": "node --loader tsx ./cmd.ts clean:nm",
-    "generate:pkg": "node --loader tsx ./cmd.ts generate:pkg",
-    "update:third_party": "node --loader tsx ./cmd.ts update:third_party",
-    "lint:md": "node --loader tsx ./mdlint.ts"
+    "clean:nm": "node --loader tsx ./clean-nm.ts",
+    "coverage:lcov": "node --loader tsx ./coverage-lcov.ts",
+    "create:pkg": "node --loader tsx ./create-pkg.ts",
+    "update:git:third_party": "node --loader tsx ./update-git-third-party.ts",
+    "lint:md": "node --loader tsx ./lint-md.ts"
   },
   "devDependencies": {
+    "@types/lcov-parse": "^1.0.0",
     "del": "^7.0.0",
-    "fs-extra": "^11.1.1",
     "glob": "^10.3.3",
     "isomorphic-git": "^1.24.5",
     "markdownlint": "^0.30.0",
     "ora": "^7.0.1",
     "rimraf": "^5.0.1",
-    "sade": "^1.8.1",
+    "serialize-error": "^11.0.1",
     "simple-git": "^3.19.1",
     "tempura": "^0.4.0",
+    "tsx": "^3.12.7",
     "zod": "^3.22.2"
-  },
-  "dependencies": {
-    "tsx": "^3.12.7"
   }
 }

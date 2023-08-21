@@ -26,6 +26,5 @@
     "isolatedModules": true,
     "preserveWatchOutput": true,
     "downlevelIteration": true
-  },
-  "exclude": ["node_modules"]
+  }
 }

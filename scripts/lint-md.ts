@@ -41,7 +41,7 @@ const config = {
 markdownlint(
   {
     files: globSync('{*.md,{.github,packages,fixtures}/**/*.md}', {
-      ignore: ['**/node_modules/**', 'fixtures/output/**'],
+      ignore: ['**/node_modules/**'],
     }),
     frontMatter: /(^---$[\s\S]+?^---\$)?(\r\n|\r|\n)+/m,
     config: config,
@@ -52,7 +52,7 @@ markdownlint(
       process.exit(1)
     }
 
-    const resultString = result.toString()
+    const resultString = result?.toString()
     if (resultString) {
       console.error(resultString)
       process.exit(1)

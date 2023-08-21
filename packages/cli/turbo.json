@@ -5,9 +5,16 @@
       "dependsOn": ["@templ/config#build", "@templ/core#build"],
       "outputs": ["dist/**"]
     },
+    "test": {
+      "cache": false,
+      "dependsOn": ["build"]
+    },
+    "test:ci": {
+      "cache": false,
+      "dependsOn": ["build"]
+    },
     "test:cli": {
-      "dependsOn": ["build", "@templ/config#build", "@templ/core#build"],
-      "cache": false
+      "dependsOn": ["build", "test"]
     }
   }
 }
