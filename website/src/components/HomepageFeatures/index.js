@@ -1,16 +1,11 @@
-import React from 'react'
-import clsx from 'clsx'
-import styles from './styles.module.css'
+import React from 'react';
+import clsx from 'clsx';
+import styles from './styles.module.css';
 
-type FeatureItem = {
-  title: string
-  Svg: React.ComponentType<React.ComponentProps<'svg'>>
-  description: JSX.Element
-}
-
-const FeatureList: FeatureItem[] = [
+const FeatureList = [
   {
     title: 'Easy to Use',
+    // eslint-disable-next-line no-undef
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
@@ -21,6 +16,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Focus on What Matters',
+    // eslint-disable-next-line no-undef
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
@@ -31,6 +27,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Powered by React',
+    // eslint-disable-next-line no-undef
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
@@ -39,9 +36,9 @@ const FeatureList: FeatureItem[] = [
       </>
     ),
   },
-]
+];
 
-function Feature({ title, Svg, description }: FeatureItem) {
+function Feature({Svg, title, description}) {
   return (
     <div className={clsx('col col--4')}>
       <div className="text--center">
@@ -52,10 +49,10 @@ function Feature({ title, Svg, description }: FeatureItem) {
         <p>{description}</p>
       </div>
     </div>
-  )
+  );
 }
 
-export default function HomepageFeatures(): JSX.Element {
+export default function HomepageFeatures() {
   return (
     <section className={styles.features}>
       <div className="container">
@@ -66,5 +63,5 @@ export default function HomepageFeatures(): JSX.Element {
         </div>
       </div>
     </section>
-  )
+  );
 }

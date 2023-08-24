@@ -1,5 +1,3 @@
-// @ts-check
-
 // Note: type annotations allow type checking and IDEs autocompletion
 // eslint-disable-next-line no-undef
 const lightCodeTheme = require('prism-react-renderer').themes.github
@@ -44,8 +42,6 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          path: 'pages',
-          routeBasePath: 'pages',
           // eslint-disable-next-line no-undef
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
@@ -107,7 +103,7 @@ const config = {
             items: [
               {
                 label: 'Docs',
-                to: '/pages/getting-started',
+                to: '/docs/getting-started',
               },
             ],
           },
@@ -116,7 +112,7 @@ const config = {
             items: [
               {
                 label: 'API',
-                to: '/pages/api',
+                to: '/docs/api',
               },
             ],
           },
