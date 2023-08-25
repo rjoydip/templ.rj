@@ -23,7 +23,8 @@ async function main() {
     .action(async (opts) => {
       try {
         console.log(opts)
-      } catch (err) {
+      }
+      catch (err) {
         const error = new Error(String(err))
         const serialized = serializeError(error)
         console.error(serialized.message)

@@ -12,14 +12,15 @@ describe('@templ/cli', async () => {
 
   test('should match version', async () => {
     const result = await $(`node ${cliFilePath} -v`)
-    expect(result.stdout).toStrictEqual(`@templ/cli, 0.0.0\n`)
+    expect(result.stdout).toStrictEqual('@templ/cli, 0.0.0\n')
   })
 
   test('should work init command', async () => {
     try {
       const result = await $(`node ${cliFilePath} init`)
       expect(result.stdout).toBeDefined()
-    } catch (err) {
+    }
+    catch (err) {
       const error = new Error(String(err))
       const serialized = serializeError(error)
       expect(serialized.message).toBeDefined()
