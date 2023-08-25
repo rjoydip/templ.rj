@@ -48,22 +48,19 @@ function isFileEmpty(filePath: string): boolean {
  */
 function processFile(file: string): Promise<void> {
   return new Promise<void>((resolve, reject) => {
-    lcovParse(
-      file,
-      (err: string, data) => {
-        if (err) {
-          reject(err)
-        } else {
-          const lcovContent = data.map((entry) => {
-            return `SF:${entry.file}\n${entry.lines.details
-              .map((line) => `DA:${line.line},${line.hit}`)
-              .join('\n')}\nend_of_record`
-          })
-          combinedReport.push(...lcovContent)
-          resolve()
-        }
+    lcovParse(file, (err: string, data) => {
+      if (err) {
+        reject(err)
+      } else {
+        const lcovContent = data.map((entry) => {
+          return `SF:${entry.file}\n${entry.lines.details
+            .map((line) => `DA:${line.line},${line.hit}`)
+            .join('\n')}\nend_of_record`
+        })
+        combinedReport.push(...lcovContent)
+        resolve()
       }
-    )
+    })
   })
 }
 
@@ -76,7 +73,10 @@ function processFile(file: string): Promise<void> {
  * to exclude any files that are empty.
  */
 async function getLcovFiles(): Promise<string[]> {
-  const files: string[] = await glob('**/coverage/lcov.info', { cwd: packagesDir, absolute: true })
+  const files: string[] = await glob('**/coverage/lcov.info', {
+    cwd: packagesDir,
+    absolute: true,
+  })
   return files.filter((file) => !isFileEmpty(file))
 }
 
@@ -88,7 +88,10 @@ async function copyLcovFilesToRootCoverageDir(): Promise<void> {
   try {
     await createFolderIfNotExists(coverageDir)
     for (const lcovFile of lcovFiles) {
-      await copyFile(lcovFile, `${coverageDir}/${parse(lcovFile).dir.split(sep).at(-2)}.lcov.info`)
+      await copyFile(
+        lcovFile,
+        `${coverageDir}/${parse(lcovFile).dir.split(sep).at(-2)}.lcov.info`,
+      )
     }
     console.log('Copied lcov.info files to root coverage directory')
   } catch (error) {
@@ -107,7 +110,10 @@ async function mergeLcovFiles(): Promise<void> {
     }
 
     await createFolderIfNotExists(coverageDir)
-    await writeFile(join(coverageDir, 'combined-lcov.info'), combinedReport.join('\n'))
+    await writeFile(
+      join(coverageDir, 'combined-lcov.info'),
+      combinedReport.join('\n'),
+    )
     console.log('Combined LCOV report saved as combined-lcov.info')
   } catch (error) {
     console.error('Error merging LCOV files:', error)
