@@ -49,13 +49,14 @@
   },
   "devDependencies": {
     "@templ/config": "workspace:^",
+    "@templ/tsconfig": "workspace:^",
     "find-monorepo-root": "^1.0.3",
     "rimraf": "^5.0.1",
     "sirv-cli": "^2.0.2",
     "tsx": "^3.12.7",
     "typedoc": "^0.24.8",
     "vite-tsconfig-paths": "^4.2.0",
-    "vitest": "^0.34.2"
+    "vitest": "^0.34.3"
   },
   "cliname": "TEMPL"
 }

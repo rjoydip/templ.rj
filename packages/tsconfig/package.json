@@ -1,0 +1,31 @@
+{
+  "name": "@templ/tsconfig",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "description": "TEMPL tsconfig service",
+  "license": "MIT",
+  "homepage": "https://github.com/rjoydip/templ/tree/main/packages/tsconfig#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rjoydip/templ.git",
+    "directory": "packages/tsconfig"
+  },
+  "bugs": {
+    "url": "https://github.com/rjoydip/templ/issues"
+  },
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "clean": "rimraf .turbo coverage",
+    "test": "vitest run",
+    "test:ci": "CI=true vitest run",
+    "test:watch": "vitest run --watch"
+  },
+  "devDependencies": {
+    "rimraf": "^5.0.1",
+    "vite-tsconfig-paths": "^4.2.0",
+    "vitest": "^0.34.3"
+  }
+}

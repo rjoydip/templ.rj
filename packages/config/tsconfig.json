@@ -1,5 +1,5 @@
 {
-  "extends": "./src/ts/node.json",
+  "extends": "@templ/tsconfig/src/node.json",
   "compilerOptions": {
     "paths": {
       "@templ/config": ["src/index.ts"]

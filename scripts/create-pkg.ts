@@ -1,11 +1,18 @@
 import { argv } from 'node:process'
-import { join, normalize } from 'node:path'
+import { resolve } from 'node:path'
+import { mkdir } from 'node:fs/promises'
 import ora from 'ora'
 import { compile } from 'tempura'
 import { z } from 'zod'
-import { COMPLETED, STARTED, getTemplateData, logError, setTemplateData } from './utils'
+import {
+  COMPLETED,
+  STARTED,
+  getTemplateData,
+  logError,
+  setTemplateData,
+} from './utils'
 
-void(async() => {
+void (async () => {
   const name = argv.at(2) || 'templP'
   const spinner = ora(`[${STARTED}]: Generate ${name} package`).start()
   try {
@@ -13,79 +20,82 @@ void(async() => {
       name: z.string(),
     })
     if (result) {
-      const templatesLocation = normalize(join(process.cwd(), '_templates'))
-      const outputLocation = normalize(join('..', 'packages'))
+      const templatesLocation = resolve(process.cwd(), '_templates')
+      const outputLocation = resolve('..', 'packages')
       const indexTSTemplate = await getTemplateData(
-        join(templatesLocation, 'src'),
+        resolve(templatesLocation, 'src'),
         'index.ts.hbs',
       )
       const indexTestTSTemplate = await getTemplateData(
-        join(templatesLocation, 'test'),
+        resolve(templatesLocation, 'test'),
         'index.test.ts.hbs',
       )
       const pkgTemplate = await getTemplateData(
-        join(templatesLocation),
+        resolve(templatesLocation),
         'package.json.hbs',
       )
       const mdTemplate = await getTemplateData(
-        join(templatesLocation),
+        resolve(templatesLocation),
         'README.md.hbs',
       )
       const tsconfigTemplate = await getTemplateData(
-        join(templatesLocation),
+        resolve(templatesLocation),
         'tsconfig.json.hbs',
       )
       const tsupConfigTemplate = await getTemplateData(
-        join(templatesLocation),
+        resolve(templatesLocation),
         'tsup.config.ts.hbs',
       )
       const turboTemplate = await getTemplateData(
-        join(templatesLocation),
+        resolve(templatesLocation),
         'turbo.json.hbs',
       )
       const vitestConfigTemplate = await getTemplateData(
-        join(templatesLocation),
+        resolve(templatesLocation),
         'vitest.config.ts.hbs',
       )
 
       Promise.allSettled([
+        await mkdir(resolve(outputLocation, name)),
+        await mkdir(resolve(outputLocation, name, 'src')),
+        await mkdir(resolve(outputLocation, name, 'test')),
         await setTemplateData(
-          join(outputLocation, name, 'src'),
+          resolve(outputLocation, name, 'src'),
           'index.ts',
           await compile(indexTSTemplate)({}),
         ),
         await setTemplateData(
-          join(outputLocation, name, 'test'),
+          resolve(outputLocation, name, 'test'),
           'index.test.ts',
           await compile(indexTestTSTemplate)({}),
         ),
         await setTemplateData(
-          join(outputLocation, name),
+          resolve(outputLocation, name),
           'package.json',
           await compile(pkgTemplate)({ name }),
         ),
         await setTemplateData(
-          join(outputLocation, name),
+          resolve(outputLocation, name),
           'README.md',
           await compile(mdTemplate)({ name }),
         ),
         await setTemplateData(
-          join(outputLocation, name),
+          resolve(outputLocation, name),
           'tsconfig.json',
           await compile(tsconfigTemplate)({ name }),
         ),
         await setTemplateData(
-          join(outputLocation, name),
+          resolve(outputLocation, name),
           'tsup.config.ts',
           await compile(tsupConfigTemplate)({}),
         ),
         await setTemplateData(
-          join(outputLocation, name),
+          resolve(outputLocation, name),
           'turbo.json',
           await compile(turboTemplate)({}),
         ),
         await setTemplateData(
-          join(outputLocation, name),
+          resolve(outputLocation, name),
           'vitest.config.ts',
           await compile(vitestConfigTemplate)({}),
         ),

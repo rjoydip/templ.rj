@@ -1,6 +1,6 @@
 import { join } from 'node:path'
 import { readFile, writeFile } from 'node:fs/promises'
-import type { ErrorObject} from 'serialize-error'
+import type { ErrorObject } from 'serialize-error'
 import { serializeError } from 'serialize-error'
 import { z } from 'zod'
 
@@ -19,23 +19,24 @@ import { z } from 'zod'
  * there are any errors in parsing the `result` object, the function will reject the promise and return
  * the error.
  */
-export async function getTemplateData(location: string, fileName: string): Promise<string> {
-  const result = z
-    .object({
-      location: z.string().nonempty('Location field is required'),
-      fileName: z.string().nonempty('FileName field is required'),
-    })
+export async function getTemplateData(
+  location: string,
+  fileName: string,
+): Promise<string> {
+  const result = z.object({
+    location: z.string().nonempty('Location field is required'),
+    fileName: z.string().nonempty('FileName field is required'),
+  })
 
   try {
     result.safeParse({
       location,
       fileName,
     })
-    return await readFile(join(location, fileName)).toString()
+    return (await readFile(join(location, fileName))).toString()
   } catch (error) {
     serializeError(new Error(String(error)))
   }
-
 }
 
 /**
@@ -55,13 +56,16 @@ export async function getTemplateData(location: string, fileName: string): Promi
  * `fs.outputFile` and return a promise that resolves when the file is written. If the parsing fails,
  * it will return a rejected promise with the error from the parsing result.
  */
-export async function setTemplateData(location: string, fileName: string, data: string  ): Promise<void> {
-  const result = z
-    .object({
-      location: z.string().nonempty('Location field is required'),
-      fileName: z.string().nonempty('FileName field is required'),
-      data: z.string().nonempty('Data field is required'),
-    })
+export async function setTemplateData(
+  location: string,
+  fileName: string,
+  data: string,
+): Promise<void> {
+  const result = z.object({
+    location: z.string().nonempty('Location field is required'),
+    fileName: z.string().nonempty('FileName field is required'),
+    data: z.string().nonempty('Data field is required'),
+  })
 
   try {
     result.safeParse({
@@ -69,7 +73,7 @@ export async function setTemplateData(location: string, fileName: string, data: 
       fileName,
       data,
     })
-    await writeFile(join(location, fileName), data).toString()
+    await writeFile(join(location, fileName), data)
   } catch (error) {
     serializeError(new Error(String(error)))
   }
