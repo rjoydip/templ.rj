@@ -19,10 +19,11 @@
     "clean:nm": "node --loader tsx ./clean-nm.ts",
     "coverage:lcov": "node --loader tsx ./coverage-lcov.ts",
     "create:pkg": "node --loader tsx ./create-pkg.ts",
-    "update:git:third_party": "node --loader tsx ./update-git-third-party.ts",
+    "third_party:git:update": "node --loader tsx ./third-party-git-update.ts",
     "lint:md": "node --loader tsx ./lint-md.ts"
   },
   "devDependencies": {
+    "@templ/tsconfig": "workspace:^",
     "@types/lcov-parse": "^1.0.0",
     "del": "^7.0.0",
     "glob": "^10.3.3",

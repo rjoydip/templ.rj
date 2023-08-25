@@ -15,4 +15,3 @@ export function logError(err) {
   ora().fail(serialized.message)
   process.exit(1)
 }
-

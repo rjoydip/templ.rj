@@ -8,7 +8,12 @@ void (async () => {
   try {
     console.log(`[${STARTED}]: ${cleanNMTxt}`)
     await Promise.allSettled([
-      ...(await glob('**/node_modules', { cwd: normalize(join(process.cwd(), '..')), absolute: true }))
+      ...(
+        await glob('**/node_modules', {
+          cwd: normalize(join(process.cwd(), '..')),
+          absolute: true,
+        })
+      )
         .reverse()
         .map(async (i) => {
           await rmdir(i, {

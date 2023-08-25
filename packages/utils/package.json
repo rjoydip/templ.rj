@@ -38,10 +38,9 @@
     "test:watch": "vitest run --watch"
   },
   "types": "./dist/index.d.ts",
-  "dependencies": {
-    "@templ/config": "workspace:^"
-  },
   "devDependencies": {
+    "@templ/config": "workspace:^",
+    "@templ/tsconfig": "workspace:^",
     "rimraf": "^5.0.1",
     "sirv-cli": "^2.0.2",
     "typedoc": "^0.24.8"

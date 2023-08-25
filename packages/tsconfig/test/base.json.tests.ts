@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest'
-const baseJSON = require('../../src/ts/base.json')
+const baseJSON = require('../src/base.json')
 
 describe('@templ/config > Base JSON', () => {
   test('schema', () => {
