@@ -54,7 +54,7 @@
     "rimraf": "^5.0.1",
     "sirv-cli": "^2.0.2",
     "tsx": "^3.12.7",
-    "typedoc": "^0.24.8",
+    "typedoc": "^0.25.0",
     "vite-tsconfig-paths": "^4.2.0",
     "vitest": "^0.34.3"
   },
