@@ -35,20 +35,29 @@
     "dev": "tsup ./src/index.ts --watch",
     "eslint": "eslint .",
     "eslint:fix": "eslint . --fix",
+    "size:limit": "size-limit",
     "test": "vitest run",
     "test:ci": "CI=true vitest run",
     "test:watch": "vitest run --watch"
   },
   "types": "./dist/index.d.ts",
   "devDependencies": {
+    "@size-limit/file": "^8.2.6",
     "@templ/eslint-config": "workspace:^",
     "@templ/tsconfig": "workspace:^",
     "deepmerge": "^4.3.1",
     "eslint": "^8.48.0",
     "rimraf": "^5.0.1",
     "sirv-cli": "^2.0.2",
+    "size-limit": "^8.2.6",
     "typedoc": "^0.25.0",
     "vite-tsconfig-paths": "^4.2.0",
     "vitest": "^0.34.3"
-  }
+  },
+  "size-limit": [
+    {
+      "path": "dist/index.js",
+      "limit": "2KB"
+    }
+  ]
 }

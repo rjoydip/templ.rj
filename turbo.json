@@ -17,13 +17,16 @@
     },
     "eslint": {},
     "eslint:fix": {},
+    "size:limit": {
+      "dependsOn": ["^build"]
+    },
     "test": {
       "cache": false,
-      "dependsOn": ["build"]
+      "dependsOn": ["^build"]
     },
     "test:ci": {
       "cache": false,
-      "dependsOn": ["build"]
+      "dependsOn": ["^build"]
     }
   }
 }

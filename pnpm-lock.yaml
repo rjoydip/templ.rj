@@ -23,9 +23,6 @@ importers:
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: ^7.0.7
         version: 7.0.7
-      '@size-limit/file':
-        specifier: ^8.2.6
-        version: 8.2.6(size-limit@8.2.6)
       '@templ/config':
         specifier: workspace:^
         version: link:packages/config
@@ -71,9 +68,6 @@ importers:
       serialize-error:
         specifier: ^11.0.2
         version: 11.0.2
-      size-limit:
-        specifier: ^8.2.6
-        version: 8.2.6
       snyk:
         specifier: ^1.1207.0
         version: 1.1207.0
@@ -126,6 +120,9 @@ importers:
         specifier: ^11.0.2
         version: 11.0.2
     devDependencies:
+      '@size-limit/file':
+        specifier: ^8.2.6
+        version: 8.2.6(size-limit@8.2.6)
       '@templ/config':
         specifier: workspace:^
         version: link:../config
@@ -147,6 +144,9 @@ importers:
       sirv-cli:
         specifier: ^2.0.2
         version: 2.0.2
+      size-limit:
+        specifier: ^8.2.6
+        version: 8.2.6
       tsx:
         specifier: ^3.12.7
         version: 3.12.7
@@ -162,6 +162,9 @@ importers:
 
   packages/config:
     devDependencies:
+      '@size-limit/file':
+        specifier: ^8.2.6
+        version: 8.2.6(size-limit@8.2.6)
       '@templ/eslint-config':
         specifier: workspace:^
         version: link:../eslint-config
@@ -180,6 +183,9 @@ importers:
       sirv-cli:
         specifier: ^2.0.2
         version: 2.0.2
+      size-limit:
+        specifier: ^8.2.6
+        version: 8.2.6
       typedoc:
         specifier: ^0.25.0
         version: 0.25.0(typescript@5.2.2)
@@ -192,6 +198,9 @@ importers:
 
   packages/core:
     devDependencies:
+      '@size-limit/file':
+        specifier: ^8.2.6
+        version: 8.2.6(size-limit@8.2.6)
       '@templ/config':
         specifier: workspace:^
         version: link:../config
@@ -210,6 +219,9 @@ importers:
       sirv-cli:
         specifier: ^2.0.2
         version: 2.0.2
+      size-limit:
+        specifier: ^8.2.6
+        version: 8.2.6
       typedoc:
         specifier: ^0.25.0
         version: 0.25.0(typescript@5.2.2)
@@ -301,6 +313,9 @@ importers:
 
   packages/utils:
     devDependencies:
+      '@size-limit/file':
+        specifier: ^8.2.6
+        version: 8.2.6(size-limit@8.2.6)
       '@templ/config':
         specifier: workspace:^
         version: link:../config
@@ -319,6 +334,9 @@ importers:
       sirv-cli:
         specifier: ^2.0.2
         version: 2.0.2
+      size-limit:
+        specifier: ^8.2.6
+        version: 8.2.6
       typedoc:
         specifier: ^0.25.0
         version: 0.25.0(typescript@5.2.2)

@@ -1,5 +1,6 @@
 {
   "name": "@templ/cli",
+  "cliname": "TEMPL",
   "version": "0.0.0",
   "description": "TEMPL cli service",
   "license": "MIT",
@@ -38,6 +39,7 @@
     "docs:build": "typedoc src/index.ts",
     "eslint": "eslint .",
     "eslint:fix": "eslint . --fix",
+    "size:limit": "size-limit",
     "test": "vitest run",
     "test:ci": "CI=true vitest run",
     "test:cli": "pnpm link . && pnpm templ -v",
@@ -50,6 +52,7 @@
     "serialize-error": "^11.0.2"
   },
   "devDependencies": {
+    "@size-limit/file": "^8.2.6",
     "@templ/config": "workspace:^",
     "@templ/eslint-config": "workspace:^",
     "@templ/tsconfig": "workspace:^",
@@ -57,10 +60,16 @@
     "find-monorepo-root": "^1.0.3",
     "rimraf": "^5.0.1",
     "sirv-cli": "^2.0.2",
+    "size-limit": "^8.2.6",
     "tsx": "^3.12.7",
     "typedoc": "^0.25.0",
     "vite-tsconfig-paths": "^4.2.0",
     "vitest": "^0.34.3"
   },
-  "cliname": "TEMPL"
+  "size-limit": [
+    {
+      "path": "dist/index.js",
+      "limit": "1KB"
+    }
+  ]
 }

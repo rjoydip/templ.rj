@@ -35,18 +35,27 @@
     "docs:build": "typedoc src/index.ts",
     "eslint": "eslint .",
     "eslint:fix": "eslint . --fix",
+    "size:limit": "size-limit",
     "test": "vitest run",
     "test:ci": "CI=true vitest run",
     "test:watch": "vitest run --watch"
   },
   "types": "./dist/index.d.ts",
   "devDependencies": {
+    "@size-limit/file": "^8.2.6",
     "@templ/config": "workspace:^",
     "@templ/eslint-config": "workspace:^",
     "@templ/tsconfig": "workspace:^",
     "eslint": "^8.48.0",
     "rimraf": "^5.0.1",
     "sirv-cli": "^2.0.2",
+    "size-limit": "^8.2.6",
     "typedoc": "^0.25.0"
-  }
+  },
+  "size-limit": [
+    {
+      "path": "dist/index.js",
+      "limit": "200B"
+    }
+  ]
 }
