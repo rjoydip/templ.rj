@@ -5,6 +5,8 @@
       "dependsOn": ["@templ/config#build", "@templ/core#build"],
       "outputs": ["dist/**"]
     },
+    "eslint": {},
+    "eslint:fix": {},
     "test": {
       "cache": false,
       "dependsOn": ["build"]

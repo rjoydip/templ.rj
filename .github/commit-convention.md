@@ -48,11 +48,14 @@ This reverts commit 667ecc1654a317a13331b17617d973392f415f02.
 A commit message consists of a **header**, **body** and **footer**. The header has a **type**, **scope** and **subject**:
 
 ```html
-<type>(<scope>): <subject>
-<BLANK LINE>
-<body>
-<BLANK LINE>
-<footer>
+<type
+  >(<scope
+    >):
+    <subject>
+      <BLANK LINE>
+        <body>
+          <BLANK LINE> <footer></footer></BLANK></body></BLANK></subject></scope
+></type>
 ```
 
 The **header** is mandatory and the **scope** of the header is optional.

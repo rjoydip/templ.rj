@@ -1,14 +1,3 @@
-{
-  "extends": ["//"],
-  "pipeline": {
-    "build": {},
-    "test": {
-      "cache": false,
-      "dependsOn": ["build"]
-    },
-    "test:ci": {
-      "cache": false,
-      "dependsOn": ["build"]
-    }
-  }
-}
+{ "extends": ["//"], "pipeline": { "build": {}, "test": { "cache": false,
+"dependsOn": ["build"] }, "test:ci": { "cache": false, "dependsOn": ["build"] }
+} }

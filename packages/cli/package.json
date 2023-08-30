@@ -36,8 +36,8 @@
     "dev": "tsx ./src/index.ts -v",
     "docs:preview": "sirv docs",
     "docs:build": "typedoc src/index.ts",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "eslint": "eslint .",
+    "eslint:fix": "eslint . --fix",
     "test": "vitest run",
     "test:ci": "CI=true vitest run",
     "test:cli": "pnpm link . && pnpm templ -v",
@@ -47,13 +47,13 @@
   "types": "./dist/index.d.ts",
   "dependencies": {
     "sade": "^1.8.1",
-    "serialize-error": "^11.0.1"
+    "serialize-error": "^11.0.2"
   },
   "devDependencies": {
     "@templ/config": "workspace:^",
     "@templ/eslint-config": "workspace:^",
     "@templ/tsconfig": "workspace:^",
-    "eslint": "^8.47.0",
+    "eslint": "^8.48.0",
     "find-monorepo-root": "^1.0.3",
     "rimraf": "^5.0.1",
     "sirv-cli": "^2.0.2",

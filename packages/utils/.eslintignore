@@ -1,0 +1,7 @@
+*.snap
+*.d.ts
+.turbo
+coverage
+docs
+dist
+node_modules

@@ -32,6 +32,8 @@
     "dev": "tsup ./src/index.ts --watch",
     "docs:preview": "sirv docs",
     "docs:build": "typedoc src/index.ts",
+    "eslint": "eslint .",
+    "eslint:fix": "eslint . --fix",
     "test": "vitest run",
     "test:ci": "CI=true vitest run",
     "test:watch": "vitest run --watch"
@@ -40,6 +42,7 @@
   "types": "./dist/index.d.ts",
   "devDependencies": {
     "@templ/config": "workspace:^",
+    "@templ/eslint-config": "workspace:^",
     "@templ/tsconfig": "workspace:^",
     "@templ/utils": "workspace:^",
     "rimraf": "^5.0.1",

@@ -33,14 +33,18 @@
     "docs:preview": "sirv docs",
     "docs:build": "typedoc src/index.ts",
     "dev": "tsup ./src/index.ts --watch",
+    "eslint": "eslint .",
+    "eslint:fix": "eslint . --fix",
     "test": "vitest run",
     "test:ci": "CI=true vitest run",
     "test:watch": "vitest run --watch"
   },
   "types": "./dist/index.d.ts",
   "devDependencies": {
+    "@templ/eslint-config": "workspace:^",
     "@templ/tsconfig": "workspace:^",
     "deepmerge": "^4.3.1",
+    "eslint": "^8.48.0",
     "rimraf": "^5.0.1",
     "sirv-cli": "^2.0.2",
     "typedoc": "^0.24.8",

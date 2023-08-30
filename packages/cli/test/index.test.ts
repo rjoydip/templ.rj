@@ -19,8 +19,7 @@ describe('@templ/cli', async () => {
     try {
       const result = await $(`node ${cliFilePath} init`)
       expect(result.stdout).toBeDefined()
-    }
-    catch (err) {
+    } catch (err) {
       const error = new Error(String(err))
       const serialized = serializeError(error)
       expect(serialized.message).toBeDefined()

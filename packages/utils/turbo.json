@@ -4,6 +4,8 @@
     "build": {
       "dependsOn": ["@templ/config#build"]
     },
+    "eslint": {},
+    "eslint:fix": {},
     "test": {
       "cache": false,
       "dependsOn": ["build"]

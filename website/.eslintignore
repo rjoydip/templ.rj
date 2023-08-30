@@ -1,0 +1,10 @@
+*.snap
+*.d.ts
+.turbo
+.docusaurus
+coverage
+docs
+dist
+build
+node_modules
+static

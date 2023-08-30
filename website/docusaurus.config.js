@@ -1,7 +1,6 @@
+// @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
-// eslint-disable-next-line no-undef
 const lightCodeTheme = require('prism-react-renderer').themes.github
-// eslint-disable-next-line no-undef
 const darkCodeTheme = require('prism-react-renderer').themes.dracula
 
 const organizationName = 'rjoydip' // Usually your GitHub org/user name.
@@ -9,6 +8,7 @@ const projectName = 'templ' // Usually your repo name.
 // const branch = 'main'
 const repoUrl = `https://github.com/${organizationName}/${projectName}`
 
+/** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Templ',
   tagline: '',
@@ -22,8 +22,8 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: organizationName, // Usually your GitHub org/user name.
-  projectName: projectName, // Usually your repo name.
+  organizationName, // Usually your GitHub org/user name.
+  projectName, // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -42,7 +42,6 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          // eslint-disable-next-line no-undef
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
@@ -55,7 +54,6 @@ const config = {
           editUrl: 'https://github.com/rjoydip/templ/tree/main/website/blog/',
         },
         theme: {
-          // eslint-disable-next-line no-undef
           customCss: require.resolve('./src/css/custom.css'),
         },
       }),
@@ -148,5 +146,4 @@ const config = {
     }),
 }
 
-// eslint-disable-next-line no-undef
 module.exports = config

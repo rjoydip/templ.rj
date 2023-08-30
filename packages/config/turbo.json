@@ -2,6 +2,8 @@
   "extends": ["//"],
   "pipeline": {
     "build": {},
+    "eslint": {},
+    "eslint:fix": {},
     "test": {
       "cache": false,
       "dependsOn": ["build"]

@@ -3,10 +3,10 @@
 
 website:
   - website
-  - '*README.md'
+  - "*README.md"
 
 🐚shell:
-  - '*.sh'
+  - "*.sh"
 
 ☁︎ci:
   - .github/*

@@ -1,5 +1,3 @@
-// @ts-check
-
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
   docs: [
@@ -52,5 +50,4 @@ const sidebars = {
   api: ['api', 'api/templ'],
 }
 
-// eslint-disable-next-line no-undef
 module.exports = sidebars
