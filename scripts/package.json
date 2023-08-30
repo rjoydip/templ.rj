@@ -28,7 +28,7 @@
     "@templ/eslint-config": "workspace:^",
     "@templ/tsconfig": "workspace:^",
     "@types/lcov-parse": "^1.0.0",
-    "del": "^7.0.0",
+    "del": "^7.1.0",
     "eslint": "^8.48.0",
     "glob": "^10.3.3",
     "isomorphic-git": "^1.24.5",

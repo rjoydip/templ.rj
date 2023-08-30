@@ -33,7 +33,7 @@
   "scripts": {
     "build": "tsup",
     "clean": "rimraf .turbo dist docs coverage",
-    "dev": "tsx ./src/index.ts -v",
+    "dev": "node --loader tsx ./src/index.ts -v",
     "docs:preview": "sirv docs",
     "docs:build": "typedoc src/index.ts",
     "eslint": "eslint .",

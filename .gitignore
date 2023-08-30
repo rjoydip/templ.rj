@@ -29,3 +29,7 @@ node_modules
 /packages/**/playwright/.cache/
 
 # third_party
+
+# docs
+docs/.vitepress/dist
+docs/.vitepress/cache

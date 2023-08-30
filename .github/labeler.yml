@@ -1,8 +1,8 @@
 🌱root:
   - package.json
 
-website:
-  - website
+📜docs:
+  - docs
   - "*README.md"
 
 🐚shell:
