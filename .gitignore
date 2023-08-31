@@ -1,27 +1,32 @@
-logs
-*.log
+
+# NPM/PNPM
 npm-debug.log*
+*-lock.json
+
+# YARN
 yarn-debug.log*
 yarn-error.log*
-*-lock.json
-lib-cov
-coverage
-node_modules
+
+# Dot file
+.log
 .env
 .cache
-dist
-fixtures/output/*
-!fixtures/output/.gitkeep
 .idea
 .vite-node
-ltex*
 .DS_Store
 .eslintcache
 .nyc_output
 .turbo
 .pnpm-store
-packages/**/docs
+
+# Folder
+dist
+coverage
 node_modules
+
+# Fixtures
+fixtures/output/*
+!fixtures/output/.gitkeep
 
 # Playwrite
 /packages/**/test-results/
@@ -30,6 +35,10 @@ node_modules
 
 # third_party
 
+# Tools
+/tools/lib-cov
+
 # docs
+packages/**/docs
 docs/.vitepress/dist
 docs/.vitepress/cache

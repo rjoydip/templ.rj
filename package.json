@@ -25,7 +25,7 @@
     "lint:secret": "secretlint \"**/*\"",
     "lint:spell": "cspell .",
     "prepare": "husky install",
-    "size:limit": "turbo run size:limit",
+    "size:limit": "turbo run size:limit --filter='./packages/*'",
     "test": "turbo run test --filter='./packages/*'",
     "test:ci": "turbo run test:ci --filter='./packages/*'",
     "test:cli": "turbo run --filter=cli test:cli",
