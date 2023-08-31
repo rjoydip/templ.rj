@@ -54,13 +54,15 @@
     "envinfo": "^7.10.0",
     "happy-dom": "^10.11.2",
     "husky": "^8.0.3",
-    "pnpm": "^8.7.0",
+    "nano-staged": "^0.8.0",
+    "pnpm": "^8.7.1",
     "prettier": "^3.0.3",
     "prettier-package-json": "^2.8.0",
     "rimraf": "^5.0.1",
     "secretlint": "^7.0.7",
     "serialize-error": "^11.0.2",
-    "snyk": "^1.1207.0",
+    "snyk": "^1.1209.0",
+    "stylelint": "^15.10.3",
     "taze": "^0.11.2",
     "tsup": "^7.2.0",
     "turbo": "^1.10.13",
@@ -71,7 +73,8 @@
   "engines": {
     "node": ">=18",
     "npm": ">=8",
-    "shell": "bash"
+    "shell": "bash",
+    "yarn": "This project is configured to use pnpm"
   },
   "auto-changelog": {
     "output": "CHANGELOG.md",
@@ -79,7 +82,21 @@
     "unreleased": true,
     "commitLimit": false
   },
-  "packageManager": "pnpm@8.7.0",
+  "nano-staged": {
+    "*": [
+      "cspell .",
+      "secretlint \"**/*\""
+    ],
+    "*.{js,ts,jsx,tsx,md,json}": "prettier --write --cache .",
+    "*.css": [
+      "stylelint",
+      "eslint --fix"
+    ],
+    "*.md": [
+      "lint:md"
+    ]
+  },
+  "packageManager": "pnpm@8.7.1",
   "stackblitz": {
     "startCommand": "nr dev"
   }

@@ -3,8 +3,7 @@
 
 pnpm clean
 pnpm deps:fresh
-pnpm build
-pnpm lint
 pnpm test
 pnpm version
+./node_modules/.bin/nano-staged
 git add .
