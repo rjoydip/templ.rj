@@ -8,7 +8,7 @@
   "repository": "rjoydip/templ",
   "type": "module",
   "scripts": {
-    "all": "nr clean && nr deps:fresh && nr build && nr docs:build && nr format && nr changelog && nr size:limit && nr lint && nr test && nr test:cli && nr third_party:git:update",
+    "all": "nr clean && nr deps:fresh && nr build && nr format && nr changelog && nr size:limit && nr lint && nr test:ci && nr test:cli && nr third_party:git:update",
     "build": "turbo run build --filter='./packages/*'",
     "coverage:lcov": "pnpm run -C scripts coverage:lcov",
     "clean": "rimraf .turbo .pnpm-store coverage && nr -r clean",
@@ -17,7 +17,6 @@
     "create:pkg": "nr -C scripts create:pkg",
     "deps:fresh": "taze -r -w -i",
     "dev": "turbo run dev --filter='./packages/*'",
-    "docs:build": "turbo run docs:build",
     "format": "prettier --write --cache .",
     "preinstall": "npx only-allow pnpm",
     "lint": "turbo run eslint && nr lint:spell && nr lint:secret && nr lint:md",

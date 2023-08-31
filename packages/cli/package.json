@@ -32,18 +32,18 @@
     "templ.mjs"
   ],
   "scripts": {
-    "build": "tsup",
+    "build": "tsup && pnpm run typedoc",
     "clean": "rimraf .turbo dist docs coverage",
     "dev": "node --loader tsx ./src/index.ts -v",
-    "docs:preview": "sirv docs",
-    "docs:build": "typedoc src/index.ts",
     "eslint": "eslint .",
     "eslint:fix": "eslint . --fix",
     "size:limit": "size-limit",
     "test": "vitest run",
     "test:ci": "CI=true vitest run",
     "test:cli": "pnpm link . && pnpm templ -v",
-    "test:watch": "vitest run --watch"
+    "test:watch": "vitest run --watch",
+    "typedoc": "typedoc src/index.ts",
+    "typedoc:preview": "sirv docs"
   },
   "sideEffects": true,
   "types": "./dist/index.d.ts",

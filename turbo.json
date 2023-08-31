@@ -7,26 +7,18 @@
       "outputs": ["dist/**"],
       "outputMode": "new-only"
     },
-    "dev": {
-      "cache": false,
-      "dependsOn": ["^dev", "^build"]
-    },
-    "docs:build": {
-      "outputs": ["docs/**"],
-      "outputMode": "new-only"
-    },
     "eslint": {},
     "eslint:fix": {},
     "size:limit": {
-      "dependsOn": ["^build"]
+      "dependsOn": ["build"]
     },
     "test": {
       "cache": false,
-      "dependsOn": ["^build"]
+      "dependsOn": ["build"]
     },
     "test:ci": {
       "cache": false,
-      "dependsOn": ["^build"]
+      "dependsOn": ["build"]
     }
   }
 }
