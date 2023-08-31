@@ -27,7 +27,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup && pnpm run typedoc",
+    "build": "tsup && pnpm typedoc",
     "clean": "rimraf .turbo dist docs coverage",
     "dev": "tsup ./src/index.ts --watch",
     "eslint": "eslint .",
@@ -47,9 +47,12 @@
     "@templ/eslint-config": "workspace:^",
     "@templ/tsconfig": "workspace:^",
     "@templ/utils": "workspace:^",
+    "@types/node": "^20.5.7",
+    "@vitest/coverage-v8": "^0.34.3",
     "rimraf": "^5.0.1",
     "sirv-cli": "^2.0.2",
     "size-limit": "^8.2.6",
+    "tsup": "^7.2.0",
     "typedoc": "^0.25.0",
     "vite-tsconfig-paths": "^4.2.0",
     "vitest": "^0.34.3"
