@@ -1,34 +1,25 @@
 {
-  "private": true,
-  "name": "@templ/utils",
+  "name": "@templ/build",
+  "type": "module",
   "version": "0.0.0",
-  "description": "TEMPL utils service",
+  "private": true,
+  "description": "TEMPL package build",
   "license": "MIT",
-  "homepage": "https://github.com/rjoydip/templ/tree/main/packages/utils#readme",
+  "homepage": "https://github.com/rjoydip/templ/tree/main/packages/build#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rjoydip/templ.git",
-    "directory": "packages/utils"
+    "directory": "packages/build"
   },
   "bugs": {
     "url": "https://github.com/rjoydip/templ/issues"
   },
-  "type": "module",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
-    },
-    "./*": "./*"
+  "files": [],
+  "bin": {
+    "build-package": "./src/package.ts"
   },
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "files": [
-    "*.d.ts",
-    "dist"
-  ],
   "scripts": {
-    "build": "build-package && pnpm typedoc",
+    "build": "pnpm typedoc",
     "clean": "rimraf .turbo dist docs coverage",
     "dev": "tsx ./src/index.ts --watch",
     "eslint": "eslint .",
@@ -40,11 +31,8 @@
     "typedoc": "typedoc src/index.ts",
     "typedoc:preview": "sirv docs"
   },
-  "types": "./dist/index.d.ts",
   "devDependencies": {
     "@size-limit/file": "^8.2.6",
-    "@templ/build": "workspace:^",
-    "@templ/config": "workspace:^",
     "@templ/eslint-config": "workspace:^",
     "@templ/tsconfig": "workspace:^",
     "@types/node": "^20.5.7",
@@ -53,16 +41,15 @@
     "rimraf": "^5.0.1",
     "sirv-cli": "^2.0.2",
     "size-limit": "^8.2.6",
-    "tsup": "^7.2.0",
     "tsx": "^3.12.7",
-    "typedoc": "^0.25.0",
+    "typedoc": "^0.24.8",
     "vite-tsconfig-paths": "^4.2.0",
-    "vitest": "^0.34.3"
+    "vitest": "^0.34.2"
   },
-  "size-limit": [
-    {
-      "path": "dist/index.js",
-      "limit": "200B"
-    }
-  ]
+  "dependencies": {
+    "esbuild": "^0.19.2",
+    "mri": "^1.2.0",
+    "totalist": "^3.0.1"
+  },
+  "size-limit": []
 }

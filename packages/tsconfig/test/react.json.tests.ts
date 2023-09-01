@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest'
-const reactJSON = require('../src/react.json')
+const reactJSON = require('../react.json')
 
 describe('@templ/config > react JSON', () => {
   test('display', () => {

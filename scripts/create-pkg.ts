@@ -67,7 +67,7 @@ void (async () => {
         await setTemplateData(
           resolve(outputLocation, name, 'test'),
           'index.test.ts',
-          await compile(indexTestTSTemplate)({}),
+          await compile(indexTestTSTemplate)({ name }),
         ),
         await setTemplateData(
           resolve(outputLocation, name),
