@@ -100,7 +100,7 @@ importers:
         version: 8.2.6
       snyk:
         specifier: ^1.1206.0
-        version: 1.1207.0
+        version: 1.1211.0
       taze:
         specifier: ^0.11.2
         version: 0.11.2
@@ -12394,8 +12394,8 @@ packages:
     engines: {node: '>= 6.0.0', npm: '>= 3.0.0'}
     dev: true
 
-  /snyk@1.1207.0:
-    resolution: {integrity: sha512-wQaHqhGDmnFhoZcavaZE1TWHyIl//oVMz+x9lpit+DwntngMFKCWll2TkfdRWldqN+OihqaK+jzCDR9u3Bk/fA==}
+  /snyk@1.1211.0:
+    resolution: {integrity: sha512-8Ker6O6k9mmBmiXY20droksfvUIwDLf1+kF0VSB5xh9BMMCXFoqgmtv1fQiBt+ix0BI/wPV5gdkuH7dZBZ9FiQ==}
     engines: {node: '>=12'}
     hasBin: true
     requiresBuild: true
