@@ -1,0 +1,10 @@
+{
+  "extends": [
+    "//"
+  ],
+  "pipeline": {
+    "docs:build": {
+      "dependsOn": ["@templ/utils#build"]
+    }
+  }
+}

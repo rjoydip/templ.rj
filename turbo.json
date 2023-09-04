@@ -2,23 +2,18 @@
   "$schema": "https://turborepo.org/schema.json",
   "baseBranch": "origin/main",
   "pipeline": {
-    "build": {
-      "dependsOn": ["^build"],
-      "outputs": ["dist/**"],
-      "outputMode": "new-only"
-    },
     "eslint": {},
     "eslint:fix": {},
     "size:limit": {
-      "dependsOn": ["build"]
+      "dependsOn": ["^build"]
     },
     "test": {
       "cache": false,
-      "dependsOn": ["build"]
+      "dependsOn": ["^build"]
     },
     "test:ci": {
       "cache": false,
-      "dependsOn": ["build"]
+      "dependsOn": ["^build"]
     }
   }
 }

@@ -2,5 +2,9 @@
   "extends": [
     "//"
   ],
-  "pipeline": {}
+  "pipeline": {
+    "build": {
+      "dependsOn": ["@templ/config#build", "@templ/eslint-config#build", "@templ/tsconfig#build"]
+    }
+  }
 }

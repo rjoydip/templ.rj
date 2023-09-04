@@ -47,7 +47,7 @@
     "@templ/eslint-config": "workspace:^",
     "@templ/tsconfig": "workspace:^",
     "@templ/utils": "workspace:^",
-    "@types/node": "^20.5.7",
+    "@types/node": "^20.5.8",
     "@vitest/coverage-v8": "^0.34.3",
     "rimraf": "^5.0.1",
     "sirv-cli": "^2.0.2",

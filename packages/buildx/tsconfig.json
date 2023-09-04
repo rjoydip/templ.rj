@@ -3,7 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@templ/build": ["src/package.ts"]
+      "@templ/build": ["src/build-package.ts"]
     }
   },
   "include": ["src"],

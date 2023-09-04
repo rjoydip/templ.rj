@@ -2,8 +2,7 @@
   "extends": ["//"],
   "pipeline": {
     "build": {
-      "dependsOn": ["@templ/config#build", "@templ/core#build"],
-      "outputs": ["dist/**"]
+      "dependsOn": ["@templ/config#build", "@templ/core#build"]
     },
     "test:cli": {
       "dependsOn": ["build", "test"]
