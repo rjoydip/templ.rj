@@ -1,6 +1,4 @@
 {
   "extends": ["//"],
-  "pipeline": {
-    "build": {}
-  }
+  "pipeline": {}
 }

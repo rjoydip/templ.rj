@@ -54,7 +54,7 @@
     "prettier-package-json": "^2.8.0",
     "rimraf": "^5.0.1",
     "secretlint": "^7.0.7",
-    "snyk": "^1.1209.0",
+    "snyk": "^1.1211.0",
     "stylelint": "^15.10.3",
     "taze": "^0.11.2",
     "turbo": "^1.10.13",

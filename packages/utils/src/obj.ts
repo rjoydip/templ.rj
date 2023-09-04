@@ -2,7 +2,7 @@
 
 export function includeKeys<T extends Record<string, any>>(
   object: T,
-  predicate: (key: string, value: any, object: T) => boolean | string[]
+  predicate: (key: string, value: any, object: T) => boolean | string[],
 ): Partial<T> {
   const result: Partial<T> = {}
 
@@ -31,7 +31,7 @@ export function includeKeys<T extends Record<string, any>>(
 
 export function excludeKeys<T extends Record<string, any>>(
   object: T,
-  predicate: (key: string, value: any, object: T) => boolean | string[]
+  predicate: (key: string, value: any, object: T) => boolean | string[],
 ): Partial<T> {
   if (Array.isArray(predicate)) {
     const set = new Set(predicate)

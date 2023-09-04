@@ -18,14 +18,19 @@ const defaultBuildOptions: BuildOptions = {
   entryPoints: [],
   format: 'esm',
   outdir: 'dist',
-  plugins: []
+  plugins: [],
 }
 
 async function esbuild(options: BuildOptions & NonBuildOptions) {
   const excludeKeysArray = ['watch', 'srcDir', 'assets']
 
-  const buildOptions = excludeKeys<BuildOptions>(deepMerge<BuildOptions>(defaultBuildOptions, options), (key) => excludeKeysArray.includes(key))
-  const nonBuildOptions = includeKeys<NonBuildOptions>(options, (key) => excludeKeysArray.includes(key))
+  const buildOptions = excludeKeys<BuildOptions>(
+    deepMerge<BuildOptions>(defaultBuildOptions, options),
+    (key: string) => excludeKeysArray.includes(key),
+  )
+  const nonBuildOptions = includeKeys<NonBuildOptions>(options, (key: string) =>
+    excludeKeysArray.includes(key),
+  )
 
   if (nonBuildOptions.watch) {
     const _context = await context(buildOptions)
@@ -38,7 +43,7 @@ async function esbuild(options: BuildOptions & NonBuildOptions) {
     await writeFile(
       `${buildOptions.outdir}/package.json`,
       JSON.stringify({ type: 'commonjs' }) + '\n',
-      'utf8'
+      'utf8',
     )
 
   for (const rel of nonBuildOptions.assets) {

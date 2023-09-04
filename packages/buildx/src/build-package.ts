@@ -7,7 +7,7 @@ import { totalist } from 'totalist'
 import type { EsbuildFormat } from './esbuild'
 import esbuild from './esbuild'
 
-void(async () => {
+void (async () => {
   const assets: string[] = []
   const entryPoints: string[] = []
   const args = mri(process.argv.slice(2))
@@ -15,14 +15,13 @@ void(async () => {
   const clean: boolean = !!args.clean || true
   const srcDir: string = args.src || 'src'
   const outDir: string = args.out || 'dist'
-  const formats: EsbuildFormat[] = args.format.includes(',') ? args.format.split(',') : [args.format] ?? ['esm']
+  const formats: EsbuildFormat[] = (args.format || ['esm']).includes(',')
+    ? args.format.split(',')
+    : [args.format]
 
   await totalist(`./${srcDir}`, (rel) => {
     if (rel.endsWith('.ts') || rel.endsWith('.tsx')) {
-      if (
-        rel.includes('.test.') ||
-        rel.includes('.stories.')
-      ) {
+      if (rel.includes('.test.') || rel.includes('.stories.')) {
         return
       }
       entryPoints.push(join(srcDir, rel))
@@ -45,7 +44,7 @@ void(async () => {
       outdir: outDir,
       srcDir,
       watch,
-      assets
+      assets,
     })
   } else {
     for (const format of formats) {
@@ -57,9 +56,8 @@ void(async () => {
         outdir: _outDir,
         srcDir,
         watch,
-        assets
+        assets,
       })
     }
   }
 })()
-
