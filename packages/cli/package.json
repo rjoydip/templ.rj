@@ -32,9 +32,10 @@
     "templ.mjs"
   ],
   "scripts": {
-    "build": "tsup && pnpm typedoc",
+    "build": "tsup",
     "clean": "rimraf .turbo dist docs coverage",
     "dev": "node --loader tsx ./src/index.ts -v",
+    "docs:build": "pnpm typedoc",
     "eslint": "eslint .",
     "eslint:fix": "eslint . --fix",
     "size:limit": "size-limit",

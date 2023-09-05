@@ -1,4 +1,25 @@
 {
   "extends": ["//"],
-  "pipeline": {}
+  "pipeline": {
+    "build": {
+      "cache": false,
+      "output": ["dist"]
+    },
+    "docs:build": {
+      "cache": false,
+      "output": ["docs"],
+      "dependsOn": ["build"]
+    },
+    "eslint": {},
+    "eslint:fix": {},
+    "size:limit": {
+      "dependsOn": ["build"]
+    },
+    "test": {
+      "dependsOn": ["build"]
+    },
+    "test:ci": {
+      "dependsOn": ["build"]
+    }
+  }
 }

@@ -1,6 +1,6 @@
 import { join } from 'node:path'
 import { cp, writeFile } from 'node:fs/promises'
-import deepMerge from 'deepmerge'
+import { defu } from 'defu'
 import type { Format, BuildOptions } from 'esbuild'
 import { build, context } from 'esbuild'
 import { excludeKeys, includeKeys } from '@templ/utils'
@@ -14,7 +14,7 @@ interface NonBuildOptions {
   assets: string[]
 }
 
-const defaultBuildOptions: BuildOptions = {
+const defaults: BuildOptions = {
   entryPoints: [],
   format: 'esm',
   outdir: 'dist',
@@ -25,7 +25,7 @@ async function esbuild(options: BuildOptions & NonBuildOptions) {
   const excludeKeysArray = ['watch', 'srcDir', 'assets']
 
   const buildOptions = excludeKeys<BuildOptions>(
-    deepMerge<BuildOptions>(defaultBuildOptions, options),
+    defu(options, defaults),
     (key: string) => excludeKeysArray.includes(key),
   )
   const nonBuildOptions = includeKeys<NonBuildOptions>(options, (key: string) =>

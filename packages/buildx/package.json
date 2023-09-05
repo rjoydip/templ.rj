@@ -19,9 +19,10 @@
     "build-package": "./src/build-package.ts"
   },
   "scripts": {
-    "docs:build": "pnpm typedoc",
+    "build": "tsx ./src/build-package.ts",
     "clean": "rimraf .turbo dist docs coverage",
     "dev": "tsx ./src/index.ts --watch",
+    "docs:build": "pnpm typedoc",
     "eslint": "eslint .",
     "eslint:fix": "eslint . --fix",
     "size:limit": "size-limit",
@@ -43,15 +44,26 @@
     "sirv-cli": "^2.0.2",
     "size-limit": "^8.2.6",
     "typedoc": "^0.24.8",
+    "tsx": "^3.12.8",
     "vite-tsconfig-paths": "^4.2.0",
     "vitest": "^0.34.3"
   },
   "dependencies": {
-    "deepmerge": "^4.3.1",
+    "defu": "^6.1.2",
     "esbuild": "^0.19.2",
     "mri": "^1.2.0",
-    "totalist": "^3.0.1",
-    "tsx": "^3.12.8"
+    "totalist": "^3.0.1"
   },
-  "size-limit": []
+  "size-limit": [
+    {
+      "path": "./dist/index.js",
+      "limit": "100B"
+    }, {
+      "path": "./dist/esbuild.js",
+      "limit": "900B"
+    }, {
+      "path": "./dist/build-package.js",
+      "limit": "600B"
+    }
+  ]
 }
