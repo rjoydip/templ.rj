@@ -3,3 +3,4 @@
 module will have access to all the exported constants from `constants.ts`. */
 export * from './constants'
 export * from './is'
+export * from './obj'

@@ -5,7 +5,7 @@ inputs:
   node-version:
     required: false
     description: Node version for setup-node
-    default: 16.x
+    default: 18.x
 
 runs:
   using: composite
@@ -17,7 +17,7 @@ runs:
     - name: Set node version to ${{ inputs.node-version }}
       uses: actions/setup-node@v3
       with:
-        node-version-file: '.nvmrc'
+        node-version-file: ".nvmrc"
         node-version: ${{ inputs.node-version }}
 
     - name: Resolve package versions
@@ -33,7 +33,6 @@ runs:
             # console.log('CYPRESS_VERSION=' + cypressVersion);
           "
         )" >> "$GITHUB_OUTPUT"
-
 
     - name: Print versions
       shell: bash

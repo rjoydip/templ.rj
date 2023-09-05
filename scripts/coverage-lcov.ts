@@ -120,7 +120,7 @@ async function mergeLcovFiles(): Promise<void> {
   }
 }
 
-(async () => {
+;(async () => {
   await mergeLcovFiles()
   await copyLcovFilesToRootCoverageDir()
 })()

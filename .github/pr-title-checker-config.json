@@ -4,10 +4,24 @@
     "color": "EEEEEE"
   },
   "CHECKS": {
-    "prefixes": ["fix: ", "feat: ", "chore:", "refactor:", "docs:", "ci:", "revert:", "chore(deps-dev):", "style:", "test:", "modified:"],
+    "prefixes": [
+      "chore:",
+      "chore(",
+      "chore(deps):",
+      "chore(deps-dev):",
+      "ci:",
+      "docs:",
+      "fix:",
+      "feat:",
+      "modified:"
+      "refactor:",
+      "revert:",
+      "style:",
+      "test:"
+    ],
     "regexp": "docs\\(v[0-9]\\): ",
     "regexpFlags": "i",
-    "ignoreLabels" : []
+    "ignoreLabels": []
   },
   "MESSAGES": {
     "success": "All OK",

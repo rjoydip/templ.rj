@@ -8,82 +8,64 @@
   "repository": "rjoydip/templ",
   "type": "module",
   "scripts": {
-    "all": "nr clean && nr deps:fresh && nr build && nr docs:build && nr format && nr changelog && nr size-limit && nr lint && nr test && nr test:cli && nr third_party:git:update",
+    "all": "pnpm clean && pnpm deps:fresh && pnpm build && pnpm format && pnpm changelog && pnpm size:limit && pnpm lint && pnpm test:ci && pnpm test:cli",
     "build": "turbo run build --filter='./packages/*'",
-    "coverage:lcov": "pnpm run -C scripts coverage:lcov",
-    "clean": "rimraf .turbo .eslintcache .pnpm-store coverage && nr -r clean",
-    "clean:nm": "nr -C scripts clean:nm",
+    "docs:build": "turbo run docs:build",
+    "coverage:lcov": "pnpm -C scripts coverage:lcov",
+    "clean": "rimraf .turbo .pnpm-store coverage && pnpm -r clean",
+    "clean:nm": "pnpm -C scripts clean:nm",
     "changelog": "auto-changelog -p",
-    "create:pkg": "nr -C scripts create:pkg",
+    "create:pkg": "pnpm -C scripts create:pkg",
     "deps:fresh": "taze -r -w -i",
     "dev": "turbo run dev --filter='./packages/*'",
-    "docs:build": "turbo run docs:build",
-    "eslint": "eslint --cache --fix .",
     "format": "prettier --write --cache .",
     "preinstall": "npx only-allow pnpm",
-    "lint": "nr eslint && nr lint:spell && nr lint:secret && nr lint:md",
-    "lint:md": "nr -C scripts lint:md",
+    "lint": "turbo run eslint && pnpm lint:spell && pnpm lint:secret && pnpm lint:md",
+    "lint:md": "pnpm -C scripts lint:md",
     "lint:secret": "secretlint \"**/*\"",
     "lint:spell": "cspell .",
     "prepare": "husky install",
-    "size-limit": "size-limit",
+    "size:limit": "turbo run size:limit --filter='./packages/*'",
     "test": "turbo run test --filter='./packages/*'",
     "test:ci": "turbo run test:ci --filter='./packages/*'",
     "test:cli": "turbo run --filter=cli test:cli",
-    "third_party:git:update": "nr -C scripts third_party:git:update"
+    "third_party:git:update": "pnpm -C scripts third_party:git:update"
   },
   "sideEffects": true,
   "workspaces": [
+    "docs",
     "scripts",
-    "website",
     "apps/*",
     "packages/*",
     "third_party/*",
     "tools/*"
   ],
   "devDependencies": {
-    "@antfu/ni": "^0.21.6",
     "@commitlint/cli": "^17.7.1",
     "@commitlint/config-conventional": "^17.7.0",
-    "@preact/preset-vite": "^2.5.0",
     "@secretlint/secretlint-rule-preset-recommend": "^7.0.7",
-    "@size-limit/file": "^8.2.6",
     "@templ/config": "workspace:^",
-    "@types/node": "^20.5.6",
-    "@typescript-eslint/eslint-plugin": "^6.4.1",
-    "@typescript-eslint/parser": "^6.4.1",
-    "@vitest/coverage-v8": "^0.34.3",
-    "@vitest/ui": "^0.34.3",
     "auto-changelog": "^2.4.0",
-    "cspell": "^7.0.1",
+    "cspell": "^7.3.2",
     "envinfo": "^7.10.0",
-    "eslint": "^8.47.0",
-    "eslint-define-config": "^1.23.0",
-    "eslint-plugin-import": "^2.28.1",
-    "eslint-plugin-n": "^16.0.2",
-    "eslint-plugin-react": "^7.33.2",
-    "eslint-plugin-regexp": "^1.15.0",
-    "happy-dom": "^10.11.0",
     "husky": "^8.0.3",
-    "pnpm": "^8.6.12",
-    "prettier": "^3.0.2",
+    "nano-staged": "^0.8.0",
+    "pnpm": "^8.7.1",
+    "prettier": "^3.0.3",
     "prettier-package-json": "^2.8.0",
     "rimraf": "^5.0.1",
     "secretlint": "^7.0.7",
-    "serialize-error": "^11.0.1",
-    "size-limit": "^8.2.6",
-    "snyk": "^1.1206.0",
+    "snyk": "^1.1212.0",
+    "stylelint": "^15.10.3",
     "taze": "^0.11.2",
-    "tsup": "^7.2.0",
     "turbo": "^1.10.13",
-    "typescript": "^5.2.2",
-    "vite-tsconfig-paths": "^4.2.0",
-    "vitest": "^0.34.3"
+    "typescript": "^5.2.2"
   },
   "engines": {
-    "node": ">=16",
+    "node": ">=18",
     "npm": ">=8",
-    "shell": "bash"
+    "shell": "bash",
+    "yarn": "This project is configured to use pnpm"
   },
   "auto-changelog": {
     "output": "CHANGELOG.md",
@@ -91,25 +73,21 @@
     "unreleased": true,
     "commitLimit": false
   },
-  "packageManager": "pnpm@8.6.12",
-  "size-limit": [
-    {
-      "path": "./packages/core/dist/index.js",
-      "limit": "3.0KB"
-    },
-    {
-      "path": "./packages/config/dist/index.js",
-      "limit": "1MB"
-    },
-    {
-      "path": "./packages/cli/dist/index.js",
-      "limit": "6.0KB"
-    },
-    {
-      "path": "./packages/utils/dist/index.js",
-      "limit": "600B"
-    }
-  ],
+  "nano-staged": {
+    "*": [
+      "cspell .",
+      "secretlint \"**/*\""
+    ],
+    "*.{js,ts,jsx,tsx,md,json}": "prettier --write --cache .",
+    "*.css": [
+      "stylelint",
+      "eslint --fix"
+    ],
+    "*.md": [
+      "lint:md"
+    ]
+  },
+  "packageManager": "pnpm@8.7.1",
   "stackblitz": {
     "startCommand": "nr dev"
   }

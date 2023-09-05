@@ -1,14 +1,10 @@
 {
-  "extends": ["//"],
+  "extends": [
+    "//"
+  ],
   "pipeline": {
-    "build": {},
-    "test": {
-      "cache": false,
-      "dependsOn": ["build"]
-    },
-    "test:ci": {
-      "cache": false,
-      "dependsOn": ["build"]
+    "build": {
+      "dependsOn": ["@templ/config#build", "@templ/eslint-config#build", "@templ/tsconfig#build"]
     }
   }
 }

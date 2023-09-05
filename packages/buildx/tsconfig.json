@@ -1,0 +1,11 @@
+{
+  "extends": "@templ/tsconfig/node.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@templ/build": ["src/build-package.ts"]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["dist", "*.d.ts"]
+}

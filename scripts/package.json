@@ -19,22 +19,26 @@
     "clean:nm": "node --loader tsx ./clean-nm.ts",
     "coverage:lcov": "node --loader tsx ./coverage-lcov.ts",
     "create:pkg": "node --loader tsx ./create-pkg.ts",
-    "third_party:git:update": "node --loader tsx ./third-party-git-update.ts",
-    "lint:md": "node --loader tsx ./lint-md.ts"
+    "eslint": "eslint .",
+    "eslint:fix": "eslint . --fix",
+    "lint:md": "node --loader tsx ./lint-md.ts",
+    "third_party:git:update": "node --loader tsx ./third-party-git-update.ts"
   },
   "devDependencies": {
+    "@templ/eslint-config": "workspace:^",
     "@templ/tsconfig": "workspace:^",
     "@types/lcov-parse": "^1.0.0",
-    "del": "^7.0.0",
-    "glob": "^10.3.3",
+    "del": "^7.1.0",
+    "eslint": "^8.48.0",
+    "glob": "^10.3.4",
     "isomorphic-git": "^1.24.5",
     "markdownlint": "^0.30.0",
     "ora": "^7.0.1",
     "rimraf": "^5.0.1",
-    "serialize-error": "^11.0.1",
+    "serialize-error": "^11.0.2",
     "simple-git": "^3.19.1",
     "tempura": "^0.4.0",
-    "tsx": "^3.12.7",
+    "tsx": "^3.12.8",
     "zod": "^3.22.2"
   }
 }

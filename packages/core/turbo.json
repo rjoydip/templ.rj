@@ -2,14 +2,24 @@
   "extends": ["//"],
   "pipeline": {
     "build": {
+      "cache": false,
+      "output": ["dist"],
       "dependsOn": ["@templ/config#build", "@templ/utils#build"]
     },
-    "test": {
+    "docs:build": {
       "cache": false,
+      "output": ["docs"],
+      "dependsOn": ["build"]
+    },
+    "eslint": {},
+    "eslint:fix": {},
+    "size:limit": {
+      "dependsOn": ["build"]
+    },
+    "test": {
       "dependsOn": ["build"]
     },
     "test:ci": {
-      "cache": false,
       "dependsOn": ["build"]
     }
   }
