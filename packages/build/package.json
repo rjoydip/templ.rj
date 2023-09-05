@@ -1,15 +1,15 @@
 {
-  "name": "@templ/buildx",
+  "name": "@templ/build",
   "type": "module",
   "version": "0.0.0",
   "private": true,
   "description": "TEMPL package build",
   "license": "MIT",
-  "homepage": "https://github.com/rjoydip/templ/tree/main/packages/buildx#readme",
+  "homepage": "https://github.com/rjoydip/templ/tree/main/packages/build#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rjoydip/templ.git",
-    "directory": "packages/buildx"
+    "directory": "packages/build"
   },
   "bugs": {
     "url": "https://github.com/rjoydip/templ/issues"
