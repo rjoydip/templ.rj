@@ -36,8 +36,8 @@ importers:
         specifier: ^0.8.0
         version: 0.8.0
       pnpm:
-        specifier: ^8.7.1
-        version: 8.7.1
+        specifier: ^8.7.4
+        version: 8.7.4
       prettier:
         specifier: ^3.0.3
         version: 3.0.3
@@ -51,8 +51,8 @@ importers:
         specifier: ^7.0.7
         version: 7.0.7
       snyk:
-        specifier: ^1.1212.0
-        version: 1.1212.0
+        specifier: ^1.1213.0
+        version: 1.1213.0
       stylelint:
         specifier: ^15.10.3
         version: 15.10.3
@@ -89,9 +89,6 @@ importers:
 
   packages/build:
     dependencies:
-      defu:
-        specifier: ^6.1.2
-        version: 6.1.2
       esbuild:
         specifier: ^0.19.2
         version: 0.19.2
@@ -101,6 +98,9 @@ importers:
       totalist:
         specifier: ^3.0.1
         version: 3.0.1
+      zod:
+        specifier: ^3.22.2
+        version: 3.22.2
     devDependencies:
       '@size-limit/file':
         specifier: ^8.2.6
@@ -12797,6 +12797,7 @@ packages:
 
   /defu@6.1.2:
     resolution: {integrity: sha512-+uO4+qr7msjNNWKYPHqN/3+Dx3NFkmIzayk2L1MyZQlvgZb/J1A0fo410dpKrN2SnqFjt8n4JL8fDJE0wIgjFQ==}
+    dev: true
 
   /degenerator@5.0.1:
     resolution: {integrity: sha512-TllpMR/t0M5sqCXfj85i4XaAzxmS5tVA16dqvdkMwGmzI+dXLXnw3J+3Vdv7VKw+ThlTMboK6i9rnZ6Nntj5CQ==}
@@ -20275,8 +20276,8 @@ packages:
     resolution: {integrity: sha512-Nc3IT5yHzflTfbjgqWcCPpo7DaKy4FnpB0l/zCAW0Tc7jxAiuqSxHasntB3D7887LSrA93kDJ9IXovxJYxyLCA==}
     engines: {node: '>=4'}
 
-  /pnpm@8.7.1:
-    resolution: {integrity: sha512-Qbt3EhYUaXFS2k4FLQA7r2/eYz/JoDeG680/3UXG0Ga03LPuY4GgdvCLe+zO3M7ZnWG4VI4bAwk7QpJyfr5eqA==}
+  /pnpm@8.7.4:
+    resolution: {integrity: sha512-/bQ5bXp8l7krhm2QXQVGuPjzNC/Z/p0fK4kw8aIrqG0YthTS9akRKGHiWyaHX623lntCriHBZZPqhbXczqSNVg==}
     engines: {node: '>=16.14'}
     hasBin: true
     dev: true
@@ -23219,8 +23220,8 @@ packages:
       - supports-color
     dev: false
 
-  /snyk@1.1212.0:
-    resolution: {integrity: sha512-pB0hZyW7Niq2k6D4RvnX7M+xbrq6Jv/8g48Q1fWwdVVHFJzWpg57d4y+fGhBy1KdK46U78EEKNviweEifk29HA==}
+  /snyk@1.1213.0:
+    resolution: {integrity: sha512-0iWPAAZQEXBT/iRM7VwnbvWDsvU7tLxeQn1jEqYMVzKRvwa4wYC0hfM4oxojotyQH5QyGyVnwq5iAyfl2q8Ycg==}
     engines: {node: '>=12'}
     hasBin: true
     requiresBuild: true
@@ -26540,4 +26541,3 @@ packages:
 
   /zod@3.22.2:
     resolution: {integrity: sha512-wvWkphh5WQsJbVk1tbx1l1Ly4yg+XecD+Mq280uBGt9wa5BKSWf4Mhp6GmrkPixhMxmabYY7RbzlwVP32pbGCg==}
-    dev: true

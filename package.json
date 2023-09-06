@@ -50,12 +50,12 @@
     "envinfo": "^7.10.0",
     "husky": "^8.0.3",
     "nano-staged": "^0.8.0",
-    "pnpm": "^8.7.1",
+    "pnpm": "^8.7.4",
     "prettier": "^3.0.3",
     "prettier-package-json": "^2.8.0",
     "rimraf": "^5.0.1",
     "secretlint": "^7.0.7",
-    "snyk": "^1.1212.0",
+    "snyk": "^1.1213.0",
     "stylelint": "^15.10.3",
     "taze": "^0.11.2",
     "turbo": "^1.10.13",
@@ -87,7 +87,7 @@
       "lint:md"
     ]
   },
-  "packageManager": "pnpm@8.7.1",
+  "packageManager": "pnpm@8.7.4",
   "stackblitz": {
     "startCommand": "nr dev"
   }
