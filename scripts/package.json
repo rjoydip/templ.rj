@@ -21,8 +21,7 @@
     "create:pkg": "node --loader tsx ./create-pkg.ts",
     "eslint": "eslint .",
     "eslint:fix": "eslint . --fix",
-    "lint:md": "node --loader tsx ./lint-md.ts",
-    "third_party:git:update": "node --loader tsx ./third-party-git-update.ts"
+    "lint:md": "node --loader tsx ./lint-md.ts"
   },
   "devDependencies": {
     "@templ/eslint-config": "workspace:^",

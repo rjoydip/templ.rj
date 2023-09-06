@@ -29,7 +29,7 @@
     "test": "turbo run test --filter='./packages/*'",
     "test:ci": "turbo run test:ci --filter='./packages/*'",
     "test:cli": "turbo run --filter=cli test:cli",
-    "third_party:git:update": "pnpm -C scripts third_party:git:update"
+    "update:third_party": "git submodule update --recursive --remote"
   },
   "sideEffects": true,
   "workspaces": [
