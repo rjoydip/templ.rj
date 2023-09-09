@@ -1,7 +1,6 @@
 #!/usr/bin/env tsx
 
 import sade from 'sade'
-import mri from 'mri'
 import { createLogger } from '@templ/logger'
 import { version, name } from '../package.json'
 import { BuildOptionSchema } from './schema'
