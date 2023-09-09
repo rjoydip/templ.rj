@@ -45,7 +45,7 @@
     "yaml-eslint-parser": "^1.2.2"
   },
   "devDependencies": {
-    "eslint": "^8.48.0",
+    "eslint": "^8.49.0",
     "prettier": "^3.0.3",
     "rimraf": "^5.0.1"
   }

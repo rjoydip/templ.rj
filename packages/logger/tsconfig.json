@@ -4,7 +4,7 @@
     "baseUrl": ".",
     "outDir": "dist",
     "paths": {
-      "@templ/utils": ["src/index.ts"]
+      "@templ/logger": ["./src/index.ts"]
     }
   },
   "include": ["src"],

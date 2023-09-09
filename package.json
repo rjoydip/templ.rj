@@ -8,7 +8,7 @@
   "repository": "rjoydip/templ",
   "type": "module",
   "scripts": {
-    "all": "pnpm clean && pnpm deps:fresh && pnpm build && pnpm format && pnpm changelog && pnpm size:limit && pnpm lint && pnpm test:ci && pnpm test:cli",
+    "all": "pnpm clean && pnpm deps:fresh && pnpm build && pnpm format && pnpm changelog && pnpm size:limit && pnpm lint && pnpm test:ci && pnpm test:cli && pnpm third_party:git:update",
     "build": "turbo run build --filter='./packages/*'",
     "docs:build": "turbo run docs:build",
     "coverage:lcov": "pnpm -C scripts coverage:lcov",
@@ -29,7 +29,7 @@
     "test": "turbo run test --filter='./packages/*'",
     "test:ci": "turbo run test:ci --filter='./packages/*'",
     "test:cli": "turbo run --filter=cli test:cli",
-    "third_party:git:update": "pnpm -C scripts third_party:git:update"
+    "third_party:git:update": "git submodule update --recursive --remote"
   },
   "sideEffects": true,
   "workspaces": [
@@ -46,7 +46,7 @@
     "@secretlint/secretlint-rule-preset-recommend": "^7.0.7",
     "@templ/config": "workspace:^",
     "auto-changelog": "^2.4.0",
-    "cspell": "^7.3.2",
+    "cspell": "^7.3.3",
     "envinfo": "^7.10.0",
     "husky": "^8.0.3",
     "nano-staged": "^0.8.0",
@@ -55,9 +55,10 @@
     "prettier-package-json": "^2.8.0",
     "rimraf": "^5.0.1",
     "secretlint": "^7.0.7",
-    "snyk": "^1.1213.0",
+    "snyk": "^1.1215.0",
     "stylelint": "^15.10.3",
     "taze": "^0.11.2",
+    "tsup": "^7.2.0",
     "turbo": "^1.10.13",
     "typescript": "^5.2.2"
   },
@@ -84,7 +85,7 @@
       "eslint --fix"
     ],
     "*.md": [
-      "lint:md"
+      "pnpm -C scripts lint:md"
     ]
   },
   "packageManager": "pnpm@8.7.4",

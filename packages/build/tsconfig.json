@@ -2,8 +2,9 @@
   "extends": "@templ/tsconfig/node.json",
   "compilerOptions": {
     "baseUrl": ".",
+    "outDir": "dist",
     "paths": {
-      "@templ/build": ["src/build-package.ts"]
+      "@templ/build": ["src/index.ts"]
     }
   },
   "include": ["src"],

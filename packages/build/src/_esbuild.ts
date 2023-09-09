@@ -5,6 +5,7 @@ import type { BuildOptions } from 'esbuild'
 import type { NonBuildOptions } from './types'
 
 export default async function esbuild(buildOptions: BuildOptions, nonBuildOptions: NonBuildOptions) {
+  const logger = nonBuildOptions.logger
 
   if (nonBuildOptions.watch) {
     const _context = await context(buildOptions)
@@ -25,10 +26,6 @@ export default async function esbuild(buildOptions: BuildOptions, nonBuildOption
   }
 
   if (nonBuildOptions.watch) {
-    // eslint-disable-next-line no-console
-    console.info('watching...')
-  } else {
-    // eslint-disable-next-line no-console
-    console.info('build succeeded')
+    logger.info('CLI', 'Running in watch mode')
   }
 }

@@ -47,9 +47,9 @@
     "@templ/config": "workspace:^",
     "@templ/eslint-config": "workspace:^",
     "@templ/tsconfig": "workspace:^",
-    "@types/node": "^20.5.9",
-    "@vitest/coverage-v8": "^0.34.3",
-    "eslint": "^8.48.0",
+    "@types/node": "^20.6.0",
+    "@vitest/coverage-v8": "^0.34.4",
+    "eslint": "^8.49.0",
     "rimraf": "^5.0.1",
     "sirv-cli": "^2.0.2",
     "size-limit": "^8.2.6",
@@ -57,12 +57,15 @@
     "tsx": "^3.12.8",
     "typedoc": "^0.25.1",
     "vite-tsconfig-paths": "^4.2.0",
-    "vitest": "^0.34.3"
+    "vitest": "^0.34.4"
   },
   "size-limit": [
     {
       "path": "dist/index.js",
       "limit": "400B"
     }
-  ]
+  ],
+  "dependencies": {
+    "colorette": "^2.0.20"
+  }
 }

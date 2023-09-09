@@ -4,7 +4,7 @@
     "build": {
       "cache": false,
       "output": ["dist"],
-      "dependsOn": ["@templ/utils#build"]
+      "dependsOn": ["@templ/logger#build", "@templ/utils#build"]
     },
     "docs:build": {
       "cache": false,

@@ -1,14 +1,16 @@
 import { describe, expect, test } from 'vitest'
-import { BuildOptionSchema, BuildTypeSchema, FormatSchema, NonBuildOptionSchema } from '../src/schema'
+import { createLogger } from '@templ/logger'
+import { BuildOptionSchema, CompileTypeSchema, DTSPluginSchema, FormatSchema, NonBuildOptionSchema } from '../src/schema'
 
 describe('@templ/build > Schema', () => {
-  describe('buildTypeSchema', () => {
+  const logger = createLogger()
+  describe('CompileTypeSchema', () => {
     test('should validate with valid data', () => {
-      expect(BuildTypeSchema.parse('esbuild')).toBe('esbuild')
-      expect(BuildTypeSchema.parse('rollup')).toBe('rollup')
+      expect(CompileTypeSchema.parse('esbuild')).toBe('esbuild')
+      expect(CompileTypeSchema.parse('rollup')).toBe('rollup')
     })
     test('should validate with invalid data', () => {
-      expect(() => BuildTypeSchema.parse('xyz')).toThrowError()
+      expect(() => CompileTypeSchema.parse('xyz')).toThrowError()
     })
   })
   describe('FormatSchema', () => {
@@ -23,7 +25,9 @@ describe('@templ/build > Schema', () => {
   })
   describe('NonBuildOptionSchema', () => {
     test('should validate with valid options data', () => {
-      expect(NonBuildOptionSchema.parse({})).not.empty
+      expect(NonBuildOptionSchema.parse({
+        logger
+      })).not.empty
     })
     test('should validate with valid default data', () => {
       expect(
@@ -35,22 +39,42 @@ describe('@templ/build > Schema', () => {
           srcDir: 'src',
           type: 'esbuild',
           watch: false,
+          logger
         })
       ).not.empty
     })
   })
   describe('BuildOptionSchema', () => {
     test('should validate with valid options data', () => {
-      expect(BuildOptionSchema.parse({})).not.empty
+      expect(BuildOptionSchema.parse({
+        logger
+      })).not.empty
     })
     test('should validate with valid default data', () => {
       expect(
         BuildOptionSchema.parse({
           format: ['cjs', 'esm', 'iife'],
           minify: true,
+          outDir: 'dist',
+          target: 'esnext',
+          logger
+        })
+      ).not.empty
+    })
+  })
+  describe('DTSPluginSchema', () => {
+    test('should validate with valid options data', () => {
+      expect(DTSPluginSchema.parse({})).not.empty
+    })
+    test('should validate with valid default data', () => {
+      expect(
+        DTSPluginSchema.parse({
+          debug: false,
+          tsconfig: 'tsconfig.json',
           outDir: 'dist'
         })
       ).not.empty
     })
   })
 })
+

@@ -1,54 +1,93 @@
-#!/usr/bin/env tsx
-
-import { join } from 'node:path'
-import mri from 'mri'
+import { join, resolve } from 'node:path'
+import { mkdir, rm } from 'node:fs/promises'
+import { getTsconfig } from 'get-tsconfig'
 import { totalist } from 'totalist'
-import { build } from './_build'
-import type { BuildOptions } from './types'
-import { BuildOptionSchema } from './schema'
+import esbuild from './_esbuild'
+import { dTSPlugin } from './plugin/dts'
+import type { BuildOptions as ESBuildOptions } from 'esbuild'
+import type { BuildOptions, Format, MaybePromise, NonBuildOptions } from './types'
 
-void (async () => {
-  const assets: string[] = []
-  const includes: string[] = []
-  const args = mri(process.argv.slice(2), {
-    default: {
-      clean: true,
-      dts: true,
-      format: 'esm',
-      minify: true,
-      outDir: 'dist',
-      srcDir: 'src',
-      type: 'esbuild',
-      watch: false
-    }
-  })
+export const defineConfig = (
+  options: | BuildOptions | BuildOptions[] | ((
+    overrideOptions: BuildOptions
+  ) => MaybePromise<BuildOptions | BuildOptions[]>)
+) => options
 
-  const options: BuildOptions = BuildOptionSchema.parse({
-    clean: args.clean,
-    dts: args.dts,
-    format: args.format.indexOf(',') !== -1 ? args.format.split(',') : [args.format],
-    minify: args.minify,
-    outDir: args.out,
-    srcDir: args.src,
-    type: args.type,
-    watch: args.watch,
-  })
+export async function build(options: BuildOptions) {
+  const plugins = []
+  const logger = options.logger
 
   await totalist(`./${options.srcDir}`, (rel) => {
     if (rel.endsWith('.ts') || rel.endsWith('.tsx')) {
       if (rel.includes('.test.') || rel.includes('.stories.')) {
         return
       }
-      includes.push(join(options.srcDir, rel))
+      options.include.push(join(options.srcDir, rel))
     }
     if (rel.endsWith('.json')) {
-      assets.push(rel)
+      options.assets.push(rel)
     }
   })
 
-  await build({
-    includes,
-    assets,
-    ...options,
-  })
-})()
+  if (options.clean) {
+    logger.info('CLI', 'Cleaning output folder')
+    await rm(options.outDir, { recursive: true, force: true })
+  }
+  // regenerate them so we can safely write files into those directories without relying on esbuild creating them
+  // in the watch mode esbuild might not create them soon enough for them to be available for other parts of the script
+  await mkdir(options.outDir)
+
+  const tsconfigData = getTsconfig(resolve(options.tsconfig || './'))
+
+  if (options.dts) {
+    plugins.push(dTSPlugin({
+      debug: options.debug,
+      outDir: options.outDir,
+      tsconfig: options.tsconfig
+    }))
+  }
+
+  const target = options.target || tsconfigData.config.compilerOptions.target
+  const outdir = options.outDir || tsconfigData.config.compilerOptions.outDir
+  const outfile = outdir ? '' : options.outFile
+
+  const buildOptions: ESBuildOptions = {
+    bundle: options.bundle,
+    entryPoints: options.include,
+    outdir,
+    outfile,
+    minify: options.minify,
+    plugins,
+    target,
+    splitting: false
+  }
+
+  const nonBuildOptions: NonBuildOptions = {
+    srcDir: options.srcDir,
+    watch: options.watch,
+    assets: options.assets,
+    logger: options.logger
+  }
+
+  await Promise.all([
+    ...options.format.map(async format => {
+      const startTime = Date.now()
+      logger.info(format, 'Build start')
+      const _outDir = options.format.length > 1 ? `${options.outDir}/${format}` : options.outDir
+      await mkdir(_outDir, { recursive: true })
+      if (options.compile === 'esbuild') {
+        await esbuild({
+          ...buildOptions,
+          format: format as Format,
+          outdir: _outDir,
+        }, nonBuildOptions)
+        const timeInMs = Date.now() - startTime
+        logger.success(format, `⚡️ Build success in ${Math.floor(timeInMs)}ms`)
+      } else {
+        // TODO
+        return Promise.resolve()
+      }
+    })
+  ])
+}
+

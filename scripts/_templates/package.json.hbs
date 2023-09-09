@@ -29,9 +29,10 @@
     "*.d.ts"
   ],
   "scripts": {
-    "build": "tsup && pnpm typedoc",
+    "build": "tsup",
     "clean": "rimraf .turbo dist docs coverage",
     "dev": "tsx ./src/index.ts --watch",
+    "docs:build": "pnpm typedoc",
     "eslint": "eslint .",
     "eslint:fix": "eslint . --fix",
     "size:limit": "size-limit",
