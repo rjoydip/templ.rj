@@ -8,7 +8,7 @@
   "repository": "rjoydip/templ",
   "type": "module",
   "scripts": {
-    "all": "pnpm clean && pnpm deps:fresh && pnpm build && pnpm format && pnpm changelog && pnpm size:limit && pnpm lint && pnpm test:ci && pnpm test:cli && pnpm third_party:git:update",
+    "all": "pnpm clean && pnpm deps:fresh && pnpm build && pnpm format && pnpm changelog && pnpm size:limit && pnpm lint && pnpm test:ci && pnpm test:cli && pnpm update:third_party",
     "build": "turbo run build --filter='./packages/*'",
     "docs:build": "turbo run docs:build",
     "coverage:lcov": "pnpm -C scripts coverage:lcov",
@@ -29,7 +29,7 @@
     "test": "turbo run test --filter='./packages/*'",
     "test:ci": "turbo run test:ci --filter='./packages/*'",
     "test:cli": "turbo run --filter=cli test:cli",
-    "third_party:git:update": "git submodule update --recursive --remote"
+    "update:third_party": "git submodule update --recursive --remote"
   },
   "sideEffects": true,
   "workspaces": [
