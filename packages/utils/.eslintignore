@@ -1,6 +1,7 @@
 *.snap
 *.d.ts
-.turbo
+.    "clean": "rimraf .",
+
 coverage
 docs
 dist

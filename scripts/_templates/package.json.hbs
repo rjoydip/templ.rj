@@ -29,17 +29,15 @@
     "*.d.ts"
   ],
   "scripts": {
-    "build": "tsup && pnpm typedoc",
-    "clean": "rimraf .turbo dist docs coverage",
-    "dev": "tsx ./src/index.ts --watch",
-    "eslint": "eslint .",
-    "eslint:fix": "eslint . --fix",
-    "size:limit": "size-limit",
-    "test": "vitest run",
-    "test:ci": "CI=true vitest run",
-    "test:watch": "vitest run --watch",
-    "typedoc": "typedoc src/index.ts",
-    "typedoc:preview": "sirv docs"
+    "build": "wireit",
+    "clean": "wireit",
+    "dev": "wireit",
+    "docs:build": "wireit",
+    "docs:preview": "wireit",
+    "lint": "wireit",
+    "size:limit": "wireit",
+    "test": "wireit",
+    "test:watch": "wireit"
   },
   "devDependencies": {
     "@size-limit/file": "^8.2.6",
@@ -56,9 +54,85 @@
     "tsup": "^7.2.0",
     "typedoc": "^0.24.8",
     "vite-tsconfig-paths": "^4.2.0",
-    "vitest": "^0.34.2"
+    "vitest": "^0.34.2",
+    "wireit": "^0.13.0"
   },
-  "size-limit": []
+  "wireit": {
+    "build": {
+      "command": "tsup",
+      "files": [
+        "src/**/*.ts",
+        "tsup.config.ts",
+        "tsconfig.json"
+      ],
+      "output": [
+        "dist/**"
+      ],
+      "dependencies": []
+    },
+    "clean": {
+      "command": "rimraf .eslintcache dist docs coverage"
+    },
+    "dev": {
+      "command": "tsx ./src/index.ts --watch",
+      "files": [
+        "src/**/*.ts",
+        "tsconfig.json"
+      ]
+    },
+    "docs:build": {
+      "command": "typedoc src/index.ts",
+      "output": [
+        "docs/**"
+      ],
+      "dependencies": [
+        "build"
+      ]
+    },
+    "docs:preview": {
+      "command": "sirv docs",
+      "files": [
+        "src/**"
+      ],
+      "dependencies": [
+        "docs:build"
+      ]
+    },
+    "lint": {
+      "command": "eslint --color --cache --fix --cache-location .eslintcache .",
+      "files": ["src/**/*.ts", ".eslintignore", ".eslintrc"]
+    },
+    "size:limit": {
+      "command": "size-limit",
+      "dependencies": [
+        "build"
+      ]
+    },
+    "test": {
+      "command": "vitest run",
+      "files": [
+        "test/**.test.ts",
+        "vitest.config.ts"
+      ],
+      "dependencies": [
+        "build"
+      ]
+    },
+    "test:watch": {
+      "command": "vitest run --watch",
+      "files": [
+        "test/**.test.ts",
+        "vitest.config.ts"
+      ],
+      "dependencies": [
+        "build"
+      ]
+    }
+  },
+  "size-limit": [{
+    "path": "dist/index.js",
+    "limit": "10KB"
+  }]
 }
 
 {{#expect name}}

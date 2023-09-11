@@ -46,10 +46,6 @@ void (async () => {
         resolve(templatesLocation),
         'tsup.config.ts.hbs',
       )
-      const turboTemplate = await getTemplateData(
-        resolve(templatesLocation),
-        'turbo.json.hbs',
-      )
       const vitestConfigTemplate = await getTemplateData(
         resolve(templatesLocation),
         'vitest.config.ts.hbs',
@@ -88,11 +84,6 @@ void (async () => {
           resolve(outputLocation, name),
           'tsup.config.ts',
           await compile(tsupConfigTemplate)({}),
-        ),
-        await setTemplateData(
-          resolve(outputLocation, name),
-          'turbo.json',
-          await compile(turboTemplate)({}),
         ),
         await setTemplateData(
           resolve(outputLocation, name),

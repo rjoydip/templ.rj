@@ -25,6 +25,7 @@
         "editorconfig.editorconfig",
         "esbenp.prettier-vscode",
         "folke.vscode-monorepo-workspace",
+        "google.wireit",
         "mintlify.document",
         "ms-playwright.playwright",
         "ms-vscode-remote.remote-containers",

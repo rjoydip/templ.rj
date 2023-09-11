@@ -16,7 +16,7 @@ yarn-error.log*
 .DS_Store
 .eslintcache
 .nyc_output
-.turbo
+.wireit
 .pnpm-store
 
 # Folder

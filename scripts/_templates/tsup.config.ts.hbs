@@ -1,3 +1,4 @@
-import { tsupConfig } from '@templ/config'
+import { defineConfig } from 'tsup'
+import { tsupDefaultConfig } from '@templ/config'
 
-export default tsupConfig({})
+export default defineConfig(tsupDefaultConfig)

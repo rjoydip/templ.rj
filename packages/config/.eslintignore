@@ -1,6 +1,6 @@
 *.snap
 *.d.ts
-.turbo
+.wireit
 coverage
 docs
 dist
