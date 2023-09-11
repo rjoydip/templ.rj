@@ -1,40 +1,42 @@
 import { describe, expect, test } from 'vitest'
-import { defaultConfig, tsupConfig } from '../src/tsup'
+import type { Options } from 'tsup'
+import { tsupConfig } from '../src'
 
 describe('@templ/config > tsup', () => {
+  const config = tsupConfig as Options
   test('should return default configuration', () => {
-    expect(tsupConfig()).toEqual(defaultConfig)
+    expect(config).toBeDefined()
   })
   test('should validate all props type and values', () => {
-    expect(defaultConfig).toBeDefined()
+    expect(config).toBeDefined()
     // entry
-    expect(typeof defaultConfig.entry).toBe('object')
-    expect(defaultConfig.entry).toStrictEqual(['src/index.ts'])
+    expect(typeof config.entry).toBe('object')
+    expect(config.entry).toStrictEqual(['./src/index.ts'])
     // splitting
-    expect(typeof defaultConfig.splitting).toBe('boolean')
-    expect(defaultConfig.splitting).toBeFalsy()
+    expect(typeof config.splitting).toBe('boolean')
+    expect(config.splitting).toBeFalsy()
     // sourcemap
-    expect(typeof defaultConfig.sourcemap).toBe('boolean')
-    expect(defaultConfig.sourcemap).toBeFalsy()
+    expect(typeof config.sourcemap).toBe('boolean')
+    expect(config.sourcemap).toBeFalsy()
     // clean
-    expect(typeof defaultConfig.clean).toBe('boolean')
-    expect(defaultConfig.clean).toBeTruthy()
+    expect(typeof config.clean).toBe('boolean')
+    expect(config.clean).toBeTruthy()
     // dts
-    expect(typeof defaultConfig.dts).toBe('boolean')
-    expect(defaultConfig.dts).toBeTruthy()
+    expect(typeof config.dts).toBe('boolean')
+    expect(config.dts).toBeTruthy()
     // target
-    expect(typeof defaultConfig.target).toBe('string')
-    expect(defaultConfig.target).toBe('esnext')
+    expect(typeof config.target).toBe('string')
+    expect(config.target).toBe('esnext')
     // format
-    expect(typeof defaultConfig.format).toBe('object')
-    expect(defaultConfig.format).toStrictEqual(['esm'])
+    expect(typeof config.format).toBe('object')
+    expect(config.format).toStrictEqual(['esm'])
     // platform
-    expect(typeof defaultConfig.platform).toBe('string')
-    expect(defaultConfig.platform).toBe('node')
+    expect(typeof config.platform).toBe('string')
+    expect(config.platform).toBe('node')
   })
 
   test('should validate all object entries', () => {
-    expect(Object.entries(defaultConfig).map((i) => i[0])).toStrictEqual([
+    expect(Object.entries(config).map((i) => i[0])).toStrictEqual([
       'entry',
       'splitting',
       'sourcemap',
@@ -45,18 +47,5 @@ describe('@templ/config > tsup', () => {
       'format',
       'platform',
     ])
-  })
-
-  test('should return default configuration with different entrypoint', () => {
-    expect(
-      tsupConfig(
-        {
-          entryPoints: ['src/index.ts'],
-        },
-        {
-          arrayMerge: 'overwrite',
-        },
-      ),
-    ).toEqual({ ...defaultConfig, entryPoints: ['src/index.ts'] })
   })
 })

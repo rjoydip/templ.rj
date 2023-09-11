@@ -2,7 +2,7 @@ import { join } from 'node:path'
 import { cp, writeFile } from 'node:fs/promises'
 import { build as _build, context } from 'esbuild'
 import type { BuildOptions } from 'esbuild'
-import type { NonBuildOptions } from './types'
+import type { NonBuildOptions } from '@templ/config'
 
 export default async function esbuild(buildOptions: BuildOptions, nonBuildOptions: NonBuildOptions) {
   const logger = nonBuildOptions.logger

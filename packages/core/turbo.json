@@ -1,11 +1,6 @@
 {
   "extends": ["//"],
   "pipeline": {
-    "build": {
-      "cache": false,
-      "output": ["dist"],
-      "dependsOn": ["@templ/config#build", "@templ/utils#build"]
-    },
     "docs:build": {
       "cache": false,
       "output": ["docs"],

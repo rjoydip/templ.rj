@@ -3,8 +3,8 @@ import type { Plugin } from 'esbuild'
 import { getTsconfig } from 'get-tsconfig'
 import ts from 'typescript'
 import { PrettyError } from '@templ/utils'
-import type { DTSPlugin } from 'src/types'
-import { DTSPluginSchema } from 'src/schema'
+import { DTSPluginSchema } from '../schema'
+import type { DTSPlugin } from '../schema'
 
 export const dTSPlugin = (pluginOptions: DTSPlugin = {
   tsconfig: 'tsconfig.json',

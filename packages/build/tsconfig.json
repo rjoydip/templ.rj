@@ -7,6 +7,6 @@
       "@templ/build": ["src/index.ts"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "../config/src/load.ts"],
   "exclude": ["dist", "*.d.ts"]
 }

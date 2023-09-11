@@ -1,10 +1,6 @@
 {
   "extends": ["//"],
   "pipeline": {
-    "build": {
-      "cache": false,
-      "output": ["dist"]
-    },
     "docs:build": {
       "cache": false,
       "output": ["docs"],

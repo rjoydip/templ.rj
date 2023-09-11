@@ -1,0 +1,8 @@
+{
+  "name": "config",
+  "templ": {
+    "build": {
+      "compile": "esbuild"
+    }
+  }
+}

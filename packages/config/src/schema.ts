@@ -8,7 +8,7 @@ const _tsconfig = 'tsconfig.json'
 export const CompileTypeSchema = z.enum(['esbuild', 'rollup'])
 export const FormatSchema = z.enum(['cjs', 'esm', 'iife'])
 
-// Internal premitive schema for reuseable
+// Internal primitive schema for reuseable
 const arrOptDefu = (value: Array<any> = []) => z.array(z.string()).optional().default(value)
 const boolOptDefu = (value: boolean = true) =>  z.boolean().optional().default(value)
 const strOptDefu = (value: string = '') =>  z.string().optional().default(value)
@@ -51,3 +51,17 @@ export const DTSPluginSchema = z.object({
   outDir: strOptDefu(_outDir),
   tsconfig: strOptDefu(_tsconfig),
 })
+
+export const OptionSchema = z.object({
+  build: z.object({}).optional().default({})
+})
+
+export type MaybePromise<T> = T | Promise<T>
+export type Options = z.infer<typeof OptionSchema>
+
+export type CompileType = z.infer<typeof CompileTypeSchema>
+export type Format = z.infer<typeof FormatSchema>
+
+export type NonBuildOptions = z.infer<typeof NonBuildOptionSchema>
+export type BuildOptions = z.infer<typeof BuildOptionSchema>
+export type DTSPlugin = z.infer<typeof DTSPluginSchema>

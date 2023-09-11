@@ -3,8 +3,8 @@
 import sade from 'sade'
 import { createLogger } from '@templ/logger'
 import { version, name } from '../package.json'
-import { BuildOptionSchema } from './schema'
-import type { BuildOptions } from './types'
+import { BuildOptionSchema } from '@templ/config'
+import type { BuildOptions } from '@templ/config'
 import { build } from './'
 
 const prog = sade(name)

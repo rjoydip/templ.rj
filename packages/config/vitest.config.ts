@@ -5,7 +5,7 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 
 export default defineConfig({
   test: {
-    include: ['test/**/*.ts'],
+    include: ['test/**/*.test.ts'],
     coverage: {
       enabled: true,
       provider: 'v8',

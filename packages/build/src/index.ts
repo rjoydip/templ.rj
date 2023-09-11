@@ -5,13 +5,7 @@ import { totalist } from 'totalist'
 import esbuild from './_esbuild'
 import { dTSPlugin } from './plugin/dts'
 import type { BuildOptions as ESBuildOptions } from 'esbuild'
-import type { BuildOptions, Format, MaybePromise, NonBuildOptions } from './types'
-
-export const defineConfig = (
-  options: | BuildOptions | BuildOptions[] | ((
-    overrideOptions: BuildOptions
-  ) => MaybePromise<BuildOptions | BuildOptions[]>)
-) => options
+import type { BuildOptions, Format, NonBuildOptions } from '@templ/config'
 
 export async function build(options: BuildOptions) {
   const plugins = []
