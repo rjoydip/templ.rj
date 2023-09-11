@@ -53,7 +53,7 @@ jobs:
       - name: Install
         run: pnpm i --no-frozen-lockfile
       - name: Test
-        run: pnpm run test:ci
+        run: pnpm run test
       # - name: Codecov
       #   uses: codecov/codecov-action@v3
       #   env:

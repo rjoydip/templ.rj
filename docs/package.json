@@ -15,7 +15,7 @@
     "url": "https://github.com/rjoydip/templ/issues"
   },
   "scripts": {
-    "clean": "rimraf build .turbo",
+    "clean": "rimraf build",
     "docs:build": "vitepress build .",
     "docs:dev": "vitepress dev .",
     "docs:preview": "vitepress preview .",
