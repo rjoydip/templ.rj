@@ -64,7 +64,7 @@ export async function build(options: BuildOptions) {
   }
 
   await Promise.all([
-    ...options.format.map(async format => {
+    ...options.format.map(async (format: string) => {
       const startTime = Date.now()
       logger.info(format, 'Build start')
       const _outDir = options.format.length > 1 ? `${options.outDir}/${format}` : options.outDir

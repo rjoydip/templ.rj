@@ -1,7 +1,7 @@
 const config = {
   build: {
-    compile: 'esbuild'
-  }
+    compile: 'esbuild',
+  },
 }
 
 export default config

@@ -1,7 +1,7 @@
 *.snap
 *.d.ts
-.turbo
-coverage
+.wireit
+wireit
 docs
 dist
 node_modules

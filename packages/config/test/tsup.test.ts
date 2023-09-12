@@ -1,42 +1,37 @@
 import { describe, expect, test } from 'vitest'
-import type { Options } from 'tsup'
-import { tsupConfig } from '../src'
+import { tsupDefaultConfig } from '../src'
 
 describe('@templ/config > tsup', () => {
-  const config = tsupConfig as Options
-  test('should return default configuration', () => {
-    expect(config).toBeDefined()
-  })
   test('should validate all props type and values', () => {
-    expect(config).toBeDefined()
+    expect(tsupDefaultConfig).toBeDefined()
     // entry
-    expect(typeof config.entry).toBe('object')
-    expect(config.entry).toStrictEqual(['./src/index.ts'])
+    expect(typeof tsupDefaultConfig.entry).toBe('object')
+    expect(tsupDefaultConfig.entry).toStrictEqual(['src/index.ts'])
     // splitting
-    expect(typeof config.splitting).toBe('boolean')
-    expect(config.splitting).toBeFalsy()
+    expect(typeof tsupDefaultConfig.splitting).toBe('boolean')
+    expect(tsupDefaultConfig.splitting).toBeFalsy()
     // sourcemap
-    expect(typeof config.sourcemap).toBe('boolean')
-    expect(config.sourcemap).toBeFalsy()
+    expect(typeof tsupDefaultConfig.sourcemap).toBe('boolean')
+    expect(tsupDefaultConfig.sourcemap).toBeFalsy()
     // clean
-    expect(typeof config.clean).toBe('boolean')
-    expect(config.clean).toBeTruthy()
+    expect(typeof tsupDefaultConfig.clean).toBe('boolean')
+    expect(tsupDefaultConfig.clean).toBeTruthy()
     // dts
-    expect(typeof config.dts).toBe('boolean')
-    expect(config.dts).toBeTruthy()
+    expect(typeof tsupDefaultConfig.dts).toBe('boolean')
+    expect(tsupDefaultConfig.dts).toBeTruthy()
     // target
-    expect(typeof config.target).toBe('string')
-    expect(config.target).toBe('esnext')
+    expect(typeof tsupDefaultConfig.target).toBe('string')
+    expect(tsupDefaultConfig.target).toBe('esnext')
     // format
-    expect(typeof config.format).toBe('object')
-    expect(config.format).toStrictEqual(['esm'])
+    expect(typeof tsupDefaultConfig.format).toBe('object')
+    expect(tsupDefaultConfig.format).toStrictEqual(['esm'])
     // platform
-    expect(typeof config.platform).toBe('string')
-    expect(config.platform).toBe('node')
+    expect(typeof tsupDefaultConfig.platform).toBe('string')
+    expect(tsupDefaultConfig.platform).toBe('node')
   })
 
   test('should validate all object entries', () => {
-    expect(Object.entries(config).map((i) => i[0])).toStrictEqual([
+    expect(Object.entries(tsupDefaultConfig).map((i) => i[0])).toStrictEqual([
       'entry',
       'splitting',
       'sourcemap',

@@ -6,8 +6,8 @@ const fixture = (folder: string) => path.join(__dirname, 'fixtures', folder)
 const fixturePath = path.join(__dirname, 'fixtures')
 const defaultData = {
   build: {
-    compile: 'esbuild'
-  }
+    compile: 'esbuild',
+  },
 }
 
 describe('@templ/config > load config', () => {
@@ -18,9 +18,9 @@ describe('@templ/config > load config', () => {
       name: 'config',
       templ: {
         build: {
-          compile: 'esbuild'
-        }
-      }
+          compile: 'esbuild',
+        },
+      },
     })
   })
 

@@ -1,4 +1,4 @@
 import { defineConfig } from 'tsup'
-import { tsupConfig } from './src'
+import { tsupDefaultConfig } from './src'
 
-export default defineConfig(tsupConfig)
+export default defineConfig(tsupDefaultConfig)

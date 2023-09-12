@@ -1,7 +1,19 @@
 import { describe, expect, expectTypeOf, test } from 'vitest'
 import { createLogger } from '@templ/logger'
-import { BuildOptionSchema, CompileTypeSchema, DTSPluginSchema, FormatSchema, NonBuildOptionSchema } from '../src/schema'
-import type { BuildOptions, CompileType, DTSPlugin, Format, NonBuildOptions } from '../src/schema'
+import {
+  BuildOptionSchema,
+  CompileTypeSchema,
+  DTSPluginSchema,
+  FormatSchema,
+  NonBuildOptionSchema,
+} from '../src/schema'
+import type {
+  BuildOptions,
+  CompileType,
+  DTSPlugin,
+  Format,
+  NonBuildOptions,
+} from '../src/schema'
 
 describe('@templ/build > Schema', () => {
   const logger = createLogger()
@@ -26,9 +38,11 @@ describe('@templ/build > Schema', () => {
   })
   describe('NonBuildOptionSchema', () => {
     test('should validate with valid options data', () => {
-      expect(NonBuildOptionSchema.parse({
-        logger
-      })).not.empty
+      expect(
+        NonBuildOptionSchema.parse({
+          logger,
+        }),
+      ).not.empty
     })
     test('should validate with valid default data', () => {
       expect(
@@ -40,16 +54,18 @@ describe('@templ/build > Schema', () => {
           srcDir: 'src',
           type: 'esbuild',
           watch: false,
-          logger
-        })
+          logger,
+        }),
       ).not.empty
     })
   })
   describe('BuildOptionSchema', () => {
     test('should validate with valid options data', () => {
-      expect(BuildOptionSchema.parse({
-        logger
-      })).not.empty
+      expect(
+        BuildOptionSchema.parse({
+          logger,
+        }),
+      ).not.empty
     })
     test('should validate with valid default data', () => {
       expect(
@@ -58,8 +74,8 @@ describe('@templ/build > Schema', () => {
           minify: true,
           outDir: 'dist',
           target: 'esnext',
-          logger
-        })
+          logger,
+        }),
       ).not.empty
     })
   })
@@ -72,8 +88,8 @@ describe('@templ/build > Schema', () => {
         DTSPluginSchema.parse({
           debug: false,
           tsconfig: 'tsconfig.json',
-          outDir: 'dist'
-        })
+          outDir: 'dist',
+        }),
       ).not.empty
     })
   })
@@ -114,4 +130,3 @@ describe('@templ/build > Types', () => {
     }>()
   })
 })
-

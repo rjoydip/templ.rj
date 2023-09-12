@@ -1,7 +1,7 @@
 import type { Options } from 'tsup'
 
-const tsupConfig: Options = {
-  entry: ['./src/index.ts'],
+export const tsupDefaultConfig: Options = {
+  entry: ['src/index.ts'],
   splitting: false,
   sourcemap: false,
   clean: true,
@@ -11,5 +11,3 @@ const tsupConfig: Options = {
   format: ['esm'],
   platform: 'node',
 }
-
-export { tsupConfig }

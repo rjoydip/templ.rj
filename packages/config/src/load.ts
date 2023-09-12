@@ -27,7 +27,7 @@ async function loadJson(filepath: string) {
       throw new Error(
         `Failed to parse ${path.relative(process.cwd(), filepath)}: ${
           error.message
-        }`
+        }`,
       )
     } else {
       throw error
@@ -46,7 +46,7 @@ joycon.addLoader(jsonLoader)
 
 export async function loadTemplConfig(
   cwd: string,
-  configFile?: string
+  configFile?: string,
 ): Promise<{ path?: string; data?: ReturnType<typeof defineConfig> }> {
   const configJoycon = new JoyCon()
   const configPath = await configJoycon.resolve({

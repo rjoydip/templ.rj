@@ -8,33 +8,31 @@
   "repository": "rjoydip/templ",
   "type": "module",
   "scripts": {
-    "all": "pnpm clean && pnpm deps:fresh && pnpm build && pnpm format && pnpm changelog && pnpm size:limit && pnpm lint && pnpm test:ci && pnpm test:cli && pnpm update:third_party",
-    "build": "turbo run build --filter='./packages/*'",
-    "docs:build": "turbo run docs:build",
-    "coverage:lcov": "pnpm -C scripts coverage:lcov",
-    "clean": "rimraf .turbo .pnpm-store coverage && pnpm -r clean",
-    "clean:nm": "pnpm -C scripts clean:nm",
+    "all": "pnpm clean && pnpm deps:fresh && pnpm build && pnpm format && pnpm changelog && pnpm size:limit && pnpm lint && pnpm test && pnpm test:cli && pnpm update:third_party",
+    "build": "pnpm --filter './packages/**' run build",
+    "docs:build": "pnpm run docs:build",
+    "coverage:lcov": "pnpm -C tools/scripts coverage:lcov",
+    "clean": "rimraf .pnpm-store coverage && pnpm -r clean",
+    "clean:nm": "pnpm -C tools/scripts clean:nm",
     "changelog": "auto-changelog -p",
-    "create:pkg": "pnpm -C scripts create:pkg",
+    "create:pkg": "pnpm -C tools/scripts create:pkg",
     "deps:fresh": "taze -r -w -i",
-    "dev": "turbo run dev --filter='./packages/*'",
+    "dev": "pnpm --filter './packages/**' dev",
     "format": "prettier --write --cache .",
     "preinstall": "npx only-allow pnpm",
-    "lint": "turbo run eslint && pnpm lint:spell && pnpm lint:secret && pnpm lint:md",
-    "lint:md": "pnpm -C scripts lint:md",
-    "lint:secret": "secretlint \"**/*\"",
+    "lint": "pnpm --filter './packages/**' lint && pnpm lint:spell && pnpm lint:secret && pnpm lint:md",
+    "lint:md": "pnpm -C tools/scripts lint:md",
+    "lint:secret": "secretlint --secretlintignore .gitignore \"**/*\"",
     "lint:spell": "cspell .",
     "prepare": "husky install",
-    "size:limit": "turbo run size:limit --filter='./packages/*'",
-    "test": "turbo run test --filter='./packages/*'",
-    "test:ci": "turbo run test:ci --filter='./packages/*'",
-    "test:cli": "turbo run --filter=cli test:cli",
+    "size:limit": "pnpm --filter './packages/**' size:limit",
+    "test": "pnpm --filter './packages/**' test",
+    "test:cli": "pnpm --filter './packages/**/cli' test:cli",
+    "system:info": "envinfo",
     "update:third_party": "git submodule update --recursive --remote"
   },
   "sideEffects": true,
   "workspaces": [
-    "docs",
-    "scripts",
     "apps/*",
     "packages/*",
     "third_party/*",
@@ -44,23 +42,18 @@
     "@commitlint/cli": "^17.7.1",
     "@commitlint/config-conventional": "^17.7.0",
     "@secretlint/secretlint-rule-preset-recommend": "^7.0.7",
-    "@templ/config": "workspace:^",
     "auto-changelog": "^2.4.0",
-    "cspell": "^7.3.3",
+    "cspell": "^7.3.5",
     "envinfo": "^7.10.0",
     "husky": "^8.0.3",
     "nano-staged": "^0.8.0",
-    "pnpm": "^8.7.4",
+    "pnpm": "^8.7.5",
     "prettier": "^3.0.3",
-    "prettier-package-json": "^2.8.0",
     "rimraf": "^5.0.1",
     "secretlint": "^7.0.7",
-    "snyk": "^1.1215.0",
+    "snyk": "^1.1216.0",
     "stylelint": "^15.10.3",
-    "taze": "^0.11.2",
-    "tsup": "^7.2.0",
-    "turbo": "^1.10.13",
-    "typescript": "^5.2.2"
+    "taze": "^0.11.2"
   },
   "engines": {
     "node": ">=18",
@@ -85,11 +78,11 @@
       "eslint --fix"
     ],
     "*.md": [
-      "pnpm -C scripts lint:md"
+      "pnpm -C tools/scripts lint:md"
     ]
   },
-  "packageManager": "pnpm@8.7.4",
+  "packageManager": "pnpm@8.7.5",
   "stackblitz": {
-    "startCommand": "nr dev"
+    "startCommand": "pnpm dev"
   }
 }

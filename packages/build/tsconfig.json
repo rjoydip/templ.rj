@@ -4,9 +4,9 @@
     "baseUrl": ".",
     "outDir": "dist",
     "paths": {
-      "@templ/build": ["src/index.ts"]
+      "@templ/logger": ["./src/index.ts"]
     }
   },
-  "include": ["src", "../config/src/load.ts"],
+  "include": ["src"],
   "exclude": ["dist", "*.d.ts"]
 }

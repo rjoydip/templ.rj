@@ -13,6 +13,7 @@ vscode:
     - "editorconfig.editorconfig"
     - "esbenp.prettier-vscode"
     - "folke.vscode-monorepo-workspace"
+    - "google.wireit"
     - "foxundermoon.shell-format"
     - "mintlify.document"
     - "ms-playwright.playwright"

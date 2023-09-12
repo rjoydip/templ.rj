@@ -1,5 +1,6 @@
 import { beforeEach, describe, expect, test, vi } from 'vitest'
-import { createLogger, Logger } from '../src'
+import type { Logger } from '../src'
+import { createLogger } from '../src'
 
 describe('@templ/logger', () => {
   let logger: Logger

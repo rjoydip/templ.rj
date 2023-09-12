@@ -22,6 +22,7 @@ jobs:
 
   pr-title-check:
     runs-on: ubuntu-latest
+    if: github.actor != 'dependabot[bot]'
     steps:
       - uses: thehanimo/pr-title-checker@v1.4.0
         with:

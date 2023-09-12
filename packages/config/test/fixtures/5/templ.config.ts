@@ -1,5 +1,5 @@
 export default {
   build: {
-    compile: 'esbuild'
-  }
+    compile: 'esbuild',
+  },
 }

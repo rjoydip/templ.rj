@@ -9,9 +9,11 @@ export const CompileTypeSchema = z.enum(['esbuild', 'rollup'])
 export const FormatSchema = z.enum(['cjs', 'esm', 'iife'])
 
 // Internal primitive schema for reuseable
-const arrOptDefu = (value: Array<any> = []) => z.array(z.string()).optional().default(value)
-const boolOptDefu = (value: boolean = true) =>  z.boolean().optional().default(value)
-const strOptDefu = (value: string = '') =>  z.string().optional().default(value)
+const arrOptDefu = (value: Array<any> = []) =>
+  z.array(z.string()).optional().default(value)
+const boolOptDefu = (value: boolean = true) =>
+  z.boolean().optional().default(value)
+const strOptDefu = (value: string = '') => z.string().optional().default(value)
 
 export const LoggerSchema = z.object({
   setName: z.function(),
@@ -34,7 +36,7 @@ export const NonBuildOptionSchema = z.object({
   srcDir: z.string().optional().default('src'),
   tsconfig: strOptDefu(_tsconfig),
   watch: boolOptDefu(false),
-  logger: LoggerSchema
+  logger: LoggerSchema,
 })
 
 export const BuildOptionSchema = NonBuildOptionSchema.extend({
@@ -53,7 +55,7 @@ export const DTSPluginSchema = z.object({
 })
 
 export const OptionSchema = z.object({
-  build: z.object({}).optional().default({})
+  build: z.object({}).optional().default({}),
 })
 
 export type MaybePromise<T> = T | Promise<T>
