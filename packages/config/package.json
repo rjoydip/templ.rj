@@ -40,7 +40,7 @@
   },
   "types": "./dist/index.d.ts",
   "devDependencies": {
-    "@size-limit/file": "^8.2.6",
+    "@size-limit/file": "^9.0.0",
     "@templ/eslint-config": "workspace:^",
     "@templ/logger": "workspace:^",
     "@templ/tsconfig": "workspace:^",

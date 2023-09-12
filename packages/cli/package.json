@@ -50,7 +50,7 @@
     "serialize-error": "^11.0.2"
   },
   "devDependencies": {
-    "@size-limit/file": "^8.2.6",
+    "@size-limit/file": "^9.0.0",
     "@templ/config": "workspace:^",
     "@templ/eslint-config": "workspace:^",
     "@templ/tsconfig": "workspace:^",
