@@ -17,10 +17,12 @@
     "*.js"
   ],
   "scripts": {
+    "clean": "wireit",
     "lint": "wireit"
   },
   "peerDependencies": {
     "eslint": "^8.47.0",
+    "rimraf": "^5.0.1",
     "react": "^18.2.0",
     "typescript": "^5.1.6"
   },
@@ -48,6 +50,9 @@
     "wireit": "^0.13.0"
   },
   "wireit": {
+    "clean": {
+      "command": "rimraf .eslintcache .wireit"
+    },
     "lint": {
       "command": "eslint --color --cache --fix --cache-location .eslintcache --config=index.js .",
       "files": [

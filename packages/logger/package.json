@@ -50,7 +50,7 @@
     "sirv-cli": "^2.0.2",
     "size-limit": "^8.2.6",
     "tsup": "^7.2.0",
-    "tsx": "^3.12.8",
+    "tsx": "^3.12.10",
     "typedoc": "^0.25.1",
     "vite-tsconfig-paths": "^4.2.1",
     "vitest": "^0.34.4",
@@ -72,7 +72,7 @@
       ]
     },
     "clean": {
-      "command": "rimraf .eslintcache dist docs coverage"
+      "command": "rimraf .eslintcache .wireit dist docs coverage"
     },
     "dev": {
       "command": "tsx ./src/index.ts --watch",
@@ -134,8 +134,10 @@
       ]
     }
   },
-  "size-limit": [{
-    "path": "dist/index.js",
-    "limit": "10KB"
-  }]
+  "size-limit": [
+    {
+      "path": "dist/index.js",
+      "limit": "10KB"
+    }
+  ]
 }

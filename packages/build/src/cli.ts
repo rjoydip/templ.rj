@@ -1,11 +1,11 @@
 #!/usr/bin/env tsx
 
 import sade from 'sade'
-import { createLogger } from '@templ/logger'
-import { version, name } from '../package.json'
 import { BuildOptionSchema } from '@templ/config'
-import type { BuildOptions } from '@templ/config'
+import { createLogger } from '@templ/logger'
 import { build } from './'
+import { version, name } from '../package.json'
+import type { BuildOptions } from '@templ/config'
 
 const prog = sade(name)
 

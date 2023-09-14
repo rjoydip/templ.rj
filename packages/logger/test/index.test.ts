@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, test, vi } from 'vitest'
-import type { Logger } from '../src'
 import { createLogger } from '../src'
+import type { Logger } from '../src'
 
 describe('@templ/logger', () => {
   let logger: Logger
@@ -9,7 +9,9 @@ describe('@templ/logger', () => {
     logger = createLogger('Test')
   })
 
-  test('index', () => expect(true).toBeTruthy())
+  test('index', () => {
+    expect(logger).toBeDefined()
+  })
 
   // TODO(fix): Getting error for thread
   /*   test('should log info', () => {
