@@ -2,9 +2,9 @@ import type { MaybePromise, Options } from './schema'
 
 export const defineConfig = (
   options:
-  | Options
-  | Options[]
-  | ((overrideOptions: Options) => MaybePromise<Options | Options[]>),
+    | Options
+    | Options[]
+    | ((overrideOptions: Options) => MaybePromise<Options | Options[]>),
 ) => options
 
 export * from './load'
