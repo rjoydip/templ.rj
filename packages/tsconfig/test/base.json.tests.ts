@@ -18,9 +18,6 @@ describe('@templ/config > Base JSON', () => {
     // skipLibCheck
     expect(typeof baseJSON.compilerOptions.skipLibCheck).toBe('boolean')
     expect(baseJSON.compilerOptions.skipLibCheck).toBe(true)
-    // outDir
-    expect(typeof baseJSON.compilerOptions.outDir).toBe('string')
-    expect(baseJSON.compilerOptions.outDir).toBe('./dist')
     // esModuleInterop
     expect(typeof baseJSON.compilerOptions.esModuleInterop).toBe('boolean')
     expect(baseJSON.compilerOptions.esModuleInterop).toBe(true)

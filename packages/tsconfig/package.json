@@ -30,7 +30,7 @@
   },
   "wireit": {
     "clean": {
-      "command": "rimraf .eslintcache dist docs coverage"
+      "command": "rimraf .eslintcache .wireit coverage"
     },
     "test": {
       "command": "vitest run",

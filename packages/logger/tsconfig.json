@@ -1,0 +1,12 @@
+{
+  "extends": "@templ/tsconfig/node.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "dist",
+    "paths": {
+      "@templ/logger": ["./src/index.ts"]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["dist", "*.d.ts"]
+}

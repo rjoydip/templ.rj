@@ -1,0 +1,7 @@
+*.snap
+*.d.ts
+.wireit
+coverage
+docs
+dist
+node_modules

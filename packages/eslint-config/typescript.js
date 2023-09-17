@@ -7,12 +7,16 @@ const tsconfig = process.env.ESLINT_TSCONFIG || 'tsconfig.eslint.json'
 
 module.exports = {
   extends: [
+    'prettier',
     'plugin:import/typescript',
     'plugin:@typescript-eslint/recommended',
   ],
+  plugins: ['prettier'],
   settings: {
     'import/resolver': {
-      node: { extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx', '.d.ts'] },
+      node: {
+        extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx', '.d.ts'],
+      },
     },
   },
   overrides: javascript.overrides.concat(
@@ -29,15 +33,14 @@ module.exports = {
             files: ['*.ts', '*.tsx', '*.mts', '*.cts'],
             // https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/recommended-requiring-type-checking.ts
             rules: {
+              'prettier/prettier': 'error',
+
               'no-throw-literal': 'off',
-              '@typescript-eslint/no-throw-literal': 'error',
               'no-implied-eval': 'off',
-              '@typescript-eslint/no-implied-eval': 'error',
+              'require-await': 'off',
               'dot-notation': 'off',
-              '@typescript-eslint/dot-notation': [
-                'error',
-                { allowKeywords: true },
-              ],
+              '@typescript-eslint/no-throw-literal': 'error',
+              '@typescript-eslint/no-implied-eval': 'error',
               '@typescript-eslint/no-floating-promises': 'error',
               '@typescript-eslint/no-misused-promises': 'error',
               '@typescript-eslint/await-thenable': 'error',
@@ -48,19 +51,71 @@ module.exports = {
               '@typescript-eslint/no-unsafe-call': 'error',
               '@typescript-eslint/no-unsafe-member-access': 'error',
               '@typescript-eslint/no-unsafe-return': 'error',
-              'require-await': 'off',
               '@typescript-eslint/require-await': 'error',
               '@typescript-eslint/restrict-plus-operands': 'error',
               '@typescript-eslint/restrict-template-expressions': 'error',
               '@typescript-eslint/unbound-method': 'error',
+              '@typescript-eslint/dot-notation': [
+                'error',
+                { allowKeywords: true },
+              ],
             },
           },
         ],
   ),
   rules: {
     'import/named': 'off',
+    'no-invalid-this': 'off',
+    'space-before-blocks': 'off',
+    'space-infix-ops': 'off',
+    'comma-spacing': 'off',
+    'no-extra-parens': 'off',
+    'lines-between-class-members': 'off',
+    'no-dupe-class-members': 'off',
+    'no-loss-of-precision': 'off',
+    'keyword-spacing': 'off',
+    'no-redeclare': 'off',
+    'no-use-before-define': 'off',
+    'brace-style': 'off',
+    'object-curly-spacing': 'off',
+    'no-useless-constructor': 'off',
 
-    // TS
+    // typescript-eslint - error
+    '@typescript-eslint/space-infix-ops': 'error',
+    '@typescript-eslint/type-annotation-spacing': ['error', {}],
+    '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
+    '@typescript-eslint/prefer-ts-expect-error': 'error',
+    '@typescript-eslint/object-curly-spacing': ['error', 'always'],
+    '@typescript-eslint/semi': ['error', 'never'],
+    '@typescript-eslint/quotes': ['error', 'single'],
+    '@typescript-eslint/space-before-blocks': ['error', 'always'],
+
+    // typescript-eslint - off
+    'space-before-function-paren': 'off',
+    '@typescript-eslint/brace-style': 'off',
+    '@typescript-eslint/consistent-indexed-object-style': 'off',
+    '@typescript-eslint/naming-convention': 'off',
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/explicit-member-accessibility': 'off',
+    '@typescript-eslint/parameter-properties': 'off',
+    '@typescript-eslint/ban-ts-ignore': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/triple-slash-reference': 'off',
+
+    // typescript-eslint - no
+    '@typescript-eslint/no-require-imports': 'error',
+    '@typescript-eslint/no-invalid-this': 'error',
+    '@typescript-eslint/no-redeclare': 'error',
+    '@typescript-eslint/no-extra-parens': ['error', 'functions'],
+    '@typescript-eslint/no-dupe-class-members': 'error',
+    '@typescript-eslint/no-loss-of-precision': 'error',
+    '@typescript-eslint/no-empty-interface': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-unused-vars': 'off',
+    '@typescript-eslint/no-empty-function': 'off',
+    '@typescript-eslint/no-non-null-assertion': 'off',
+
+    // typescript-eslint - error with props
     '@typescript-eslint/ban-ts-comment': [
       'error',
       { 'ts-ignore': 'allow-with-description' },
@@ -69,17 +124,10 @@ module.exports = {
       'error',
       { multiline: { delimiter: 'none' } },
     ],
-    '@typescript-eslint/type-annotation-spacing': ['error', {}],
     '@typescript-eslint/consistent-type-imports': [
       'error',
       { prefer: 'type-imports', disallowTypeAnnotations: false },
     ],
-    '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
-    '@typescript-eslint/prefer-ts-expect-error': 'error',
-    '@typescript-eslint/no-require-imports': 'error',
-    // Override JS
-    'no-useless-constructor': 'off',
-    indent: 'off',
     '@typescript-eslint/indent': [
       'error',
       2,
@@ -122,28 +170,10 @@ module.exports = {
         offsetTernaryExpressions: true,
       },
     ],
-    'no-invalid-this': 'off',
-    '@typescript-eslint/no-invalid-this': 'error',
-    'no-redeclare': 'off',
-    '@typescript-eslint/no-redeclare': 'error',
-    'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': [
       'error',
       { functions: false, classes: false, variables: true },
     ],
-    'brace-style': 'off',
-    '@typescript-eslint/brace-style': 'off',
-    // 'comma-dangle': 'off',
-    // '@typescript-eslint/comma-dangle': ['error', 'always-multiline'],
-    'object-curly-spacing': 'off',
-    '@typescript-eslint/object-curly-spacing': ['error', 'always'],
-    semi: 'off',
-    '@typescript-eslint/semi': ['error', 'never'],
-    quotes: 'off',
-    '@typescript-eslint/quotes': ['error', 'single'],
-    'space-before-blocks': 'off',
-    '@typescript-eslint/space-before-blocks': ['error', 'always'],
-    'space-before-function-paren': 'off',
     '@typescript-eslint/space-before-function-paren': [
       'error',
       {
@@ -152,45 +182,18 @@ module.exports = {
         asyncArrow: 'always',
       },
     ],
-    'space-infix-ops': 'off',
-    '@typescript-eslint/space-infix-ops': 'error',
-    'keyword-spacing': 'off',
     '@typescript-eslint/keyword-spacing': [
       'error',
       { before: true, after: true },
     ],
-    'comma-spacing': 'off',
     '@typescript-eslint/comma-spacing': [
       'error',
       { before: false, after: true },
     ],
-    'no-extra-parens': 'off',
-    '@typescript-eslint/no-extra-parens': ['error', 'functions'],
-    'no-dupe-class-members': 'off',
-    '@typescript-eslint/no-dupe-class-members': 'error',
-    'no-loss-of-precision': 'off',
-    '@typescript-eslint/no-loss-of-precision': 'error',
-    'lines-between-class-members': 'off',
     '@typescript-eslint/lines-between-class-members': [
       'error',
       'always',
       { exceptAfterSingleLine: true },
     ],
-
-    // off
-    '@typescript-eslint/consistent-indexed-object-style': 'off',
-    '@typescript-eslint/naming-convention': 'off',
-    '@typescript-eslint/explicit-function-return-type': 'off',
-    '@typescript-eslint/explicit-member-accessibility': 'off',
-    '@typescript-eslint/no-explicit-any': 'off',
-    '@typescript-eslint/parameter-properties': 'off',
-    '@typescript-eslint/no-empty-interface': 'off',
-    '@typescript-eslint/ban-ts-ignore': 'off',
-    '@typescript-eslint/no-empty-function': 'off',
-    '@typescript-eslint/no-non-null-assertion': 'off',
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/triple-slash-reference': 'off',
-    // handled by unused-imports/no-unused-imports
-    '@typescript-eslint/no-unused-vars': 'off',
   },
 }
