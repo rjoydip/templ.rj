@@ -1,9 +1,9 @@
 #!/usr/bin/env tsx
 
 import sade from 'sade'
-import { BuildOptionSchema } from '@templ/config'
-import { createLogger } from '@templ/logger'
 import { build } from './'
+import { BuildSchema } from '@templ/config'
+import { createLogger } from '@templ/logger'
 import { version, name } from '../package.json'
 import type { BuildOptions } from '@templ/config'
 
@@ -28,7 +28,7 @@ prog
   .action(async (opts) => {
     const logger = createLogger()
 
-    const options: BuildOptions = await BuildOptionSchema.parseAsync({
+    const options: BuildOptions = await BuildSchema.parseAsync({
       assets: [],
       bundle: opts.bundle,
       clean: opts.clean,

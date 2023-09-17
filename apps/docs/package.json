@@ -22,7 +22,7 @@
     "typedoc:preview": "wireit"
   },
   "devDependencies": {
-    "@types/node": "^20.6.0",
+    "@types/node": "^20.6.2",
     "polka": "^0.5.2",
     "serve-static": "^1.15.0",
     "tempura": "^0.4.0",

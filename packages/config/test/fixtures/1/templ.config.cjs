@@ -1,7 +1,5 @@
-const config = {
+export default {
   build: {
     compile: 'esbuild',
   },
 }
-
-export default config
