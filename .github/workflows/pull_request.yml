@@ -28,4 +28,3 @@ jobs:
         with:
           pass_on_octokit_error: false
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          configuration_path: .github/pr-title-checker-config.json
