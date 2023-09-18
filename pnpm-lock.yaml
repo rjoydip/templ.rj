@@ -546,8 +546,8 @@ importers:
         specifier: ^1.0.0
         version: 1.0.0
       markdownlint:
-        specifier: ^0.30.0
-        version: 0.30.0
+        specifier: ^0.31.1
+        version: 0.31.1
       ora:
         specifier: ^7.0.1
         version: 7.0.1
@@ -5843,8 +5843,8 @@ packages:
     engines: {node: '>=16'}
     dev: true
 
-  /markdownlint@0.30.0:
-    resolution: {integrity: sha512-nInuFvI/rEzanAOArW5490Ez4EYpB5ODqVM0mcDYCPx9DKJWCQqCgejjiCvbSeE7sjbDscVtZmwr665qpF5xGA==}
+  /markdownlint@0.31.1:
+    resolution: {integrity: sha512-CKMR2hgcIBrYlIUccDCOvi966PZ0kJExDrUi1R+oF9PvqQmCrTqjOsgIvf2403OmJ+CWomuzDoylr6KbuMyvHA==}
     engines: {node: '>=16'}
     dependencies:
       markdown-it: 13.0.1
