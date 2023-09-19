@@ -35,7 +35,7 @@
     "docs:build": "wireit",
     "docs:preview": "wireit",
     "lint": "wireit",
-    "size:limit": "wireit",
+    "size": "wireit",
     "test": "wireit",
     "test:watch": "wireit"
   },
@@ -107,7 +107,7 @@
         ".eslintrc"
       ]
     },
-    "size:limit": {
+    "size": {
       "command": "size-limit",
       "dependencies": [
         "build"

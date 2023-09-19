@@ -1,8 +1,7 @@
 import { join } from 'node:path'
 import { readFile, writeFile } from 'node:fs/promises'
-import type { ErrorObject } from 'serialize-error'
-import { serializeError } from 'serialize-error'
 import { z } from 'zod'
+import { logError } from '.'
 
 /**
  * The function `getTemplateData` reads a file from a specified location and returns its contents as a
@@ -35,7 +34,7 @@ export async function getTemplateData(
     })
     return (await readFile(join(location, fileName))).toString()
   } catch (error) {
-    serializeError(new Error(String(error)))
+    logError(new Error(String(error)))
   }
 }
 
@@ -75,6 +74,6 @@ export async function setTemplateData(
     })
     await writeFile(join(location, fileName), data)
   } catch (error) {
-    serializeError(new Error(String(error)))
+    logError(new Error(String(error)))
   }
 }

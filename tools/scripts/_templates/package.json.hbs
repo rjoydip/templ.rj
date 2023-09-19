@@ -35,7 +35,7 @@
     "docs:build": "wireit",
     "docs:preview": "wireit",
     "lint": "wireit",
-    "size:limit": "wireit",
+    "size": "wireit",
     "test": "wireit",
     "test:watch": "wireit"
   },
@@ -102,7 +102,7 @@
       "command": "eslint --color --cache --fix --cache-location .eslintcache .",
       "files": ["src/**/*.ts", ".eslintignore", ".eslintrc"]
     },
-    "size:limit": {
+    "size": {
       "command": "size-limit",
       "dependencies": [
         "build"
