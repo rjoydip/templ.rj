@@ -34,8 +34,8 @@
     "typescript": "^5.1.6"
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^6.7.0",
-    "@typescript-eslint/parser": "^6.7.0",
+    "@typescript-eslint/eslint-plugin": "^6.7.2",
+    "@typescript-eslint/parser": "^6.7.2",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-html": "^7.1.0",
@@ -55,7 +55,7 @@
   "devDependencies": {
     "eslint": "^8.49.0",
     "prettier": "^3.0.3",
-    "wireit": "^0.13.0"
+    "wireit": "^0.14.0"
   },
   "wireit": {
     "clean": {

@@ -45,10 +45,10 @@
     "envinfo": "^7.10.0",
     "husky": "^8.0.3",
     "nano-staged": "^0.8.0",
-    "pnpm": "^8.7.5",
+    "pnpm": "^8.7.6",
     "rimraf": "^5.0.1",
     "secretlint": "^7.0.7",
-    "snyk": "^1.1220.0",
+    "snyk": "^1.1224.0",
     "stylelint": "^15.10.3",
     "taze": "^0.11.2"
   },
@@ -78,7 +78,7 @@
       "pnpm -C tools/scripts lint:md"
     ]
   },
-  "packageManager": "pnpm@8.7.5",
+  "packageManager": "pnpm@8.7.6",
   "stackblitz": {
     "startCommand": "pnpm dev"
   }
