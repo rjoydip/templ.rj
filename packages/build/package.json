@@ -40,15 +40,15 @@
     "lint": "wireit",
     "size:limit": "wireit",
     "test": "wireit",
-    "test:watch": "wireit"
+    "test:watch": "wireit",
+    "test:cli": "tsx ./src/cli.ts"
   },
   "devDependencies": {
     "@size-limit/file": "^9.0.0",
-    "@templ/config": "workspace:^",
     "@templ/eslint-config": "workspace:^",
     "@templ/tsconfig": "workspace:^",
     "@templ/utils": "workspace:^",
-    "@types/node": "^20.6.0",
+    "@types/node": "^20.6.2",
     "@vitest/coverage-v8": "^0.34.4",
     "eslint": "^8.49.0",
     "rimraf": "^5.0.1",
@@ -62,6 +62,7 @@
     "wireit": "^0.14.0"
   },
   "dependencies": {
+    "@templ/config": "workspace:^",
     "@templ/logger": "workspace:^",
     "esbuild": "^0.19.3",
     "get-tsconfig": "^4.7.0",
