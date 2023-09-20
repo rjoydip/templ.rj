@@ -10,19 +10,21 @@ async function main() {
     await rm(`${root}/temp/size`, { recursive: true, force: true })
     await Promise.all([
       ...(await readdir(pkgRoot)).map(async (pkgName) => {
-        const { scripts }: PackageJson = JSON.parse(await readFile(join(pkgRoot, pkgName, 'package.json'), 'utf8'))
+        const { scripts }: PackageJson = JSON.parse(
+          await readFile(join(pkgRoot, pkgName, 'package.json'), 'utf8'),
+        )
         if (scripts.build) {
           await exec('pnpm run build', {
-            cwd: join(pkgRoot, pkgName)
+            cwd: join(pkgRoot, pkgName),
           })
         }
-      })
+      }),
     ])
     await exec('pnpm run size:data', {
-      cwd: resolve(process.cwd())
+      cwd: resolve(process.cwd()),
     })
     const { stdout: sizeReport } = await exec('pnpm run --silent size:report', {
-      cwd: resolve(process.cwd())
+      cwd: resolve(process.cwd()),
     })
     await writeFile(`${root}/size-report.md`, sizeReport)
     const sizeReportContent = await readFile(`${root}/size-report.md`, 'utf8')

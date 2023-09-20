@@ -26,7 +26,7 @@ const defaultTSupConfig: Options = {
 
 const defaultTemplConfig: TemplOptions = {
   build: defaultBuildConfig,
-  tsup: defaultTSupConfig
+  tsup: defaultTSupConfig,
 }
 
 export default defaultTemplConfig

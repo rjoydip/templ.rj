@@ -15,10 +15,10 @@ export const colorize = (type: LOG_TYPE, data: any, onlyImportant = false) => {
     type === 'info'
       ? 'blue'
       : type === 'error'
-        ? 'red'
-        : type === 'warn'
-          ? 'yellow'
-          : 'green'
+      ? 'red'
+      : type === 'warn'
+      ? 'yellow'
+      : 'green'
   return colors[color](data)
 }
 

@@ -66,14 +66,14 @@ for (const preset of presets) {
 }
 
 const results = Object.fromEntries(
-  (await Promise.all(tasks)).map(r => [r.name, r])
+  (await Promise.all(tasks)).map((r) => [r.name, r]),
 )
 
 await mkdir(sizeDir, { recursive: true })
 await writeFile(
   resolve(sizeDir, '_packages.json'),
   JSON.stringify(results),
-  'utf-8'
+  'utf-8',
 )
 
 async function generateBundle(preset: Preset) {
@@ -81,7 +81,7 @@ async function generateBundle(preset: Preset) {
   const id = 'virtual:entry'
   const content = `export ${
     typeof preset.imports === 'string'
-    ? preset.imports
+      ? preset.imports
       : `{ ${preset.imports.join(', ')} }`
   } from '${entry}'`
 

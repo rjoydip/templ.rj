@@ -35,7 +35,7 @@ async function run() {
 
 async function renderBundles() {
   const filterFiles = (files: string[]) =>
-    files.filter(file => !file.startsWith('_'))
+    files.filter((file) => !file.startsWith('_'))
 
   const curr = filterFiles(await readdir(currDir))
   const prev = existsSync(prevDir) ? filterFiles(await readdir(prevDir)) : []
@@ -68,15 +68,15 @@ async function renderBundles() {
 
 async function renderPackages() {
   const curr = (await importJSON<PackageResult>(
-    resolve(currDir, '_packages.json')
+    resolve(currDir, '_packages.json'),
   ))!
   const prev = await importJSON<PackageResult>(
-    resolve(prevDir, '_packages.json')
+    resolve(prevDir, '_packages.json'),
   )
   output += '\n### Packages\n\n'
 
   const data = Object.values(curr)
-    .map(usage => {
+    .map((usage) => {
       const prevUsage = prev?.[usage.name]
       const diffSize = getDiff(usage.size, prevUsage?.size)
       const diffGzipped = getDiff(usage.gzip, prevUsage?.gzip)

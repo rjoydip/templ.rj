@@ -4,12 +4,7 @@ import { mkdir, copyFile, readFile, writeFile } from 'node:fs/promises'
 import { compile } from 'tempura'
 import { z } from 'zod'
 import { createLogger, logError } from '@templ/logger'
-import {
-  COMPLETED,
-  STARTED,
-  pkgRoot
-} from '@templ/utils'
-
+import { COMPLETED, STARTED, pkgRoot } from '@templ/utils'
 
 /**
  * The function `getTemplateData` reads a file from a specified location and returns its contents as a
@@ -86,7 +81,6 @@ async function setTemplateData(
     logError(new Error(String(error)))
   }
 }
-
 
 void (async () => {
   const name = argv.at(2) || 'templP'
