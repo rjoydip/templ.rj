@@ -8,24 +8,24 @@
   "repository": "rjoydip/templ",
   "type": "module",
   "scripts": {
-    "all": "pnpm clean && pnpm deps:fresh && pnpm build && pnpm changelog && pnpm size:generate && pnpm lint && pnpm test && pnpm test:cli && pnpm update:third_party",
+    "all": "pnpm clean && pnpm deps:fresh && pnpm build && pnpm changelog && pnpm lint && pnpm test && pnpm test:cli && pnpm update:third_party",
     "build": "pnpm --filter './packages/**' run build",
     "docs:build": "pnpm -r docs:build",
-    "coverage:lcov": "pnpm -C tools/scripts coverage:lcov",
+    "coverage:lcov": "pnpm -C scripts coverage:lcov",
     "clean": "rimraf .pnpm-store coverage && pnpm -r clean",
-    "clean:nm": "pnpm -C tools/scripts clean:nm",
+    "clean:nm": "pnpm -C scripts clean:nm",
     "changelog": "auto-changelog -p",
-    "create:pkg": "pnpm -C tools/scripts create:pkg",
+    "create:pkg": "pnpm -C scripts create:pkg",
     "deps:fresh": "taze -r -w -i",
     "preinstall": "npx only-allow pnpm",
     "lint": "pnpm --filter './packages/**' lint && pnpm lint:spell && pnpm lint:secret && pnpm lint:md",
-    "lint:md": "pnpm -C tools/scripts lint:md",
+    "lint:md": "pnpm -C scripts lint:md",
     "lint:secret": "secretlint --secretlintignore .gitignore \"**/*\"",
     "lint:spell": "cspell .",
     "prepare": "husky install",
-    "size:data": "pnpm -C tools/scripts size:data",
-    "size:report": "pnpm -C tools/scripts size:report",
-    "size:generate": "pnpm -C tools/scripts size:generate",
+    "size:data": "pnpm -C scripts size:data",
+    "size:report": "pnpm -C scripts size:report",
+    "size:generate": "pnpm -C scripts size:generate",
     "test": "pnpm --filter './packages/**' test",
     "test:cli": "pnpm --filter './packages/**/cli' test:cli",
     "system:info": "envinfo",
@@ -36,7 +36,7 @@
     "apps/*",
     "packages/*",
     "third_party/*",
-    "tools/*"
+    "scripts"
   ],
   "devDependencies": {
     "@commitlint/cli": "^17.7.1",
@@ -47,10 +47,10 @@
     "envinfo": "^7.10.0",
     "husky": "^8.0.3",
     "nano-staged": "^0.8.0",
-    "pnpm": "^8.7.5",
+    "pnpm": "^8.7.6",
     "rimraf": "^5.0.1",
     "secretlint": "^7.0.7",
-    "snyk": "^1.1220.0",
+    "snyk": "^1.1225.0",
     "stylelint": "^15.10.3",
     "taze": "^0.11.2"
   },
@@ -77,10 +77,10 @@
       "eslint --fix"
     ],
     "*.md": [
-      "pnpm -C tools/scripts lint:md"
+      "pnpm -C scripts lint:md"
     ]
   },
-  "packageManager": "pnpm@8.7.5",
+  "packageManager": "pnpm@8.7.6",
   "stackblitz": {
     "startCommand": "pnpm dev"
   }

@@ -3,10 +3,9 @@
 import { existsSync } from 'node:fs'
 import { readdir } from 'node:fs/promises'
 import { resolve } from 'node:path'
-
 import { markdownTable } from 'markdown-table'
 import prettyBytes from 'pretty-bytes'
-import { pkgRoot } from '../utils'
+import { pkgRoot } from '@templ/utils'
 
 interface SizeResult {
   size: number

@@ -1,9 +1,11 @@
-import path from 'node:path'
+import { join } from 'node:path'
+import { cwd } from 'node:process'
 import { describe, expect, test } from 'vitest'
 import { loadPkg, loadTemplConfig } from '../src/load'
 
-const fixture = (folder: string) => path.join(__dirname, 'fixtures', folder)
-const fixturePath = path.join(__dirname, 'fixtures')
+const fixturePath = join(__dirname, 'fixtures')
+const fixture = (folder: string) => join(fixturePath, folder)
+
 const defaultData = {
   build: {
     compile: 'esbuild',

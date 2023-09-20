@@ -2,7 +2,8 @@ import { join, resolve } from 'node:path'
 import { exec } from 'node:child_process'
 import { rm, readdir, readFile, writeFile } from 'node:fs/promises'
 import type { PackageJson } from 'type-fest'
-import { logError, pkgRoot, root } from '../utils'
+import { createLogger, logError } from '@templ/logger'
+import { pkgRoot, root } from '@templ/utils'
 
 async function main() {
   try {
@@ -25,7 +26,7 @@ async function main() {
     })
     await writeFile(`${root}/size-report.md`, sizeReport)
     const sizeReportContent = await readFile(`${root}/size-report.md`, 'utf8')
-    console.log(sizeReportContent)
+    createLogger().log(sizeReportContent)
   } catch (err) {
     logError(err)
   }

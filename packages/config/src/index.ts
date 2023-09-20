@@ -1,12 +1,12 @@
-import type { MaybePromise, Options } from './schema'
+import type { MaybePromise, TemplOptions } from './schema'
 
 export const defineConfig = (
   options:
-    | Options
-    | Options[]
-    | ((overrideOptions: Options) => MaybePromise<Options | Options[]>),
+  | TemplOptions
+  | ((overrideOptions: TemplOptions) => MaybePromise<TemplOptions>),
 ) => options
 
+export * from './get-config'
 export * from './load'
 export * from './tsup'
 export * from './schema'

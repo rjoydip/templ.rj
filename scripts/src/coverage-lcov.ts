@@ -1,16 +1,15 @@
 import { existsSync, statSync } from 'node:fs'
 import { copyFile, mkdir, writeFile } from 'node:fs/promises'
-import { join, normalize, parse, sep } from 'node:path'
+import { join, parse, sep } from 'node:path'
 import { glob } from 'glob'
 import lcovParse from 'lcov-parse'
+import { createLogger } from '@templ/logger'
+import { pkgRoot, root } from '@templ/utils'
 
 const combinedReport: string[] = []
-const packagesDir: string = normalize(
-  join(process.cwd(), '..', '..', 'packages'),
-)
-const coverageDir: string = normalize(
-  join(process.cwd(), '..', '..', 'coverage'),
-)
+const packagesDir: string = pkgRoot
+const coverageDir: string = join(root, 'coverage')
+const logger = createLogger()
 
 /**
  * The function checks if a folder exists at the specified path and creates it if it doesn't exist.
@@ -20,9 +19,9 @@ const coverageDir: string = normalize(
 async function createFolderIfNotExists(folderPath: string): Promise<void> {
   if (!existsSync(folderPath)) {
     await mkdir(folderPath, { recursive: true })
-    console.log(`Folder "${folderPath}" created.`)
+    logger.info(`Folder "${folderPath}" created.`)
   } else {
-    console.log(`Folder "${folderPath}" already exists.`)
+    logger.info(`Folder "${folderPath}" already exists.`)
   }
 }
 
@@ -38,7 +37,7 @@ function isFileEmpty(filePath: string): boolean {
     const stats = statSync(filePath)
     return stats.size === 0
   } catch (error) {
-    console.error('Error checking file:', error)
+    logger.error('Error checking file:', error)
     return false
   }
 }
@@ -97,9 +96,9 @@ async function copyLcovFilesToRootCoverageDir(): Promise<void> {
         `${coverageDir}/${parse(lcovFile).dir.split(sep).at(-2)}.lcov.info`,
       )
     }
-    console.log('Copied lcov.info files to root coverage directory')
+    logger.info('Copied lcov.info files to root coverage directory')
   } catch (error) {
-    console.error('Error copying LCOV files:', error)
+    logger.error('Error copying LCOV files:', error)
   }
 }
 
@@ -118,9 +117,9 @@ async function mergeLcovFiles(): Promise<void> {
       join(coverageDir, 'combined-lcov.info'),
       combinedReport.join('\n'),
     )
-    console.log('Combined LCOV report saved as combined-lcov.info')
+    logger.info('Combined LCOV report saved as combined-lcov.info')
   } catch (error) {
-    console.error('Error merging LCOV files:', error)
+    logger.error('Error merging LCOV files:', error)
   }
 }
 

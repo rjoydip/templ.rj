@@ -3,7 +3,7 @@ import { mkdir, rm } from 'node:fs/promises'
 import { getTsconfig } from 'get-tsconfig'
 import { totalist } from 'totalist'
 import esbuild from './_esbuild'
-import { dTSPlugin } from './plugin/dts'
+import { dTSPlugin } from './plugin/dts.ts'
 import type { BuildOptions as ESBuildOptions } from 'esbuild'
 import type { BuildOptions, Format, NonBuildOptions } from '@templ/config'
 

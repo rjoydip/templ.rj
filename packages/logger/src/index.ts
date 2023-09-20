@@ -3,6 +3,8 @@
 import util from 'util'
 import { parentPort, isMainThread } from 'worker_threads'
 import * as colors from 'colorette'
+import ora from 'ora'
+import { serializeError } from 'serialize-error'
 
 type LOG_TYPE = 'info' | 'success' | 'error' | 'warn'
 
@@ -13,10 +15,10 @@ export const colorize = (type: LOG_TYPE, data: any, onlyImportant = false) => {
     type === 'info'
       ? 'blue'
       : type === 'error'
-      ? 'red'
-      : type === 'warn'
-      ? 'yellow'
-      : 'green'
+        ? 'red'
+        : type === 'warn'
+          ? 'yellow'
+          : 'green'
   return colors[color](data)
 }
 
@@ -69,7 +71,7 @@ export const createLogger = (name?: string) => {
 
     log(
       label: string,
-      type: 'info' | 'success' | 'error' | 'warn',
+      type: 'info' | 'success' | 'error' | 'warn' = 'info',
       ...data: unknown[]
     ) {
       const args = [
@@ -102,4 +104,11 @@ export const createLogger = (name?: string) => {
       }
     },
   }
+}
+
+export function logError(err: any) {
+  const error = new Error(err instanceof Error ? String(err) : err)
+  const serialized = serializeError(error)
+  ora().fail(serialized.message)
+  process.exit(1)
 }

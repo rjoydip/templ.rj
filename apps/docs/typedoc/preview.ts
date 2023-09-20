@@ -3,6 +3,7 @@ import { join } from 'node:path'
 import polka from 'polka'
 import serveStatic from 'serve-static'
 import { compile } from 'tempura'
+import { createLogger } from '@templ/logger'
 
 const { PORT = 3000 } = process.env
 const template = await readFile('index.hbs', 'utf8')
@@ -43,5 +44,5 @@ polka()
     res.end('OK')
   })
   .listen(PORT, () => {
-    console.log(`> Running on localhost:${PORT}`)
+    createLogger().log(`> Running on localhost:${PORT}`)
   })

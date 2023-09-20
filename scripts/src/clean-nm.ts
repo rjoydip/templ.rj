@@ -1,16 +1,17 @@
 import { rmdir } from 'node:fs/promises'
-import { join, normalize } from 'node:path'
 import { glob } from 'glob'
-import { COMPLETED, STARTED, logError } from '../utils'
+import { createLogger, logError } from '@templ/logger'
+import { COMPLETED, STARTED, root } from '@templ/utils'
 
 void (async () => {
+  const logger = createLogger()
   const cleanNMTxt = 'Clean node_modules directories and re-install packages'
   try {
-    console.log(`[${STARTED}]: ${cleanNMTxt}`)
-    await Promise.allSettled([
+    logger.info(`[${STARTED}]: ${cleanNMTxt}`)
+    await Promise.all([
       ...(
         await glob('**/node_modules', {
-          cwd: normalize(join(process.cwd(), '..', '..')),
+          cwd: root,
           absolute: true,
         })
       )
@@ -21,7 +22,7 @@ void (async () => {
           })
         }),
     ])
-    console.log(`[${COMPLETED}]: ${cleanNMTxt}`)
+    logger.info(`[${COMPLETED}]: ${cleanNMTxt}`)
   } catch (error) {
     logError(error)
   }

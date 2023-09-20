@@ -1,0 +1,164 @@
+{
+  "private": true,
+  "name": "@templ/scripts",
+  "version": "0.0.0",
+  "description": "TEMPL root scripts",
+  "license": "MIT",
+  "homepage": "https://github.com/rjoydip/templ/tree/main/scripts#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rjoydip/templ.git",
+    "directory": "scripts"
+  },
+  "bugs": {
+    "url": "https://github.com/rjoydip/templ/issues"
+  },
+  "type": "module",
+  "scripts": {
+    "clean:nm": "wireit",
+    "coverage:lcov": "wireit",
+    "create:pkg": "wireit",
+    "eslint": "eslint .",
+    "eslint:fix": "eslint . --fix",
+    "lint:md": "wireit",
+    "size:data": "wireit",
+    "size:generate": "wireit",
+    "size:report": "wireit"
+  },
+  "devDependencies": {
+    "@templ/eslint-config": "workspace:^",
+    "@templ/tsconfig": "workspace:^",
+    "@types/lcov-parse": "^1.0.0",
+    "@types/node": "^20.6.3",
+    "eslint": "^8.49.0",
+    "glob": "^10.3.4",
+    "lcov-parse": "^1.0.0",
+    "markdownlint": "^0.30.0",
+    "ora": "^7.0.1",
+    "rimraf": "^5.0.1",
+    "serialize-error": "^11.0.2",
+    "simple-git": "^3.19.1",
+    "tempura": "^0.4.0",
+    "tsx": "^3.12.10",
+    "wireit": "^0.14.0",
+    "zod": "^3.22.2"
+  },
+  "dependencies": {
+    "@templ/logger": "workspace:^",
+    "@templ/utils": "workspace:^",
+    "fast-glob": "^3.3.1",
+    "markdown-table": "^3.0.3",
+    "pretty-bytes": "^6.1.1",
+    "read-pkg": "^8.1.0",
+    "rollup": "^3.29.2",
+    "terser": "^5.19.4",
+    "totalist": "^3.0.1",
+    "type-fest": "^4.3.1"
+  },
+  "wireit": {
+    "clean:nm": {
+      "command": "node --loader tsx ./src/clean-nm.ts",
+      "files": [
+        "src/clean-nm.ts"
+      ],
+      "dependencies": [
+        {
+          "script": "../packages/logger:build",
+          "cascade": false
+        },
+        {
+          "script": "../packages/utils:build",
+          "cascade": false
+        }
+      ]
+    },
+    "coverage:lcov": {
+      "command": "node --loader tsx ./src/coverage-lcov.ts",
+      "files": [
+        "src/coverage-lcov.ts"
+      ],
+      "dependencies": [
+        {
+          "script": "../packages/logger:build",
+          "cascade": false
+        },
+        {
+          "script": "../packages/utils:build",
+          "cascade": false
+        }
+      ]
+    },
+    "create:pkg": {
+      "command": "node --loader tsx ./src/create-pkg.ts",
+      "files": [
+        "src/create-pkg.ts"
+      ],
+      "dependencies": [
+        {
+          "script": "../packages/logger:build",
+          "cascade": false
+        },
+        {
+          "script": "../packages/utils:build",
+          "cascade": false
+        }
+      ]
+    },
+    "lint:md": {
+      "command": "node --loader tsx ./src/lint-md.ts",
+      "files": [
+        "src/lint-md.ts"
+      ],
+      "dependencies": [
+        {
+          "script": "../packages/logger:build",
+          "cascade": false
+        }
+      ]
+    },
+    "size:data": {
+      "command": "node --loader tsx ./src/size-data.ts",
+      "files": [
+        "src/size-data.ts"
+      ],
+      "dependencies": [
+        {
+          "script": "../packages/utils:build",
+          "cascade": false
+        }
+      ]
+    },
+    "size:generate": {
+      "command": "node --loader tsx ./src/size-generate.ts",
+      "files": [
+        "src/size-generate.ts"
+      ],
+      "dependencies": [
+        {
+          "script": "../packages/logger:build",
+          "cascade": false
+        },
+        {
+          "script": "../packages/utils:build",
+          "cascade": false
+        }
+      ]
+    },
+    "size:report": {
+      "command": "node --loader tsx ./src/size-report.ts",
+      "files": [
+        "src/size-report.ts"
+      ],
+      "dependencies": [
+        {
+          "script": "../packages/logger:build",
+          "cascade": false
+        },
+        {
+          "script": "../packages/utils:build",
+          "cascade": false
+        }
+      ]
+    }
+  }
+}

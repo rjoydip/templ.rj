@@ -1,7 +1,15 @@
+import { argv } from 'node:process'
 import { join } from 'node:path'
-import { readFile, writeFile } from 'node:fs/promises'
+import { mkdir, copyFile, readFile, writeFile } from 'node:fs/promises'
+import { compile } from 'tempura'
 import { z } from 'zod'
-import { logError } from '.'
+import { createLogger, logError } from '@templ/logger'
+import {
+  COMPLETED,
+  STARTED,
+  pkgRoot
+} from '@templ/utils'
+
 
 /**
  * The function `getTemplateData` reads a file from a specified location and returns its contents as a
@@ -18,7 +26,7 @@ import { logError } from '.'
  * there are any errors in parsing the `result` object, the function will reject the promise and return
  * the error.
  */
-export async function getTemplateData(
+async function getTemplateData(
   location: string,
   fileName: string,
 ): Promise<string> {
@@ -35,6 +43,7 @@ export async function getTemplateData(
     return (await readFile(join(location, fileName))).toString()
   } catch (error) {
     logError(new Error(String(error)))
+    return ''
   }
 }
 
@@ -55,7 +64,7 @@ export async function getTemplateData(
  * `fs.outputFile` and return a promise that resolves when the file is written. If the parsing fails,
  * it will return a rejected promise with the error from the parsing result.
  */
-export async function setTemplateData(
+async function setTemplateData(
   location: string,
   fileName: string,
   data: string,
@@ -77,3 +86,87 @@ export async function setTemplateData(
     logError(new Error(String(error)))
   }
 }
+
+
+void (async () => {
+  const name = argv.at(2) || 'templP'
+  const logger = createLogger()
+  try {
+    const result = z.object({
+      name: z.string(),
+    })
+    if (result) {
+      logger.success(`[${STARTED}]: ${name} package generate`)
+      const templatesLocation = join(process.cwd(), '_templates')
+      const outputLocation = pkgRoot
+
+      const indexTestTSTemplate = await getTemplateData(
+        join(templatesLocation, 'test'),
+        'index.test.ts.hbs',
+      )
+      const pkgTemplate = await getTemplateData(
+        join(templatesLocation),
+        'package.json.hbs',
+      )
+      const mdTemplate = await getTemplateData(
+        join(templatesLocation),
+        'README.md.hbs',
+      )
+      const tsconfigTemplate = await getTemplateData(
+        join(templatesLocation),
+        'tsconfig.json.hbs',
+      )
+
+      Promise.allSettled([
+        await mkdir(join(outputLocation, name)),
+        await mkdir(join(outputLocation, name, 'src')),
+        await mkdir(join(outputLocation, name, 'test')),
+        await copyFile(
+          join(templatesLocation, 'src', 'index.ts'),
+          join(outputLocation, name, 'src', 'index.ts'),
+        ),
+        await copyFile(
+          join(templatesLocation, '.eslintignore'),
+          join(outputLocation, name, '.eslintignore'),
+        ),
+        await copyFile(
+          join(templatesLocation, '.eslintrc'),
+          join(outputLocation, name, '.eslintrc'),
+        ),
+        await setTemplateData(
+          join(outputLocation, name, 'test'),
+          'index.test.ts',
+          await compile(indexTestTSTemplate)({ name }),
+        ),
+        await setTemplateData(
+          join(outputLocation, name),
+          'package.json',
+          await compile(pkgTemplate)({ name }),
+        ),
+        await setTemplateData(
+          join(outputLocation, name),
+          'README.md',
+          await compile(mdTemplate)({ name }),
+        ),
+        await setTemplateData(
+          join(outputLocation, name),
+          'tsconfig.json',
+          await compile(tsconfigTemplate)({ name }),
+        ),
+        await copyFile(
+          join(templatesLocation, 'tsup.config.ts'),
+          join(outputLocation, name, 'tsup.config.ts'),
+        ),
+        await copyFile(
+          join(templatesLocation, 'vitest.config.ts'),
+          join(outputLocation, name, 'vitest.config.ts'),
+        ),
+      ])
+      logger.success(`[${COMPLETED}]: ${name} package generate`)
+    } else {
+      throw Error('Type validation failed')
+    }
+  } catch (error) {
+    logError(error)
+  }
+})()

@@ -1,11 +1,11 @@
 import { describe, expect, expectTypeOf, test } from 'vitest'
 import { createLogger } from '@templ/logger'
 import {
-  BuildOptionSchema,
+  BuildSchema,
   CompileTypeSchema,
   DTSPluginSchema,
   FormatSchema,
-  NonBuildOptionSchema,
+  NonBuildSchema,
 } from '../src/schema'
 import type {
   BuildOptions,
@@ -39,14 +39,14 @@ describe('@templ/build > Schema', () => {
   describe('NonBuildOptionSchema', () => {
     test('should validate with valid options data', () => {
       expect(
-        NonBuildOptionSchema.parse({
+        NonBuildSchema.parse({
           logger,
         }),
       ).not.empty
     })
     test('should validate with valid default data', () => {
       expect(
-        NonBuildOptionSchema.parse({
+        NonBuildSchema.parse({
           clean: true,
           dts: true,
           excludes: [],
@@ -62,14 +62,14 @@ describe('@templ/build > Schema', () => {
   describe('BuildOptionSchema', () => {
     test('should validate with valid options data', () => {
       expect(
-        BuildOptionSchema.parse({
+        BuildSchema.parse({
           logger,
         }),
       ).not.empty
     })
     test('should validate with valid default data', () => {
       expect(
-        BuildOptionSchema.parse({
+        BuildSchema.parse({
           format: ['cjs', 'esm', 'iife'],
           minify: true,
           outDir: 'dist',

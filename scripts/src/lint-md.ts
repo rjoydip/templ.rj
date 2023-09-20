@@ -1,3 +1,4 @@
+import { createLogger } from '@templ/logger'
 import { globSync } from 'glob'
 import markdownlint from 'markdownlint'
 
@@ -47,14 +48,15 @@ markdownlint(
     config: config,
   },
   function (err, result) {
+    const logger = createLogger()
     if (err) {
-      console.error(err)
+      logger.error(String(err))
       process.exit(1)
     }
 
     const resultString = result?.toString()
     if (resultString) {
-      console.error(resultString)
+      logger.error(resultString)
       process.exit(1)
     }
   },

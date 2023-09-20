@@ -1,10 +1,10 @@
 import sade from 'sade'
-import { serializeError } from 'serialize-error'
+import { createLogger, logError } from '@templ/logger'
 
 /* The code `process.on('unhandledRejection', (reason, _) => { console.error(reason) process.exit(1)
 })` sets up an event listener for unhandled promise rejections. */
 process.on('unhandledRejection', (reason, _) => {
-  console.error(reason)
+  logError(reason)
   process.exit(1)
 })
 
@@ -22,11 +22,9 @@ async function main() {
     .example('init')
     .action(async (opts) => {
       try {
-        console.log(opts)
+        createLogger().log(opts)
       } catch (err) {
-        const error = new Error(String(err))
-        const serialized = serializeError(error)
-        console.error(serialized.message)
+        logError(err)
       }
     })
 

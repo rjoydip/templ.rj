@@ -7,7 +7,7 @@ import { brotliCompress, gzip } from 'node:zlib'
 import { rollup } from 'rollup'
 import { minify } from 'terser'
 
-import { pkgRoot, root } from '../utils'
+import { pkgRoot, root } from '@templ/utils'
 
 const gzipAsync = promisify(gzip)
 const brotliAsync = promisify(brotliCompress)

@@ -25,7 +25,7 @@ export const LoggerSchema = z.object({
 })
 
 // Schemas
-export const NonBuildOptionSchema = z.object({
+export const NonBuildSchema = z.object({
   assets: arrOptDefu(),
   clean: boolOptDefu(true),
   compile: CompileTypeSchema.optional().default('esbuild'),
@@ -39,7 +39,7 @@ export const NonBuildOptionSchema = z.object({
   logger: LoggerSchema,
 })
 
-export const BuildOptionSchema = NonBuildOptionSchema.extend({
+export const BuildSchema = NonBuildSchema.extend({
   bundle: boolOptDefu(true),
   format: z.array(FormatSchema).optional().default(['cjs']),
   minify: boolOptDefu(true),
@@ -54,16 +54,18 @@ export const DTSPluginSchema = z.object({
   tsconfig: strOptDefu(_tsconfig),
 })
 
-export const OptionSchema = z.object({
-  build: z.object({}).optional().default({}),
+export const TemplSchema = z.object({
+  build: BuildSchema,
+  logger: LoggerSchema,
+  tsup: z.object({}),
 })
 
 export type MaybePromise<T> = T | Promise<T>
-export type Options = z.infer<typeof OptionSchema>
+export type TemplOptions = z.infer<typeof TemplSchema>
 
 export type CompileType = z.infer<typeof CompileTypeSchema>
 export type Format = z.infer<typeof FormatSchema>
 
-export type NonBuildOptions = z.infer<typeof NonBuildOptionSchema>
-export type BuildOptions = z.infer<typeof BuildOptionSchema>
+export type NonBuildOptions = z.infer<typeof NonBuildSchema>
+export type BuildOptions = z.infer<typeof BuildSchema>
 export type DTSPlugin = z.infer<typeof DTSPluginSchema>
