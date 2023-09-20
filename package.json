@@ -8,7 +8,7 @@
   "repository": "rjoydip/templ",
   "type": "module",
   "scripts": {
-    "all": "pnpm clean && pnpm deps:fresh && pnpm build && pnpm changelog && pnpm lint && pnpm test && pnpm test:cli && pnpm update:third_party",
+    "all": "pnpm clean && pnpm deps:fresh && pnpm build && pnpm changelog && pnpm size && pnpm lint && pnpm test && pnpm test:cli && pnpm update:third_party",
     "build": "pnpm --filter './packages/**' run build",
     "docs:build": "pnpm -r docs:build",
     "coverage:lcov": "pnpm -C scripts coverage:lcov",
@@ -23,6 +23,7 @@
     "lint:secret": "secretlint --secretlintignore .gitignore \"**/*\"",
     "lint:spell": "cspell .",
     "prepare": "husky install",
+    "size": "pnpm --filter './packages/**' run size",
     "size:data": "pnpm -C scripts size:data",
     "size:report": "pnpm -C scripts size:report",
     "size:generate": "pnpm -C scripts size:generate",
