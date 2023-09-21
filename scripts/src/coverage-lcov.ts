@@ -1,7 +1,7 @@
 import { existsSync, statSync } from 'node:fs'
 import { copyFile, mkdir, writeFile } from 'node:fs/promises'
 import { join, parse, sep } from 'node:path'
-import { glob } from 'glob'
+import fg from 'fast-glob'
 import lcovParse from 'lcov-parse'
 import { createLogger } from '@templ/logger'
 import { pkgRoot, root } from '@templ/utils'
@@ -76,7 +76,7 @@ function processFile(file: string): Promise<void> {
  * to exclude any files that are empty.
  */
 async function getLcovFiles(): Promise<string[]> {
-  const files: string[] = await glob('**/coverage/lcov.info', {
+  const files: string[] = await fg.async('**/coverage/lcov.info', {
     cwd: packagesDir,
     absolute: true,
   })

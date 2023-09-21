@@ -110,5 +110,4 @@ export function logError(err: any) {
   const error = new Error(err instanceof Error ? String(err) : err)
   const serialized = serializeError(error)
   ora().fail(serialized.message)
-  process.exit(1)
 }

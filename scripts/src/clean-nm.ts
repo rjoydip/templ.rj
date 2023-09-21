@@ -1,5 +1,5 @@
 import { rmdir } from 'node:fs/promises'
-import { glob } from 'glob'
+import fg from 'fast-glob'
 import { createLogger, logError } from '@templ/logger'
 import { COMPLETED, STARTED, root } from '@templ/utils'
 
@@ -10,7 +10,7 @@ void (async () => {
     logger.info(`[${STARTED}]: ${cleanNMTxt}`)
     await Promise.all([
       ...(
-        await glob('**/node_modules', {
+        await fg.async('**/node_modules', {
           cwd: root,
           absolute: true,
         })

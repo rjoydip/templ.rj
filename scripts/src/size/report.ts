@@ -5,7 +5,9 @@ import { readdir } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { markdownTable } from 'markdown-table'
 import prettyBytes from 'pretty-bytes'
-import { pkgRoot } from '@templ/utils'
+import { root } from '@templ/utils'
+import { pathToFileURL } from 'node:url'
+import { platform } from 'node:os'
 
 interface SizeResult {
   size: number
@@ -19,17 +21,14 @@ interface BundleResult extends SizeResult {
 
 type PackageResult = Record<string, SizeResult & { name: string }>
 
-const currDir = resolve(pkgRoot, 'temp/size')
-const prevDir = resolve(pkgRoot, 'temp/size-prev')
-let output = '## Size Report\n\n'
+const currDir = resolve(root, 'temp/size')
+const prevDir = resolve(root, 'temp/size-prev')
+let output = '# Size Report\n\n'
 const sizeHeaders = ['Size', 'Gzip', 'Brotli']
-
-run()
 
 async function run() {
   await renderBundles()
   await renderPackages()
-
   process.stdout.write(output)
 }
 
@@ -61,19 +60,19 @@ async function renderBundles() {
       ])
   }
 
-  output += '### Bundles\n\n'
+  output += '## Bundles\n\n'
   output += markdownTable([['Entry', ...sizeHeaders], ...rows])
-  output += '\n\n'
+  output += '\n'
 }
 
 async function renderPackages() {
   const curr = (await importJSON<PackageResult>(
     resolve(currDir, '_packages.json'),
-  ))!
+  ))
   const prev = await importJSON<PackageResult>(
     resolve(prevDir, '_packages.json'),
   )
-  output += '\n### Packages\n\n'
+  output += '\n## Packages\n\n'
 
   const data = Object.values(curr)
     .map((usage) => {
@@ -96,7 +95,7 @@ async function renderPackages() {
 
 async function importJSON<T>(path: string): Promise<T | undefined> {
   if (!existsSync(path)) return undefined
-  return (await import(path, { assert: { type: 'json' } })).default
+  return (await import(platform() === 'win32' ? pathToFileURL(path).href : path, { assert: { type: 'json' } })).default
 }
 
 function getDiff(curr: number, prev?: number) {
@@ -106,3 +105,5 @@ function getDiff(curr: number, prev?: number) {
   const sign = diff > 0 ? '+' : ''
   return ` (**${sign}${prettyBytes(diff)}**)`
 }
+
+run()

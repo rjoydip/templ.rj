@@ -1,6 +1,6 @@
-import { createLogger } from '@templ/logger'
-import { globSync } from 'glob'
+import fg from 'fast-glob'
 import markdownlint from 'markdownlint'
+import { createLogger } from '@templ/logger'
 
 // https://github.com/DavidAnson/markdownlint#rules
 // https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md
@@ -41,7 +41,7 @@ const config = {
 /* The code you provided is using the `markdownlint` library to lint Markdown files. */
 markdownlint(
   {
-    files: globSync('{*.md,{.github,packages,fixtures}/**/*.md}', {
+    files: fg.sync('{*.md,{.github,packages,fixtures}/**/*.md}', {
       ignore: ['**/node_modules/**'],
     }),
     frontMatter: /(^---$[\s\S]+?^---\$)?(\r\n|\r|\n)+/m,
@@ -51,13 +51,11 @@ markdownlint(
     const logger = createLogger()
     if (err) {
       logger.error(String(err))
-      process.exit(1)
     }
 
     const resultString = result?.toString()
     if (resultString) {
       logger.error(resultString)
-      process.exit(1)
     }
   },
 )

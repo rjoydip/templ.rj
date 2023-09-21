@@ -4,6 +4,10 @@ on:
   pull_request:
     types: [opened, ready_for_review, synchronize]
 
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   triage:
     permissions:
@@ -27,3 +31,67 @@ jobs:
         with:
           pass_on_octokit_error: false
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  export-size:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: antfu/export-size-action@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          paths: package/build,package/cli,package/config,package/core,package/logger,package/utils
+
+  size-report:
+    name: Size Report
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        id: pnpm-install
+      - name: Use Node.js LTS
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Download Previous Size Data
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: size-report.yml
+          name: size-data
+          path: temp/size-prev
+          if_no_artifact_found: warn
+
+      - run: pnpm run size:generate
+
+      - name: Upload Size Data
+        uses: actions/upload-artifact@v3
+        with:
+          name: size-data
+          path: temp/size
+
+      - name: Read Size Report
+        id: size-report
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: ./size-report.md
+
+      - name: Create commit comment
+        uses: peter-evans/commit-comment@v2
+        with:
+          body: ${{ steps.size-report.outputs.content }}

@@ -6,13 +6,13 @@ import { promisify } from 'node:util'
 import { brotliCompress, gzip } from 'node:zlib'
 import { rollup } from 'rollup'
 import { minify } from 'terser'
-
 import { pkgRoot, root } from '@templ/utils'
 
 const gzipAsync = promisify(gzip)
 const brotliAsync = promisify(brotliCompress)
 
-const sizeDir = resolve(root, 'temp/size')
+const currDir = resolve(root, 'temp/size')
+const prevDir = resolve(root, 'temp/size-prev')
 
 interface Preset {
   name: string
@@ -22,7 +22,7 @@ interface Preset {
 }
 
 const presets: Preset[] = [
-  /* {
+  {
     name: 'build',
     imports: '*',
     pkg: resolve(pkgRoot, 'build'),
@@ -51,13 +51,13 @@ const presets: Preset[] = [
     imports: '*',
     pkg: resolve(pkgRoot, 'logger'),
     entry: 'dist/index.js',
-  }, */
-  {
+  },
+  /* {
     name: 'utils',
     imports: '*',
     pkg: resolve(pkgRoot, 'utils'),
     entry: 'dist/index.js',
-  },
+  }, */
 ]
 
 const tasks: ReturnType<typeof generateBundle>[] = []
@@ -69,9 +69,10 @@ const results = Object.fromEntries(
   (await Promise.all(tasks)).map((r) => [r.name, r]),
 )
 
-await mkdir(sizeDir, { recursive: true })
+await mkdir(currDir, { recursive: true })
+await mkdir(prevDir, { recursive: true })
 await writeFile(
-  resolve(sizeDir, '_packages.json'),
+  resolve(currDir, '_packages.json'),
   JSON.stringify(results),
   'utf-8',
 )
@@ -100,7 +101,7 @@ async function generateBundle(preset: Preset) {
         },
       },
     ],
-    logLevel: 'debug',
+    logLevel: 'silent',
   })
 
   const generated = await result.generate({

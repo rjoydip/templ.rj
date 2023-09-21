@@ -1,5 +1,14 @@
-import { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { basename } from 'node:path'
+import escalade from 'escalade'
 
-export const root = resolve(fileURLToPath(import.meta.url), '../../')
-export const pkgRoot = resolve(root, 'packages')
+export const root = await escalade(fileURLToPath(import.meta.url), (dir) => {
+  if (basename(dir) === 'templ') {
+    return dir
+  }
+}) || ''
+export const pkgRoot = await escalade(fileURLToPath(import.meta.url), (dir) => {
+  if (basename(dir) === 'packages') {
+    return dir
+  }
+}) || ''
