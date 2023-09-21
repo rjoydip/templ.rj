@@ -31,7 +31,7 @@
     "glob": "^10.3.4",
     "isomorphic-git": "^1.24.5",
     "lcov-parse": "^1.0.0",
-    "markdownlint": "^0.30.0",
+    "markdownlint": "^0.31.1",
     "ora": "^7.0.1",
     "rimraf": "^5.0.1",
     "serialize-error": "^11.0.2",
