@@ -32,10 +32,13 @@ jobs:
           pass_on_octokit_error: false
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  export-size:
+  size-export:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@master
+      - uses: ./.github/actions/setup-node
+      - name: Install
+        run: pnpm i --no-frozen-lockfile
       - uses: antfu/export-size-action@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -72,7 +75,6 @@ jobs:
       - name: Download Previous Size Data
         uses: dawidd6/action-download-artifact@v2
         with:
-          workflow: size-report.yml
           name: size-data
           path: temp/size-prev
           if_no_artifact_found: warn
