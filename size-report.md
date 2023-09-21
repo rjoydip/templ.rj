@@ -2,10 +2,8 @@
 
 ## Bundles
 
-| Entry      | Size | Gzip | Brotli |
-| ---------- | ---- | ---- | ------ |
-| ~~build~~  |      |      |        |
-| ~~config~~ |      |      |        |
+| Entry | Size | Gzip | Brotli |
+| ----- | ---- | ---- | ------ |
 
 ## Packages
 
@@ -17,4 +15,4 @@
 | core   | 67 B | 86 B | 62 B   |
 | logger | 69 B | 87 B | 70 B   |
 
-✅ Ran 1 script and skipped 3 in 0.4s.
+✅ Ran 1 script and skipped 3 in 0.5s.

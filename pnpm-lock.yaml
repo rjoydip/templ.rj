@@ -72,8 +72,8 @@ importers:
         specifier: ^3.12.10
         version: 3.12.10
       vitepress:
-        specifier: 1.0.0-rc.10
-        version: 1.0.0-rc.10(@algolia/client-search@4.19.1)(@types/node@20.6.3)(search-insights@2.7.0)
+        specifier: 1.0.0-rc.14
+        version: 1.0.0-rc.14(@algolia/client-search@4.19.1)(@types/node@20.6.3)(search-insights@2.7.0)
       vue:
         specifier: ^3.3.4
         version: 3.3.4
@@ -23163,6 +23163,15 @@ packages:
       vscode-textmate: 8.0.0
     dev: true
 
+  /shiki@0.14.4:
+    resolution: {integrity: sha512-IXCRip2IQzKwxArNNq1S+On4KPML3Yyn8Zzs/xRgcgOWIr8ntIK3IKzjFPfjy/7kt9ZMjc+FItfqHRBg8b6tNQ==}
+    dependencies:
+      ansi-sequence-parser: 1.1.1
+      jsonc-parser: 3.2.0
+      vscode-oniguruma: 1.7.0
+      vscode-textmate: 8.0.0
+    dev: true
+
   /shimmer@1.2.1:
     resolution: {integrity: sha512-sQTKC1Re/rM6XyFM6fIAGHRPVGvyXfgzIDvzoq608vM+jeyVD0Tu1E6Np0Kc2zAIFWIj963V2800iF/9LPieQw==}
     dev: false
@@ -25548,9 +25557,14 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitepress@1.0.0-rc.10(@algolia/client-search@4.19.1)(@types/node@20.6.3)(search-insights@2.7.0):
-    resolution: {integrity: sha512-+MsahIWqq5WUEmj6MR4obcKYbT7im07jZPCQPdNJExkeOSbOAJ4xypSLx88x7rvtzWHhHc5aXbOhCRvGEGjFrw==}
+  /vitepress@1.0.0-rc.14(@algolia/client-search@4.19.1)(@types/node@20.6.3)(search-insights@2.7.0):
+    resolution: {integrity: sha512-yChIeXOAcNvVnSVjhziH1vte0uhKb00PuZf7KdIMfx3ixTMAz73Nn+6gREvCv0SdH+anteGUKz5eljv0ygcgGQ==}
     hasBin: true
+    peerDependencies:
+      markdown-it-mathjax3: ^4.3.2
+    peerDependenciesMeta:
+      markdown-it-mathjax3:
+        optional: true
     dependencies:
       '@docsearch/css': 3.5.2
       '@docsearch/js': 3.5.2(@algolia/client-search@4.19.1)(search-insights@2.7.0)
@@ -25560,7 +25574,7 @@ packages:
       focus-trap: 7.5.2
       mark.js: 8.11.1
       minisearch: 6.1.0
-      shiki: 0.14.3
+      shiki: 0.14.4
       vite: 4.4.9(@types/node@20.6.3)
       vue: 3.3.4
     transitivePeerDependencies:

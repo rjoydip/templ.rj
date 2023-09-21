@@ -28,7 +28,7 @@
     "serve-static": "^1.15.0",
     "tempura": "^0.4.0",
     "tsx": "^3.12.10",
-    "vitepress": "1.0.0-rc.10",
+    "vitepress": "1.0.0-rc.14",
     "vue": "^3.3.4",
     "wireit": "^0.14.0"
   },
