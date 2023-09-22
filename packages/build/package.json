@@ -41,7 +41,7 @@
     "lint:size": "wireit",
     "test": "wireit",
     "test:watch": "wireit",
-    "test:cli": "tsx ./src/cli.ts -v"
+    "test:cli": "wireit"
   },
   "dependencies": {
     "@templ/config": "workspace:^",
@@ -145,6 +145,26 @@
       ],
       "dependencies": [
         "build"
+      ]
+    },
+    "test:cli": {
+      "command": "tsx ./src/cli.ts -v",
+      "files": [
+        "src/**.ts"
+      ],
+      "dependencies": [
+        {
+          "script": "../config:build",
+          "cascade": false
+        },
+        {
+          "script": "../logger:build",
+          "cascade": false
+        },
+        {
+          "script": "../utils:build",
+          "cascade": false
+        }
       ]
     },
     "test:watch": {
