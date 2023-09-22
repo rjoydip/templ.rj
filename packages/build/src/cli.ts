@@ -1,11 +1,12 @@
 #!/usr/bin/env tsx
 
+import { argv } from 'node:process'
 import sade from 'sade'
-import { build } from './'
 import { BuildSchema } from '@templ/config'
 import { createLogger } from '@templ/logger'
-import { version, name } from '../package.json'
 import type { BuildOptions } from '@templ/config'
+import { name, version } from '../package.json'
+import { build } from './'
 
 const prog = sade(name)
 
@@ -16,7 +17,7 @@ prog
   .option('-o, --out-dir <dir>', 'Change the name of the output directory', 'dist')
   .option('--clean', 'Clean output directory', true)
   .option('--silent', 'Suppress non-error logs (excluding "onSuccess" process output)', false)
-  .option('--compile', 'Compile type "esbuild", "rollup"', 'esbuild')
+  .option('--bundler', 'Bundler type "esbuild", "rollup"', 'esbuild')
   .option('--dts', 'Generate declaration file', true)
   .option('--bundle', 'Bundle file', false)
   .option('--format [format]', 'Bundle format, "cjs", "iife", "esm"', 'cjs')
@@ -32,11 +33,11 @@ prog
       assets: [],
       bundle: opts.bundle,
       clean: opts.clean,
-      compile: opts.compile,
+      bundler: opts.bundler,
       debug: opts.silent,
       dts: opts.dts,
       exclude: [],
-      format: opts.format.indexOf(',') !== -1 ? opts.format.split(',') : [opts.format],
+      format: opts.format.includes(',') ? opts.format.split(',') : [opts.format],
       include: [],
       minify: opts.minify,
       outDir: opts.o,
@@ -44,11 +45,12 @@ prog
       srcDir: opts.s,
       tsconfig: opts.tsconfig,
       watch: opts.watch,
-      logger
+      logger,
     })
 
-    if (!opts.silent) logger.info('CLI', `${name} v${version}`)
+    if (!opts.silent)
+      logger.info('CLI', `${name} v${version}`)
     await build(options)
   })
 
-prog.parse(process.argv)
+prog.parse(argv)

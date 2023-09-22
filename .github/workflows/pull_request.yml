@@ -32,17 +32,17 @@ jobs:
           pass_on_octokit_error: false
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  size-export:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      - uses: ./.github/actions/setup-node
-      - name: Install
-        run: pnpm i --no-frozen-lockfile
-      - uses: antfu/export-size-action@v1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          paths: packages/build,packages/cli,packages/config,packages/core,packages/logger,packages/utils
+  # size-export:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@master
+  #     - uses: ./.github/actions/setup-node
+  #     - name: Install
+  #       run: pnpm i --no-frozen-lockfile
+  #     - uses: antfu/export-size-action@v1
+  #       with:
+  #         github_token: ${{ secrets.GITHUB_TOKEN }}
+  #         paths: packages/build,packages/cli,packages/config,packages/core,packages/logger,packages/utils
 
   size-report:
     runs-on: ubuntu-latest
@@ -81,7 +81,7 @@ jobs:
           path: temp/size-prev
           if_no_artifact_found: warn
 
-      - run: pnpm run size:generate
+      - run: pnpm size:generate
 
       - name: Upload Size Data
         uses: actions/upload-artifact@v3
@@ -95,7 +95,7 @@ jobs:
         with:
           path: ./size-report.md
 
-      - name: Create commit comment
-        uses: peter-evans/commit-comment@v2
-        with:
-          body: ${{ steps.size-report.outputs.content }}
+      # - name: Create commit comment
+      #   uses: peter-evans/commit-comment@v2
+      #   with:
+      #     body: ${{ steps.size-report.outputs.content }}

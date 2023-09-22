@@ -11,7 +11,7 @@ describe('@templ/config', () => {
 
   test('should be validate build data', async () => {
     expect(await getBuildConfig(fixture('1'))).toStrictEqual({
-      compile: 'esbuild',
+      bundler: 'esbuild',
     })
   })
 
@@ -23,7 +23,7 @@ describe('@templ/config', () => {
       clean: true,
       dts: true,
       minify: true,
-      compile: 'esbuild',
+      bundler: 'esbuild',
       format: ['esm'],
     })
   })

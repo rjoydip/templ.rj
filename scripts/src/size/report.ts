@@ -3,11 +3,12 @@
 import { existsSync } from 'node:fs'
 import { readdir } from 'node:fs/promises'
 import { resolve } from 'node:path'
+import { stdout } from 'node:process'
+import { pathToFileURL } from 'node:url'
+import { platform } from 'node:os'
 import { markdownTable } from 'markdown-table'
 import prettyBytes from 'pretty-bytes'
 import { root } from '@templ/utils'
-import { pathToFileURL } from 'node:url'
-import { platform } from 'node:os'
 
 interface SizeResult {
   size: number
@@ -26,15 +27,15 @@ const prevDir = resolve(root, 'temp/size-prev')
 let output = '# Size Report\n\n'
 const sizeHeaders = ['Size', 'Gzip', 'Brotli']
 
-async function run() {
+async function main() {
   await renderBundles()
   await renderPackages()
-  process.stdout.write(output)
+  stdout.write(output)
 }
 
 async function renderBundles() {
   const filterFiles = (files: string[]) =>
-    files.filter((file) => !file.startsWith('_'))
+    files.filter(file => !file.startsWith('_'))
 
   const curr = filterFiles(await readdir(currDir))
   const prev = existsSync(prevDir) ? filterFiles(await readdir(prevDir)) : []
@@ -51,13 +52,15 @@ async function renderBundles() {
 
     if (!curr) {
       rows.push([`~~${fileName}~~`])
-    } else
+    }
+    else {
       rows.push([
         fileName,
         `${prettyBytes(curr.size)}${getDiff(curr.size, prev?.size)}`,
         `${prettyBytes(curr.gzip)}${getDiff(curr.gzip, prev?.gzip)}`,
         `${prettyBytes(curr.brotli)}${getDiff(curr.brotli, prev?.brotli)}`,
       ])
+    }
   }
 
   output += '## Bundles\n\n'
@@ -94,16 +97,19 @@ async function renderPackages() {
 }
 
 async function importJSON<T>(path: string): Promise<T | undefined> {
-  if (!existsSync(path)) return undefined
+  if (!existsSync(path))
+    return undefined
   return (await import(platform() === 'win32' ? pathToFileURL(path).href : path, { assert: { type: 'json' } })).default
 }
 
 function getDiff(curr: number, prev?: number) {
-  if (prev === undefined) return ''
+  if (prev === undefined)
+    return ''
   const diff = curr - prev
-  if (diff === 0) return ''
+  if (diff === 0)
+    return ''
   const sign = diff > 0 ? '+' : ''
   return ` (**${sign}${prettyBytes(diff)}**)`
 }
 
-run()
+main()

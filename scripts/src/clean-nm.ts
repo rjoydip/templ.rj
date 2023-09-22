@@ -3,7 +3,7 @@ import fg from 'fast-glob'
 import { createLogger, logError } from '@templ/logger'
 import { COMPLETED, STARTED, root } from '@templ/utils'
 
-void (async () => {
+async function main() {
   const logger = createLogger()
   const cleanNMTxt = 'Clean node_modules directories and re-install packages'
   try {
@@ -23,7 +23,10 @@ void (async () => {
         }),
     ])
     logger.info(`[${COMPLETED}]: ${cleanNMTxt}`)
-  } catch (error) {
+  }
+  catch (error) {
     logError(error)
   }
-})()
+}
+
+main()

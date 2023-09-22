@@ -20,7 +20,8 @@ async function createFolderIfNotExists(folderPath: string): Promise<void> {
   if (!existsSync(folderPath)) {
     await mkdir(folderPath, { recursive: true })
     logger.info(`Folder "${folderPath}" created.`)
-  } else {
+  }
+  else {
     logger.info(`Folder "${folderPath}" already exists.`)
   }
 }
@@ -36,7 +37,8 @@ function isFileEmpty(filePath: string): boolean {
   try {
     const stats = statSync(filePath)
     return stats.size === 0
-  } catch (error) {
+  }
+  catch (error) {
     logger.error('Error checking file:', error)
     return false
   }
@@ -54,10 +56,11 @@ function processFile(file: string): Promise<void> {
     lcovParse(file, (err: string, data) => {
       if (err) {
         reject(err)
-      } else {
+      }
+      else {
         const lcovContent = data.map((entry) => {
           return `SF:${entry.file}\n${entry.lines.details
-            .map((line) => `DA:${line.line},${line.hit}`)
+            .map(line => `DA:${line.line},${line.hit}`)
             .join('\n')}\nend_of_record`
         })
         combinedReport.push(...lcovContent)
@@ -80,7 +83,7 @@ async function getLcovFiles(): Promise<string[]> {
     cwd: packagesDir,
     absolute: true,
   })
-  return files.filter((file) => !isFileEmpty(file))
+  return files.filter(file => !isFileEmpty(file))
 }
 
 /**
@@ -97,7 +100,8 @@ async function copyLcovFilesToRootCoverageDir(): Promise<void> {
       )
     }
     logger.info('Copied lcov.info files to root coverage directory')
-  } catch (error) {
+  }
+  catch (error) {
     logger.error('Error copying LCOV files:', error)
   }
 }
@@ -108,9 +112,8 @@ async function copyLcovFilesToRootCoverageDir(): Promise<void> {
 async function mergeLcovFiles(): Promise<void> {
   const lcovFiles: string[] = await getLcovFiles()
   try {
-    for (const lcovFile of lcovFiles) {
+    for (const lcovFile of lcovFiles)
       await processFile(lcovFile)
-    }
 
     await createFolderIfNotExists(coverageDir)
     await writeFile(
@@ -118,7 +121,8 @@ async function mergeLcovFiles(): Promise<void> {
       combinedReport.join('\n'),
     )
     logger.info('Combined LCOV report saved as combined-lcov.info')
-  } catch (error) {
+  }
+  catch (error) {
     logger.error('Error merging LCOV files:', error)
   }
 }

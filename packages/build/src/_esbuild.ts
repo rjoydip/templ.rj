@@ -10,22 +10,22 @@ export default async function esbuild(buildOptions: BuildOptions, nonBuildOption
   if (nonBuildOptions.watch) {
     const _context = await context(buildOptions)
     await _context.watch()
-  } else {
+  }
+  else {
     await _build(buildOptions)
   }
 
-  if (buildOptions.format.toLocaleLowerCase() === 'cjs')
+  if (buildOptions.format.toLocaleLowerCase() === 'cjs') {
     await writeFile(
       `${buildOptions.outdir}/package.json`,
-      JSON.stringify({ type: 'commonjs' }) + '\n',
+      `${JSON.stringify({ type: 'commonjs' })}\n`,
       'utf8',
     )
+  }
 
-  for (const rel of nonBuildOptions.assets) {
+  for (const rel of nonBuildOptions.assets)
     await cp(join(nonBuildOptions.srcDir, rel), join(buildOptions.outdir, rel))
-  }
 
-  if (nonBuildOptions.watch) {
+  if (nonBuildOptions.watch)
     logger.info('CLI', 'Running in watch mode')
-  }
 }

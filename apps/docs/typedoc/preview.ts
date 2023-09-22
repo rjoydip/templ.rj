@@ -1,31 +1,32 @@
 import { readFile } from 'node:fs/promises'
+import { cwd, env } from 'node:process'
 import { join } from 'node:path'
 import polka from 'polka'
 import serveStatic from 'serve-static'
 import { compile } from 'tempura'
 import { createLogger } from '@templ/logger'
 
-const { PORT = 3000 } = process.env
+const { PORT = 3000 } = env
 const template = await readFile('index.hbs', 'utf8')
 const render = compile(template)
 
 polka()
   .use(
     '/cli',
-    serveStatic(join(process.cwd(), '..', 'packages', 'cli', 'docs')),
+    serveStatic(join(cwd(), '..', 'packages', 'cli', 'docs')),
   )
   .use(
     '/config',
-    serveStatic(join(process.cwd(), '..', 'packages', 'config', 'docs')),
+    serveStatic(join(cwd(), '..', 'packages', 'config', 'docs')),
   )
   .use(
     '/core',
-    serveStatic(join(process.cwd(), '..', 'packages', 'core', 'docs')),
+    serveStatic(join(cwd(), '..', 'packages', 'core', 'docs')),
   )
-  .use('/ui', serveStatic(join(process.cwd(), '..', 'packages', 'ui', 'docs')))
+  .use('/ui', serveStatic(join(cwd(), '..', 'packages', 'ui', 'docs')))
   .use(
     '/utils',
-    serveStatic(join(process.cwd(), '..', 'packages', 'utils', 'docs')),
+    serveStatic(join(cwd(), '..', 'packages', 'utils', 'docs')),
   )
   .get('/', (_, res) => {
     res.setHeader('Content-Type', 'text/html')

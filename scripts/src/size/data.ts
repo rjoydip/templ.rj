@@ -61,12 +61,11 @@ const presets: Preset[] = [
 ]
 
 const tasks: ReturnType<typeof generateBundle>[] = []
-for (const preset of presets) {
+for (const preset of presets)
   tasks.push(generateBundle(preset))
-}
 
 const results = Object.fromEntries(
-  (await Promise.all(tasks)).map((r) => [r.name, r]),
+  (await Promise.all(tasks)).map(r => [r.name, r]),
 )
 
 await mkdir(currDir, { recursive: true })
@@ -92,11 +91,13 @@ async function generateBundle(preset: Preset) {
       {
         name: 'size-data-plugin',
         resolveId(_id) {
-          if (_id === id) return id
+          if (_id === id)
+            return id
           return null
         },
         load(_id) {
-          if (_id === id) return content
+          if (_id === id)
+            return content
           return null
         },
       },

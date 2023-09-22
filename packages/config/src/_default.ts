@@ -8,7 +8,7 @@ const defaultBuildConfig: BuildOptions = {
   clean: true,
   dts: true,
   minify: true,
-  compile: 'esbuild',
+  bundler: 'esbuild',
   format: ['esm'],
 }
 

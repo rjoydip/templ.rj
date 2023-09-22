@@ -1,7 +1,0 @@
-*.snap
-*.d.ts
-.wireit
-wireit
-docs
-dist
-node_modules

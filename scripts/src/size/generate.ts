@@ -1,7 +1,7 @@
 import { exec } from 'node:child_process'
 import { resolve } from 'node:path'
 import { existsSync } from 'node:fs'
-import { rm, readdir, readFile, writeFile, cp } from 'node:fs/promises'
+import { cp, readFile, readdir, rm, writeFile } from 'node:fs/promises'
 import { promisify } from 'node:util'
 import { totalist } from 'totalist'
 import type { PackageJson } from 'type-fest'
@@ -17,9 +17,8 @@ import { pkgRoot, root } from '@templ/utils'
 
     if (existsSync(currDir)) {
       await totalist(currDir, async (name: string, abs: string) => {
-        if (/\.json$/.test(name)) {
+        if (/\.json$/.test(name))
           await cp(abs, resolve(prevDir, name), { force: true })
-        }
       })
     }
 
@@ -35,13 +34,14 @@ import { pkgRoot, root } from '@templ/utils'
           })
         }
       }),
-      await $exec('pnpm run size:data')
+      await $exec('pnpm run size:data'),
     ])
 
     const { stdout: sizeReport } = await $exec('pnpm run --silent size:report')
     await writeFile(reportFile, sizeReport)
     await readFile(reportFile, 'utf8')
-  } catch (err) {
+  }
+  catch (err) {
     logError(err)
   }
 })()

@@ -9,7 +9,7 @@
   "type": "module",
   "scripts": {
     "all": "pnpm clean && pnpm deps:fresh && pnpm build && pnpm changelog && pnpm size:generate && pnpm lint && pnpm test && pnpm test:cli && pnpm update:third_party",
-    "build": "pnpm --filter './packages/**' run build",
+    "build": "pnpm -r build",
     "docs:build": "pnpm -r docs:build",
     "coverage:lcov": "pnpm -C scripts coverage:lcov",
     "clean": "rimraf .pnpm-store coverage temp && pnpm -r clean",
@@ -18,14 +18,15 @@
     "create:pkg": "pnpm -C scripts create:pkg",
     "deps:fresh": "taze -r -w -i",
     "preinstall": "npx only-allow pnpm",
-    "lint": "pnpm --filter './packages/**' lint && pnpm lint:spell && pnpm lint:secret && pnpm lint:md",
+    "lint": "pnpm -r eslint && pnpm lint:spell && pnpm lint:secret && pnpm lint:md && pnpm lint:size",
     "lint:md": "pnpm -C scripts lint:md",
     "lint:secret": "secretlint --secretlintignore .gitignore \"**/*\"",
+    "lint:size": "pnpm -r lint:size",
     "lint:spell": "cspell .",
     "prepare": "husky install",
     "size:generate": "pnpm -C scripts size:generate",
-    "test": "pnpm --filter './packages/**' test",
-    "test:cli": "pnpm --filter './packages/**/cli' test:cli",
+    "test": "pnpm -r test",
+    "test:cli": "pnpm -r test:cli",
     "system:info": "envinfo",
     "update:third_party": "git submodule update --recursive --remote"
   },
@@ -33,7 +34,6 @@
   "workspaces": [
     "apps/*",
     "packages/*",
-    "third_party/*",
     "scripts"
   ],
   "devDependencies": {

@@ -1,7 +1,8 @@
 {
-  "private": true,
   "name": "@templ/scripts",
+  "type": "module",
   "version": "0.0.0",
+  "private": true,
   "description": "TEMPL root scripts",
   "license": "MIT",
   "homepage": "https://github.com/rjoydip/templ/tree/main/scripts#readme",
@@ -13,21 +14,32 @@
   "bugs": {
     "url": "https://github.com/rjoydip/templ/issues"
   },
-  "type": "module",
   "scripts": {
     "clean": "wireit",
     "clean:nm": "wireit",
     "coverage:lcov": "wireit",
     "create:pkg": "wireit",
-    "eslint": "eslint .",
     "eslint:fix": "eslint . --fix",
+    "eslint": "wireit",
     "lint:md": "wireit",
     "size:data": "wireit",
     "size:generate": "wireit",
     "size:report": "wireit"
   },
+  "dependencies": {
+    "@templ/logger": "workspace:^",
+    "@templ/utils": "workspace:^",
+    "fast-glob": "^3.3.1",
+    "markdown-table": "^3.0.3",
+    "pretty-bytes": "^6.1.1",
+    "rollup": "^3.29.2",
+    "terser": "^5.20.0",
+    "totalist": "^3.0.1",
+    "type-fest": "^4.3.1"
+  },
   "devDependencies": {
-    "@templ/eslint-config": "workspace:^",
+    "@antfu/eslint-config": "1.0.0-beta.2",
+    "@templ/docs": "workspace:^",
     "@templ/tsconfig": "workspace:^",
     "@types/lcov-parse": "^1.0.0",
     "@types/node": "^20.6.3",
@@ -40,17 +52,6 @@
     "tsx": "^3.12.10",
     "wireit": "^0.14.0",
     "zod": "^3.22.2"
-  },
-  "dependencies": {
-    "@templ/logger": "workspace:^",
-    "@templ/utils": "workspace:^",
-    "fast-glob": "^3.3.1",
-    "markdown-table": "^3.0.3",
-    "pretty-bytes": "^6.1.1",
-    "rollup": "^3.29.2",
-    "terser": "^5.20.0",
-    "totalist": "^3.0.1",
-    "type-fest": "^4.3.1"
   },
   "wireit": {
     "clean": {
@@ -102,6 +103,13 @@
           "script": "../packages/utils:build",
           "cascade": false
         }
+      ]
+    },
+    "eslint": {
+      "command": "eslint --color --cache --fix --cache-location .eslintcache .",
+      "files": [
+        "src/**/*.ts",
+        "eslint.config.js"
       ]
     },
     "lint:md": {

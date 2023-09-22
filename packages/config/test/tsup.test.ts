@@ -31,7 +31,7 @@ describe('@templ/config > tsup', () => {
   })
 
   test('should validate all object entries', () => {
-    expect(Object.entries(tsupDefaultConfig).map((i) => i[0])).toStrictEqual([
+    expect(Object.entries(tsupDefaultConfig).map(i => i[0])).toStrictEqual([
       'entry',
       'splitting',
       'sourcemap',

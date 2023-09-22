@@ -1,6 +1,6 @@
-import { argv } from 'node:process'
+import { argv, cwd } from 'node:process'
 import { join } from 'node:path'
-import { mkdir, copyFile, readFile, writeFile } from 'node:fs/promises'
+import { copyFile, mkdir, readFile, writeFile } from 'node:fs/promises'
 import { compile } from 'tempura'
 import { z } from 'zod'
 import { createLogger, logError } from '@templ/logger'
@@ -13,9 +13,6 @@ import { COMPLETED, STARTED, pkgRoot } from '@templ/utils'
  * located. It should be a string that specifies the path to the directory.
  * @param fileName - The `fileName` parameter is a string that represents the name of the file you want
  * to read.
- * @param [encoding=utf8] - The `encoding` parameter specifies the character encoding to be used when
- * reading the file. It is set to `'utf8'` by default, which means that the file will be read as a
- * UTF-8 encoded text file. However, you can specify a different encoding if needed, such as `'
  * @returns a promise. If the `result` object is successfully parsed and does not have any errors, the
  * function will read the file using `fs.readFile` and return the contents of the file as a string. If
  * there are any errors in parsing the `result` object, the function will reject the promise and return
@@ -36,7 +33,8 @@ async function getTemplateData(
       fileName,
     })
     return (await readFile(join(location, fileName))).toString()
-  } catch (error) {
+  }
+  catch (error) {
     logError(new Error(String(error)))
     return ''
   }
@@ -51,10 +49,6 @@ async function getTemplateData(
  * to create or overwrite.
  * @param data - The `data` parameter in the `setTemplateData` function is a string that represents the
  * content of the file you want to write. It could be any text or data that you want to save to a file.
- * @param [encoding=utf8] - The `encoding` parameter specifies the character encoding to be used when
- * writing the file. It determines how the data will be encoded into bytes before being written to the
- * file. The default value is `'utf8'`, which is a widely used encoding for representing Unicode
- * characters.
  * @returns a promise. If the result of parsing the input parameters is successful, it will call
  * `fs.outputFile` and return a promise that resolves when the file is written. If the parsing fails,
  * it will return a rejected promise with the error from the parsing result.
@@ -77,12 +71,13 @@ async function setTemplateData(
       data,
     })
     await writeFile(join(location, fileName), data)
-  } catch (error) {
+  }
+  catch (error) {
     logError(new Error(String(error)))
   }
 }
 
-void (async () => {
+async function main() {
   const name = argv.at(2) || 'templP'
   const logger = createLogger()
   try {
@@ -91,7 +86,7 @@ void (async () => {
     })
     if (result) {
       logger.success(`[${STARTED}]: ${name} package generate`)
-      const templatesLocation = join(process.cwd(), '_templates')
+      const templatesLocation = join(cwd(), '_templates')
       const outputLocation = pkgRoot
 
       const indexTestTSTemplate = await getTemplateData(
@@ -157,10 +152,14 @@ void (async () => {
         ),
       ])
       logger.success(`[${COMPLETED}]: ${name} package generate`)
-    } else {
-      throw Error('Type validation failed')
     }
-  } catch (error) {
+    else {
+      throw new Error('Type validation failed')
+    }
+  }
+  catch (error) {
     logError(error)
   }
-})()
+}
+
+main()

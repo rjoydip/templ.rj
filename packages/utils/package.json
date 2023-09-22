@@ -1,7 +1,8 @@
 {
-  "private": true,
   "name": "@templ/utils",
+  "type": "module",
   "version": "0.0.0",
+  "private": true,
   "description": "TEMPL utils service",
   "license": "MIT",
   "homepage": "https://github.com/rjoydip/templ/tree/main/packages/utils#readme",
@@ -13,7 +14,6 @@
   "bugs": {
     "url": "https://github.com/rjoydip/templ/issues"
   },
-  "type": "module",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -23,6 +23,7 @@
   },
   "main": "./dist/index.js",
   "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "files": [
     "*.d.ts",
     "dist"
@@ -33,16 +34,20 @@
     "dev": "wireit",
     "docs:build": "wireit",
     "docs:preview": "wireit",
-    "lint": "wireit",
-    "size": "wireit",
+    "eslint": "wireit",
+    "lint:size": "wireit",
     "test": "wireit",
     "test:watch": "wireit"
   },
-  "types": "./dist/index.d.ts",
+  "dependencies": {
+    "colorette": "^2.0.20",
+    "escalade": "^3.1.1"
+  },
   "devDependencies": {
+    "@antfu/eslint-config": "1.0.0-beta.2",
     "@size-limit/file": "^9.0.0",
     "@templ/config": "workspace:^",
-    "@templ/eslint-config": "workspace:^",
+    "@templ/docs": "workspace:^",
     "@templ/tsconfig": "workspace:^",
     "@types/node": "^20.6.3",
     "@vitest/coverage-v8": "^0.34.5",
@@ -56,10 +61,6 @@
     "vite-tsconfig-paths": "^4.2.1",
     "vitest": "^0.34.5",
     "wireit": "^0.14.0"
-  },
-  "dependencies": {
-    "colorette": "^2.0.20",
-    "escalade": "^3.1.1"
   },
   "wireit": {
     "build": {
@@ -107,15 +108,14 @@
         "docs:build"
       ]
     },
-    "lint": {
+    "eslint": {
       "command": "eslint --color --cache --fix --cache-location .eslintcache .",
       "files": [
         "src/**/*.ts",
-        ".eslintignore",
-        ".eslintrc"
+        "eslint.config.js"
       ]
     },
-    "size": {
+    "lint:size": {
       "command": "size-limit",
       "dependencies": [
         "build"

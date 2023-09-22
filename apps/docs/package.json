@@ -1,9 +1,9 @@
 {
-  "private": true,
   "name": "@templ/docs",
-  "version": "0.0.0",
-  "description": "TEMPL docs",
   "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "description": "TEMPL docs",
   "license": "MIT",
   "homepage": "https://github.com/rjoydip/templ/tree/main/docs#readme",
   "repository": {
@@ -19,11 +19,14 @@
     "docs:build": "wireit",
     "docs:dev": "wireit",
     "docs:preview": "wireit",
+    "eslint": "wireit",
     "typedoc:preview": "wireit"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "1.0.0-beta.2",
     "@templ/logger": "workspace:^",
     "@types/node": "^20.6.3",
+    "eslint": "^8.49.0",
     "polka": "^0.5.2",
     "serve-static": "^1.15.0",
     "tempura": "^0.4.0",
@@ -62,6 +65,13 @@
       ],
       "dependencies": [
         "docs:build"
+      ]
+    },
+    "eslint": {
+      "command": "eslint --color --cache --fix --cache-location .eslintcache .",
+      "files": [
+        "src/**/*.ts",
+        "eslint.config.js"
       ]
     },
     "typedoc:preview": {

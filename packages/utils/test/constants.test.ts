@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest'
-import { CLI_VERSION, STARTED, COMPLETED } from '../src'
+import { CLI_VERSION, COMPLETED, STARTED } from '../src'
 
 describe('@templ/utils > Constants', () => {
   test('should match value and type of CLI_VERSION', () => {

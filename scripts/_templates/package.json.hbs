@@ -34,15 +34,14 @@
     "dev": "wireit",
     "docs:build": "wireit",
     "docs:preview": "wireit",
-    "lint": "wireit",
-    "size": "wireit",
+    "eslint": "wireit",
+    "lint:size": "wireit",
     "test": "wireit",
     "test:watch": "wireit"
   },
   "devDependencies": {
     "@size-limit/file": "^8.2.6",
     "@templ/config": "workspace:^",
-    "@templ/eslint-config": "workspace:^",
     "@templ/tsconfig": "workspace:^",
     "@types/node": "^20.5.7",
     "@vitest/coverage-v8": "^0.34.3",
@@ -98,11 +97,11 @@
         "docs:build"
       ]
     },
-    "lint": {
+    "eslint": {
       "command": "eslint --color --cache --fix --cache-location .eslintcache .",
-      "files": ["src/**/*.ts", ".eslintignore", ".eslintrc"]
+      "files": ["src/**/*.ts", "eslint.config.js"]
     },
-    "size": {
+    "lint:size": {
       "command": "size-limit",
       "dependencies": [
         "build"
