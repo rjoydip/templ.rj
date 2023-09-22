@@ -1,6 +1,6 @@
 const config = {
   build: {
-    compile: 'esbuild',
+    bundler: 'esbuild',
   },
 }
 

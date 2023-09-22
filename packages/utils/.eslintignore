@@ -1,8 +1,0 @@
-*.snap
-*.d.ts
-.    "clean": "rimraf .",
-
-coverage
-docs
-dist
-node_modules

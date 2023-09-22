@@ -1,9 +1,10 @@
 // Copied - https://github.com/egoist/tsup/blob/dev/src/utils.ts
 
-import fs from 'fs'
+import fs from 'node:fs'
+import path from 'node:path'
+import { cwd } from 'node:process'
 import { bundleRequire } from 'bundle-require'
 import JoyCon from 'joycon'
-import path from 'path'
 import strip from 'strip-json-comments'
 import type { defineConfig } from './'
 
@@ -11,8 +12,10 @@ const joycon = new JoyCon()
 
 function jsoncParse(data: string) {
   try {
-    return new Function('return ' + strip(data).trim())()
-  } catch {
+    // eslint-disable-next-line no-new-func
+    return new Function(`return ${strip(data).trim()}`)()
+  }
+  catch {
     // Silently ignore any error
     // That's what tsc/jsonc-parser did after all
     return {}
@@ -22,14 +25,16 @@ function jsoncParse(data: string) {
 async function loadJson(filepath: string) {
   try {
     return jsoncParse(await fs.promises.readFile(filepath, 'utf8'))
-  } catch (error) {
+  }
+  catch (error) {
     if (error instanceof Error) {
-      throw new Error(
-        `Failed to parse ${path.relative(process.cwd(), filepath)}: ${
+      throw new TypeError(
+        `Failed to parse ${path.relative(cwd(), filepath)}: ${
           error.message
         }`,
       )
-    } else {
+    }
+    else {
       throw error
     }
   }
@@ -68,12 +73,12 @@ export async function loadTemplConfig(
   if (configPath) {
     if (configPath.endsWith('.json')) {
       let data = await loadJson(configPath)
-      if (configPath.endsWith('package.json')) {
+      if (configPath.endsWith('package.json'))
         data = data.templ
-      }
-      if (data) {
+
+      if (data)
         return { path: configPath, data }
-      }
+
       return {}
     }
 
@@ -90,9 +95,9 @@ export async function loadTemplConfig(
 }
 
 export async function loadPkg(cwd: string, clearCache: boolean = false) {
-  if (clearCache) {
+  if (clearCache)
     joycon.clearCache()
-  }
+
   const { data } = await joycon.load(['package.json'], cwd, path.dirname(cwd))
   return data || {}
 }

@@ -8,7 +8,7 @@ const defaultBuildConfig: BuildOptions = {
   clean: true,
   dts: true,
   minify: true,
-  compile: 'esbuild',
+  bundler: 'esbuild',
   format: ['esm'],
 }
 
@@ -26,7 +26,7 @@ const defaultTSupConfig: Options = {
 
 const defaultTemplConfig: TemplOptions = {
   build: defaultBuildConfig,
-  tsup: defaultTSupConfig
+  tsup: defaultTSupConfig,
 }
 
 export default defaultTemplConfig

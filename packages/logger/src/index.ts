@@ -1,16 +1,19 @@
 // Copied from https://github.com/egoist/tsup/blob/dev/src/log.ts
 
-import util from 'util'
-import { parentPort, isMainThread } from 'worker_threads'
+import util from 'node:util'
+import { isMainThread, parentPort } from 'node:worker_threads'
 import * as colors from 'colorette'
+import ora from 'ora'
+import { serializeError } from 'serialize-error'
 
 type LOG_TYPE = 'info' | 'success' | 'error' | 'warn'
 
-export const colorize = (type: LOG_TYPE, data: any, onlyImportant = false) => {
-  if (onlyImportant && (type === 'info' || type === 'success')) return data
+export function colorize(type: LOG_TYPE, data: any, onlyImportant = false) {
+  if (onlyImportant && (type === 'info' || type === 'success'))
+    return data
 
-  const color =
-    type === 'info'
+  const color
+    = type === 'info'
       ? 'blue'
       : type === 'error'
         ? 'red'
@@ -20,11 +23,9 @@ export const colorize = (type: LOG_TYPE, data: any, onlyImportant = false) => {
   return colors[color](data)
 }
 
-export const makeLabel = (
-  name: string | undefined,
+export function makeLabel(name: string | undefined,
   input: string,
-  type: LOG_TYPE,
-) => {
+  type: LOG_TYPE) {
   return [
     name && `${colors.dim('[')}${name.toUpperCase()}${colors.dim(']')}`,
     colorize(type, input.toUpperCase()),
@@ -45,7 +46,7 @@ export function getSilent() {
 
 export type Logger = ReturnType<typeof createLogger>
 
-export const createLogger = (name?: string) => {
+export function createLogger(name?: string) {
   return {
     setName(_name: string) {
       name = _name
@@ -69,12 +70,12 @@ export const createLogger = (name?: string) => {
 
     log(
       label: string,
-      type: 'info' | 'success' | 'error' | 'warn',
+      type: 'info' | 'success' | 'error' | 'warn' = 'info',
       ...data: unknown[]
     ) {
       const args = [
         makeLabel(name, label, type),
-        ...data.map((item) => colorize(type, item, true)),
+        ...data.map(item => colorize(type, item, true)),
       ]
       switch (type) {
         case 'error': {
@@ -89,7 +90,8 @@ export const createLogger = (name?: string) => {
           return console.error(...args)
         }
         default:
-          if (silent) return
+          if (silent)
+            return
 
           if (!isMainThread) {
             parentPort?.postMessage({
@@ -98,8 +100,15 @@ export const createLogger = (name?: string) => {
             })
             return
           }
+          // eslint-disable-next-line no-console
           console.log(...args)
       }
     },
   }
+}
+
+export function logError(err: any) {
+  const error = new Error(err instanceof Error ? String(err) : err)
+  const serialized = serializeError(error)
+  ora().fail(serialized.message)
 }

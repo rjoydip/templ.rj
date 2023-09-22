@@ -23,6 +23,7 @@ yarn-error.log*
 dist
 coverage
 node_modules
+temp
 
 # Fixtures
 fixtures/output/*

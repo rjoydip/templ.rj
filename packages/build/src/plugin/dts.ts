@@ -6,11 +6,11 @@ import { PrettyError } from '@templ/utils'
 import { DTSPluginSchema } from '@templ/config'
 import type { DTSPlugin } from '@templ/config'
 
-export const dTSPlugin = (pluginOptions: DTSPlugin = {
+export function dTSPlugin(pluginOptions: DTSPlugin = {
   tsconfig: 'tsconfig.json',
   outDir: 'dist',
-  debug: false
-}): Plugin => {
+  debug: false,
+}): Plugin {
   return {
     name: 'esbuild-plugin-dts',
     async setup(build) {
@@ -22,7 +22,7 @@ export const dTSPlugin = (pluginOptions: DTSPlugin = {
       const program = ts.createProgram(entryPoints as string[], {
         declaration: tsconfigData.config.compilerOptions.declaration || true,
         emitDeclarationOnly: tsconfigData.config.compilerOptions.emitDeclarationOnly || true,
-        declarationDir: tsconfigData.config.compilerOptions.declarationDir || outdir
+        declarationDir: tsconfigData.config.compilerOptions.declarationDir || outdir,
       })
       const res = program.emit()
 
@@ -31,6 +31,6 @@ export const dTSPlugin = (pluginOptions: DTSPlugin = {
       res.diagnostics.forEach(({ messageText }) => {
         throw new PrettyError(messageText.toString())
       })
-    }
+    },
   }
 }

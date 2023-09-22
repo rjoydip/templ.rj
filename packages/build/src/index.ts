@@ -2,10 +2,10 @@ import { join, resolve } from 'node:path'
 import { mkdir, rm } from 'node:fs/promises'
 import { getTsconfig } from 'get-tsconfig'
 import { totalist } from 'totalist'
-import esbuild from './_esbuild'
-import { dTSPlugin } from './plugin/dts.ts'
 import type { BuildOptions as ESBuildOptions } from 'esbuild'
 import type { BuildOptions, Format, NonBuildOptions } from '@templ/config'
+import esbuild from './_esbuild'
+import { dTSPlugin } from './plugin/dts.ts'
 
 export async function build(options: BuildOptions) {
   const plugins = []
@@ -13,14 +13,13 @@ export async function build(options: BuildOptions) {
 
   await totalist(`./${options.srcDir}`, (rel) => {
     if (rel.endsWith('.ts') || rel.endsWith('.tsx')) {
-      if (rel.includes('.test.') || rel.includes('.stories.')) {
+      if (rel.includes('.test.') || rel.includes('.stories.'))
         return
-      }
+
       options.include.push(join(options.srcDir, rel))
     }
-    if (rel.endsWith('.json')) {
+    if (rel.endsWith('.json'))
       options.assets.push(rel)
-    }
   })
 
   if (options.clean) {
@@ -37,7 +36,7 @@ export async function build(options: BuildOptions) {
     plugins.push(dTSPlugin({
       debug: options.debug,
       outDir: options.outDir,
-      tsconfig: options.tsconfig
+      tsconfig: options.tsconfig,
     }))
   }
 
@@ -53,14 +52,14 @@ export async function build(options: BuildOptions) {
     minify: options.minify,
     plugins,
     target,
-    splitting: false
+    splitting: false,
   }
 
   const nonBuildOptions: NonBuildOptions = {
     srcDir: options.srcDir,
     watch: options.watch,
     assets: options.assets,
-    logger: options.logger
+    logger: options.logger,
   }
 
   await Promise.all([
@@ -69,7 +68,7 @@ export async function build(options: BuildOptions) {
       logger.info(format, 'Build start')
       const _outDir = options.format.length > 1 ? `${options.outDir}/${format}` : options.outDir
       await mkdir(_outDir, { recursive: true })
-      if (options.compile === 'esbuild') {
+      if (options.bundler === 'esbuild') {
         await esbuild({
           ...buildOptions,
           format: format as Format,
@@ -77,11 +76,11 @@ export async function build(options: BuildOptions) {
         }, nonBuildOptions)
         const timeInMs = Date.now() - startTime
         logger.success(format, `⚡️ Build success in ${Math.floor(timeInMs)}ms`)
-      } else {
+      }
+      else {
         // TODO
         return Promise.resolve()
       }
-    })
+    }),
   ])
 }
-

@@ -2,5 +2,4 @@
 packages:
   - apps/*
   - packages/*
-  - third_party/*
-  - tools/*
+  - scripts

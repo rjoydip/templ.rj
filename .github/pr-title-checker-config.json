@@ -4,18 +4,10 @@
     "color": "EEEEEE"
   },
   "CHECKS": {
-    "prefixes": [
-      "chore:",
-      "ci:",
-      "docs:",
-      "fix:",
-      "feat:",
-      "modified:"
-      "refactor:",
-      "revert:",
-      "style:",
-      "test:"
-    ]
+    "prefixes": [],
+    "regexp": "(?<type>build|chore|ci|docs|feat|fix|modified|perf|refactor|revert|style|test)(?<scope>(?:\\([^()\r\n]*\\)|\\()?(?<breaking>!)?:)(?<subject>:.*)?",
+    "regexpFlags": "i",
+    "ignoreLabels" : ["meta"]
   },
   "MESSAGES": {
     "success": "All OK",

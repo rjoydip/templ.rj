@@ -9,10 +9,12 @@ export const CompileTypeSchema = z.enum(['esbuild', 'rollup'])
 export const FormatSchema = z.enum(['cjs', 'esm', 'iife'])
 
 // Internal primitive schema for reuseable
-const arrOptDefu = (value: Array<any> = []) =>
-  z.array(z.string()).optional().default(value)
-const boolOptDefu = (value: boolean = true) =>
-  z.boolean().optional().default(value)
+function arrOptDefu(value: Array<any> = []) {
+  return z.array(z.string()).optional().default(value)
+}
+function boolOptDefu(value: boolean = true) {
+  return z.boolean().optional().default(value)
+}
 const strOptDefu = (value: string = '') => z.string().optional().default(value)
 
 export const LoggerSchema = z.object({
@@ -28,7 +30,7 @@ export const LoggerSchema = z.object({
 export const NonBuildSchema = z.object({
   assets: arrOptDefu(),
   clean: boolOptDefu(true),
-  compile: CompileTypeSchema.optional().default('esbuild'),
+  bundler: CompileTypeSchema.optional().default('esbuild'),
   debug: boolOptDefu(false),
   dts: boolOptDefu(true),
   exclude: arrOptDefu(),

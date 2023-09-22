@@ -1,5 +1,5 @@
 module.exports = {
   build: {
-    compile: 'esbuild',
+    bundler: 'esbuild',
   },
 }

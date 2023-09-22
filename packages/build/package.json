@@ -14,12 +14,6 @@
   "bugs": {
     "url": "https://github.com/rjoydip/templ/issues"
   },
-  "bin": {
-    "build": "./src/cli.ts"
-  },
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -27,9 +21,15 @@
     },
     "./*": "./*"
   },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "build": "./src/cli.ts"
+  },
   "files": [
-    "dist",
-    "*.d.ts"
+    "*.d.ts",
+    "dist"
   ],
   "scripts": {
     "build": "wireit",
@@ -37,19 +37,28 @@
     "dev": "wireit",
     "docs:build": "wireit",
     "docs:preview": "wireit",
-    "lint": "wireit",
-    "size:limit": "wireit",
+    "eslint": "wireit",
+    "lint:size": "wireit",
     "test": "wireit",
     "test:watch": "wireit",
-    "test:cli": "tsx ./src/cli.ts"
+    "test:cli": "wireit"
+  },
+  "dependencies": {
+    "@templ/config": "workspace:^",
+    "@templ/logger": "workspace:^",
+    "esbuild": "^0.19.3",
+    "get-tsconfig": "^4.7.2",
+    "sade": "^1.8.1",
+    "totalist": "^3.0.1",
+    "typescript": "^5.2.2"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "1.0.0-beta.2",
     "@size-limit/file": "^9.0.0",
-    "@templ/eslint-config": "workspace:^",
     "@templ/tsconfig": "workspace:^",
     "@templ/utils": "workspace:^",
-    "@types/node": "^20.6.2",
-    "@vitest/coverage-v8": "^0.34.4",
+    "@types/node": "^20.6.3",
+    "@vitest/coverage-v8": "^0.34.5",
     "eslint": "^8.49.0",
     "rimraf": "^5.0.1",
     "sirv-cli": "^2.0.2",
@@ -58,17 +67,8 @@
     "tsx": "^3.12.10",
     "typedoc": "^0.25.1",
     "vite-tsconfig-paths": "^4.2.1",
-    "vitest": "^0.34.4",
+    "vitest": "^0.34.5",
     "wireit": "^0.14.0"
-  },
-  "dependencies": {
-    "@templ/config": "workspace:^",
-    "@templ/logger": "workspace:^",
-    "esbuild": "^0.19.3",
-    "get-tsconfig": "^4.7.0",
-    "sade": "^1.8.1",
-    "totalist": "^3.0.1",
-    "typescript": "^5.2.2"
   },
   "wireit": {
     "build": {
@@ -97,7 +97,7 @@
       ]
     },
     "clean": {
-      "command": "rimraf .eslintcache .wireit dist docs coverage"
+      "command": "rimraf .eslintcache dist docs coverage"
     },
     "dev": {
       "command": "tsx ./src/index.ts --watch",
@@ -124,15 +124,14 @@
         "docs:build"
       ]
     },
-    "lint": {
+    "eslint": {
       "command": "eslint --color --cache --fix --cache-location .eslintcache .",
       "files": [
         "src/**/*.ts",
-        ".eslintignore",
-        ".eslintrc"
+        "eslint.config.js"
       ]
     },
-    "size:limit": {
+    "lint:size": {
       "command": "size-limit",
       "dependencies": [
         "build"
@@ -146,6 +145,26 @@
       ],
       "dependencies": [
         "build"
+      ]
+    },
+    "test:cli": {
+      "command": "tsx ./src/cli.ts -v",
+      "files": [
+        "src/**.ts"
+      ],
+      "dependencies": [
+        {
+          "script": "../config:build",
+          "cascade": false
+        },
+        {
+          "script": "../logger:build",
+          "cascade": false
+        },
+        {
+          "script": "../utils:build",
+          "cascade": false
+        }
       ]
     },
     "test:watch": {

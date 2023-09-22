@@ -2,7 +2,7 @@
   "name": "config",
   "templ": {
     "build": {
-      "compile": "esbuild"
+      "bundler": "esbuild"
     }
   }
 }

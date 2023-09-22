@@ -1,5 +1,4 @@
 import { join } from 'node:path'
-import { cwd } from 'node:process'
 import { describe, expect, test } from 'vitest'
 import { loadPkg, loadTemplConfig } from '../src/load'
 
@@ -8,7 +7,7 @@ const fixture = (folder: string) => join(fixturePath, folder)
 
 const defaultData = {
   build: {
-    compile: 'esbuild',
+    bundler: 'esbuild',
   },
 }
 
@@ -20,7 +19,7 @@ describe('@templ/config > load config', () => {
       name: 'config',
       templ: {
         build: {
-          compile: 'esbuild',
+          bundler: 'esbuild',
         },
       },
     })
