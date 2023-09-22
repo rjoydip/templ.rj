@@ -18,7 +18,7 @@
     "create:pkg": "pnpm -C scripts create:pkg",
     "deps:fresh": "taze -r -w -i",
     "preinstall": "npx only-allow pnpm",
-    "lint": "pnpm -r eslint && pnpm lint:spell && pnpm lint:secret && pnpm lint:md && pnpm lint:size",
+    "lint": "pnpm -r eslint && pnpm lint:size && pnpm lint:spell && pnpm lint:secret && pnpm lint:md",
     "lint:md": "pnpm -C scripts lint:md",
     "lint:secret": "secretlint --secretlintignore .gitignore \"**/*\"",
     "lint:size": "pnpm -r lint:size",
