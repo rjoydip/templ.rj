@@ -6,5 +6,7 @@ export default antfu({
   json: true,
   jsonc: true,
   yml: true,
-  markdown: true,
+  markdown: true
+}, {
+  ignores: ['docs'],
 })
