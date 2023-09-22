@@ -402,7 +402,7 @@ importers:
     devDependencies:
       '@size-limit/file':
         specifier: ^8.2.6
-        version: 8.2.6(size-limit@8.2.6)
+        version: 8.2.6(size-limit@9.0.0)
       '@templ/eslint-config':
         specifier: workspace:^
         version: link:../eslint-config
@@ -425,8 +425,8 @@ importers:
         specifier: ^2.0.2
         version: 2.0.2
       size-limit:
-        specifier: ^8.2.6
-        version: 8.2.6
+        specifier: ^9.0.0
+        version: 9.0.0
       tsup:
         specifier: ^7.2.0
         version: 7.2.0(postcss@8.4.27)(ts-node@10.9.1)(typescript@5.2.2)
@@ -2164,14 +2164,14 @@ packages:
     resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
     dev: true
 
-  /@size-limit/file@8.2.6(size-limit@8.2.6):
+  /@size-limit/file@8.2.6(size-limit@9.0.0):
     resolution: {integrity: sha512-B7ayjxiJsbtXdIIWazJkB5gezi5WBMecdHTFPMDhI3NwEML1RVvUjAkrb1mPAAkIpt2LVHPnhdCUHjqDdjugwg==}
     engines: {node: ^14.0.0 || ^16.0.0 || >=18.0.0}
     peerDependencies:
       size-limit: 8.2.6
     dependencies:
       semver: 7.5.3
-      size-limit: 8.2.6
+      size-limit: 9.0.0
     dev: true
 
   /@size-limit/file@9.0.0(size-limit@9.0.0):
@@ -7416,19 +7416,6 @@ packages:
 
   /sisteransi@1.0.5:
     resolution: {integrity: sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==}
-    dev: true
-
-  /size-limit@8.2.6:
-    resolution: {integrity: sha512-zpznim/tX/NegjoQuRKgWTF4XiB0cn2qt90uJzxYNTFAqexk4b94DOAkBD3TwhC6c3kw2r0KcnA5upziVMZqDg==}
-    engines: {node: ^14.0.0 || ^16.0.0 || >=18.0.0}
-    hasBin: true
-    dependencies:
-      bytes-iec: 3.1.1
-      chokidar: 3.5.3
-      globby: 11.1.0
-      lilconfig: 2.1.0
-      nanospinner: 1.1.0
-      picocolors: 1.0.0
     dev: true
 
   /size-limit@9.0.0:
