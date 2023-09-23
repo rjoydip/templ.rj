@@ -34,7 +34,7 @@
     "build": "wireit",
     "clean": "wireit",
     "dev": "wireit",
-    "docs:build": "wireit",
+    "build:docs": "wireit",
     "docs:preview": "wireit",
     "eslint": "wireit",
     "lint:size": "wireit",
@@ -97,7 +97,7 @@
         "tsconfig.json"
       ]
     },
-    "docs:build": {
+    "build:docs": {
       "command": "typedoc src/index.ts",
       "output": [
         "docs/**"
@@ -112,7 +112,7 @@
         "src/**"
       ],
       "dependencies": [
-        "docs:build"
+        "build:docs"
       ]
     },
     "eslint": {

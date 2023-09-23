@@ -24,7 +24,7 @@ export const LoggerSchema = z.object({
   error: z.function(),
   warn: z.function(),
   log: z.function(),
-})
+}).optional()
 
 // Schemas
 export const NonBuildSchema = z.object({
@@ -38,7 +38,6 @@ export const NonBuildSchema = z.object({
   srcDir: z.string().optional().default('src'),
   tsconfig: strOptDefu(_tsconfig),
   watch: boolOptDefu(false),
-  logger: LoggerSchema,
 })
 
 export const BuildSchema = NonBuildSchema.extend({
@@ -58,7 +57,6 @@ export const DTSPluginSchema = z.object({
 
 export const TemplSchema = z.object({
   build: BuildSchema,
-  logger: LoggerSchema,
 })
 
 export type MaybePromise<T> = T | Promise<T>

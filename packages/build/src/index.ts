@@ -2,14 +2,15 @@ import { join, resolve } from 'node:path'
 import { mkdir, rm } from 'node:fs/promises'
 import { getTsconfig } from 'get-tsconfig'
 import { totalist } from 'totalist'
+import { createLogger } from '@templ/logger'
 import type { BuildOptions as ESBuildOptions } from 'esbuild'
 import type { BuildOptions, Format, NonBuildOptions } from '@templ/config'
-import esbuild from './_esbuild'
 import { dTSPlugin } from './plugin/dts'
+import esbuild from './_esbuild'
 
 export async function build(options: BuildOptions) {
   const plugins = []
-  const logger = options.logger
+  const logger = createLogger()
 
   await totalist(`./${options.srcDir}`, (rel) => {
     if (rel.endsWith('.ts') || rel.endsWith('.tsx')) {
@@ -59,7 +60,6 @@ export async function build(options: BuildOptions) {
     srcDir: options.srcDir,
     watch: options.watch,
     assets: options.assets,
-    logger: options.logger,
     clean: false,
     bundler: 'esbuild',
     debug: false,

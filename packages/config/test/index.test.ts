@@ -14,13 +14,21 @@ describe('@templ/config', () => {
   test('should return default build data', async () => {
     expect(await getBuildConfig()).toStrictEqual({
       assets: [],
-      exclude: [],
-      include: [],
-      clean: true,
-      dts: true,
-      minify: true,
+      bundle: false,
       bundler: 'esbuild',
-      format: ['esm'],
+      clean: true,
+      debug: false,
+      dts: true,
+      exclude: [],
+      format: [],
+      include: [],
+      minify: true,
+      outDir: '',
+      outFile: '',
+      srcDir: '',
+      target: '',
+      tsconfig: '',
+      watch: false,
     })
   })
 })

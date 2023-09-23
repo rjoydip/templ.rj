@@ -4,11 +4,19 @@ const defaultBuildConfig: BuildOptions = {
   assets: [],
   exclude: [],
   include: [],
+  format: [],
   clean: true,
   dts: true,
   minify: true,
   bundler: 'esbuild',
-  format: ['esm'],
+  debug: false,
+  srcDir: '',
+  tsconfig: '',
+  watch: false,
+  bundle: false,
+  outDir: '',
+  outFile: '',
+  target: '',
 }
 
 const defaultTemplConfig: TemplOptions = {

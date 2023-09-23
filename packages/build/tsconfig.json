@@ -4,7 +4,7 @@
     "useDefineForClassFields": true,
     "moduleResolution": "Node",
     "baseUrl": ".",
-    "resolveJsonModule": false,
+    "resolveJsonModule": true,
     "declaration": true,
     "outDir": "dist",
     "newLine": "lf",

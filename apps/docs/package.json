@@ -16,7 +16,7 @@
   },
   "scripts": {
     "clean": "wireit",
-    "docs:build": "wireit",
+    "build:docs": "wireit",
     "docs:dev": "wireit",
     "docs:preview": "wireit",
     "eslint": "wireit",
@@ -46,7 +46,7 @@
         "tsconfig.json"
       ]
     },
-    "docs:build": {
+    "build:docs": {
       "command": "vitepress build .",
       "output": [
         "build/**"
@@ -64,7 +64,7 @@
         "build/**"
       ],
       "dependencies": [
-        "docs:build"
+        "build:docs"
       ]
     },
     "eslint": {
