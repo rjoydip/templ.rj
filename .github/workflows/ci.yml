@@ -62,10 +62,10 @@ jobs:
       - uses: ./.github/actions/setup-node
       - name: Test
         run: pnpm run test
-      # - name: Codecov
-      #   uses: codecov/codecov-action@v3
-      #   env:
-      #     CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      - name: Codecov
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
   test_cli:
     runs-on: ${{ matrix.os }}

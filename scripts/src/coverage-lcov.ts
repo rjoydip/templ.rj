@@ -1,14 +1,16 @@
 import { existsSync, statSync } from 'node:fs'
 import { copyFile, mkdir, writeFile } from 'node:fs/promises'
 import { join, parse, sep } from 'node:path'
+import { cwd } from 'node:process'
 import fg from 'fast-glob'
 import lcovParse from 'lcov-parse'
+import type { LcovFile } from 'lcov-parse'
 import { createLogger } from '@templ/logger'
 import { pkgRoot, root } from '@templ/utils'
 
 const combinedReport: string[] = []
-const packagesDir: string = pkgRoot
-const coverageDir: string = join(root, 'coverage')
+const packagesDir = typeof pkgRoot === 'string' ? pkgRoot : cwd()
+const coverageDir: string = join(typeof root === 'string' ? root : cwd(), 'coverage')
 const logger = createLogger()
 
 /**
@@ -19,10 +21,10 @@ const logger = createLogger()
 async function createFolderIfNotExists(folderPath: string): Promise<void> {
   if (!existsSync(folderPath)) {
     await mkdir(folderPath, { recursive: true })
-    logger.info(`Folder "${folderPath}" created.`)
+    logger.success('[lcov]:', `Folder "${folderPath}" created.`)
   }
   else {
-    logger.info(`Folder "${folderPath}" already exists.`)
+    logger.success('[lcov]:', `Folder "${folderPath}" already exists.`)
   }
 }
 
@@ -53,18 +55,20 @@ function isFileEmpty(filePath: string): boolean {
  */
 function processFile(file: string): Promise<void> {
   return new Promise<void>((resolve, reject) => {
-    lcovParse(file, (err: string, data) => {
+    lcovParse(file, (err: string | null, data: LcovFile[] | undefined) => {
       if (err) {
         reject(err)
       }
       else {
-        const lcovContent = data.map((entry) => {
-          return `SF:${entry.file}\n${entry.lines.details
-            .map(line => `DA:${line.line},${line.hit}`)
-            .join('\n')}\nend_of_record`
-        })
-        combinedReport.push(...lcovContent)
-        resolve()
+        if (data) {
+          const lcovContent = data.map((entry) => {
+            return `SF:${entry.file}\n${entry.lines.details
+              .map(line => `DA:${line.line},${line.hit}`)
+              .join('\n')}\nend_of_record`
+          })
+          combinedReport.push(...lcovContent)
+          resolve()
+        }
       }
     })
   })
@@ -99,16 +103,13 @@ async function copyLcovFilesToRootCoverageDir(): Promise<void> {
         `${coverageDir}/${parse(lcovFile).dir.split(sep).at(-2)}.lcov.info`,
       )
     }
-    logger.info('Copied lcov.info files to root coverage directory')
+    logger.success('[lcov]:', 'Copied lcov.info files to root coverage directory')
   }
   catch (error) {
     logger.error('Error copying LCOV files:', error)
   }
 }
 
-/**
- * The function `mergeLcovFiles` merges multiple LCOV files into a single combined report.
- */
 async function mergeLcovFiles(): Promise<void> {
   const lcovFiles: string[] = await getLcovFiles()
   try {
@@ -120,14 +121,14 @@ async function mergeLcovFiles(): Promise<void> {
       join(coverageDir, 'combined-lcov.info'),
       combinedReport.join('\n'),
     )
-    logger.info('Combined LCOV report saved as combined-lcov.info')
+    logger.success('[lcov]:', 'Combined LCOV report saved as combined-lcov.info')
   }
   catch (error) {
     logger.error('Error merging LCOV files:', error)
   }
 }
 
-;(async () => {
+(async function () {
   await mergeLcovFiles()
   await copyLcovFilesToRootCoverageDir()
 })()
