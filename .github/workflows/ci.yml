@@ -41,8 +41,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup-node
-      - name: Install
-        run: pnpm i --no-frozen-lockfile
       - name: Build
         run: pnpm run build
 
@@ -52,8 +50,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup-node
-      - name: Install
-        run: pnpm i --no-frozen-lockfile
       - name: Build
         run: pnpm run build:docs
 
@@ -63,8 +59,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup-node
-      - name: Install
-        run: pnpm i --no-frozen-lockfile
       - name: Test
         run: pnpm run test
       # - name: Codecov
@@ -86,8 +80,6 @@ jobs:
       - uses: ./.github/actions/setup-node
         with:
           node-version: ${{ matrix.node_version }}
-      - name: Install
-        run: pnpm i --no-frozen-lockfile
       - name: Test CLI
         run: pnpm run test:cli
 
@@ -122,27 +114,9 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - uses: ./.github/actions/setup-node
-      - name: Install
-        run: pnpm i --no-frozen-lockfile
       - name: Snyk monitor
         run: |
           npx snyk auth $SNYK_TOKEN
           npx snyk monitor --all-projects
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-
-  trivy-scan:
-    runs-on: ubuntu-latest
-    needs: ['clean']
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@master
-      - name: Run Trivy vulnerability scanner in fs mode
-        uses: aquasecurity/trivy-action@master
-        with:
-          image-ref: "."
-          scan-type: "fs"
-          scan-ref: "."
-          skip-dirs: "third_party"
-          output: "dependency-results.sbom.json"
-          github-pat: ${{ secrets.GITHUB_TOKEN }}
