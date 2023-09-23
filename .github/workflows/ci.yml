@@ -120,6 +120,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    needs: ['lint', 'build']
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2
