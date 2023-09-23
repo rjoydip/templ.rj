@@ -82,7 +82,7 @@ jobs:
         with:
           node-version: ${{ matrix.node_version }}
       - name: Test CLI
-        run: pnpm run test:cli'
+        run: pnpm run test:cli
 
   triage:
     runs-on: ubuntu-latest
