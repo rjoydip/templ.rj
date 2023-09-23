@@ -8,5 +8,5 @@ export default antfu({
   yml: true,
   markdown: true,
 }, {
-  ignores: ['docs'],
+  ignores: ['docs', 'test'],
 })

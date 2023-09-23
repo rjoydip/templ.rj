@@ -1,12 +1,6 @@
 import { fileURLToPath } from 'node:url'
 import { basename } from 'node:path'
-import escalade from 'escalade'
+import escalade from '../src/escalade/async'
 
-export const root = await escalade(fileURLToPath(import.meta.url), (dir) => {
-  if (basename(dir) === 'templ')
-    return dir
-}) || ''
-export const pkgRoot = await escalade(fileURLToPath(import.meta.url), (dir) => {
-  if (basename(dir) === 'packages')
-    return dir
-}) || ''
+export const root = await escalade(fileURLToPath(import.meta.url), (dir: any) => basename(dir) === 'templ' ? dir : '')
+export const pkgRoot = await escalade(fileURLToPath(import.meta.url), (dir: any) => basename(dir) === 'packages' ? dir : '')

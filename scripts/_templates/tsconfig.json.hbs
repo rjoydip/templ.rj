@@ -1,14 +1,28 @@
 {
-  "extends": "@templ/tsconfig/node.json",
   "compilerOptions": {
+    "module": "esnext",
     "baseUrl": ".",
     "outDir": "dist",
-    "paths": {
-      "@templ/{{ name }}": ["./src/index.ts"]
-    }
+    "target": "esnext",
+    "strict": true,
+		"newLine": "lf",
+    "esModuleInterop": true,
+    "noUncheckedIndexedAccess": true,
+		"allowSyntheticDefaultImports": true,
+		"resolveJsonModule": false,
+		"declaration": true,
+		"pretty": true,
+		"stripInternal": true,
+		"noImplicitReturns": true,
+		"noImplicitOverride": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noFallthroughCasesInSwitch": true,
+		"noPropertyAccessFromIndexSignature": true,
+		"noEmitOnError": true,
+		"useDefineForClassFields": true,
+		"forceConsistentCasingInFileNames": true,
+		"skipLibCheck": true
   },
-  "include": ["src"],
-  "exclude": ["dist", "*.d.ts"]
+  "include": ["src/**/*.ts"]
 }
-
-{{#expect name}}

@@ -1,14 +1,14 @@
 import { describe, expect, test } from 'vitest'
-import { PrettyError } from '../src'
+import { TemplError } from '../src'
 
 describe('@templ/utils > Error', () => {
-  test('should match type of PrettyError', () => {
-    expect(new PrettyError('') instanceof PrettyError).toBeTruthy()
+  test('should match type of TemplError', () => {
+    expect(new TemplError('') instanceof TemplError).toBeTruthy()
   })
 
   test('should be validate error', () => {
     expect(() => {
-      throw new PrettyError('Error message')
+      throw new TemplError('Error message')
     }).toThrowError(/Error/)
   })
 })

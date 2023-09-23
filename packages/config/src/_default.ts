@@ -1,32 +1,26 @@
-import type { Options } from 'tsup'
 import type { BuildOptions, TemplOptions } from './schema'
 
 const defaultBuildConfig: BuildOptions = {
   assets: [],
   exclude: [],
   include: [],
+  format: [],
   clean: true,
   dts: true,
   minify: true,
   bundler: 'esbuild',
-  format: ['esm'],
-}
-
-const defaultTSupConfig: Options = {
-  entry: ['src/index.ts'],
-  splitting: false,
-  sourcemap: false,
-  clean: true,
-  dts: true,
-  minify: true,
-  target: 'esnext',
-  format: ['esm'],
-  platform: 'node',
+  debug: false,
+  srcDir: '',
+  tsconfig: '',
+  watch: false,
+  bundle: false,
+  outDir: '',
+  outFile: '',
+  target: '',
 }
 
 const defaultTemplConfig: TemplOptions = {
   build: defaultBuildConfig,
-  tsup: defaultTSupConfig,
 }
 
 export default defaultTemplConfig

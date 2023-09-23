@@ -37,3 +37,7 @@ runs:
     - name: Print versions
       shell: bash
       run: echo "${{ toJson(steps.resolve-package-versions.outputs) }}"
+
+    - name: Install
+      shell: bash
+      run: pnpm i --no-frozen-lockfile

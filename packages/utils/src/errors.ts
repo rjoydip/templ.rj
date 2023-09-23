@@ -1,4 +1,4 @@
-export class PrettyError extends Error {
+export class TemplError extends Error {
   constructor(message: string) {
     super(message)
     this.name = this.constructor.name
