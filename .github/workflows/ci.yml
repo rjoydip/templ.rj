@@ -111,6 +111,7 @@ jobs:
       - uses: ./.github/actions/setup-node
       - uses: antfu/export-size-action@v1
         with:
+          bundler: 'esbuild'
           github_token: ${{ secrets.GITHUB_TOKEN }}
           paths: packages/build,packages/cli,packages/config,packages/core,packages/logger,packages/utils
 
