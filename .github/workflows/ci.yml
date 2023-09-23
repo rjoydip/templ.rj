@@ -5,7 +5,6 @@ on:
   push:
     branches: [main]
   pull_request:
-    types: [opened, reopened, edited, ready_for_review, synchronize]
 
 concurrency:
   group: ci-${{ github.event.pull_request.number || github.ref }}
@@ -62,18 +61,10 @@ jobs:
       - uses: ./.github/actions/setup-node
       - name: Test
         run: pnpm run test
-      - name: Collect lcov
-        run: pnpm run lcov:collect
-      - name: Setup LCOV
-        uses: hrishikesh-kadam/setup-lcov@v1
-      - name: Report code coverage
-        uses: zgosalvez/github-actions-report-lcov@v3
-        with:
-          coverage-files: coverage/*.lcov.info
-          minimum-coverage: 90
-          update-comment: true
-          artifact-name: templ-code-coverage-report
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Codecov
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
   test_cli:
     runs-on: ${{ matrix.os }}

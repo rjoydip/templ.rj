@@ -17,7 +17,6 @@
   "scripts": {
     "clean": "wireit",
     "clean:nm": "wireit",
-    "lcov:collect": "wireit",
     "create:pkg": "wireit",
     "eslint:fix": "eslint . --fix",
     "eslint": "wireit",
@@ -30,7 +29,6 @@
     "@templ/logger": "workspace:^",
     "@templ/utils": "workspace:^",
     "fast-glob": "^3.3.1",
-    "lcov-result-merger": "^4.1.0",
     "markdown-table": "^3.0.3",
     "pretty-bytes": "^6.1.1",
     "rollup": "^3.29.2",
@@ -59,22 +57,6 @@
       "command": "node --loader tsx ./src/clean-nm.ts",
       "files": [
         "src/clean-nm.ts"
-      ],
-      "dependencies": [
-        {
-          "script": "../packages/logger:build",
-          "cascade": false
-        },
-        {
-          "script": "../packages/utils:build",
-          "cascade": false
-        }
-      ]
-    },
-    "lcov:collect": {
-      "command": "node --loader tsx ./src/lcov-collect.ts",
-      "files": [
-        "src/lcov-collect.ts"
       ],
       "dependencies": [
         {

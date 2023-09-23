@@ -8,11 +8,10 @@
   "repository": "rjoydip/templ",
   "type": "module",
   "scripts": {
-    "all": "pnpm clean && pnpm deps:update && pnpm lint && pnpm changelog && pnpm build:all && pnpm size:generate && pnpm test:all && pnpm lcov:collect && pnpm update:third_party",
+    "all": "pnpm clean && pnpm deps:update && pnpm lint && pnpm changelog && pnpm build:all && pnpm size:generate && pnpm test:all && pnpm update:third_party",
     "build": "pnpm -r build",
     "build:all": "pnpm build && pnpm build:docs",
     "build:docs": "pnpm -r build:docs",
-    "lcov:collect": "pnpm -C scripts lcov:collect",
     "clean": "rimraf .pnpm-store coverage temp && pnpm -r clean",
     "clean:nm": "pnpm -C scripts clean:nm",
     "changelog": "auto-changelog -p",
