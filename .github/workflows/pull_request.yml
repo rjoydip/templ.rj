@@ -114,3 +114,17 @@ jobs:
           skip-dirs: "third_party"
           output: "dependency-results.sbom.json"
           github-pat: ${{ secrets.GITHUB_TOKEN }}
+
+  snyk:
+    runs-on: ubuntu-latest
+    if: github.actor != 'dependabot[bot]'
+    steps:
+      - uses: actions/checkout@master
+      - uses: ./.github/actions/setup-node
+      - name: Snyk monitor
+        run: |
+          npx snyk auth $SNYK_TOKEN
+          npx snyk monitor --all-projects
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
