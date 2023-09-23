@@ -109,7 +109,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: ./.github/actions/setup-node
-      - uses: antfu/export-size-action@v1
+      - uses: antfu/export-size-action@main
         with:
           bundler: 'esbuild'
           github_token: ${{ secrets.GITHUB_TOKEN }}
