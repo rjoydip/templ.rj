@@ -1,4 +1,3 @@
-import type { Options } from 'tsup'
 import type { BuildOptions, TemplOptions } from './schema'
 
 const defaultBuildConfig: BuildOptions = {
@@ -12,21 +11,8 @@ const defaultBuildConfig: BuildOptions = {
   format: ['esm'],
 }
 
-const defaultTSupConfig: Options = {
-  entry: ['src/index.ts'],
-  splitting: false,
-  sourcemap: false,
-  clean: true,
-  dts: true,
-  minify: true,
-  target: 'esnext',
-  format: ['esm'],
-  platform: 'node',
-}
-
 const defaultTemplConfig: TemplOptions = {
   build: defaultBuildConfig,
-  tsup: defaultTSupConfig,
 }
 
 export default defaultTemplConfig

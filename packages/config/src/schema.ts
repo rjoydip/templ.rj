@@ -59,7 +59,6 @@ export const DTSPluginSchema = z.object({
 export const TemplSchema = z.object({
   build: BuildSchema,
   logger: LoggerSchema,
-  tsup: z.object({}),
 })
 
 export type MaybePromise<T> = T | Promise<T>

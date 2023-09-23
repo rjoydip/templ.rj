@@ -8,5 +8,4 @@ export function defineConfig(options:
 
 export * from './get-config'
 export * from './load'
-export * from './tsup'
 export * from './schema'

@@ -1,12 +1,28 @@
 {
-  "extends": "@templ/tsconfig/node.json",
   "compilerOptions": {
+    "target": "esnext",
+    "useDefineForClassFields": true,
+    "moduleResolution": "Node",
     "baseUrl": ".",
-    "paths": {
-      "@templ/build": ["./src/cli.ts"]
-    },
-    "outDir": "dist"
+    "resolveJsonModule": false,
+    "declaration": true,
+    "outDir": "dist",
+    "newLine": "lf",
+    "stripInternal": true,
+    "noEmitOnError": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
+    "pretty": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "skipLibCheck": true
   },
-  "include": ["src"],
-  "exclude": ["dist", "*.d.ts"]
+  "include": ["src/**/*.ts"]
 }

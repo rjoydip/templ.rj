@@ -5,7 +5,7 @@ import { totalist } from 'totalist'
 import type { BuildOptions as ESBuildOptions } from 'esbuild'
 import type { BuildOptions, Format, NonBuildOptions } from '@templ/config'
 import esbuild from './_esbuild'
-import { dTSPlugin } from './plugin/dts.ts'
+import { dTSPlugin } from './plugin/dts'
 
 export async function build(options: BuildOptions) {
   const plugins = []
@@ -40,8 +40,8 @@ export async function build(options: BuildOptions) {
     }))
   }
 
-  const target = options.target || tsconfigData.config.compilerOptions.target
-  const outdir = options.outDir || tsconfigData.config.compilerOptions.outDir
+  const target = options.target || tsconfigData?.config?.compilerOptions?.target
+  const outdir = options.outDir || tsconfigData?.config?.compilerOptions?.outDir
   const outfile = outdir ? '' : options.outFile
 
   const buildOptions: ESBuildOptions = {
@@ -60,6 +60,13 @@ export async function build(options: BuildOptions) {
     watch: options.watch,
     assets: options.assets,
     logger: options.logger,
+    clean: false,
+    bundler: 'esbuild',
+    debug: false,
+    dts: false,
+    exclude: [],
+    include: [],
+    tsconfig: '',
   }
 
   await Promise.all([

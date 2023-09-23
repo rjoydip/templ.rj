@@ -40,10 +40,9 @@
   "devDependencies": {
     "@antfu/eslint-config": "1.0.0-beta.2",
     "@templ/docs": "workspace:^",
-    "@templ/tsconfig": "workspace:^",
     "@types/lcov-parse": "^1.0.0",
     "@types/node": "^20.6.3",
-    "eslint": "^8.49.0",
+    "eslint": "^8.50.0",
     "lcov-parse": "^1.0.0",
     "markdownlint": "^0.30.0",
     "ora": "^7.0.1",
