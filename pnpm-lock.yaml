@@ -476,18 +476,12 @@ importers:
       '@templ/docs':
         specifier: workspace:^
         version: link:../apps/docs
-      '@types/lcov-parse':
-        specifier: ^1.0.0
-        version: 1.0.0
       '@types/node':
         specifier: ^20.6.3
         version: 20.6.3
       eslint:
         specifier: ^8.50.0
         version: 8.50.0
-      lcov-parse:
-        specifier: ^1.0.0
-        version: 1.0.0
       markdownlint:
         specifier: ^0.30.0
         version: 0.30.0
@@ -2278,10 +2272,6 @@ packages:
 
   /@types/json-schema@7.0.12:
     resolution: {integrity: sha512-Hr5Jfhc9eYOQNPYO5WLDq/n4jqijdHNlDXjuAQkkt+mWdQR+XJToOHrsD4cPaMXpn6KO7y2+wM8AZEs8VpBLVA==}
-    dev: true
-
-  /@types/lcov-parse@1.0.0:
-    resolution: {integrity: sha512-OUhELB4cGtoAkBPr2/9zOe05f+Qijf7nUgx7MgPr/BNY272fiv7qWfrd02zPKb2n3xiWzYtZRXQnx0QWRxENVQ==}
     dev: true
 
   /@types/mdast@3.0.12:
@@ -5140,11 +5130,6 @@ packages:
 
   /known-css-properties@0.28.0:
     resolution: {integrity: sha512-9pSL5XB4J+ifHP0e0jmmC98OGC1nL8/JjS+fi6mnTlIf//yt/MfVLtKg7S6nCtj/8KTcWX7nRlY0XywoYY1ISQ==}
-    dev: true
-
-  /lcov-parse@1.0.0:
-    resolution: {integrity: sha512-aprLII/vPzuQvYZnDRU78Fns9I2Ag3gi4Ipga/hxnVMCZC8DnR2nI7XBqrPoywGfxqIx/DgarGvDJZAD3YBTgQ==}
-    hasBin: true
     dev: true
 
   /lcov-result-merger@4.1.0:
