@@ -104,17 +104,15 @@ jobs:
           pass_on_octokit_error: false
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  # size-export:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@master
-  #     - uses: ./.github/actions/setup-node
-  #     - name: Install
-  #       run: pnpm i --no-frozen-lockfile
-  #     - uses: antfu/export-size-action@v1
-  #       with:
-  #         github_token: ${{ secrets.GITHUB_TOKEN }}
-  #         paths: packages/build,packages/cli,packages/config,packages/core,packages/logger,packages/utils
+  size-export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/setup-node
+      - uses: antfu/export-size-action@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          paths: packages/build,packages/cli,packages/config,packages/core,packages/logger,packages/utils
 
   size-report:
     runs-on: ubuntu-latest
