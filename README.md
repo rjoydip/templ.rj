@@ -15,7 +15,7 @@
 [![CodeQL][codeql-image]][codeql-url]
 [![License][license-image]][license-url]
 [![GitHub tag][release-tag-image]][release-url]
-[![codecov][codecov-image]][codecov-url]
+[![code style][code-style-image]][code-style-url]
 [![PRs Welcome][pr-welcome-image]][pr-welcome-url]
 [![Conventional Commits][conventional-commits-image]][conventional-commits-url]
 [![Gitpod Ready-to-Code][gitpod-image]][gitpod-url]
@@ -23,6 +23,7 @@
 [![Typescript][typescript-image]][typescript-url]
 [![PNPM][pnpm-image]][pnpm-url]
 [![VS Code Container][vscode-container-image]][vscode-container-url]
+[![Known Vulnerabilities][snyk-url]][snyk-image]
 
 </div>
 
@@ -59,8 +60,6 @@ Released under [MIT](./LICENSE) by [@rjoydip](https://github.com/rjoydip).
 [license-url]: https://github.com/rjoydip/templ/blob/main/LICENSE
 [release-tag-image]: https://img.shields.io/github/tag/rjoydip/templ?include_prereleases=&sort=semver&color=green
 [release-url]: https://github.com/rjoydip/templ/releases
-[codecov-image]: https://codecov.io/gh/rjoydip/templ/branch/main/graph/badge.svg?token=YV7AKXYY12
-[codecov-url]: https://codecov.io/gh/rjoydip/templ
 [pr-welcome-image]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg
 [pr-welcome-url]: http://makeapullrequest.com
 [gitpod-image]: https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod
@@ -75,3 +74,7 @@ Released under [MIT](./LICENSE) by [@rjoydip](https://github.com/rjoydip).
 [conventional-commits-url]: https://conventionalcommits.org
 [vscode-container-image]: https://img.shields.io/static/v1?label=VS+Code&message=Container&logo=visualstudiocode&color=007ACC&logoColor=007ACC&labelColor=2C2C32
 [vscode-container-url]: https://open.vscode.dev/microsoft/vscode
+[code-style-url]: https://github.com/antfu/eslint-config
+[code-style-image]: https://antfu.me/badge-code-style.svg
+[snyk-url]: https://snyk.io/test/github/eugenezinovyev/lcov-viewer?targetFile=package.json
+[snyk-image]: https://snyk.io/test/github/eugenezinovyev/lcov-viewer/badge.svg?targetFile=package.json

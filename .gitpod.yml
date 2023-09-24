@@ -8,6 +8,7 @@ tasks:
 vscode:
   extensions:
     - "aaron-bond.better-comments"
+    - "codecov.codecov"
     - "davidanson.vscode-markdownlint"
     - "eamodio.gitlens"
     - "editorconfig.editorconfig"

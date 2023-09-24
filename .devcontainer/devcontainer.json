@@ -18,6 +18,7 @@
       "extensions": [
         "aaron-bond.better-comments",
         "bierner.markdown-emoji",
+        "codecov.codecov",
         "christian-kohler.npm-intellisense",
         "dbaeumer.vscode-eslint",
         "davidanson.vscode-markdownlint",

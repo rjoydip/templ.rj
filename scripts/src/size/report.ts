@@ -7,7 +7,6 @@ import { stdout } from 'node:process'
 import { pathToFileURL } from 'node:url'
 import { platform } from 'node:os'
 import { markdownTable } from 'markdown-table'
-import prettyBytes from 'pretty-bytes'
 import { root } from '@templ/utils'
 
 interface SizeResult {
@@ -27,10 +26,12 @@ const prevDir = resolve(root, 'temp/size-prev')
 let output = '# Size Report\n\n'
 const sizeHeaders = ['Size', 'Gzip', 'Brotli']
 
-async function main() {
-  await renderBundles()
-  await renderPackages()
-  stdout.write(output)
+function prettyBytes(bytes: number) {
+  if (bytes === 0)
+    return '0 B'
+  const unit = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+  const exp = Math.floor(Math.log(bytes) / Math.log(1024))
+  return `${(bytes / 1024 ** exp).toFixed(2)} ${unit[exp]}`
 }
 
 async function renderBundles() {
@@ -110,6 +111,12 @@ function getDiff(curr: number, prev?: number) {
     return ''
   const sign = diff > 0 ? '+' : ''
   return ` (**${sign}${prettyBytes(diff)}**)`
+}
+
+async function main() {
+  await renderBundles()
+  await renderPackages()
+  stdout.write(output)
 }
 
 main()

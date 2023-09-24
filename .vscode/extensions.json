@@ -3,6 +3,7 @@
     "aaron-bond.better-comments",
     "bierner.markdown-emoji",
     "christian-kohler.npm-intellisense",
+    "codecov.codecov",
     "dbaeumer.vscode-eslint",
     "davidanson.vscode-markdownlint",
     "eamodio.gitlens",

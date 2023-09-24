@@ -12,14 +12,14 @@
     "build": "pnpm -r build",
     "build:all": "pnpm build && pnpm build:docs",
     "build:docs": "pnpm -r build:docs",
-    "coverage:lcov": "pnpm -C scripts coverage:lcov",
     "clean": "rimraf .pnpm-store coverage temp && pnpm -r clean",
     "clean:nm": "pnpm -C scripts clean:nm",
     "changelog": "auto-changelog -p",
     "create:pkg": "pnpm -C scripts create:pkg",
     "deps:update": "taze -r -w -i",
     "preinstall": "npx only-allow pnpm",
-    "lint": "pnpm -r eslint && pnpm lint:size && pnpm lint:spell && pnpm lint:secret && pnpm lint:md",
+    "lint": "pnpm lint:eslint && pnpm lint:md && pnpm pnpm lint:secret && pnpm lint:size && pnpm lint:spell",
+    "lint:eslint": "pnpm -r eslint",
     "lint:md": "pnpm -C scripts lint:md",
     "lint:secret": "secretlint --secretlintignore .gitignore \"**/*\"",
     "lint:size": "pnpm -r lint:size",
@@ -50,7 +50,6 @@
     "rimraf": "^5.0.1",
     "secretlint": "^7.0.7",
     "snyk": "^1.1226.0",
-    "stylelint": "^15.10.3",
     "taze": "^0.11.2"
   },
   "engines": {
@@ -67,16 +66,12 @@
   },
   "nano-staged": {
     "*": [
-      "cspell .",
-      "secretlint \"**/*\""
+      "pnpm lint:spell",
+      "pnpm lint:secret"
     ],
-    "*.{js,ts,jsx,tsx,md,json}": "prettier --write --cache .",
-    "*.css": [
-      "stylelint",
-      "eslint --fix"
-    ],
+    "*.{css, js,ts,jsx,tsx,md,json}": "pnpm lint:eslint",
     "*.md": [
-      "pnpm -C scripts lint:md"
+      "pnpm lint:md"
     ]
   },
   "packageManager": "pnpm@8.7.6",
