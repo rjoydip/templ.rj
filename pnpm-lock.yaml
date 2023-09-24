@@ -84,76 +84,6 @@ importers:
         specifier: ^0.14.0
         version: 0.14.0
 
-  packages/build:
-    dependencies:
-      '@templ/config':
-        specifier: workspace:^
-        version: link:../config
-      '@templ/logger':
-        specifier: workspace:^
-        version: link:../logger
-      esbuild:
-        specifier: ^0.19.3
-        version: 0.19.3
-      get-tsconfig:
-        specifier: ^4.7.2
-        version: 4.7.2
-      sade:
-        specifier: ^1.8.1
-        version: 1.8.1
-      totalist:
-        specifier: ^3.0.1
-        version: 3.0.1
-      typescript:
-        specifier: ^5.2.2
-        version: 5.2.2
-    devDependencies:
-      '@antfu/eslint-config':
-        specifier: 1.0.0-beta.2
-        version: 1.0.0-beta.2(eslint@8.50.0)(typescript@5.2.2)
-      '@size-limit/file':
-        specifier: ^9.0.0
-        version: 9.0.0(size-limit@9.0.0)
-      '@templ/utils':
-        specifier: workspace:^
-        version: link:../utils
-      '@types/node':
-        specifier: ^20.6.5
-        version: 20.6.5
-      '@vitest/coverage-v8':
-        specifier: ^0.34.5
-        version: 0.34.5(vitest@0.34.5)
-      eslint:
-        specifier: ^8.50.0
-        version: 8.50.0
-      rimraf:
-        specifier: ^5.0.1
-        version: 5.0.1
-      sirv-cli:
-        specifier: ^2.0.2
-        version: 2.0.2
-      size-limit:
-        specifier: ^9.0.0
-        version: 9.0.0
-      tsup:
-        specifier: ^7.2.0
-        version: 7.2.0(ts-node@10.9.1)(typescript@5.2.2)
-      tsx:
-        specifier: ^3.13.0
-        version: 3.13.0
-      typedoc:
-        specifier: ^0.25.1
-        version: 0.25.1(typescript@5.2.2)
-      vite-tsconfig-paths:
-        specifier: ^4.2.1
-        version: 4.2.1(typescript@5.2.2)
-      vitest:
-        specifier: ^0.34.5
-        version: 0.34.5
-      wireit:
-        specifier: ^0.14.0
-        version: 0.14.0
-
   packages/cli:
     dependencies:
       '@templ/logger':
@@ -467,8 +397,8 @@ importers:
         specifier: ^8.50.0
         version: 8.50.0
       markdownlint:
-        specifier: ^0.30.0
-        version: 0.30.0
+        specifier: ^0.31.1
+        version: 0.31.1
       ora:
         specifier: ^7.0.1
         version: 7.0.1
@@ -3049,7 +2979,7 @@ packages:
       normalize-path: 3.0.0
       readdirp: 3.6.0
     optionalDependencies:
-      fsevents: 2.3.2
+      fsevents: 2.3.3
     dev: true
 
   /chownr@2.0.0:
@@ -4250,19 +4180,11 @@ packages:
     resolution: {integrity: sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==}
     dev: true
 
-  /fsevents@2.3.2:
-    resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
-    engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
-    os: [darwin]
-    requiresBuild: true
-    optional: true
-
   /fsevents@2.3.3:
     resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
     requiresBuild: true
-    dev: true
     optional: true
 
   /function-bind@1.1.1:
@@ -4325,6 +4247,7 @@ packages:
     resolution: {integrity: sha512-wuMsz4leaj5hbGgg4IvDU0bqJagpftG5l5cXIAvo8uZrqn0NJqwtfupTN00VnkQJPcIRrxYrm1Ue24btpCha2A==}
     dependencies:
       resolve-pkg-maps: 1.0.0
+    dev: true
 
   /git-raw-commits@2.0.11:
     resolution: {integrity: sha512-VnctFhw+xfj8Va1xtfEqCUD2XDrbAPSJx+hSrE5K7fGdjZruW7XV+QOrN7LF/RJyvspRiD2I0asWsxFp0ya26A==}
@@ -5209,8 +5132,8 @@ packages:
     engines: {node: '>=16'}
     dev: true
 
-  /markdownlint@0.30.0:
-    resolution: {integrity: sha512-nInuFvI/rEzanAOArW5490Ez4EYpB5ODqVM0mcDYCPx9DKJWCQqCgejjiCvbSeE7sjbDscVtZmwr665qpF5xGA==}
+  /markdownlint@0.31.1:
+    resolution: {integrity: sha512-CKMR2hgcIBrYlIUccDCOvi966PZ0kJExDrUi1R+oF9PvqQmCrTqjOsgIvf2403OmJ+CWomuzDoylr6KbuMyvHA==}
     engines: {node: '>=16'}
     dependencies:
       markdown-it: 13.0.1
@@ -6274,6 +6197,7 @@ packages:
 
   /resolve-pkg-maps@1.0.0:
     resolution: {integrity: sha512-seS2Tj26TBVOC2NIc2rOe2y2ZO7efxITtLZcGSOnHHNOQ7CkiUBfw0Iw2ck6xkIhPwLhKNLS8BO+hEpngQlqzw==}
+    dev: true
 
   /resolve@1.22.3:
     resolution: {integrity: sha512-P8ur/gp/AmbEzjr729bZnLjXK5Z+4P0zhIJgBgzqRih7hL7BOukHGtSTA3ACMY467GRFz3duQsi0bDZdR7DKdw==}
@@ -6332,7 +6256,7 @@ packages:
     engines: {node: '>=14.18.0', npm: '>=8.0.0'}
     hasBin: true
     optionalDependencies:
-      fsevents: 2.3.2
+      fsevents: 2.3.3
     dev: true
 
   /rollup@3.29.3:
@@ -6340,7 +6264,7 @@ packages:
     engines: {node: '>=14.18.0', npm: '>=8.0.0'}
     hasBin: true
     optionalDependencies:
-      fsevents: 2.3.2
+      fsevents: 2.3.3
 
   /run-parallel@1.2.0:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}
@@ -7219,6 +7143,7 @@ packages:
     resolution: {integrity: sha512-mI4WrpHsbCIcwT9cF4FZvr80QUeKvsUsUvKDoR+X/7XHQH98xYD8YHZg7ANtz2GtZt/CBq2QJ0thkGJMHfqc1w==}
     engines: {node: '>=14.17'}
     hasBin: true
+    dev: true
 
   /uc.micro@1.0.6:
     resolution: {integrity: sha512-8Y75pvTYkLJW2hWQHXxoqRgV7qb9B+9vFEtidML+7koHUFapnVJAZ6cKs+Qjz5Aw3aZWHMC6u0wJE3At+nSGwA==}
@@ -7383,7 +7308,7 @@ packages:
       postcss: 8.4.27
       rollup: 3.29.3
     optionalDependencies:
-      fsevents: 2.3.2
+      fsevents: 2.3.3
     dev: true
 
   /vitepress@1.0.0-rc.14(@algolia/client-search@4.19.1)(@types/node@20.6.5)(search-insights@2.7.0):
