@@ -30,7 +30,7 @@
     "@templ/utils": "workspace:^",
     "fast-glob": "^3.3.1",
     "markdown-table": "^3.0.3",
-    "rollup": "^3.29.2",
+    "rollup": "^3.29.3",
     "terser": "^5.20.0",
     "totalist": "^3.0.1",
     "type-fest": "^4.3.1"
@@ -38,13 +38,13 @@
   "devDependencies": {
     "@antfu/eslint-config": "1.0.0-beta.2",
     "@templ/docs": "workspace:^",
-    "@types/node": "^20.6.3",
+    "@types/node": "^20.6.5",
     "eslint": "^8.50.0",
     "markdownlint": "^0.30.0",
     "ora": "^7.0.1",
     "rimraf": "^5.0.1",
     "tempura": "^0.4.0",
-    "tsx": "^3.12.10",
+    "tsx": "^3.13.0",
     "wireit": "^0.14.0",
     "zod": "^3.22.2"
   },

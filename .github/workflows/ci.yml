@@ -84,26 +84,6 @@ jobs:
       - name: Test CLI
         run: pnpm run test:cli
 
-  triage:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/labeler@v4
-
-  add-reviews:
-    runs-on: ubuntu-latest
-    if: github.actor != 'dependabot[bot]'
-    steps:
-      - uses: kentaro-m/auto-assign-action@v1.2.4
-
-  pr-title-check:
-    runs-on: ubuntu-latest
-    if: github.actor != 'dependabot[bot]'
-    steps:
-      - uses: thehanimo/pr-title-checker@v1.4.0
-        with:
-          pass_on_octokit_error: false
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
   size-report:
     runs-on: ubuntu-latest
     permissions:
@@ -154,6 +134,26 @@ jobs:
         uses: peter-evans/commit-comment@v2
         with:
           body: ${{ steps.size-report.outputs.content }}
+
+  triage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/labeler@v4
+
+  add-reviews:
+    runs-on: ubuntu-latest
+    if: github.actor != 'dependabot[bot]'
+    steps:
+      - uses: kentaro-m/auto-assign-action@v1.2.4
+
+  pr-title-check:
+    runs-on: ubuntu-latest
+    if: github.actor != 'dependabot[bot]'
+    steps:
+      - uses: thehanimo/pr-title-checker@v1.4.0
+        with:
+          pass_on_octokit_error: false
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   trivy-scan:
     runs-on: ubuntu-latest
