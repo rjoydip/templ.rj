@@ -104,17 +104,6 @@ jobs:
           pass_on_octokit_error: false
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  size-export:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: ./.github/actions/setup-node
-      - uses: antfu/export-size-action@main
-        with:
-          bundler: 'esbuild'
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          paths: packages/build,packages/cli,packages/config,packages/core,packages/logger,packages/utils
-
   size-report:
     runs-on: ubuntu-latest
     permissions:
