@@ -140,12 +140,6 @@ jobs:
     steps:
       - uses: actions/labeler@v4
 
-  add-reviews:
-    runs-on: ubuntu-latest
-    if: github.actor != 'dependabot[bot]'
-    steps:
-      - uses: kentaro-m/auto-assign-action@v1.2.4
-
   pr-title-check:
     runs-on: ubuntu-latest
     if: github.actor != 'dependabot[bot]'

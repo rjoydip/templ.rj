@@ -2,7 +2,7 @@
   - package.json
 
 📜docs:
-  - docs/*
+  - app/docs/*
   - "*README.md"
 
 🐚shell:
