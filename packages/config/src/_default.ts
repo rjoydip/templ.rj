@@ -19,9 +19,6 @@ const defaultBuildConfig: BuildOptions = {
   target: '',
 }
 
-const defaultTemplConfig: TemplOptions = {
+export const defaultTemplConfig: TemplOptions = {
   build: defaultBuildConfig,
 }
-
-export default defaultTemplConfig
-export { defaultTemplConfig }
