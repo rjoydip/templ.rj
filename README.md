@@ -23,7 +23,6 @@
 [![Typescript][typescript-image]][typescript-url]
 [![PNPM][pnpm-image]][pnpm-url]
 [![VS Code Container][vscode-container-image]][vscode-container-url]
-[![Known Vulnerabilities][snyk-url]][snyk-image]
 
 </div>
 
@@ -76,5 +75,3 @@ Released under [MIT](./LICENSE) by [@rjoydip](https://github.com/rjoydip).
 [vscode-container-url]: https://open.vscode.dev/microsoft/vscode
 [code-style-url]: https://github.com/antfu/eslint-config
 [code-style-image]: https://antfu.me/badge-code-style.svg
-[snyk-url]: https://snyk.io/test/github/eugenezinovyev/lcov-viewer?targetFile=package.json
-[snyk-image]: https://snyk.io/test/github/eugenezinovyev/lcov-viewer/badge.svg?targetFile=package.json
