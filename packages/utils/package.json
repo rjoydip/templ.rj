@@ -38,7 +38,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@antfu/eslint-config": "1.0.0-beta.2",
+    "@antfu/eslint-config": "1.0.0-beta.8",
     "@size-limit/file": "^9.0.0",
     "@templ/config": "workspace:^",
     "@templ/docs": "workspace:^",

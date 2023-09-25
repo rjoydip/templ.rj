@@ -23,7 +23,7 @@
     "typedoc:preview": "wireit"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "1.0.0-beta.2",
+    "@antfu/eslint-config": "1.0.0-beta.8",
     "@templ/logger": "workspace:^",
     "@types/node": "^20.6.5",
     "eslint": "^8.50.0",

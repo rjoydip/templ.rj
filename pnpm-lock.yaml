@@ -51,8 +51,8 @@ importers:
   apps/docs:
     devDependencies:
       '@antfu/eslint-config':
-        specifier: 1.0.0-beta.2
-        version: 1.0.0-beta.2(eslint@8.50.0)(typescript@5.2.2)
+        specifier: 1.0.0-beta.8
+        version: 1.0.0-beta.8(eslint@8.50.0)(typescript@5.2.2)
       '@templ/logger':
         specifier: workspace:^
         version: link:../../packages/logger
@@ -97,8 +97,8 @@ importers:
         version: 11.0.2
     devDependencies:
       '@antfu/eslint-config':
-        specifier: 1.0.0-beta.2
-        version: 1.0.0-beta.2(eslint@8.50.0)(typescript@5.2.2)
+        specifier: 1.0.0-beta.8
+        version: 1.0.0-beta.8(eslint@8.50.0)(typescript@5.2.2)
       '@size-limit/file':
         specifier: ^9.0.0
         version: 9.0.0(size-limit@9.0.0)
@@ -161,8 +161,8 @@ importers:
         version: 3.22.2
     devDependencies:
       '@antfu/eslint-config':
-        specifier: 1.0.0-beta.2
-        version: 1.0.0-beta.2(eslint@8.50.0)(typescript@5.2.2)
+        specifier: 1.0.0-beta.8
+        version: 1.0.0-beta.8(eslint@8.50.0)(typescript@5.2.2)
       '@size-limit/file':
         specifier: ^9.0.0
         version: 9.0.0(size-limit@9.0.0)
@@ -206,8 +206,8 @@ importers:
   packages/core:
     devDependencies:
       '@antfu/eslint-config':
-        specifier: 1.0.0-beta.2
-        version: 1.0.0-beta.2(eslint@8.50.0)(typescript@5.2.2)
+        specifier: 1.0.0-beta.8
+        version: 1.0.0-beta.8(eslint@8.50.0)(typescript@5.2.2)
       '@size-limit/file':
         specifier: ^9.0.0
         version: 9.0.0(size-limit@9.0.0)
@@ -264,8 +264,8 @@ importers:
         version: 11.0.2
     devDependencies:
       '@antfu/eslint-config':
-        specifier: 1.0.0-beta.2
-        version: 1.0.0-beta.2(eslint@8.50.0)(typescript@5.2.2)
+        specifier: 1.0.0-beta.8
+        version: 1.0.0-beta.8(eslint@8.50.0)(typescript@5.2.2)
       '@size-limit/file':
         specifier: ^9.0.0
         version: 9.0.0(size-limit@9.0.0)
@@ -309,8 +309,8 @@ importers:
   packages/utils:
     devDependencies:
       '@antfu/eslint-config':
-        specifier: 1.0.0-beta.2
-        version: 1.0.0-beta.2(eslint@8.50.0)(typescript@5.2.2)
+        specifier: 1.0.0-beta.8
+        version: 1.0.0-beta.8(eslint@8.50.0)(typescript@5.2.2)
       '@size-limit/file':
         specifier: ^9.0.0
         version: 9.0.0(size-limit@9.0.0)
@@ -385,8 +385,8 @@ importers:
         version: 4.3.1
     devDependencies:
       '@antfu/eslint-config':
-        specifier: 1.0.0-beta.2
-        version: 1.0.0-beta.2(eslint@8.50.0)(typescript@5.2.2)
+        specifier: 1.0.0-beta.8
+        version: 1.0.0-beta.8(eslint@8.50.0)(typescript@5.2.2)
       '@templ/docs':
         specifier: workspace:^
         version: link:../apps/docs
@@ -567,20 +567,20 @@ packages:
       '@jridgewell/trace-mapping': 0.3.18
     dev: true
 
-  /@antfu/eslint-config@1.0.0-beta.2(eslint@8.50.0)(typescript@5.2.2):
-    resolution: {integrity: sha512-S91OxxWEdSlJR7Jr0vSvCcvZmg3i395ae0+8Z0ihr++BkozluhMpaY6z6veaASHyb3mgoVvmIU0lW0GT2My1+Q==}
+  /@antfu/eslint-config@1.0.0-beta.8(eslint@8.50.0)(typescript@5.2.2):
+    resolution: {integrity: sha512-6ljPfnMd+j17k1sNCMVdXp1qXsy6aAPFXe0PbGQHrKoHtVP3yCfKqFYwpnDPXUNjd24WsNQ7FHUQ7SrgtIkBAw==}
     peerDependencies:
       eslint: '>=8.0.0'
     dependencies:
       '@eslint-stylistic/metadata': 0.0.4
-      '@eslint/js': 8.49.0
       '@stylistic/eslint-plugin-js': 0.0.4
       '@stylistic/eslint-plugin-ts': 0.0.4(eslint@8.50.0)(typescript@5.2.2)
       '@typescript-eslint/eslint-plugin': 6.7.2(@typescript-eslint/parser@6.7.2)(eslint@8.50.0)(typescript@5.2.2)
       '@typescript-eslint/parser': 6.7.2(eslint@8.50.0)(typescript@5.2.2)
       eslint: 8.50.0
+      eslint-config-flat-gitignore: 0.1.0
       eslint-define-config: 1.23.0
-      eslint-plugin-antfu: 1.0.0-beta.2(eslint@8.50.0)(typescript@5.2.2)
+      eslint-plugin-antfu: 1.0.0-beta.6(eslint@8.50.0)(typescript@5.2.2)
       eslint-plugin-eslint-comments: 3.2.0(eslint@8.50.0)
       eslint-plugin-i: 2.28.1(@typescript-eslint/parser@6.7.2)(eslint@8.50.0)
       eslint-plugin-jsdoc: 46.8.2(eslint@8.50.0)
@@ -1620,11 +1620,6 @@ packages:
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
       - supports-color
-    dev: true
-
-  /@eslint/js@8.49.0:
-    resolution: {integrity: sha512-1S8uAY/MTJqVx0SC4epBq+N2yhuwtNwLbJYNZyhL2pO1ZVKn5HFXav5T41Ryzy9K9V7ZId2JB2oy/W4aCd9/2w==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
 
   /@eslint/js@8.50.0:
@@ -3655,6 +3650,12 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
+  /eslint-config-flat-gitignore@0.1.0:
+    resolution: {integrity: sha512-5nQMQFRkkhCb+ejFhKSATn/41I7ot9oRcnEDzfqwMlBE9036qM9ioYBDtKLpwmlICXr/J7naMFfb39pa4v4sGA==}
+    dependencies:
+      parse-gitignore: 2.0.0
+    dev: true
+
   /eslint-define-config@1.23.0:
     resolution: {integrity: sha512-4mMyu0JuBkQHsCtR+42irIQdFLmLIW+pMAVcyOV/gZRL4O1R8iuH0eMG3oL3Cbi1eo9fDAfT5CIHVHgdyxcf6w==}
     engines: {node: ^16.13.0 || >=18.0.0, npm: '>=7.0.0', pnpm: '>= 8.6.0'}
@@ -3699,8 +3700,8 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-antfu@1.0.0-beta.2(eslint@8.50.0)(typescript@5.2.2):
-    resolution: {integrity: sha512-jrgUzJ/R+mFCX8f3x2HUQZfF4vMRFyGT/MQNKKFO1DcEGnVVq3zmYife+uYpLQUd4sfySo5wVOY3a/pvnfSYIg==}
+  /eslint-plugin-antfu@1.0.0-beta.6(eslint@8.50.0)(typescript@5.2.2):
+    resolution: {integrity: sha512-AbHAYYVv8BhjH4FkoSZWV+FxYwZUspqr0Zo5y4K0Jm8BhwXo6+UaQrpW3exxraJmsVTXty+Hlkcd4ysQV6DICw==}
     dependencies:
       '@typescript-eslint/utils': 6.7.2(eslint@8.50.0)(typescript@5.2.2)
     transitivePeerDependencies:
@@ -5820,6 +5821,11 @@ packages:
     resolution: {integrity: sha512-kgBf6avCbO3Cn6+RnzRGLkUsv4ZVqv/VfAYkRsyBcgkshNvVBkRn1FEZcW0Jb+npXQWm2vHPnnOqFteZxRRGNw==}
     engines: {node: '>=0.10.0'}
     hasBin: true
+    dev: true
+
+  /parse-gitignore@2.0.0:
+    resolution: {integrity: sha512-RmVuCHWsfu0QPNW+mraxh/xjQVw/lhUCUru8Zni3Ctq3AoMhpDTq0OVdKS6iesd6Kqb7viCV3isAL43dciOSog==}
+    engines: {node: '>=14'}
     dev: true
 
   /parse-json@5.2.0:
