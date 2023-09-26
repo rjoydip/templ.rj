@@ -38,7 +38,6 @@ const config = {
   'whitespace': false,
 }
 
-/* The code you provided is using the `markdownlint` library to lint Markdown files. */
 markdownlint(
   {
     files: fg.sync('{*.md,{.github,packages,fixtures}/**/*.md}', {

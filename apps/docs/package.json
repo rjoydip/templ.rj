@@ -15,38 +15,20 @@
     "url": "https://github.com/rjoydip/templ/issues"
   },
   "scripts": {
-    "clean": "wireit",
-    "build:docs": "wireit",
+    "clean": "rimraf .vitepress .wireit",
+    "build": "wireit",
     "docs:dev": "wireit",
     "docs:preview": "wireit",
-    "eslint": "wireit",
-    "typedoc:preview": "wireit"
+    "eslint": "eslint --color --cache --fix --cache-location .eslintcache ."
   },
   "devDependencies": {
-    "@antfu/eslint-config": "1.0.0-beta.2",
-    "@templ/logger": "workspace:^",
-    "@types/node": "^20.6.5",
+    "@antfu/eslint-config": "1.0.0-beta.10",
     "eslint": "^8.50.0",
-    "polka": "^0.5.2",
-    "serve-static": "^1.15.0",
-    "tempura": "^0.4.0",
-    "tsx": "^3.13.0",
     "vitepress": "1.0.0-rc.20",
-    "vue": "^3.3.4",
     "wireit": "^0.14.0"
   },
   "wireit": {
-    "clean": {
-      "command": "rimraf .vitepress .wireit"
-    },
-    "dev": {
-      "command": "tsx ./src/index.ts --watch",
-      "files": [
-        "src/**/*.ts",
-        "tsconfig.json"
-      ]
-    },
-    "build:docs": {
+    "build": {
       "command": "vitepress build .",
       "output": [
         "build/**"
@@ -64,20 +46,7 @@
         "build/**"
       ],
       "dependencies": [
-        "build:docs"
-      ]
-    },
-    "eslint": {
-      "command": "eslint --color --cache --fix --cache-location .eslintcache .",
-      "files": [
-        "src/**/*.ts",
-        "eslint.config.js"
-      ]
-    },
-    "typedoc:preview": {
-      "command": "node --loader tsx typedoc/preview.ts",
-      "files": [
-        "typedoc/**/*.ts"
+        "build"
       ]
     }
   }

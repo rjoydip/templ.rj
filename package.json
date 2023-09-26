@@ -8,24 +8,24 @@
   "repository": "rjoydip/templ",
   "type": "module",
   "scripts": {
-    "all": "pnpm clean && pnpm deps:update && pnpm lint && pnpm changelog && pnpm build:all && pnpm size:generate && pnpm test:all && pnpm update:third_party",
+    "all": "pnpm clean && pnpm deps:update && pnpm lint && pnpm changelog && pnpm build && pnpm size:generate && pnpm test:all && pnpm system:info && pnpm update:third_party",
     "build": "pnpm -r build",
-    "build:all": "pnpm build && pnpm build:docs",
-    "build:docs": "pnpm -r build:docs",
     "clean": "rimraf .pnpm-store coverage temp && pnpm -r clean",
     "clean:nm": "pnpm -C scripts clean:nm",
     "changelog": "auto-changelog -p",
     "create:pkg": "pnpm -C scripts create:pkg",
     "deps:update": "taze -r -w -i",
     "preinstall": "npx only-allow pnpm",
-    "lint": "pnpm lint:eslint && pnpm lint:md && pnpm pnpm lint:secret && pnpm lint:size && pnpm lint:spell",
+    "lint": "pnpm lint:eslint && pnpm lint:knip && pnpm lint:md && pnpm pnpm lint:secret && pnpm lint:size && pnpm lint:spell",
     "lint:eslint": "pnpm -r eslint",
+    "lint:knip": "knip --no-gitignore --no-exit-code",
     "lint:md": "pnpm -C scripts lint:md",
     "lint:secret": "secretlint --secretlintignore .gitignore \"**/*\"",
     "lint:size": "pnpm -r lint:size",
     "lint:spell": "cspell .",
     "prepare": "husky install",
     "size:generate": "pnpm -C scripts size:generate",
+    "system:info": "envinfo --system --binaries --browsers",
     "test": "pnpm -r test",
     "test:all": "pnpm test && pnpm test:cli",
     "test:cli": "pnpm -r test:cli",
@@ -45,11 +45,12 @@
     "cspell": "^7.3.6",
     "envinfo": "^7.10.0",
     "husky": "^8.0.3",
+    "knip": "^2.29.0",
     "nano-staged": "^0.8.0",
-    "pnpm": "^8.7.6",
-    "rimraf": "^5.0.1",
+    "pnpm": "^8.8.0",
+    "rimraf": "^5.0.4",
     "secretlint": "^7.0.7",
-    "snyk": "^1.1226.0",
+    "snyk": "^1.1227.0",
     "taze": "^0.11.2"
   },
   "engines": {
@@ -74,7 +75,7 @@
       "pnpm lint:md"
     ]
   },
-  "packageManager": "pnpm@8.7.6",
+  "packageManager": "pnpm@8.8.0",
   "stackblitz": {
     "startCommand": "pnpm build"
   }

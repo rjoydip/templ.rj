@@ -3,29 +3,6 @@
   "tasks": [
     {
       "type": "npm",
-      "script": "dev",
-      "label": "npm: dev",
-      "isBackground": true,
-      "problemMatcher": {
-        "owner": "typescript",
-        "fileLocation": "relative",
-        "pattern": {
-          "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
-          "file": 1,
-          "line": 2,
-          "column": 3,
-          "severity": 4,
-          "message": 5
-        },
-        "background": {
-          "activeOnStart": true,
-          "beginsPattern": "bundes",
-          "endsPattern": "created"
-        }
-      }
-    },
-    {
-      "type": "npm",
       "script": "build",
       "label": "npm: build",
       "isBackground": true,

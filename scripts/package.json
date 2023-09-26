@@ -15,11 +15,11 @@
     "url": "https://github.com/rjoydip/templ/issues"
   },
   "scripts": {
-    "clean": "wireit",
+    "clean": "rimraf .eslintcache .wireit",
     "clean:nm": "wireit",
     "create:pkg": "wireit",
     "eslint:fix": "eslint . --fix",
-    "eslint": "wireit",
+    "eslint": "eslint --color --cache --fix --cache-location .eslintcache .",
     "lint:md": "wireit",
     "size:data": "wireit",
     "size:generate": "wireit",
@@ -36,22 +36,17 @@
     "type-fest": "^4.3.1"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "1.0.0-beta.2",
-    "@templ/docs": "workspace:^",
-    "@types/node": "^20.6.5",
+    "@antfu/eslint-config": "1.0.0-beta.10",
+    "@types/node": "^20.7.0",
     "eslint": "^8.50.0",
     "markdownlint": "^0.31.1",
-    "ora": "^7.0.1",
-    "rimraf": "^5.0.1",
+    "rimraf": "^5.0.4",
     "tempura": "^0.4.0",
     "tsx": "^3.13.0",
     "wireit": "^0.14.0",
     "zod": "^3.22.2"
   },
   "wireit": {
-    "clean": {
-      "command": "rimraf .wireit"
-    },
     "clean:nm": {
       "command": "node --loader tsx ./src/clean-nm.ts",
       "files": [
@@ -82,13 +77,6 @@
           "script": "../packages/utils:build",
           "cascade": false
         }
-      ]
-    },
-    "eslint": {
-      "command": "eslint --color --cache --fix --cache-location .eslintcache .",
-      "files": [
-        "src/**/*.ts",
-        "eslint.config.js"
       ]
     },
     "lint:md": {

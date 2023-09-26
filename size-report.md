@@ -7,12 +7,12 @@
 
 ## Packages
 
-| Name   | Size | Gzip | Brotli |
-| ------ | ---- | ---- | ------ |
-| build  | 69 B | 88 B | 66 B   |
-| cli    | 66 B | 86 B | 61 B   |
-| config | 69 B | 88 B | 61 B   |
-| core   | 67 B | 86 B | 62 B   |
-| logger | 69 B | 87 B | 70 B   |
+| Name   | Size    | Gzip    | Brotli  |
+| ------ | ------- | ------- | ------- |
+| build  | 69.00 B | 88.00 B | 66.00 B |
+| cli    | 66.00 B | 86.00 B | 61.00 B |
+| config | 69.00 B | 88.00 B | 61.00 B |
+| core   | 67.00 B | 86.00 B | 62.00 B |
+| logger | 69.00 B | 87.00 B | 70.00 B |
 
 ✅ Ran 1 script and skipped 3 in 0.7s.
