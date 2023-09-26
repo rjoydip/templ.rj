@@ -1,28 +1,12 @@
 import type { KnipConfig } from 'knip'
 
+const ignoreDependencies = ['@templ/config', '@templ/core', '@templ/docs', '@templ/logger', '@templ/utils', '@secretlint/secretlint-rule-preset-recommend', '@size-limit/file', 'polka', 'serve-static', 'tempura', 'tsx', 'vue', 'nano-staged', 'size-limit', 'tsup', 'zod', 'markdownlint', 'vitepress']
+
 const config: KnipConfig = {
-  workspaces: {
-    'packages/*': {
-      entry: 'src/index.ts',
-      project: 'src/**/*.ts'
-    },
-    scripts: {
-      project: 'src/**/*.ts'
-    }
-  },
-  husky: {
-    config: [
-      '.husky/commit-msg',
-      '.husky/pre-commit',
-    ]
-  },
-  cspell: {
-    config: ['cspell.config.{js,cjs,json,yaml,yml}', 'cspell.{json,yaml,yml}', '.c{s,S}pell.json', 'cSpell.json']
-  },
-  ignoreDependencies: ['@templ/config', '@templ/core', '@templ/docs', '@templ/logger', '@templ/utils'],
   ignoreExportsUsedInFile: true,
   ignoreBinaries: ['eslint', 'only-allow'],
-  ignore: ['**/fixtures', '.wireit', '**/docs', '**/_templates', '**/*.d.ts', 'taze.config.js']
+  ignoreDependencies,
+  ignore: ['**/fixtures', '**/.wireit', '**/docs', '**/dist', '**/_templates', 'taze.config.js']
 }
 
 export default config

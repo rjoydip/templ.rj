@@ -1,5 +1,1 @@
-export default {
-  build: {
-    bundler: 'esbuild',
-  },
-}
+export default {}

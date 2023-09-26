@@ -5,11 +5,7 @@ import { loadPkg, loadTemplConfig } from '../src/load'
 const fixturePath = join(__dirname, 'fixtures')
 const fixture = (folder: string) => join(fixturePath, folder)
 
-const defaultData = {
-  build: {
-    bundler: 'esbuild',
-  },
-}
+const defaultData = {}
 
 describe('@templ/config > load config', () => {
   test('should be load package.json', async () => {
@@ -17,11 +13,7 @@ describe('@templ/config > load config', () => {
     expect(pkgData).toBeDefined()
     expect(pkgData).toStrictEqual({
       name: 'config',
-      templ: {
-        build: {
-          bundler: 'esbuild',
-        },
-      },
+      templ: {},
     })
   })
 

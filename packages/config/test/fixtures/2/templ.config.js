@@ -1,5 +1,1 @@
-module.exports = {
-  build: {
-    bundler: 'esbuild',
-  },
-}
+module.exports = {}

@@ -1,8 +1,4 @@
 {
   "name": "config",
-  "templ": {
-    "build": {
-      "bundler": "esbuild"
-    }
-  }
+  "templ": {}
 }

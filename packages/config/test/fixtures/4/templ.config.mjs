@@ -1,7 +1,3 @@
-const config = {
-  build: {
-    bundler: 'esbuild',
-  },
-}
+export default {
 
-export default config
+}
