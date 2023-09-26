@@ -15,23 +15,19 @@
     "url": "https://github.com/rjoydip/templ/issues"
   },
   "scripts": {
-    "clean": "wireit",
+    "clean": "rimraf .vitepress .wireit",
     "build": "wireit",
     "docs:dev": "wireit",
     "docs:preview": "wireit",
-    "eslint": "wireit"
+    "eslint": "eslint --color --cache --fix --cache-location .eslintcache ."
   },
   "devDependencies": {
-    "@antfu/eslint-config": "1.0.0-beta.2",
+    "@antfu/eslint-config": "1.0.0-beta.10",
     "eslint": "^8.50.0",
     "vitepress": "1.0.0-rc.20",
-    "vue": "^3.3.4",
     "wireit": "^0.14.0"
   },
   "wireit": {
-    "clean": {
-      "command": "rimraf .vitepress .wireit"
-    },
     "build": {
       "command": "vitepress build .",
       "output": [
@@ -51,13 +47,6 @@
       ],
       "dependencies": [
         "build"
-      ]
-    },
-    "eslint": {
-      "command": "eslint --color --cache --fix --cache-location .eslintcache .",
-      "files": [
-        "src/**/*.ts",
-        "eslint.config.js"
       ]
     }
   }

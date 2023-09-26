@@ -27,8 +27,8 @@
   ],
   "scripts": {
     "build": "wireit",
-    "clean": "wireit",
-    "eslint": "wireit",
+    "clean": "rimraf .eslintcache .wireit dist docs coverage",
+    "eslint": "eslint --color --cache --fix --cache-location .eslintcache .",
     "lint:size": "wireit",
     "test": "wireit",
     "test:watch": "wireit"
@@ -39,7 +39,7 @@
     "serialize-error": "^11.0.2"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "1.0.0-beta.2",
+    "@antfu/eslint-config": "1.0.0-beta.10",
     "@size-limit/file": "^9.0.0",
     "@types/node": "^20.7.0",
     "@vitest/coverage-v8": "^0.34.5",
@@ -61,16 +61,6 @@
       ],
       "output": [
         "dist/**"
-      ]
-    },
-    "clean": {
-      "command": "rimraf .eslintcache .wireit dist docs coverage"
-    },
-    "eslint": {
-      "command": "eslint --color --cache --fix --cache-location .eslintcache .",
-      "files": [
-        "src/**/*.ts",
-        "eslint.config.js"
       ]
     },
     "lint:size": {
@@ -103,7 +93,8 @@
   "size-limit": [
     {
       "path": "dist/index.js",
-      "limit": "10KB"
+      "limit": "10KB",
+      "brotli": true
     }
   ]
 }
