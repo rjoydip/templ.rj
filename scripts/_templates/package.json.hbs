@@ -14,24 +14,24 @@
   "bugs": {
     "url": "https://github.com/rjoydip/templ/issues"
   },
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
-    },
-    "./*": "./*"
+    "types": "./dist/index.d.ts",
+    "import": "./dist/index.js",
+    "require": "./dist/index.js"
   },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
     "dist",
     "*.d.ts"
   ],
+  "engines": {
+    "node": "^18.8.0 || >=20.6.0"
+  },
   "scripts": {
     "build": "wireit",
-    "clean": "wireit",
-    "eslint": "wireit",
+    "clean": "rimraf .eslintcache dist docs coverage",
+    "eslint": "eslint --color --cache --fix --cache-location .eslintcache .",
     "lint:size": "wireit",
     "test": "wireit",
     "test:watch": "wireit"
@@ -62,13 +62,6 @@
       ],
       "dependencies": []
     },
-    "clean": {
-      "command": "rimraf .eslintcache dist docs coverage"
-    },
-    "eslint": {
-      "command": "eslint --color --cache --fix --cache-location .eslintcache .",
-      "files": ["src/**/*.ts", "eslint.config.js"]
-    },
     "lint:size": {
       "command": "size-limit",
       "dependencies": [
@@ -98,7 +91,8 @@
   },
   "size-limit": [{
     "path": "dist/index.js",
-    "limit": "10KB"
+    "limit": "10KB",
+    "brotli": true
   }]
 }
 

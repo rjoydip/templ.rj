@@ -115,12 +115,8 @@ async function main() {
           join(outputLocation, name, 'src', 'index.ts'),
         ),
         await copyFile(
-          join(templatesLocation, '.eslintignore'),
-          join(outputLocation, name, '.eslintignore'),
-        ),
-        await copyFile(
-          join(templatesLocation, '.eslintrc'),
-          join(outputLocation, name, '.eslintrc'),
+          join(templatesLocation, 'eslint.config.js'),
+          join(outputLocation, name, 'eslint.config.js'),
         ),
         await setTemplateData(
           join(outputLocation, name, 'test'),
