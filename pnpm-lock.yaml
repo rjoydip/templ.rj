@@ -46,7 +46,7 @@ importers:
         version: 7.0.7
       snyk:
         specifier: ^1.1227.0
-        version: 1.1227.0
+        version: 1.1228.0
       taze:
         specifier: ^0.11.2
         version: 0.11.2
@@ -6518,8 +6518,8 @@ packages:
     engines: {node: '>= 6.0.0', npm: '>= 3.0.0'}
     dev: true
 
-  /snyk@1.1227.0:
-    resolution: {integrity: sha512-+J1dVYBBMxsa4IahYH9hmnQYIVffmg6JKYKZWKpbzRJ4w1MzdS/GqZOryxJwVN7YFLFhCK//AZLcYhNBjbMZuQ==}
+  /snyk@1.1228.0:
+    resolution: {integrity: sha512-DLPcGazN+F7sR8v2ABCvsSLifOLoW1Episyu4De9Ho8x+EXgX8sTlbI9LkmL5dndY7bmWxaQ6w0qsvXZQNB4dA==}
     engines: {node: '>=12'}
     hasBin: true
     requiresBuild: true
