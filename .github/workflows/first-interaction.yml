@@ -10,6 +10,7 @@ jobs:
   check-for-first-interaction:
     name: Check for first interaction
     runs-on: ubuntu-latest
+    if: github.actor != 'dependabot[bot]'
     steps:
       - uses: actions/checkout@master
       - uses: ./.github/actions/setup-node
