@@ -40,7 +40,7 @@ importers:
         version: 8.8.0
       rimraf:
         specifier: ^5.0.4
-        version: 5.0.4
+        version: 5.0.5
       secretlint:
         specifier: ^7.0.7
         version: 7.0.7
@@ -6317,6 +6317,14 @@ packages:
 
   /rimraf@5.0.4:
     resolution: {integrity: sha512-rizQI/o/YAMM1us0Zyax0uRfIK39XR52EAjjOi0fzMolpGp0onj6CWzBAXuOx6+6Xi9Rgi0d9tUZojhJerLUmQ==}
+    engines: {node: '>=14'}
+    hasBin: true
+    dependencies:
+      glob: 10.3.8
+    dev: true
+
+  /rimraf@5.0.5:
+    resolution: {integrity: sha512-CqDakW+hMe/Bz202FPEymy68P+G50RfMQK+Qo5YUqc9SPipvbGjCGKd0RSKEelbsfQuw3g5NZDSrlZZAJurH1A==}
     engines: {node: '>=14'}
     hasBin: true
     dependencies:
