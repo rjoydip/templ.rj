@@ -47,6 +47,10 @@ Coming soon
 
 Coming soon
 
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=rjoydip/templ&type=Date)](https://star-history.com/#rjoydip/templ&Date)
+
 ## License
 
 Released under [MIT](./LICENSE) by [@rjoydip](https://github.com/rjoydip).
