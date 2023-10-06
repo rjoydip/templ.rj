@@ -18,12 +18,9 @@
     "clean": "rimraf .vitepress .wireit",
     "build": "wireit",
     "docs:dev": "wireit",
-    "docs:preview": "wireit",
-    "eslint": "eslint --color --cache --fix --cache-location .eslintcache ."
+    "docs:preview": "wireit"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "1.0.0-beta.10",
-    "eslint": "^8.50.0",
     "vitepress": "1.0.0-rc.20",
     "wireit": "^0.14.0"
   },

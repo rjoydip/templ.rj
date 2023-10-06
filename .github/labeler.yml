@@ -3,10 +3,10 @@
 
 📜docs:
   - app/docs/*
-  - "*README.md"
+  - '*README.md'
 
 🐚shell:
-  - "*.sh"
+  - '*.sh'
 
 ☁︎ci:
   - .github/*

@@ -1,18 +1,18 @@
 ---
 version: 2
 updates:
-  - package-ecosystem: "npm"
-    directory: "/"
+  - package-ecosystem: npm
+    directory: /
     schedule:
-      interval: "weekly"
-      time: "00:10"
-      timezone: "Asia/Calcutta"
+      interval: weekly
+      time: '00:10'
+      timezone: Asia/Calcutta
     versioning-strategy: widen
-    target-branch: "main"
+    target-branch: main
     labels:
-      - "🤖dependabot"
+      - 🤖dependabot
     ignore:
-      - dependency-name: "react"
-        versions: ["18.x"]
-      - dependency-name: "react-dom"
-        versions: ["18.x"]
+      - dependency-name: react
+        versions: [18.x]
+      - dependency-name: react-dom
+        versions: [18.x]

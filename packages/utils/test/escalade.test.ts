@@ -76,7 +76,8 @@ describe('@templ/utils > Escalade', () => {
   })
 
   test('should handle deeper traversals', async () => {
-    let levels = 0; let contents = 0
+    let levels = 0
+    let contents = 0
     const input = join(fixtures, 'foo', 'bar', 'hello', 'world.txt')
 
     await escalade(input, async (dir, names) => {

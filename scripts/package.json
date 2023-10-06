@@ -15,11 +15,9 @@
     "url": "https://github.com/rjoydip/templ/issues"
   },
   "scripts": {
-    "clean": "rimraf .eslintcache .wireit",
+    "clean": "rimraf .wireit",
     "clean:nm": "wireit",
     "create:pkg": "wireit",
-    "eslint:fix": "eslint . --fix",
-    "eslint": "eslint --color --cache --fix --cache-location .eslintcache .",
     "lint:md": "wireit",
     "size:data": "wireit",
     "size:generate": "wireit",
@@ -36,9 +34,7 @@
     "type-fest": "^4.3.1"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "1.0.0-beta.10",
     "@types/node": "^20.7.0",
-    "eslint": "^8.50.0",
     "markdownlint": "^0.31.1",
     "rimraf": "^5.0.4",
     "tempura": "^0.4.0",

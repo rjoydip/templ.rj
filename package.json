@@ -1,12 +1,20 @@
 {
-  "private": true,
   "name": "templ",
-  "version": "0.0.0",
-  "description": "A project template",
-  "license": "MIT",
-  "author": "Joydip Roy <joydipand@gmail.com> (https://github.com/rjoydip)",
-  "repository": "rjoydip/templ",
   "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "pnpm@8.8.0",
+  "description": "A project template",
+  "author": "Joydip Roy <joydipand@gmail.com> (https://github.com/rjoydip)",
+  "license": "MIT",
+  "repository": "rjoydip/templ",
+  "sideEffects": true,
+  "engines": {
+    "node": ">=18",
+    "npm": ">=8",
+    "shell": "bash",
+    "yarn": "This project is configured to use pnpm"
+  },
   "scripts": {
     "all": "pnpm clean && pnpm deps:update && pnpm lint && pnpm changelog && pnpm build && pnpm size:generate && pnpm test:all && pnpm system:info && pnpm update:third_party",
     "build": "pnpm -r build",
@@ -17,7 +25,8 @@
     "deps:update": "taze -r -w -i",
     "preinstall": "npx only-allow pnpm",
     "lint": "pnpm lint:eslint && pnpm lint:knip && pnpm lint:md && pnpm pnpm lint:secret && pnpm lint:size && pnpm lint:spell",
-    "lint:eslint": "pnpm -r eslint",
+    "lint:eslint": "eslint --color --cache --fix --cache-location .eslintcache .",
+    "eslint:viewer": "eslint-flat-config-viewer",
     "lint:knip": "knip --no-gitignore --no-exit-code",
     "lint:md": "pnpm -C scripts lint:md",
     "lint:secret": "secretlint --secretlintignore .gitignore \"**/*\"",
@@ -31,19 +40,21 @@
     "test:cli": "pnpm -r test:cli",
     "update:third_party": "git submodule update --recursive --remote"
   },
-  "sideEffects": true,
   "workspaces": [
     "apps/*",
     "packages/*",
     "scripts"
   ],
   "devDependencies": {
+    "@antfu/eslint-config": "1.0.0-beta.10",
     "@commitlint/cli": "^17.7.1",
     "@commitlint/config-conventional": "^17.7.0",
     "@secretlint/secretlint-rule-preset-recommend": "^7.0.7",
     "auto-changelog": "^2.4.0",
     "cspell": "^7.3.6",
     "envinfo": "^7.10.0",
+    "eslint": "^8.50.0",
+    "eslint-flat-config-viewer": "^0.0.9",
     "husky": "^8.0.3",
     "knip": "^2.29.0",
     "nano-staged": "^0.8.0",
@@ -52,12 +63,6 @@
     "secretlint": "^7.0.7",
     "snyk": "^1.1227.0",
     "taze": "^0.11.2"
-  },
-  "engines": {
-    "node": ">=18",
-    "npm": ">=8",
-    "shell": "bash",
-    "yarn": "This project is configured to use pnpm"
   },
   "auto-changelog": {
     "output": "CHANGELOG.md",
@@ -75,7 +80,6 @@
       "pnpm lint:md"
     ]
   },
-  "packageManager": "pnpm@8.8.0",
   "stackblitz": {
     "startCommand": "pnpm build"
   }
