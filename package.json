@@ -15,6 +15,8 @@
     "changelog": "auto-changelog -p",
     "create:pkg": "pnpm -C scripts create:pkg",
     "deps:update": "taze -r -w -i",
+    "ci:copy:env": "pnpm -C scripts ci:copy:env",
+    "ci:delete:env": "pnpm -C scripts ci:delete:env",
     "preinstall": "npx only-allow pnpm",
     "lint": "pnpm lint:eslint && pnpm lint:knip && pnpm lint:md && pnpm pnpm lint:secret && pnpm lint:size && pnpm lint:spell",
     "lint:eslint": "pnpm -r eslint",
@@ -33,25 +35,24 @@
   },
   "sideEffects": true,
   "workspaces": [
-    "apps/*",
-    "packages/*",
+    "apps/**",
+    "packages/**",
     "scripts"
   ],
   "devDependencies": {
-    "@commitlint/cli": "^17.7.1",
+    "@commitlint/cli": "^17.7.2",
     "@commitlint/config-conventional": "^17.7.0",
     "@secretlint/secretlint-rule-preset-recommend": "^7.0.7",
     "auto-changelog": "^2.4.0",
-    "cspell": "^7.3.6",
+    "cspell": "^7.3.7",
     "envinfo": "^7.10.0",
     "husky": "^8.0.3",
-    "knip": "^2.29.0",
+    "knip": "^2.30.1",
     "nano-staged": "^0.8.0",
     "pnpm": "^8.8.0",
-    "rimraf": "^5.0.4",
+    "rimraf": "^5.0.5",
     "secretlint": "^7.0.7",
-    "snyk": "^1.1227.0",
-    "taze": "^0.11.2"
+    "taze": "^0.11.3"
   },
   "engines": {
     "node": ">=18",
@@ -73,6 +74,66 @@
     "*.{css, js,ts,jsx,tsx,md,json}": "pnpm lint:eslint",
     "*.md": [
       "pnpm lint:md"
+    ]
+  },
+  "knip": {
+    "workspaces": {
+      "packages/*": {
+        "entry": [
+          "**/*.ts",
+          "**/*.config.js",
+          "tsup.config.ts"
+        ],
+        "ignore": [
+          "**/dist/*.js"
+        ]
+      },
+      "packages/api/services/*": {
+        "entry": [
+          "**/*.ts",
+          "**/*.config.js"
+        ],
+        "ignore": [
+          "**/dist/**/*.js"
+        ]
+      },
+      "packages/cli": {
+        "entry": [
+          "**/*.ts",
+          "!*.mjs"
+        ],
+        "ignore": [
+          "*.mjs",
+          "**/dist/*.js"
+        ]
+      },
+      "scripts": {
+        "entry": [
+          "**/*.ts"
+        ],
+        "ignore": [
+          "**/_templates"
+        ]
+      }
+    },
+    "ignoreBinaries": [
+      "eslint",
+      "only-allow"
+    ],
+    "ignoreDependencies": [
+      "vitepress",
+      "@secretlint/secretlint-rule-preset-recommend",
+      "nano-staged",
+      "size-limit",
+      "tsx",
+      "@size-limit/file"
+    ],
+    "ignore": [
+      "**/.wireit",
+      "**/.vitepress",
+      "**/fixtures/**",
+      "**/coverage",
+      "taze.config.js"
     ]
   },
   "packageManager": "pnpm@8.8.0",
