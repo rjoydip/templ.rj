@@ -25,7 +25,7 @@
     "ci:copy:env": "pnpm -C scripts ci:copy:env",
     "eslint:viewer": "eslint-flat-config-viewer",
     "preinstall": "npx only-allow pnpm",
-    "lint": "pnpm lint:eslint && pnpm lint:knip && pnpm lint:md && pnpm pnpm lint:secret && pnpm lint:size && pnpm lint:spell",
+    "lint": "pnpm lint:eslint && pnpm lint:knip && pnpm lint:md && pnpm lint:secret && pnpm lint:size && pnpm lint:spell",
     "lint:eslint": "eslint --color --cache --fix --cache-location .eslintcache .",
     "lint:knip": "knip --no-gitignore --no-exit-code",
     "lint:md": "pnpm -C scripts lint:md",
@@ -147,12 +147,12 @@
   "size-limit": [
     {
       "path": "./packages/cli/dist/index.js",
-      "limit": "1KB",
+      "limit": "300B",
       "brotli": true
     },
     {
       "path": "./packages/core/dist/index.js",
-      "limit": "2KB",
+      "limit": "100B",
       "brotli": true
     },
     {
@@ -162,7 +162,7 @@
     },
     {
       "path": "./packages/logger/dist/index.js",
-      "limit": "10KB",
+      "limit": "800B",
       "brotli": true
     },
     {
