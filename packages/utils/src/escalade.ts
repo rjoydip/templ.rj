@@ -2,9 +2,8 @@ import { dirname, resolve } from 'node:path'
 import { readdir, readdirSync, stat, statSync } from 'node:fs'
 import { promisify } from 'node:util'
 
-// eslint-disable-next-line ts/no-invalid-void-type
 type ReturnType = string | void
-// eslint-disable-next-line ts/no-invalid-void-type
+
 type PromiseType = Promise<string | false | void>
 
 const toStats = promisify(stat)

@@ -2,7 +2,7 @@
   "name": "templ",
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@8.8.0",
+  "packageManager": "pnpm@8.9.0",
   "description": "A project template",
   "author": "Joydip Roy <joydipand@gmail.com> (https://github.com/rjoydip)",
   "license": "MIT",
@@ -19,18 +19,18 @@
     "build": "pnpm -r build",
     "clean": "pnpm -r clean && trash .pnpm-store coverage temp && empty-trash",
     "changelog": "auto-changelog -p",
+    "ci:delete:env": "pnpm -C scripts ci:delete:env",
     "create:pkg": "pnpm -C scripts create:pkg",
     "deps:update": "taze -r -w -i",
     "ci:copy:env": "pnpm -C scripts ci:copy:env",
-    "ci:delete:env": "pnpm -C scripts ci:delete:env",
+    "eslint:viewer": "eslint-flat-config-viewer",
     "preinstall": "npx only-allow pnpm",
     "lint": "pnpm lint:eslint && pnpm lint:knip && pnpm lint:md && pnpm pnpm lint:secret && pnpm lint:size && pnpm lint:spell",
     "lint:eslint": "eslint --color --cache --fix --cache-location .eslintcache .",
-    "eslint:viewer": "eslint-flat-config-viewer",
     "lint:knip": "knip --no-gitignore --no-exit-code",
     "lint:md": "pnpm -C scripts lint:md",
     "lint:secret": "secretlint --secretlintignore .gitignore \"**/*\"",
-    "lint:size": "pnpm -r lint:size",
+    "lint:size": "size-limit",
     "lint:spell": "cspell .",
     "prepare": "husky install",
     "size:generate": "pnpm -C scripts size:generate",
@@ -46,10 +46,11 @@
     "scripts"
   ],
   "devDependencies": {
-    "@antfu/eslint-config": "1.0.0-beta.22",
+    "@antfu/eslint-config": "1.0.0-beta.24",
     "@commitlint/cli": "^17.7.2",
     "@commitlint/config-conventional": "^17.7.0",
     "@secretlint/secretlint-rule-preset-recommend": "^7.0.7",
+    "@size-limit/file": "^9.0.0",
     "auto-changelog": "^2.4.0",
     "cspell": "^7.3.7",
     "empty-trash-cli": "^2.0.0",
@@ -59,8 +60,9 @@
     "husky": "^8.0.3",
     "knip": "^2.32.4",
     "nano-staged": "^0.8.0",
-    "pnpm": "^8.8.0",
+    "pnpm": "^8.9.0",
     "secretlint": "^7.0.7",
+    "size-limit": "^9.0.0",
     "taze": "^0.11.3",
     "trash-cli": "^5.0.0"
   },
@@ -128,7 +130,6 @@
       "@secretlint/secretlint-rule-preset-recommend",
       "@size-limit/file",
       "nano-staged",
-      "size-limit",
       "tsx",
       "vitepress"
     ],
@@ -142,5 +143,32 @@
   },
   "stackblitz": {
     "startCommand": "pnpm build"
-  }
+  },
+  "size-limit": [
+    {
+      "path": "packages/cli/dist/index.js",
+      "limit": "1KB",
+      "brotli": true
+    },
+    {
+      "path": "packages/core/dist/index.js",
+      "limit": "2KB",
+      "brotli": true
+    },
+    {
+      "path": "packages/config/dist/index.js",
+      "limit": "600B",
+      "brotli": true
+    },
+    {
+      "path": "packages/logger/dist/index.js",
+      "limit": "10KB",
+      "brotli": true
+    },
+    {
+      "path": "packages/utils/dist/index.js",
+      "limit": "700B",
+      "brotli": true
+    }
+  ]
 }
