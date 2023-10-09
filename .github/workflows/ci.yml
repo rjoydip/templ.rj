@@ -25,17 +25,6 @@ jobs:
       - name: Lint All
         run: pnpm run clean
 
-  lint:
-    runs-on: ubuntu-latest
-    needs: [clean]
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/setup-node
-      - name: Install
-        run: pnpm i --no-frozen-lockfile
-      - name: Lint All
-        run: pnpm run lint
-
   build:
     runs-on: ubuntu-latest
     needs: [clean]
@@ -47,6 +36,17 @@ jobs:
           pnpm run ci:copy:env
           pnpm run build
           pnpm run ci:delete:env
+
+  lint:
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/setup-node
+      - name: Install
+        run: pnpm i --no-frozen-lockfile
+      - name: Lint All
+        run: pnpm run lint
 
   test:
     runs-on: ubuntu-latest
