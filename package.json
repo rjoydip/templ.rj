@@ -146,27 +146,27 @@
   },
   "size-limit": [
     {
-      "path": "packages/cli/dist/index.js",
+      "path": "./packages/cli/dist/index.js",
       "limit": "1KB",
       "brotli": true
     },
     {
-      "path": "packages/core/dist/index.js",
+      "path": "./packages/core/dist/index.js",
       "limit": "2KB",
       "brotli": true
     },
     {
-      "path": "packages/config/dist/index.js",
+      "path": "./packages/config/dist/index.js",
       "limit": "600B",
       "brotli": true
     },
     {
-      "path": "packages/logger/dist/index.js",
+      "path": "./packages/logger/dist/index.js",
       "limit": "10KB",
       "brotli": true
     },
     {
-      "path": "packages/utils/dist/index.js",
+      "path": "./packages/utils/dist/index.js",
       "limit": "700B",
       "brotli": true
     }
