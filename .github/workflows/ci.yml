@@ -33,11 +33,13 @@ jobs:
       - uses: ./.github/actions/setup-node
       - name: Build
         run: |
-          pnpm run ci:copy:env
+          pnpm -C scripts ci:delete:env
           pnpm run build
-          pnpm run ci:delete:env
+          pnpm -C scripts ci:copy:env
       - name: Lint All
         run: pnpm run lint
+      - name: Dist validation
+        run: pnpm -C scripts ci:check:dist
 
   test:
     runs-on: ubuntu-latest

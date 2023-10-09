@@ -6,13 +6,14 @@ import { COMPLETED, STARTED, pkgRoot } from '@templ/utils'
 const logger = createLogger()
 
 async function main() {
+  let count = 0
   try {
     logger.success(`[${STARTED}]: CI dist checking`)
     await totalist(join(String(pkgRoot)), async (name: string) => {
       if (/^([^\/\\]*)([\/\\]dist)([\/\\]index)\.js$/.test(name))
-        logger.info('>>>', name)
+        count++
     })
-    logger.success(`[${COMPLETED}]: CI dist checking`)
+    count === 5 ? logger.success(`[${COMPLETED}]: CI > dist validated successfully`) : logger.warn(`[${COMPLETED}]: CI > dist validation not match`)
   }
   catch (error) {
     logError(error)

@@ -22,7 +22,7 @@
     "ci:copy:env": "wireit",
     "ci:delete:env": "wireit",
     "create:pkg": "wireit",
-    "ci:dist:checking": "wireit",
+    "ci:check:dist": "wireit",
     "lint:md": "wireit",
     "size:data": "wireit",
     "size:generate": "wireit",
@@ -43,7 +43,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@types/node": "^20.8.3",
+    "@types/node": "^20.8.4",
     "trash-cli": "^5.0.0",
     "wireit": "^0.14.0"
   },
@@ -88,10 +88,10 @@
         }
       ]
     },
-    "ci:dist:checking": {
-      "command": "node --loader tsx ./src/ci/dist-checking.ts",
+    "ci:check:dist": {
+      "command": "node --loader tsx ./src/ci/check-dist.ts",
       "files": [
-        "src/ci/dist-checking.ts"
+        "src/ci/check-dist.ts"
       ],
       "dependencies": [
         {
