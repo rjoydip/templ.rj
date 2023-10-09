@@ -13,7 +13,7 @@ async function main() {
       if (/^([^\/\\]*)([\/\\]dist)([\/\\]index)\.js$/.test(name))
         count++
     })
-    count === 5 ? logger.success(`[${COMPLETED}]: CI > dist validated successfully`) : logger.warn(`[${COMPLETED}]: CI > dist validation not match`)
+    count === 5 ? logger.success(`[${COMPLETED}]: CI > dist count matched`) : logger.error('[ERROR]: CI > dist count not match')
   }
   catch (error) {
     logError(error)
