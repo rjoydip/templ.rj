@@ -71,7 +71,7 @@ jobs:
       - name: Test CLI
         run: pnpm run test:cli
 
-  size-report:
+  size_report:
     runs-on: ubuntu-latest
     if: github.actor != 'dependabot[bot]'
     permissions:
@@ -129,7 +129,7 @@ jobs:
     steps:
       - uses: actions/labeler@v4
 
-  pr-title-check:
+  pr_title_check:
     runs-on: ubuntu-latest
     if: github.actor != 'dependabot[bot]'
     steps:
@@ -138,7 +138,7 @@ jobs:
           pass_on_octokit_error: false
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  trivy-scan:
+  trivy_scan:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
