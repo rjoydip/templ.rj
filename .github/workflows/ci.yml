@@ -33,9 +33,9 @@ jobs:
       - uses: ./.github/actions/setup-node
       - name: Build
         run: |
-          pnpm -C scripts ci:delete:env
-          pnpm run build
           pnpm -C scripts ci:copy:env
+          pnpm run build
+          pnpm -C scripts ci:delete:env
       - name: Lint All
         run: pnpm run lint
       - name: Dist validation
