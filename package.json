@@ -1,7 +1,6 @@
 {
   "name": "templ",
   "type": "module",
-  "version": "0.0.0",
   "private": true,
   "packageManager": "pnpm@8.8.0",
   "description": "A project template",
@@ -18,11 +17,12 @@
   "scripts": {
     "all": "pnpm clean && pnpm deps:update && pnpm lint && pnpm changelog && pnpm build && pnpm size:generate && pnpm test:all && pnpm system:info && pnpm update:third_party",
     "build": "pnpm -r build",
-    "clean": "rimraf .pnpm-store coverage temp && pnpm -r clean",
-    "clean:nm": "pnpm -C scripts clean:nm",
+    "clean": "pnpm -r clean && trash .pnpm-store coverage temp && empty-trash",
     "changelog": "auto-changelog -p",
     "create:pkg": "pnpm -C scripts create:pkg",
     "deps:update": "taze -r -w -i",
+    "ci:copy:env": "pnpm -C scripts ci:copy:env",
+    "ci:delete:env": "pnpm -C scripts ci:delete:env",
     "preinstall": "npx only-allow pnpm",
     "lint": "pnpm lint:eslint && pnpm lint:knip && pnpm lint:md && pnpm pnpm lint:secret && pnpm lint:size && pnpm lint:spell",
     "lint:eslint": "eslint --color --cache --fix --cache-location .eslintcache .",
@@ -41,28 +41,28 @@
     "update:third_party": "git submodule update --recursive --remote"
   },
   "workspaces": [
-    "apps/*",
-    "packages/*",
+    "apps/**",
+    "packages/**",
     "scripts"
   ],
   "devDependencies": {
-    "@antfu/eslint-config": "1.0.0-beta.10",
-    "@commitlint/cli": "^17.7.1",
+    "@antfu/eslint-config": "1.0.0-beta.22",
+    "@commitlint/cli": "^17.7.2",
     "@commitlint/config-conventional": "^17.7.0",
     "@secretlint/secretlint-rule-preset-recommend": "^7.0.7",
     "auto-changelog": "^2.4.0",
-    "cspell": "^7.3.6",
+    "cspell": "^7.3.7",
+    "empty-trash-cli": "^2.0.0",
     "envinfo": "^7.10.0",
-    "eslint": "^8.50.0",
-    "eslint-flat-config-viewer": "^0.0.9",
+    "eslint": "^8.51.0",
+    "eslint-flat-config-viewer": "^0.1.0",
     "husky": "^8.0.3",
-    "knip": "^2.29.0",
+    "knip": "^2.32.4",
     "nano-staged": "^0.8.0",
     "pnpm": "^8.8.0",
-    "rimraf": "^5.0.4",
     "secretlint": "^7.0.7",
-    "snyk": "^1.1227.0",
-    "taze": "^0.11.2"
+    "taze": "^0.11.3",
+    "trash-cli": "^5.0.0"
   },
   "auto-changelog": {
     "output": "CHANGELOG.md",
@@ -78,6 +78,66 @@
     "*.{css, js,ts,jsx,tsx,md,json}": "pnpm lint:eslint",
     "*.md": [
       "pnpm lint:md"
+    ]
+  },
+  "knip": {
+    "workspaces": {
+      "packages/*": {
+        "entry": [
+          "**/*.ts",
+          "**/*.config.js",
+          "tsup.config.ts"
+        ],
+        "ignore": [
+          "**/dist/*.js"
+        ]
+      },
+      "packages/api/services/*": {
+        "entry": [
+          "**/*.ts",
+          "**/*.config.js"
+        ],
+        "ignore": [
+          "**/dist/**/*.js"
+        ]
+      },
+      "packages/cli": {
+        "entry": [
+          "**/*.ts",
+          "!*.mjs"
+        ],
+        "ignore": [
+          "*.mjs",
+          "**/dist/*.js"
+        ]
+      },
+      "scripts": {
+        "entry": [
+          "**/*.ts"
+        ],
+        "ignore": [
+          "**/_templates"
+        ]
+      }
+    },
+    "ignoreBinaries": [
+      "eslint",
+      "only-allow"
+    ],
+    "ignoreDependencies": [
+      "@secretlint/secretlint-rule-preset-recommend",
+      "@size-limit/file",
+      "nano-staged",
+      "size-limit",
+      "tsx",
+      "vitepress"
+    ],
+    "ignore": [
+      "**/.wireit",
+      "**/.vitepress",
+      "**/fixtures/**",
+      "**/coverage",
+      "taze.config.js"
     ]
   },
   "stackblitz": {

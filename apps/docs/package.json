@@ -14,8 +14,11 @@
   "bugs": {
     "url": "https://github.com/rjoydip/templ/issues"
   },
+  "engines": {
+    "node": "^18.8.0 || >=20.6.0"
+  },
   "scripts": {
-    "clean": "rimraf .vitepress .wireit",
+    "clean": "trash .vitepress .wireit",
     "build": "wireit",
     "docs:dev": "wireit",
     "docs:preview": "wireit"

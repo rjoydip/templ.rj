@@ -1,0 +1,28 @@
+{
+  "name": "@temp/api/composer",
+  "private": true,
+  "description": "TEMPL api composer",
+  "license": "MIT",
+  "homepage": "https://github.com/rjoydip/templ/tree/main/packages/api/services/main#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rjoydip/templ.git",
+    "directory": "packages/api/services/main"
+  },
+  "bugs": {
+    "url": "https://github.com/rjoydip/templ/issues"
+  },
+  "engines": {
+    "node": "^18.8.0 || >=20.6.0"
+  },
+  "scripts": {
+    "clean": "trash dist",
+    "start": "platformatic start"
+  },
+  "dependencies": {
+    "platformatic": "^1.2.0"
+  },
+  "devDependencies": {
+    "trash-cli": "^5.0.0"
+  }
+}

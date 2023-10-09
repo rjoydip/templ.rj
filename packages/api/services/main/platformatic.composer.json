@@ -1,0 +1,24 @@
+{
+  "$schema": "https://platformatic.dev/schemas/v1.0.0/composer",
+  "composer": {
+    "services": [
+      {
+        "id": "example",
+        "origin": "{PLT_EXAMPLE_ORIGIN}",
+        "openapi": {
+          "url": "/documentation/json"
+        }
+      }
+    ],
+    "refreshTimeout": 1000
+  },
+  "watch": true,
+  "clients": [],
+  "server": {
+    "hostname": "{PLT_SERVER_HOSTNAME}",
+    "port": "{PORT}",
+    "logger": {
+      "level": "{PLT_SERVER_LOGGER_LEVEL}"
+    }
+  }
+}
