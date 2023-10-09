@@ -22,6 +22,7 @@
     "ci:copy:env": "wireit",
     "ci:delete:env": "wireit",
     "create:pkg": "wireit",
+    "ci:dist:checking": "wireit",
     "lint:md": "wireit",
     "size:data": "wireit",
     "size:generate": "wireit",
@@ -75,6 +76,22 @@
       "command": "node --loader tsx ./src/create-pkg.ts",
       "files": [
         "src/create-pkg.ts"
+      ],
+      "dependencies": [
+        {
+          "script": "../packages/logger:build",
+          "cascade": false
+        },
+        {
+          "script": "../packages/utils:build",
+          "cascade": false
+        }
+      ]
+    },
+    "ci:dist:checking": {
+      "command": "node --loader tsx ./src/ci/dist-checking.ts",
+      "files": [
+        "src/ci/dist-checking.ts"
       ],
       "dependencies": [
         {
