@@ -41,7 +41,7 @@
     "test:watch": "wireit"
   },
   "dependencies": {
-    "@templ/logger": "workspace:^",
+    "@templ/logger": "workspace:*",
     "sade": "^1.8.1",
     "serialize-error": "^11.0.2"
   },

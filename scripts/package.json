@@ -29,8 +29,8 @@
     "size:report": "wireit"
   },
   "dependencies": {
-    "@templ/logger": "workspace:^",
-    "@templ/utils": "workspace:^",
+    "@templ/logger": "workspace:*",
+    "@templ/utils": "workspace:*",
     "fast-glob": "^3.3.1",
     "markdown-table": "^3.0.3",
     "markdownlint": "^0.31.1",
