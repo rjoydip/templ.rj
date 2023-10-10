@@ -15,4 +15,4 @@
 | core   | 67.00 B | 86.00 B | 62.00 B |
 | logger | 69.00 B | 87.00 B | 70.00 B |
 
-✅ Ran 1 script and skipped 3 in 0.5s.
+✅ Ran 1 script and skipped 3 in 0.7s.

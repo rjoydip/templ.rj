@@ -1,26 +1,26 @@
 import { join, resolve } from 'node:path'
-import { describe, expect, expectTypeOf, test } from 'vitest'
-import { escaladeSync, escaladeAsync } from '../src/escalade'
+import { describe, expect, expectTypeOf, it } from 'vitest'
+import { escaladeAsync, escaladeSync } from '../src/escalade'
 
 describe('@templ/utils > Escalade', () => {
   const fixtures = join(__dirname, 'fixtures')
 
-  test('should export a function', () => {
+  it('should export a function', () => {
     expectTypeOf(escaladeSync).toBeFunction()
   })
 
-  test('should convert relative output into absolute', async () => {
+  it('should convert relative output into absolute', async () => {
     const output = await escaladeAsync(fixtures, async () => 'foobar.js')
     expect(output).toBe(join(fixtures, 'foobar.js'))
   })
 
-  test('should respect absolute output', async () => {
+  it('should respect absolute output', async () => {
     const foobar = resolve('.', 'foobar.js')
     const output = await escaladeAsync(fixtures, async () => foobar)
     expect(output).toBe(foobar)
   })
 
-  test('should allow file input', async () => {
+  it('should allow file input', async () => {
     let levels = 0
     const input = join(fixtures, 'index.js')
     const output = await escaladeAsync(input, async (dir) => {
@@ -31,7 +31,7 @@ describe('@templ/utils > Escalade', () => {
     expect(output).toBe(fixtures)
   })
 
-  test('should receive directory names in contents list', async () => {
+  it('should receive directory names in contents list', async () => {
     let levels = 0
     const output = await escaladeAsync(fixtures, async (dir, files) => {
       levels++
@@ -42,7 +42,7 @@ describe('@templ/utils > Escalade', () => {
     expect(output).toBe(fixtures)
   })
 
-  test('should terminate walker immediately', async () => {
+  it('should terminate walker immediately', async () => {
     let levels = 0
     const output = await escaladeAsync(fixtures, async () => `${++levels}.js`)
 
@@ -50,7 +50,7 @@ describe('@templ/utils > Escalade', () => {
     expect(output).toBe(join(fixtures, '1.js'))
   })
 
-  test('should traverse until root directory', async () => {
+  it('should traverse until root directory', async () => {
     let levels = 0
 
     const output = await escaladeAsync(fixtures, async () => {
@@ -62,7 +62,7 @@ describe('@templ/utils > Escalade', () => {
     expect(levels).toBe(fixtures.split(/[\\\/]+/g).length)
   })
 
-  test('should end after `process.cwd()` read', async () => {
+  it('should end after `process.cwd()` read', async () => {
     let levels = 0
     const output = await escaladeAsync(fixtures, async (dir, files) => {
       levels++
@@ -74,8 +74,9 @@ describe('@templ/utils > Escalade', () => {
     expect(output).toBe(resolve('.', 'package.json'))
   })
 
-  test('should handle deeper traversals', async () => {
-    let levels = 0; let contents = 0
+  it('should handle deeper traversals', async () => {
+    let levels = 0
+    let contents = 0
     const input = join(fixtures, 'foo', 'bar', 'hello', 'world.txt')
 
     await escaladeAsync(input, async (dir, names) => {
@@ -89,7 +90,7 @@ describe('@templ/utils > Escalade', () => {
     expect(contents).toBe(10)
   })
 
-  test('should support async callback', async () => {
+  it('should support async callback', async () => {
     let levels = 0
     const sleep = () => new Promise(r => setTimeout(r, 10))
     const output = await escaladeAsync(fixtures, async (dir) => {

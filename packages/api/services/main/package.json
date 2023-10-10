@@ -16,10 +16,13 @@
     "node": "^18.8.0 || >=20.6.0"
   },
   "scripts": {
+    "clean": "trash dist",
     "start": "platformatic start"
   },
   "dependencies": {
-    "platformatic": "^1.1.1"
+    "platformatic": "^1.2.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "trash-cli": "^5.0.0"
+  }
 }

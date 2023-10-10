@@ -30,20 +30,15 @@
   },
   "scripts": {
     "build": "wireit",
-    "clean": "rimraf .eslintcache dist docs coverage",
-    "eslint": "eslint --color --cache --fix --cache-location .eslintcache .",
-    "lint:size": "wireit",
+    "clean": "trash dist docs coverage",
     "test": "wireit",
     "test:watch": "wireit"
   },
   "devDependencies": {
-    "@size-limit/file": "^8.2.6",
     "@templ/config": "workspace:^",
     "@types/node": "^20.5.7",
     "@vitest/coverage-v8": "^0.34.3",
-    "eslint": "^8.48.0",
-    "rimraf": "^5.0.1",
-    "size-limit": "^8.2.6",
+    "trash-cli": "^5.0.0",
     "tsup": "^7.2.0",
     "vite-tsconfig-paths": "^4.2.0",
     "vitest": "^0.34.2",
@@ -61,12 +56,6 @@
         "dist/**"
       ],
       "dependencies": []
-    },
-    "lint:size": {
-      "command": "size-limit",
-      "dependencies": [
-        "build"
-      ]
     },
     "test": {
       "command": "vitest run",
@@ -88,12 +77,7 @@
         "build"
       ]
     }
-  },
-  "size-limit": [{
-    "path": "dist/index.js",
-    "limit": "10KB",
-    "brotli": true
-  }]
+  }
 }
 
 {{#expect name}}

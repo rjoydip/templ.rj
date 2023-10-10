@@ -7,7 +7,7 @@
     "prefixes": [],
     "regexp": "(?<type>build|chore|ci|docs|feat|fix|modified|perf|refactor|revert|style|test)(?<scope>(?:\\([^()\r\n]*\\)|\\()?(?<breaking>!)?:)(?<subject>:.*)?",
     "regexpFlags": "i",
-    "ignoreLabels" : ["meta"]
+    "ignoreLabels": ["meta"]
   },
   "MESSAGES": {
     "success": "All OK",

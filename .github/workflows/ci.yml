@@ -25,32 +25,25 @@ jobs:
       - name: Lint All
         run: pnpm run clean
 
-  lint:
+  build_lint:
     runs-on: ubuntu-latest
-    needs: ['clean']
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/setup-node
-      - name: Install
-        run: pnpm i --no-frozen-lockfile
-      - name: Lint All
-        run: pnpm run lint
-
-  build:
-    runs-on: ubuntu-latest
-    needs: ['clean']
+    needs: [clean]
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup-node
       - name: Build
         run: |
-          pnpm run ci:copy:env
+          pnpm -C scripts ci:copy:env
           pnpm run build
-          pnpm run ci:delete:env
+          pnpm -C scripts ci:delete:env
+      - name: Lint All
+        run: pnpm run lint
+      - name: Dist validation
+        run: pnpm -C scripts ci:check:dist
 
   test:
     runs-on: ubuntu-latest
-    needs: ['build']
+    needs: [build_lint]
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup-node
@@ -69,7 +62,7 @@ jobs:
         os: [ubuntu-latest, macos-latest, windows-latest]
         node_version: [18]
       fail-fast: false
-    needs: ['build']
+    needs: [build_lint]
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup-node
@@ -78,43 +71,22 @@ jobs:
       - name: Test CLI
         run: pnpm run test:cli
 
-  size-report:
+  size_report:
     runs-on: ubuntu-latest
     if: github.actor != 'dependabot[bot]'
     permissions:
       contents: write
-    needs: ['lint', 'build']
+    needs: [build_lint]
     steps:
       - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
-        name: Install pnpm
-        id: pnpm-install
-      - name: Use Node.js LTS
-        uses: actions/setup-node@v3
-        with:
-          node-version-file: '.nvmrc'
-          cache: 'pnpm'
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
-      - uses: actions/cache@v3
-        name: Setup pnpm cache
-        with:
-          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-      - name: Install dependencies
-        run: pnpm install
+      - uses: ./.github/actions/setup-node
       - name: Download Previous Size Data
         uses: dawidd6/action-download-artifact@v2
         with:
           name: size-data
           path: temp/size-prev
           if_no_artifact_found: warn
-      - run: pnpm size:generate
+      - run: pnpm -C scripts size:generate
       - name: Upload Size Data
         uses: actions/upload-artifact@v3
         with:
@@ -136,7 +108,7 @@ jobs:
     steps:
       - uses: actions/labeler@v4
 
-  pr-title-check:
+  pr_title_check:
     runs-on: ubuntu-latest
     if: github.actor != 'dependabot[bot]'
     steps:
@@ -145,7 +117,7 @@ jobs:
           pass_on_octokit_error: false
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  trivy-scan:
+  trivy_scan:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -153,9 +125,9 @@ jobs:
       - name: Run Trivy vulnerability scanner in fs mode
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: "."
-          scan-type: "fs"
-          scan-ref: "."
-          skip-dirs: "third_party"
-          output: "dependency-results.sbom.json"
+          image-ref: .
+          scan-type: fs
+          scan-ref: .
+          skip-dirs: third_party
+          output: dependency-results.sbom.json
           github-pat: ${{ secrets.GITHUB_TOKEN }}

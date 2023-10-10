@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, test } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 import { createLogger } from '../src'
 import type { Logger } from '../src'
 
@@ -9,7 +9,7 @@ describe('@templ/logger', () => {
     logger = createLogger('Test')
   })
 
-  test('index', () => {
+  it('index', () => {
     expect(logger).toBeDefined()
   })
 

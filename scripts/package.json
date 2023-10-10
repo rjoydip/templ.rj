@@ -18,13 +18,11 @@
     "node": "^18.8.0 || >=20.6.0"
   },
   "scripts": {
-    "clean": "rimraf .eslintcache .wireit",
-    "clean:nm": "wireit",
+    "clean": "trash .wireit",
     "ci:copy:env": "wireit",
     "ci:delete:env": "wireit",
     "create:pkg": "wireit",
-    "eslint:fix": "eslint . --fix",
-    "eslint": "eslint --color --cache --fix --cache-location .eslintcache .",
+    "ci:check:dist": "wireit",
     "lint:md": "wireit",
     "size:data": "wireit",
     "size:generate": "wireit",
@@ -35,39 +33,21 @@
     "@templ/utils": "workspace:^",
     "fast-glob": "^3.3.1",
     "markdown-table": "^3.0.3",
+    "markdownlint": "^0.31.1",
     "rollup": "^4.0.2",
+    "tempura": "^0.4.0",
     "terser": "^5.21.0",
     "totalist": "^3.0.1",
-    "type-fest": "^4.3.3"
+    "tsx": "^3.13.0",
+    "type-fest": "^4.4.0",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "1.0.0-beta.10",
-    "@types/node": "^20.8.2",
-    "eslint": "^8.50.0",
-    "markdownlint": "^0.31.1",
-    "rimraf": "^5.0.5",
-    "tempura": "^0.4.0",
-    "tsx": "^3.13.0",
-    "wireit": "^0.14.0",
-    "zod": "^3.22.3"
+    "@types/node": "^20.8.4",
+    "trash-cli": "^5.0.0",
+    "wireit": "^0.14.0"
   },
   "wireit": {
-    "clean:nm": {
-      "command": "node --loader tsx ./src/clean-nm.ts",
-      "files": [
-        "src/clean-nm.ts"
-      ],
-      "dependencies": [
-        {
-          "script": "../packages/logger:build",
-          "cascade": false
-        },
-        {
-          "script": "../packages/utils:build",
-          "cascade": false
-        }
-      ]
-    },
     "ci:copy:env": {
       "command": "node --loader tsx ./src/ci/copy-env.ts",
       "files": [
@@ -96,6 +76,22 @@
       "command": "node --loader tsx ./src/create-pkg.ts",
       "files": [
         "src/create-pkg.ts"
+      ],
+      "dependencies": [
+        {
+          "script": "../packages/logger:build",
+          "cascade": false
+        },
+        {
+          "script": "../packages/utils:build",
+          "cascade": false
+        }
+      ]
+    },
+    "ci:check:dist": {
+      "command": "node --loader tsx ./src/ci/check-dist.ts",
+      "files": [
+        "src/ci/check-dist.ts"
       ],
       "dependencies": [
         {

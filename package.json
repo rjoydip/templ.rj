@@ -1,64 +1,66 @@
 {
-  "private": true,
   "name": "templ",
-  "version": "0.0.0",
-  "description": "A project template",
-  "license": "MIT",
-  "author": "Joydip Roy <joydipand@gmail.com> (https://github.com/rjoydip)",
-  "repository": "rjoydip/templ",
   "type": "module",
+  "private": true,
+  "packageManager": "pnpm@8.9.0",
+  "description": "A project template",
+  "author": "Joydip Roy <joydipand@gmail.com> (https://github.com/rjoydip)",
+  "license": "MIT",
+  "repository": "rjoydip/templ",
+  "sideEffects": true,
+  "engines": {
+    "node": ">=18",
+    "npm": ">=8",
+    "shell": "bash",
+    "yarn": "This project is configured to use pnpm"
+  },
   "scripts": {
-    "all": "pnpm clean && pnpm deps:update && pnpm lint && pnpm changelog && pnpm build && pnpm size:generate && pnpm test:all && pnpm system:info && pnpm update:third_party",
+    "all": "pnpm clean && pnpm deps:update && pnpm lint && pnpm changelog && pnpm build && pnpm -C scripts size:generate && pnpm test:all && pnpm system:info && pnpm update:third_party",
     "build": "pnpm -r build",
-    "clean": "rimraf .pnpm-store coverage temp && pnpm -r clean",
-    "clean:nm": "pnpm -C scripts clean:nm",
+    "clean": "pnpm -r clean && trash .pnpm-store coverage temp && empty-trash",
     "changelog": "auto-changelog -p",
     "create:pkg": "pnpm -C scripts create:pkg",
     "deps:update": "taze -r -w -i",
-    "ci:copy:env": "pnpm -C scripts ci:copy:env",
-    "ci:delete:env": "pnpm -C scripts ci:delete:env",
-    "preinstall": "npx only-allow pnpm",
-    "lint": "pnpm lint:eslint && pnpm lint:knip && pnpm lint:md && pnpm pnpm lint:secret && pnpm lint:size && pnpm lint:spell",
-    "lint:eslint": "pnpm -r eslint",
-    "lint:knip": "knip --no-gitignore --no-exit-code",
-    "lint:md": "pnpm -C scripts lint:md",
-    "lint:secret": "secretlint --secretlintignore .gitignore \"**/*\"",
-    "lint:size": "pnpm -r lint:size",
-    "lint:spell": "cspell .",
+    "eslint:viewer": "eslint-flat-config-viewer",
     "prepare": "husky install",
-    "size:generate": "pnpm -C scripts size:generate",
+    "preinstall": "npx only-allow pnpm",
+    "lint": "pnpm lint:eslint && knip --no-gitignore --no-exit-code && pnpm lint:md && pnpm lint:secret && size-limit && pnpm lint:spell",
+    "lint:md": "pnpm -C scripts lint:md",
+    "lint:eslint": "eslint --color --cache --fix --cache-location .eslintcache .",
+    "lint:secret": "secretlint --secretlintignore .gitignore \"**/*\" ",
+    "lint:spell": "cspell .",
     "system:info": "envinfo --system --binaries --browsers",
     "test": "pnpm -r test",
     "test:all": "pnpm test && pnpm test:cli",
     "test:cli": "pnpm -r test:cli",
     "update:third_party": "git submodule update --recursive --remote"
   },
-  "sideEffects": true,
   "workspaces": [
     "apps/**",
     "packages/**",
-    "scripts"
+    "scripts",
+    "third_party/**"
   ],
   "devDependencies": {
+    "@antfu/eslint-config": "1.0.0-beta.24",
     "@commitlint/cli": "^17.7.2",
     "@commitlint/config-conventional": "^17.7.0",
     "@secretlint/secretlint-rule-preset-recommend": "^7.0.7",
+    "@size-limit/file": "^9.0.0",
     "auto-changelog": "^2.4.0",
     "cspell": "^7.3.7",
+    "empty-trash-cli": "^2.0.0",
     "envinfo": "^7.10.0",
+    "eslint": "^8.51.0",
+    "eslint-flat-config-viewer": "^0.1.0",
     "husky": "^8.0.3",
-    "knip": "^2.30.1",
+    "knip": "^2.33.0",
     "nano-staged": "^0.8.0",
-    "pnpm": "^8.8.0",
-    "rimraf": "^5.0.5",
+    "pnpm": "^8.9.0",
     "secretlint": "^7.0.7",
-    "taze": "^0.11.3"
-  },
-  "engines": {
-    "node": ">=18",
-    "npm": ">=8",
-    "shell": "bash",
-    "yarn": "This project is configured to use pnpm"
+    "size-limit": "^9.0.0",
+    "taze": "^0.11.3",
+    "trash-cli": "^5.0.0"
   },
   "auto-changelog": {
     "output": "CHANGELOG.md",
@@ -121,12 +123,11 @@
       "only-allow"
     ],
     "ignoreDependencies": [
-      "vitepress",
       "@secretlint/secretlint-rule-preset-recommend",
+      "@size-limit/file",
       "nano-staged",
-      "size-limit",
       "tsx",
-      "@size-limit/file"
+      "vitepress"
     ],
     "ignore": [
       "**/.wireit",
@@ -136,8 +137,34 @@
       "taze.config.js"
     ]
   },
-  "packageManager": "pnpm@8.8.0",
   "stackblitz": {
     "startCommand": "pnpm build"
-  }
+  },
+  "size-limit": [
+    {
+      "path": "./packages/cli/dist/index.js",
+      "limit": "300B",
+      "brotli": true
+    },
+    {
+      "path": "./packages/core/dist/index.js",
+      "limit": "100B",
+      "brotli": true
+    },
+    {
+      "path": "./packages/config/dist/index.js",
+      "limit": "600B",
+      "brotli": true
+    },
+    {
+      "path": "./packages/logger/dist/index.js",
+      "limit": "800B",
+      "brotli": true
+    },
+    {
+      "path": "./packages/utils/dist/index.js",
+      "limit": "700B",
+      "brotli": true
+    }
+  ]
 }
