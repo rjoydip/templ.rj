@@ -1,13 +1,8 @@
 import { readdir, rm, stat } from 'node:fs/promises'
 import { join } from 'node:path'
 import { cwd } from 'node:process'
-import { execCmd } from '../utils'
-import { COMPLETED, STARTED } from '../constant'
-
-const DELETE_NODE_MODULES_LOG_MSG = 'deleting all node modules'
-const VALIDATION_PROCESS_LOG_MSG = 'validation process'
-const PRE_VALIDATION_PROCESS_LOG_MSG = 'pre validation process'
-const POST_VALIDATION_PROCESS_LOG_MSG = 'post validation process'
+import { execCmd } from './utils.js'
+import { COMPLETED, DELETE_NODE_MODULES_LOG_MSG, POST_VALIDATION_PROCESS_LOG_MSG, PRE_VALIDATION_PROCESS_LOG_MSG, STARTED, VALIDATION_PROCESS_LOG_MSG } from './constant.js'
 
 async function findNodeModulesFolders(dir) {
   const nodeModulesFolders = []

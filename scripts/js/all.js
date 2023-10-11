@@ -1,4 +1,4 @@
-import { execCmd } from '../utils'
+import { execCmd } from './utils.js'
 
 async function main() {
   await execCmd('pnpm clean', {

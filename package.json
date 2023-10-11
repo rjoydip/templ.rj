@@ -15,7 +15,7 @@
     "yarn": "This project is configured to use pnpm"
   },
   "scripts": {
-    "all": "node scripts/js/exec/all.js",
+    "all": "node scripts/js/all.js",
     "build": "pnpm -r build",
     "clean": "pnpm -r clean && trash .pnpm-store coverage temp && empty-trash",
     "changelog": "auto-changelog -p",
@@ -24,12 +24,12 @@
     "eslint:viewer": "eslint-flat-config-viewer",
     "prepare": "husky install",
     "preinstall": "npx only-allow pnpm",
-    "lint": "node scripts/js/exec/lint.js",
+    "lint": "node scripts/js/lint.js",
     "lint:md": "pnpm -C scripts lint:md",
     "lint:eslint": "eslint --color --cache --fix --cache-location .eslintcache .",
     "lint:secret": "secretlint --secretlintignore .gitignore \"**/*\"",
     "lint:spell": "cspell .",
-    "_setup_": "node scripts/js/exec/setup.js",
+    "_setup_": "node scripts/js/setup.js",
     "system:info": "envinfo --system --binaries --browsers",
     "test": "pnpm -r test",
     "test:all": "pnpm test && pnpm test:cli",

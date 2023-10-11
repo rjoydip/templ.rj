@@ -1,8 +1,8 @@
 import { exec } from 'node:child_process'
-import util from 'node:util'
-import { COMPLETED, STARTED } from './constant'
+import { promisify } from 'node:util'
+import { COMPLETED, STARTED } from './constant.js'
 
-const $ = util.promisify(exec)
+const $ = promisify(exec)
 
 export async function execCmd(cmd, ops = {
   msg: '',
