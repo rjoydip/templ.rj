@@ -11,28 +11,13 @@ runs:
   using: composite
 
   steps:
-    - name: Install pnpm
-      uses: pnpm/action-setup@v2
-
-    - name: Set node version to ${{ inputs.node-version }}
+    - name: Setup node v${{ inputs.node-version }}
       uses: actions/setup-node@v3
       with:
-        node-version-file: .nvmrc
         node-version: ${{ inputs.node-version }}
 
-    - name: Resolve package versions
-      id: resolve-package-versions
-      shell: bash
-      run: |
-        echo "$(
-          node -e "
-            # const fs = require('fs');
-            # const lockfile = fs.readFileSync('./pnpm-lock.yaml', 'utf8');
-            # const pattern = (name) => new RegExp(name + ':\\s+specifier: [\\s\\w\\.\\^]+version: (\\d+\\.\\d+\\.\\d+)');
-            # const cypressVersion = lockfile.match(pattern('cypress'))[1];
-            # console.log('CYPRESS_VERSION=' + cypressVersion);
-          "
-        )" >> "$GITHUB_OUTPUT"
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v2
 
     - name: Print versions
       shell: bash
