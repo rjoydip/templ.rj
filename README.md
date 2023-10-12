@@ -1,7 +1,7 @@
 <div align="center">
   <h3 align="center">TEMPL</h3>
   <p align="center">
-    A project template
+    A modern monorepo project template
     <br />
     <a href="https://github.com/rjoydip/templ"><strong>Explore the docs »</strong></a>
     <br />

@@ -1,15 +1,15 @@
 import { execCmd } from './utils.js'
 
 async function main() {
-  await execCmd('pnpm lint:eslint', {
+  await execCmd('eslint --color --cache --fix --cache-location .eslintcache .', {
     msg: 'ESlint',
   })
 
-  await execCmd('pnpm lint:md', {
+  await execCmd('pnpm -C scripts lint:md', {
     msg: 'Markdownlint',
   })
 
-  await execCmd('pnpm lint:secret', {
+  await execCmd('secretlint --secretlintignore .gitignore \"**/*\"', {
     msg: 'Secret lint',
   })
 
@@ -17,7 +17,7 @@ async function main() {
     msg: 'Size limit',
   })
 
-  await execCmd('pnpm lint:spell', {
+  await execCmd('cspell .', {
     msg: 'Spell lint',
   })
 

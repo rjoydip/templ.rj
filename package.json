@@ -25,10 +25,6 @@
     "prepare": "husky install",
     "preinstall": "npx only-allow pnpm",
     "lint": "node scripts/js/lint.js",
-    "lint:md": "pnpm -C scripts lint:md",
-    "lint:eslint": "eslint --color --cache --fix --cache-location .eslintcache .",
-    "lint:secret": "secretlint --secretlintignore .gitignore \"**/*\"",
-    "lint:spell": "cspell .",
     "_setup_": "node scripts/js/setup.js",
     "system:info": "envinfo --system --binaries --browsers",
     "test": "pnpm -r test",
@@ -71,12 +67,12 @@
   },
   "nano-staged": {
     "*": [
-      "pnpm lint:spell",
-      "pnpm lint:secret"
+      "cspell .",
+      "secretlint --secretlintignore .gitignore \"**/*\""
     ],
-    "*.{css, js,ts,jsx,tsx,md,json}": "pnpm lint:eslint",
+    "*.{css, js,ts,jsx,tsx,md,json}": "eslint --color --cache --fix --cache-location .eslintcache .",
     "*.md": [
-      "pnpm lint:md"
+      "pnpm -C scripts lint:md"
     ]
   },
   "knip": {
