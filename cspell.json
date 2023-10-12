@@ -117,6 +117,7 @@
     "vitepress",
     "vitest",
     "zixuanchen",
-    "wireit"
+    "wireit",
+    "workerpool"
   ]
 }

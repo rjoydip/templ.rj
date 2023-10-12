@@ -3,7 +3,7 @@
   "type": "module",
   "private": true,
   "packageManager": "pnpm@8.9.0",
-  "description": "A project template",
+  "description": "A modern monorepo project template",
   "author": "Joydip Roy <joydipand@gmail.com> (https://github.com/rjoydip)",
   "license": "MIT",
   "repository": "rjoydip/templ",
@@ -15,20 +15,17 @@
     "yarn": "This project is configured to use pnpm"
   },
   "scripts": {
-    "all": "pnpm clean && pnpm deps:update && pnpm lint && pnpm changelog && pnpm build && pnpm -C scripts size:generate && pnpm test:all && pnpm system:info && pnpm update:third_party",
+    "all": "node scripts/js/all.js",
     "build": "pnpm -r build",
     "clean": "pnpm -r clean && trash .pnpm-store coverage temp && empty-trash",
     "changelog": "auto-changelog -p",
     "create:pkg": "pnpm -C scripts create:pkg",
-    "deps:update": "taze -r -w -i",
+    "deps:update": "taze -r -w -i -f --ignore-paths='third_party/**'",
     "eslint:viewer": "eslint-flat-config-viewer",
     "prepare": "husky install",
     "preinstall": "npx only-allow pnpm",
-    "lint": "pnpm lint:eslint && knip --no-gitignore --no-exit-code && pnpm lint:md && pnpm lint:secret && size-limit && pnpm lint:spell",
-    "lint:md": "pnpm -C scripts lint:md",
-    "lint:eslint": "eslint --color --cache --fix --cache-location .eslintcache .",
-    "lint:secret": "secretlint --secretlintignore .gitignore \"**/*\" ",
-    "lint:spell": "cspell .",
+    "lint": "node scripts/js/lint.js",
+    "_setup_": "node scripts/js/setup.js",
     "system:info": "envinfo --system --binaries --browsers",
     "test": "pnpm -r test",
     "test:all": "pnpm test && pnpm test:cli",
@@ -54,7 +51,7 @@
     "eslint": "^8.51.0",
     "eslint-flat-config-viewer": "^0.1.0",
     "husky": "^8.0.3",
-    "knip": "^2.33.0",
+    "knip": "^2.33.1",
     "nano-staged": "^0.8.0",
     "pnpm": "^8.9.0",
     "secretlint": "^7.0.7",
@@ -70,12 +67,12 @@
   },
   "nano-staged": {
     "*": [
-      "pnpm lint:spell",
-      "pnpm lint:secret"
+      "cspell .",
+      "secretlint --secretlintignore .gitignore \"**/*\""
     ],
-    "*.{css, js,ts,jsx,tsx,md,json}": "pnpm lint:eslint",
+    "*.{css, js,ts,jsx,tsx,md,json}": "eslint --color --cache --fix --cache-location .eslintcache .",
     "*.md": [
-      "pnpm lint:md"
+      "pnpm -C scripts lint:md"
     ]
   },
   "knip": {
