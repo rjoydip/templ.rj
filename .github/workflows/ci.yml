@@ -106,7 +106,7 @@ jobs:
     needs: [init, test_cli, trivy_scan]
     runs-on: ubuntu-latest
     steps:
-    - uses: Kesin11/actions-timeline@v1
+      - uses: Kesin11/actions-timeline@v1
 
   triage:
     runs-on: ubuntu-latest

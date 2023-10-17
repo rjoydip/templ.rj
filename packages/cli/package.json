@@ -46,7 +46,7 @@
     "serialize-error": "^11.0.2"
   },
   "devDependencies": {
-    "@types/node": "^20.8.4",
+    "@types/node": "^20.8.6",
     "@vitest/coverage-v8": "^0.34.6",
     "find-monorepo-root": "^1.0.3",
     "trash-cli": "^5.0.0",
