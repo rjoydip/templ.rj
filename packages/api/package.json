@@ -21,7 +21,7 @@
     "start": "platformatic start"
   },
   "dependencies": {
-    "platformatic": "^1.3.1"
+    "platformatic": "^1.4.1"
   },
   "devDependencies": {}
 }
