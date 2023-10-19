@@ -23,6 +23,8 @@
     "autoload",
     "autodocs",
     "aquasecurity",
+    "awscli",
+    "awslocal",
     "backreference",
     "bierner",
     "brotli",
