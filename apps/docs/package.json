@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "vitepress": "1.0.0-rc.20",
-    "wireit": "^0.14.0"
+    "wireit": "^0.14.1"
   },
   "wireit": {
     "build": {
