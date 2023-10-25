@@ -1,12 +1,12 @@
 import { execCmd } from './utils.js'
 
 async function main() {
-  await execCmd('pnpm clean', {
-    msg: 'Cleanup',
+  await execCmd('pnpm i', {
+    msg: 'Installation',
   })
 
-  await execCmd('pnpm deps:update', {
-    msg: 'Update dependency',
+  await execCmd('pnpm clean', {
+    msg: 'Cleanup',
   })
 
   await execCmd('pnpm changelog', {
