@@ -20,7 +20,7 @@
     "clean": "pnpm -r clean && trash .pnpm-store coverage temp && empty-trash",
     "changelog": "auto-changelog -p",
     "create:pkg": "pnpm -C scripts create:pkg",
-    "deps:update": "taze -r -w -i -f --ignore-paths='third_party/**'",
+    "deps:update": "taze -r -w -i -f -l --ignore-paths='third_party/**'",
     "eslint:viewer": "eslint-flat-config-viewer",
     "prepare": "husky install",
     "preinstall": "npx only-allow pnpm",
