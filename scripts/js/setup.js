@@ -47,9 +47,6 @@ async function preValidationProcess() {
     msg: 'Clean',
   })
 
-  await $('pnpm deps:update', {
-    msg: 'Update dependency',
-  })
   console.log(`[${COMPLETED}]: ${PRE_VALIDATION_PROCESS_LOG_MSG}`)
 }
 
