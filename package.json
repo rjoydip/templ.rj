@@ -41,8 +41,8 @@
   ],
   "devDependencies": {
     "@antfu/eslint-config": "1.0.0-beta.24",
-    "@commitlint/cli": "^17.8.1",
-    "@commitlint/config-conventional": "^17.8.1",
+    "@commitlint/cli": "^18.2.0",
+    "@commitlint/config-conventional": "^18.1.0",
     "@secretlint/secretlint-rule-preset-recommend": "^7.0.7",
     "@size-limit/file": "^9.0.0",
     "auto-changelog": "^2.4.0",
