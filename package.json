@@ -44,7 +44,7 @@
     "@commitlint/cli": "^18.2.0",
     "@commitlint/config-conventional": "^18.1.0",
     "@secretlint/secretlint-rule-preset-recommend": "^7.0.7",
-    "@size-limit/file": "^9.0.0",
+    "@size-limit/file": "^10.0.1",
     "auto-changelog": "^2.4.0",
     "cspell": "^7.3.8",
     "empty-trash-cli": "^2.0.0",
@@ -56,7 +56,7 @@
     "nano-staged": "^0.8.0",
     "pnpm": "^8.10.0",
     "secretlint": "^7.0.7",
-    "size-limit": "^9.0.0",
+    "size-limit": "^10.0.1",
     "taze": "^0.11.4",
     "trash-cli": "^5.0.0"
   },
