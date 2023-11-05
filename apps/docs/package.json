@@ -24,7 +24,7 @@
     "docs:preview": "wireit"
   },
   "devDependencies": {
-    "vitepress": "1.0.0-rc.20",
+    "vitepress": "1.0.0-rc.25",
     "wireit": "^0.14.1"
   },
   "wireit": {
