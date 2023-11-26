@@ -57,7 +57,7 @@
     "pnpm": "^8.10.0",
     "secretlint": "^7.0.7",
     "size-limit": "^9.0.0",
-    "taze": "^0.11.4",
+    "taze": "^0.12.1",
     "trash-cli": "^5.0.0"
   },
   "auto-changelog": {
