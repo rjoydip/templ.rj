@@ -40,7 +40,7 @@
     "third_party/**"
   ],
   "devDependencies": {
-    "@antfu/eslint-config": "1.0.0-beta.24",
+    "@antfu/eslint-config": "2.4.4",
     "@commitlint/cli": "^18.2.0",
     "@commitlint/config-conventional": "^18.1.0",
     "@secretlint/secretlint-rule-preset-recommend": "^7.0.7",
