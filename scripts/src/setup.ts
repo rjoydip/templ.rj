@@ -1,15 +1,16 @@
 import { readdir, rm, stat } from 'node:fs/promises'
 import { join } from 'node:path'
 import { cwd } from 'node:process'
-import { execCmd } from './utils.js'
+import type { PathLike } from 'node:fs'
+import { execCmd } from './utils'
 import { COMPLETED, DELETE_NODE_MODULES_LOG_MSG, POST_VALIDATION_PROCESS_LOG_MSG, PRE_VALIDATION_PROCESS_LOG_MSG, STARTED, VALIDATION_PROCESS_LOG_MSG } from './constant.js'
 
-async function findNodeModulesFolders(dir) {
-  const nodeModulesFolders = []
+async function findNodeModulesFolders(dir: PathLike) {
+  const nodeModulesFolders: string[] = []
 
   const files = await readdir(dir)
   for (const file of files) {
-    const filePath = join(dir, file)
+    const filePath = join(dir.toString(), file)
     const isDirectory = (await stat(filePath)).isDirectory()
 
     if (isDirectory) {
@@ -30,7 +31,7 @@ async function deleteNodeModules(_cwd = cwd()) {
   console.log(`[${STARTED}]: ${DELETE_NODE_MODULES_LOG_MSG}`)
   const nodeModulesFolders = await findNodeModulesFolders(_cwd)
   await Promise.all([
-    ...nodeModulesFolders.map(async (folder) => {
+    ...nodeModulesFolders.map(async (folder: PathLike) => {
       await rm(folder, { recursive: true, force: true })
     }),
   ])
@@ -43,7 +44,7 @@ async function preValidationProcess() {
     msg: 'Installation',
   })
 
-  await $('pnpm clean', {
+  await execCmd('pnpm clean', {
     msg: 'Clean',
   })
 
@@ -52,15 +53,15 @@ async function preValidationProcess() {
 
 async function validationProcess() {
   console.log(`[${STARTED}]: ${VALIDATION_PROCESS_LOG_MSG}`)
-  await $('pnpm lint', {
+  await execCmd('pnpm lint', {
     msg: 'Linting',
   })
 
-  await $('pnpm test', {
+  await execCmd('pnpm test', {
     msg: 'Unit testing',
   })
 
-  await $('pnpm test:cli', {
+  await execCmd('pnpm test:cli', {
     msg: 'Cli testing',
   })
   console.log(`[${COMPLETED}]: ${VALIDATION_PROCESS_LOG_MSG}`)
@@ -68,7 +69,7 @@ async function validationProcess() {
 
 async function postValidationProcess() {
   console.log(`[${STARTED}]: ${POST_VALIDATION_PROCESS_LOG_MSG}`)
-  await $('pnpm update:third_party', {
+  await execCmd('pnpm update:third_party', {
     msg: 'Update third party git',
   })
   console.log(`[${COMPLETED}]: ${POST_VALIDATION_PROCESS_LOG_MSG}`)

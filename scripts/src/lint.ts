@@ -1,11 +1,11 @@
-import { execCmd } from './utils.js'
+import { execCmd } from './utils'
 
 async function main() {
   await execCmd('eslint --color --cache --fix --cache-location .eslintcache .', {
     msg: 'ESlint',
   })
 
-  await execCmd('pnpm -C scripts lint:md', {
+  await execCmd('pnpm lint:md', {
     msg: 'Markdownlint',
   })
 

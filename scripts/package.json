@@ -18,12 +18,14 @@
     "node": "^18.8.0 || >=20.6.0"
   },
   "scripts": {
-    "clean": "trash .wireit",
+    "all": "wireit",
     "ci:copy:env": "wireit",
     "ci:delete:env": "wireit",
     "create:pkg": "wireit",
     "ci:check:dist": "wireit",
+    "lint": "wireit",
     "lint:md": "wireit",
+    "_setup_": "wireit",
     "size:data": "wireit",
     "size:generate": "wireit",
     "size:report": "wireit"
@@ -31,25 +33,32 @@
   "dependencies": {
     "@templ/logger": "workspace:*",
     "@templ/utils": "workspace:*",
-    "fast-glob": "^3.3.1",
+    "fast-glob": "^3.3.2",
     "markdown-table": "^3.0.3",
     "markdownlint": "^0.31.1",
-    "rollup": "^4.2.0",
+    "rollup": "^4.9.0",
     "tempura": "^0.4.0",
-    "terser": "^5.24.0",
+    "terser": "^5.26.0",
     "totalist": "^3.0.1",
     "tsx": "^3.14.0",
-    "type-fest": "^4.6.0",
+    "type-fest": "^4.8.3",
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@types/node": "^20.8.10",
+    "@types/node": "^20.10.4",
+    "esno": "^4.0.0",
     "trash-cli": "^5.0.0",
     "wireit": "^0.14.1"
   },
   "wireit": {
+    "all": {
+      "command": "esno ./src/all.ts",
+      "files": [
+        "src/all.ts"
+      ]
+    },
     "ci:copy:env": {
-      "command": "node --loader tsx ./src/ci/copy-env.ts",
+      "command": "esno ./src/ci/copy-env.ts",
       "files": [
         "src/ci/copy-env.ts"
       ],
@@ -61,7 +70,7 @@
       ]
     },
     "ci:delete:env": {
-      "command": "node --loader tsx ./src/ci/delete-env.ts",
+      "command": "esno ./src/ci/delete-env.ts",
       "files": [
         "src/ci/delete-env.ts"
       ],
@@ -73,7 +82,7 @@
       ]
     },
     "create:pkg": {
-      "command": "node --loader tsx ./src/create-pkg.ts",
+      "command": "esno ./src/create-pkg.ts",
       "files": [
         "src/create-pkg.ts"
       ],
@@ -89,7 +98,7 @@
       ]
     },
     "ci:check:dist": {
-      "command": "node --loader tsx ./src/ci/check-dist.ts",
+      "command": "esno ./src/ci/check-dist.ts",
       "files": [
         "src/ci/check-dist.ts"
       ],
@@ -104,8 +113,14 @@
         }
       ]
     },
+    "lint": {
+      "command": "esno ./src/lint.ts",
+      "files": [
+        "src/lint.ts"
+      ]
+    },
     "lint:md": {
-      "command": "node --loader tsx ./src/lint-md.ts",
+      "command": "esno ./src/lint-md.ts",
       "files": [
         "src/lint-md.ts"
       ],
@@ -116,8 +131,14 @@
         }
       ]
     },
+    "_setup_": {
+      "command": "esno ./src/setup.ts",
+      "files": [
+        "src/setup.ts"
+      ]
+    },
     "size:data": {
-      "command": "node --loader tsx ./src/size/data.ts",
+      "command": "esno ./src/size/data.ts",
       "files": [
         "src/size/data.ts"
       ],
@@ -129,7 +150,7 @@
       ]
     },
     "size:generate": {
-      "command": "node --loader tsx ./src/size/generate.ts",
+      "command": "esno ./src/size/generate.ts",
       "files": [
         "src/size/generate.ts"
       ],
@@ -145,7 +166,7 @@
       ]
     },
     "size:report": {
-      "command": "node --loader tsx ./src/size/report.ts",
+      "command": "esno ./src/size/report.ts",
       "files": [
         "src/size/report.ts"
       ],
