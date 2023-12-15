@@ -25,4 +25,4 @@ runs:
 
     - name: Install
       shell: bash
-      run: pnpm i --no-frozen-lockfile
+      run: pnpm i

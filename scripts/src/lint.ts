@@ -5,7 +5,7 @@ async function main() {
     msg: 'ESlint',
   })
 
-  await execCmd('pnpm -C scripts lint:md', {
+  await execCmd('pnpm lint:md', {
     msg: 'Markdownlint',
   })
 
