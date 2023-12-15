@@ -1,4 +1,4 @@
-import { execCmd } from './utils.js'
+import { execCmd } from './utils'
 
 async function main() {
   await execCmd('eslint --color --cache --fix --cache-location .eslintcache .', {

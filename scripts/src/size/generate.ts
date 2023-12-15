@@ -25,13 +25,15 @@ import { pkgRoot, root } from '@templ/utils'
     await Promise.all([
       await rm(currDir, { recursive: true, force: true }),
       ...(await readdir(pkgRoot)).map(async (pkgName) => {
-        const { scripts }: PackageJson = JSON.parse(
-          await readFile(resolve(pkgRoot, pkgName, 'package.json'), 'utf8'),
-        )
-        if (scripts.build) {
-          await $exec('pnpm run build', {
-            cwd: resolve(pkgRoot, pkgName),
-          })
+        const pkgJSONPath = resolve(pkgRoot, pkgName, 'package.json')
+        const pkgData: PackageJson = existsSync(pkgJSONPath) ? await readFile(pkgJSONPath, 'utf8') : JSON.parse('{ "scripts": {} }')
+        if (pkgData.scripts) {
+          const { build } = pkgData
+          if (build) {
+            await $exec('pnpm run build', {
+              cwd: resolve(pkgRoot, pkgName),
+            })
+          }
         }
       }),
       await $exec('pnpm run size:data'),
