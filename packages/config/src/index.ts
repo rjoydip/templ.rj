@@ -1,8 +1,8 @@
 import type { MaybePromise, TemplOptions } from './schema'
 
 export function defineConfig(options:
-| TemplOptions
-| ((overrideOptions: TemplOptions) => MaybePromise<TemplOptions>)) {
+  | TemplOptions
+  | ((overrideOptions: TemplOptions) => MaybePromise<TemplOptions>)) {
   return options
 }
 

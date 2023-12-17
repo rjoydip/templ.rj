@@ -1,6 +1,5 @@
 import fg from 'fast-glob'
 import markdownlint from 'markdownlint'
-import { createLogger } from '@templ/logger'
 
 // https://github.com/DavidAnson/markdownlint#rules
 // https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md
@@ -47,12 +46,11 @@ markdownlint(
     config,
   },
   (err, result) => {
-    const logger = createLogger()
     if (err)
-      logger.error(String(err))
+      console.error(String(err))
 
     const resultString = result?.toString()
     if (resultString)
-      logger.error(resultString)
+      console.error(resultString)
   },
 )

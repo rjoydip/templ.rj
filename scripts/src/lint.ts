@@ -1,29 +1,18 @@
-import { execCmd } from './utils'
+import { $ } from 'execa'
 
 async function main() {
-  await execCmd('eslint --color --cache --fix --cache-location .eslintcache .', {
-    msg: 'ESlint',
-  })
-
-  await execCmd('pnpm lint:md', {
-    msg: 'Markdownlint',
-  })
-
-  await execCmd('secretlint --secretlintignore .gitignore \"**/*\"', {
-    msg: 'Secret lint',
-  })
-
-  await execCmd('size-limit', {
-    msg: 'Size limit',
-  })
-
-  await execCmd('cspell .', {
-    msg: 'Spell lint',
-  })
-
-  await execCmd('pnpm knip --no-gitignore --no-exit-code', {
-    msg: 'Knip',
-  })
+  const eslint = await $`eslint --color --cache --fix --cache-location .eslintcache .`
+  console.log(eslint.stdout)
+  const lintMd = await $`esno ./src/lint-md.ts`
+  console.log(lintMd.stdout)
+  const secretlint = await $`secretlint --secretlintignore .gitignore \"**/*\"`
+  console.log(secretlint.stdout)
+  const sizeLimit = await $`size-limit`
+  console.log(sizeLimit.stdout)
+  const cspell = await $`cspell .`
+  console.log(cspell.stdout)
+  const knip = await $`pnpm knip --no-gitignore --no-exit-code`
+  console.log(knip.stdout)
 }
 
-main()
+main().catch(console.error)

@@ -6,13 +6,13 @@ import { promisify } from 'node:util'
 import { brotliCompress, gzip } from 'node:zlib'
 import { rollup } from 'rollup'
 import { minify } from 'terser'
-import { pkgRoot, root } from '@templ/utils'
+import { PKG_ROOT, ROOT } from 'src/constant'
 
 const gzipAsync = promisify(gzip)
 const brotliAsync = promisify(brotliCompress)
 
-const currDir = resolve(root, 'temp/size')
-const prevDir = resolve(root, 'temp/size-prev')
+const currDir = resolve(ROOT, 'temp/size')
+const prevDir = resolve(ROOT, 'temp/size-prev')
 
 interface Preset {
   name: string
@@ -25,56 +25,59 @@ const presets: Preset[] = [
   {
     name: 'build',
     imports: '*',
-    pkg: resolve(pkgRoot, 'build'),
+    pkg: resolve(PKG_ROOT, 'build'),
     entry: 'dist/index.js',
   },
   {
     name: 'cli',
     imports: '*',
-    pkg: resolve(pkgRoot, 'cli'),
+    pkg: resolve(PKG_ROOT, 'cli'),
     entry: 'dist/index.js',
   },
   {
     name: 'config',
     imports: '*',
-    pkg: resolve(pkgRoot, 'config'),
+    pkg: resolve(PKG_ROOT, 'config'),
     entry: 'dist/index.js',
   },
   {
     name: 'core',
     imports: '*',
-    pkg: resolve(pkgRoot, 'core'),
+    pkg: resolve(PKG_ROOT, 'core'),
     entry: 'dist/index.js',
   },
   {
     name: 'logger',
     imports: '*',
-    pkg: resolve(pkgRoot, 'logger'),
+    pkg: resolve(PKG_ROOT, 'logger'),
     entry: 'dist/index.js',
   },
-  /* {
+  {
     name: 'utils',
     imports: '*',
-    pkg: resolve(pkgRoot, 'utils'),
+    pkg: resolve(PKG_ROOT, 'utils'),
     entry: 'dist/index.js',
-  }, */
+  },
 ]
 
 const tasks: ReturnType<typeof generateBundle>[] = []
-for (const preset of presets)
-  tasks.push(generateBundle(preset))
 
-const results = Object.fromEntries(
-  (await Promise.all(tasks)).map(r => [r.name, r]),
-)
+async function main() {
+  for (const preset of presets)
+    tasks.push(generateBundle(preset))
 
-await mkdir(currDir, { recursive: true })
-await mkdir(prevDir, { recursive: true })
-await writeFile(
-  resolve(currDir, '_packages.json'),
-  JSON.stringify(results),
-  'utf-8',
-)
+  const results = Object.fromEntries(
+    (await Promise.all(tasks)).map(r => [r.name, r]),
+  )
+
+  await mkdir(currDir, { recursive: true })
+  await mkdir(prevDir, { recursive: true })
+  await writeFile(
+    resolve(currDir, '_packages.json'),
+    JSON.stringify(results),
+    'utf-8',
+  )
+}
 
 async function generateBundle(preset: Preset) {
   const entry = resolve(preset.pkg, preset.entry)
@@ -127,3 +130,5 @@ async function generateBundle(preset: Preset) {
     brotli,
   }
 }
+
+main().catch(console.error)

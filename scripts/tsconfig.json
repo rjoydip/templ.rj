@@ -1,8 +1,7 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "useDefineForClassFields": true,
     "baseUrl": ".",
+    "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": false,
     "strict": true,

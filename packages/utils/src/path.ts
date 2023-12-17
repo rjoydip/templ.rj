@@ -1,6 +1,8 @@
-import { fileURLToPath } from 'node:url'
-import { basename } from 'node:path'
-import { escaladeAsync } from '../src/escalade'
+import { resolve } from 'node:path'
+import { execSync } from 'node:child_process'
 
-export const root = await escaladeAsync(fileURLToPath(import.meta.url), (dir: any) => basename(dir) === 'templ' ? dir : '')
-export const pkgRoot = await escaladeAsync(fileURLToPath(import.meta.url), (dir: any) => basename(dir) === 'packages' ? dir : '')
+export const root = resolve(execSync('git rev-parse --show-toplevel').toString())
+export const pkgRoot = resolve(root, 'packages')
+export const appsRoot = resolve(root, 'apps')
+export const scriptsRoot = resolve(root, 'scripts')
+export const thirdPartyRoot = resolve(root, 'third_party')

@@ -24,7 +24,6 @@
     "create:pkg": "wireit",
     "ci:check:dist": "wireit",
     "lint": "wireit",
-    "lint:md": "wireit",
     "_setup_": "wireit",
     "size:data": "wireit",
     "size:generate": "wireit",
@@ -36,7 +35,7 @@
     "fast-glob": "^3.3.2",
     "markdown-table": "^3.0.3",
     "markdownlint": "^0.31.1",
-    "rollup": "^4.9.0",
+    "rollup": "^4.9.1",
     "tempura": "^0.4.0",
     "terser": "^5.26.0",
     "totalist": "^3.0.1",
@@ -47,6 +46,7 @@
   "devDependencies": {
     "@types/node": "^20.10.4",
     "esno": "^4.0.0",
+    "execa": "^8.0.1",
     "trash-cli": "^5.0.0",
     "wireit": "^0.14.1"
   },
@@ -61,74 +61,30 @@
       "command": "esno ./src/ci/copy-env.ts",
       "files": [
         "src/ci/copy-env.ts"
-      ],
-      "dependencies": [
-        {
-          "script": "../packages/utils:build",
-          "cascade": false
-        }
       ]
     },
     "ci:delete:env": {
       "command": "esno ./src/ci/delete-env.ts",
       "files": [
         "src/ci/delete-env.ts"
-      ],
-      "dependencies": [
-        {
-          "script": "../packages/utils:build",
-          "cascade": false
-        }
       ]
     },
     "create:pkg": {
       "command": "esno ./src/create-pkg.ts",
       "files": [
         "src/create-pkg.ts"
-      ],
-      "dependencies": [
-        {
-          "script": "../packages/logger:build",
-          "cascade": false
-        },
-        {
-          "script": "../packages/utils:build",
-          "cascade": false
-        }
       ]
     },
     "ci:check:dist": {
       "command": "esno ./src/ci/check-dist.ts",
       "files": [
         "src/ci/check-dist.ts"
-      ],
-      "dependencies": [
-        {
-          "script": "../packages/logger:build",
-          "cascade": false
-        },
-        {
-          "script": "../packages/utils:build",
-          "cascade": false
-        }
       ]
     },
     "lint": {
       "command": "esno ./src/lint.ts",
       "files": [
         "src/lint.ts"
-      ]
-    },
-    "lint:md": {
-      "command": "esno ./src/lint-md.ts",
-      "files": [
-        "src/lint-md.ts"
-      ],
-      "dependencies": [
-        {
-          "script": "../packages/logger:build",
-          "cascade": false
-        }
       ]
     },
     "_setup_": {
@@ -141,44 +97,18 @@
       "command": "esno ./src/size/data.ts",
       "files": [
         "src/size/data.ts"
-      ],
-      "dependencies": [
-        {
-          "script": "../packages/utils:build",
-          "cascade": false
-        }
       ]
     },
     "size:generate": {
       "command": "esno ./src/size/generate.ts",
       "files": [
         "src/size/generate.ts"
-      ],
-      "dependencies": [
-        {
-          "script": "../packages/logger:build",
-          "cascade": false
-        },
-        {
-          "script": "../packages/utils:build",
-          "cascade": false
-        }
       ]
     },
     "size:report": {
       "command": "esno ./src/size/report.ts",
       "files": [
         "src/size/report.ts"
-      ],
-      "dependencies": [
-        {
-          "script": "../packages/logger:build",
-          "cascade": false
-        },
-        {
-          "script": "../packages/utils:build",
-          "cascade": false
-        }
       ]
     }
   }

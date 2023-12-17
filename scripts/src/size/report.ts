@@ -7,7 +7,7 @@ import { stdout } from 'node:process'
 import { pathToFileURL } from 'node:url'
 import { platform } from 'node:os'
 import { markdownTable } from 'markdown-table'
-import { root } from '@templ/utils'
+import { ROOT } from 'src/constant'
 
 interface SizeResult {
   size: number
@@ -21,8 +21,8 @@ interface BundleResult extends SizeResult {
 
 type PackageResult = Record<string, SizeResult & { name: string }>
 
-const currDir = resolve(root, 'temp/size')
-const prevDir = resolve(root, 'temp/size-prev')
+const currDir = resolve(ROOT, 'temp/size')
+const prevDir = resolve(ROOT, 'temp/size-prev')
 let output = '# Size Report\n\n'
 const sizeHeaders = ['Size', 'Gzip', 'Brotli']
 
@@ -39,7 +39,7 @@ async function renderBundles() {
 
   const curr = filterFiles(await readdir(currDir))
   const prev = existsSync(prevDir) ? filterFiles(await readdir(prevDir)) : []
-  const fileList = new Set([...curr, ...prev])
+  const fileList = [...curr, ...prev]
 
   const rows: string[][] = []
   for (const file of fileList) {
@@ -71,7 +71,7 @@ async function renderBundles() {
 async function renderPackages() {
   const curr = (await importJSON<PackageResult>(
     resolve(currDir, '_packages.json'),
-  ))
+  )) || {}
   const prev = await importJSON<PackageResult>(
     resolve(prevDir, '_packages.json'),
   )
