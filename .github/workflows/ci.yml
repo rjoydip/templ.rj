@@ -39,8 +39,8 @@ jobs:
       - name: Install
         run: pnpm i --no-frozen-lockfile
 
-      # Lint
-      - name: Lint All
+      # Clean
+      - name: Clean
         run: pnpm run clean
 
       # Build
@@ -49,8 +49,12 @@ jobs:
           pnpm -C scripts ci:copy:env
           pnpm run build
           pnpm -C scripts ci:delete:env
-      - name: Lint All
+
+      # Clean
+      - name: Lint
         run: pnpm run lint
+
+      # Dist validation
       - name: Dist validation
         run: pnpm -C scripts ci:check:dist
 
@@ -62,7 +66,7 @@ jobs:
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
-      # size_report
+      # Size Report
       - name: Download Previous Size Data
         uses: dawidd6/action-download-artifact@v2
         with:

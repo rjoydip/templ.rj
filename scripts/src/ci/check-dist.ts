@@ -1,22 +1,19 @@
 import { join } from 'node:path'
+import { COMPLETED, PKG_ROOT, STARTED } from 'src/constant'
 import { totalist } from 'totalist'
-import { createLogger, logError } from '@templ/logger'
-import { COMPLETED, STARTED, pkgRoot } from '@templ/utils'
-
-const logger = createLogger()
 
 async function main() {
   let count = 0
   try {
-    logger.success(`[${STARTED}]: CI dist checking`)
-    await totalist(join(String(pkgRoot)), async (name: string) => {
+    console.log(`[${STARTED}]: CI dist checking`)
+    await totalist(join(String(PKG_ROOT)), async (name: string) => {
       if (/^([^\/\\]*)([\/\\]dist)([\/\\]index)\.js$/.test(name))
         count++
     })
-    count === 5 ? logger.success(`[${COMPLETED}]: CI > dist count matched`) : logger.error('[ERROR]: CI > dist count not match')
+    count === 5 ? console.log(`[${COMPLETED}]: CI > dist count matched`) : console.error('[ERROR]: CI > dist count not match')
   }
   catch (error) {
-    logError(error)
+    console.error(error)
   }
 }
 

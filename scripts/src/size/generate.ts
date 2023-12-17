@@ -5,15 +5,14 @@ import { cp, readFile, readdir, rm, writeFile } from 'node:fs/promises'
 import { promisify } from 'node:util'
 import { totalist } from 'totalist'
 import type { PackageJson } from 'type-fest'
-import { logError } from '@templ/logger'
-import { pkgRoot, root } from '@templ/utils'
+import { PKG_ROOT, ROOT } from 'src/constant'
 
-(async function () {
+async function main() {
   try {
     const $exec = promisify(exec)
-    const currDir = `${root}/temp/size`
-    const prevDir = `${root}/temp/size-prev`
-    const reportFile = `${root}/size-report.md`
+    const currDir = `${ROOT}/temp/size`
+    const prevDir = `${ROOT}/temp/size-prev`
+    const reportFile = `${ROOT}/size-report.md`
 
     if (existsSync(currDir)) {
       await totalist(currDir, async (name: string, abs: string) => {
@@ -24,14 +23,14 @@ import { pkgRoot, root } from '@templ/utils'
 
     await Promise.all([
       await rm(currDir, { recursive: true, force: true }),
-      ...(await readdir(pkgRoot)).map(async (pkgName) => {
-        const pkgJSONPath = resolve(pkgRoot, pkgName, 'package.json')
+      ...(await readdir(PKG_ROOT)).map(async (pkgName) => {
+        const pkgJSONPath = resolve(PKG_ROOT, pkgName, 'package.json')
         const pkgData: PackageJson = existsSync(pkgJSONPath) ? await readFile(pkgJSONPath, 'utf8') : JSON.parse('{ "scripts": {} }')
         if (pkgData.scripts) {
           const { build } = pkgData
           if (build) {
             await $exec('pnpm run build', {
-              cwd: resolve(pkgRoot, pkgName),
+              cwd: resolve(PKG_ROOT, pkgName),
             })
           }
         }
@@ -44,6 +43,8 @@ import { pkgRoot, root } from '@templ/utils'
     await readFile(reportFile, 'utf8')
   }
   catch (err) {
-    logError(err)
+    console.error(err)
   }
-})()
+}
+
+main().catch(console.error)

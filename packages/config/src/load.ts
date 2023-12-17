@@ -52,7 +52,7 @@ joycon.addLoader(jsonLoader)
 export async function loadTemplConfig(
   cwd: string,
   configFile?: string,
-): Promise<{ path?: string; data?: ReturnType<typeof defineConfig> }> {
+): Promise<{ path?: string, data?: ReturnType<typeof defineConfig> }> {
   const configJoycon = new JoyCon()
   const configPath = await configJoycon.resolve({
     files: configFile

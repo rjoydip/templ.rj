@@ -1,10 +1,10 @@
 import { argv, cwd } from 'node:process'
-import { join } from 'node:path'
+import { join, resolve } from 'node:path'
 import { copyFile, mkdir, readFile, writeFile } from 'node:fs/promises'
+import { execSync } from 'node:child_process'
 import { compile } from 'tempura'
 import { z } from 'zod'
-import { createLogger, logError } from '@templ/logger'
-import { COMPLETED, STARTED, pkgRoot } from '@templ/utils'
+import { COMPLETED, STARTED } from 'src/constant'
 
 /**
  * The function `getTemplateData` reads a file from a specified location and returns its contents as a
@@ -35,7 +35,7 @@ async function getTemplateData(
     return (await readFile(join(location, fileName))).toString()
   }
   catch (error) {
-    logError(new Error(String(error)))
+    console.error(new Error(String(error)))
     return ''
   }
 }
@@ -73,21 +73,20 @@ async function setTemplateData(
     await writeFile(join(location, fileName), data)
   }
   catch (error) {
-    logError(new Error(String(error)))
+    console.error(new Error(String(error)))
   }
 }
 
 async function main() {
   const name = argv.at(2) || 'templP'
-  const logger = createLogger()
   try {
     const result = z.object({
       name: z.string(),
     })
     if (result) {
-      logger.success(`[${STARTED}]: ${name} package generate`)
+      console.log(`[${STARTED}]: ${name} package generate`)
       const templatesLocation = join(cwd(), '_templates')
-      const outputLocation = pkgRoot
+      const outputLocation = resolve(execSync('git rev-parse --show-toplevel').toString(), 'packages')
 
       const indexTestTSTemplate = await getTemplateData(
         join(templatesLocation, 'test'),
@@ -147,15 +146,15 @@ async function main() {
           join(outputLocation, name, 'vitest.config.ts'),
         ),
       ])
-      logger.success(`[${COMPLETED}]: ${name} package generate`)
+      console.log(`[${COMPLETED}]: ${name} package generate`)
     }
     else {
       throw new Error('Type validation failed')
     }
   }
   catch (error) {
-    logError(error)
+    console.error(error)
   }
 }
 
-main()
+main().catch(console.error)

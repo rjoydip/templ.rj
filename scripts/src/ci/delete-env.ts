@@ -1,22 +1,19 @@
 import { join } from 'node:path'
 import { rm } from 'node:fs/promises'
 import { totalist } from 'totalist'
-import { createLogger, logError } from '@templ/logger'
-import { COMPLETED, STARTED, pkgRoot } from '@templ/utils'
-
-const logger = createLogger()
+import { COMPLETED, PKG_ROOT, STARTED } from 'src/constant'
 
 async function main() {
   try {
-    logger.success(`[${STARTED}]: CI env file delete`)
-    await totalist(join(String(pkgRoot), 'api', 'services'), async (name: string, abs: string) => {
+    console.log(`[${STARTED}]: CI env file delete`)
+    await totalist(join(String(PKG_ROOT), 'api', 'services'), async (name: string, abs: string) => {
       if (/\.env$/.test(name))
         await rm(abs)
     })
-    logger.success(`[${COMPLETED}]: CI env file delete`)
+    console.log(`[${COMPLETED}]: CI env file delete`)
   }
   catch (error) {
-    logError(error)
+    console.error(error)
   }
 }
 

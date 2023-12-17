@@ -1,5 +1,4 @@
 export * from './constants'
 export * from './errors'
-export * from './escalade'
 export * from './is'
 export * from './path'
