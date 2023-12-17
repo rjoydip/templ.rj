@@ -34,7 +34,7 @@
     "@templ/utils": "workspace:*",
     "fast-glob": "^3.3.2",
     "markdown-table": "^3.0.3",
-    "markdownlint": "^0.31.1",
+    "markdownlint": "^0.32.1",
     "rollup": "^4.9.1",
     "tempura": "^0.4.0",
     "terser": "^5.26.0",
