@@ -73,7 +73,7 @@ jobs:
           name: size-data
           path: temp/size-prev
           if_no_artifact_found: warn
-      - run: pnpm -C scripts size:generate
+      - run: pnpm -C scripts size:report
       - name: Upload Size Data
         uses: actions/upload-artifact@v3
         with:

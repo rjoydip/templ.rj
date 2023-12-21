@@ -24,9 +24,13 @@
     "prepare": "husky install",
     "preinstall": "npx only-allow pnpm",
     "postinstall": "pnpm deps:update",
+    "knip": "knip --no-gitignore --no-exit-code",
     "lint": "pnpm -C scripts lint",
-    "size": "pnpm -C scripts size:generate",
-    "_setup_": "pnpm -C scripts _setup_",
+    "size:report": "pnpm -C scripts size:report",
+    "size:limit": "size-limit",
+    "all": "pnpm -C scripts all",
+    "secretlint": "secretlint --secretlintignore .gitignore \"**/*\"",
+    "spell:check": "cspell .",
     "system:info": "envinfo --system --binaries --browsers",
     "test": "pnpm -r test",
     "test:all": "pnpm test && pnpm test:cli",
@@ -85,15 +89,6 @@
           "**/dist/*.js"
         ]
       },
-      "packages/api/services/*": {
-        "entry": [
-          "**/*.ts",
-          "**/*.config.js"
-        ],
-        "ignore": [
-          "**/dist/**/*.js"
-        ]
-      },
       "packages/cli": {
         "entry": [
           "**/*.ts",
@@ -121,10 +116,12 @@
       "@secretlint/secretlint-rule-preset-recommend",
       "@size-limit/file",
       "nano-staged",
-      "tsx",
-      "vitepress"
+      "vitepress",
+      "esno",
+      "trash-cli"
     ],
     "ignore": [
+      "**/.github/**",
       "**/.wireit",
       "**/.vitepress",
       "**/fixtures/**",

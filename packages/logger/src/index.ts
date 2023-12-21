@@ -2,7 +2,7 @@
 
 import util from 'node:util'
 import { isMainThread, parentPort } from 'node:worker_threads'
-import * as colors from 'colorette'
+import * as colors from 'picocolors'
 import ora from 'ora'
 import { serializeError } from 'serialize-error'
 

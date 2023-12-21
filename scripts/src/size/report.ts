@@ -118,4 +118,4 @@ async function main() {
   stdout.write(output)
 }
 
-main()
+main().catch(console.error)

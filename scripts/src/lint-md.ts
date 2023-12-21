@@ -1,3 +1,4 @@
+import { intro, log } from '@clack/prompts'
 import fg from 'fast-glob'
 import markdownlint from 'markdownlint'
 
@@ -46,11 +47,14 @@ markdownlint(
     config,
   },
   (err, result) => {
+    intro('Markdown lint')
     if (err)
-      console.error(String(err))
+      log.error(String(err))
 
     const resultString = result?.toString()
     if (resultString)
-      console.error(resultString)
+      log.error(resultString)
+    else
+      log.info('All looks good')
   },
 )

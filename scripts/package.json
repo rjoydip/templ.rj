@@ -18,20 +18,16 @@
     "node": "^18.8.0 || >=20.6.0"
   },
   "scripts": {
-    "all": "wireit",
-    "ci:copy:env": "wireit",
-    "ci:delete:env": "wireit",
-    "create:pkg": "wireit",
-    "ci:check:dist": "wireit",
-    "lint": "wireit",
-    "_setup_": "wireit",
-    "size:data": "wireit",
-    "size:generate": "wireit",
-    "size:report": "wireit"
+    "all": "esno ./src/all.ts",
+    "ci:copy:env": "esno ./src/ci/copy-env.ts",
+    "ci:delete:env": "esno ./src/ci/delete-env.ts",
+    "create:pkg": "esno ./src/create-pkg.ts",
+    "ci:check:dist": "esno ./src/ci/check-dist.ts",
+    "lint": "esno ./src/lint.ts",
+    "lint:md": "esno ./src/lint-md.ts",
+    "size:report": "esno ./src/size/index.ts"
   },
   "dependencies": {
-    "@templ/logger": "workspace:*",
-    "@templ/utils": "workspace:*",
     "fast-glob": "^3.3.2",
     "markdown-table": "^3.0.3",
     "markdownlint": "^0.31.1",
@@ -44,72 +40,11 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@types/node": "^20.10.4",
+    "@clack/prompts": "^0.7.0",
+    "@types/node": "^20.10.5",
     "esno": "^4.0.0",
     "execa": "^8.0.1",
-    "trash-cli": "^5.0.0",
-    "wireit": "^0.14.1"
-  },
-  "wireit": {
-    "all": {
-      "command": "esno ./src/all.ts",
-      "files": [
-        "src/all.ts"
-      ]
-    },
-    "ci:copy:env": {
-      "command": "esno ./src/ci/copy-env.ts",
-      "files": [
-        "src/ci/copy-env.ts"
-      ]
-    },
-    "ci:delete:env": {
-      "command": "esno ./src/ci/delete-env.ts",
-      "files": [
-        "src/ci/delete-env.ts"
-      ]
-    },
-    "create:pkg": {
-      "command": "esno ./src/create-pkg.ts",
-      "files": [
-        "src/create-pkg.ts"
-      ]
-    },
-    "ci:check:dist": {
-      "command": "esno ./src/ci/check-dist.ts",
-      "files": [
-        "src/ci/check-dist.ts"
-      ]
-    },
-    "lint": {
-      "command": "esno ./src/lint.ts",
-      "files": [
-        "src/lint.ts"
-      ]
-    },
-    "_setup_": {
-      "command": "esno ./src/setup.ts",
-      "files": [
-        "src/setup.ts"
-      ]
-    },
-    "size:data": {
-      "command": "esno ./src/size/data.ts",
-      "files": [
-        "src/size/data.ts"
-      ]
-    },
-    "size:generate": {
-      "command": "esno ./src/size/generate.ts",
-      "files": [
-        "src/size/generate.ts"
-      ]
-    },
-    "size:report": {
-      "command": "esno ./src/size/report.ts",
-      "files": [
-        "src/size/report.ts"
-      ]
-    }
+    "picocolors": "^1.0.0",
+    "trash-cli": "^5.0.0"
   }
 }
