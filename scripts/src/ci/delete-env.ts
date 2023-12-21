@@ -1,8 +1,9 @@
 import { join } from 'node:path'
 import { rm } from 'node:fs/promises'
 import { totalist } from 'totalist'
-import { COMPLETED, PKG_ROOT, STARTED } from 'src/constant'
 import { log } from '@clack/prompts'
+import { COMPLETED, STARTED } from '../constant'
+import { PKG_ROOT } from '../utils'
 
 async function main() {
   try {

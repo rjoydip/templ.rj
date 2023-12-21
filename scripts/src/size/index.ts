@@ -3,9 +3,9 @@ import { existsSync } from 'node:fs'
 import { cp, readFile, readdir, rm, writeFile } from 'node:fs/promises'
 import { totalist } from 'totalist'
 import type { PackageJson } from 'type-fest'
-import { PKG_ROOT, ROOT } from 'src/constant'
 import { intro, log, outro } from '@clack/prompts'
 import { execa } from 'execa'
+import { PKG_ROOT, ROOT } from '../utils'
 
 async function main() {
   const currDir = `${ROOT}/temp/size`

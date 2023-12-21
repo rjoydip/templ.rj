@@ -7,7 +7,7 @@ import { stdout } from 'node:process'
 import { pathToFileURL } from 'node:url'
 import { platform } from 'node:os'
 import { markdownTable } from 'markdown-table'
-import { ROOT } from 'src/constant'
+import { ROOT } from '../utils'
 
 interface SizeResult {
   size: number

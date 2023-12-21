@@ -5,8 +5,8 @@ import { execSync } from 'node:child_process'
 import { compile } from 'tempura'
 import colors from 'picocolors'
 import { z } from 'zod'
-import { COMPLETED, STARTED } from 'src/constant'
 import { intro, log, outro } from '@clack/prompts'
+import { COMPLETED, STARTED } from './constant'
 
 /**
  * The function `getTemplateData` reads a file from a specified location and returns its contents as a
