@@ -52,10 +52,10 @@ jobs:
 
       # Clean
       - name: Lint
-        run: pnpm run lint
+        run: pnpm -C scripts lint
 
-      # Dist validation
-      - name: Dist validation
+      # Dist valid
+      - name: Dist valid
         run: pnpm -C scripts ci:check:dist
 
       # Test
@@ -67,7 +67,7 @@ jobs:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
       # Size Report
-      - name: Download Previous Size Data
+      - name: Size Report
         uses: dawidd6/action-download-artifact@v2
         with:
           name: size-data
