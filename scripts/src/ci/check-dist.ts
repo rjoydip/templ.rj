@@ -1,22 +1,20 @@
-import { join } from 'node:path'
-import { log } from '@clack/prompts'
-import { COMPLETED, STARTED } from 'src/constant'
+import type { Stats } from 'node:fs'
+import { intro, log } from '@clack/prompts'
 import { totalist } from 'totalist'
-import { PKG_ROOT } from '../utils'
+import { getPackageRootAsync } from '../utils'
 
 async function main() {
   let count = 0
-  try {
-    log.info(`[${STARTED}]: CI dist checking`)
-    await totalist(join(String(PKG_ROOT)), async (name: string) => {
-      if (/^([^\/\\]*)([\/\\]dist)([\/\\]index)\.js$/.test(name))
-        count++
-    })
-    count === 5 ? log.success(`[${COMPLETED}]: CI > dist count matched`) : log.error('[ERROR]: CI > dist count not match')
-  }
-  catch (error) {
-    log.error(String(error))
-  }
+  intro('Dist checking')
+
+  const pkgRoot = await getPackageRootAsync()
+
+  await totalist(pkgRoot, async (name: string, _, stats: Stats) => {
+    if (/^([^\/\\]*)([\/\\]dist)([\/\\]index)\.js$/.test(name) && !stats.isSymbolicLink())
+      count++
+  })
+
+  count === 5 ? log.success(`Dist count matched`) : log.error('Dist count not match')
 }
 
-main()
+main().catch(console.error)

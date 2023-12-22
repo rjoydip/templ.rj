@@ -1,22 +1,25 @@
-import { join } from 'node:path'
 import { rm } from 'node:fs/promises'
+import type { Stats } from 'node:fs'
 import { totalist } from 'totalist'
-import { log } from '@clack/prompts'
-import { COMPLETED, STARTED } from '../constant'
-import { PKG_ROOT } from '../utils'
+import { intro, log } from '@clack/prompts'
+import { getPackageRootAsync } from '../utils'
 
 async function main() {
-  try {
-    log.info(`[${STARTED}]: CI env file delete`)
-    await totalist(join(String(PKG_ROOT), 'api', 'services'), async (name: string, abs: string) => {
-      if (/\.env$/.test(name))
+  let count = 0
+  intro('CI env delete')
+
+  const pkgRoot = await getPackageRootAsync()
+
+  await totalist(pkgRoot, async (name: string, abs: string, stats: Stats) => {
+    if (!/node_modules|test|dist|coverage/.test(abs) && !stats.isSymbolicLink()) {
+      if (/\.env$/.test(name)) {
+        count++
         await rm(abs)
-    })
-    log.success(`[${COMPLETED}]: CI env file delete`)
-  }
-  catch (error) {
-    log.error(String(error))
-  }
+      }
+    }
+  })
+
+  count ? log.success(`Env file delete`) : log.error('No env file found')
 }
 
 main().catch(console.error)

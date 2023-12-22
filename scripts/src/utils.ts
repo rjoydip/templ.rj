@@ -1,5 +1,7 @@
 import { execSync } from 'node:child_process'
 import { resolve } from 'node:path'
+import { readdir } from 'node:fs/promises'
+import { readdirSync } from 'node:fs'
 import { log, spinner } from '@clack/prompts'
 import { execa } from 'execa'
 import colors from 'picocolors'
@@ -28,5 +30,27 @@ export async function execCmd(params: ExecCmdrParams) {
     log.message(stdout ?? stderr)
 }
 
-export const ROOT = resolve(execSync('git rev-parse --show-toplevel').toString())
-export const PKG_ROOT = resolve(execSync('git rev-parse --show-toplevel').toString(), 'packages')
+export function getRootSync() {
+  return resolve(execSync('git rev-parse --show-toplevel').toString().replace('\n', ''))
+}
+export function getPackageRootSync() {
+  return resolve(execSync('git rev-parse --show-toplevel').toString().replace('\n', ''), 'packages')
+}
+export function getPackagesSync() {
+  const pkgRoot = getPackageRootSync()
+  return readdirSync(pkgRoot)
+}
+
+// Async calls
+export async function getRootAsync() {
+  const { stdout } = await execa('git rev-parse --show-toplevel')
+  return resolve(stdout)
+}
+export async function getPackageRootAsync() {
+  const { stdout } = await execa('git rev-parse --show-toplevel')
+  return resolve(stdout, 'packages')
+}
+export async function getPackagesAsync() {
+  const pkgRoot = await getPackageRootAsync()
+  return await readdir(pkgRoot)
+}

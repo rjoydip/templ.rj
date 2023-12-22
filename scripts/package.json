@@ -20,12 +20,14 @@
   "scripts": {
     "all": "esno ./src/all.ts",
     "ci:copy:env": "esno ./src/ci/copy-env.ts",
+    "ci:check:dist": "esno ./src/ci/check-dist.ts",
     "ci:delete:env": "esno ./src/ci/delete-env.ts",
     "create:pkg": "esno ./src/create-pkg.ts",
-    "ci:check:dist": "esno ./src/ci/check-dist.ts",
     "lint": "esno ./src/lint.ts",
     "lint:md": "esno ./src/lint-md.ts",
-    "size:report": "esno ./src/size/index.ts"
+    "size:build": "esno ./src/size/build.ts",
+    "size:data": "esno ./src/size/data.ts",
+    "size:report": "esno ./src/size/report.ts"
   },
   "dependencies": {
     "fast-glob": "^3.3.2",

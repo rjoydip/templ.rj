@@ -18,36 +18,12 @@
     "node": "^18.8.0 || >=20.6.0"
   },
   "scripts": {
-    "clean": "trash .vitepress .wireit",
-    "build": "wireit",
-    "docs:dev": "wireit",
-    "docs:preview": "wireit"
+    "clean": "trash .vitepress",
+    "build": "vitepress build .",
+    "docs:dev": "vitepress dev .",
+    "docs:preview": "vitepress preview ."
   },
   "devDependencies": {
-    "vitepress": "1.0.0-rc.32",
-    "wireit": "^0.14.1"
-  },
-  "wireit": {
-    "build": {
-      "command": "vitepress build .",
-      "output": [
-        "build/**"
-      ]
-    },
-    "docs:dev": {
-      "command": "vitepress dev ."
-    },
-    "docs:preview": {
-      "command": "vitepress preview .",
-      "files": [
-        "*.md"
-      ],
-      "output": [
-        "build/**"
-      ],
-      "dependencies": [
-        "build"
-      ]
-    }
+    "vitepress": "1.0.0-rc.32"
   }
 }

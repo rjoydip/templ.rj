@@ -1,7 +1,6 @@
 /// <reference types='vitest' />
 
 import { defineConfig } from 'vitest/config'
-import tsconfigPaths from 'vite-tsconfig-paths'
 
 export default defineConfig({
   test: {
@@ -12,5 +11,4 @@ export default defineConfig({
       reporter: ['text', 'json', 'json-summary', 'html', 'lcov'],
     },
   },
-  plugins: [tsconfigPaths()],
 })
