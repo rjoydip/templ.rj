@@ -11,7 +11,7 @@ async function main() {
 
   // ESlint
   await execCmd({
-    cmd: 'pnpm -w eslint',
+    cmd: 'npx eslint --color --cache --fix --cache-location .eslintcache ../',
     msg: {
       start: 'ESlint',
       stop: 'ESlint completed',

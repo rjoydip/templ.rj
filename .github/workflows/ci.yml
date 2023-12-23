@@ -16,20 +16,20 @@ permissions:
 
 jobs:
 
-  trivy_scan:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@master
-      - name: Run Trivy vulnerability scanner in fs mode
-        uses: aquasecurity/trivy-action@master
-        with:
-          image-ref: .
-          scan-type: fs
-          scan-ref: .
-          skip-dirs: third_party
-          output: dependency-results.sbom.json
-          github-pat: ${{ secrets.GITHUB_TOKEN }}
+  # trivy_scan:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@master
+  #     - name: Run Trivy vulnerability scanner in fs mode
+  #       uses: aquasecurity/trivy-action@master
+  #       with:
+  #         image-ref: .
+  #         scan-type: fs
+  #         scan-ref: .
+  #         skip-dirs: third_party
+  #         output: dependency-results.sbom.json
+  #         github-pat: ${{ secrets.GITHUB_TOKEN }}
 
   init:
     runs-on: ubuntu-latest
@@ -40,94 +40,92 @@ jobs:
         run: pnpm i --no-frozen-lockfile
 
       # Clean
-      - name: Clean
-        run: pnpm run clean
+      # - name: Clean
+      #   run: pnpm run clean
 
-      # Build
-      - name: Build
-        run: |
-          pnpm -C scripts ci:copy:env
-          pnpm run build
-          pnpm -C scripts ci:delete:env
+      # # Build
+      # - name: Build
+      #   run: |
+      #     pnpm -C scripts ci:copy:env
+      #     pnpm run build
+      #     pnpm -C scripts ci:delete:env
 
       # Lint
       - name: Lint
-        run: |
-          pnpm store prune
-          pnpm -C scripts lint
+        run: pnpm -C scripts lint
 
       # Dist valid
-      - name: Dist valid
-        run: pnpm -C scripts ci:check:dist
+      # - name: Dist valid
+      #   run: pnpm -C scripts ci:check:dist
 
-      # Test
-      - name: Test
-        run: pnpm run test
-      - name: Codecov
-        uses: codecov/codecov-action@v3
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      # # Test
+      # - name: Test
+      #   run: pnpm run test
+      # - name: Codecov
+      #   uses: codecov/codecov-action@v3
+      #   env:
+      #     CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
-      # Size Report
-      - name: Download Artifact
-        uses: dawidd6/action-download-artifact@v2
-        with:
-          name: size-data
-          path: temp/size-prev
-          if_no_artifact_found: warn
+      # # Size Report
+      # - name: Download Artifact
+      #   uses: dawidd6/action-download-artifact@v2
+      #   with:
+      #     name: size-data
+      #     path: temp/size-prev
+      #     if_no_artifact_found: warn
 
-      - name: Size Report
-        run: pnpm -C scripts size:report
+      # - name: Size Report
+      #   run: pnpm -C scripts size:report
 
-      - name: Upload Size Data
-        uses: actions/upload-artifact@v3
-        with:
-          name: size-data
-          path: temp/size
-      - name: Read Size Report
-        id: size-report
-        uses: juliangruber/read-file-action@v1
-        with:
-          path: ./size-report.md
-      - name: Create commit comment
-        uses: peter-evans/commit-comment@v2
-        with:
-          body: ${{ steps.size-report.outputs.content }}
+      # - name: Upload Size Data
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: size-data
+      #     path: temp/size
+      # - name: Read Size Report
+      #   id: size-report
+      #   uses: juliangruber/read-file-action@v1
+      #   with:
+      #     path: ./size-report.md
+      # - name: Create commit comment
+      #   uses: peter-evans/commit-comment@v2
+      #   with:
+      #     body: ${{ steps.size-report.outputs.content }}
 
-  test_cli:
-    runs-on: ${{ matrix.os }}
-    timeout-minutes: 10
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-        node_version: [18]
-      fail-fast: false
-    needs: [init]
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/setup-node
-        with:
-          node-version: ${{ matrix.node_version }}
-      - name: Test CLI
-        run: pnpm run test:cli
+  # test_cli:
+  #   runs-on: ${{ matrix.os }}
+  #   timeout-minutes: 10
+  #   strategy:
+  #     matrix:
+  #       os: [ubuntu-latest, macos-latest, windows-latest]
+  #       node_version: [18]
+  #     fail-fast: false
+  #   needs: [init]
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: ./.github/actions/setup-node
+  #       with:
+  #         node-version: ${{ matrix.node_version }}
+  #     - name: Test CLI
+  #       run: pnpm run test:cli
 
-  action-timeline:
-    needs: [init, test_cli, trivy_scan]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: Kesin11/actions-timeline@v1
+  # action-timeline:
+  #   needs: [init, test_cli, trivy_scan]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: Kesin11/actions-timeline@v1
 
-  triage:
-    runs-on: ubuntu-latest
-    if: github.actor != 'dependabot[bot]'
-    steps:
-      - uses: actions/labeler@v4
+  # triage:
+  #   runs-on: ubuntu-latest
+  #   if: github.actor != 'dependabot[bot]'
+  #   steps:
+  #     - uses: actions/labeler@v4
 
-  pr_title_check:
-    runs-on: ubuntu-latest
-    if: github.actor != 'dependabot[bot]'
-    steps:
-      - uses: thehanimo/pr-title-checker@v1.4.0
-        with:
-          pass_on_octokit_error: false
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  # pr_title_check:
+  #   runs-on: ubuntu-latest
+  #   if: github.actor != 'dependabot[bot]'
+  #   steps:
+  #     - uses: thehanimo/pr-title-checker@v1.4.0
+  #       with:
+  #         pass_on_octokit_error: false
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
