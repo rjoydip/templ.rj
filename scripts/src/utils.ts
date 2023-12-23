@@ -1,9 +1,10 @@
-import { execSync } from 'node:child_process'
-import { resolve } from 'node:path'
+import { parse, resolve } from 'node:path'
 import { readdir } from 'node:fs/promises'
 import { readdirSync } from 'node:fs'
+import { cwd } from 'node:process'
 import { log, spinner } from '@clack/prompts'
 import { execa } from 'execa'
+import { findUp, findUpSync } from 'find-up'
 import colors from 'picocolors'
 
 interface SpinnerType {
@@ -31,24 +32,25 @@ export async function execCmd(params: ExecCmdrParams) {
 }
 
 export function getRootSync() {
-  return resolve(execSync('git rev-parse --show-toplevel').toString().replace('\n', ''))
+  const root = findUpSync('pnpm-workspace.yaml') || findUpSync('.npmrc') || cwd()
+  return parse(root).dir
 }
 export function getPackageRootSync() {
-  return resolve(execSync('git rev-parse --show-toplevel').toString().replace('\n', ''), 'packages')
+  return resolve(getRootSync() || cwd(), 'packages')
 }
 export function getPackagesSync() {
   const pkgRoot = getPackageRootSync()
   return readdirSync(pkgRoot)
 }
 
-// Async calls
+// Async call
 export async function getRootAsync() {
-  const { stdout } = await execa('git rev-parse --show-toplevel')
-  return resolve(stdout)
+  const root = await findUp('pnpm-workspace.yaml') || await findUp('.npmrc') || cwd()
+  return parse(root).dir
 }
 export async function getPackageRootAsync() {
-  const { stdout } = await execa('git rev-parse --show-toplevel')
-  return resolve(stdout, 'packages')
+  const root = await getRootAsync()
+  return resolve(root, 'packages')
 }
 export async function getPackagesAsync() {
   const pkgRoot = await getPackageRootAsync()

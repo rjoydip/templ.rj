@@ -17,11 +17,15 @@
       "path": "packages/cli"
     },
     {
+      "name": "🔊 @templ/logger",
+      "path": "packages/logger"
+    },
+    {
       "name": "🔨 @templ/utils",
       "path": "packages/utils"
     },
     {
-      "name": "📜 @templ/docs",
+      "name": "📜 @templ/apps/docs",
       "path": "docs"
     },
     {
@@ -31,10 +35,6 @@
     {
       "name": "🖥️ @templ/apps/desktop",
       "path": "apps/desktop"
-    },
-    {
-      "name": "🗑️ Fixtures",
-      "path": "fixtures"
-    },
+    }
   ]
 }
