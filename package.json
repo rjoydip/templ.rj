@@ -27,6 +27,7 @@
     "eslint:viewer": "eslint-flat-config-viewer",
     "prepare": "husky install",
     "knip": "knip --no-gitignore --no-exit-code",
+    "lint:all": "pnpm -C scripts lint",
     "size:report": "pnpm -C scripts size:report",
     "size:limit": "size-limit",
     "secretlint": "secretlint --secretlintignore .gitignore \"**/*\"",

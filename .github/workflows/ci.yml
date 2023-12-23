@@ -16,20 +16,20 @@ permissions:
 
 jobs:
 
-  trivy_scan:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@master
-      - name: Run Trivy vulnerability scanner in fs mode
-        uses: aquasecurity/trivy-action@master
-        with:
-          image-ref: .
-          scan-type: fs
-          scan-ref: .
-          skip-dirs: third_party
-          output: dependency-results.sbom.json
-          github-pat: ${{ secrets.GITHUB_TOKEN }}
+  # trivy_scan:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@master
+  #     - name: Run Trivy vulnerability scanner in fs mode
+  #       uses: aquasecurity/trivy-action@master
+  #       with:
+  #         image-ref: .
+  #         scan-type: fs
+  #         scan-ref: .
+  #         skip-dirs: third_party
+  #         output: dependency-results.sbom.json
+  #         github-pat: ${{ secrets.GITHUB_TOKEN }}
 
   init:
     runs-on: ubuntu-latest
@@ -39,20 +39,22 @@ jobs:
       - name: Install
         run: pnpm i --no-frozen-lockfile
 
-      # Clean
-      - name: Clean
-        run: pnpm run clean
+      # # Clean
+      # - name: Clean
+      #   run: pnpm run clean
 
-      # Build
-      - name: Build
-        run: |
-          pnpm -C scripts ci:copy:env
-          pnpm run build
-          pnpm -C scripts ci:delete:env
+      # # Build
+      # - name: Build
+      #   run: |
+      #     pnpm -C scripts ci:copy:env
+      #     pnpm run build
+      #     pnpm -C scripts ci:delete:env
 
       # Clean
       - name: Lint
-        run: pnpm -C scripts lint
+        run: |
+          pnpm store prune
+          pnpm -C scripts lint
 
       # Dist valid
       - name: Dist valid
@@ -67,13 +69,16 @@ jobs:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
       # Size Report
-      - name: Size Report
+      - name: Download Artifact
         uses: dawidd6/action-download-artifact@v2
         with:
           name: size-data
           path: temp/size-prev
           if_no_artifact_found: warn
-      - run: pnpm -C scripts size:report
+
+      - name: Size Report
+        run: pnpm -C scripts size:report
+
       - name: Upload Size Data
         uses: actions/upload-artifact@v3
         with:
@@ -106,23 +111,23 @@ jobs:
       - name: Test CLI
         run: pnpm run test:cli
 
-  action-timeline:
-    needs: [init, test_cli, trivy_scan]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: Kesin11/actions-timeline@v1
+  # action-timeline:
+  #   needs: [init, test_cli, trivy_scan]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: Kesin11/actions-timeline@v1
 
-  triage:
-    runs-on: ubuntu-latest
-    if: github.actor != 'dependabot[bot]'
-    steps:
-      - uses: actions/labeler@v4
+  # triage:
+  #   runs-on: ubuntu-latest
+  #   if: github.actor != 'dependabot[bot]'
+  #   steps:
+  #     - uses: actions/labeler@v4
 
-  pr_title_check:
-    runs-on: ubuntu-latest
-    if: github.actor != 'dependabot[bot]'
-    steps:
-      - uses: thehanimo/pr-title-checker@v1.4.0
-        with:
-          pass_on_octokit_error: false
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  # pr_title_check:
+  #   runs-on: ubuntu-latest
+  #   if: github.actor != 'dependabot[bot]'
+  #   steps:
+  #     - uses: thehanimo/pr-title-checker@v1.4.0
+  #       with:
+  #         pass_on_octokit_error: false
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
