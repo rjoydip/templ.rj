@@ -50,11 +50,11 @@ jobs:
           pnpm run build
           pnpm -C scripts ci:delete:env
 
-      # # Lint
-      # - name: Lint
-      #   run: |
-      #     pnpm store prune
-      #     pnpm -C scripts lint
+      # Lint
+      - name: Lint
+        run: |
+          pnpm store prune
+          pnpm -C scripts lint
 
       # Dist valid
       - name: Dist valid
