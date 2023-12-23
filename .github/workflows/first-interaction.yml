@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.actor != 'dependabot[bot]'
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v3
       - uses: ./.github/actions/setup-node
       - name: Install
         run: pnpm i --no-frozen-lockfile
