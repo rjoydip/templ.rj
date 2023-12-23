@@ -16,20 +16,20 @@ permissions:
 
 jobs:
 
-  # trivy_scan:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@master
-  #     - name: Run Trivy vulnerability scanner in fs mode
-  #       uses: aquasecurity/trivy-action@master
-  #       with:
-  #         image-ref: .
-  #         scan-type: fs
-  #         scan-ref: .
-  #         skip-dirs: third_party
-  #         output: dependency-results.sbom.json
-  #         github-pat: ${{ secrets.GITHUB_TOKEN }}
+  trivy_scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@master
+      - name: Run Trivy vulnerability scanner in fs mode
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: .
+          scan-type: fs
+          scan-ref: .
+          skip-dirs: third_party
+          output: dependency-results.sbom.json
+          github-pat: ${{ secrets.GITHUB_TOKEN }}
 
   init:
     runs-on: ubuntu-latest
@@ -39,22 +39,22 @@ jobs:
       - name: Install
         run: pnpm i --no-frozen-lockfile
 
-      # # Clean
-      # - name: Clean
-      #   run: pnpm run clean
-
-      # # Build
-      # - name: Build
-      #   run: |
-      #     pnpm -C scripts ci:copy:env
-      #     pnpm run build
-      #     pnpm -C scripts ci:delete:env
-
       # Clean
-      - name: Lint
+      - name: Clean
+        run: pnpm run clean
+
+      # Build
+      - name: Build
         run: |
-          pnpm store prune
-          pnpm -C scripts lint
+          pnpm -C scripts ci:copy:env
+          pnpm run build
+          pnpm -C scripts ci:delete:env
+
+      # # Lint
+      # - name: Lint
+      #   run: |
+      #     pnpm store prune
+      #     pnpm -C scripts lint
 
       # Dist valid
       - name: Dist valid
@@ -111,23 +111,23 @@ jobs:
       - name: Test CLI
         run: pnpm run test:cli
 
-  # action-timeline:
-  #   needs: [init, test_cli, trivy_scan]
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: Kesin11/actions-timeline@v1
+  action-timeline:
+    needs: [init, test_cli, trivy_scan]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: Kesin11/actions-timeline@v1
 
-  # triage:
-  #   runs-on: ubuntu-latest
-  #   if: github.actor != 'dependabot[bot]'
-  #   steps:
-  #     - uses: actions/labeler@v4
+  triage:
+    runs-on: ubuntu-latest
+    if: github.actor != 'dependabot[bot]'
+    steps:
+      - uses: actions/labeler@v4
 
-  # pr_title_check:
-  #   runs-on: ubuntu-latest
-  #   if: github.actor != 'dependabot[bot]'
-  #   steps:
-  #     - uses: thehanimo/pr-title-checker@v1.4.0
-  #       with:
-  #         pass_on_octokit_error: false
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  pr_title_check:
+    runs-on: ubuntu-latest
+    if: github.actor != 'dependabot[bot]'
+    steps:
+      - uses: thehanimo/pr-title-checker@v1.4.0
+        with:
+          pass_on_octokit_error: false
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
