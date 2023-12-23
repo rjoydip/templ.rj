@@ -19,13 +19,16 @@ interface ExecCmdrParams {
     start: string
     stop: string
   }
+  cwd?: string
   spinner: SpinnerType
 }
 
 export async function execCmd(params: ExecCmdrParams) {
   const s = params.spinner ?? spinner()
   s.start(params.msg.start.concat(' ') ?? '')
-  const { stdout, stderr } = await execa(params.cmd ?? 'pnpm -v')
+  const { stdout, stderr } = await execa(params.cmd ?? 'pnpm -v', {
+    cwd: params.cwd || cwd(),
+  })
   s.stop(colors.green(params.msg.stop) ?? '')
   if (stdout || stderr)
     log.message(stdout ?? stderr)

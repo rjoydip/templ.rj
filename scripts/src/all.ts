@@ -14,7 +14,7 @@ async function main() {
 
   // Installation
   await execCmd({
-    cmd: 'pnpm -w i',
+    cmd: 'pnpm i',
     msg: {
       start: 'Installing via pnpm',
       stop: 'Installed via pnpm',
@@ -80,7 +80,7 @@ async function main() {
 
   // Size limit
   await execCmd({
-    cmd: 'pnpm -w size:limit',
+    cmd: 'npx size:limit',
     msg: {
       start: 'Size limit checking',
       stop: 'Size limit check completed',
@@ -96,7 +96,7 @@ async function main() {
 
   // Changelog
   await execCmd({
-    cmd: 'pnpm -w changelog',
+    cmd: 'npx changelog',
     msg: {
       start: 'Generating changelog',
       stop: 'Generated changelog',
@@ -106,7 +106,7 @@ async function main() {
 
   // System info
   await execCmd({
-    cmd: 'pnpm -w system:info',
+    cmd: 'npx envinfo --system --binaries --browsers',
     msg: {
       start: 'System info',
       stop: 'Generated system info',
@@ -116,7 +116,7 @@ async function main() {
 
   // Update package dependency
   await execCmd({
-    cmd: 'pnpm -w deps:update',
+    cmd: 'npx taze -r -w -i -f -l --ignore-paths="third_party/**"',
     msg: {
       start: 'Dependency updating',
       stop: 'Dependency updated',

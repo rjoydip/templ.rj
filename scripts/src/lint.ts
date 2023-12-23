@@ -31,7 +31,7 @@ async function main() {
 
   // Secret lint
   await execCmd({
-    cmd: 'pnpm -w secretlint',
+    cmd: 'npx secretlint --secretlintignore .gitignore \"**/*\"',
     msg: {
       start: 'Secret linting',
       stop: 'Secret lint completed',
@@ -51,7 +51,7 @@ async function main() {
 
   // Spell check
   await execCmd({
-    cmd: 'pnpm -w spell:check',
+    cmd: 'npx cspell ../',
     msg: {
       start: 'Spell checking',
       stop: 'Spell check completed',
@@ -61,7 +61,7 @@ async function main() {
 
   // Knip
   await execCmd({
-    cmd: 'pnpm -w knip',
+    cmd: 'npx knip --no-gitignore --directory ../ --no-exit-code',
     msg: {
       start: 'Knip started',
       stop: 'Knip completed',
