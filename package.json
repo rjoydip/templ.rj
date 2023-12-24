@@ -46,7 +46,7 @@
     "@secretlint/secretlint-rule-preset-recommend": "^7.2.0",
     "@size-limit/file": "^11.0.1",
     "auto-changelog": "^2.4.0",
-    "cspell": "^7.3.9",
+    "cspell": "^8.2.3",
     "empty-trash-cli": "^2.0.0",
     "envinfo": "^7.11.0",
     "eslint": "^8.56.0",
