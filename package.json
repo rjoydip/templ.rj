@@ -43,7 +43,7 @@
     "@antfu/eslint-config": "2.4.6",
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
-    "@secretlint/secretlint-rule-preset-recommend": "^7.2.0",
+    "@secretlint/secretlint-rule-preset-recommend": "^8.0.0",
     "@size-limit/file": "^11.0.1",
     "auto-changelog": "^2.4.0",
     "cspell": "^7.3.9",
