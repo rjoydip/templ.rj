@@ -20,8 +20,8 @@ async function main() {
       try {
         createLogger().log(opts)
       }
-      catch (err) {
-        logError(err)
+      catch (error: any) {
+        logError(error)
       }
     })
 
