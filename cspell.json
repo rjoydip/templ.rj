@@ -34,7 +34,6 @@
     "codecov",
     "CODEOWNERS",
     "codeql",
-    "colorette",
     "codesandbox",
     "commitlint",
     "conventionalcommits",

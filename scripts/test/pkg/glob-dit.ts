@@ -1,7 +1,7 @@
 import path from 'node:path'
 import { execa } from 'execa'
 import { describe, expect, it } from 'vitest'
-import { getGlobalDirectory } from '../src/global-directory'
+import { getGlobalDirectory } from '../../src/pkg/glob-dir'
 
 async function pnpm(arguments_) {
   const { stdout } = await execa('pnpm', arguments_)

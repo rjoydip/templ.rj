@@ -3,8 +3,6 @@
 import util from 'node:util'
 import { isMainThread, parentPort } from 'node:worker_threads'
 import * as colors from 'picocolors'
-import ora from 'ora'
-import { serializeError } from 'serialize-error'
 
 type LOG_TYPE = 'info' | 'success' | 'error' | 'warn'
 
@@ -105,8 +103,6 @@ export function createLogger(name?: string) {
   }
 }
 
-export function logError(err: any) {
-  const error = new Error(err instanceof Error ? String(err) : err)
-  const serialized = serializeError(error)
-  ora().fail(serialized.message)
+export function logError(error: Error | any) {
+  console.error(colors.red(String(error)))
 }

@@ -6,7 +6,7 @@ import { compile } from 'tempura'
 import colors from 'picocolors'
 import { z } from 'zod'
 import { intro, log, outro } from '@clack/prompts'
-import { COMPLETED, STARTED } from './constant'
+import { COMPLETED, STARTED } from '../utils/constant'
 
 /**
  * The function `getTemplateData` reads a file from a specified location and returns its contents as a

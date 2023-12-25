@@ -6,7 +6,8 @@ import { log, spinner } from '@clack/prompts'
 import { execa } from 'execa'
 import { findUp, findUpSync } from 'find-up'
 import colors from 'picocolors'
-import { getGlobalDirectory } from './global-directory'
+import { $ } from 'zx/core'
+import { getGlobalDirectory } from '../pkg/glob-dir'
 
 interface SpinnerType {
   start: (msg?: string | undefined) => void
@@ -21,7 +22,16 @@ interface ExecCmdrParams {
     stop: string
   }
   cwd?: string
-  spinner: SpinnerType
+  spinner?: SpinnerType
+}
+
+export async function execZx(params: ExecCmdrParams) {
+  const s = params.spinner ?? spinner()
+  s.start(params.msg.start.concat(' '))
+  const output = $`${params.cmd}`
+  s.stop(colors.green(params.msg.stop))
+  if (output)
+    log.message(String(output))
 }
 
 export async function execCmd(params: ExecCmdrParams) {
