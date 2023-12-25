@@ -29,10 +29,9 @@
     "node": "^18.8.0 || >=20.6.0"
   },
   "scripts": {
-    "build": "wireit",
-    "clean": "trash .wireit dist docs coverage",
-    "test": "wireit",
-    "test:watch": "wireit"
+    "build": "tsup",
+    "clean": "trash dist docs coverage",
+    "test": "vitest run"
   },
   "dependencies": {},
   "devDependencies": {
@@ -40,47 +39,6 @@
     "@vitest/coverage-v8": "^1.1.0",
     "trash-cli": "^5.0.0",
     "tsup": "^8.0.1",
-    "vite-tsconfig-paths": "^4.2.2",
-    "vitest": "^1.1.0",
-    "wireit": "^0.14.1"
-  },
-  "wireit": {
-    "build": {
-      "command": "tsup",
-      "files": [
-        "src/**/*.ts",
-        "tsup.config.ts",
-        "tsconfig.json"
-      ],
-      "output": [
-        "dist/**"
-      ],
-      "dependencies": [
-        {
-          "script": "../config:build",
-          "cascade": false
-        }
-      ]
-    },
-    "test": {
-      "command": "vitest run",
-      "files": [
-        "test/**.test.ts",
-        "vitest.config.ts"
-      ],
-      "dependencies": [
-        "build"
-      ]
-    },
-    "test:watch": {
-      "command": "vitest run --watch",
-      "files": [
-        "test/**.test.ts",
-        "vitest.config.ts"
-      ],
-      "dependencies": [
-        "build"
-      ]
-    }
+    "vitest": "^1.1.0"
   }
 }

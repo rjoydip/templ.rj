@@ -18,6 +18,7 @@
     "*CHANGELOG.md"
   ],
   "words": [
+    "APPDATA",
     "antfu",
     "apos",
     "autoload",
@@ -87,9 +88,10 @@
     "nvmrc",
     "openapi",
     "outdir",
-    "picocolors",
+    "outro",
     "platformatic",
     "pell",
+    "picocolors",
     "platformatic",
     "Pluggable",
     "pnpmfile",

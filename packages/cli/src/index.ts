@@ -1,11 +1,10 @@
 import { argv, exit } from 'node:process'
 import sade from 'sade'
-import { createLogger, logError } from '@templ/logger'
 
 // eslint-disable-next-line node/prefer-global/process
 process.on('unhandledRejection', (reason, _) => {
-  logError(reason)
-  exit(1)
+  console.error(String(reason))
+  exit(0)
 })
 
 async function main() {
@@ -18,14 +17,19 @@ async function main() {
     .example('init')
     .action(async (opts) => {
       try {
-        createLogger().log(opts)
+        // eslint-disable-next-line no-console
+        console.clear()
+        // eslint-disable-next-line no-console
+        console.log(opts)
+        // eslint-disable-next-line no-console
+        console.log()
       }
-      catch (error: any) {
-        logError(error)
+      catch (error) {
+        console.error(String(error))
       }
     })
 
   prog.parse(argv)
 }
 
-main()
+main().catch(console.error)

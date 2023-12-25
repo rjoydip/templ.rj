@@ -34,73 +34,20 @@
     "node": "^18.8.0 || >=20.6.0"
   },
   "scripts": {
-    "build": "wireit",
-    "clean": "trash .wireit dist coverage",
-    "test": "wireit",
-    "test:cli": "wireit",
-    "test:watch": "wireit"
+    "build": "tsup",
+    "clean": "trash dist coverage",
+    "pretest": "pnpm run build",
+    "test": "pnpm build && vitest run",
+    "test:cli": "pnpm build && pnpm link . && pnpm templ -v"
   },
   "dependencies": {
-    "@templ/logger": "workspace:*",
     "sade": "^1.8.1"
   },
   "devDependencies": {
     "@types/node": "^20.10.5",
     "@vitest/coverage-v8": "^1.1.0",
-    "find-monorepo-root": "^1.0.3",
     "trash-cli": "^5.0.0",
     "tsup": "^8.0.1",
-    "vite-tsconfig-paths": "^4.2.2",
-    "vitest": "^1.1.0",
-    "wireit": "^0.14.1"
-  },
-  "wireit": {
-    "build": {
-      "command": "tsup",
-      "files": [
-        "src/**/*.ts",
-        "tsup.config.ts",
-        "tsconfig.json"
-      ],
-      "output": [
-        "dist/**"
-      ],
-      "dependencies": [
-        {
-          "script": "../core:build",
-          "cascade": false
-        },
-        {
-          "script": "../config:build",
-          "cascade": false
-        }
-      ]
-    },
-    "test": {
-      "command": "vitest run",
-      "files": [
-        "test/**.test.ts",
-        "vitest.config.ts"
-      ],
-      "dependencies": [
-        "build"
-      ]
-    },
-    "test:cli": {
-      "command": "pnpm link . && pnpm templ -v",
-      "dependencies": [
-        "build"
-      ]
-    },
-    "test:watch": {
-      "command": "vitest run --watch",
-      "files": [
-        "test/**.test.ts",
-        "vitest.config.ts"
-      ],
-      "dependencies": [
-        "build"
-      ]
-    }
+    "vitest": "^1.1.0"
   }
 }

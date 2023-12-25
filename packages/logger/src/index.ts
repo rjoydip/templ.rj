@@ -2,7 +2,7 @@
 
 import util from 'node:util'
 import { isMainThread, parentPort } from 'node:worker_threads'
-import colors from 'picocolors'
+import * as colors from 'picocolors'
 
 type LOG_TYPE = 'info' | 'success' | 'error' | 'warn'
 

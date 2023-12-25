@@ -1,20 +1,28 @@
 import { cp } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
-import { PKG_ROOT, STARTED } from 'src/constant'
+import type { Stats } from 'node:fs'
+import { existsSync } from 'node:fs'
+import { intro, log } from '@clack/prompts'
 import { totalist } from 'totalist'
+import { getPackageRootAsync } from '../utils'
 
 async function main() {
-  try {
-    console.log(`[${STARTED}]: CI env coping`)
-    await totalist(join(String(PKG_ROOT), 'api', 'services'), async (name: string, abs: string) => {
-      if (/\.env.sample$/.test(name))
+  let count = 0
+
+  intro('CI env coping')
+
+  const pkgRoot = await getPackageRootAsync()
+
+  await totalist(pkgRoot, async (name: string, abs: string, stats: Stats) => {
+    if (!/node_modules|test|dist|coverage/.test(abs) && !stats.isSymbolicLink()) {
+      if (/\.env.sample$/.test(name) && existsSync(abs)) {
+        count++
         await cp(abs, join(dirname(abs), '.env'), { force: true })
-    })
-    console.log(`[${PKG_ROOT}]: CI env coping`)
-  }
-  catch (error) {
-    console.error(error)
-  }
+      }
+    }
+  })
+
+  count ? log.success(`Env copied`) : log.error('No env file found')
 }
 
-main()
+main().catch(console.error)

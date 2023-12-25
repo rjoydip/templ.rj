@@ -3,8 +3,10 @@ import { join, resolve } from 'node:path'
 import { copyFile, mkdir, readFile, writeFile } from 'node:fs/promises'
 import { execSync } from 'node:child_process'
 import { compile } from 'tempura'
+import colors from 'picocolors'
 import { z } from 'zod'
-import { COMPLETED, STARTED } from 'src/constant'
+import { intro, log, outro } from '@clack/prompts'
+import { COMPLETED, STARTED } from '../utils/constant'
 
 /**
  * The function `getTemplateData` reads a file from a specified location and returns its contents as a
@@ -35,7 +37,7 @@ async function getTemplateData(
     return (await readFile(join(location, fileName))).toString()
   }
   catch (error) {
-    console.error(new Error(String(error)))
+    log.error(String(error))
     return ''
   }
 }
@@ -73,18 +75,19 @@ async function setTemplateData(
     await writeFile(join(location, fileName), data)
   }
   catch (error) {
-    console.error(new Error(String(error)))
+    log.error(String(error))
   }
 }
 
 async function main() {
   const name = argv.at(2) || 'templP'
+  intro('Package create')
   try {
     const result = z.object({
       name: z.string(),
     })
     if (result) {
-      console.log(`[${STARTED}]: ${name} package generate`)
+      log.warn(colors.yellow(`[${STARTED}]: ${name} package generate`))
       const templatesLocation = join(cwd(), '_templates')
       const outputLocation = resolve(execSync('git rev-parse --show-toplevel').toString(), 'packages')
 
@@ -146,14 +149,15 @@ async function main() {
           join(outputLocation, name, 'vitest.config.ts'),
         ),
       ])
-      console.log(`[${COMPLETED}]: ${name} package generate`)
+      log.success(`[${COMPLETED}]: ${name} package generate`)
+      outro('You all set')
     }
     else {
       throw new Error('Type validation failed')
     }
   }
   catch (error) {
-    console.error(error)
+    log.error(String(error))
   }
 }
 

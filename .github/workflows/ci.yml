@@ -37,7 +37,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup-node
       - name: Install
-        run: pnpm i --no-frozen-lockfile
+        run: pnpm install --no-frozen-lockfile
 
       # Clean
       - name: Clean
@@ -50,15 +50,15 @@ jobs:
           pnpm run build
           pnpm -C scripts ci:delete:env
 
-      # Clean
+      # Lint
       - name: Lint
-        run: pnpm run lint
+        run: pnpm -C scripts lint
 
-      # Dist validation
-      - name: Dist validation
+      # Dist valid
+      - name: Dist valid
         run: pnpm -C scripts ci:check:dist
 
-      # Test
+      # # Test
       - name: Test
         run: pnpm run test
       - name: Codecov
@@ -67,13 +67,16 @@ jobs:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
       # Size Report
-      - name: Download Previous Size Data
+      - name: Download Artifact
         uses: dawidd6/action-download-artifact@v2
         with:
           name: size-data
           path: temp/size-prev
           if_no_artifact_found: warn
-      - run: pnpm -C scripts size:generate
+
+      - name: Size Report
+        run: pnpm -C scripts size:report
+
       - name: Upload Size Data
         uses: actions/upload-artifact@v3
         with:

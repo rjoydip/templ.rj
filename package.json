@@ -15,19 +15,16 @@
     "yarn": "This project is configured to use pnpm"
   },
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "all": "pnpm -C scripts all",
     "build": "pnpm -r build",
     "clean": "pnpm -r clean && trash .pnpm-store coverage temp",
     "changelog": "auto-changelog -p",
     "create:pkg": "pnpm -C scripts create:pkg",
-    "deps:update": "taze -r -w -i -f -l --ignore-paths='third_party/**'",
     "eslint:viewer": "eslint-flat-config-viewer",
     "prepare": "husky install",
-    "preinstall": "npx only-allow pnpm",
-    "postinstall": "pnpm deps:update",
     "lint": "pnpm -C scripts lint",
-    "size": "pnpm -C scripts size:generate",
-    "_setup_": "pnpm -C scripts _setup_",
-    "system:info": "envinfo --system --binaries --browsers",
+    "size:report": "pnpm -C scripts size:report",
     "test": "pnpm -r test",
     "test:all": "pnpm test && pnpm test:cli",
     "test:cli": "pnpm -r test:cli",
@@ -84,15 +81,6 @@
           "**/dist/*.js"
         ]
       },
-      "packages/api/services/*": {
-        "entry": [
-          "**/*.ts",
-          "**/*.config.js"
-        ],
-        "ignore": [
-          "**/dist/**/*.js"
-        ]
-      },
       "packages/cli": {
         "entry": [
           "**/*.ts",
@@ -120,10 +108,12 @@
       "@secretlint/secretlint-rule-preset-recommend",
       "@size-limit/file",
       "nano-staged",
-      "tsx",
-      "vitepress"
+      "vitepress",
+      "esno",
+      "trash-cli"
     ],
     "ignore": [
+      "**/.github/**",
       "**/.wireit",
       "**/.vitepress",
       "**/fixtures/**",

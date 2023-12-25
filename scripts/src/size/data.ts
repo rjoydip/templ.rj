@@ -1,82 +1,25 @@
 // Copied from https://github.com/toeverything/blocksuite/blob/master/scripts/size-data.ts
 
 import { resolve } from 'node:path'
-import { mkdir, writeFile } from 'node:fs/promises'
 import { promisify } from 'node:util'
 import { brotliCompress, gzip } from 'node:zlib'
 import { rollup } from 'rollup'
 import { minify } from 'terser'
-import { PKG_ROOT, ROOT } from 'src/constant'
+import type { Preset } from './report'
 
 const gzipAsync = promisify(gzip)
 const brotliAsync = promisify(brotliCompress)
 
-const currDir = resolve(ROOT, 'temp/size')
-const prevDir = resolve(ROOT, 'temp/size-prev')
-
-interface Preset {
-  name: string
-  imports: string[] | string
-  pkg: string
-  entry: string
-}
-
-const presets: Preset[] = [
-  {
-    name: 'build',
-    imports: '*',
-    pkg: resolve(PKG_ROOT, 'build'),
-    entry: 'dist/index.js',
-  },
-  {
-    name: 'cli',
-    imports: '*',
-    pkg: resolve(PKG_ROOT, 'cli'),
-    entry: 'dist/index.js',
-  },
-  {
-    name: 'config',
-    imports: '*',
-    pkg: resolve(PKG_ROOT, 'config'),
-    entry: 'dist/index.js',
-  },
-  {
-    name: 'core',
-    imports: '*',
-    pkg: resolve(PKG_ROOT, 'core'),
-    entry: 'dist/index.js',
-  },
-  {
-    name: 'logger',
-    imports: '*',
-    pkg: resolve(PKG_ROOT, 'logger'),
-    entry: 'dist/index.js',
-  },
-  {
-    name: 'utils',
-    imports: '*',
-    pkg: resolve(PKG_ROOT, 'utils'),
-    entry: 'dist/index.js',
-  },
-]
-
 const tasks: ReturnType<typeof generateBundle>[] = []
 
-async function main() {
+export async function generateData(presets: Preset[]) {
   for (const preset of presets)
     tasks.push(generateBundle(preset))
 
   const results = Object.fromEntries(
     (await Promise.all(tasks)).map(r => [r.name, r]),
   )
-
-  await mkdir(currDir, { recursive: true })
-  await mkdir(prevDir, { recursive: true })
-  await writeFile(
-    resolve(currDir, '_packages.json'),
-    JSON.stringify(results),
-    'utf-8',
-  )
+  return results
 }
 
 async function generateBundle(preset: Preset) {
@@ -111,9 +54,9 @@ async function generateBundle(preset: Preset) {
   const generated = await result.generate({
     inlineDynamicImports: true,
   })
-  const bundled = generated.output[0].code
+
   const minified = (
-    await minify(bundled, {
+    await minify(generated.output[0].code, {
       module: true,
       toplevel: true,
     })
@@ -130,5 +73,3 @@ async function generateBundle(preset: Preset) {
     brotli,
   }
 }
-
-main().catch(console.error)
