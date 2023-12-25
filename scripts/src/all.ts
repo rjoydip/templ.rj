@@ -74,7 +74,7 @@ async function main() {
 
     // Size limit
     await execCmd({
-      cmd: 'npx size',
+      cmd: 'npx size-limit',
       msg: {
         start: 'Size limit checking',
         stop: 'Size limit check completed',
