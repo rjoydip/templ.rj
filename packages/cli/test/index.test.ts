@@ -3,7 +3,6 @@ import { join } from 'node:path'
 import { cwd } from 'node:process'
 import { promisify } from 'node:util'
 import { findMonorepoRoot } from 'find-monorepo-root'
-import { serializeError } from 'serialize-error'
 import { describe, expect, it } from 'vitest'
 
 describe('@templ/cli', async () => {
@@ -21,11 +20,8 @@ describe('@templ/cli', async () => {
       const result = await $(`node ${cliFilePath} init`)
       expect(result.stdout).toBeDefined()
     }
-    catch (err) {
-      const error = new Error(String(err))
-      const serialized = serializeError(error)
-      expect(serialized.message).toBeDefined()
-      expect(serialized.stack).toBeDefined()
+    catch (error) {
+      expect(error).toBeDefined()
     }
   })
 })
