@@ -6,6 +6,7 @@ import { log, spinner } from '@clack/prompts'
 import { execa } from 'execa'
 import { findUp, findUpSync } from 'find-up'
 import colors from 'picocolors'
+import { getGlobalDirectory } from './global-directory'
 
 interface SpinnerType {
   start: (msg?: string | undefined) => void
@@ -25,11 +26,35 @@ interface ExecCmdrParams {
 
 export async function execCmd(params: ExecCmdrParams) {
   const s = params.spinner ?? spinner()
-  s.start(params.msg.start.concat(' ') ?? '')
-  const { stdout, stderr } = await execa(params.cmd ?? 'pnpm -v', {
+  s.start(params.msg.start.concat(' '))
+  const { stdout, stderr } = await execa(params.cmd, {
     cwd: params.cwd || cwd(),
   })
-  s.stop(colors.green(params.msg.stop) ?? '')
+  s.stop(colors.green(params.msg.stop))
+  if (stdout || stderr)
+    log.message(stdout ?? stderr)
+}
+
+export async function execNpx(params: ExecCmdrParams) {
+  const s = params.spinner ?? spinner()
+  s.start(params.msg.start.concat(' '))
+  const { stdout, stderr } = await execa(`npx ${params.cmd}`)
+  s.stop(colors.green(params.msg.stop))
+  if (stdout || stderr)
+    log.message(stdout ?? stderr)
+}
+
+export async function execPnp(params: ExecCmdrParams) {
+  const s = params.spinner ?? spinner()
+  s.start(params.msg.start.concat(' '))
+  const globalDirectory = await getGlobalDirectory()
+  const { stdout, stderr } = await execa('node', [
+    globalDirectory.pnpm.binaries,
+    params.cmd,
+  ], {
+    cwd: params.cwd || cwd(),
+  })
+  s.stop(colors.green(params.msg.stop))
   if (stdout || stderr)
     log.message(stdout ?? stderr)
 }

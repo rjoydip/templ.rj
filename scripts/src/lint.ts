@@ -1,7 +1,7 @@
 import { intro, log, outro, spinner } from '@clack/prompts'
 import colors from 'picocolors'
 import { COMPLETED, STARTED } from './constant'
-import { execCmd } from './utils'
+import { execCmd, execNpx } from './utils'
 
 async function main() {
   const s = spinner()
@@ -10,8 +10,8 @@ async function main() {
   log.warn(`${colors.yellow(`${STARTED} Linting Process`)}`)
 
   // ESlint
-  await execCmd({
-    cmd: 'npx eslint --color --cache --fix --cache-location .eslintcache ../',
+  await execNpx({
+    cmd: 'eslint --color --cache --fix --cache-location .eslintcache .',
     msg: {
       start: 'ESlint',
       stop: 'ESlint completed',
@@ -20,7 +20,7 @@ async function main() {
   })
 
   // Markdown lint
-  await execCmd({
+  await execNpx({
     cmd: 'esno ./src/lint-md.ts',
     msg: {
       start: 'Markdown linting',
@@ -30,8 +30,8 @@ async function main() {
   })
 
   // Secret lint
-  await execCmd({
-    cmd: 'npx secretlint --secretlintignore .gitignore \"**/*\"',
+  await execNpx({
+    cmd: 'secretlint --secretlintignore .gitignore \"**/*\"',
     msg: {
       start: 'Secret linting',
       stop: 'Secret lint completed',
@@ -40,18 +40,18 @@ async function main() {
   })
 
   // Size report
-  /* await execCmd({
+  await execCmd({
     cmd: 'pnpm -w size:report',
     msg: {
       start: 'Size reporting',
       stop: 'Size reported',
     },
     spinner: s,
-  }) */
+  })
 
   // Spell check
-  await execCmd({
-    cmd: 'npx cspell ../',
+  await execNpx({
+    cmd: 'cspell ../',
     msg: {
       start: 'Spell checking',
       stop: 'Spell check completed',
@@ -60,8 +60,8 @@ async function main() {
   })
 
   // Knip
-  await execCmd({
-    cmd: 'npx knip --no-gitignore --directory ../ --no-exit-code',
+  await execNpx({
+    cmd: 'knip --no-gitignore --directory ../ --no-exit-code',
     msg: {
       start: 'Knip started',
       stop: 'Knip completed',
