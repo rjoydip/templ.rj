@@ -3,6 +3,7 @@ import { intro, log, outro, spinner } from '@clack/prompts'
 import colors from 'picocolors'
 import parser from 'yargs-parser'
 import { $ } from 'zx'
+import isInCi from 'is-in-ci'
 import { COMPLETED, STARTED } from './utils/constant'
 
 async function main() {
@@ -14,13 +15,16 @@ async function main() {
   // Pre processes - start
   log.warn(`${colors.yellow(`${STARTED} Pre Process`)}`)
 
-  const {
+  let {
     noSpinner,
   } = parser(argv.slice(2), {
     configuration: {
       'boolean-negation': false,
     },
   })
+
+  if (isInCi)
+    noSpinner = true
 
   // Installation
   if (!noSpinner)

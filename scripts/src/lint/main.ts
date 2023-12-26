@@ -3,18 +3,22 @@ import { intro, log, outro, spinner } from '@clack/prompts'
 import colors from 'picocolors'
 import parser from 'yargs-parser'
 import { $ } from 'zx'
+import isInCi from 'is-in-ci'
 
 async function main() {
   const s = spinner()
   intro(`${colors.cyan('Linting')}`)
 
-  const {
+  let {
     noSpinner,
   } = parser(argv.slice(2), {
     configuration: {
       'boolean-negation': false,
     },
   })
+
+  if (isInCi)
+    noSpinner = true
 
   // ESlint
   if (!noSpinner)
