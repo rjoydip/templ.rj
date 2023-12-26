@@ -23,7 +23,6 @@
     "create:pkg": "pnpm -C scripts create:pkg",
     "eslint:viewer": "eslint-flat-config-viewer",
     "prepare": "husky install",
-    "lint": "pnpm -C scripts lint",
     "size:report": "pnpm -C scripts size:report",
     "test": "pnpm -r test",
     "test:all": "pnpm test && pnpm test:cli",
