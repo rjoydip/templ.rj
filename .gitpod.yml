@@ -1,20 +1,14 @@
 image:
-  file: .gitpod.Dockerfile
-
-tasks:
-  - name: Install Dependencies
-    init: pnpm i --no-frozen-lockfile
+  file: docker/gitpod.Dockerfile
 
 vscode:
   extensions:
     - aaron-bond.better-comments
-    - codecov.codecov
     - davidanson.vscode-markdownlint
     - eamodio.gitlens
     - editorconfig.editorconfig
     - esbenp.prettier-vscode
     - folke.vscode-monorepo-workspace
-    - google.wireit
     - foxundermoon.shell-format
     - mintlify.document
     - ms-playwright.playwright

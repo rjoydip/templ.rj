@@ -1,23 +1,16 @@
-FROM gitpod/workspace-full:2022-04-11-18-21-27
+FROM gitpod/workspace-full
 
-# Copy .nvmrc files
 COPY .nvmrc /tmp/.nvmrc
-
-# Set environment variables
-ENV NVM_DIR $HOME/nvm
-RUN mkdir -p $NVM_DIR
 
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
 
 SHELL ["/bin/bash", "--login", "-c"]
-# Install Node.js and PNPM
 RUN source "$HOME/.nvm/nvm.sh" \
   && export NVM_DIR="$HOME/.nvm" \
   && [ -s "$NVM_DIR/nvm.sh" ] \
   && . "$NVM_DIR/nvm.sh" \
-  && VERSION="$(cat /tmp/.nvmrc)" \
-  && nvm install "$VERSION" \
-  && nvm use "$VERSION" \
+  && nvm install "$(cat /tmp/.nvmrc)" \
+  && nvm use "$(cat /tmp/.nvmrc)" \
   && npm install -g pnpm@latest
 
 # Set up the project
