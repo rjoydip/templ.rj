@@ -1,132 +1,130 @@
-import { cancel, intro, log, outro } from '@clack/prompts'
+import { argv } from 'node:process'
+import { intro, log, outro, spinner } from '@clack/prompts'
 import colors from 'picocolors'
+import parser from 'yargs-parser'
+import { $ } from 'zx'
+import isInCi from 'is-in-ci'
 import { COMPLETED, STARTED } from './utils/constant'
-import { execCmd } from './utils'
 
 async function main() {
   console.clear()
+  const s = spinner()
 
   intro(`${colors.cyan('Setup')}`)
 
   // Pre processes - start
   log.warn(`${colors.yellow(`${STARTED} Pre Process`)}`)
 
-  try {
-    // Installation
-    await execCmd({
-      cmd: 'pnpm i',
-      msg: {
-        start: 'Installing via pnpm',
-        stop: 'Installed via pnpm',
-      },
-    })
+  let {
+    noSpinner,
+  } = parser(argv.slice(2), {
+    configuration: {
+      'boolean-negation': false,
+    },
+  })
 
-    // Cleaning
-    await execCmd({
-      cmd: 'pnpm -w clean',
-      msg: {
-        start: 'Cleaning',
-        stop: 'Cleaned',
-      },
-    })
+  if (isInCi)
+    noSpinner = true
 
-    // Linting
-    /* await execCmd({
-    cmd: 'pnpm -w lint',
-    msg: {
-      start: 'Lint started',
-      stop: 'Lint completed',
-    }
-  }) */
+  // Installation
+  if (!noSpinner)
+    s.start('Installing via pnpm ')
+  const pnpmInstallOutput = await $`pnpm i`
+  if (!noSpinner)
+    s.stop('Installed via pnpm done')
+  log.message(String(pnpmInstallOutput || ''))
 
-    log.info(`${colors.blue(`${COMPLETED} Pre Process`)}`)
-    // Pre processes - end
+  // Cleaning
+  if (!noSpinner)
+    s.start('Cleaning ')
+  const cleanOutput = await $`pnpm -w clean`
+  if (!noSpinner)
+    s.stop('Cleaned')
+  log.message(String(cleanOutput || ''))
 
-    // Main processes - start
-    log.warn(`${colors.yellow(`${STARTED} Process`)}`)
+  // Linting
+  if (!noSpinner)
+    s.start('Lint started ')
+  const lintOutput = await $`pnpm lint --no-spinner`
+  if (!noSpinner)
+    s.stop('Lint completed')
+  log.message(String(lintOutput || ''))
 
-    // Build packages
-    await execCmd({
-      cmd: 'pnpm -w build',
-      msg: {
-        start: 'Build',
-        stop: 'Build completed',
-      },
-    })
+  log.info(`${colors.blue(`${COMPLETED} Pre Process`)}`)
+  // Pre processes - end
 
-    // Test
-    await execCmd({
-      cmd: 'pnpm -w test',
-      msg: {
-        start: 'Testing',
-        stop: 'Test completed',
-      },
-    })
+  // Main processes - start
+  log.warn(`${colors.yellow(`${STARTED} Process`)}`)
 
-    // CLI test
-    await execCmd({
-      cmd: 'pnpm -w test:cli',
-      msg: {
-        start: 'Testing CLI',
-        stop: 'CLI tested',
-      },
-    })
+  // Build packages
+  if (!noSpinner)
+    s.start('Build ')
+  const buildOutput = await $`pnpm -w build`
+  if (!noSpinner)
+    s.stop('Build completed')
+  log.message(String(buildOutput || ''))
 
-    // Size limit
-    await execCmd({
-      cmd: 'npx size-limit',
-      msg: {
-        start: 'Size limit checking',
-        stop: 'Size limit check completed',
-      },
-    })
+  // Test
+  if (!noSpinner)
+    s.start('Testing ')
+  const testOutput = await $`pnpm -w test`
+  if (!noSpinner)
+    s.stop('Test completed')
+  log.message(String(testOutput || ''))
 
-    log.info(`${colors.blue(`${COMPLETED} Process`)}`)
-    // Main processes - end
+  // CLI test
+  if (!noSpinner)
+    s.start('Testing ')
+  const testCliOutput = await $`pnpm -w test:cli`
+  if (!noSpinner)
+    s.stop('Test completed')
+  log.message(String(testCliOutput || ''))
 
-    // Post processes - start
-    log.warn(`${colors.yellow(`${STARTED} Post Process`)}`)
+  log.info(`${colors.blue(`${COMPLETED} Process`)}`)
+  // Main processes - end
 
-    // Changelog
-    await execCmd({
-      cmd: 'npx changelog',
-      msg: {
-        start: 'Generating changelog',
-        stop: 'Generated changelog',
-      },
-    })
+  // Post processes - start
+  log.warn(`${colors.yellow(`${STARTED} Post Process`)}`)
 
-    // System info
-    await execCmd({
-      cmd: 'npx envinfo --system --binaries --browsers',
-      msg: {
-        start: 'System info',
-        stop: 'Generated system info',
-      },
-    })
+  // Size limit
+  if (!noSpinner)
+    s.start('Size limit ')
+  const sizeLimitOutput = await $`npx size-limit`
+  if (!noSpinner)
+    s.stop('Size limit committed')
+  log.message(String(sizeLimitOutput || ''))
 
-    // Update package dependency
-    await execCmd({
-      cmd: 'npx taze -r -w -i -f -l --ignore-paths="third_party/**"',
-      msg: {
-        start: 'Dependency updating',
-        stop: 'Dependency updated',
-      },
-    })
+  // Changelog
+  if (!noSpinner)
+    s.start('Generating changelog ')
+  const changelogOutput = await $`npx changelog`
+  if (!noSpinner)
+    s.stop('Generated changelog')
+  log.message(String(changelogOutput || ''))
 
-    // Third party update
-    await execCmd({
-      cmd: 'pnpm -w update:third_party',
-      msg: {
-        start: 'Updating third party',
-        stop: 'Updated third party',
-      },
-    })
-  }
-  catch (error) {
-    log.error(String(error))
-    cancel('error')
-  }
+  // System info
+  if (!noSpinner)
+    s.start('System info ')
+  const envInfoOutput = await $`npx envinfo --system --binaries --browsers`
+  if (!noSpinner)
+    s.stop('Generated system info')
+  log.message(String(envInfoOutput || ''))
+
+  // Update package dependency
+  if (!noSpinner)
+    s.start('Dependency updating ')
+  const depsUpdateOutput = await $`npx taze -r -w -i -f -l --ignore-paths="third_party/**"`
+  if (!noSpinner)
+    s.stop('Dependency updated')
+  log.message(String(depsUpdateOutput || ''))
+
+  // Third party update
+  if (!noSpinner)
+    s.start('Updating third party ')
+  const updateThirdPartyOutput = await $`pnpm -w update:third_party`
+  if (!noSpinner)
+    s.stop('Updated third party')
+  log.message(String(updateThirdPartyOutput || ''))
 
   log.info(`${colors.blue(`${COMPLETED} Post Process`)}`)
   // Post processes - end
