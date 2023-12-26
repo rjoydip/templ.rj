@@ -2,58 +2,7 @@ import { parse, resolve } from 'node:path'
 import { readdir } from 'node:fs/promises'
 import { readdirSync } from 'node:fs'
 import { cwd } from 'node:process'
-import { cancel, log, spinner } from '@clack/prompts'
-import { execa } from 'execa'
 import { findUp, findUpSync } from 'find-up'
-import colors from 'picocolors'
-
-interface SpinnerType {
-  start: (msg?: string | undefined) => void
-  stop: (msg?: string | undefined, code?: number | undefined) => void
-  message: (msg?: string | undefined) => void
-}
-
-interface ExecCmdrParams {
-  cmd: string
-  msg: {
-    start: string
-    stop: string
-  }
-  cwd?: string
-  spinner?: SpinnerType
-}
-
-export async function execCmd(params: ExecCmdrParams) {
-  try {
-    const s = params.spinner ?? spinner()
-    s.start(params.msg.start.concat(' '))
-    const { stdout, stderr } = await execa(params.cmd, {
-      cwd: params.cwd || cwd(),
-    })
-    s.stop(colors.green(params.msg.stop))
-    if (stdout || stderr)
-      log.message(stdout ?? stderr)
-  }
-  catch (error) {
-    log.error(String(error))
-    cancel(String(error))
-  }
-}
-
-export async function execNpx(params: ExecCmdrParams) {
-  try {
-    const s = params.spinner ?? spinner()
-    s.start(params.msg.start.concat(' '))
-    const { stdout, stderr } = await execa(`npx ${params.cmd}`)
-    s.stop(colors.green(params.msg.stop))
-    if (stdout || stderr)
-      log.message(stdout ?? stderr)
-  }
-  catch (error) {
-    log.error(String(error))
-    cancel(String(error))
-  }
-}
 
 export function getRootSync() {
   const root = findUpSync('pnpm-workspace.yaml') || findUpSync('.npmrc') || cwd()
