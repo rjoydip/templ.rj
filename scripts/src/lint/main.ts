@@ -60,7 +60,7 @@ async function main() {
   // Spell
   await executeCommand({
     title: 'Spell check',
-    execute: async () => await $`npx cspell ../`,
+    execute: async () => await $`npx cspell ../ --quiet`,
     showOutput: !noOutput,
     showSpinner: !noSpinner,
   })
