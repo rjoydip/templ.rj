@@ -40,6 +40,8 @@
     "latest-version": "^7.0.0",
     "markdown-table": "^3.0.3",
     "markdownlint": "^0.32.1",
+    "marked": "^11.1.0",
+    "marked-terminal": "^6.2.0",
     "nypm": "^0.3.3",
     "picocolors": "^1.0.0",
     "replace": "^1.2.2",

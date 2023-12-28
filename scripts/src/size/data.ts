@@ -1,8 +1,8 @@
 // Copied from https://github.com/toeverything/blocksuite/blob/master/scripts/size-data.ts
 
-import { resolve } from 'node:path'
 import { promisify } from 'node:util'
 import { brotliCompress, gzip } from 'node:zlib'
+import { platform } from 'node:os'
 import { rollup } from 'rollup'
 import { minify } from 'terser'
 import type { Preset } from './report'
@@ -23,13 +23,12 @@ export async function generateData(presets: Preset[]) {
 }
 
 async function generateBundle(preset: Preset) {
-  const entry = resolve(preset.pkg, preset.entry)
   const id = 'virtual:entry'
   const content = `export ${
     typeof preset.imports === 'string'
       ? preset.imports
       : `{ ${preset.imports.join(', ')} }`
-  } from '${entry}'`
+  } from '${platform() === 'win32' ? preset.entry.replace(/\\/g, '\\\\') : preset.entry}'`
 
   const result = await rollup({
     input: id,

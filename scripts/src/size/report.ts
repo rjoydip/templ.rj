@@ -2,7 +2,7 @@ import { resolve } from 'node:path'
 import { existsSync } from 'node:fs'
 import { cp, mkdir, readFile, writeFile } from 'node:fs/promises'
 import { totalist } from 'totalist'
-import { intro, log, outro } from '@clack/prompts'
+import { intro, outro } from '@clack/prompts'
 import { getPackageRootAsync, getPackagesAsync, getRootAsync } from '../utils'
 import { renderReport } from './render'
 import { generateData } from './data'
@@ -10,7 +10,6 @@ import { generateData } from './data'
 export interface Preset {
   name: string
   imports: string[] | string
-  pkg: string
   entry: string
 }
 
@@ -43,8 +42,7 @@ async function main() {
   const presets: Preset[] = packages.map(pkgName => ({
     name: pkgName,
     imports: '*',
-    pkg: resolve(pkgRoot, pkgName),
-    entry: resolve('dist', 'index.js'),
+    entry: resolve(pkgRoot, pkgName, 'dist', 'index.js'),
   }))
 
   const gData = await generateData(presets)
@@ -58,8 +56,6 @@ async function main() {
   const reportData = await renderReport()
   await writeFile(reportFile, reportData)
   await readFile(reportFile, 'utf8')
-
-  log.info('Report generated')
 
   outro('All set')
 }
