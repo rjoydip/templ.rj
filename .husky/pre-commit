@@ -7,3 +7,4 @@ npx nano-staged
 pnpm build
 pnpm test:all
 pnpm changelog
+git add .
