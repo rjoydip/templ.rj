@@ -52,7 +52,7 @@ jobs:
 
       # Lint
       - name: Lint
-        run: pnpm -C scripts lint
+        run: pnpm -C scripts lint --no-spinner --no-output
 
       # Dist valid
       - name: Dist valid

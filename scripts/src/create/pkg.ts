@@ -1,160 +1,118 @@
-import { argv, cwd } from 'node:process'
-import { join, resolve } from 'node:path'
-import { copyFile, mkdir, readFile, writeFile } from 'node:fs/promises'
-import { execSync } from 'node:child_process'
-import { compile } from 'tempura'
+import { cwd, exit } from 'node:process'
+import { resolve } from 'node:path'
 import colors from 'picocolors'
-import { z } from 'zod'
-import { intro, log, outro } from '@clack/prompts'
-import { COMPLETED, STARTED } from '../utils/constant'
+import cpy from 'cpy'
+import replace from 'replace'
+import latestVersion from 'latest-version'
+import { cancel, confirm, group, intro, log, note, outro, select, spinner, text } from '@clack/prompts'
 
-/**
- * The function `getTemplateData` reads a file from a specified location and returns its contents as a
- * string.
- * @param location - The `location` parameter represents the directory location where the file is
- * located. It should be a string that specifies the path to the directory.
- * @param fileName - The `fileName` parameter is a string that represents the name of the file you want
- * to read.
- * @returns a promise. If the `result` object is successfully parsed and does not have any errors, the
- * function will read the file using `fs.readFile` and return the contents of the file as a string. If
- * there are any errors in parsing the `result` object, the function will reject the promise and return
- * the error.
- */
-async function getTemplateData(
-  location: string,
-  fileName: string,
-): Promise<string> {
-  const result = z.object({
-    location: z.string().nonempty('Location field is required'),
-    fileName: z.string().nonempty('FileName field is required'),
-  })
-
-  try {
-    result.safeParse({
-      location,
-      fileName,
-    })
-    return (await readFile(join(location, fileName))).toString()
-  }
-  catch (error) {
-    log.error(String(error))
-    return ''
-  }
-}
-
-/**
- * The function `setTemplateData` is an asynchronous function that takes in a location, file name,
- * data, and optional encoding, and writes the data to a file at the specified location with the
- * specified file name.
- * @param location - The `location` parameter represents the directory where the file will be saved.
- * @param fileName - The `fileName` parameter is a string that represents the name of the file you want
- * to create or overwrite.
- * @param data - The `data` parameter in the `setTemplateData` function is a string that represents the
- * content of the file you want to write. It could be any text or data that you want to save to a file.
- * @returns a promise. If the result of parsing the input parameters is successful, it will call
- * `fs.outputFile` and return a promise that resolves when the file is written. If the parsing fails,
- * it will return a rejected promise with the error from the parsing result.
- */
-async function setTemplateData(
-  location: string,
-  fileName: string,
-  data: string,
-): Promise<void> {
-  const result = z.object({
-    location: z.string().nonempty('Location field is required'),
-    fileName: z.string().nonempty('FileName field is required'),
-    data: z.string().nonempty('Data field is required'),
-  })
-
-  try {
-    result.safeParse({
-      location,
-      fileName,
-      data,
-    })
-    await writeFile(join(location, fileName), data)
-  }
-  catch (error) {
-    log.error(String(error))
-  }
-}
+import {
+  detectPackageManager,
+  installDependencies,
+} from 'nypm'
 
 async function main() {
-  const name = argv.at(2) || 'templP'
   intro('Package create')
   try {
-    const result = z.object({
-      name: z.string(),
+    log.warn(colors.yellow(`Started package generate`))
+
+    const project = await group(
+      {
+        path: () =>
+          text({
+            message: 'Where should we create your package?',
+            placeholder: './',
+            validate: (value: string) => {
+              if (!value)
+                return 'Please enter a path.'
+              if (value[0] !== '.')
+                return 'Please enter a relative path.'
+              return void (0)
+            },
+          }),
+        name: () =>
+          text({
+            message: 'What is your package name?',
+            placeholder: '',
+            validate: (value: string) => {
+              if (!value)
+                return 'Please enter a name.'
+              return void (0)
+            },
+          }),
+        packageManager: () =>
+          select<any, string>({
+            message: 'Select package manager.',
+            options: [
+              { value: 'pnpm', label: 'PNPM' },
+              { value: 'npm', label: 'NPM' },
+              { value: 'yarn', label: 'YARN' },
+            ],
+          }),
+        install: () => confirm({
+          message: 'Install dependencies?',
+          initialValue: false,
+        }),
+      },
+      {
+        onCancel: () => {
+          cancel('Operation cancelled.')
+          exit(0)
+        },
+      },
+    )
+
+    const destDir = resolve(project.path, project.name)
+
+    if (destDir)
+      await cpy(`${resolve(cwd(), 'source')}/**`, destDir)
+
+    replace({
+      regex: '{name}',
+      replacement: project.name,
+      paths: [resolve(destDir, 'package.json'), resolve(destDir, 'README.md')],
+      recursive: true,
+      silent: true,
     })
-    if (result) {
-      log.warn(colors.yellow(`[${STARTED}]: ${name} package generate`))
-      const templatesLocation = join(cwd(), '_templates')
-      const outputLocation = resolve(execSync('git rev-parse --show-toplevel').toString(), 'packages')
 
-      const indexTestTSTemplate = await getTemplateData(
-        join(templatesLocation, 'test'),
-        'index.test.ts.hbs',
-      )
-      const pkgTemplate = await getTemplateData(
-        join(templatesLocation),
-        'package.json.hbs',
-      )
-      const mdTemplate = await getTemplateData(
-        join(templatesLocation),
-        'README.md.hbs',
-      )
-      const tsconfigTemplate = await getTemplateData(
-        join(templatesLocation),
-        'tsconfig.json.hbs',
+    if (project.packageManager) {
+      const pkgVersion = await latestVersion(project.packageManager)
+      replace({
+        regex: '"packageManager": ""',
+        replacement: `"packageManager": "${project.packageManager.concat(`@${pkgVersion}`)}"`,
+        paths: [resolve(destDir, 'package.json')],
+        recursive: true,
+        silent: true,
+      })
+    }
+
+    if (project.install) {
+      const _projectManager = await detectPackageManager(
+        destDir,
       )
 
-      Promise.allSettled([
-        await mkdir(join(outputLocation, name)),
-        await mkdir(join(outputLocation, name, 'src')),
-        await mkdir(join(outputLocation, name, 'test')),
-        await copyFile(
-          join(templatesLocation, 'src', 'index.ts'),
-          join(outputLocation, name, 'src', 'index.ts'),
-        ),
-        await copyFile(
-          join(templatesLocation, 'eslint.config.js'),
-          join(outputLocation, name, 'eslint.config.js'),
-        ),
-        await setTemplateData(
-          join(outputLocation, name, 'test'),
-          'index.test.ts',
-          await compile(indexTestTSTemplate)({ name }),
-        ),
-        await setTemplateData(
-          join(outputLocation, name),
-          'package.json',
-          await compile(pkgTemplate)({ name }),
-        ),
-        await setTemplateData(
-          join(outputLocation, name),
-          'README.md',
-          await compile(mdTemplate)({ name }),
-        ),
-        await setTemplateData(
-          join(outputLocation, name),
-          'tsconfig.json',
-          await compile(tsconfigTemplate)({ name }),
-        ),
-        await copyFile(
-          join(templatesLocation, 'tsup.config.ts'),
-          join(outputLocation, name, 'tsup.config.ts'),
-        ),
-        await copyFile(
-          join(templatesLocation, 'vitest.config.ts'),
-          join(outputLocation, name, 'vitest.config.ts'),
-        ),
-      ])
-      log.success(`[${COMPLETED}]: ${name} package generate`)
-      outro('You all set')
+      if (_projectManager) {
+        const s = spinner()
+        const { name } = _projectManager
+        s.start(`Installing via ${name}`)
+        await installDependencies({
+          cwd: destDir,
+          packageManager: {
+            name,
+            command: name === 'npm' ? 'npm install' : `${name}`,
+          },
+          silent: true,
+        })
+        s.stop(`Installed via ${name}`)
+      }
     }
-    else {
-      throw new Error('Type validation failed')
-    }
+
+    const nextSteps = `cd ${destDir}        \n${project.install ? '' : project.packageManager === 'npm ' ? `npm install\n` : `${project.packageManager}`}${project.packageManager === 'npm' ? 'npm run dev' : `${project.packageManager} dev`}`
+
+    note(nextSteps, 'Next steps.')
+
+    log.success(`${colors.cyan(project.name)} package created`)
+    outro('You all set')
   }
   catch (error) {
     log.error(String(error))
