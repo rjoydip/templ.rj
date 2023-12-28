@@ -9,4 +9,7 @@ export default antfu({
   markdown: true,
 }, {
   ignores: ['**/docs', '**/fixtures'],
+  rules: {
+    'antfu/no-import-dist': 'off',
+  },
 })

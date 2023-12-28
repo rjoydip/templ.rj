@@ -1,0 +1,5 @@
+# @templ/{name}
+
+TEMPL {name} module.
+
+[GitHub](https://github.com/rjoydip/templ/tree/main/packages/{name})

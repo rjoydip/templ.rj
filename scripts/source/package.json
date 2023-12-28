@@ -1,15 +1,16 @@
 {
-  "name": "@templ/utils",
+  "name": "@templ/{name}",
   "type": "module",
   "version": "0.0.0",
   "private": true,
-  "description": "TEMPL utils service",
+  "packageManager": "",
+  "description": "TEMPL {name} service",
   "license": "MIT",
-  "homepage": "https://github.com/rjoydip/templ/tree/main/packages/utils#readme",
+  "homepage": "https://github.com/rjoydip/templ/tree/main/packages/{name}#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rjoydip/templ.git",
-    "directory": "packages/utils"
+    "directory": "packages/{name}"
   },
   "bugs": {
     "url": "https://github.com/rjoydip/templ/issues"
@@ -32,14 +33,13 @@
   "scripts": {
     "build": "tsup",
     "clean": "trash dist docs coverage",
-    "test": "vitest run"
+    "test": "pnpm build && vitest run"
   },
-  "dependencies": {},
   "devDependencies": {
     "@types/node": "^20.10.5",
     "@vitest/coverage-v8": "^1.1.0",
     "trash-cli": "^5.0.0",
-    "tsup": "^8.0.1",
+    "tsup": "^7.3.0",
     "vitest": "^1.1.0"
   }
 }

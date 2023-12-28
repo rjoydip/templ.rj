@@ -31,7 +31,8 @@
     "templ.mjs"
   ],
   "engines": {
-    "node": "^18.8.0 || >=20.6.0"
+    "node": "^18.8.0 || >=20.6.0",
+    "npm": ">=8"
   },
   "scripts": {
     "build": "tsup",
