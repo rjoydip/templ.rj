@@ -21,6 +21,7 @@
   },
   "scripts": {
     "all": "esno ./src/all.ts",
+    "clean": "trash coverage",
     "ci:copy:env": "esno ./src/ci/copy-env.ts",
     "ci:check:dist": "esno ./src/ci/check-dist.ts",
     "ci:delete:env": "esno ./src/ci/delete-env.ts",
@@ -48,6 +49,7 @@
     "rollup": "^4.9.1",
     "terser": "^5.26.0",
     "totalist": "^3.0.1",
+    "trash-cli": "^5.0.0",
     "tsx": "^4.7.0",
     "type-fest": "^4.9.0",
     "yargs-parser": "^21.1.1",

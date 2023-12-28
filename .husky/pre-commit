@@ -1,8 +1,9 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
+pnpm install
 pnpm clean
+npx nano-staged
+pnpm build
+pnpm test:all
 pnpm changelog
-npx taze -r -w -i -f -l --ignore-paths='third_party/**'
-./node_modules/.bin/nano-staged
-git add .
