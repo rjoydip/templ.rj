@@ -82,11 +82,13 @@ jobs:
         with:
           name: size-data
           path: temp/size
+
       - name: Read Size Report
         id: size-report
         uses: juliangruber/read-file-action@v1
         with:
           path: ./size-report.md
+
       - name: Create commit comment
         uses: peter-evans/commit-comment@v2
         with:

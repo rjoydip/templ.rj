@@ -23,7 +23,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
-    "templ": "templ.mjs"
+    "templjs": "templ.mjs"
   },
   "files": [
     "*.d.ts",
@@ -39,7 +39,7 @@
     "clean": "trash dist coverage",
     "pretest": "pnpm run build",
     "test": "pnpm build && vitest run",
-    "test:cli": "pnpm build && pnpm link . && pnpm templ -v"
+    "test:cli": "pnpm build && pnpm link . && pnpm templjs -v"
   },
   "dependencies": {
     "sade": "^1.8.1"
