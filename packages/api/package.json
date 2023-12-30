@@ -27,12 +27,11 @@
     "clean": "trash dist docs coverage",
     "test": "vitest run"
   },
-  "dependencies": {
-    "pactum": "^3.5.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/node": "^20.10.5",
     "@vitest/coverage-v8": "^1.1.0",
+    "pactum": "^3.5.1",
     "trash-cli": "^5.0.0",
     "vitest": "^1.1.0"
   }
