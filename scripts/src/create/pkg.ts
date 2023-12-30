@@ -61,9 +61,8 @@ async function main() {
     },
   )
 
-  const destDir = resolve(project.path, project.name)
-
   const root = await getRootAsync()
+  const destDir = resolve(root, project.path, project.name)
 
   if (destDir)
     await cpy(`${resolve(root, 'templates', 'basic')}/**`, destDir)
