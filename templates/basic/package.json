@@ -1,16 +1,16 @@
 {
-  "name": "@templ/{name}",
+  "name": "@templ/basic",
   "type": "module",
   "version": "0.0.0",
   "private": true,
   "packageManager": "",
-  "description": "TEMPL {name} service",
+  "description": "TEMPL basic service",
   "license": "MIT",
-  "homepage": "https://github.com/rjoydip/templ/tree/main/packages/{name}#readme",
+  "homepage": "https://github.com/rjoydip/templ/tree/main/packages/basic#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rjoydip/templ.git",
-    "directory": "packages/{name}"
+    "directory": "packages/basic"
   },
   "bugs": {
     "url": "https://github.com/rjoydip/templ/issues"
@@ -35,6 +35,7 @@
     "clean": "trash dist docs coverage",
     "test": "pnpm build && vitest run"
   },
+  "dependencies": {},
   "devDependencies": {
     "@types/node": "^20.10.5",
     "@vitest/coverage-v8": "^1.1.0",

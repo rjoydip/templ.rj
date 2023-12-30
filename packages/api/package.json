@@ -1,3 +1,39 @@
 {
-  "name": "@templ/api"
+  "name": "@templ/api",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "pnpm@8.13.1",
+  "description": "TEMPL api service",
+  "license": "MIT",
+  "homepage": "https://github.com/rjoydip/templ/tree/main/packages/api#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rjoydip/templ.git",
+    "directory": "packages/api"
+  },
+  "bugs": {
+    "url": "https://github.com/rjoydip/templ/issues"
+  },
+  "files": [
+    "*.d.ts",
+    "dist"
+  ],
+  "engines": {
+    "node": "^18.8.0 || >=20.6.0",
+    "npm": ">=8"
+  },
+  "scripts": {
+    "clean": "trash dist docs coverage",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "pactum": "^3.5.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.5",
+    "@vitest/coverage-v8": "^1.1.0",
+    "trash-cli": "^5.0.0",
+    "vitest": "^1.1.0"
+  }
 }
