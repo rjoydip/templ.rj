@@ -1,6 +1,7 @@
 ---
 packages:
   - apps/**
+  - docs
   - packages/**
   - scripts
   - third_party/**
