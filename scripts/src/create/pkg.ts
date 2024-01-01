@@ -1,99 +1,85 @@
-import { exit } from 'node:process'
+import { argv } from 'node:process'
 import { resolve } from 'node:path'
 import colors from 'picocolors'
 import cpy from 'cpy'
 import replace from 'replace'
 import latestVersion from 'latest-version'
-import { cancel, confirm, group, intro, log, note, outro, select, spinner, text } from '@clack/prompts'
+import { group, intro, log, note, outro, spinner } from '@clack/prompts'
 import {
   detectPackageManager,
   installDependencies,
 } from 'nypm'
+import parser from 'yargs-parser'
 import { getRootAsync } from '../utils'
+import { installerPrompt, namePrompt, onCancelFn, packageManagerPrompt, pathPrompt } from './common'
 
 async function main() {
   intro('Package create')
   log.warn(colors.yellow(`Started package generate`))
 
-  const project = await group(
+  const { dryRun } = parser(argv.splice(2), {
+    configuration: {
+      'boolean-negation': false,
+    },
+  })
+
+  const $package = await group(
     {
-      path: () =>
-        text({
-          message: 'Where should we create your package?',
-          placeholder: './',
-          validate: (value: string) => {
-            if (!value)
-              return 'Please enter a path.'
-            if (value[0] !== '.')
-              return 'Please enter a relative path.'
-            return void (0)
-          },
-        }),
-      name: () =>
-        text({
-          message: 'What is your package name?',
-          placeholder: '',
-          validate: (value: string) => {
-            if (!value)
-              return 'Please enter a name.'
-            return void (0)
-          },
-        }),
-      packageManager: () =>
-        select<any, string>({
-          message: 'Select package manager.',
-          options: [
-            { value: 'pnpm', label: 'PNPM' },
-            { value: 'npm', label: 'NPM' },
-            { value: 'yarn', label: 'YARN' },
-          ],
-        }),
-      install: () => confirm({
-        message: 'Install dependencies?',
-        initialValue: false,
+      path: () => pathPrompt({
+        name: 'package',
       }),
+      name: () => namePrompt({
+        name: 'package',
+      }),
+      manager: () => packageManagerPrompt(),
+      install: () => installerPrompt(),
     },
     {
-      onCancel: () => {
-        cancel('Operation cancelled.')
-        exit(0)
-      },
+      onCancel: () => onCancelFn(),
     },
   )
 
+  if (dryRun) {
+    console.log({
+      title: 'docs',
+      $package,
+    })
+    return
+  }
+
   const root = await getRootAsync()
-  const destDir = resolve(root, project.path, project.name)
+  const destDir = resolve(root, $package.path, $package.name)
 
   if (destDir)
     await cpy(`${resolve(root, 'templates', 'basic')}/**`, destDir)
 
   replace({
     regex: 'basic',
-    replacement: project.name,
+    replacement: $package.name,
     paths: [resolve(destDir, 'package.json'), resolve(destDir, 'README.md')],
     recursive: true,
     silent: true,
   })
 
-  if (project.packageManager) {
-    const pkgVersion = await latestVersion(project.packageManager)
+  if ($package.manager) {
+    const pkgVersion = await latestVersion($package.manager)
     replace({
       regex: '"packageManager": ""',
-      replacement: `"packageManager": "${project.packageManager.concat(`@${pkgVersion}`)}"`,
+      replacement: `"packageManager": "${$package.manager.concat(`@${pkgVersion}`)}"`,
       paths: [resolve(destDir, 'package.json')],
       recursive: true,
       silent: true,
     })
   }
 
-  if (project.install) {
-    const _projectManager = await detectPackageManager(
+  if ($package.install) {
+    const $packageManager = await detectPackageManager(
       destDir,
     )
 
-    if (_projectManager) {
+    if ($packageManager) {
       const s = spinner()
-      const { name } = _projectManager
+      const { name } = $packageManager
       s.start(`Installing via ${name}`)
       await installDependencies({
         cwd: destDir,
@@ -107,11 +93,11 @@ async function main() {
     }
   }
 
-  const nextSteps = `cd ${destDir}        \n${project.install ? '' : project.packageManager === 'npm ' ? `npm install\n` : `${project.packageManager}`}${project.packageManager === 'npm' ? 'npm run dev' : `${project.packageManager} dev`}`
+  const nextSteps = `cd ${destDir}        \n${$package.install ? '' : $package.manager === 'npm ' ? `npm install\n` : `${$package.manager}`}${$package.manager === 'npm' ? 'npm run dev' : `${$package.manager} dev`}`
 
   note(nextSteps, 'Next steps.')
 
-  log.success(`${colors.cyan(project.name)} package created`)
+  log.success(`${colors.cyan($package.name)} package created`)
   outro('You all set')
 }
 
