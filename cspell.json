@@ -50,6 +50,7 @@
     "esbenp",
     "esmodule",
     "esno",
+    "eslintcache",
     "execa",
     "finalhandler",
     "fastify",
@@ -77,6 +78,7 @@
     "lcov",
     "linebreak",
     "lukeed",
+    "ltex",
     "markdownlint",
     "markdownlintignore",
     "mdlint",
@@ -128,7 +130,6 @@
     "vitepress",
     "vitest",
     "zixuanchen",
-    "wireit",
     "workerpool"
   ]
 }

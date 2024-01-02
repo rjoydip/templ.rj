@@ -16,12 +16,14 @@
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
+    "postinstall": "pnpm deps:update",
     "prepare": "husky install",
     "all": "pnpm -C scripts all",
     "build": "pnpm -r build",
-    "clean": "trash temp {docs,scripts,packages}/**/{dist,coverage}",
+    "clean": "rimraf -g {docs,scripts,packages}/**/{dist,coverage} temp",
     "changelog": "auto-changelog -p",
     "create:pkg": "pnpm -C scripts create:pkg",
+    "deps:update": "taze -r -w -i -f -l --ignore-paths='third_party/**'",
     "eslint:viewer": "eslint-flat-config-viewer",
     "size:report": "pnpm -C scripts size:report",
     "test": "pnpm -r test",
@@ -42,18 +44,18 @@
     "@secretlint/secretlint-rule-preset-recommend": "^8.1.0",
     "@size-limit/file": "^11.0.1",
     "auto-changelog": "^2.4.0",
-    "cspell": "^8.2.4",
+    "cspell": "^8.3.2",
     "envinfo": "^7.11.0",
     "eslint": "^8.56.0",
     "eslint-flat-config-viewer": "^0.1.4",
     "husky": "^8.0.3",
-    "knip": "^3.9.0",
+    "knip": "^3.10.0",
     "nano-staged": "^0.8.0",
     "pnpm": "^8.13.1",
+    "rimraf": "^5.0.5",
     "secretlint": "^8.1.0",
     "size-limit": "^11.0.1",
-    "taze": "^0.13.1",
-    "trash-cli": "^5.0.0"
+    "taze": "^0.13.1"
   },
   "auto-changelog": {
     "output": "CHANGELOG.md",
@@ -108,12 +110,10 @@
       "@size-limit/file",
       "nano-staged",
       "vitepress",
-      "esno",
-      "trash-cli"
+      "esno"
     ],
     "ignore": [
       "**/.github/**",
-      "**/.wireit",
       "**/.vitepress",
       "**/fixtures/**",
       "**/coverage",

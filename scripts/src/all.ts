@@ -118,7 +118,7 @@ async function main() {
   // Update package dependency
   await executeCommand({
     title: 'Update dependencies',
-    execute: async () => await $`npx taze -r -w -i -f -l --ignore-paths="third_party/**"`,
+    execute: async () => await $`npx -w deps:update`,
     showOutput: !noOutput,
     showSpinner: !noSpinner,
   })
