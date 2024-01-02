@@ -201,6 +201,7 @@ export default async function main() {
                 { value: 'solid', label: 'Solid' },
                 { value: 'qwik', label: 'Qwik' },
               ],
+              initialValue: 'vue',
             })
 
             opts[toolsOrFrameworkOpts].template = templateOpts
@@ -218,6 +219,7 @@ export default async function main() {
                 { value: 'solid-ts', label: 'Solid' },
                 { value: 'qwik-ts', label: 'Qwik' },
               ],
+              initialValue: 'vue-ts',
             })
 
             opts[toolsOrFrameworkOpts].template = templateOpts

@@ -19,7 +19,7 @@
     "prepare": "husky install",
     "all": "pnpm -C scripts all",
     "build": "pnpm -r build",
-    "clean": "pnpm -r clean && trash .pnpm-store temp",
+    "clean": "trash temp {docs,scripts,packages}/**/{dist,coverage}",
     "changelog": "auto-changelog -p",
     "create:pkg": "pnpm -C scripts create:pkg",
     "eslint:viewer": "eslint-flat-config-viewer",
