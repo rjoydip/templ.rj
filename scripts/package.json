@@ -21,6 +21,7 @@
   },
   "scripts": {
     "all": "esno ./src/all.ts",
+    "clean": "esno ./src/clean.ts",
     "ci:copy:env": "esno ./src/ci/copy-env.ts",
     "ci:check:dist": "esno ./src/ci/check-dist.ts",
     "ci:delete:env": "esno ./src/ci/delete-env.ts",
@@ -42,7 +43,6 @@
     "markdownlint": "^0.32.1",
     "marked": "^11.1.1",
     "marked-terminal": "^6.2.0",
-    "nypm": "^0.3.4",
     "picocolors": "^1.0.0",
     "replace": "^1.2.2",
     "rollup": "^4.9.2",
@@ -58,6 +58,7 @@
     "@types/node": "^20.10.6",
     "@types/yargs-parser": "^21.0.3",
     "@vitest/coverage-v8": "^1.1.1",
+    "del": "^7.1.0",
     "vitest": "^1.1.1"
   }
 }

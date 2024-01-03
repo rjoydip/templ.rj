@@ -2,7 +2,7 @@
   "name": "templ",
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@8.13.1",
+  "packageManager": "pnpm@8.14.0",
   "description": "A modern monorepo project template",
   "author": "Joydip Roy <joydipand@gmail.com> (https://github.com/rjoydip)",
   "license": "MIT",
@@ -11,6 +11,7 @@
   "engines": {
     "node": ">=18",
     "npm": ">=8",
+    "pnpm": ">=8",
     "shell": "bash",
     "yarn": "This project is configured to use pnpm"
   },
@@ -20,7 +21,7 @@
     "prepare": "husky install",
     "all": "pnpm -C scripts all",
     "build": "pnpm -r build",
-    "clean": "rimraf -g {docs,scripts,packages}/**/{dist,coverage} temp",
+    "clean": "pnpm -C scripts clean",
     "changelog": "auto-changelog -p",
     "create:pkg": "pnpm -C scripts create:pkg",
     "deps:update": "taze -r -w -i -f -l --ignore-paths='third_party/**'",
@@ -51,8 +52,7 @@
     "husky": "^8.0.3",
     "knip": "^3.10.0",
     "nano-staged": "^0.8.0",
-    "pnpm": "^8.13.1",
-    "rimraf": "^5.0.5",
+    "pnpm": "^8.14.0",
     "secretlint": "^8.1.0",
     "size-limit": "^11.0.1",
     "taze": "^0.13.1"

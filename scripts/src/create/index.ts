@@ -1,5 +1,5 @@
 import { argv, exit } from 'node:process'
-import { cancel, confirm, group, select } from '@clack/prompts'
+import { cancel, confirm, group, intro, outro, select } from '@clack/prompts'
 import parser from 'yargs-parser'
 import type { AppsOptsType } from './apps'
 import type { DocsOptsType } from './docs'
@@ -14,6 +14,9 @@ async function main() {
       'boolean-negation': false,
     },
   })
+
+  intro('Create Scripts')
+
   const $options = await group(
     {
       create: async () => {
@@ -91,6 +94,8 @@ async function main() {
 
   if (dryRun)
     console.log(JSON.stringify($options, null, 4))
+
+  outro('All set')
 }
 
 main().catch(console.error)
