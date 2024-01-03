@@ -32,15 +32,13 @@
   },
   "scripts": {
     "build": "tsup",
-    "clean": "trash dist docs coverage",
     "test": "pnpm build && vitest run"
   },
   "dependencies": {},
   "devDependencies": {
-    "@types/node": "^20.10.5",
-    "@vitest/coverage-v8": "^1.1.0",
-    "trash-cli": "^5.0.0",
+    "@types/node": "^20.10.6",
+    "@vitest/coverage-v8": "^1.1.1",
     "tsup": "^7.3.0",
-    "vitest": "^1.1.0"
+    "vitest": "^1.1.1"
   }
 }

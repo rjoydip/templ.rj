@@ -21,7 +21,7 @@
   },
   "scripts": {
     "all": "esno ./src/all.ts",
-    "clean": "trash coverage",
+    "clean": "esno ./src/clean.ts",
     "ci:copy:env": "esno ./src/ci/copy-env.ts",
     "ci:check:dist": "esno ./src/ci/check-dist.ts",
     "ci:delete:env": "esno ./src/ci/delete-env.ts",
@@ -32,7 +32,7 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@pnpm/config": "^20.3.0",
+    "@pnpm/config": "^20.4.0",
     "cpy": "^11.0.0",
     "esno": "^4.0.0",
     "execa": "^8.0.1",
@@ -41,15 +41,13 @@
     "latest-version": "^7.0.0",
     "markdown-table": "^3.0.3",
     "markdownlint": "^0.32.1",
-    "marked": "^11.1.0",
+    "marked": "^11.1.1",
     "marked-terminal": "^6.2.0",
-    "nypm": "^0.3.3",
     "picocolors": "^1.0.0",
     "replace": "^1.2.2",
-    "rollup": "^4.9.1",
+    "rollup": "^4.9.2",
     "terser": "^5.26.0",
     "totalist": "^3.0.1",
-    "trash-cli": "^5.0.0",
     "tsx": "^4.7.0",
     "type-fest": "^4.9.0",
     "yargs-parser": "^21.1.1",
@@ -57,9 +55,10 @@
   },
   "devDependencies": {
     "@clack/prompts": "^0.7.0",
-    "@types/node": "^20.10.5",
+    "@types/node": "^20.10.6",
     "@types/yargs-parser": "^21.0.3",
-    "@vitest/coverage-v8": "^1.1.0",
-    "vitest": "^1.1.0"
+    "@vitest/coverage-v8": "^1.1.1",
+    "del": "^7.1.0",
+    "vitest": "^1.1.1"
   }
 }

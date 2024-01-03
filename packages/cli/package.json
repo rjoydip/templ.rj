@@ -36,7 +36,6 @@
   },
   "scripts": {
     "build": "tsup",
-    "clean": "trash dist coverage",
     "pretest": "pnpm run build",
     "test": "pnpm build && vitest run",
     "test:cli": "pnpm build && pnpm link . && pnpm templjs -v"
@@ -45,10 +44,9 @@
     "sade": "^1.8.1"
   },
   "devDependencies": {
-    "@types/node": "^20.10.5",
-    "@vitest/coverage-v8": "^1.1.0",
-    "trash-cli": "^5.0.0",
+    "@types/node": "^20.10.6",
+    "@vitest/coverage-v8": "^1.1.1",
     "tsup": "^8.0.1",
-    "vitest": "^1.1.0"
+    "vitest": "^1.1.1"
   }
 }

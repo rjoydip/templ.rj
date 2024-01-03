@@ -16,7 +16,6 @@ yarn-error.log*
 .DS_Store
 .eslintcache
 .nyc_output
-.wireit
 .pnpm-store
 
 # Folder
@@ -29,7 +28,7 @@ temp
 fixtures/output/*
 !fixtures/output/.gitkeep
 
-# Playwrite
+# Playwright
 /packages/**/test-results/
 /packages/**/playwright-report/
 /packages/**/playwright/.cache/
