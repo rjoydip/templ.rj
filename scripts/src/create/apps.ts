@@ -81,7 +81,7 @@ export const defaultAppsOpts = {
   },
 }
 
-export default async function main() {
+export default async function init() {
   return await group(
     {
       apps: async () => {

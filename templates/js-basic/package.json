@@ -1,0 +1,42 @@
+{
+  "name": "@templ/js-basic",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "",
+  "description": "TEMPL js-basic service",
+  "license": "MIT",
+  "homepage": "https://github.com/rjoydip/templ/tree/main/packages/js-basic#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rjoydip/templ.git",
+    "directory": "packages/js-basic"
+  },
+  "bugs": {
+    "url": "https://github.com/rjoydip/templ/issues"
+  },
+  "exports": {
+    "types": "types.d.ts",
+    "import": "./src/index.js",
+    "require": "./src/index.js"
+  },
+  "main": "src/index.js",
+  "types": "types.d.ts",
+  "files": [
+    "*.d.ts",
+    "src"
+  ],
+  "engines": {
+    "node": "^18.8.0 || >=20.6.0",
+    "npm": ">=8"
+  },
+  "scripts": {
+    "test": "vitest run"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^20.10.6",
+    "@vitest/coverage-v8": "^1.1.1",
+    "vitest": "^1.1.1"
+  }
+}

@@ -1,5 +1,6 @@
 import { confirm, group, select, text } from '@clack/prompts'
 import colors from 'picocolors'
+import { BITBUCKET_HOST, GITHUB_HOST, GITLAB_HOST, PROTOCOL } from '../utils/constant'
 
 export interface DocsOptsType {
   path: symbol | string
@@ -45,7 +46,7 @@ export const defaultDocsOpts = {
   },
 }
 
-export default async function main() {
+export default async function init() {
   return await group(
     {
       docs: async () => {
@@ -86,11 +87,11 @@ export default async function main() {
           if (templateOpts === 'git') {
             opts[toolsOpts].git.repo = await text({
               message: `Enter a repository URL from GitHub, Bitbucket, GitLab, or any other public repo.`,
-              placeholder: 'https://github.com/ownerName/repoName.git',
+              placeholder: `${PROTOCOL}://github.com/ownerName/repoName.git`,
               validate: (value: string) => {
                 if (!value)
                   return 'Please enter a URL.'
-                if (!value.startsWith('https://github.com') || !value.startsWith('https://bitbucket.org') || !value.startsWith('https://gitlab.com/') || !value.startsWith('https://'))
+                if (!value.startsWith(`${PROTOCOL}://${GITHUB_HOST}`) || !value.startsWith(`${PROTOCOL}://${BITBUCKET_HOST}`) || !value.startsWith(`${PROTOCOL}://${GITLAB_HOST}/`) || !value.startsWith(`${PROTOCOL}://`))
                   return 'Please enter a right repository URL (e.g. GitHub, Bitbucket, GitLab).'
                 return void (0)
               },
