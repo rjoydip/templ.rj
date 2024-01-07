@@ -4,4 +4,3 @@ packages:
   - docs
   - packages/**
   - scripts
-  - third_party/**

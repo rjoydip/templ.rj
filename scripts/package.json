@@ -20,22 +20,20 @@
     "npm": ">=8"
   },
   "scripts": {
-    "all": "esno ./src/all.ts",
-    "clean": "esno ./src/clean.ts",
-    "ci:copy:env": "esno ./src/ci/copy-env.ts",
-    "ci:check:dist": "esno ./src/ci/check-dist.ts",
-    "ci:delete:env": "esno ./src/ci/delete-env.ts",
-    "create:pkg": "esno ./src/create/pkg.ts",
-    "lint": "esno ./src/lint/main.ts",
-    "lint:md": "esno ./src/lint/md.ts",
-    "size:report": "esno ./src/size/report.ts",
-    "test": "vitest run"
+    "all": "node --import tsx/esm ./src/all.ts",
+    "clean": "node --import tsx/esm ./src/clean.ts",
+    "ci:copy:env": "node --import tsx/esm ./src/ci/copy-env.ts",
+    "ci:check:dist": "node --import tsx/esm ./src/ci/check-dist.ts",
+    "ci:delete:env": "node --import tsx/esm ./src/ci/delete-env.ts",
+    "create:stack": "node --import tsx/esm ./src/create/index.ts",
+    "lint": "node --import tsx/esm ./src/lint/main.ts",
+    "lint:md": "node --import tsx/esm ./src/lint/md.ts",
+    "size:report": "node --import tsx/esm ./src/size/report.ts"
   },
   "dependencies": {
     "@clack/prompts": "^0.7.0",
     "@pnpm/config": "^20.4.0",
     "cpy": "^11.0.0",
-    "esno": "^4.0.0",
     "execa": "^8.0.1",
     "find-up": "^7.0.0",
     "gittar": "^0.1.1",
@@ -48,10 +46,9 @@
     "nypm": "^0.3.4",
     "picocolors": "^1.0.0",
     "replace": "^1.2.2",
-    "rollup": "^4.9.2",
+    "rollup": "^4.9.4",
     "terser": "^5.26.0",
     "totalist": "^3.0.1",
-    "tsx": "^4.7.0",
     "type-fest": "^4.9.0",
     "yargs-parser": "^21.1.1",
     "zx": "^7.2.3"
@@ -59,8 +56,7 @@
   "devDependencies": {
     "@types/node": "^20.10.6",
     "@types/yargs-parser": "^21.0.3",
-    "@vitest/coverage-v8": "^1.1.1",
     "del": "^7.1.0",
-    "vitest": "^1.1.1"
+    "tsx": "^4.7.0"
   }
 }

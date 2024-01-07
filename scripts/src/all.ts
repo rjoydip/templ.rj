@@ -1,13 +1,14 @@
 import { argv } from 'node:process'
 import { intro, log, outro } from '@clack/prompts'
-import colors from 'picocolors'
 import parser from 'yargs-parser'
 import { $ } from 'zx'
 import isInCi from 'is-in-ci'
+import colors from 'picocolors'
 import { COMPLETED, STARTED } from './utils/constant'
 import { executeCommand } from './utils'
 
 async function main() {
+  $.verbose = false
   console.clear()
 
   intro(`${colors.cyan('Setup')}`)
@@ -118,15 +119,7 @@ async function main() {
   // Update package dependency
   await executeCommand({
     title: 'Update dependencies',
-    execute: async () => await $`npx -w deps:update`,
-    showOutput: !noOutput,
-    showSpinner: !noSpinner,
-  })
-
-  // Third party update
-  await executeCommand({
-    title: 'Update third-party',
-    execute: async () => await $`pnpm -w update:third_party`,
+    execute: async () => await $`pnpm -w deps:update`,
     showOutput: !noOutput,
     showSpinner: !noSpinner,
   })

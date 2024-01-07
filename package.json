@@ -23,25 +23,23 @@
     "build": "pnpm -r build",
     "clean": "pnpm -C scripts clean",
     "changelog": "auto-changelog -p",
-    "create:pkg": "pnpm -C scripts create:pkg",
-    "deps:update": "taze -r -w -i -f -l --ignore-paths='third_party/**'",
+    "create:stack": "pnpm -C scripts create:stack",
+    "deps:update": "taze -r -w -i -f -l",
     "eslint:viewer": "eslint-flat-config-viewer",
     "size:report": "pnpm -C scripts size:report",
     "test": "pnpm -r test",
-    "test:all": "pnpm test && pnpm test:cli",
-    "test:cli": "pnpm -r test:cli",
-    "update:third_party": "git submodule update --recursive --remote"
+    "test:cli": "pnpm -r test:cli"
   },
   "workspaces": [
     "apps/**",
+    "docs",
     "packages/**",
-    "scripts",
-    "third_party/**"
+    "scripts"
   ],
   "devDependencies": {
     "@antfu/eslint-config": "2.6.1",
-    "@commitlint/cli": "^18.4.3",
-    "@commitlint/config-conventional": "^18.4.3",
+    "@commitlint/cli": "^18.4.4",
+    "@commitlint/config-conventional": "^18.4.4",
     "@secretlint/secretlint-rule-preset-recommend": "^8.1.0",
     "@size-limit/file": "^11.0.1",
     "auto-changelog": "^2.4.0",
@@ -50,7 +48,7 @@
     "eslint": "^8.56.0",
     "eslint-flat-config-viewer": "^0.1.4",
     "husky": "^8.0.3",
-    "knip": "^3.10.0",
+    "knip": "^3.12.0",
     "nano-staged": "^0.8.0",
     "pnpm": "^8.14.0",
     "secretlint": "^8.1.0",
@@ -110,7 +108,7 @@
       "@size-limit/file",
       "nano-staged",
       "vitepress",
-      "esno"
+      "tsx"
     ],
     "ignore": [
       "**/.github/**",

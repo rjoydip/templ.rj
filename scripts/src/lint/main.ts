@@ -1,12 +1,13 @@
 import { argv } from 'node:process'
 import { intro, log, outro } from '@clack/prompts'
-import colors from 'picocolors'
 import parser from 'yargs-parser'
 import { $ } from 'zx'
 import isInCi from 'is-in-ci'
 import { executeCommand } from 'src/utils'
+import colors from 'picocolors'
 
 async function main() {
+  $.verbose = false
   intro(`${colors.cyan('Linting')}`)
 
   let {
@@ -34,7 +35,7 @@ async function main() {
   // Markdown
   await executeCommand({
     title: 'Markdownlint',
-    execute: async () => await $`esno ./src/lint/md.ts`,
+    execute: async () => await $`node --import tsx/esm ./src/lint/md.ts`,
     showOutput: !noOutput,
     showSpinner: !noSpinner,
   })
@@ -51,7 +52,7 @@ async function main() {
   !isInCi
     ? await executeCommand({
       title: 'Size report',
-      execute: async () => await $`esno ./src/size/report.ts`,
+      execute: async () => await $`node --import tsx/esm ./src/size/report.ts`,
       showOutput: !noOutput,
       showSpinner: !noSpinner,
     })

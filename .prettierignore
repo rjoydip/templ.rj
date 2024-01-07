@@ -7,6 +7,4 @@ dist/**
 static/**
 coverage/**
 node_modules/**
-third_party/**
 fixtures/**
-scripts/_templates/**/*.hbs
