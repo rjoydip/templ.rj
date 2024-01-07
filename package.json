@@ -22,6 +22,7 @@
     "clean": "pnpm -C scripts clean",
     "changelog": "auto-changelog -p",
     "create:stack": "pnpm -C scripts create:stack",
+    "precommit": "pnpm all",
     "commit": "better-commits",
     "deps:update": "taze -r -w -i -f -l",
     "eslint:viewer": "eslint-flat-config-viewer",
@@ -36,7 +37,6 @@
     "packages/**",
     "scripts"
   ],
-  "pre-commit": ["deps:update", "clean", "lint", "build", "test", "test:cli", "changelog"],
   "devDependencies": {
     "@antfu/eslint-config": "2.6.1",
     "@commitlint/cli": "^18.4.4",
@@ -51,7 +51,6 @@
     "eslint-flat-config-viewer": "^0.1.4",
     "knip": "^3.12.0",
     "pnpm": "^8.14.0",
-    "pre-commit": "^1.2.2",
     "secretlint": "^8.1.0",
     "size-limit": "^11.0.1",
     "taze": "^0.13.1"

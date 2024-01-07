@@ -60,10 +60,6 @@
         "label": "chore",
         "hint": "Other changes that do not modify src or test files",
         "emoji": "🧹"
-      },
-      {
-        "value": "",
-        "label": "none"
       }
     ]
   },
@@ -95,10 +91,6 @@
       {
         "value": "root",
         "label": "root"
-      },
-      {
-        "value": "",
-        "label": "none"
       }
     ]
   },
@@ -117,7 +109,7 @@
     "required": false
   },
   "commit_footer": {
-    "enable": true,
+    "enable": false,
     "initial_value": [],
     "options": [
       "closes",
@@ -131,7 +123,7 @@
   },
   "confirm_commit": true,
   "print_commit_output": true,
-  "branch_pre_commands": ["pnpm lint"],
+  "branch_pre_commands": [],
   "branch_post_commands": [],
   "worktree_pre_commands": [],
   "worktree_post_commands": [],

@@ -103,6 +103,7 @@
     "platformatic",
     "Pluggable",
     "pnpmfile",
+    "precommit",
     "preact",
     "preinstall",
     "qwik",
