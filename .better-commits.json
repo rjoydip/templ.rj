@@ -4,8 +4,8 @@
     "enable": true,
     "initial_value": "feat",
     "infer_type_from_branch": true,
-    "append_emoji_to_label": false,
-    "append_emoji_to_commit": false,
+    "append_emoji_to_label": true,
+    "append_emoji_to_commit": true,
     "options": [
       {
         "value": "feat",
@@ -70,23 +70,31 @@
   "commit_scope": {
     "enable": true,
     "custom_scope": false,
-    "initial_value": "app",
+    "initial_value": "apps",
     "options": [
       {
-        "value": "app",
-        "label": "app"
+        "value": "apps",
+        "label": "apps"
       },
       {
-        "value": "shared",
-        "label": "shared"
+        "value": "scripts",
+        "label": "scripts"
       },
       {
-        "value": "server",
-        "label": "server"
+        "value": "templates",
+        "label": "templates"
       },
       {
-        "value": "tools",
-        "label": "tools"
+        "value": "packages",
+        "label": "packages"
+      },
+      {
+        "value": "docs",
+        "label": "docs"
+      },
+      {
+        "value": "root",
+        "label": "root"
       },
       {
         "value": "",
@@ -123,7 +131,7 @@
   },
   "confirm_commit": true,
   "print_commit_output": true,
-  "branch_pre_commands": [],
+  "branch_pre_commands": ["pnpm lint"],
   "branch_post_commands": [],
   "worktree_pre_commands": [],
   "worktree_post_commands": [],

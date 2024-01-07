@@ -22,7 +22,7 @@
     "clean": "pnpm -C scripts clean",
     "changelog": "auto-changelog -p",
     "create:stack": "pnpm -C scripts create:stack",
-    "done": "better-commits",
+    "commit": "better-commits",
     "deps:update": "taze -r -w -i -f -l",
     "eslint:viewer": "eslint-flat-config-viewer",
     "lint": "pnpm -C scripts lint",
