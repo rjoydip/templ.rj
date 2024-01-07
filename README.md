@@ -23,6 +23,7 @@
 [![Typescript][typescript-image]][typescript-url]
 [![PNPM][pnpm-image]][pnpm-url]
 [![VS Code Container][vscode-container-image]][vscode-container-url]
+[![better commits is enabled][better-commit-image]][better-commit-url]
 
 </div>
 
@@ -79,3 +80,5 @@ Released under [MIT](./LICENSE) by [@rjoydip](https://github.com/rjoydip).
 [vscode-container-url]: https://open.vscode.dev/microsoft/vscode
 [code-style-url]: https://github.com/antfu/eslint-config
 [code-style-image]: https://antfu.me/badge-code-style.svg
+[better-commit-image]: https://img.shields.io/badge/better--commits-enabled?style=for-the-badge&logo=git&color=a6e3a1&logoColor=D9E0EE&labelColor=302D41
+[better-commit-url]: https://github.com/Everduin94/better-commits

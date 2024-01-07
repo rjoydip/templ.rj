@@ -49,7 +49,7 @@ export function getDefaultOpts() {
 }
 
 export async function createStack(options: OptionsType) {
-  $.verbose = true
+  $.verbose = false
   const s = spinner()
   const root = await getRootAsync()
   const { install, packageManager } = options

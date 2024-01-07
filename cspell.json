@@ -131,6 +131,7 @@
     "vitepress",
     "vitest",
     "zixuanchen",
-    "workerpool"
+    "workerpool",
+    "worktrees"
   ]
 }
