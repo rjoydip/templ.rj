@@ -8,7 +8,7 @@ export default antfu({
   yml: true,
   markdown: true,
 }, {
-  ignores: ['**/docs', '**/fixtures'],
+  ignores: ['**/docs', '**/fixtures', '**/templates'],
   rules: {
     'antfu/no-import-dist': 'off',
   },

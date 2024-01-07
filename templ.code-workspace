@@ -5,6 +5,14 @@
       "path": "."
     },
     {
+      "name": "📑 templates",
+      "path": "templates"
+    },
+    {
+      "name": "🔨 @templ/scripts",
+      "path": "scripts"
+    },
+    {
       "name": "☢️ @templ/core",
       "path": "packages/core"
     },
@@ -21,11 +29,11 @@
       "path": "packages/logger"
     },
     {
-      "name": "🔨 @templ/utils",
+      "name": "🪛 @templ/utils",
       "path": "packages/utils"
     },
     {
-      "name": "📜 @templ/apps/docs",
+      "name": "📜 @templ/docs",
       "path": "docs"
     },
     {

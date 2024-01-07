@@ -35,6 +35,7 @@
     "@pnpm/config": "^20.4.0",
     "cpy": "^11.0.0",
     "execa": "^8.0.1",
+    "fast-glob": "^3.3.2",
     "find-up": "^7.0.0",
     "gittar": "^0.1.1",
     "is-in-ci": "^0.1.0",
@@ -54,8 +55,9 @@
     "zx": "^7.2.3"
   },
   "devDependencies": {
-    "@types/node": "^20.10.6",
+    "@types/node": "^20.10.7",
     "@types/yargs-parser": "^21.0.3",
+    "create-next-app": "^14.0.4",
     "del": "^7.1.0",
     "tsx": "^4.7.0"
   }

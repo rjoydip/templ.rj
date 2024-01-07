@@ -1,7 +1,0 @@
----
-outline: deep
----
-
-# Core
-
-TODO

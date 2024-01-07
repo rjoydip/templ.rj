@@ -103,6 +103,7 @@
     "platformatic",
     "Pluggable",
     "pnpmfile",
+    "precommit",
     "preact",
     "preinstall",
     "qwik",
@@ -131,6 +132,8 @@
     "vitepress",
     "vitest",
     "zixuanchen",
-    "workerpool"
+    "workerpool",
+    "worktree",
+    "worktrees"
   ]
 }

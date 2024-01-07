@@ -1,7 +1,8 @@
 import { basename, resolve } from 'node:path'
 import { mkdir } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
-import { confirm, group, log, note, select, text } from '@clack/prompts'
+import { exit } from 'node:process'
+import { cancel, confirm, group, log, note, select, text } from '@clack/prompts'
 import cpy from 'cpy'
 import replace from 'replace'
 import gittar from 'gittar'
@@ -98,7 +99,7 @@ export async function init() {
         const opts: PkgsOptsType = defaultPkgsOpts
         opts.path = await text({
           message: `Where should we create your ${colors.cyan('packages')}?`,
-          placeholder: './',
+          placeholder: './packages',
           validate: (value: string) => {
             if (!value)
               return 'Please enter a path.'
@@ -152,6 +153,12 @@ export async function init() {
             },
           })
         }
+      },
+    },
+    {
+      onCancel: () => {
+        cancel('Operation cancelled.')
+        exit(0)
       },
     },
   )

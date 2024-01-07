@@ -13,20 +13,20 @@
     "npm": ">=8",
     "pnpm": ">=8",
     "shell": "bash",
-    "yarn": "This project is configured to use pnpm"
+    "yarn": ">=3"
   },
   "scripts": {
+    "precommit": "pnpm deps:update && pnpm lint && pnpm build && pnpm changelog",
+    "prebuild": "pnpm -C scripts clean",
     "preinstall": "npx only-allow pnpm",
-    "postinstall": "pnpm deps:update",
-    "prepare": "husky install",
     "all": "pnpm -C scripts all",
     "build": "pnpm -r build",
-    "clean": "pnpm -C scripts clean",
     "changelog": "auto-changelog -p",
+    "commit": "better-commits",
     "create:stack": "pnpm -C scripts create:stack",
     "deps:update": "taze -r -w -i -f -l",
     "eslint:viewer": "eslint-flat-config-viewer",
-    "size:report": "pnpm -C scripts size:report",
+    "lint": "pnpm -C scripts lint",
     "test": "pnpm -r test",
     "test:cli": "pnpm -r test:cli"
   },
@@ -34,22 +34,20 @@
     "apps/**",
     "docs",
     "packages/**",
+    "tools/**",
     "scripts"
   ],
   "devDependencies": {
     "@antfu/eslint-config": "2.6.1",
-    "@commitlint/cli": "^18.4.4",
-    "@commitlint/config-conventional": "^18.4.4",
     "@secretlint/secretlint-rule-preset-recommend": "^8.1.0",
     "@size-limit/file": "^11.0.1",
     "auto-changelog": "^2.4.0",
+    "better-commits": "^1.7.2",
     "cspell": "^8.3.2",
     "envinfo": "^7.11.0",
     "eslint": "^8.56.0",
     "eslint-flat-config-viewer": "^0.1.4",
-    "husky": "^8.0.3",
     "knip": "^3.12.0",
-    "nano-staged": "^0.8.0",
     "pnpm": "^8.14.0",
     "secretlint": "^8.1.0",
     "size-limit": "^11.0.1",
@@ -60,13 +58,6 @@
     "template": "keepachangelog",
     "unreleased": true,
     "commitLimit": false
-  },
-  "nano-staged": {
-    "*": [
-      "cspell .",
-      "secretlint --secretlintignore .gitignore \"**/*\""
-    ],
-    "*.{css, js,ts,jsx,tsx,md,json}": "eslint --color --cache --fix --cache-location .eslintcache ."
   },
   "knip": {
     "workspaces": {
@@ -95,7 +86,7 @@
           "**/*.ts"
         ],
         "ignore": [
-          "**/_templates"
+          "**/templates"
         ]
       }
     },
@@ -106,13 +97,10 @@
     "ignoreDependencies": [
       "@secretlint/secretlint-rule-preset-recommend",
       "@size-limit/file",
-      "nano-staged",
-      "vitepress",
       "tsx"
     ],
     "ignore": [
       "**/.github/**",
-      "**/.vitepress",
       "**/fixtures/**",
       "**/coverage",
       "taze.config.js"

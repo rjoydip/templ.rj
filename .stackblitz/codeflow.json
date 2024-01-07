@@ -1,7 +1,0 @@
-{
-  "pnpm": {
-    "overrides": {
-      "templ": "./packages/core"
-    }
-  }
-}
