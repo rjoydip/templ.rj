@@ -25,7 +25,7 @@
     "ci:copy:env": "node --import tsx/esm ./src/ci/copy-env.ts",
     "ci:check:dist": "node --import tsx/esm ./src/ci/check-dist.ts",
     "ci:delete:env": "node --import tsx/esm ./src/ci/delete-env.ts",
-    "create:pkg": "node --import tsx/esm ./src/create/pkg.ts",
+    "create:stack": "node --import tsx/esm ./src/create/index.ts",
     "lint": "node --import tsx/esm ./src/lint/main.ts",
     "lint:md": "node --import tsx/esm ./src/lint/md.ts",
     "size:report": "node --import tsx/esm ./src/size/report.ts"

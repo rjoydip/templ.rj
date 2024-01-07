@@ -1,5 +1,15 @@
-import { confirm, group, select, text } from '@clack/prompts'
+import { basename, resolve } from 'node:path'
+import { platform } from 'node:os'
+import { existsSync } from 'node:fs'
+import { mkdir } from 'node:fs/promises'
+import { confirm, group, log, note, select, text } from '@clack/prompts'
+import cpy from 'cpy'
+import latestVersion from 'latest-version'
+import replace from 'replace'
+import { installDependencies } from 'nypm'
 import colors from 'picocolors'
+import { $ } from 'zx'
+import type { SpinnerType } from '.'
 
 export interface DocsOptsType {
   docusaurus: {
@@ -33,7 +43,72 @@ export const defaultDocsOpts = {
   },
 }
 
-export default async function init() {
+export async function create(root: string, packageManager: string, install: boolean = false, spinner: SpinnerType, docs: DocsOptsType) {
+  const { tools, docusaurus, nextra } = docs
+
+  if (tools === 'docusaurus') {
+    const { name, language, path, gitStrategy } = docusaurus
+    spinner.start(`Creating ${name.toString()} documentation`)
+    await $`npx create-docusaurus@latest ${name.toString()} classic ${platform() === 'win32' ? resolve(root, path.toString()).replace(/\\/g, '\\\\') : resolve(root, path.toString())} ${language === 'ts' ? '-t' : ''} ${!install ? '-s' : ''} -p ${packageManager} -g ${gitStrategy}`
+    spinner.stop(`Generated ${name.toString()} documentation`)
+  }
+
+  if (tools === 'nextra') {
+    const { name, theme, path } = nextra
+    const dest = resolve(root, path.toString(), basename(name.toString()))
+    const pkgVersion = await latestVersion(packageManager)
+
+    if (!existsSync(dest))
+      await mkdir(dest)
+    await cpy(resolve(root, 'templates', 'nextra', `${theme.toString()}`, '**'), dest)
+
+    if (theme.toString() !== 'swr') {
+      replace({
+        regex: `example-${theme.toString()}`,
+        replacement: name,
+        paths: [resolve(dest, 'package.json')],
+        recursive: true,
+        silent: true,
+      })
+    }
+    else {
+      replace({
+        regex: 'swr-site',
+        replacement: name,
+        paths: [resolve(dest, 'package.json')],
+        recursive: true,
+        silent: true,
+      })
+    }
+
+    replace({
+      regex: '"packageManager": ""',
+      replacement: `"packageManager": "${packageManager.concat(`@${pkgVersion}`)}"`,
+      paths: [resolve(dest, 'package.json')],
+      recursive: true,
+      silent: true,
+    })
+
+    if (install) {
+      spinner.start(`Installing via ${packageManager}`)
+      await installDependencies({
+        cwd: dest,
+        packageManager: {
+          name: packageManager as 'pnpm' || 'bun' || 'npm' || 'yarn',
+          command: packageManager === 'npm' ? 'npm install' : `${packageManager}`,
+        },
+        silent: true,
+      })
+      spinner.stop(`Installed via ${packageManager}`)
+    }
+
+    note(`cd ${dest}\n${install ? `${packageManager} dev` : `${packageManager} install\n${packageManager} dev`}`, 'Next steps.')
+
+    log.success(`${colors.green(basename(name.toString()))} package created`)
+  }
+}
+
+export async function init() {
   return await group(
     {
       docs: async () => {
@@ -55,7 +130,7 @@ export default async function init() {
             const themeOpts = await select<any, string>({
               message: 'Select a theme first',
               options: [
-                { value: 'docs', label: 'Documentation' },
+                { value: 'docs', label: 'Docs' },
                 { value: 'blog', label: 'Blog' },
                 { value: 'swr', label: 'SWR' },
               ],

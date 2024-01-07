@@ -23,12 +23,11 @@
     "build": "pnpm -r build",
     "clean": "pnpm -C scripts clean",
     "changelog": "auto-changelog -p",
-    "create:pkg": "pnpm -C scripts create:pkg",
+    "create:stack": "pnpm -C scripts create:stack",
     "deps:update": "taze -r -w -i -f -l",
     "eslint:viewer": "eslint-flat-config-viewer",
     "size:report": "pnpm -C scripts size:report",
     "test": "pnpm -r test",
-    "test:all": "pnpm test && pnpm test:cli",
     "test:cli": "pnpm -r test:cli"
   },
   "workspaces": [

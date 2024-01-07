@@ -1,5 +1,14 @@
-import { confirm, group, select, text } from '@clack/prompts'
+import { basename, resolve } from 'node:path'
+import { mkdir } from 'node:fs/promises'
+import { existsSync } from 'node:fs'
+import { confirm, group, log, note, select, text } from '@clack/prompts'
+import cpy from 'cpy'
+import replace from 'replace'
+import gittar from 'gittar'
+import latestVersion from 'latest-version'
+import { installDependencies } from 'nypm'
 import colors from 'picocolors'
+import type { SpinnerType } from '.'
 
 export interface PkgsOptsType {
   path: symbol | string
@@ -27,7 +36,62 @@ export const defaultPkgsOpts = {
   },
 }
 
-export default async function init() {
+export async function create(root: string, packageManager: string, install: boolean = false, spinner: SpinnerType, pkgs: PkgsOptsType) {
+  const { template, path } = pkgs
+  const { hostname, repo } = pkgs.remote
+  const { name, language } = pkgs.local
+  const $basename = repo ? basename(repo.toString()) : name.toString()
+  const dest = resolve(root, path.toString(), $basename)
+
+  if (template === 'remote') {
+    await gittar.fetch(repo.toString(), { hostname })
+    await gittar.extract(repo.toString(), dest)
+  }
+
+  if (template === 'local') {
+    const pkgVersion = await latestVersion(packageManager)
+
+    if (!existsSync(dest))
+      await mkdir(dest)
+
+    await cpy(resolve(root, 'templates', 'basic', `${language.toString()}`, '**'), dest)
+
+    replace({
+      regex: `${language.toString()}`,
+      replacement: name,
+      paths: [resolve(dest, 'package.json'), resolve(dest, 'README.md')],
+      recursive: true,
+      silent: true,
+    })
+
+    replace({
+      regex: '"packageManager": ""',
+      replacement: `"packageManager": "${packageManager.concat(`@${pkgVersion}`)}"`,
+      paths: [resolve(dest, 'package.json')],
+      recursive: true,
+      silent: true,
+    })
+  }
+
+  if (install) {
+    spinner.start(`Installing via ${packageManager}`)
+    await installDependencies({
+      cwd: dest,
+      packageManager: {
+        name: packageManager as 'pnpm' || 'bun' || 'npm' || 'yarn',
+        command: packageManager === 'npm' ? 'npm install' : `${packageManager}`,
+      },
+      silent: true,
+    })
+    spinner.stop(`Installed via ${packageManager}`)
+  }
+
+  note(`cd ${dest}\n${install ? `${packageManager} dev` : `${packageManager} install\n${packageManager} dev`}`, 'Next steps.')
+
+  log.success(`${colors.green($basename)} package created`)
+}
+
+export async function init() {
   return await group(
     {
       pkg: async () => {

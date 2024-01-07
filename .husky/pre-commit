@@ -5,6 +5,7 @@ pnpm install
 pnpm clean
 npx nano-staged
 pnpm build
-pnpm test:all
+pnpm test
+pnpm test:cli
 pnpm changelog
 git add .
