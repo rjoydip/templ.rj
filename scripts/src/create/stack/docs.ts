@@ -2,7 +2,8 @@ import { basename, resolve } from 'node:path'
 import { platform } from 'node:os'
 import { existsSync } from 'node:fs'
 import { mkdir } from 'node:fs/promises'
-import { confirm, group, log, note, select, text } from '@clack/prompts'
+import { exit } from 'node:process'
+import { cancel, confirm, group, log, note, select, text } from '@clack/prompts'
 import cpy from 'cpy'
 import latestVersion from 'latest-version'
 import replace from 'replace'
@@ -48,8 +49,9 @@ export async function create(root: string, packageManager: string, install: bool
 
   if (tools === 'docusaurus') {
     const { name, language, path, gitStrategy } = docusaurus
+    const $path = platform() === 'win32' ? resolve(root, path.toString()).replace(/\\/g, '\\\\') : resolve(root, path.toString())
     spinner.start(`Creating ${name.toString()} documentation`)
-    await $`npx create-docusaurus@latest ${name.toString()} classic ${platform() === 'win32' ? resolve(root, path.toString()).replace(/\\/g, '\\\\') : resolve(root, path.toString())} ${language === 'ts' ? '-t' : ''} ${!install ? '-s' : ''} -p ${packageManager} -g ${gitStrategy}`
+    await $`npx create-docusaurus@latest ${name.toString()} classic ${$path} ${language === 'ts' ? '-t' : ''} ${!install ? '-s' : ''} -p ${packageManager} -g ${gitStrategy}`
     spinner.stop(`Generated ${name.toString()} documentation`)
   }
 
@@ -142,7 +144,7 @@ export async function init() {
 
           opts[toolsOpts].path = await text({
             message: `Where should we create your ${colors.cyan(opts[toolsOpts].theme.toString())}?`,
-            placeholder: './',
+            placeholder: './docs',
             validate: (value: string) => {
               if (!value)
                 return 'Please enter a path.'
@@ -195,6 +197,12 @@ export async function init() {
         }
 
         return opts
+      },
+    },
+    {
+      onCancel: () => {
+        cancel('Operation cancelled.')
+        exit(0)
       },
     },
   )

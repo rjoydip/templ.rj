@@ -60,7 +60,7 @@ async function main() {
           return Promise.resolve('pnpm')
         },
         install: async () => {
-          if (options.create.docs.tools !== 'vitepress') {
+          if (options.create.docs.tools !== 'vitepress' || options.create.apps.type !== 'next') {
             return await confirm({
               message: 'Install dependencies?',
               initialValue: false,
