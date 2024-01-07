@@ -25,13 +25,9 @@
         "eamodio.gitlens",
         "editorconfig.editorconfig",
         "esbenp.prettier-vscode",
-        "folke.vscode-monorepo-workspace",
-        "mintlify.document",
-        "ms-playwright.playwright",
         "ms-vscode-remote.remote-containers",
         "redhat.vscode-yaml",
         "zixuanchen.vitest-explorer",
-        "seatonjiang.gitmoji-vscode",
         "streetsidesoftware.code-spell-checker"
       ]
     }

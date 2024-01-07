@@ -30,7 +30,7 @@
       "label": "npm: test",
       "isBackground": true,
       "dependsOn": ["npm: build"],
-      "detail": "vitest -r test/core --api",
+      "detail": "vitest",
       "problemMatcher": {
         "owner": "typescript",
         "fileLocation": "relative",

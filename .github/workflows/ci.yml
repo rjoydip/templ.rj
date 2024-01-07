@@ -38,10 +38,6 @@ jobs:
       - name: Install
         run: pnpm install --no-frozen-lockfile
 
-      # Clean
-      - name: Clean
-        run: pnpm run clean
-
       # Build
       - name: Build
         run: |

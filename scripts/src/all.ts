@@ -40,14 +40,6 @@ async function main() {
     showSpinner: !noSpinner,
   })
 
-  // Cleaning
-  await executeCommand({
-    title: 'Clean',
-    execute: async () => await $`pnpm -w clean`,
-    showOutput: !noOutput,
-    showSpinner: !noSpinner,
-  })
-
   // Linting
   await executeCommand({
     title: 'Lint',

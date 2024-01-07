@@ -11,13 +11,9 @@
     "esbenp.prettier-vscode",
     "folke.vscode-monorepo-workspace",
     "mintlify.document",
-    "ms-playwright.playwright",
     "ms-vscode-remote.remote-containers",
-    "foxundermoon.shell-format",
-    "folke.vscode-monorepo-workspace",
     "redhat.vscode-yaml",
     "zixuanchen.vitest-explorer",
-    "seatonjiang.gitmoji-vscode",
     "streetsidesoftware.code-spell-checker"
   ]
 }

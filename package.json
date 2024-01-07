@@ -13,21 +13,20 @@
     "npm": ">=8",
     "pnpm": ">=8",
     "shell": "bash",
-    "yarn": "This project is configured to use pnpm"
+    "yarn": ">=3"
   },
   "scripts": {
+    "precommit": "pnpm deps:update && pnpm lint && pnpm build && pnpm changelog",
+    "prebuild": "pnpm -C scripts clean",
     "preinstall": "npx only-allow pnpm",
     "all": "pnpm -C scripts all",
     "build": "pnpm -r build",
-    "clean": "pnpm -C scripts clean",
     "changelog": "auto-changelog -p",
-    "create:stack": "pnpm -C scripts create:stack",
-    "precommit": "pnpm all",
     "commit": "better-commits",
+    "create:stack": "pnpm -C scripts create:stack",
     "deps:update": "taze -r -w -i -f -l",
     "eslint:viewer": "eslint-flat-config-viewer",
     "lint": "pnpm -C scripts lint",
-    "size:report": "pnpm -C scripts size:report",
     "test": "pnpm -r test",
     "test:cli": "pnpm -r test:cli"
   },
@@ -35,12 +34,11 @@
     "apps/**",
     "docs",
     "packages/**",
+    "tools/**",
     "scripts"
   ],
   "devDependencies": {
     "@antfu/eslint-config": "2.6.1",
-    "@commitlint/cli": "^18.4.4",
-    "@commitlint/config-conventional": "^18.4.4",
     "@secretlint/secretlint-rule-preset-recommend": "^8.1.0",
     "@size-limit/file": "^11.0.1",
     "auto-changelog": "^2.4.0",
@@ -88,7 +86,7 @@
           "**/*.ts"
         ],
         "ignore": [
-          "**/_templates"
+          "**/templates"
         ]
       }
     },
@@ -99,13 +97,10 @@
     "ignoreDependencies": [
       "@secretlint/secretlint-rule-preset-recommend",
       "@size-limit/file",
-      "nano-staged",
-      "vitepress",
       "tsx"
     ],
     "ignore": [
       "**/.github/**",
-      "**/.vitepress",
       "**/fixtures/**",
       "**/coverage",
       "taze.config.js"
