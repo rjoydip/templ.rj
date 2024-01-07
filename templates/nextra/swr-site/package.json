@@ -1,0 +1,43 @@
+{
+  "name": "swr-site",
+  "private": true,
+  "license": "Apache-2.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "next build",
+    "clean": "rimraf .next .turbo",
+    "debug": "NODE_OPTIONS='--inspect' next dev",
+    "dev": "next",
+    "start": "next start"
+  },
+  "dependencies": {
+    "focus-visible": "^5.2.0",
+    "intersection-observer": "^0.10.0",
+    "isomorphic-git": "1.25.2",
+    "markdown-to-jsx": "^6.11.4",
+    "next": "^13.5.6",
+    "nextra": "workspace:*",
+    "nextra-theme-docs": "workspace:*",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-intersection-observer": "^8.34.0"
+  },
+  "dependenciesMeta": {
+    "nextra": {
+      "injected": true
+    },
+    "nextra-theme-docs": {
+      "injected": true
+    }
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.33",
+    "tailwindcss": "^3.4.1"
+  },
+  "nextBundleAnalysis": {
+    "budget": 358400,
+    "budgetPercentIncreaseRed": 20,
+    "showDetails": true
+  }
+}

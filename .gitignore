@@ -33,8 +33,6 @@ fixtures/output/*
 /packages/**/playwright-report/
 /packages/**/playwright/.cache/
 
-# third_party
-
 # Tools
 /tools/lib-cov
 

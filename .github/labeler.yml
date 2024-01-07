@@ -19,6 +19,3 @@
 
 📜scripts:
   - scripts/*
-
-🔌third_party:
-  - third_party/**/*

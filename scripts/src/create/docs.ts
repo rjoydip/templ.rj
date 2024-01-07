@@ -1,48 +1,35 @@
 import { confirm, group, select, text } from '@clack/prompts'
 import colors from 'picocolors'
-import { BITBUCKET_HOST, GITHUB_HOST, GITLAB_HOST, PROTOCOL } from '../utils/constant'
 
 export interface DocsOptsType {
-  path: symbol | string
-  name: symbol | string
-  type: symbol | string
   docusaurus: {
+    name: symbol | string
+    path: symbol | string
     language: symbol | string
-    template: symbol | string
-    git: {
-      repo: symbol | string
-    }
-    local: {
-      path: symbol | string
-    }
-  }
-  nextra: {
     theme: symbol | string
+    gitStrategy: symbol | string
   }
-  vitepress: {
-    cmd: symbol | string
+  tools: symbol | string
+  nextra: {
+    name: symbol | string
+    path: symbol | string
+    theme: symbol | string
   }
 }
 
 export const defaultDocsOpts = {
-  path: '',
-  name: '',
-  type: '',
   docusaurus: {
-    language: '',
-    template: '',
-    git: {
-      repo: '',
-    },
-    local: {
-      path: '',
-    },
+    name: '',
+    path: '',
+    language: 'js',
+    theme: 'docs',
+    gitStrategy: '',
   },
+  tools: '',
   nextra: {
+    name: '',
+    path: '',
     theme: '',
-  },
-  vitepress: {
-    cmd: '',
   },
 }
 
@@ -57,81 +44,29 @@ export default async function init() {
           options: [
             { value: 'docusaurus', label: 'Docusaurus' },
             { value: 'nextra', label: 'Nextra' },
-            { value: 'vitepress', label: 'Vitepress' },
           ],
-          initialValue: 'next',
+          initialValue: 'nextra',
         })
 
-        opts.type = toolsOpts
-
-        if (toolsOpts === 'docusaurus') {
-          const langOpts = await confirm({
-            message: 'Would you like to use TypeScript?',
-            initialValue: false,
-          })
-
-          opts[toolsOpts].language = langOpts ? 'typescript' : 'javascript'
-
-          const templateOpts = await select<any, string>({
-            message: 'Select a template below',
-            options: [
-              { value: 'classic', label: 'Classic (recommended)' },
-              { value: 'git', label: 'Git repository' },
-              { value: 'local', label: 'Local template' },
-            ],
-            initialValue: 'classic',
-          })
-
-          opts[toolsOpts].template = templateOpts
-
-          if (templateOpts === 'git') {
-            opts[toolsOpts].git.repo = await text({
-              message: `Enter a repository URL from GitHub, Bitbucket, GitLab, or any other public repo.`,
-              placeholder: `${PROTOCOL}://github.com/ownerName/repoName.git`,
-              validate: (value: string) => {
-                if (!value)
-                  return 'Please enter a URL.'
-                if (!value.startsWith(`${PROTOCOL}://${GITHUB_HOST}`) || !value.startsWith(`${PROTOCOL}://${BITBUCKET_HOST}`) || !value.startsWith(`${PROTOCOL}://${GITLAB_HOST}/`) || !value.startsWith(`${PROTOCOL}://`))
-                  return 'Please enter a right repository URL (e.g. GitHub, Bitbucket, GitLab).'
-                return void (0)
-              },
-            })
-          }
-
-          if (templateOpts === 'local') {
-            opts[toolsOpts].local.path = await text({
-              message: `Enter a local folder path, relative to the current working directory.`,
-              placeholder: './',
-              validate: (value: string) => {
-                if (!value)
-                  return 'Please enter a path.'
-                if (value[0] !== '.')
-                  return 'Please enter a relative path.'
-                return void (0)
-              },
-            })
-          }
-        }
-
-        if (toolsOpts === 'nextra') {
-          const themeOpts = await select<any, string>({
-            message: 'Select a theme first',
-            options: [
-              { value: 'docs', label: 'Documentation' },
-              { value: 'blog', label: 'Blog' },
-            ],
-            initialValue: 'docs',
-          })
-
-          opts[toolsOpts].theme = themeOpts
-        }
-
-        if (toolsOpts === 'vitepress')
-          opts[toolsOpts].cmd = 'vitepress init'
+        opts.tools = toolsOpts
 
         if (toolsOpts === 'docusaurus' || toolsOpts === 'nextra') {
-          opts.path = await text({
-            message: `Where should we create your ${colors.cyan('docs')}?`,
+          if (toolsOpts === 'nextra') {
+            const themeOpts = await select<any, string>({
+              message: 'Select a theme first',
+              options: [
+                { value: 'docs', label: 'Documentation' },
+                { value: 'blog', label: 'Blog' },
+                { value: 'swr', label: 'SWR' },
+              ],
+              initialValue: 'docs',
+            })
+
+            opts[toolsOpts].theme = themeOpts
+          }
+
+          opts[toolsOpts].path = await text({
+            message: `Where should we create your ${colors.cyan(opts[toolsOpts].theme.toString())}?`,
             placeholder: './',
             validate: (value: string) => {
               if (!value)
@@ -143,12 +78,12 @@ export default async function init() {
           })
 
           const shouldDefaultName = await confirm({
-            message: `Do you want to create with default ${colors.cyan('docs')} name?`,
+            message: `Do you want to create with default ${colors.cyan(opts[toolsOpts].theme.toString())} name?`,
             initialValue: false,
           })
           if (!shouldDefaultName) {
-            opts.name = await text({
-              message: `What is your ${colors.cyan('documentation')} name?`,
+            opts[toolsOpts].name = await text({
+              message: `What is your ${colors.cyan(opts[toolsOpts].theme.toString())} name?`,
               placeholder: '',
               validate: (value: string) => {
                 if (!value)
@@ -158,7 +93,29 @@ export default async function init() {
             })
           }
           else {
-            opts.name = 'docs'
+            opts[toolsOpts].name = opts[toolsOpts].theme.toString()
+          }
+
+          if (toolsOpts === 'docusaurus') {
+            const langOpts = await confirm({
+              message: 'Would you like to use TypeScript?',
+              initialValue: false,
+            })
+
+            opts[toolsOpts].language = langOpts ? 'typescript' : 'javascript'
+
+            const gitStrategyOpts = await select<any, string>({
+              message: 'Select a theme first',
+              options: [
+                { value: 'deep', label: 'Preserve full history' },
+                { value: 'shallow', label: 'Clone with --depth=1' },
+                { value: 'copy', label: 'Shallow clone', hints: 'Not create a git repo' },
+                { value: 'custom', label: 'Enter your custom git clone command', hints: 'We will prompt you for it' },
+              ],
+              initialValue: 'custom',
+            })
+
+            opts[toolsOpts].gitStrategy = gitStrategyOpts
           }
         }
 
