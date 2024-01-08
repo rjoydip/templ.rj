@@ -59,6 +59,7 @@
     "@types/yargs-parser": "^21.0.3",
     "create-next-app": "^14.0.4",
     "del": "^7.1.0",
+    "nuxi": "^3.10.0",
     "tsx": "^4.7.0"
   }
 }

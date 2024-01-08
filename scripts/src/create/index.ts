@@ -50,10 +50,10 @@ async function main() {
             return await select<any, string>({
               message: 'Select package manager.',
               options: [
-                { value: 'bun', label: 'Bun' },
-                { value: 'npm', label: 'NPM' },
-                { value: 'pnpm', label: 'PNPM' },
-                { value: 'yarn', label: 'YARN' },
+                { value: 'bun', label: 'bun' },
+                { value: 'npm', label: 'npm' },
+                { value: 'pnpm', label: 'pnpm' },
+                { value: 'yarn', label: 'yarn' },
               ],
             })
           }
