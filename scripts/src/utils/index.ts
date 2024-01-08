@@ -2,8 +2,8 @@ import { parse, resolve } from 'node:path'
 import { readdir } from 'node:fs/promises'
 import { readdirSync } from 'node:fs'
 import { cwd } from 'node:process'
-import { findUp, findUpSync } from 'find-up'
 import { log, note } from '@clack/prompts'
+import { findUp, findUpSync } from 'find-up'
 import type { ProcessOutput } from 'zx/core'
 import { spinner } from 'zx'
 import { within } from 'zx/core'
@@ -34,14 +34,21 @@ export async function getPackagesAsync() {
   return await readdir(pkgRoot)
 }
 
-interface ExeCmdType {
-  execute: () => Promise<ProcessOutput | null>
+interface ExeCommon {
   showOutput?: boolean
   showSpinner?: boolean
   title: string
 }
 
-export async function executeCommand(params: ExeCmdType = {
+interface ExeCmdType<T> extends ExeCommon {
+  execute: () => Promise<T | ProcessOutput | null>
+}
+
+interface ExeFnType<T> extends ExeCommon {
+  fn: () => Promise<T | null>
+}
+
+export async function executeCommand<T>(params: ExeCmdType<T> = {
   execute: async () => null,
   showOutput: true,
   showSpinner: true,
@@ -52,6 +59,26 @@ export async function executeCommand(params: ExeCmdType = {
   const output = await within(async () => {
     return showSpinner ? await spinner(title, async () => await execute()) : await execute()
   })
-  if (showOutput)
-    note((output ?? '').toString(), `${title}`)
+  if (output !== null) {
+    if (showOutput)
+      note((output ?? '').toString(), `${title}`)
+  }
+}
+
+export async function executeFn<T>(params: ExeFnType<T> = {
+  fn: async () => null,
+  showOutput: true,
+  showSpinner: true,
+  title: '',
+}) {
+  const { fn, showOutput, showSpinner, title } = params
+  log.message('')
+  const output = await within(async () => {
+    return showSpinner ? await spinner(title, async () => await fn()) : await fn()
+  })
+
+  if (output !== null) {
+    if (showOutput)
+      note((output ?? '').toString(), `${title}`)
+  }
 }

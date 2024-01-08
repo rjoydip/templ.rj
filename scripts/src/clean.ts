@@ -1,4 +1,5 @@
 import { argv } from 'node:process'
+import { sep } from 'node:path'
 import colors from 'picocolors'
 import { deleteAsync } from 'del'
 import parser from 'yargs-parser'
@@ -21,7 +22,7 @@ async function main() {
     dryRun,
   })
 
-  log.message(`Deleted files and directories:\n\n${deletedPaths.map(d => colors.green(d.replace(root, '.'))).join('\n')}`)
+  log.message(`Deleted files and directories:\n\n${deletedPaths.map(d => colors.green(d.replace(`${root}${sep}`, ''))).join('\n')}`)
 
   outro('All set')
 }

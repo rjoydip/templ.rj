@@ -101,9 +101,6 @@
     "append_hashtag": false,
     "title_position": "start"
   },
-  "commit_title": {
-    "max_size": 70
-  },
   "commit_body": {
     "enable": true,
     "required": false

@@ -1,6 +1,9 @@
+import type { Stats } from 'node:fs'
+import { existsSync } from 'node:fs'
 import { intro, log } from '@clack/prompts'
-import fg from 'fast-glob'
+import { totalist } from 'totalist/sync'
 import markdownlint from 'markdownlint'
+import { getRootSync } from 'src/utils'
 
 // https://github.com/DavidAnson/markdownlint#rules
 // https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md
@@ -31,11 +34,19 @@ const config = {
   // 'MD041': false,
 }
 
+const mdFiles: string[] = []
+const root = getRootSync()
+
+totalist(root, (name: string, abs: string, stats: Stats) => {
+  if (!/node_modules|test|dist|coverage/.test(abs) && !stats.isSymbolicLink()) {
+    if (/\*.md$/.test(name) && existsSync(abs))
+      mdFiles.push(abs)
+  }
+})
+
 markdownlint(
   {
-    files: fg.sync('{*.md,{.github,packages,fixtures}/**/*.md}', {
-      ignore: ['**/node_modules/**'],
-    }),
+    files: mdFiles,
     frontMatter: /(^---$[\s\S]+?^---\$)?(\r\n|\r|\n)+/m,
     config,
   },
