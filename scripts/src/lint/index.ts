@@ -3,8 +3,9 @@ import { intro, log, outro } from '@clack/prompts'
 import parser from 'yargs-parser'
 import { $ } from 'zx'
 import isInCi from 'is-in-ci'
-import { executeCommand } from 'src/utils'
+import { executeCommand, executeFn } from 'src/utils'
 import colors from 'picocolors'
+import { getTypeCoverageResults } from './type-cov'
 
 async function main() {
   $.verbose = false
@@ -35,7 +36,15 @@ async function main() {
   // Markdown
   await executeCommand({
     title: 'Markdownlint',
-    execute: async () => await $`node --import tsx/esm ./src/lint/md.ts`,
+    execute: async () => await $`node --import tsx/esm ./src/lint/markdown.ts`,
+    showOutput: !noOutput,
+    showSpinner: !noSpinner,
+  })
+
+  // Type coverage
+  await executeFn<string>({
+    title: 'Type Coverage',
+    fn: getTypeCoverageResults,
     showOutput: !noOutput,
     showSpinner: !noSpinner,
   })
@@ -62,14 +71,6 @@ async function main() {
   await executeCommand({
     title: 'Spell check',
     execute: async () => await $`npx cspell ../ --quiet`,
-    showOutput: !noOutput,
-    showSpinner: !noSpinner,
-  })
-
-  // Knip
-  await executeCommand({
-    title: 'Knip',
-    execute: async () => await $`knip --no-gitignore --directory ../ --no-exit-code`,
     showOutput: !noOutput,
     showSpinner: !noSpinner,
   })
