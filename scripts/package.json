@@ -26,8 +26,7 @@
     "ci:check:dist": "node --import tsx/esm ./src/ci/check-dist.ts",
     "ci:delete:env": "node --import tsx/esm ./src/ci/delete-env.ts",
     "create:stack": "node --import tsx/esm ./src/create/index.ts",
-    "lint": "node --import tsx/esm ./src/lint/main.ts",
-    "lint:md": "node --import tsx/esm ./src/lint/md.ts",
+    "lint": "node --import tsx/esm ./src/lint/index.ts",
     "size:report": "node --import tsx/esm ./src/size/report.ts"
   },
   "dependencies": {
@@ -35,7 +34,6 @@
     "@pnpm/config": "^20.4.0",
     "cpy": "^11.0.0",
     "execa": "^8.0.1",
-    "fast-glob": "^3.3.2",
     "find-up": "^7.0.0",
     "gittar": "^0.1.1",
     "is-in-ci": "^0.1.0",
@@ -48,9 +46,11 @@
     "picocolors": "^1.0.0",
     "replace": "^1.2.2",
     "rollup": "^4.9.4",
+    "tablemark": "^3.0.0",
     "terser": "^5.26.0",
     "totalist": "^3.0.1",
     "type-fest": "^4.9.0",
+    "typescript": "^5.3.3",
     "yargs-parser": "^21.1.1",
     "zx": "^7.2.3"
   },
@@ -60,6 +60,7 @@
     "create-next-app": "^14.0.4",
     "del": "^7.1.0",
     "nuxi": "^3.10.0",
-    "tsx": "^4.7.0"
+    "tsx": "^4.7.0",
+    "type-coverage-core": "^2.27.1"
   }
 }

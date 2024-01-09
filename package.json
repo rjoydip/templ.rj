@@ -47,7 +47,6 @@
     "envinfo": "^7.11.0",
     "eslint": "^8.56.0",
     "eslint-flat-config-viewer": "^0.1.8",
-    "knip": "^3.13.0",
     "pnpm": "^8.14.0",
     "secretlint": "^8.1.0",
     "size-limit": "^11.0.1",
@@ -58,53 +57,6 @@
     "template": "keepachangelog",
     "unreleased": true,
     "commitLimit": false
-  },
-  "knip": {
-    "workspaces": {
-      "packages/*": {
-        "entry": [
-          "**/*.ts",
-          "**/*.config.js",
-          "tsup.config.ts"
-        ],
-        "ignore": [
-          "**/dist/*.js"
-        ]
-      },
-      "packages/cli": {
-        "entry": [
-          "**/*.ts",
-          "!*.mjs"
-        ],
-        "ignore": [
-          "*.mjs",
-          "**/dist/*.js"
-        ]
-      },
-      "scripts": {
-        "entry": [
-          "**/*.ts"
-        ],
-        "ignore": [
-          "**/templates"
-        ]
-      }
-    },
-    "ignoreBinaries": [
-      "eslint",
-      "only-allow"
-    ],
-    "ignoreDependencies": [
-      "@secretlint/secretlint-rule-preset-recommend",
-      "@size-limit/file",
-      "tsx"
-    ],
-    "ignore": [
-      "**/.github/**",
-      "**/fixtures/**",
-      "**/coverage",
-      "taze.config.js"
-    ]
   },
   "stackblitz": {
     "startCommand": "pnpm build"
