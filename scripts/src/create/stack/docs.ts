@@ -1,14 +1,13 @@
-import { basename, resolve } from 'node:path'
+import { resolve } from 'node:path'
 import { platform } from 'node:os'
 import { existsSync } from 'node:fs'
 import { mkdir } from 'node:fs/promises'
 import { exit } from 'node:process'
 import { cancel, confirm, group, log, note, select, text } from '@clack/prompts'
-import cpy from 'cpy'
 import latestVersion from 'latest-version'
 import replace from 'replace'
-import { installDependencies } from 'nypm'
 import colors from 'picocolors'
+import { downloadTemplate } from 'giget'
 import { $ } from 'zx'
 import type { SpinnerType } from '.'
 
@@ -32,8 +31,8 @@ export const defaultDocsOpts = {
   docusaurus: {
     name: '',
     path: '',
-    language: 'js',
-    theme: 'docs',
+    language: '',
+    theme: '',
     gitStrategy: '',
   },
   tools: '',
@@ -49,64 +48,54 @@ export async function create(root: string, packageManager: string, install: bool
 
   if (tools === 'docusaurus') {
     const { name, language, path, gitStrategy } = docusaurus
-    const $path = platform() === 'win32' ? resolve(root, path.toString()).replace(/\\/g, '\\\\') : resolve(root, path.toString())
     spinner.start(`Creating ${name.toString()} documentation`)
+    const $path = platform() === 'win32' ? resolve(root, path.toString()).replace(/\\/g, '\\\\') : resolve(root, path.toString())
     await $`npx create-docusaurus@latest ${name.toString()} classic ${$path} ${language === 'ts' ? '-t' : ''} ${!install ? '-s' : ''} -p ${packageManager} -g ${gitStrategy}`
     spinner.stop(`Generated ${name.toString()} documentation`)
   }
 
   if (tools === 'nextra') {
     const { name, theme, path } = nextra
-    const dest = resolve(root, path.toString(), basename(name.toString()))
+    spinner.start(`Creating ${name.toString()} documentation`)
+
+    const dest = resolve(root, path.toString(), name.toString())
     const pkgVersion = await latestVersion(packageManager)
 
     if (!existsSync(dest))
-      await mkdir(dest)
-    await cpy(resolve(root, 'templates', 'nextra', `${theme.toString()}`, '**'), dest)
+      await mkdir(dest, { recursive: true })
 
-    if (theme.toString() !== 'swr') {
-      replace({
-        regex: `example-${theme.toString()}`,
-        replacement: name,
-        paths: [resolve(dest, 'package.json')],
-        recursive: true,
-        silent: true,
-      })
-    }
-    else {
-      replace({
-        regex: 'swr-site',
-        replacement: name,
-        paths: [resolve(dest, 'package.json')],
-        recursive: true,
-        silent: true,
-      })
-    }
-
-    replace({
-      regex: '"packageManager": ""',
-      replacement: `"packageManager": "${packageManager.concat(`@${pkgVersion}`)}"`,
-      paths: [resolve(dest, 'package.json')],
-      recursive: true,
-      silent: true,
+    await downloadTemplate(`github:shuding/nextra/examples/${theme.toString()}`, {
+      dir: dest,
+      preferOffline: true,
+      install,
     })
 
-    if (install) {
-      spinner.start(`Installing via ${packageManager}`)
-      await installDependencies({
-        cwd: dest,
-        packageManager: {
-          name: packageManager as 'pnpm' || 'bun' || 'npm' || 'yarn',
-          command: packageManager === 'npm' ? 'npm install' : `${packageManager}`,
-        },
+    const docPkgJSONPath = resolve(dest, 'package.json')
+
+    if (existsSync(docPkgJSONPath)) {
+      replace({
+        regex: theme.toString() !== 'swr' ? `@templ/${theme.toString()}` : 'swr-site',
+        replacement: name,
+        paths: [docPkgJSONPath],
+        recursive: true,
         silent: true,
       })
-      spinner.stop(`Installed via ${packageManager}`)
+
+      replace({
+        regex: '"packageManager": ""',
+        replacement: `"packageManager": "${packageManager.concat(`@${pkgVersion}`)}"`,
+        paths: [docPkgJSONPath],
+        recursive: true,
+        silent: true,
+      })
+      spinner.stop(`Generated ${name.toString()} documentation`)
+
+      note(`cd ${dest}\n${install ? `${packageManager} dev` : `${packageManager} install\n${packageManager} dev`}`, 'Next steps.')
+      log.success(`${colors.green(name.toString())} package created`)
     }
-
-    note(`cd ${dest}\n${install ? `${packageManager} dev` : `${packageManager} install\n${packageManager} dev`}`, 'Next steps.')
-
-    log.success(`${colors.green(basename(name.toString()))} package created`)
+    else {
+      spinner.stop(colors.red('Error: Docs folder creation'))
+    }
   }
 }
 
