@@ -60,6 +60,10 @@
         "label": "chore",
         "hint": "Other changes that do not modify src or test files",
         "emoji": "🧹"
+      },
+      {
+        "value": "none",
+        "label": "none"
       }
     ]
   },
@@ -91,6 +95,10 @@
       {
         "value": "root",
         "label": "root"
+      },
+      {
+        "value": "none",
+        "label": "none"
       }
     ]
   },
@@ -112,7 +120,8 @@
       "closes",
       "breaking-change",
       "deprecated",
-      "custom"
+      "custom",
+      "none"
     ]
   },
   "breaking_change": {

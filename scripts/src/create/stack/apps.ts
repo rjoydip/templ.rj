@@ -1,4 +1,4 @@
-import { basename, resolve } from 'node:path'
+import { join, resolve } from 'node:path'
 import { platform } from 'node:os'
 import { mkdir } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
@@ -39,13 +39,12 @@ export interface AppsOptsType {
     prettier: symbol | boolean
   }
   nuxt: {
-    cwd: string | null
     template: symbol | string
-    log_level: symbol | string
     force: symbol | boolean
     offline: symbol | boolean
-    prefer_offline: symbol | boolean
-    git_init: symbol | boolean
+    logLevel: symbol | string
+    preferOffline: symbol | boolean
+    gitInit: symbol | boolean
     shell: symbol | boolean
   }
 }
@@ -80,34 +79,47 @@ export const defaultAppsOpts = {
     prettier: false,
   },
   nuxt: {
-    cwd: null,
+    logLevel: '',
     template: '',
-    log_level: '',
     force: false,
     offline: false,
-    prefer_offline: false,
-    git_init: false,
+    preferOffline: false,
+    gitInit: false,
     shell: false,
   },
 }
 
 export async function create(root: string, packageManager: string, install: boolean = false, spinner: SpinnerType, apps: AppsOptsType) {
-  const { type, next, path, name } = apps
+  let showStepNotes = true
+  let skipNativeInstall = install
+  const { type, next, nuxt, path, name } = apps
 
-  let dest = resolve(root, path.toString(), basename(name.toString()))
-  dest = platform() === 'win32' ? resolve(dest.toString()).replace(/\\/g, '\\\\') : resolve(dest.toString())
+  const appPath = join(path.toString(), name.toString())
+  const dest = platform() === 'win32' ? resolve(root, appPath).replace(/\\/g, '\\\\') : resolve(root, appPath)
 
   if (!existsSync(dest))
     await mkdir(dest)
 
+  spinner.start(`Creating ${name.toString()} documentation using ${colors.green(type.toString())}`)
+
   if (type === 'next') {
     const { language, tailwind, eslint, app_route, src_dir, import_alias, import_alias_value } = next
-    spinner.start(`Creating ${name.toString()} documentation`)
-    await $`npx create-next-app ${dest} ${language === 'javascript' ? '--js' : ''} ${tailwind ? '--tailwind' : ''} ${eslint ? '--eslint' : ''} ${app_route ? '--app' : ''} --src-dir ${src_dir} ${import_alias ? `--import-alias ${import_alias_value.toString()}` : '--import-alias'} ${!install ? `--no-use-${packageManager}` : `--use-${packageManager}`}`
-    spinner.stop(`Generated ${name.toString()} documentation`)
+
+    await $`npx create-next-app ${dest} ${language === 'javascript' ? '--js' : ''} ${tailwind ? '--tailwind' : ''} ${eslint ? '--eslint' : ''} ${app_route ? '--app' : ''} --src-dir ${src_dir} ${import_alias ? `--import-alias ${import_alias_value.toString()}` : '--import-alias'} ${install ? `--use-${packageManager}` : `--no-use-${packageManager}`}`
   }
 
-  if (install) {
+  if (type === 'nuxt') {
+    const { template, force, offline, preferOffline, gitInit, shell, logLevel } = nuxt
+
+    showStepNotes = true
+    skipNativeInstall = false
+
+    await $`npx nuxi init --template=${template} --${logLevel} ${force ? '--force' : ''} ${offline ? '--offline' : ''} ${preferOffline ? '--preferOffline' : ''} ${gitInit ? '--gitInit' : '--gitInit=false'} ${shell ? '--shell' : ''} ${!install ? '--no-install' : ''} ${packageManager ? `--packageManager=${packageManager}` : ''} ${dest}`
+  }
+
+  spinner.stop(`Generated ${name.toString()} documentation using ${colors.green(type.toString())}`)
+
+  if (skipNativeInstall) {
     spinner.start(`Installing via ${packageManager}`)
     await installDependencies({
       cwd: dest,
@@ -120,9 +132,10 @@ export async function create(root: string, packageManager: string, install: bool
     spinner.stop(`Installed via ${packageManager}`)
   }
 
-  note(`cd ${dest}\n${install ? `${packageManager} dev` : `${packageManager} install\n${packageManager} dev`}`, 'Next steps.')
+  if (showStepNotes)
+    note(`cd ${appPath}\n${install ? `${packageManager} dev` : `${packageManager} install\n${packageManager} dev`}`, 'Next steps.')
 
-  log.success(`${colors.green(basename(name.toString()))} package created`)
+  log.success(`${colors.green(name.toString())} package created`)
 }
 export async function init() {
   return await group(
@@ -162,10 +175,12 @@ export async function init() {
         }
 
         const toolsOrFrameworkOpts = await select<any, string>({
-          message: 'Select tools/framework.',
+          message: 'Select frontend framework.',
           options: [
+            { value: 'astro', label: 'Astro' },
             { value: 'next', label: 'Next' },
             { value: 'nuxt', label: 'Nuxt' },
+            { value: 'nitro', label: 'Nitro' },
             { value: 'vite', label: 'Vite' },
             { value: 'vue', label: 'Vue' },
           ],
@@ -175,6 +190,15 @@ export async function init() {
         opts.type = toolsOrFrameworkOpts
 
         if (toolsOrFrameworkOpts === 'nuxt') {
+          opts[toolsOrFrameworkOpts].logLevel = await select<any, string>({
+            message: 'Select log level.',
+            options: [
+              { value: 'silent', label: 'Silent' },
+              { value: 'info', label: 'Info' },
+              { value: 'verbose', label: 'Verbose' },
+            ],
+          })
+
           opts[toolsOrFrameworkOpts].template = await select<any, string>({
             message: 'Select template.',
             options: [
@@ -188,15 +212,6 @@ export async function init() {
             ],
           })
 
-          opts[toolsOrFrameworkOpts].log_level = await select<any, string>({
-            message: 'Select framework.',
-            options: [
-              { value: 'silent', label: 'Silent' },
-              { value: 'info', label: 'Info' },
-              { value: 'verbose', label: 'Verbose' },
-            ],
-          })
-
           opts[toolsOrFrameworkOpts].force = await confirm({
             message: 'Override existing directory?',
             initialValue: false,
@@ -207,12 +222,12 @@ export async function init() {
             initialValue: false,
           })
 
-          opts[toolsOrFrameworkOpts].prefer_offline = await confirm({
+          opts[toolsOrFrameworkOpts].preferOffline = await confirm({
             message: 'Prefer offline mode?',
             initialValue: false,
           })
 
-          opts[toolsOrFrameworkOpts].git_init = await confirm({
+          opts[toolsOrFrameworkOpts].gitInit = await confirm({
             message: 'Initialize git repository?',
             initialValue: false,
           })
