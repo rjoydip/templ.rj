@@ -120,8 +120,7 @@
       "closes",
       "breaking-change",
       "deprecated",
-      "custom",
-      "none"
+      "custom"
     ]
   },
   "breaking_change": {

@@ -1,12 +1,14 @@
-import { join, resolve } from 'node:path'
+import { join, resolve, sep } from 'node:path'
 import { platform } from 'node:os'
 import { mkdir } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
 import { exit } from 'node:process'
-import { cancel, confirm, group, log, note, select, text } from '@clack/prompts'
+import { cancel, confirm, group, log, select, text } from '@clack/prompts'
 import colors from 'picocolors'
 import { $ } from 'zx'
-import { installDependencies } from 'nypm'
+import { downloadTemplate, startShell } from 'giget'
+import { createRegExp, exactly } from 'magic-regexp'
+import { stackNotes, updateTemplateAssets } from '../../utils'
 import type { SpinnerType } from '.'
 
 export interface AppsOptsType {
@@ -41,8 +43,6 @@ export interface AppsOptsType {
   nuxt: {
     template: symbol | string
     force: symbol | boolean
-    offline: symbol | boolean
-    logLevel: symbol | string
     preferOffline: symbol | boolean
     gitInit: symbol | boolean
     shell: symbol | boolean
@@ -79,10 +79,8 @@ export const defaultAppsOpts = {
     prettier: false,
   },
   nuxt: {
-    logLevel: '',
     template: '',
     force: false,
-    offline: false,
     preferOffline: false,
     gitInit: false,
     shell: false,
@@ -90,50 +88,62 @@ export const defaultAppsOpts = {
 }
 
 export async function create(root: string, packageManager: string, install: boolean = false, spinner: SpinnerType, apps: AppsOptsType) {
-  let showStepNotes = true
-  let skipNativeInstall = install
+  let showStepNote = true
   const { type, next, nuxt, path, name } = apps
 
   const appPath = join(path.toString(), name.toString())
-  const dest = platform() === 'win32' ? resolve(root, appPath).replace(/\\/g, '\\\\') : resolve(root, appPath)
+  const dest = platform() === 'win32' ? resolve(root, appPath).replace(createRegExp(exactly(sep), ['g']), '\\\\') : resolve(root, appPath)
 
   if (!existsSync(dest))
-    await mkdir(dest)
+    await mkdir(dest, { recursive: true })
 
-  spinner.start(`Creating ${name.toString()} documentation using ${colors.green(type.toString())}`)
+  spinner.start(`Creating ${name.toString()} application`)
+
+  if (type === 'astro')
+    log.message('Coming soon')
 
   if (type === 'next') {
     const { language, tailwind, eslint, app_route, src_dir, import_alias, import_alias_value } = next
 
-    await $`npx create-next-app ${dest} ${language === 'javascript' ? '--js' : ''} ${tailwind ? '--tailwind' : ''} ${eslint ? '--eslint' : ''} ${app_route ? '--app' : ''} --src-dir ${src_dir} ${import_alias ? `--import-alias ${import_alias_value.toString()}` : '--import-alias'} ${install ? `--use-${packageManager}` : `--no-use-${packageManager}`}`
+    await $`npx create-next-app ${dest} ${language === 'javascript' ? '--js' : '--ts'} ${tailwind ? '--tailwind' : ''} ${eslint ? '--eslint' : ''} ${app_route ? '--app' : ''} --src-dir ${src_dir} ${import_alias ? `--import-alias ${import_alias_value.toString()}` : '--import-alias'} ${install ? `--use-${packageManager}` : `--no-use-${packageManager}`}`
+
+    spinner.stop(`Generated ${name.toString()} application`)
   }
 
   if (type === 'nuxt') {
-    const { template, force, offline, preferOffline, gitInit, shell, logLevel } = nuxt
+    const { template, force, preferOffline, gitInit, shell } = nuxt
 
-    showStepNotes = true
-    skipNativeInstall = false
+    showStepNote = true
 
-    await $`npx nuxi init --template=${template} --${logLevel} ${force ? '--force' : ''} ${offline ? '--offline' : ''} ${preferOffline ? '--preferOffline' : ''} ${gitInit ? '--gitInit' : '--gitInit=false'} ${shell ? '--shell' : ''} ${!install ? '--no-install' : ''} ${packageManager ? `--packageManager=${packageManager}` : ''} ${dest}`
-  }
-
-  spinner.stop(`Generated ${name.toString()} documentation using ${colors.green(type.toString())}`)
-
-  if (skipNativeInstall) {
-    spinner.start(`Installing via ${packageManager}`)
-    await installDependencies({
-      cwd: dest,
-      packageManager: {
-        name: packageManager as 'pnpm' || 'bun' || 'npm' || 'yarn',
-        command: packageManager === 'npm' ? 'npm install' : `${packageManager}`,
-      },
-      silent: true,
+    await downloadTemplate(template.toString(), {
+      dir: dest,
+      force: !!force,
+      preferOffline: !!preferOffline,
+      install,
+      registry: 'https://raw.githubusercontent.com/nuxt/starter/templates/templates',
     })
-    spinner.stop(`Installed via ${packageManager}`)
+
+    await updateTemplateAssets(`@templ/${name.toString()}`, packageManager, dest)
+
+    if (gitInit)
+      await $`git init ${dest}`
+
+    if (shell)
+      startShell(dest)
   }
 
-  if (showStepNotes)
-    note(`cd ${appPath}\n${install ? `${packageManager} dev` : `${packageManager} install\n${packageManager} dev`}`, 'Next steps.')
+  if (type === 'nitro')
+    log.message('Coming soon')
+
+  if (type === 'vite')
+    log.message('Coming soon')
+
+  if (type === 'vue')
+    log.message('Coming soon')
+
+  spinner.stop(`Generated ${name.toString()} application`)
+
+  stackNotes(appPath, install, packageManager, showStepNote)
 
   log.success(`${colors.green(name.toString())} package created`)
 }
@@ -190,15 +200,6 @@ export async function init() {
         opts.type = toolsOrFrameworkOpts
 
         if (toolsOrFrameworkOpts === 'nuxt') {
-          opts[toolsOrFrameworkOpts].logLevel = await select<any, string>({
-            message: 'Select log level.',
-            options: [
-              { value: 'silent', label: 'Silent' },
-              { value: 'info', label: 'Info' },
-              { value: 'verbose', label: 'Verbose' },
-            ],
-          })
-
           opts[toolsOrFrameworkOpts].template = await select<any, string>({
             message: 'Select template.',
             options: [
@@ -207,18 +208,15 @@ export async function init() {
               { value: 'module', label: 'Nuxt Module with Module Builder' },
               { value: 'layer', label: 'Nuxt Layer Starter with Extends (experimental)' },
               { value: 'module-devtools', label: 'Nuxt Module with Nuxt DevTools' },
+              { value: 'doc-driven', label: 'Nuxt Docs Driven' },
               { value: 'v2', label: 'Nuxt 2' },
               { value: 'v2-bridge', label: 'Nuxt 2 + Bridge' },
+              { value: 'v3', label: 'Nuxt 3' },
             ],
           })
 
           opts[toolsOrFrameworkOpts].force = await confirm({
             message: 'Override existing directory?',
-            initialValue: false,
-          })
-
-          opts[toolsOrFrameworkOpts].offline = await confirm({
-            message: 'Force offline mode?',
             initialValue: false,
           })
 
@@ -304,7 +302,7 @@ export async function init() {
 
           opts[toolsOrFrameworkOpts].src_dir = await confirm({
             message: `Initialize inside a ${colors.cyan('src')} directory`,
-            initialValue: true,
+            initialValue: false,
           })
 
           opts[toolsOrFrameworkOpts].app_route = await confirm({

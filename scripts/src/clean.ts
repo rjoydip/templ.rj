@@ -4,6 +4,7 @@ import colors from 'picocolors'
 import { deleteAsync } from 'del'
 import parser from 'yargs-parser'
 import { intro, log, outro } from '@clack/prompts'
+import { createRegExp, exactly } from 'magic-regexp'
 import { getRootAsync } from './utils'
 
 async function main() {
@@ -22,7 +23,7 @@ async function main() {
     dryRun,
   })
 
-  log.message(`Deleted files and directories:\n\n${deletedPaths.map(d => colors.green(d.replace(`${root}${sep}`, ''))).join('\n')}`)
+  log.message(`Deleted files and directories:\n\n${deletedPaths.map(d => colors.green(d.replace(createRegExp(exactly(`${root}${sep}`), ['g', 'm']), ''))).join('\n')}`)
 
   outro('All set')
 }

@@ -5,6 +5,7 @@ import { getRootAsync } from 'src/utils'
 import { totalist } from 'totalist'
 import { lint as typeCoverage } from 'type-coverage-core'
 import tablemark from 'tablemark'
+import { createRegExp, exactly } from 'magic-regexp'
 
 export async function getTypeCoverageResults(): Promise<string> {
   const paths: string[] = []
@@ -21,7 +22,7 @@ export async function getTypeCoverageResults(): Promise<string> {
     const coverage = await typeCoverage(p, { strict: true })
     const percentage = (coverage.correctCount / coverage.totalCount) * 100
     return {
-      path: p.replace(`${root}${sep}`, ''),
+      path: p.replace(createRegExp(exactly(`${root}${sep}`), ['g']), ''),
       correctCount: coverage.correctCount,
       totalCount: coverage.totalCount,
       percentage: percentage > 0 ? Number((percentage).toFixed(2)) : 0,
