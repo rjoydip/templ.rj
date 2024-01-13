@@ -113,7 +113,7 @@ function getDiff(curr: number, prev?: number) {
   if (diff === 0)
     return ''
   const sign = diff > 0 ? '+' : ''
-  return ` (**${sign}${prettyBytes(diff)}**)`
+  return ` (**${sign ?? '-'}${prettyBytes(diff) ?? 0}**)`
 }
 
 marked.use(markedTerminal())

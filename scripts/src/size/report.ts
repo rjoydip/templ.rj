@@ -3,6 +3,7 @@ import { existsSync } from 'node:fs'
 import { cp, mkdir, readFile, writeFile } from 'node:fs/promises'
 import { totalist } from 'totalist'
 import { intro, outro } from '@clack/prompts'
+import { createRegExp, exactly } from 'magic-regexp'
 import { getArtifactsDirAsync, getPackagesAsync, getPackagesDirAsync } from '../utils'
 import { renderReport } from './render'
 import { generateData } from './data'
@@ -25,18 +26,26 @@ async function main() {
 
   intro('Size report generate')
 
-  if (!existsSync(tempDir))
-    await mkdir(tempDir)
+  if (!existsSync(tempDir)) {
+    await mkdir(tempDir, {
+      recursive: true,
+    })
+  }
 
   if (existsSync(currDir)) {
+    const regex = createRegExp(exactly('.json'), ['g'])
     await totalist(currDir, async (name: string, abs: string) => {
-      if (/\.json$/.test(name))
+      if (regex.test(name))
         await cp(abs, resolve(prevDir, name), { force: true })
     })
   }
   else {
-    await mkdir(currDir)
-    await mkdir(prevDir)
+    await mkdir(currDir, {
+      recursive: true,
+    })
+    await mkdir(prevDir, {
+      recursive: true,
+    })
   }
 
   const presets: Preset[] = packages.map(pkgName => ({

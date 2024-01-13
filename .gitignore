@@ -28,16 +28,5 @@ temp
 fixtures/output/*
 !fixtures/output/.gitkeep
 
-# Playwright
-/packages/**/test-results/
-/packages/**/playwright-report/
-/packages/**/playwright/.cache/
-
 # Tools
 /tools/lib-cov
-
-# docs
-app/**/docs
-docs/.vitepress/dist
-docs/.vitepress/cache
-*size-report.md

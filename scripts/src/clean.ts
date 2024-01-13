@@ -23,7 +23,7 @@ async function main() {
     dryRun,
   })
 
-  log.message(getWrappedStr(`Deleted files and directories:\n\n${deletedPaths.map(d => colors.green(d.replace(createRegExp(exactly(`${root}${sep}`), ['g', 'm']), ''))).join('\n')}`))
+  log.message(deletedPaths.length ? getWrappedStr(`Deleted files and directories:\n\n${deletedPaths.map(d => colors.green(d.replace(createRegExp(exactly(`${root}${sep}`), ['g', 'm']), ''))).join('\n')}`) : 'Nothing has been deleted')
 
   outro('All set')
 }

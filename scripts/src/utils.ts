@@ -25,6 +25,8 @@ interface ExeFnType<T> extends ExeCommon {
   fn: () => Promise<T | null>
 }
 
+export const ignoreRegex = createRegExp(exactly('node_modules').or('test').or('dist').or('coverage').or('templates'), [])
+
 export function getRootDirSync() {
   const root = findUpSync('pnpm-workspace.yaml') || findUpSync('.npmrc') || cwd()
   return parse(root).dir

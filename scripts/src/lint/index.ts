@@ -3,8 +3,8 @@ import { resolve } from 'node:path'
 import { intro, log, outro } from '@clack/prompts'
 import parser from 'yargs-parser'
 import isInCi from 'is-in-ci'
-import { exeCmd, executeFn, getRootDirAsync, getWrappedStr } from 'src/utils'
 import colors from 'picocolors'
+import { exeCmd, executeFn, getRootDirAsync, getWrappedStr } from '../utils'
 import { getTypeCoverageResults } from './type-cov'
 
 async function main() {
