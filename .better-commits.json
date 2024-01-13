@@ -60,10 +60,6 @@
         "label": "chore",
         "hint": "Other changes that do not modify src or test files",
         "emoji": "🧹"
-      },
-      {
-        "value": "none",
-        "label": "none"
       }
     ]
   },
@@ -91,10 +87,6 @@
       {
         "value": "docs",
         "label": "docs"
-      },
-      {
-        "value": "root",
-        "label": "root"
       },
       {
         "value": "none",
