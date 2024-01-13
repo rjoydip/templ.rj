@@ -1,20 +1,20 @@
 {
-  "name": "@templ/cli",
-  "cliname": "TEMPL",
+  "name": "@templ/basic-ts",
   "type": "module",
   "version": "0.0.0",
-  "description": "TEMPL cli service",
+  "private": true,
+  "packageManager": "pnpm@8.14.1",
+  "description": "TEMPL basic-ts service",
   "license": "MIT",
-  "homepage": "https://github.com/rjoydip/templ/tree/main/packages/cli#readme",
+  "homepage": "https://github.com/rjoydip/templ/tree/main/packages/basic-ts#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rjoydip/templ.git",
-    "directory": "packages/cli"
+    "directory": "packages/basic-ts"
   },
   "bugs": {
     "url": "https://github.com/rjoydip/templ/issues"
   },
-  "sideEffects": true,
   "exports": {
     "types": "./dist/index.d.ts",
     "import": "./dist/index.js",
@@ -22,13 +22,9 @@
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "bin": {
-    "templjs": "templ.mjs"
-  },
   "files": [
     "*.d.ts",
-    "dist",
-    "templ.mjs"
+    "dist"
   ],
   "engines": {
     "node": "^18.8.0 || >=20.6.0",
@@ -36,17 +32,13 @@
   },
   "scripts": {
     "build": "tsup",
-    "pretest": "pnpm run build",
-    "test": "pnpm build && vitest run",
-    "test:cli": "pnpm build && pnpm link . && pnpm templjs -v"
+    "test": "pnpm build && vitest run"
   },
-  "dependencies": {
-    "sade": "^1.8.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/node": "^20.11.0",
     "@vitest/coverage-v8": "^1.2.0",
-    "tsup": "^8.0.1",
+    "tsup": "^7.3.0",
     "vitest": "^1.2.0"
   }
 }

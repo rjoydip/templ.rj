@@ -3,7 +3,8 @@ import { existsSync } from 'node:fs'
 import { intro, log } from '@clack/prompts'
 import { totalist } from 'totalist/sync'
 import markdownlint from 'markdownlint'
-import { getRootSync } from 'src/utils'
+import { createRegExp, exactly } from 'magic-regexp'
+import { getRootDirSync, getWrappedStr, ignoreRegex } from '../utils'
 
 // https://github.com/DavidAnson/markdownlint#rules
 // https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md
@@ -35,11 +36,12 @@ const config = {
 }
 
 const mdFiles: string[] = []
-const root = getRootSync()
+const root = getRootDirSync()
 
 totalist(root, (name: string, abs: string, stats: Stats) => {
-  if (!/node_modules|test|dist|coverage/.test(abs) && !stats.isSymbolicLink()) {
-    if (/\*.md$/.test(name) && existsSync(abs))
+  if (!ignoreRegex.test(abs) && !stats.isSymbolicLink()) {
+    const regex = createRegExp(exactly('.md'), [])
+    if (regex.test(name) && existsSync(abs))
       mdFiles.push(abs)
   }
 })
@@ -53,11 +55,11 @@ markdownlint(
   (err, result) => {
     intro('Markdown lint')
     if (err)
-      log.error(String(err))
+      log.error(getWrappedStr(String(err)))
 
     const resultString = result?.toString()
     if (resultString)
-      log.error(resultString)
+      log.error(getWrappedStr(resultString))
     else
       log.info('All looks good')
   },

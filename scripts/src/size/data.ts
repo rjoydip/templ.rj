@@ -3,8 +3,10 @@
 import { promisify } from 'node:util'
 import { brotliCompress, gzip } from 'node:zlib'
 import { platform } from 'node:os'
+import { sep } from 'node:path'
 import { rollup } from 'rollup'
 import { minify } from 'terser'
+import { createRegExp, exactly } from 'magic-regexp'
 import type { Preset } from './report'
 
 const gzipAsync = promisify(gzip)
@@ -28,7 +30,7 @@ async function generateBundle(preset: Preset) {
     typeof preset.imports === 'string'
       ? preset.imports
       : `{ ${preset.imports.join(', ')} }`
-  } from '${platform() === 'win32' ? preset.entry.replace(/\\/g, '\\\\') : preset.entry}'`
+  } from '${platform() === 'win32' ? preset.entry.replace(createRegExp(exactly(sep), ['g']), '\\\\') : preset.entry}'`
 
   const result = await rollup({
     input: id,

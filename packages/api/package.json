@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.0",
   "private": true,
-  "packageManager": "pnpm@8.14.0",
+  "packageManager": "pnpm@8.14.1",
   "description": "TEMPL api service",
   "license": "MIT",
   "homepage": "https://github.com/rjoydip/templ/tree/main/packages/api#readme",
@@ -28,9 +28,9 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@types/node": "^20.10.7",
-    "@vitest/coverage-v8": "^1.1.3",
+    "@types/node": "^20.11.0",
+    "@vitest/coverage-v8": "^1.2.0",
     "pactum": "^3.5.1",
-    "vitest": "^1.1.3"
+    "vitest": "^1.2.0"
   }
 }

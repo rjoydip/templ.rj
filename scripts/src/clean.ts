@@ -4,10 +4,11 @@ import colors from 'picocolors'
 import { deleteAsync } from 'del'
 import parser from 'yargs-parser'
 import { intro, log, outro } from '@clack/prompts'
-import { getRootAsync } from './utils'
+import { createRegExp, exactly } from 'magic-regexp'
+import { getRootDirAsync, getWrappedStr } from './utils'
 
 async function main() {
-  const root = await getRootAsync()
+  const root = await getRootDirAsync()
   const { dryRun = false } = parser(argv.splice(2), {
     configuration: {
       'boolean-negation': false,
@@ -22,7 +23,7 @@ async function main() {
     dryRun,
   })
 
-  log.message(`Deleted files and directories:\n\n${deletedPaths.map(d => colors.green(d.replace(`${root}${sep}`, ''))).join('\n')}`)
+  log.message(deletedPaths.length ? getWrappedStr(`Deleted files and directories:\n\n${deletedPaths.map(d => colors.green(d.replace(createRegExp(exactly(`${root}${sep}`), ['g', 'm']), ''))).join('\n')}`) : 'Nothing has been deleted')
 
   outro('All set')
 }

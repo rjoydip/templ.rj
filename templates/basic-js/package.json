@@ -1,42 +1,42 @@
 {
-  "name": "@templ/core",
+  "name": "@templ/basic-js",
   "type": "module",
   "version": "0.0.0",
-  "description": "TEMPL core service",
+  "private": true,
+  "packageManager": "",
+  "description": "TEMPL basic-js package",
   "license": "MIT",
-  "homepage": "https://github.com/rjoydip/templ/tree/main/packages/core#readme",
+  "homepage": "https://github.com/rjoydip/templ/tree/main/packages/basic-js#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rjoydip/templ.git",
-    "directory": "packages/core"
+    "directory": "packages/basic-js"
   },
   "bugs": {
     "url": "https://github.com/rjoydip/templ/issues"
   },
-  "sideEffects": true,
   "exports": {
-    "types": "./dist/index.d.ts",
-    "import": "./dist/index.js",
-    "require": "./dist/index.js"
+    "types": "types.d.ts",
+    "import": "./src/index.js",
+    "require": "./src/index.js"
   },
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "src/index.js",
+  "types": "types.d.ts",
   "files": [
     "*.d.ts",
-    "dist"
+    "src"
   ],
   "engines": {
     "node": "^18.8.0 || >=20.6.0",
     "npm": ">=8"
   },
   "scripts": {
-    "build": "tsup",
     "test": "vitest run"
   },
+  "dependencies": {},
   "devDependencies": {
     "@types/node": "^20.11.0",
     "@vitest/coverage-v8": "^1.2.0",
-    "tsup": "^8.0.1",
     "vitest": "^1.2.0"
   }
 }

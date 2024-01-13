@@ -2,20 +2,18 @@ import { basename, resolve } from 'node:path'
 import { mkdir } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
 import { exit } from 'node:process'
-import { cancel, confirm, group, log, note, select, text } from '@clack/prompts'
+import { cancel, confirm, group, select, text } from '@clack/prompts'
 import cpy from 'cpy'
-import replace from 'replace'
-import gittar from 'gittar'
-import latestVersion from 'latest-version'
 import { installDependencies } from 'nypm'
 import colors from 'picocolors'
+import { downloadTemplate } from 'giget'
+import { stackNotes, updateTemplateAssets } from '../../utils'
 import type { SpinnerType } from '.'
 
 export interface PkgsOptsType {
   path: symbol | string
   template: symbol | string
   remote: {
-    hostname: symbol | string
     repo: symbol | string
   }
   local: {
@@ -28,7 +26,6 @@ export const defaultPkgsOpts = {
   path: '',
   template: '',
   remote: {
-    hostname: '',
     repo: '',
   },
   local: {
@@ -39,57 +36,44 @@ export const defaultPkgsOpts = {
 
 export async function create(root: string, packageManager: string, install: boolean = false, spinner: SpinnerType, pkgs: PkgsOptsType) {
   const { template, path } = pkgs
-  const { hostname, repo } = pkgs.remote
+  const { repo } = pkgs.remote
   const { name, language } = pkgs.local
-  const $basename = repo ? basename(repo.toString()) : name.toString()
-  const dest = resolve(root, path.toString(), $basename)
+  const appPath = repo ? basename(repo.toString()) : name.toString()
+  const dest = resolve(root, path.toString(), appPath)
+  spinner.start(`Creating ${name.toString()} package`)
+
+  if (!existsSync(dest))
+    await mkdir(dest, { recursive: true })
 
   if (template === 'remote') {
-    await gittar.fetch(repo.toString(), { hostname })
-    await gittar.extract(repo.toString(), dest)
+    await downloadTemplate(repo.toString(), {
+      dir: dest,
+      preferOffline: true,
+      install,
+    })
   }
 
   if (template === 'local') {
-    const pkgVersion = await latestVersion(packageManager)
-
-    if (!existsSync(dest))
-      await mkdir(dest)
-
-    await cpy(resolve(root, 'templates', 'basic', `${language.toString()}`, '**'), dest)
-
-    replace({
-      regex: `${language.toString()}`,
-      replacement: name,
-      paths: [resolve(dest, 'package.json'), resolve(dest, 'README.md')],
-      recursive: true,
-      silent: true,
+    await cpy(resolve(root, 'templates', `basic-${language.toString()}`, '**'), dest)
+    await updateTemplateAssets(`@templ/${name.toString()}`, packageManager, dest, {
+      from: `basic-${language.toString()}`,
+      to: name.toString(),
     })
-
-    replace({
-      regex: '"packageManager": ""',
-      replacement: `"packageManager": "${packageManager.concat(`@${pkgVersion}`)}"`,
-      paths: [resolve(dest, 'package.json')],
-      recursive: true,
-      silent: true,
-    })
+    if (install) {
+      await installDependencies({
+        cwd: dest,
+        packageManager: {
+          name: packageManager as 'pnpm' || 'bun' || 'npm' || 'yarn',
+          command: packageManager === 'npm' ? 'npm install' : `${packageManager}`,
+        },
+        silent: true,
+      })
+    }
   }
 
-  if (install) {
-    spinner.start(`Installing via ${packageManager}`)
-    await installDependencies({
-      cwd: dest,
-      packageManager: {
-        name: packageManager as 'pnpm' || 'bun' || 'npm' || 'yarn',
-        command: packageManager === 'npm' ? 'npm install' : `${packageManager}`,
-      },
-      silent: true,
-    })
-    spinner.stop(`Installed via ${packageManager}`)
-  }
+  spinner.stop(`Generated ${name.toString()} package`)
 
-  note(`cd ${dest}\n${install ? `${packageManager} dev` : `${packageManager} install\n${packageManager} dev`}`, 'Next steps.')
-
-  log.success(`${colors.green($basename)} package created`)
+  stackNotes(appPath, install, packageManager)
 }
 
 export async function init() {
@@ -98,7 +82,7 @@ export async function init() {
       pkg: async () => {
         const opts: PkgsOptsType = defaultPkgsOpts
         opts.path = await text({
-          message: `Where should we create your ${colors.cyan('packages')}?`,
+          message: `Where should we create your ${colors.cyan('package')}?`,
           placeholder: './packages',
           validate: (value: string) => {
             if (!value)
@@ -112,21 +96,18 @@ export async function init() {
         const templateOpts = await select<any, string>({
           message: 'Select a host below',
           options: [
-            { value: 'bitbucket', label: 'Bitbucket' },
-            { value: 'github', label: 'Github' },
-            { value: 'gitlab', label: 'Gitlab' },
+            { value: 'remote', label: 'Remote' },
             { value: 'local', label: 'Local' },
           ],
           initialValue: 'local',
         })
 
-        opts.template = (templateOpts === 'github' || templateOpts === 'gitlab' || templateOpts === 'bitbucket') ? 'remote' : templateOpts
+        opts.template = templateOpts
 
-        if (opts.template === 'remote') {
-          opts.remote.hostname = templateOpts
+        if (templateOpts === 'remote') {
           opts.remote.repo = await text({
             message: `Enter a repository URL.`,
-            placeholder: `ownerName/repoName`,
+            placeholder: `github:username/repo[/subpath][#ref]`,
             validate: (value: string) => {
               if (!value)
                 return 'Please enter a URL.'
@@ -144,7 +125,7 @@ export async function init() {
           opts.local.language = langOpts ? 'ts' : 'js'
 
           opts.local.name = await text({
-            message: `What is your ${colors.cyan('packages')} name?`,
+            message: `What is your ${colors.cyan('package')} name?`,
             placeholder: '',
             validate: (value: string) => {
               if (!value)

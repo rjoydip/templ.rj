@@ -1,5 +1,5 @@
 import { argv, exit } from 'node:process'
-import { cancel, confirm, group, intro, outro, select, spinner } from '@clack/prompts'
+import { cancel, confirm, group, intro, log, outro, select, spinner } from '@clack/prompts'
 import parser from 'yargs-parser'
 import type { CreateOptionsType, OptionsType } from './stack'
 import { apps, createStack, docs, getCreateOpts, getDefaultOpts, pkgs } from './stack'
@@ -27,7 +27,7 @@ async function main() {
             options: [
               { value: 'apps', label: 'Application' },
               { value: 'docs', label: 'Documentation' },
-              { value: 'pkgs', label: 'Packages' },
+              { value: 'pkgs', label: 'Package' },
             ],
             initialValue: 'pkgs',
           })
@@ -50,10 +50,10 @@ async function main() {
             return await select<any, string>({
               message: 'Select package manager.',
               options: [
-                { value: 'bun', label: 'bun' },
-                { value: 'npm', label: 'npm' },
-                { value: 'pnpm', label: 'pnpm' },
-                { value: 'yarn', label: 'yarn' },
+                { value: 'bun', label: 'Bun' },
+                { value: 'npm', label: 'Npm' },
+                { value: 'pnpm', label: 'Pnpm' },
+                { value: 'yarn', label: 'Yarn' },
               ],
             })
           }
@@ -79,7 +79,7 @@ async function main() {
     )
 
     if (dryRun) {
-      console.log(JSON.stringify(options, null, 4))
+      log.message(JSON.stringify(options, null, 4))
       return 0
     }
 

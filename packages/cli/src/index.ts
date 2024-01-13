@@ -18,8 +18,6 @@ async function main() {
     .action(async (opts) => {
       try {
         // eslint-disable-next-line no-console
-        console.clear()
-        // eslint-disable-next-line no-console
         console.log(opts)
         // eslint-disable-next-line no-console
         console.log()
