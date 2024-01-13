@@ -3,7 +3,7 @@ import { existsSync } from 'node:fs'
 import { cp, mkdir, readFile, writeFile } from 'node:fs/promises'
 import { totalist } from 'totalist'
 import { intro, outro } from '@clack/prompts'
-import { getPackageRootAsync, getPackagesAsync, getRootAsync } from '../utils'
+import { getArtifactsDirAsync, getPackagesAsync, getPackagesDirAsync } from '../utils'
 import { renderReport } from './render'
 import { generateData } from './data'
 
@@ -14,14 +14,14 @@ export interface Preset {
 }
 
 async function main() {
-  const root = await getRootAsync()
   const packages = await getPackagesAsync()
-  const pkgRoot = await getPackageRootAsync()
+  const pkgRoot = await getPackagesDirAsync()
+  const artifacts = await getArtifactsDirAsync()
 
-  const tempDir = `${root}/temp`
-  const currDir = `${root}/temp/size`
-  const prevDir = `${root}/temp/size-prev`
-  const reportFile = `${root}/size-report.md`
+  const tempDir = `${artifacts}/temp`
+  const currDir = `${artifacts}/temp/size`
+  const prevDir = `${artifacts}/temp/size-prev`
+  const reportFile = `${artifacts}/size-report.md`
 
   intro('Size report generate')
 

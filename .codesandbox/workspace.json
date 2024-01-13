@@ -2,11 +2,6 @@
   "default": {
     "name": "Default",
     "type": "SIDEKICK",
-    "items": [
-      /* {
-        "type": "PREVIEW",
-        "port": "6006"
-      } */
-    ]
+    "items": []
   }
 }

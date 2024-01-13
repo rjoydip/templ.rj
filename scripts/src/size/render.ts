@@ -9,7 +9,7 @@ import { markdownTable } from 'markdown-table'
 import { marked } from 'marked'
 import { markedTerminal } from 'marked-terminal'
 import { log } from '@clack/prompts'
-import { getRootSync } from '../utils'
+import { getArtifactsDirSync } from '../utils'
 
 interface SizeResult {
   size: number
@@ -23,9 +23,9 @@ interface BundleResult extends SizeResult {
 
 type PackageResult = Record<string, SizeResult & { name: string }>
 
-const root = getRootSync()
-const currDir = resolve(root, 'temp/size')
-const prevDir = resolve(root, 'temp/size-prev')
+const artifacts = getArtifactsDirSync()
+const currDir = resolve(artifacts, 'temp/size')
+const prevDir = resolve(artifacts, 'temp/size-prev')
 
 let output = '# Size Report\n\n'
 const sizeHeaders = ['Size', 'Gzip', 'Brotli']

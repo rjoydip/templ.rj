@@ -1,5 +1,5 @@
 import { argv, exit } from 'node:process'
-import { cancel, confirm, group, intro, outro, select, spinner } from '@clack/prompts'
+import { cancel, confirm, group, intro, log, outro, select, spinner } from '@clack/prompts'
 import parser from 'yargs-parser'
 import type { CreateOptionsType, OptionsType } from './stack'
 import { apps, createStack, docs, getCreateOpts, getDefaultOpts, pkgs } from './stack'
@@ -79,7 +79,7 @@ async function main() {
     )
 
     if (dryRun) {
-      console.log(JSON.stringify(options, null, 4))
+      log.message(JSON.stringify(options, null, 4))
       return 0
     }
 

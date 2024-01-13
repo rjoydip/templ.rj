@@ -1,15 +1,16 @@
 import { argv } from 'node:process'
+import { resolve } from 'node:path'
 import { intro, log, outro } from '@clack/prompts'
 import parser from 'yargs-parser'
-import { $ } from 'zx'
 import isInCi from 'is-in-ci'
-import { executeCommand, executeFn } from 'src/utils'
+import { exeCmd, executeFn, getRootDirAsync, getWrappedStr } from 'src/utils'
 import colors from 'picocolors'
 import { getTypeCoverageResults } from './type-cov'
 
 async function main() {
-  $.verbose = false
   intro(`${colors.cyan('Linting')}`)
+
+  const root = await getRootDirAsync()
 
   let {
     noOutput = false,
@@ -26,17 +27,17 @@ async function main() {
   }
 
   // ESlint
-  await executeCommand({
+  await exeCmd({
     title: 'ESlint',
-    execute: async () => await $`npx eslint --color --cache --fix --cache-location .eslintcache .`,
+    cmd: `npx eslint -c ${resolve(root, 'eslint.config.js')} --color --cache --fix --cache-location .eslintcache .`,
     showOutput: !noOutput,
     showSpinner: !noSpinner,
   })
 
   // Markdown
-  await executeCommand({
+  await exeCmd({
     title: 'Markdownlint',
-    execute: async () => await $`node --import tsx/esm ./src/lint/markdown.ts`,
+    cmd: 'npx tsx ./src/lint/markdown.ts',
     showOutput: !noOutput,
     showSpinner: !noSpinner,
   })
@@ -49,31 +50,15 @@ async function main() {
     showSpinner: !noSpinner,
   })
 
-  // Secret
-  await executeCommand({
-    title: 'Secretlint',
-    execute: async () => await $`npx secretlint --secretlintignore .gitignore \"**/*\"`,
-    showOutput: !noOutput,
-    showSpinner: !noSpinner,
-  })
-
   // Size report
   !isInCi
-    ? await executeCommand({
+    ? await exeCmd({
       title: 'Size report',
-      execute: async () => await $`node --import tsx/esm ./src/size/report.ts`,
+      cmd: 'npx tsx ./src/size/report.ts',
       showOutput: !noOutput,
       showSpinner: !noSpinner,
     })
-    : log.info('Size report linting process disabled in CI, because there is already task has in CI \'init\' job')
-
-  // Spell
-  await executeCommand({
-    title: 'Spell check',
-    execute: async () => await $`npx cspell ../ --quiet`,
-    showOutput: !noOutput,
-    showSpinner: !noSpinner,
-  })
+    : log.info(getWrappedStr('Size report linting process disabled in CI, because there is already task has in CI \'init\' job'))
 
   outro(`${colors.cyan('All Set')}`)
 }

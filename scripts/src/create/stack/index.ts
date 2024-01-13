@@ -1,6 +1,5 @@
 import { spinner } from '@clack/prompts'
-import { $ } from 'zx'
-import { getRootAsync } from '../../utils'
+import { getRootDirAsync } from '../../utils'
 import { type AppsOptsType, create as createApp, defaultAppsOpts } from './apps'
 import { type DocsOptsType, create as createDoc, defaultDocsOpts } from './docs'
 import { type PkgsOptsType, create as createPackage, defaultPkgsOpts } from './pkgs'
@@ -49,9 +48,8 @@ export function getDefaultOpts() {
 }
 
 export async function createStack(options: OptionsType) {
-  $.verbose = false
   const s = spinner()
-  const root = await getRootAsync()
+  const root = await getRootDirAsync()
   const { install, packageManager } = options
   const { apps, docs, pkgs, type } = options?.create
 

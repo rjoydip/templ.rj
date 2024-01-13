@@ -5,10 +5,9 @@ import { existsSync } from 'node:fs'
 import { exit } from 'node:process'
 import { cancel, confirm, group, log, select, text } from '@clack/prompts'
 import colors from 'picocolors'
-import { $ } from 'zx'
 import { downloadTemplate, startShell } from 'giget'
 import { createRegExp, exactly } from 'magic-regexp'
-import { stackNotes, updateTemplateAssets } from '../../utils'
+import { exeCmd, stackNotes, updateTemplateAssets } from '../../utils'
 import type { SpinnerType } from '.'
 
 export interface AppsOptsType {
@@ -105,9 +104,12 @@ export async function create(root: string, packageManager: string, install: bool
   if (type === 'next') {
     const { language, tailwind, eslint, app_route, src_dir, import_alias, import_alias_value } = next
 
-    await $`npx create-next-app ${dest} ${language === 'javascript' ? '--js' : '--ts'} ${tailwind ? '--tailwind' : ''} ${eslint ? '--eslint' : ''} ${app_route ? '--app' : ''} --src-dir ${src_dir} ${import_alias ? `--import-alias ${import_alias_value.toString()}` : '--import-alias'} ${install ? `--use-${packageManager}` : `--no-use-${packageManager}`}`
-
-    spinner.stop(`Generated ${name.toString()} application`)
+    await exeCmd({
+      title: 'Next Application',
+      cmd: `npx create-next-app ${dest} ${language === 'javascript' ? '--js' : '--ts'} ${tailwind ? '--tailwind' : ''} ${eslint ? '--eslint' : ''} ${app_route ? '--app' : ''} --src-dir ${src_dir.toString()} ${import_alias ? `--import-alias ${import_alias_value.toString()}` : '--import-alias'} ${install ? `--use-${packageManager}` : `--no-use-${packageManager}`}`,
+      showOutput: true,
+      showSpinner: true,
+    })
   }
 
   if (type === 'nuxt') {
@@ -125,8 +127,14 @@ export async function create(root: string, packageManager: string, install: bool
 
     await updateTemplateAssets(`@templ/${name.toString()}`, packageManager, dest)
 
-    if (gitInit)
-      await $`git init ${dest}`
+    if (gitInit) {
+      await exeCmd({
+        title: 'Git Init',
+        cmd: `git init ${dest}`,
+        showOutput: true,
+        showSpinner: true,
+      })
+    }
 
     if (shell)
       startShell(dest)

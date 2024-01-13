@@ -47,5 +47,6 @@
     "json",
     "jsonc",
     "yaml"
-  ]
+  ],
+  "cSpell.enabled": false
 }

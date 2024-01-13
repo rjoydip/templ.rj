@@ -1,5 +1,5 @@
 image:
-  file: .gitpod.Dockerfile
+  file: config/.gitpod.Dockerfile
 
 tasks:
   - name: Install Dependencies
@@ -12,11 +12,7 @@ vscode:
     - davidanson.vscode-markdownlint
     - eamodio.gitlens
     - editorconfig.editorconfig
-    - esbenp.prettier-vscode
     - folke.vscode-monorepo-workspace
     - foxundermoon.shell-format
-    - mintlify.document
-    - ms-playwright.playwright
     - seatonjiang.gitmoji-vscode
-    - streetsidesoftware.code-spell-checker
     - zixuanchen.vitest-explorer

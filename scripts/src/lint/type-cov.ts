@@ -1,7 +1,7 @@
 import type { Stats } from 'node:fs'
 import { existsSync } from 'node:fs'
 import { dirname, sep } from 'node:path'
-import { getRootAsync } from 'src/utils'
+import { getRootDirAsync } from 'src/utils'
 import { totalist } from 'totalist'
 import { lint as typeCoverage } from 'type-coverage-core'
 import tablemark from 'tablemark'
@@ -9,7 +9,7 @@ import { createRegExp, exactly } from 'magic-regexp'
 
 export async function getTypeCoverageResults(): Promise<string> {
   const paths: string[] = []
-  const root = await getRootAsync()
+  const root = await getRootDirAsync()
 
   await totalist(root, (name: string, abs: string, stats: Stats) => {
     if (!/node_modules|test|dist|coverage|templates/.test(abs) && !stats.isSymbolicLink()) {

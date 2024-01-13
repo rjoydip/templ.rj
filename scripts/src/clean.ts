@@ -5,10 +5,10 @@ import { deleteAsync } from 'del'
 import parser from 'yargs-parser'
 import { intro, log, outro } from '@clack/prompts'
 import { createRegExp, exactly } from 'magic-regexp'
-import { getRootAsync } from './utils'
+import { getRootDirAsync, getWrappedStr } from './utils'
 
 async function main() {
-  const root = await getRootAsync()
+  const root = await getRootDirAsync()
   const { dryRun = false } = parser(argv.splice(2), {
     configuration: {
       'boolean-negation': false,
@@ -23,7 +23,7 @@ async function main() {
     dryRun,
   })
 
-  log.message(`Deleted files and directories:\n\n${deletedPaths.map(d => colors.green(d.replace(createRegExp(exactly(`${root}${sep}`), ['g', 'm']), ''))).join('\n')}`)
+  log.message(getWrappedStr(`Deleted files and directories:\n\n${deletedPaths.map(d => colors.green(d.replace(createRegExp(exactly(`${root}${sep}`), ['g', 'm']), ''))).join('\n')}`))
 
   outro('All set')
 }

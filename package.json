@@ -6,7 +6,10 @@
   "description": "A modern monorepo project template",
   "author": "Joydip Roy <joydipand@gmail.com> (https://github.com/rjoydip)",
   "license": "MIT",
-  "repository": "rjoydip/templ",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rjoydip/templ.git"
+  },
   "sideEffects": true,
   "engines": {
     "node": ">=18",
@@ -25,7 +28,6 @@
     "commit": "better-commits",
     "create:stack": "pnpm -C scripts create:stack",
     "deps:update": "taze -r -w -i -f -l",
-    "eslint:viewer": "eslint-flat-config-viewer",
     "lint": "pnpm -C scripts lint",
     "test": "pnpm -r test",
     "test:cli": "pnpm -r test:cli"
@@ -34,21 +36,15 @@
     "apps/**",
     "docs",
     "packages/**",
-    "tools/**",
     "scripts"
   ],
   "devDependencies": {
     "@antfu/eslint-config": "2.6.2",
-    "@secretlint/secretlint-rule-preset-recommend": "^8.1.0",
     "@size-limit/file": "^11.0.1",
     "auto-changelog": "^2.4.0",
     "better-commits": "^1.8.0",
-    "cspell": "^8.3.2",
-    "envinfo": "^7.11.0",
     "eslint": "^8.56.0",
-    "eslint-flat-config-viewer": "^0.1.8",
     "pnpm": "^8.14.1",
-    "secretlint": "^8.1.0",
     "size-limit": "^11.0.1",
     "taze": "^0.13.1"
   },

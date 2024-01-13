@@ -1,20 +1,15 @@
-import { argv } from 'node:process'
+import { argv, exit } from 'node:process'
 import { intro, log, outro } from '@clack/prompts'
 import parser from 'yargs-parser'
-import { $ } from 'zx'
 import isInCi from 'is-in-ci'
 import colors from 'picocolors'
-import { COMPLETED, STARTED } from './utils/constant'
-import { executeCommand } from './utils'
+import { exeCmd } from './utils'
 
 async function main() {
-  $.verbose = false
-  console.clear()
-
   intro(`${colors.cyan('Setup')}`)
 
   // Pre processes - start
-  log.warn(`${colors.yellow(`${STARTED} Pre Process`)}`)
+  log.warn(`${colors.yellow(`Started Pre Process`)}`)
 
   const _argv = argv.slice(2)
 
@@ -33,93 +28,88 @@ async function main() {
   }
 
   // Installation
-  await executeCommand({
-    title: 'Installing via pnpm',
-    execute: async () => await $`pnpm i`,
+  await exeCmd({
+    title: 'Installing',
+    cmd: 'pnpm i',
     showOutput: !noOutput,
     showSpinner: !noSpinner,
   })
 
   // Linting
-  await executeCommand({
-    title: 'Lint',
-    execute: async () => _argv ? await $`pnpm lint ${_argv}` : await $`pnpm lint`,
+  const lintScript = 'pnpm lint'
+  await exeCmd({
+    title: 'Linting',
+    cmd: _argv ? `${lintScript} ${_argv}` : lintScript,
     showOutput: !noOutput,
-    showSpinner: !noSpinner,
+    isSubProcess: true,
   })
 
-  log.info(`${colors.blue(`${COMPLETED} Pre Process`)}`)
+  log.info(`${colors.blue(`Completed Pre Process`)}`)
   // Pre processes - end
 
   // Main processes - start
-  log.warn(`${colors.yellow(`${STARTED} Process`)}`)
+  log.warn(`${colors.yellow(`Started Process`)}`)
 
   // Build packages
-  await executeCommand({
+  await exeCmd({
     title: 'Build',
-    execute: async () => await $`pnpm -w build`,
+    cmd: 'pnpm -w build',
     showOutput: !noOutput,
     showSpinner: !noSpinner,
   })
 
   // Test
-  await executeCommand({
+  await exeCmd({
     title: 'Test',
-    execute: async () => await $`pnpm -w test`,
+    cmd: 'pnpm -w test',
     showOutput: !noOutput,
     showSpinner: !noSpinner,
   })
 
   // CLI test
-  await executeCommand({
+  await exeCmd({
     title: 'Test CLI',
-    execute: async () => await $`pnpm -w test:cli`,
+    cmd: 'pnpm -w test:cli',
     showOutput: !noOutput,
     showSpinner: !noSpinner,
   })
 
-  log.info(`${colors.blue(`${COMPLETED} Process`)}`)
+  log.info(`${colors.blue(`Completed Process`)}`)
   // Main processes - end
 
   // Post processes - start
-  log.warn(`${colors.yellow(`${STARTED} Post Process`)}`)
+  log.warn(`${colors.yellow(`Started Post Process`)}`)
 
   // Size limit
-  await executeCommand({
+  await exeCmd({
     title: 'Size limit',
-    execute: async () => await $`npx size-limit`,
+    cmd: 'npx size-limit',
     showOutput: !noOutput,
     showSpinner: !noSpinner,
   })
 
   // Changelog
-  await executeCommand({
+  await exeCmd({
     title: 'Changelog',
-    execute: async () => await $`npx changelog`,
-    showOutput: !noOutput,
-    showSpinner: !noSpinner,
-  })
-
-  // System info
-  await executeCommand({
-    title: 'System Info',
-    execute: async () => await $`npx envinfo --system --binaries --browsers`,
+    cmd: 'npx changelog',
     showOutput: !noOutput,
     showSpinner: !noSpinner,
   })
 
   // Update package dependency
-  await executeCommand({
+  await exeCmd({
     title: 'Update dependencies',
-    execute: async () => await $`pnpm -w deps:update`,
+    cmd: 'pnpm -w deps:update',
     showOutput: !noOutput,
     showSpinner: !noSpinner,
   })
 
-  log.info(`${colors.blue(`${COMPLETED} Post Process`)}`)
+  log.info(`${colors.blue(`Completed Post Process`)}`)
   // Post processes - end
 
   outro(`${colors.cyan('All set')}`)
+
+  exit(0)
 }
 
 main().catch(console.error)
