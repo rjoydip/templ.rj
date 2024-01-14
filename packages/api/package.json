@@ -30,7 +30,7 @@
   "devDependencies": {
     "@types/node": "^20.11.0",
     "@vitest/coverage-v8": "^1.2.0",
-    "pactum": "^3.5.1",
+    "pactum": "^3.6.0",
     "vitest": "^1.2.0"
   }
 }
