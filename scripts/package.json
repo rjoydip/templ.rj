@@ -41,7 +41,7 @@
     "latest-version": "^7.0.0",
     "magic-regexp": "^0.7.0",
     "markdown-table": "^3.0.3",
-    "markdownlint": "^0.32.1",
+    "markdownlint": "^0.33.0",
     "marked": "^11.1.1",
     "nypm": "^0.3.4",
     "picocolors": "^1.0.0",
