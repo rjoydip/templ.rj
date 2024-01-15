@@ -1,6 +1,7 @@
 import { argv, exit } from 'node:process'
 import { cancel, confirm, group, intro, log, outro, select, spinner } from '@clack/prompts'
 import parser from 'yargs-parser'
+import { getPackageManagers } from '../utils'
 import type { CreateOptionsType, OptionsType } from './stack'
 import { apps, createStack, docs, getCreateOpts, getDefaultOpts, pkgs } from './stack'
 
@@ -50,12 +51,7 @@ async function main() {
             if (stackOpts.create.docs.tools !== 'vitepress') {
               return await select<any, string>({
                 message: 'Select package manager.',
-                options: [
-                  { value: 'bun', label: 'Bun' },
-                  { value: 'npm', label: 'Npm' },
-                  { value: 'pnpm', label: 'Pnpm' },
-                  { value: 'yarn', label: 'Yarn' },
-                ],
+                options: (await getPackageManagers()).map((pm: string) => ({ value: pm, label: pm })),
               })
             }
             return Promise.resolve('pnpm')

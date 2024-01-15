@@ -1,5 +1,5 @@
 import { parse, resolve, sep } from 'node:path'
-import { readFile, readdir, writeFile } from 'node:fs/promises'
+import { access, readFile, readdir, writeFile } from 'node:fs/promises'
 import { existsSync, readdirSync } from 'node:fs'
 import { cwd } from 'node:process'
 import { log, note, spinner } from '@clack/prompts'
@@ -26,7 +26,97 @@ interface ExeFnType<T> extends ExeCommon {
   fn: () => Promise<T | null>
 }
 
+export type PM = 'npm' | 'yarn' | 'pnpm' | 'bun'
+
 export const ignoreRegex = createRegExp(exactly('node_modules').or('test').or('dist').or('coverage').or('templates'), [])
+
+async function pathExists(p: string) {
+  try {
+    await access(p)
+    return true
+  }
+  catch {
+    return false
+  }
+}
+
+const cache = new Map()
+
+function hasGlobalInstallation(pm: PM): Promise<boolean> {
+  const key = `has_global_${pm}`
+  if (cache.has(key))
+    return Promise.resolve(cache.get(key))
+
+  return execa(pm, ['--version'])
+    .then((res) => {
+      return /^\d+.\d+.\d+$/.test(res.stdout)
+    })
+    .then((value) => {
+      cache.set(key, value)
+      return value
+    })
+    .catch(() => false)
+}
+
+export function getNpmVersion(pm: PM) {
+  return execa(pm || 'npm', ['--version']).then(res => res.stdout)
+}
+
+export function clearCache() {
+  return cache.clear()
+}
+
+export function getTypeofLockFile(cwd = '.'): Promise<PM | null> {
+  const key = `lockfile_${cwd}`
+  if (cache.has(key))
+    return Promise.resolve(cache.get(key))
+
+  return Promise.all([
+    pathExists(resolve(cwd, 'yarn.lock')),
+    pathExists(resolve(cwd, 'package-lock.json')),
+    pathExists(resolve(cwd, 'pnpm-lock.yaml')),
+    pathExists(resolve(cwd, 'bun.lockb')),
+  ]).then(([isYarn, isNpm, isPnpm, isBun]) => {
+    let value: PM | null = null
+
+    if (isYarn)
+      value = 'yarn'
+
+    else if (isPnpm)
+      value = 'pnpm'
+
+    else if (isBun)
+      value = 'bun'
+
+    else if (isNpm)
+      value = 'npm'
+
+    cache.set(key, value)
+    return value
+  })
+}
+
+export async function getPackageManagers({
+  includeGlobalBun,
+}: { cwd?: string, includeGlobalBun?: boolean } = {}) {
+  const pms = ['npm']
+
+  const [hasYarn, hasPnpm, hasBun] = await Promise.all([
+    hasGlobalInstallation('yarn'),
+    hasGlobalInstallation('pnpm'),
+    includeGlobalBun && hasGlobalInstallation('bun'),
+  ])
+  if (hasYarn)
+    pms.push('yarn')
+
+  if (hasPnpm)
+    pms.push('pnpm')
+
+  if (hasBun)
+    pms.push('bun')
+
+  return pms
+}
 
 export function getRootDirSync() {
   const root = findUpSync('pnpm-workspace.yaml') || findUpSync('.npmrc') || cwd()

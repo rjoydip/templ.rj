@@ -26,7 +26,7 @@
     "build": "pnpm -r build",
     "changelog": "auto-changelog -p",
     "commit": "better-commits",
-    "create:stack": "pnpm -C scripts create:stack",
+    "create": "pnpm run -C scripts create --stack",
     "deps:update": "taze -r -w -i -f -l",
     "lint": "pnpm -C scripts lint",
     "test": "pnpm -r test",

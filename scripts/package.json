@@ -25,7 +25,7 @@
     "ci:copy:env": "tsx ./src/ci/copy-env.ts",
     "ci:check:dist": "tsx ./src/ci/check-dist.ts",
     "ci:delete:env": "tsx ./src/ci/delete-env.ts",
-    "create": "tsx ./src/create/index.ts --stack",
+    "create": "tsx ./src/create/index.ts",
     "lint": "tsx ./src/lint/index.ts",
     "size:report": "tsx ./src/size/report.ts"
   },
