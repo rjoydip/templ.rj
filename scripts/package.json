@@ -25,16 +25,15 @@
     "ci:copy:env": "tsx ./src/ci/copy-env.ts",
     "ci:check:dist": "tsx ./src/ci/check-dist.ts",
     "ci:delete:env": "tsx ./src/ci/delete-env.ts",
-    "create:stack": "tsx ./src/create/index.ts",
+    "create": "tsx ./src/create/index.ts --stack",
     "lint": "tsx ./src/lint/index.ts",
     "size:report": "tsx ./src/size/report.ts"
   },
   "dependencies": {
     "@clack/prompts": "^0.7.0",
     "@pnpm/config": "^20.4.1",
-    "cpy": "^11.0.0",
     "create-next-app": "^14.0.4",
-    "del": "^7.1.0",
+    "dot-prop": "^8.0.2",
     "execa": "^8.0.1",
     "find-up": "^7.0.0",
     "giget": "^1.2.1",
@@ -44,7 +43,6 @@
     "markdown-table": "^3.0.3",
     "markdownlint": "^0.32.1",
     "marked": "^11.1.1",
-    "marked-terminal": "^6.2.0",
     "nypm": "^0.3.4",
     "picocolors": "^1.0.0",
     "rollup": "^4.9.5",
@@ -58,7 +56,7 @@
     "yargs-parser": "^21.1.1"
   },
   "devDependencies": {
-    "@types/node": "^20.11.0",
+    "@types/node": "^20.11.1",
     "@types/yargs-parser": "^21.0.3",
     "tsx": "^4.7.0"
   }

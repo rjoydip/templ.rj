@@ -7,6 +7,7 @@ import { cancel, confirm, group, log, select, text } from '@clack/prompts'
 import colors from 'picocolors'
 import { downloadTemplate } from 'giget'
 import { createRegExp, exactly } from 'magic-regexp'
+import latestVersion from 'latest-version'
 import { stackNotes, updateTemplateAssets } from '../../utils'
 import type { SpinnerType } from '.'
 
@@ -21,7 +22,6 @@ export interface DocsOptsType {
   mintlify: {
     name: symbol | string
     path: symbol | string
-    theme: symbol | string
   }
   nextra: {
     name: symbol | string
@@ -41,7 +41,6 @@ export const defaultDocsOpts = {
   mintlify: {
     name: '',
     path: '',
-    theme: '',
   },
   nextra: {
     name: '',
@@ -51,7 +50,7 @@ export const defaultDocsOpts = {
 }
 
 export async function create(root: string, packageManager: string, install: boolean = false, spinner: SpinnerType, docs: DocsOptsType) {
-  const { tools, docusaurus, nextra } = docs
+  const { tools, docusaurus, mintlify, nextra } = docs
 
   if (tools === 'docusaurus') {
     const { name, language, path } = docusaurus
@@ -77,8 +76,38 @@ export async function create(root: string, packageManager: string, install: bool
     log.success(`${colors.green(name.toString())} package created`)
   }
 
-  if (tools === 'mintlify')
-    log.message('Coming soon')
+  if (tools === 'mintlify') {
+    const { name, path } = mintlify
+    spinner.start(`Creating ${name.toString()} documentation`)
+
+    const appPath = join(path.toString(), name.toString())
+    const dest = platform() === 'win32' ? resolve(root, appPath.toString()).replace(createRegExp(exactly(sep), ['g']), '\\\\') : resolve(root, appPath.toString())
+
+    if (!existsSync(dest))
+      await mkdir(dest, { recursive: true })
+
+    await downloadTemplate('github:mintlify/starter', {
+      dir: dest,
+      preferOffline: true,
+      install,
+    })
+
+    const mintilifyLV = await latestVersion('mintlify')
+
+    await updateTemplateAssets(`@templ/${name.toString()}`, packageManager, dest, {}, {
+      scripts: {
+        dev: 'mintlify dev',
+      },
+      devDependencies: {
+        mintilify: `^${mintilifyLV}`,
+      },
+    })
+
+    spinner.stop(`Generated ${name.toString()} documentation`)
+
+    stackNotes(appPath, install, packageManager)
+    log.success(`${colors.green(name.toString())} package created`)
+  }
 
   if (tools === 'nextra') {
     const { name, theme, path } = nextra
@@ -125,7 +154,7 @@ export async function init() {
 
         if (typeof toolsOpts === 'string') {
           opts[toolsOpts].path = await text({
-            message: `Where should we create your ${colors.cyan(opts[toolsOpts].theme.toString())}?`,
+            message: `Where should we create your documentation?`,
             placeholder: './docs',
             validate: (value: string) => {
               if (!value)
@@ -137,12 +166,12 @@ export async function init() {
           })
 
           const shouldDefaultName = await confirm({
-            message: `Do you want to create with default ${colors.cyan(opts[toolsOpts]?.theme.toString())} name?`,
+            message: `Do you want to create with default name?`,
             initialValue: false,
           })
           if (!shouldDefaultName) {
             opts[toolsOpts].name = await text({
-              message: `What is your ${colors.cyan(opts[toolsOpts].theme.toString())} name?`,
+              message: `What is your name?`,
               placeholder: '',
               validate: (value: string) => {
                 if (!value)
@@ -152,7 +181,7 @@ export async function init() {
             })
           }
           else {
-            opts[toolsOpts].name = opts[toolsOpts].theme.toString()
+            opts[toolsOpts].name = 'docs'
           }
 
           if (toolsOpts === 'nextra') {

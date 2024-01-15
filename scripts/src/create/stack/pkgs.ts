@@ -1,9 +1,8 @@
 import { basename, resolve } from 'node:path'
-import { mkdir } from 'node:fs/promises'
+import { cp, mkdir } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
 import { exit } from 'node:process'
 import { cancel, confirm, group, select, text } from '@clack/prompts'
-import cpy from 'cpy'
 import { installDependencies } from 'nypm'
 import colors from 'picocolors'
 import { downloadTemplate } from 'giget'
@@ -54,7 +53,9 @@ export async function create(root: string, packageManager: string, install: bool
   }
 
   if (template === 'local') {
-    await cpy(resolve(root, 'templates', `basic-${language.toString()}`, '**'), dest)
+    await cp(resolve(root, 'templates', `basic-${language.toString()}`), dest, {
+      recursive: true,
+    })
     await updateTemplateAssets(`@templ/${name.toString()}`, packageManager, dest, {
       from: `basic-${language.toString()}`,
       to: name.toString(),
