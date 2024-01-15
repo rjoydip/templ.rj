@@ -44,7 +44,7 @@
     "sade": "^1.8.1"
   },
   "devDependencies": {
-    "@types/node": "^20.11.0",
+    "@types/node": "^20.11.1",
     "@vitest/coverage-v8": "^1.2.0",
     "tsup": "^8.0.1",
     "vitest": "^1.2.0"

@@ -1,8 +1,9 @@
-import { parse, resolve } from 'node:path'
+import { parse, resolve, sep } from 'node:path'
 import { readFile, readdir, writeFile } from 'node:fs/promises'
-import { readdirSync } from 'node:fs'
+import { existsSync, readdirSync } from 'node:fs'
 import { cwd } from 'node:process'
 import { log, note, spinner } from '@clack/prompts'
+import { hasProperty, setProperty } from 'dot-prop'
 import { execa } from 'execa'
 import { findUp, findUpSync } from 'find-up'
 import { createRegExp, exactly } from 'magic-regexp'
@@ -132,23 +133,56 @@ export function stackNotes(path: string, isInstalled: boolean = false, packageMa
 }
 
 export async function updateTemplateAssets(name: string = '', packageManager: string = 'pnpm', dest: string = cwd(), replacement: {
-  from: string
-  to: string
+  from?: string | null
+  to?: string | null
 } = {
-  from: '',
-  to: '',
-}) {
-  const shouldReplaced = !!replacement.from && !!replacement.to
+  from: null,
+  to: null,
+}, dotProps: object = {}) {
+  let pkgDataRaw = ''
   const pkgPath = resolve(dest, 'package.json')
+  const root = await getRootDirAsync()
   const pkgVersion = await latestVersion(packageManager)
 
-  let pkgDataRaw = await readFile(pkgPath, { encoding: 'utf8' })
+  if (!existsSync(pkgPath)) {
+    const json = {}
+    if (!hasProperty(json, 'name')) {
+      setProperty(json, 'name', '')
+      setProperty(json, 'type', 'module')
+      setProperty(json, 'version', '0.0.0')
+      setProperty(json, 'private', true)
+      setProperty(json, 'packageManager', '')
+      setProperty(json, 'description', '')
+      setProperty(json, 'license', 'MIT')
+      setProperty(json, 'homepage', `https://github.com/rjoydip/templ/tree/main/${name}/#readme`)
+      setProperty(json, 'repository', {
+        type: 'git',
+        url: 'git+https://github.com/rjoydip/templ.git',
+        directory: `${parse(pkgPath).dir.replace(`${root}${sep}`, '').replace(sep, '/')}`,
+      })
+      setProperty(json, 'bugs', {
+        url: 'https://github.com/rjoydip/templ/issues',
+      })
+      setProperty(json, 'engines', {
+        node: '^18.8.0 || >=20.6.0',
+        npm: '>=8',
+      })
+      setProperty(json, 'scripts', {})
+      setProperty(json, 'dependencies', {})
+      setProperty(json, 'devDependencies', {})
+    }
+    pkgDataRaw = JSON.stringify(json, null, 2)
+    await writeFile(pkgPath, pkgDataRaw)
+  }
+  else {
+    pkgDataRaw = await readFile(pkgPath, { encoding: 'utf8' })
+  }
 
-  if (shouldReplaced) {
-    const regExp = createRegExp(exactly(replacement.from), ['g', 'm'])
+  if ((hasProperty(replacement, 'from') && hasProperty(replacement, 'to')) && (!!replacement.from && !!replacement.to)) {
     const readmePath = resolve(dest, 'README.md')
     const readmeData = await readFile(readmePath, { encoding: 'utf8' })
 
+    const regExp = createRegExp(exactly(replacement.from), ['g', 'm'])
     await writeFile(readmePath, readmeData.replace(regExp, replacement.to))
 
     pkgDataRaw = pkgDataRaw.replace(regExp, replacement.to)
@@ -156,14 +190,30 @@ export async function updateTemplateAssets(name: string = '', packageManager: st
 
   const pkgData = JSON.parse(pkgDataRaw)
 
-  pkgData.name = name
-  pkgData.packageManager = packageManager.concat(`@${pkgVersion}`)
+  setProperty(pkgData, 'name', name)
+  setProperty(pkgData, 'packageManager', packageManager.concat(`@${pkgVersion}`))
 
-  if (pkgData.description)
-    pkgData.description = ''
-
-  if (pkgData.repository)
-    pkgData.repository = ''
+  if (dotProps) {
+    for (const [key, value] of Object.entries(dotProps))
+      setProperty(pkgData, key, value)
+  }
 
   return await writeFile(pkgPath, JSON.stringify(pkgData, null, 2))
+}
+
+export async function createJSON(path: string = cwd(), data: object = {}, prop: string = '', value = '') {
+  const _data = data
+  if (!existsSync(path))
+    throw new Error('Path not exists')
+
+  if (typeof _data === 'string')
+    throw new Error('Data can\'t be string')
+
+  if (hasProperty(data, 'name'))
+    throw new Error('JSON is empty')
+
+  if (prop && value)
+    setProperty(data, prop, value)
+
+  return await writeFile(path, JSON.stringify(_data, null, 2))
 }

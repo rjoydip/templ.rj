@@ -6,8 +6,6 @@ import { resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { platform } from 'node:os'
 import { markdownTable } from 'markdown-table'
-import { marked } from 'marked'
-import { markedTerminal } from 'marked-terminal'
 import { log } from '@clack/prompts'
 import { getArtifactsDirSync } from '../utils'
 
@@ -116,11 +114,9 @@ function getDiff(curr: number, prev?: number) {
   return ` (**${sign ?? '-'}${prettyBytes(diff) ?? 0}**)`
 }
 
-marked.use(markedTerminal())
-
 export async function renderReport() {
   await renderBundles()
   await renderPackages()
-  log.message(marked.parse(output).toString())
+  log.message(output.toString())
   return output
 }
