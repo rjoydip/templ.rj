@@ -81,7 +81,7 @@ Released under [MIT](./LICENSE) by [@rjoydip](https://github.com/rjoydip).
 [vscode-container-url]: https://open.vscode.dev/microsoft/vscode
 [code-style-url]: https://github.com/antfu/eslint-config
 [code-style-image]: https://antfu.me/badge-code-style.svg
-[better-commit-image]: https://img.shields.io/badge/better--commits-enabled?style=for-the-badge&logo=git&color=a6e3a1&logoColor=D9E0EE&labelColor=302D41
+[better-commit-image]: https://img.shields.io/badge/better--commits-enabled?logo=git&color=d47844&labelColor=302D41
 [better-commit-url]: https://github.com/Everduin94/better-commits
 [type-coverage-image]: https://img.shields.io/badge/dynamic/json.svg?label=type-coverage&prefix=%E2%89%A5&suffix=%&query=$.typeCoverage.atLeast&uri=https%3A%2F%2Fraw.githubusercontent.com%2Fplantain-00%2Ftype-coverage%2Fmaster%2Fpackage.json
 [type-coverage-url]: https://github.com/plantain-00/type-coverage
