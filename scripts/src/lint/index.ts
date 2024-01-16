@@ -1,11 +1,13 @@
 import { argv } from 'node:process'
 import { resolve } from 'node:path'
-import { intro, log, outro } from '@clack/prompts'
+import { intro, outro } from '@clack/prompts'
 import parser from 'yargs-parser'
 import isInCi from 'is-in-ci'
 import colors from 'picocolors'
-import { exeCmd, executeFn, getRootDirAsync, getWrappedStr } from '../utils'
-import { getTypeCoverageResults } from './type-cov'
+import { sizeLimit, sizeLimitRenderer } from '../size/limit'
+import { sizeReportRenderer } from '../size/report'
+import { exeCmd, executeFn, getRootDirAsync } from '../utils'
+import { typeCov, typeCovRenderer } from './type-cov'
 
 async function main() {
   intro(`${colors.cyan('Linting')}`)
@@ -34,31 +36,37 @@ async function main() {
     showSpinner: !noSpinner,
   })
 
-  // Markdown
-  await exeCmd({
-    title: 'Markdownlint',
-    cmd: 'npx tsx ./src/lint/markdown.ts',
+  // Type coverage
+  await executeFn({
+    title: 'Type Coverage',
+    fn: async () => {
+      const results = await typeCov()
+      typeCovRenderer(results)
+    },
     showOutput: !noOutput,
     showSpinner: !noSpinner,
   })
 
-  // Type coverage
-  await executeFn<string>({
-    title: 'Type Coverage',
-    fn: getTypeCoverageResults,
+  // Size limit
+  await executeFn({
+    title: 'Size Limit',
+    fn: async () => {
+      const results = await sizeLimit()
+      sizeLimitRenderer(results)
+    },
     showOutput: !noOutput,
     showSpinner: !noSpinner,
   })
 
   // Size report
-  !isInCi
-    ? await exeCmd({
-      title: 'Size report',
-      cmd: 'npx tsx ./src/size/report.ts',
-      showOutput: !noOutput,
-      showSpinner: !noSpinner,
-    })
-    : log.info(getWrappedStr('Size report linting process disabled in CI, because there is already task has in CI \'init\' job'))
+  await executeFn({
+    title: 'Size Report',
+    fn: async () => {
+      await sizeReportRenderer()
+    },
+    showOutput: !noOutput,
+    showSpinner: !noSpinner,
+  })
 
   outro(`${colors.cyan('All Set')}`)
 }

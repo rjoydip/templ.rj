@@ -18,17 +18,35 @@ interface ExeCommon {
   isSubProcess?: boolean
 }
 
-interface ExeCmdType extends ExeCommon {
+interface ExecuteCmd extends ExeCommon {
   cmd: string
 }
 
-interface ExeFnType<T> extends ExeCommon {
-  fn: () => Promise<T | null>
+interface ExecuteFn extends ExeCommon {
+  fn: () => Promise<any> | any
 }
 
-export type PM = 'npm' | 'yarn' | 'pnpm' | 'bun'
+type PM = 'npm' | 'yarn' | 'pnpm' | 'bun'
 
+const unit = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
 export const ignoreRegex = createRegExp(exactly('node_modules').or('test').or('dist').or('coverage').or('templates'), [])
+
+export function prettyBytes(bytes: number) {
+  if (bytes === 0)
+    return '0 B'
+  const exp = Math.floor(Math.log(bytes) / Math.log(1024))
+  return `${(bytes / 1024 ** exp).toFixed(2)} ${unit[exp]}`
+}
+
+export function prettyBytesToNumber(prettyBytes: string = '') {
+  const bytes = Number(prettyBytes.replace(/[^0-9.]/g, ''))
+  const exp = prettyBytes.replace(/[0-9.\s]/g, '')
+  if (bytes === 0 || Number.isNaN(bytes))
+    return 0
+  if (bytes < 1024 && exp === 'B')
+    return bytes
+  return Math.ceil((bytes * 1024) * (unit.indexOf(exp)))
+}
 
 async function pathExists(p: string) {
   try {
@@ -58,15 +76,7 @@ function hasGlobalInstallation(pm: PM): Promise<boolean> {
     .catch(() => false)
 }
 
-export function getNpmVersion(pm: PM) {
-  return execa(pm || 'npm', ['--version']).then(res => res.stdout)
-}
-
-export function clearCache() {
-  return cache.clear()
-}
-
-export function getTypeofLockFile(cwd = '.'): Promise<PM | null> {
+function getTypeofLockFile(cwd = '.'): Promise<PM | null> {
   const key = `lockfile_${cwd}`
   if (cache.has(key))
     return Promise.resolve(cache.get(key))
@@ -97,14 +107,19 @@ export function getTypeofLockFile(cwd = '.'): Promise<PM | null> {
 }
 
 export async function getPackageManagers({
-  includeGlobalBun,
-}: { cwd?: string, includeGlobalBun?: boolean } = {}) {
+  cwd,
+  incldeGlobaBun,
+  includeLocal,
+}: { cwd?: string, incldeGlobaBun?: boolean, includeLocal?: boolean } = {}) {
   const pms = ['npm']
+
+  if (includeLocal && cwd)
+    return getTypeofLockFile(cwd)
 
   const [hasYarn, hasPnpm, hasBun] = await Promise.all([
     hasGlobalInstallation('yarn'),
     hasGlobalInstallation('pnpm'),
-    includeGlobalBun && hasGlobalInstallation('bun'),
+    incldeGlobaBun && hasGlobalInstallation('bun'),
   ])
   if (hasYarn)
     pms.push('yarn')
@@ -156,18 +171,28 @@ export function getWrappedStr(msg: string, column: number = 100) {
   return wrapAnsi(msg, column)
 }
 
-export async function exeCmd(params: ExeCmdType = {
+function showTerminalOutput(output: {
+  stdout: string
+  stderr: string
+} = {
+  stdout: 'All good',
+  stderr: 'Something wrong',
+}, title: string) {
+  if (title)
+    note(getWrappedStr(output.stdout ?? output.stderr), `${title}`)
+  else
+    note(getWrappedStr(output.stdout ?? output.stderr))
+}
+
+export async function exeCmd(params: ExecuteCmd = {
   cmd: '',
   showOutput: true,
   showSpinner: true,
   title: '',
   isSubProcess: false,
 }) {
+  const s = spinner()
   const { cmd, showOutput, showSpinner, title, isSubProcess } = params
-  let output = {
-    stdout: '',
-    stderr: '',
-  }
 
   if (isSubProcess) {
     await execa(cmd, {
@@ -176,45 +201,49 @@ export async function exeCmd(params: ExeCmdType = {
   }
   else {
     if (showSpinner) {
-      const s = spinner()
-      s.start(`Started ${title}`)
-      output = await execa(cmd)
-      s.stop(`Completed ${title}`)
+      try {
+        s.start(`Started ${title}`)
+        const output = await execa(cmd)
+        s.stop(`Completed ${title}`)
+        if (showOutput)
+          showTerminalOutput(output, title)
+      }
+      catch (error) {
+        s.stop(`Error ${colors.red(title)}`)
+        log.error(String(error))
+      }
     }
     else {
-      output = await execa(cmd)
-    }
-  }
+      const output = await execa(cmd)
 
-  if (showOutput) {
-    if (output.stdout)
-      note(getWrappedStr(output.stdout), `${title}`)
-    if (output.stderr)
-      log.error(getWrappedStr(colors.red(output.stderr)))
+      if (showOutput)
+        showTerminalOutput(output, title)
+    }
   }
 }
 
-export async function executeFn<T>(params: ExeFnType<T> = {
-  fn: async () => null,
+export async function executeFn(params: ExecuteFn = {
+  fn: () => null,
   showOutput: true,
   showSpinner: true,
   title: '',
 }) {
+  const s = spinner()
   const { fn, showOutput, showSpinner, title } = params
-  let output = null
+  const output = {
+    stdout: '',
+    stderr: '',
+  }
   if (showSpinner) {
-    const s = spinner()
     s.start(`Started ${title}`)
-    output = await fn()
+    output.stdout = await fn()
     s.stop(`Completed ${title}`)
   }
   else {
-    output = await fn()
+    output.stderr = await fn()
   }
-  if (showOutput) {
-    if (output)
-      note(getWrappedStr((output ?? '').toString()), `${title}`)
-  }
+  if (showOutput)
+    showTerminalOutput(output, title)
 }
 
 export function stackNotes(path: string, isInstalled: boolean = false, packageManager: string = 'pnpm', showNote: boolean = true) {
@@ -289,21 +318,4 @@ export async function updateTemplateAssets(name: string = '', packageManager: st
   }
 
   return await writeFile(pkgPath, JSON.stringify(pkgData, null, 2))
-}
-
-export async function createJSON(path: string = cwd(), data: object = {}, prop: string = '', value = '') {
-  const _data = data
-  if (!existsSync(path))
-    throw new Error('Path not exists')
-
-  if (typeof _data === 'string')
-    throw new Error('Data can\'t be string')
-
-  if (hasProperty(data, 'name'))
-    throw new Error('JSON is empty')
-
-  if (prop && value)
-    setProperty(data, prop, value)
-
-  return await writeFile(path, JSON.stringify(_data, null, 2))
 }

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { TemplError } from '../src'
+import { TemplError } from '../src/index'
 
 describe('@templ/utils > Error', () => {
   it('should match type of TemplError', () => {

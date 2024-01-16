@@ -34,7 +34,6 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "ora": "^7.0.1",
     "picocolors": "^1.0.0"
   },
   "devDependencies": {
@@ -42,5 +41,6 @@
     "@vitest/coverage-v8": "^1.2.0",
     "tsup": "^8.0.1",
     "vitest": "^1.2.0"
-  }
+  },
+  "size-limit": "2 KB"
 }

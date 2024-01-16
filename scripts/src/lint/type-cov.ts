@@ -1,13 +1,23 @@
 import type { Stats } from 'node:fs'
 import { existsSync } from 'node:fs'
+import { argv } from 'node:process'
 import { dirname, sep } from 'node:path'
 import { totalist } from 'totalist'
 import { lint as typeCoverage } from 'type-coverage-core'
-import tablemark from 'tablemark'
 import { createRegExp, exactly } from 'magic-regexp'
+import parser from 'yargs-parser'
+import { table } from 'table'
+import { note } from '@clack/prompts'
 import { getRootDirAsync, ignoreRegex } from '../utils'
 
-export async function getTypeCoverageResults(): Promise<string> {
+interface TypeCoverage {
+  path: string
+  correctCount: number
+  totalCount: number
+  percentage: number
+}
+
+export async function typeCov(): Promise<TypeCoverage[]> {
   const paths: string[] = []
   const root = await getRootDirAsync()
 
@@ -30,5 +40,27 @@ export async function getTypeCoverageResults(): Promise<string> {
     }
   }))
 
-  return tablemark(results)
+  return results
+}
+
+const {
+  dryRun,
+} = parser(argv.slice(2), {
+  configuration: {
+    'boolean-negation': false,
+  },
+})
+
+export function typeCovRenderer(results: TypeCoverage[]) {
+  note(table([
+    Object.keys(results[0] ?? {}),
+    ...results.map(r => Object.values(r)),
+  ]), 'Type Coverage')
+}
+
+if (dryRun) {
+  (async () => {
+    const results = await typeCov()
+    typeCovRenderer(results)
+  })()
 }

@@ -5,8 +5,7 @@ export default defineConfig({
     include: ['test/**/*.js'],
     coverage: {
       enabled: true,
-      provider: 'v8',
-      reporter: ['text', 'json', 'json-summary', 'html', 'lcov'],
+      reporter: ['text', 'json', 'html'],
     },
   },
 })

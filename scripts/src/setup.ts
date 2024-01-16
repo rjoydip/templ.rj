@@ -80,14 +80,6 @@ async function main() {
   // Post processes - start
   log.warn(`${colors.yellow(`Started Post Process`)}`)
 
-  // Size limit
-  await exeCmd({
-    title: 'Size limit',
-    cmd: 'npx size-limit',
-    showOutput: !noOutput,
-    showSpinner: !noSpinner,
-  })
-
   // Changelog
   await exeCmd({
     title: 'Changelog',

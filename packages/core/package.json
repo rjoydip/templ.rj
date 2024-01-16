@@ -38,5 +38,6 @@
     "@vitest/coverage-v8": "^1.2.0",
     "tsup": "^8.0.1",
     "vitest": "^1.2.0"
-  }
+  },
+  "size-limit": "100 B"
 }

@@ -37,7 +37,6 @@
   "dependencies": {},
   "devDependencies": {
     "@types/node": "^20.11.1",
-    "@vitest/coverage-v8": "^1.2.0",
     "tsup": "^7.3.0",
     "vitest": "^1.2.0"
   }
