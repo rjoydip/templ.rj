@@ -6,7 +6,7 @@ import parser from 'yargs-parser'
 import { intro, log, outro } from '@clack/prompts'
 import { createRegExp, exactly } from 'magic-regexp'
 import { totalist } from 'totalist'
-import { getRootDirAsync, getWrappedStr } from './utils'
+import { getRootDirAsync, getWrappedStr } from '@templ/utils'
 
 async function main() {
   const root = await getRootDirAsync()

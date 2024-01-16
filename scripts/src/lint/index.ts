@@ -4,7 +4,8 @@ import { intro, log, outro } from '@clack/prompts'
 import parser from 'yargs-parser'
 import isInCi from 'is-in-ci'
 import colors from 'picocolors'
-import { exeCmd, executeFn, getRootDirAsync, getWrappedStr } from '../utils'
+import { getRootDirAsync, getWrappedStr } from '@templ/utils'
+import { exeCmd, executeFn } from '../utils'
 import { getTypeCoverageResults } from './type-cov'
 
 async function main() {

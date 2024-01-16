@@ -33,9 +33,12 @@
     "build": "tsup",
     "test": "vitest run"
   },
-  "dependencies": {},
+  "dependencies": {
+    "find-up": "^7.0.0",
+    "wrap-ansi": "^9.0.0"
+  },
   "devDependencies": {
-    "@types/node": "^20.11.1",
+    "@types/node": "^20.11.4",
     "@vitest/coverage-v8": "^1.2.0",
     "tsup": "^8.0.1",
     "vitest": "^1.2.0"

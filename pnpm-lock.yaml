@@ -12,8 +12,8 @@ importers:
         specifier: 2.6.2
         version: 2.6.2(@vue/compiler-sfc@3.4.6)(eslint@8.56.0)(typescript@5.3.3)
       '@size-limit/file':
-        specifier: ^11.0.1
-        version: 11.0.1(size-limit@11.0.1)
+        specifier: ^11.0.2
+        version: 11.0.2(size-limit@11.0.2)
       auto-changelog:
         specifier: ^2.4.0
         version: 2.4.0
@@ -27,17 +27,38 @@ importers:
         specifier: ^8.14.1
         version: 8.14.1
       size-limit:
-        specifier: ^11.0.1
-        version: 11.0.1
+        specifier: ^11.0.2
+        version: 11.0.2
       taze:
         specifier: ^0.13.1
         version: 0.13.1
 
+  benchmark:
+    devDependencies:
+      '@templ/utils':
+        specifier: workspace:*
+        version: link:../packages/utils
+      '@types/node':
+        specifier: ^20.11.4
+        version: 20.11.4
+      consola:
+        specifier: ^3.2.3
+        version: 3.2.3
+      table:
+        specifier: ^6.8.1
+        version: 6.8.1
+      tinybench:
+        specifier: ^2.6.0
+        version: 2.6.0
+      tsx:
+        specifier: ^4.7.0
+        version: 4.7.0
+
   packages/api:
     devDependencies:
       '@types/node':
-        specifier: ^20.11.1
-        version: 20.11.1
+        specifier: ^20.11.4
+        version: 20.11.4
       '@vitest/coverage-v8':
         specifier: ^1.2.0
         version: 1.2.0(vitest@1.2.0)
@@ -46,7 +67,7 @@ importers:
         version: 3.6.0
       vitest:
         specifier: ^1.2.0
-        version: 1.2.0(@types/node@20.11.1)
+        version: 1.2.0(@types/node@20.11.4)
 
   packages/cli:
     dependencies:
@@ -55,8 +76,8 @@ importers:
         version: 1.8.1
     devDependencies:
       '@types/node':
-        specifier: ^20.11.1
-        version: 20.11.1
+        specifier: ^20.11.4
+        version: 20.11.4
       '@vitest/coverage-v8':
         specifier: ^1.2.0
         version: 1.2.0(vitest@1.2.0)
@@ -65,7 +86,7 @@ importers:
         version: 8.0.1(typescript@5.3.3)
       vitest:
         specifier: ^1.2.0
-        version: 1.2.0(@types/node@20.11.1)
+        version: 1.2.0(@types/node@20.11.4)
 
   packages/config:
     dependencies:
@@ -83,8 +104,8 @@ importers:
         version: 0.25.0
     devDependencies:
       '@types/node':
-        specifier: ^20.11.1
-        version: 20.11.1
+        specifier: ^20.11.4
+        version: 20.11.4
       '@vitest/coverage-v8':
         specifier: ^1.2.0
         version: 1.2.0(vitest@1.2.0)
@@ -93,15 +114,15 @@ importers:
         version: 8.0.1(typescript@5.3.3)
       vitest:
         specifier: ^1.2.0
-        version: 1.2.0(@types/node@20.11.1)
+        version: 1.2.0(@types/node@20.11.4)
 
   packages/config/test/fixtures: {}
 
   packages/core:
     devDependencies:
       '@types/node':
-        specifier: ^20.11.1
-        version: 20.11.1
+        specifier: ^20.11.4
+        version: 20.11.4
       '@vitest/coverage-v8':
         specifier: ^1.2.0
         version: 1.2.0(vitest@1.2.0)
@@ -110,7 +131,7 @@ importers:
         version: 8.0.1(typescript@5.3.3)
       vitest:
         specifier: ^1.2.0
-        version: 1.2.0(@types/node@20.11.1)
+        version: 1.2.0(@types/node@20.11.4)
 
   packages/logger:
     dependencies:
@@ -122,8 +143,8 @@ importers:
         version: 1.0.0
     devDependencies:
       '@types/node':
-        specifier: ^20.11.1
-        version: 20.11.1
+        specifier: ^20.11.4
+        version: 20.11.4
       '@vitest/coverage-v8':
         specifier: ^1.2.0
         version: 1.2.0(vitest@1.2.0)
@@ -132,13 +153,20 @@ importers:
         version: 8.0.1(typescript@5.3.3)
       vitest:
         specifier: ^1.2.0
-        version: 1.2.0(@types/node@20.11.1)
+        version: 1.2.0(@types/node@20.11.4)
 
   packages/utils:
+    dependencies:
+      find-up:
+        specifier: ^7.0.0
+        version: 7.0.0
+      wrap-ansi:
+        specifier: ^9.0.0
+        version: 9.0.0
     devDependencies:
       '@types/node':
-        specifier: ^20.11.1
-        version: 20.11.1
+        specifier: ^20.11.4
+        version: 20.11.4
       '@vitest/coverage-v8':
         specifier: ^1.2.0
         version: 1.2.0(vitest@1.2.0)
@@ -147,7 +175,7 @@ importers:
         version: 8.0.1(typescript@5.3.3)
       vitest:
         specifier: ^1.2.0
-        version: 1.2.0(@types/node@20.11.1)
+        version: 1.2.0(@types/node@20.11.4)
 
   scripts:
     dependencies:
@@ -157,6 +185,9 @@ importers:
       '@pnpm/config':
         specifier: ^20.4.1
         version: 20.4.1(@pnpm/logger@5.0.0)
+      '@templ/utils':
+        specifier: workspace:*
+        version: link:../packages/utils
       create-next-app:
         specifier: ^14.0.4
         version: 14.0.4
@@ -166,9 +197,6 @@ importers:
       execa:
         specifier: ^8.0.1
         version: 8.0.1
-      find-up:
-        specifier: ^7.0.0
-        version: 7.0.0
       giget:
         specifier: ^1.2.1
         version: 1.2.1
@@ -217,16 +245,13 @@ importers:
       typescript:
         specifier: ^5.3.3
         version: 5.3.3
-      wrap-ansi:
-        specifier: ^9.0.0
-        version: 9.0.0
       yargs-parser:
         specifier: ^21.1.1
         version: 21.1.1
     devDependencies:
       '@types/node':
-        specifier: ^20.11.1
-        version: 20.11.1
+        specifier: ^20.11.4
+        version: 20.11.4
       '@types/yargs-parser':
         specifier: ^21.0.3
         version: 21.0.3
@@ -1734,13 +1759,13 @@ packages:
     engines: {node: '>=18'}
     dev: true
 
-  /@size-limit/file@11.0.1(size-limit@11.0.1):
-    resolution: {integrity: sha512-ioSYJ1WY66kc9+3dgTHi5mT/gcaNNCJ22xU87cjzfKiNxmol+lGsNKbplmrJf+QezvPH9kRIFOWxBjGY+DOt3g==}
+  /@size-limit/file@11.0.2(size-limit@11.0.2):
+    resolution: {integrity: sha512-874lrMtWYRL+xb/6xzejjwD+krfHTOo+2uFGpZfJScvuNv91Ni2O7k0o09zC70VzCYBGkXquV92ln/H+/ognGg==}
     engines: {node: ^18.0.0 || >=20.0.0}
     peerDependencies:
-      size-limit: 11.0.1
+      size-limit: 11.0.2
     dependencies:
-      size-limit: 11.0.1
+      size-limit: 11.0.2
     dev: true
 
   /@stylistic/eslint-plugin-js@1.5.3(eslint@8.56.0):
@@ -1855,8 +1880,8 @@ packages:
       '@types/unist': 2.0.6
     dev: true
 
-  /@types/node@20.11.1:
-    resolution: {integrity: sha512-DsXojJUES2M+FE8CpptJTKpg+r54moV9ZEncPstni1WHFmTcCzeFLnMFfyhCVS8XNOy/OQG+8lVxRLRrVHmV5A==}
+  /@types/node@20.11.4:
+    resolution: {integrity: sha512-6I0fMH8Aoy2lOejL3s4LhyIYX34DPwY8bl5xlNjBvUEk8OHrcuzsFt+Ied4LvJihbtXPM+8zUqdydfIti86v9g==}
     dependencies:
       undici-types: 5.26.5
 
@@ -1871,7 +1896,7 @@ packages:
   /@types/ssri@7.1.5:
     resolution: {integrity: sha512-odD/56S3B51liILSk5aXJlnYt99S6Rt9EFDDqGtJM26rKHApHcwyU/UoYHrzKkdkHMAIquGWCuHtQTbes+FRQw==}
     dependencies:
-      '@types/node': 20.11.1
+      '@types/node': 20.11.4
     dev: false
 
   /@types/unist@2.0.6:
@@ -2098,7 +2123,7 @@ packages:
       std-env: 3.7.0
       test-exclude: 6.0.0
       v8-to-istanbul: 9.2.0
-      vitest: 1.2.0(@types/node@20.11.1)
+      vitest: 1.2.0(@types/node@20.11.4)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -2271,6 +2296,15 @@ packages:
       uri-js: 4.4.1
     dev: true
 
+  /ajv@8.12.0:
+    resolution: {integrity: sha512-sRu1kpcO9yLtYxBKvqfTeh9KzZEwO3STyX1HT+4CaDzC6HpTGYhIhPIzj9XuKU7KYDwnaeh5hcOwjy1QuJzBPA==}
+    dependencies:
+      fast-deep-equal: 3.1.3
+      json-schema-traverse: 1.0.0
+      require-from-string: 2.0.2
+      uri-js: 4.4.1
+    dev: true
+
   /ansi-regex@5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
     engines: {node: '>=8'}
@@ -2339,6 +2373,11 @@ packages:
 
   /assertion-error@1.1.0:
     resolution: {integrity: sha512-jgsaNduz+ndvGyFt3uSuWqvy4lCnIJiovtouQN5JZHOKCS2QuhEdbcQHFhVksz2N2U9hXJo8odG7ETyWlEeuDw==}
+    dev: true
+
+  /astral-regex@2.0.0:
+    resolution: {integrity: sha512-Z7tMw1ytTXt5jqMcOP+OQteU1VuNK9Y02uuJtKQ1Sv69jXQKKg5cibLwGJow8yzZP+eAc18EmLGPal0bp36rvQ==}
+    engines: {node: '>=8'}
     dev: true
 
   /asynckit@0.4.0:
@@ -2776,7 +2815,6 @@ packages:
   /consola@3.2.3:
     resolution: {integrity: sha512-I5qxpzLv+sJhTVEoLYNcTW+bThDCPsit0vLNKShZx6rLtpilNpmmeTPaeqJb9ZE9dV3DGaeby6Vuhrw38WjeyQ==}
     engines: {node: ^14.18.0 || >=16.10.0}
-    dev: false
 
   /console-control-strings@1.1.0:
     resolution: {integrity: sha512-ty/fTekppD2fIwRvnZAVdeOiGd1c7YXEixbgJTNzqcxJWKQnjJ/V1bNEEE6hygpM3WjwHFUVK6HTjWSzV4a8sQ==}
@@ -4267,6 +4305,10 @@ packages:
     resolution: {integrity: sha512-xbbCH5dCYU5T8LcEhhuh7HJ88HXuW3qsI3Y0zOZFKfZEHcpWiHU/Jxzk629Brsab/mMiHQti9wMP+845RPe3Vg==}
     dev: true
 
+  /json-schema-traverse@1.0.0:
+    resolution: {integrity: sha512-NM8/P9n3XjXhIZn1lLhkFaACTOURQXjWhV4BA/RnOv8xvgqtqpAX9IO4mRQxSx1Rlo4tqzeqb0sOlruaOy3dug==}
+    dev: true
+
   /json-stable-stringify-without-jsonify@1.0.1:
     resolution: {integrity: sha512-Bdboy+l7tA3OGW6FjyFHWkP5LuByj1Tk33Ljyq0axyzdk9//JSi2u3fP1QSmd1KNwq6VOKYGlAu87CisVir6Pw==}
     dev: true
@@ -4395,6 +4437,10 @@ packages:
 
   /lodash.sortby@4.7.0:
     resolution: {integrity: sha512-HDWXG8isMntAyRF5vZ7xKuEvOhT4AhlRt/3czTSjvGUxjYCBVRQY48ViDHyfYz9VIoBkW4TMGQNapx+l3RUwdA==}
+    dev: true
+
+  /lodash.truncate@4.4.2:
+    resolution: {integrity: sha512-jttmRe7bRse52OsWIMDLaXxWqRAmtIUccAQ3garviCqJjafXOfNMO0yMfNpdD6zbGaTU0P5Nz7e7gAT6cKmJRw==}
     dev: true
 
   /lodash@4.17.21:
@@ -5553,6 +5599,11 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  /require-from-string@2.0.2:
+    resolution: {integrity: sha512-Xf0nWe6RseziFMu+Ap9biiUbmplq6S9/p+7w7YXP/JBHhrUDDUhwa+vANyubuqfZWTveU//DYVGsDG7RKL/vEw==}
+    engines: {node: '>=0.10.0'}
+    dev: true
+
   /resolve-alpn@1.2.1:
     resolution: {integrity: sha512-0a1F4l73/ZFZOakJnQ3FvkJ2+gSTQWz/r2KE5OdDY0TxPm5h4GkqkWWfM47T7HsbnOtcJVEF4epCVy6u7Q3K+g==}
     dev: false
@@ -5749,8 +5800,8 @@ packages:
   /sisteransi@1.0.5:
     resolution: {integrity: sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==}
 
-  /size-limit@11.0.1:
-    resolution: {integrity: sha512-6L80ocVspWPrhIRg8kPl41VypqTGH8/lu9e6TJiSJpkNLtOR2h/EEqdAO/wNJOv/sUVtjX+lVEWrzBpItGP+gQ==}
+  /size-limit@11.0.2:
+    resolution: {integrity: sha512-iFZ8iTR/3zPqxSwEIdGnTVYVU0F2nhodLQG/G6zpi/NxECYAK9ntq2lNr+prXH7h3gyBjx2Umt2D/oS2Qzz+eg==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
     dependencies:
@@ -5770,6 +5821,15 @@ packages:
   /slash@5.1.0:
     resolution: {integrity: sha512-ZA6oR3T/pEyuqwMgAKT0/hAv8oAXckzbkmR0UkUosQ+Mc4RxGoJkRmwHgHufaenlyAgE1Mxgpdcrf75y6XcnDg==}
     engines: {node: '>=14.16'}
+    dev: true
+
+  /slice-ansi@4.0.0:
+    resolution: {integrity: sha512-qMCMfhY040cVHT43K9BFygqYbUPFZKHOg7K73mtTWJRb8pyP3fzf4Ixd5SzdEJQ6MRUg/WBnOLxghZtKKurENQ==}
+    engines: {node: '>=10'}
+    dependencies:
+      ansi-styles: 4.3.0
+      astral-regex: 2.0.0
+      is-fullwidth-code-point: 3.0.0
     dev: true
 
   /smart-buffer@4.2.0:
@@ -6032,6 +6092,17 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
+  /table@6.8.1:
+    resolution: {integrity: sha512-Y4X9zqrCftUhMeH2EptSSERdVKt/nEdijTOacGD/97EKjhQ/Qs8RTlEGABSJNNN8lac9kheH+af7yAkEWlgneA==}
+    engines: {node: '>=10.0.0'}
+    dependencies:
+      ajv: 8.12.0
+      lodash.truncate: 4.4.2
+      slice-ansi: 4.0.0
+      string-width: 4.2.3
+      strip-ansi: 6.0.1
+    dev: true
+
   /tablemark@3.0.0:
     resolution: {integrity: sha512-7N05gRK7t6B4g8AtedUsKoKtPjplmUjOPr/V4kVB+7U3yGiB3WvKqMTTQzVCZyhfZUXgQFp9YyN9ZgC52uCPKw==}
     engines: {node: '>=14.16'}
@@ -6115,8 +6186,8 @@ packages:
       readable-stream: 3.6.2
     dev: false
 
-  /tinybench@2.5.1:
-    resolution: {integrity: sha512-65NKvSuAVDP/n4CqH+a9w2kTlLReS9vhsAP06MWx+/89nMinJyB2icyl58RIcqCmIggpojIGeuJGhjU1aGMBSg==}
+  /tinybench@2.6.0:
+    resolution: {integrity: sha512-N8hW3PG/3aOoZAN5V/NSAEDz0ZixDSSt5b/a05iqtpgfLWMSVuCo7w0k2vVvEjdrIoeGqZzweX2WlyioNIHchA==}
     dev: true
 
   /tinypool@0.8.1:
@@ -6450,7 +6521,7 @@ packages:
       builtins: 5.0.1
     dev: true
 
-  /vite-node@1.2.0(@types/node@20.11.1):
+  /vite-node@1.2.0(@types/node@20.11.4):
     resolution: {integrity: sha512-ETnQTHeAbbOxl7/pyBck9oAPZZZo+kYnFt1uQDD+hPReOc+wCjXw4r4jHriBRuVDB5isHmPXxrfc1yJnfBERqg==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -6459,7 +6530,7 @@ packages:
       debug: 4.3.4
       pathe: 1.1.1
       picocolors: 1.0.0
-      vite: 5.0.10(@types/node@20.11.1)
+      vite: 5.0.10(@types/node@20.11.4)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -6471,7 +6542,7 @@ packages:
       - terser
     dev: true
 
-  /vite@5.0.10(@types/node@20.11.1):
+  /vite@5.0.10(@types/node@20.11.4):
     resolution: {integrity: sha512-2P8J7WWgmc355HUMlFrwofacvr98DAjoE52BfdbwQtyLH06XKwaL/FMnmKM2crF0iX4MpmMKoDlNCB1ok7zHCw==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -6499,7 +6570,7 @@ packages:
       terser:
         optional: true
     dependencies:
-      '@types/node': 20.11.1
+      '@types/node': 20.11.4
       esbuild: 0.19.11
       postcss: 8.4.33
       rollup: 4.9.5
@@ -6507,7 +6578,7 @@ packages:
       fsevents: 2.3.3
     dev: true
 
-  /vitest@1.2.0(@types/node@20.11.1):
+  /vitest@1.2.0(@types/node@20.11.4):
     resolution: {integrity: sha512-Ixs5m7BjqvLHXcibkzKRQUvD/XLw0E3rvqaCMlrm/0LMsA0309ZqYvTlPzkhh81VlEyVZXFlwWnkhb6/UMtcaQ==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -6532,7 +6603,7 @@ packages:
       jsdom:
         optional: true
     dependencies:
-      '@types/node': 20.11.1
+      '@types/node': 20.11.4
       '@vitest/expect': 1.2.0
       '@vitest/runner': 1.2.0
       '@vitest/snapshot': 1.2.0
@@ -6549,10 +6620,10 @@ packages:
       picocolors: 1.0.0
       std-env: 3.7.0
       strip-literal: 1.3.0
-      tinybench: 2.5.1
+      tinybench: 2.6.0
       tinypool: 0.8.1
-      vite: 5.0.10(@types/node@20.11.1)
-      vite-node: 1.2.0(@types/node@20.11.1)
+      vite: 5.0.10(@types/node@20.11.4)
+      vite-node: 1.2.0(@types/node@20.11.4)
       why-is-node-running: 2.2.2
     transitivePeerDependencies:
       - less

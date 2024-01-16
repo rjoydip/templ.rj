@@ -1,5 +1,5 @@
 import { spinner } from '@clack/prompts'
-import { getRootDirAsync } from '../../utils'
+import { getRootDirAsync } from '@templ/utils'
 import { type AppsOptsType, create as createApp, defaultAppsOpts } from './apps'
 import { type DocsOptsType, create as createDoc, defaultDocsOpts } from './docs'
 import { type PkgsOptsType, create as createPackage, defaultPkgsOpts } from './pkgs'

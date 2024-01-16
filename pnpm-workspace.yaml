@@ -1,6 +1,7 @@
 ---
 packages:
   - apps/**
+  - benchmark
   - docs
   - packages/**
   - scripts

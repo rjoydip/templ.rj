@@ -1,36 +1,34 @@
 {
-  "name": "@templ/api",
+  "name": "@templ/benchmark",
   "type": "module",
   "version": "0.0.0",
   "private": true,
   "packageManager": "pnpm@8.14.1",
-  "description": "TEMPL api service",
+  "description": "TEMPL benchmark",
   "license": "MIT",
-  "homepage": "https://github.com/rjoydip/templ/tree/main/packages/api#readme",
+  "homepage": "https://github.com/rjoydip/templ/tree/main/benchmark#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rjoydip/templ.git",
-    "directory": "packages/api"
+    "directory": "benchmark"
   },
   "bugs": {
     "url": "https://github.com/rjoydip/templ/issues"
   },
-  "files": [
-    "*.d.ts",
-    "dist"
-  ],
+  "files": [],
   "engines": {
     "node": "^18.8.0 || >=20.6.0",
     "npm": ">=8"
   },
   "scripts": {
-    "test": "vitest run"
+    "bench:utils:path": "tsx ./src/utils/path.bench.ts"
   },
-  "dependencies": {},
   "devDependencies": {
+    "@templ/utils": "workspace:*",
     "@types/node": "^20.11.4",
-    "@vitest/coverage-v8": "^1.2.0",
-    "pactum": "^3.6.0",
-    "vitest": "^1.2.0"
+    "consola": "^3.2.3",
+    "table": "^6.8.1",
+    "tinybench": "^2.6.0",
+    "tsx": "^4.7.0"
   }
 }

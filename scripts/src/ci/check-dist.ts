@@ -1,7 +1,7 @@
 import type { Stats } from 'node:fs'
 import { intro, log } from '@clack/prompts'
 import { totalist } from 'totalist'
-import { getPackagesDirAsync } from '../utils'
+import { getPackagesDirAsync } from '@templ/utils'
 
 async function main() {
   let count = 0

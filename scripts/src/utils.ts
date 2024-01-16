@@ -1,15 +1,14 @@
 import { parse, resolve, sep } from 'node:path'
 import { access, readFile, readdir, writeFile } from 'node:fs/promises'
-import { existsSync, readdirSync } from 'node:fs'
+import { existsSync } from 'node:fs'
 import { cwd } from 'node:process'
 import { log, note, spinner } from '@clack/prompts'
 import { hasProperty, setProperty } from 'dot-prop'
 import { execa } from 'execa'
-import { findUp, findUpSync } from 'find-up'
 import { createRegExp, exactly } from 'magic-regexp'
 import colors from 'picocolors'
 import latestVersion from 'latest-version'
-import wrapAnsi from 'wrap-ansi'
+import { getPackagesDirAsync, getRootDirAsync, getWrappedStr } from '@templ/utils'
 
 interface ExeCommon {
   showOutput?: boolean
@@ -117,43 +116,9 @@ export async function getPackageManagers({
 
   return pms
 }
-
-export function getRootDirSync() {
-  const root = findUpSync('pnpm-workspace.yaml') || findUpSync('.npmrc') || cwd()
-  return parse(root).dir
-}
-export async function getRootDirAsync() {
-  const root = await findUp('pnpm-workspace.yaml') || await findUp('.npmrc') || cwd()
-  return parse(root).dir
-}
-
-export function getPackagesDirSync() {
-  return resolve(getRootDirSync(), 'packages')
-}
-export async function getPackagesDirAsync() {
-  const root = await getRootDirAsync()
-  return resolve(root, 'packages')
-}
-export function getArtifactsDirSync() {
-  return resolve(getRootDirSync(), 'artifacts')
-}
-export async function getArtifactsDirAsync() {
-  const root = await getRootDirAsync()
-  return resolve(root, 'artifacts')
-}
-
-export function getPackagesSync() {
-  const pkgRoot = getPackagesDirSync()
-  return readdirSync(pkgRoot)
-}
-
 export async function getPackagesAsync() {
   const pkgRoot = await getPackagesDirAsync()
   return await readdir(pkgRoot)
-}
-
-export function getWrappedStr(msg: string, column: number = 100) {
-  return wrapAnsi(msg, column)
 }
 
 export async function exeCmd(params: ExeCmdType = {

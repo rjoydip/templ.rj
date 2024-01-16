@@ -5,7 +5,8 @@ import { existsSync } from 'node:fs'
 import { intro, log } from '@clack/prompts'
 import { totalist } from 'totalist'
 import { createRegExp, exactly } from 'magic-regexp'
-import { getPackagesDirAsync, ignoreRegex } from '../utils'
+import { getPackagesDirAsync } from '@templ/utils'
+import { ignoreRegex } from '../utils'
 
 async function main() {
   let count = 0

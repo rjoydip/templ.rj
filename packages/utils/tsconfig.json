@@ -1,9 +1,8 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "useDefineForClassFields": true,
     "baseUrl": ".",
     "module": "esnext",
+    "moduleResolution": "node",
     "resolveJsonModule": false,
     "strict": true,
     "noFallthroughCasesInSwitch": true,
@@ -24,5 +23,5 @@
     "pretty": true,
     "skipLibCheck": true
   },
-  "include": ["src/**/*.ts"]
+  "include": ["src/**/*.ts", "**/*.d.ts"]
 }

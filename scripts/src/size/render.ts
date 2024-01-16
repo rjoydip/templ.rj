@@ -7,7 +7,7 @@ import { pathToFileURL } from 'node:url'
 import { platform } from 'node:os'
 import { markdownTable } from 'markdown-table'
 import { log } from '@clack/prompts'
-import { getArtifactsDirSync } from '../utils'
+import { getArtifactsDirSync } from '@templ/utils'
 
 interface SizeResult {
   size: number

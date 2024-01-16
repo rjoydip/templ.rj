@@ -34,18 +34,19 @@
   },
   "workspaces": [
     "apps/**",
+    "benchmark",
     "docs",
     "packages/**",
     "scripts"
   ],
   "devDependencies": {
     "@antfu/eslint-config": "2.6.2",
-    "@size-limit/file": "^11.0.1",
+    "@size-limit/file": "^11.0.2",
     "auto-changelog": "^2.4.0",
     "better-commits": "^1.8.0",
     "eslint": "^8.56.0",
     "pnpm": "^8.14.1",
-    "size-limit": "^11.0.1",
+    "size-limit": "^11.0.2",
     "taze": "^0.13.1"
   },
   "auto-changelog": {

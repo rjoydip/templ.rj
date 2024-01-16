@@ -4,7 +4,8 @@ import { intro, log } from '@clack/prompts'
 import { totalist } from 'totalist/sync'
 import markdownlint from 'markdownlint'
 import { createRegExp, exactly } from 'magic-regexp'
-import { getRootDirSync, getWrappedStr, ignoreRegex } from '../utils'
+import { getRootDirSync, getWrappedStr } from '@templ/utils'
+import { ignoreRegex } from '../utils'
 
 // https://github.com/DavidAnson/markdownlint#rules
 // https://github.com/DavidAnson/markdownlint/blob/master/doc/Rules.md

@@ -5,7 +5,8 @@ import { totalist } from 'totalist'
 import { lint as typeCoverage } from 'type-coverage-core'
 import tablemark from 'tablemark'
 import { createRegExp, exactly } from 'magic-regexp'
-import { getRootDirAsync, ignoreRegex } from '../utils'
+import { getRootDirAsync } from '@templ/utils'
+import { ignoreRegex } from '../utils'
 
 export async function getTypeCoverageResults(): Promise<string> {
   const paths: string[] = []
