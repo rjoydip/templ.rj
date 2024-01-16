@@ -49,7 +49,7 @@ async function main() {
 
   // Size limit
   await executeFn({
-    title: 'Size limit',
+    title: 'Size Limit',
     fn: async () => {
       const results = await sizeLimit()
       sizeLimitRenderer(results)
@@ -60,7 +60,7 @@ async function main() {
 
   // Size report
   await executeFn({
-    title: 'Size report',
+    title: 'Size Report',
     fn: async () => {
       await sizeReportRenderer()
     },

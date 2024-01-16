@@ -2,16 +2,13 @@ import { cp } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import type { Stats } from 'node:fs'
 import { existsSync } from 'node:fs'
-import { intro, log } from '@clack/prompts'
+import { log } from '@clack/prompts'
 import { totalist } from 'totalist'
 import { createRegExp, exactly } from 'magic-regexp'
 import { getPackagesDirAsync, ignoreRegex } from '../utils'
 
 async function main() {
   let count = 0
-
-  intro('CI env coping')
-
   const pkgRoot = await getPackagesDirAsync()
 
   await totalist(pkgRoot, async (name: string, abs: string, stats: Stats) => {
