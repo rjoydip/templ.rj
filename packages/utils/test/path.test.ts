@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { appsRoot, pkgRoot, root, scriptsRoot } from '../src'
+import { appsRoot, pkgRoot, root, scriptsRoot } from '../src/index'
 
 describe('@templ/utils > path', () => {
   it('should be validate root path', () => {

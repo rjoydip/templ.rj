@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { isDefined, isEmpty, isNotDefined, isNotEmpty } from '../src'
+import { isDefined, isEmpty, isNotDefined, isNotEmpty } from '../src/index'
 
 describe('@templ/utils > Is', () => {
   it('should match value and type of isDefined', () => {

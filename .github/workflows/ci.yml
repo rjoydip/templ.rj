@@ -16,6 +16,16 @@ permissions:
 
 jobs:
 
+  pr:
+    runs-on: ubuntu-latest
+    if: github.actor != 'dependabot[bot]'
+    steps:
+      - uses: thehanimo/pr-title-checker@v1.4.0
+        with:
+          pass_on_octokit_error: false
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
   trivy_scan:
     runs-on: ubuntu-latest
     steps:
@@ -30,7 +40,7 @@ jobs:
           output: dependency-results.sbom.json
           github-pat: ${{ secrets.GITHUB_TOKEN }}
 
-  init:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -38,79 +48,66 @@ jobs:
       - name: Install
         run: pnpm install --no-frozen-lockfile
 
-      # Build
+      - name: Lint
+        run: pnpm -C scripts lint --no-spinner --no-output
+
+      - name: Dist Valid
+        run: pnpm -C scripts ci:check:dist
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/setup-node
+      - name: Install
+        run: pnpm install --no-frozen-lockfile
+
       - name: Build
         run: |
           pnpm -C scripts ci:copy:env
           pnpm run build
           pnpm -C scripts ci:delete:env
 
-      # Lint
-      - name: Lint
-        run: pnpm -C scripts lint --no-spinner --no-output
+  size:
+    runs-on: ubuntu-latest
+    needs: ['build']
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/setup-node
+      - name: Install
+        run: pnpm install --no-frozen-lockfile
 
-      # Dist valid
-      - name: Dist valid
-        run: pnpm -C scripts ci:check:dist
-
-      # # Test
-      - name: Test
-        run: pnpm run test
-      - name: Codecov
-        uses: codecov/codecov-action@v3
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-
-      # Size Report
-      - name: Download Artifact
-        uses: dawidd6/action-download-artifact@v2
-        with:
-          name: size-data
-          path: artifacts/temp/size-prev
-          if_no_artifact_found: warn
+      - name: Size Limit
+        run: pnpm -C scripts size:limit
 
       - name: Size Report
         run: pnpm -C scripts size:report
 
-      - name: Upload Size Data
-        uses: actions/upload-artifact@v3
-        with:
-          name: size-data
-          path: artifacts/temp/size
-
-      - name: Read Size Report
-        id: size-report
-        uses: juliangruber/read-file-action@v1
-        with:
-          path: ./artifacts/size-report.md
-
-      - name: Create commit comment
-        uses: peter-evans/commit-comment@v2
-        with:
-          body: ${{ steps.size-report.outputs.content }}
-
-  test_cli:
+  test:
     runs-on: ${{ matrix.os }}
     timeout-minutes: 10
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        node_version: [18]
+        node_version: [18, 20]
       fail-fast: false
-    needs: [init]
+    needs: [lint, build]
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup-node
         with:
           node-version: ${{ matrix.node_version }}
+
+      - name: Test
+        run: pnpm run test
+
+      - name: Codecov
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
       - name: Test CLI
         run: pnpm run test:cli
-
-  action-timeline:
-    needs: [init, test_cli, trivy_scan]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: Kesin11/actions-timeline@v1
 
   triage:
     runs-on: ubuntu-latest
@@ -118,11 +115,8 @@ jobs:
     steps:
       - uses: actions/labeler@v4
 
-  pr_title_check:
+  action-timeline:
+    needs: [build, lint, pr, size, test, trivy_scan, triage]
     runs-on: ubuntu-latest
-    if: github.actor != 'dependabot[bot]'
     steps:
-      - uses: thehanimo/pr-title-checker@v1.4.0
-        with:
-          pass_on_octokit_error: false
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: Kesin11/actions-timeline@v1
