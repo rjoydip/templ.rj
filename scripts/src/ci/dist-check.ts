@@ -1,11 +1,11 @@
+import { join } from 'node:path'
+import { cwd } from 'node:process'
 import { log } from '@clack/prompts'
-import { getRootDirAsync } from '@templ/utils'
 import { globby } from 'globby'
 
 async function main() {
-  const root = await getRootDirAsync()
   const files = await globby(['**/dist/index.js'], {
-    cwd: root,
+    cwd: join(cwd(), '..'),
   })
   files.length === 5 ? log.success('Dist count matched') : log.error('Dist count not match')
 }

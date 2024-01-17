@@ -1,10 +1,11 @@
-import { argv } from 'node:process'
+import { argv, cwd } from 'node:process'
 import { rm } from 'node:fs/promises'
+import { join } from 'node:path'
 import { log } from '@clack/prompts'
 import colors from 'picocolors'
-import { getRootDirAsync, ignorePatterns } from '@templ/utils'
 import { globby } from 'globby'
 import parser from 'yargs-parser'
+import { ignorePatterns } from '../utils'
 
 async function main() {
   const {
@@ -14,12 +15,11 @@ async function main() {
       'boolean-negation': false,
     },
   })
-  const root = await getRootDirAsync()
   const files = await globby(['**/.env'], {
     ignore: ignorePatterns,
     gitignore: false,
     absolute: true,
-    cwd: root,
+    cwd: join(cwd(), '..'),
   })
 
   if (!dryRun) {

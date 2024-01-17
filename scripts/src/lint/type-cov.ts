@@ -1,8 +1,10 @@
+import { join } from 'node:path'
+import { cwd } from 'node:process'
 import { lint as typeCoverage } from 'type-coverage-core'
-import { getRootDirAsync, ignorePatterns } from '@templ/utils'
 import { table } from 'table'
 import { note } from '@clack/prompts'
 import { globby } from 'globby'
+import { ignorePatterns } from '../utils'
 
 interface TypeCoverage {
   path: string
@@ -13,13 +15,11 @@ interface TypeCoverage {
 
 export async function typeCov(): Promise<TypeCoverage[]> {
   let paths: string[] = []
-  const root = await getRootDirAsync()
 
   paths = await globby(['**/tsconfig.json'], {
     ignore: ignorePatterns,
-    gitignore: false,
     absolute: true,
-    cwd: root,
+    cwd: join(cwd(), '..'),
   })
 
   const results = await Promise.all(paths.map(async (p) => {

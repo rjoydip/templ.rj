@@ -7,24 +7,29 @@
       "inputs": ["src/**/*.ts"]
     },
     "test": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["^build", "bench"],
       "outputs": ["coverage/**"],
       "inputs": ["src/**/*.ts", "test/**/*.ts"]
     },
     "test:cli": {
-      "dependsOn": ["build"]
+      "dependsOn": ["build"],
+      "cache": false
     },
     "lint": {
-      "dependsOn": ["build", "eslint", "size:limit", "size:report", "type:cov"]
+      "dependsOn": ["build", "eslint", "lint:size-limit", "lint:size-report", "lint:type-cov"],
+      "cache": false
     },
     "commit": {
-      "dependsOn": ["deps:update", "build", "lint", "changelog"]
+      "dependsOn": ["deps:update", "build", "lint", "changelog"],
+      "cache": false
     },
     "bench": {
-      "dependsOn": ["^build"]
+      "dependsOn": ["^build"],
+      "cache": false
     },
     "setup": {
-      "dependsOn": ["commit", "bench", "test"]
+      "dependsOn": ["commit", "test"],
+      "cache": false
     },
     "clean": {
       "cache": false
@@ -45,13 +50,13 @@
     "knip": {
       "cache": false
     },
-    "size:limit": {
+    "lint:size-limit": {
       "cache": false
     },
-    "size:report": {
+    "lint:size-report": {
       "cache": false
     },
-    "type:cov": {
+    "lint:type-cov": {
       "cache": false
     }
   }

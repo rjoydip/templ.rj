@@ -5,10 +5,9 @@ import { cwd } from 'node:process'
 import { log, note, spinner } from '@clack/prompts'
 import { hasProperty, setProperty } from 'dot-prop'
 import { execa } from 'execa'
-import { createRegExp, exactly } from 'magic-regexp'
 import colors from 'picocolors'
 import latestVersion from 'latest-version'
-import { getPackagesDirAsync, getRootDirAsync, getWrappedStr } from '@templ/utils'
+import wrapAnsi from 'wrap-ansi'
 
 interface ExeCommon {
   showOutput?: boolean
@@ -28,7 +27,7 @@ interface ExecuteFn extends ExeCommon {
 type PM = 'npm' | 'yarn' | 'pnpm' | 'bun'
 
 const unit = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
-export const ignoreRegex = createRegExp(exactly('node_modules').or('test').or('dist').or('coverage').or('templates'), [])
+export const ignorePatterns = ['.git/**', '**/node_modules/**', 'templates/**', '**/fixtures/**', '*templ.mjs', '*.code-workspace']
 
 export function prettyBytes(bytes: number) {
   if (bytes === 0)
@@ -75,51 +74,56 @@ function hasGlobalInstallation(pm: PM): Promise<boolean> {
     .catch(() => false)
 }
 
-function getTypeofLockFile(cwd = '.'): Promise<PM | null> {
+async function getTypeofLockFile(cwd = '.'): Promise<PM> {
   const key = `lockfile_${cwd}`
   if (cache.has(key))
     return Promise.resolve(cache.get(key))
 
-  return Promise.all([
+  const [isYarn, isNpm, isPnpm, isBun] = await Promise.all([
     pathExists(resolve(cwd, 'yarn.lock')),
     pathExists(resolve(cwd, 'package-lock.json')),
     pathExists(resolve(cwd, 'pnpm-lock.yaml')),
     pathExists(resolve(cwd, 'bun.lockb')),
-  ]).then(([isYarn, isNpm, isPnpm, isBun]) => {
-    let value: PM | null = null
+  ])
 
-    if (isYarn)
-      value = 'yarn'
+  let value: PM | null = null
 
-    else if (isPnpm)
-      value = 'pnpm'
+  if (isYarn)
+    value = 'yarn'
 
-    else if (isBun)
-      value = 'bun'
+  else if (isPnpm)
+    value = 'pnpm'
 
-    else if (isNpm)
-      value = 'npm'
+  else if (isBun)
+    value = 'bun'
 
-    cache.set(key, value)
-    return value
-  })
+  else if (isNpm)
+    value = 'npm'
+
+  else
+    value = 'npm'
+  cache.set(key, value)
+  return value
 }
 
 export async function getPackageManagers({
   cwd,
   incldeGlobaBun,
   includeLocal,
-}: { cwd?: string, incldeGlobaBun?: boolean, includeLocal?: boolean } = {}) {
-  const pms = ['npm']
+}: { cwd?: string, incldeGlobaBun?: boolean, includeLocal?: boolean } = {}): Promise<PM[]> {
+  const pms: PM[] = []
 
-  if (includeLocal && cwd)
-    return getTypeofLockFile(cwd)
+  if (includeLocal && cwd) {
+    const localPM = await getTypeofLockFile(cwd)
+    return [localPM]
+  }
 
   const [hasYarn, hasPnpm, hasBun] = await Promise.all([
     hasGlobalInstallation('yarn'),
     hasGlobalInstallation('pnpm'),
     incldeGlobaBun && hasGlobalInstallation('bun'),
   ])
+
   if (hasYarn)
     pms.push('yarn')
 
@@ -132,8 +136,11 @@ export async function getPackageManagers({
   return pms
 }
 export async function getPackagesAsync() {
-  const pkgRoot = await getPackagesDirAsync()
-  return await readdir(pkgRoot)
+  return await readdir(resolve(cwd(), '..', 'packages'))
+}
+
+export function getWrappedStr(msg: string, column: number = 100) {
+  return wrapAnsi(msg, column)
 }
 
 function showTerminalOutput(output: {
@@ -225,7 +232,7 @@ export async function updateTemplateAssets(name: string = '', packageManager: st
 }, dotProps: object = {}) {
   let pkgDataRaw = ''
   const pkgPath = resolve(dest, 'package.json')
-  const root = await getRootDirAsync()
+  const root = resolve(cwd(), '..')
   const pkgVersion = await latestVersion(packageManager)
 
   if (!existsSync(pkgPath)) {
@@ -266,10 +273,9 @@ export async function updateTemplateAssets(name: string = '', packageManager: st
     const readmePath = resolve(dest, 'README.md')
     const readmeData = await readFile(readmePath, { encoding: 'utf8' })
 
-    const regExp = createRegExp(exactly(replacement.from), ['g', 'm'])
-    await writeFile(readmePath, readmeData.replace(regExp, replacement.to))
+    await writeFile(readmePath, readmeData.replace(replacement.from, replacement.to))
 
-    pkgDataRaw = pkgDataRaw.replace(regExp, replacement.to)
+    pkgDataRaw = pkgDataRaw.replace(replacement.from, replacement.to)
   }
 
   const pkgData = JSON.parse(pkgDataRaw)

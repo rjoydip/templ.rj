@@ -6,7 +6,6 @@ import { exit } from 'node:process'
 import { cancel, confirm, group, log, select, text } from '@clack/prompts'
 import colors from 'picocolors'
 import { downloadTemplate, startShell } from 'giget'
-import { createRegExp, exactly } from 'magic-regexp'
 import { exeCmd, stackNotes, updateTemplateAssets } from '../../utils'
 import type { SpinnerType } from '.'
 
@@ -91,7 +90,7 @@ export async function create(root: string, packageManager: string, install: bool
   const { type, next, nuxt, path, name } = apps
 
   const appPath = join(path.toString(), name.toString())
-  const dest = platform() === 'win32' ? resolve(root, appPath).replace(createRegExp(exactly(sep), ['g']), '\\\\') : resolve(root, appPath)
+  const dest = platform() === 'win32' ? resolve(root, appPath).replace(sep, '\\\\') : resolve(root, appPath)
 
   if (!existsSync(dest))
     await mkdir(dest, { recursive: true })

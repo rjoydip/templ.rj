@@ -49,9 +49,10 @@ async function main() {
           },
           packageManager: async () => {
             if (stackOpts.create.docs.tools !== 'vitepress') {
+              const availablePackageManagers = await getPackageManagers() || ['npm']
               return await select<any, string>({
                 message: 'Select package manager.',
-                options: (await getPackageManagers()).map((pm: string) => ({ value: pm, label: pm })),
+                options: availablePackageManagers.map((pm: string) => ({ value: pm, label: pm })),
               })
             }
             return Promise.resolve('pnpm')

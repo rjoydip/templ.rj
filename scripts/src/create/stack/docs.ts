@@ -6,7 +6,6 @@ import { exit } from 'node:process'
 import { cancel, confirm, group, log, select, text } from '@clack/prompts'
 import colors from 'picocolors'
 import { downloadTemplate } from 'giget'
-import { createRegExp, exactly } from 'magic-regexp'
 import latestVersion from 'latest-version'
 import { stackNotes, updateTemplateAssets } from '../../utils'
 import type { SpinnerType } from '.'
@@ -57,7 +56,7 @@ export async function create(root: string, packageManager: string, install: bool
     spinner.start(`Creating ${name.toString()} documentation`)
 
     const appPath = join(path.toString(), name.toString())
-    const dest = platform() === 'win32' ? resolve(root, appPath.toString()).replace(createRegExp(exactly(sep), ['g']), '\\\\') : resolve(root, appPath.toString())
+    const dest = platform() === 'win32' ? resolve(root, appPath.toString()).replace(sep, '\\\\') : resolve(root, appPath.toString())
 
     if (!existsSync(dest))
       await mkdir(dest, { recursive: true })
@@ -81,7 +80,7 @@ export async function create(root: string, packageManager: string, install: bool
     spinner.start(`Creating ${name.toString()} documentation`)
 
     const appPath = join(path.toString(), name.toString())
-    const dest = platform() === 'win32' ? resolve(root, appPath.toString()).replace(createRegExp(exactly(sep), ['g']), '\\\\') : resolve(root, appPath.toString())
+    const dest = platform() === 'win32' ? resolve(root, appPath.toString()).replace(sep, '\\\\') : resolve(root, appPath.toString())
 
     if (!existsSync(dest))
       await mkdir(dest, { recursive: true })

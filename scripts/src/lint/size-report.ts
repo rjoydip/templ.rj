@@ -1,16 +1,15 @@
-import { parse, resolve, sep } from 'node:path'
+import { join, parse, resolve } from 'node:path'
 import { existsSync } from 'node:fs'
 import { cp, mkdir, readdir, writeFile } from 'node:fs/promises'
 import { pathToFileURL } from 'node:url'
 import { platform } from 'node:os'
 import { promisify } from 'node:util'
 import { brotliCompress, gzip } from 'node:zlib'
-import { getArtifactsDirAsync, getArtifactsDirSync, getPackagesDirAsync } from '@templ/utils'
+import { cwd } from 'node:process'
 import { note } from '@clack/prompts'
 import { table } from 'table'
 import { globby } from 'globby'
 import { rollup } from 'rollup'
-import { createRegExp, exactly } from 'magic-regexp'
 import { minify } from 'terser'
 import { getPackagesAsync, prettyBytes } from '../utils'
 
@@ -32,7 +31,7 @@ interface BundleResult extends SizeResult {
 
 type PackageResult = Record<string, SizeResult & { name: string }>
 
-const artifacts = getArtifactsDirSync()
+const artifacts = join(cwd(), '..', 'artifacts')
 const currDir = resolve(artifacts, 'temp/size')
 const prevDir = resolve(artifacts, 'temp/size-prev')
 
@@ -59,7 +58,7 @@ async function generateBundle(preset: Preset) {
     typeof preset.imports === 'string'
       ? preset.imports
       : `{ ${preset.imports.join(', ')} }`
-  } from '${platform() === 'win32' ? preset.entry.replace(createRegExp(exactly(sep), ['g']), '\\\\') : preset.entry}'`
+  } from '${platform() === 'win32' ? preset.entry.replace(/\\/g, '\\\\') : preset.entry}'`
 
   const result = await rollup({
     input: id,
@@ -179,10 +178,9 @@ export async function renderPackages() {
   return [['Paclages', '', '', ''], ['Name', ...sizeHeaders], ...data]
 }
 
-export async function sizeReportRenderer() {
+export async function sizeReportRenderer(dir: string = cwd()) {
   const packages = await getPackagesAsync()
-  const pkgRoot = await getPackagesDirAsync()
-  const artifacts = await getArtifactsDirAsync()
+  const artifacts = dir
 
   const tempDir = `${artifacts}/temp`
   const currDir = `${artifacts}/temp/size`
@@ -220,7 +218,7 @@ export async function sizeReportRenderer() {
   const presets: Preset[] = packages.map(pkgName => ({
     name: pkgName,
     imports: '*',
-    entry: resolve(pkgRoot, pkgName, 'dist', 'index.js'),
+    entry: resolve(cwd(), '..', pkgName, 'dist', 'index.js'),
   }))
 
   const gData = await generateData(presets)
@@ -260,7 +258,7 @@ export async function sizeReportRenderer() {
 }
 
 async function main() {
-  await sizeReportRenderer()
+  await sizeReportRenderer(join(cwd(), '..', 'artifacts'))
 }
 
 main().catch(console.error)

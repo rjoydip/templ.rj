@@ -19,10 +19,11 @@
     "yarn": ">=3"
   },
   "scripts": {
+    "prebuild": "pnpm run clean",
     "build": "turbo run build",
     "bench": "turbo run bench",
     "changelog": "auto-changelog -p",
-    "clean": "turbo run clean && pnpm -C scripts clean:turbo",
+    "clean": "turbo run clean",
     "commit": "turbo run commit && better-commits",
     "create": "pnpm run -C scripts create --stack",
     "eslint": "eslint -c eslint.config.js --color --cache --fix --cache-location .eslintcache .",

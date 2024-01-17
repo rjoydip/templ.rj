@@ -4,6 +4,7 @@ import { log } from '@clack/prompts'
 import { deleteAsync } from 'del'
 import colors from 'picocolors'
 import parser from 'yargs-parser'
+import { ignorePatterns } from '../utils'
 
 async function main() {
   const { dryRun = false } = parser(argv.splice(2), {
@@ -13,6 +14,7 @@ async function main() {
   })
 
   const deletedPaths = await deleteAsync(['**/.turbo/**'], {
+    ignore: ignorePatterns,
     cwd: join(cwd(), '..'),
     dryRun,
     force: true,
