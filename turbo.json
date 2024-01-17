@@ -1,0 +1,58 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"],
+      "inputs": ["src/**/*.ts"]
+    },
+    "test": {
+      "dependsOn": ["^build"],
+      "outputs": ["coverage/**"],
+      "inputs": ["src/**/*.ts", "test/**/*.ts"]
+    },
+    "test:cli": {
+      "dependsOn": ["build"]
+    },
+    "lint": {
+      "dependsOn": ["build", "eslint", "size:limit", "size:report", "type:cov"]
+    },
+    "commit": {
+      "dependsOn": ["deps:update", "build", "lint", "changelog"]
+    },
+    "bench": {
+      "dependsOn": ["^build"]
+    },
+    "setup": {
+      "dependsOn": ["commit", "bench", "test"]
+    },
+    "clean": {
+      "cache": false
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "changelog": {
+      "cache": false
+    },
+    "deps:update": {
+      "cache": false
+    },
+    "eslint": {
+      "cache": false
+    },
+    "knip": {
+      "cache": false
+    },
+    "size:limit": {
+      "cache": false
+    },
+    "size:report": {
+      "cache": false
+    },
+    "type:cov": {
+      "cache": false
+    }
+  }
+}

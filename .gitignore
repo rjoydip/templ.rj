@@ -17,9 +17,10 @@ yarn-error.log*
 .eslintcache
 .nyc_output
 .pnpm-store
+.turbo
 
 # Folder
-dist
+**/dist/**
 coverage
 node_modules
 temp
@@ -28,5 +29,3 @@ temp
 fixtures/output/*
 !fixtures/output/.gitkeep
 
-# Tools
-/tools/lib-cov

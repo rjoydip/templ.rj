@@ -21,6 +21,7 @@
     "npm": ">=8"
   },
   "scripts": {
+    "bench": "pnpm run bench:utils:path",
     "bench:utils:path": "tsx ./src/utils/path.bench.ts"
   },
   "devDependencies": {

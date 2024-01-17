@@ -19,18 +19,19 @@
     "yarn": ">=3"
   },
   "scripts": {
-    "precommit": "pnpm deps:update && pnpm lint && pnpm build && pnpm changelog",
-    "prebuild": "pnpm -C scripts clean",
-    "preinstall": "npx only-allow pnpm",
-    "all": "pnpm -C scripts all",
-    "build": "pnpm -r build",
+    "build": "turbo run build",
+    "bench": "turbo run bench",
     "changelog": "auto-changelog -p",
-    "commit": "better-commits",
+    "clean": "turbo run clean && pnpm -C scripts clean:turbo",
+    "commit": "turbo run commit && better-commits",
     "create": "pnpm run -C scripts create --stack",
+    "eslint": "eslint -c eslint.config.js --color --cache --fix --cache-location .eslintcache .",
     "deps:update": "taze -r -w -i -f -l",
-    "lint": "pnpm -C scripts lint",
-    "test": "pnpm -r test",
-    "test:cli": "pnpm -r test:cli"
+    "lint": "turbo run lint",
+    "knip": "knip --include files,dependencies --reporter markdown",
+    "setup": "turbo run setup",
+    "test": "turbo run test",
+    "test:cli": "turbo run test:cli"
   },
   "workspaces": [
     "apps/**",
@@ -41,13 +42,13 @@
   ],
   "devDependencies": {
     "@antfu/eslint-config": "2.6.2",
-    "@size-limit/file": "^11.0.2",
     "auto-changelog": "^2.4.0",
     "better-commits": "^1.8.0",
     "eslint": "^8.56.0",
+    "knip": "^3.13.2",
     "pnpm": "^8.14.1",
-    "size-limit": "^11.0.2",
-    "taze": "^0.13.1"
+    "taze": "^0.13.1",
+    "turbo": "^1.11.3"
   },
   "auto-changelog": {
     "output": "CHANGELOG.md",
@@ -56,33 +57,6 @@
     "commitLimit": false
   },
   "stackblitz": {
-    "startCommand": "pnpm build"
-  },
-  "size-limit": [
-    {
-      "path": "./packages/cli/dist/index.js",
-      "limit": "300B",
-      "brotli": true
-    },
-    {
-      "path": "./packages/core/dist/index.js",
-      "limit": "100B",
-      "brotli": true
-    },
-    {
-      "path": "./packages/config/dist/index.js",
-      "limit": "600B",
-      "brotli": true
-    },
-    {
-      "path": "./packages/logger/dist/index.js",
-      "limit": "800B",
-      "brotli": true
-    },
-    {
-      "path": "./packages/utils/dist/index.js",
-      "limit": "700B",
-      "brotli": true
-    }
-  ]
+    "startCommand": "pnpm run build"
+  }
 }

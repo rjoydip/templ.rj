@@ -35,10 +35,9 @@
     "npm": ">=8"
   },
   "scripts": {
-    "build": "tsup",
-    "pretest": "pnpm run build",
-    "test": "pnpm build && vitest run",
-    "test:cli": "pnpm build && pnpm link . && pnpm templjs -v"
+    "build": "tsup src/index.ts --dts --clean --minify --no-splitting --no-sourcemap --target esnext --format esm --platform node",
+    "test": "vitest run",
+    "test:cli": "pnpm link . && pnpm templjs -v"
   },
   "dependencies": {
     "sade": "^1.8.1"
@@ -48,5 +47,6 @@
     "@vitest/coverage-v8": "^1.2.0",
     "tsup": "^8.0.1",
     "vitest": "^1.2.0"
-  }
+  },
+  "size-limit": "400 KB"
 }

@@ -11,7 +11,7 @@
     "ghcr.io/devcontainers/features/docker-in-docker": "latest"
   },
   "onCreateCommand": "pnpm i --no-frozen-lockfile",
-  "postAttachCommand": "pnpm build",
+  "postAttachCommand": "pnpm run build",
   "waitFor": "onCreateCommand",
   "customizations": {
     "vscode": {

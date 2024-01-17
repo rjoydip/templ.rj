@@ -31,8 +31,8 @@
     "npm": ">=8"
   },
   "scripts": {
-    "build": "tsup",
-    "test": "pnpm build && vitest run"
+    "build": "tsup src/index.ts --dts --clean --minify --no-splitting --no-sourcemap --target esnext --format esm --platform node",
+    "test": "vitest run"
   },
   "dependencies": {},
   "devDependencies": {
