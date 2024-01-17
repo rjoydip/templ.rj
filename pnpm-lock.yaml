@@ -224,9 +224,6 @@ importers:
       terser:
         specifier: ^5.26.0
         version: 5.26.0
-      totalist:
-        specifier: ^3.0.1
-        version: 3.0.1
       type-coverage-core:
         specifier: ^2.27.1
         version: 2.27.1(typescript@5.3.3)
@@ -6443,11 +6440,6 @@ packages:
     dependencies:
       eslint-visitor-keys: 3.4.3
     dev: true
-
-  /totalist@3.0.1:
-    resolution: {integrity: sha512-sf4i37nQ2LBx4m3wB74y+ubopq6W/dIzXg0FDGjsYnZHVa1Da8FH853wlL2gtUhg+xJXjfk3kUZS3BRoQeoQBQ==}
-    engines: {node: '>=6'}
-    dev: false
 
   /tr46@0.0.3:
     resolution: {integrity: sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==}
