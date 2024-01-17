@@ -35,7 +35,8 @@
     "npm": ">=8"
   },
   "scripts": {
-    "build": "tsup src/index.ts --dts --clean --minify --no-splitting --no-sourcemap --target esnext --format esm --platform node"
+    "build": "tsup src/index.ts --dts --clean --minify --no-splitting --no-sourcemap --target esnext --format esm --platform node",
+    "postbuild": "pnpm link . && pnpm templjs -v"
   },
   "dependencies": {
     "sade": "^1.8.1"
