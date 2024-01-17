@@ -63,7 +63,7 @@ jobs:
         run: pnpm run -C scripts lint:size-limit
 
       - name: Size Report
-        run: pnpm run -C scripts lint:ize-report
+        run: pnpm run -C scripts lint:size-report
 
   build:
     runs-on: ubuntu-latest
