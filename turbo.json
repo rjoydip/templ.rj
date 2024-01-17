@@ -16,7 +16,7 @@
       "cache": false
     },
     "commit": {
-      "dependsOn": ["deps:update", "build", "lint", "changelog"],
+      "dependsOn": ["build", "lint"],
       "cache": false
     },
     "bench": {
@@ -34,16 +34,7 @@
       "cache": false,
       "persistent": true
     },
-    "changelog": {
-      "cache": false
-    },
-    "deps:update": {
-      "cache": false
-    },
     "eslint": {
-      "cache": false
-    },
-    "knip": {
       "cache": false
     },
     "lint:size-limit": {
