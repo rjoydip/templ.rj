@@ -1,4 +1,5 @@
 import { argv, exit } from 'node:process'
+import { consola } from 'consola'
 import sade from 'sade'
 
 // eslint-disable-next-line node/prefer-global/process
@@ -17,17 +18,14 @@ async function main() {
     .example('init')
     .action(async (opts) => {
       try {
-        // eslint-disable-next-line no-console
-        console.log(opts)
-        // eslint-disable-next-line no-console
-        console.log()
+        consola.box(opts)
       }
       catch (error) {
-        console.error(String(error))
+        consola.error(String(error))
       }
     })
 
   prog.parse(argv)
 }
 
-main().catch(console.error)
+main().catch(consola.error)

@@ -3,13 +3,11 @@ import { platform } from 'node:os'
 import { existsSync } from 'node:fs'
 import { mkdir } from 'node:fs/promises'
 import { exit } from 'node:process'
-import { cancel, confirm, group, log, select, text } from '@clack/prompts'
-import colors from 'picocolors'
+import { consola } from 'consola'
+import { cancel, confirm, group, select, text } from '@clack/prompts'
 import { downloadTemplate } from 'giget'
-import { createRegExp, exactly } from 'magic-regexp'
 import latestVersion from 'latest-version'
 import { stackNotes, updateTemplateAssets } from '../../utils'
-import type { SpinnerType } from '.'
 
 export interface DocsOptsType {
   docusaurus: {
@@ -49,15 +47,15 @@ export const defaultDocsOpts = {
   },
 }
 
-export async function create(root: string, packageManager: string, install: boolean = false, spinner: SpinnerType, docs: DocsOptsType) {
+export async function create(root: string, packageManager: string, install: boolean = false, docs: DocsOptsType) {
   const { tools, docusaurus, mintlify, nextra } = docs
 
   if (tools === 'docusaurus') {
     const { name, language, path } = docusaurus
-    spinner.start(`Creating ${name.toString()} documentation`)
+    consola.start(`Creating ${name.toString()} documentation`)
 
     const appPath = join(path.toString(), name.toString())
-    const dest = platform() === 'win32' ? resolve(root, appPath.toString()).replace(createRegExp(exactly(sep), ['g']), '\\\\') : resolve(root, appPath.toString())
+    const dest = platform() === 'win32' ? resolve(root, appPath.toString()).replace(sep, '\\\\') : resolve(root, appPath.toString())
 
     if (!existsSync(dest))
       await mkdir(dest, { recursive: true })
@@ -70,18 +68,17 @@ export async function create(root: string, packageManager: string, install: bool
 
     await updateTemplateAssets(`@templ/${name.toString()}`, packageManager, dest)
 
-    spinner.stop(`Generated ${name.toString()} documentation`)
+    consola.success(`Generated ${name.toString()} documentation`)
 
     stackNotes(appPath, install, packageManager)
-    log.success(`${colors.green(name.toString())} package created`)
   }
 
   if (tools === 'mintlify') {
     const { name, path } = mintlify
-    spinner.start(`Creating ${name.toString()} documentation`)
+    consola.start(`Creating ${name.toString()} documentation`)
 
     const appPath = join(path.toString(), name.toString())
-    const dest = platform() === 'win32' ? resolve(root, appPath.toString()).replace(createRegExp(exactly(sep), ['g']), '\\\\') : resolve(root, appPath.toString())
+    const dest = platform() === 'win32' ? resolve(root, appPath.toString()).replace(sep, '\\\\') : resolve(root, appPath.toString())
 
     if (!existsSync(dest))
       await mkdir(dest, { recursive: true })
@@ -103,15 +100,14 @@ export async function create(root: string, packageManager: string, install: bool
       },
     })
 
-    spinner.stop(`Generated ${name.toString()} documentation`)
+    consola.success(`Generated ${name.toString()} documentation`)
 
     stackNotes(appPath, install, packageManager)
-    log.success(`${colors.green(name.toString())} package created`)
   }
 
   if (tools === 'nextra') {
     const { name, theme, path } = nextra
-    spinner.start(`Creating ${name.toString()} documentation`)
+    consola.start(`Creating ${name.toString()} documentation`)
 
     const appPath = join(path.toString(), name.toString())
     const dest = resolve(root, appPath.toString(), name.toString())
@@ -127,10 +123,9 @@ export async function create(root: string, packageManager: string, install: bool
 
     await updateTemplateAssets(`@templ/${name.toString()}`, packageManager, dest)
 
-    spinner.stop(`Generated ${name.toString()} documentation`)
+    consola.success(`Generated ${name.toString()} documentation`)
 
     stackNotes(appPath, install, packageManager)
-    log.success(`${colors.green(name.toString())} package created`)
   }
 }
 

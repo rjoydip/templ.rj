@@ -19,19 +19,23 @@
     "yarn": ">=3"
   },
   "scripts": {
-    "build": "turbo build",
+    "prebuild": "pnpm run clean",
+    "build": "turbo run build",
+    "postbuild": "pnpm run -C scripts dist-check",
+    "bench": "turbo run bench",
     "changelog": "auto-changelog -p",
-    "commit": "turbo commit && better-commits",
-    "create": "pnpm run -C scripts create --stack",
+    "clean": "turbo run clean",
+    "commit": "pnpm run deps:update && turbo run commit && pnpm run changelog && better-commits",
+    "eslint": "eslint -c eslint.config.js --color --cache --fix --cache-location .eslintcache .",
     "deps:update": "taze -r -w -i -f -l",
-    "lint": "turbo lint",
+    "lint": "turbo run lint && pnpm run knip",
     "knip": "knip --include files,dependencies --reporter markdown",
-    "setup": "pnpm -C scripts setup",
-    "test": "turbo test",
-    "test:cli": "turbo test:cli"
+    "setup": "turbo run setup",
+    "test": "turbo run test"
   },
   "workspaces": [
     "apps/**",
+    "benchmark",
     "docs",
     "packages/**",
     "scripts"
@@ -53,6 +57,6 @@
     "commitLimit": false
   },
   "stackblitz": {
-    "startCommand": "pnpm build"
+    "startCommand": "pnpm run build"
   }
 }

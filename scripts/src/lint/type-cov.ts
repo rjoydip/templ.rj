@@ -1,14 +1,10 @@
-import type { Stats } from 'node:fs'
-import { existsSync } from 'node:fs'
-import { argv } from 'node:process'
-import { dirname, sep } from 'node:path'
-import { totalist } from 'totalist'
+import { join } from 'node:path'
+import { cwd } from 'node:process'
 import { lint as typeCoverage } from 'type-coverage-core'
-import { createRegExp, exactly } from 'magic-regexp'
-import parser from 'yargs-parser'
 import { table } from 'table'
-import { note } from '@clack/prompts'
-import { getRootDirAsync, ignoreRegex } from '../utils'
+import { consola } from 'consola'
+import { globby } from 'globby'
+import { ignorePatterns } from '../utils'
 
 interface TypeCoverage {
   path: string
@@ -18,22 +14,19 @@ interface TypeCoverage {
 }
 
 export async function typeCov(): Promise<TypeCoverage[]> {
-  const paths: string[] = []
-  const root = await getRootDirAsync()
+  let paths: string[] = []
 
-  await totalist(root, (name: string, abs: string, stats: Stats) => {
-    if (!ignoreRegex.test(abs) && !stats.isSymbolicLink()) {
-      const regex = createRegExp(exactly('tsconfig.json'), [])
-      if (regex.test(name) && existsSync(abs))
-        paths.push(dirname(abs))
-    }
+  paths = await globby(['**/tsconfig.json'], {
+    ignore: ignorePatterns,
+    absolute: true,
+    cwd: join(cwd(), '..'),
   })
 
   const results = await Promise.all(paths.map(async (p) => {
     const coverage = await typeCoverage(p, { strict: true })
     const percentage = (coverage.correctCount / coverage.totalCount) * 100
     return {
-      path: p.replace(createRegExp(exactly(`${root}${sep}`), ['g']), ''),
+      path: p,
       correctCount: coverage.correctCount,
       totalCount: coverage.totalCount,
       percentage: percentage > 0 ? Number((percentage).toFixed(2)) : 0,
@@ -43,24 +36,16 @@ export async function typeCov(): Promise<TypeCoverage[]> {
   return results
 }
 
-const {
-  dryRun,
-} = parser(argv.slice(2), {
-  configuration: {
-    'boolean-negation': false,
-  },
-})
-
 export function typeCovRenderer(results: TypeCoverage[]) {
-  note(table([
+  consola.box(table([
     Object.keys(results[0] ?? {}),
     ...results.map(r => Object.values(r)),
-  ]), 'Type Coverage')
+  ]))
 }
 
-if (dryRun) {
-  (async () => {
-    const results = await typeCov()
-    typeCovRenderer(results)
-  })()
+async function main() {
+  const results = await typeCov()
+  typeCovRenderer(results)
 }
+
+main().catch(consola.error)

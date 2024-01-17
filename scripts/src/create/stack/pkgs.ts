@@ -6,8 +6,8 @@ import { cancel, confirm, group, select, text } from '@clack/prompts'
 import { installDependencies } from 'nypm'
 import colors from 'picocolors'
 import { downloadTemplate } from 'giget'
+import consola from 'consola'
 import { stackNotes, updateTemplateAssets } from '../../utils'
-import type { SpinnerType } from '.'
 
 export interface PkgsOptsType {
   path: symbol | string
@@ -33,13 +33,13 @@ export const defaultPkgsOpts = {
   },
 }
 
-export async function create(root: string, packageManager: string, install: boolean = false, spinner: SpinnerType, pkgs: PkgsOptsType) {
+export async function create(root: string, packageManager: string, install: boolean = false, pkgs: PkgsOptsType) {
   const { template, path } = pkgs
   const { repo } = pkgs.remote
   const { name, language } = pkgs.local
   const appPath = repo ? basename(repo.toString()) : name.toString()
   const dest = resolve(root, path.toString(), appPath)
-  spinner.start(`Creating ${name.toString()} package`)
+  consola.start(`Creating ${name.toString()} package`)
 
   if (!existsSync(dest))
     await mkdir(dest, { recursive: true })
@@ -72,7 +72,7 @@ export async function create(root: string, packageManager: string, install: bool
     }
   }
 
-  spinner.stop(`Generated ${name.toString()} package`)
+  consola.success(`Generated ${name.toString()} package`)
 
   stackNotes(appPath, install, packageManager)
 }

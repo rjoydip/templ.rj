@@ -25,7 +25,6 @@ jobs:
           pass_on_octokit_error: false
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-
   trivy_scan:
     runs-on: ubuntu-latest
     steps:
@@ -40,6 +39,12 @@ jobs:
           output: dependency-results.sbom.json
           github-pat: ${{ secrets.GITHUB_TOKEN }}
 
+  triage:
+    runs-on: ubuntu-latest
+    if: github.actor != 'dependabot[bot]'
+    steps:
+      - uses: actions/labeler@v4
+
   lint:
     runs-on: ubuntu-latest
     steps:
@@ -48,11 +53,17 @@ jobs:
       - name: Install
         run: pnpm install --no-frozen-lockfile
 
-      - name: Lint
-        run: pnpm -C scripts lint --no-spinner --no-output
+      - name: ESlint
+        run: pnpm run eslint
 
-      - name: Dist Valid
-        run: pnpm -C scripts ci:check:dist
+      - name: Type Coverage
+        run: pnpm run -C scripts lint:type-cov
+
+      - name: Size Limit
+        run: pnpm run -C scripts lint:size-limit
+
+      - name: Size Report
+        run: pnpm run -C scripts lint:size-report
 
   build:
     runs-on: ubuntu-latest
@@ -64,24 +75,10 @@ jobs:
 
       - name: Build
         run: |
-          pnpm -C scripts ci:copy:env
+          pnpm run -C scripts ci:env-copy
           pnpm run build
-          pnpm -C scripts ci:delete:env
-
-  size:
-    runs-on: ubuntu-latest
-    needs: ['build']
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/setup-node
-      - name: Install
-        run: pnpm install --no-frozen-lockfile
-
-      - name: Size Limit
-        run: pnpm -C scripts size:limit
-
-      - name: Size Report
-        run: pnpm -C scripts size:report
+          pnpm run -C scripts ci:env-delete
+          pnpm run -C scripts dist-check
 
   test:
     runs-on: ${{ matrix.os }}
@@ -106,17 +103,8 @@ jobs:
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
-      - name: Test CLI
-        run: pnpm run test:cli
-
-  triage:
-    runs-on: ubuntu-latest
-    if: github.actor != 'dependabot[bot]'
-    steps:
-      - uses: actions/labeler@v4
-
   action-timeline:
-    needs: [build, lint, pr, size, test, trivy_scan, triage]
+    needs: [build, lint, pr, test, trivy_scan, triage]
     runs-on: ubuntu-latest
     steps:
       - uses: Kesin11/actions-timeline@v1

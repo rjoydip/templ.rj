@@ -89,6 +89,10 @@
         "label": "docs"
       },
       {
+        "value": "benchmark",
+        "label": "benchmark"
+      },
+      {
         "value": "none",
         "label": "none"
       }

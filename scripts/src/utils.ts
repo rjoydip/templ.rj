@@ -1,12 +1,10 @@
 import { parse, resolve, sep } from 'node:path'
 import { access, readFile, readdir, writeFile } from 'node:fs/promises'
-import { existsSync, readdirSync } from 'node:fs'
+import { existsSync } from 'node:fs'
 import { cwd } from 'node:process'
-import { log, note, spinner } from '@clack/prompts'
+import { consola } from 'consola'
 import { hasProperty, setProperty } from 'dot-prop'
 import { execa } from 'execa'
-import { findUp, findUpSync } from 'find-up'
-import { createRegExp, exactly } from 'magic-regexp'
 import colors from 'picocolors'
 import latestVersion from 'latest-version'
 import wrapAnsi from 'wrap-ansi'
@@ -29,7 +27,7 @@ interface ExecuteFn extends ExeCommon {
 type PM = 'npm' | 'yarn' | 'pnpm' | 'bun'
 
 const unit = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
-export const ignoreRegex = createRegExp(exactly('node_modules').or('test').or('dist').or('coverage').or('templates'), [])
+export const ignorePatterns = ['.git/**', '**/node_modules/**', 'templates/**', '**/fixtures/**', '*templ.mjs', '*.code-workspace']
 
 export function prettyBytes(bytes: number) {
   if (bytes === 0)
@@ -76,51 +74,56 @@ function hasGlobalInstallation(pm: PM): Promise<boolean> {
     .catch(() => false)
 }
 
-function getTypeofLockFile(cwd = '.'): Promise<PM | null> {
+async function getTypeofLockFile(cwd = '.'): Promise<PM> {
   const key = `lockfile_${cwd}`
   if (cache.has(key))
     return Promise.resolve(cache.get(key))
 
-  return Promise.all([
+  const [isYarn, isNpm, isPnpm, isBun] = await Promise.all([
     pathExists(resolve(cwd, 'yarn.lock')),
     pathExists(resolve(cwd, 'package-lock.json')),
     pathExists(resolve(cwd, 'pnpm-lock.yaml')),
     pathExists(resolve(cwd, 'bun.lockb')),
-  ]).then(([isYarn, isNpm, isPnpm, isBun]) => {
-    let value: PM | null = null
+  ])
 
-    if (isYarn)
-      value = 'yarn'
+  let value: PM | null = null
 
-    else if (isPnpm)
-      value = 'pnpm'
+  if (isYarn)
+    value = 'yarn'
 
-    else if (isBun)
-      value = 'bun'
+  else if (isPnpm)
+    value = 'pnpm'
 
-    else if (isNpm)
-      value = 'npm'
+  else if (isBun)
+    value = 'bun'
 
-    cache.set(key, value)
-    return value
-  })
+  else if (isNpm)
+    value = 'npm'
+
+  else
+    value = 'npm'
+  cache.set(key, value)
+  return value
 }
 
 export async function getPackageManagers({
   cwd,
   incldeGlobaBun,
   includeLocal,
-}: { cwd?: string, incldeGlobaBun?: boolean, includeLocal?: boolean } = {}) {
-  const pms = ['npm']
+}: { cwd?: string, incldeGlobaBun?: boolean, includeLocal?: boolean } = {}): Promise<PM[]> {
+  const pms: PM[] = []
 
-  if (includeLocal && cwd)
-    return getTypeofLockFile(cwd)
+  if (includeLocal && cwd) {
+    const localPM = await getTypeofLockFile(cwd)
+    return [localPM]
+  }
 
   const [hasYarn, hasPnpm, hasBun] = await Promise.all([
     hasGlobalInstallation('yarn'),
     hasGlobalInstallation('pnpm'),
     incldeGlobaBun && hasGlobalInstallation('bun'),
   ])
+
   if (hasYarn)
     pms.push('yarn')
 
@@ -132,39 +135,8 @@ export async function getPackageManagers({
 
   return pms
 }
-
-export function getRootDirSync() {
-  const root = findUpSync('pnpm-workspace.yaml') || findUpSync('.npmrc') || cwd()
-  return parse(root).dir
-}
-export async function getRootDirAsync() {
-  const root = await findUp('pnpm-workspace.yaml') || await findUp('.npmrc') || cwd()
-  return parse(root).dir
-}
-
-export function getPackagesDirSync() {
-  return resolve(getRootDirSync(), 'packages')
-}
-export async function getPackagesDirAsync() {
-  const root = await getRootDirAsync()
-  return resolve(root, 'packages')
-}
-export function getArtifactsDirSync() {
-  return resolve(getRootDirSync(), 'artifacts')
-}
-export async function getArtifactsDirAsync() {
-  const root = await getRootDirAsync()
-  return resolve(root, 'artifacts')
-}
-
-export function getPackagesSync() {
-  const pkgRoot = getPackagesDirSync()
-  return readdirSync(pkgRoot)
-}
-
 export async function getPackagesAsync() {
-  const pkgRoot = await getPackagesDirAsync()
-  return await readdir(pkgRoot)
+  return await readdir(resolve(cwd(), '..', 'packages'))
 }
 
 export function getWrappedStr(msg: string, column: number = 100) {
@@ -179,9 +151,9 @@ function showTerminalOutput(output: {
   stderr: 'Something wrong',
 }, title: string) {
   if (title)
-    note(getWrappedStr(output.stdout ?? output.stderr), `${title}`)
+    consola.box(output.stdout ?? output.stderr ?? '')
   else
-    note(getWrappedStr(output.stdout ?? output.stderr))
+    consola.box(output.stdout ?? output.stderr ?? '')
 }
 
 export async function exeCmd(params: ExecuteCmd = {
@@ -191,7 +163,6 @@ export async function exeCmd(params: ExecuteCmd = {
   title: '',
   isSubProcess: false,
 }) {
-  const s = spinner()
   const { cmd, showOutput, showSpinner, title, isSubProcess } = params
 
   if (isSubProcess) {
@@ -202,15 +173,15 @@ export async function exeCmd(params: ExecuteCmd = {
   else {
     if (showSpinner) {
       try {
-        s.start(`Started ${title}`)
+        consola.start(`Started ${title}`)
         const output = await execa(cmd)
-        s.stop(`Completed ${title}`)
+        consola.success(`Completed ${title}`)
         if (showOutput)
           showTerminalOutput(output, title)
       }
       catch (error) {
-        s.stop(`Error ${colors.red(title)}`)
-        log.error(String(error))
+        consola.success(`Error ${colors.red(title)}`)
+        consola.error(String(error))
       }
     }
     else {
@@ -228,16 +199,15 @@ export async function executeFn(params: ExecuteFn = {
   showSpinner: true,
   title: '',
 }) {
-  const s = spinner()
   const { fn, showOutput, showSpinner, title } = params
   const output = {
     stdout: '',
     stderr: '',
   }
   if (showSpinner) {
-    s.start(`Started ${title}`)
+    consola.start(`Started ${title}`)
     output.stdout = await fn()
-    s.stop(`Completed ${title}`)
+    consola.success(`Completed ${title}`)
   }
   else {
     output.stderr = await fn()
@@ -248,7 +218,7 @@ export async function executeFn(params: ExecuteFn = {
 
 export function stackNotes(path: string, isInstalled: boolean = false, packageManager: string = 'pnpm', showNote: boolean = true) {
   if (showNote)
-    note(getWrappedStr(`cd ${path}\n${isInstalled ? `${packageManager} dev` : `${packageManager} install\n${packageManager} dev`}`), 'Next steps.')
+    consola.box(`cd ${path}\n${isInstalled ? `${packageManager} dev` : `${packageManager} install\n${packageManager} dev`}`)
 }
 
 export async function updateTemplateAssets(name: string = '', packageManager: string = 'pnpm', dest: string = cwd(), replacement: {
@@ -260,7 +230,7 @@ export async function updateTemplateAssets(name: string = '', packageManager: st
 }, dotProps: object = {}) {
   let pkgDataRaw = ''
   const pkgPath = resolve(dest, 'package.json')
-  const root = await getRootDirAsync()
+  const root = resolve(cwd(), '..')
   const pkgVersion = await latestVersion(packageManager)
 
   if (!existsSync(pkgPath)) {
@@ -301,10 +271,9 @@ export async function updateTemplateAssets(name: string = '', packageManager: st
     const readmePath = resolve(dest, 'README.md')
     const readmeData = await readFile(readmePath, { encoding: 'utf8' })
 
-    const regExp = createRegExp(exactly(replacement.from), ['g', 'm'])
-    await writeFile(readmePath, readmeData.replace(regExp, replacement.to))
+    await writeFile(readmePath, readmeData.replace(replacement.from, replacement.to))
 
-    pkgDataRaw = pkgDataRaw.replace(regExp, replacement.to)
+    pkgDataRaw = pkgDataRaw.replace(replacement.from, replacement.to)
   }
 
   const pkgData = JSON.parse(pkgDataRaw)
