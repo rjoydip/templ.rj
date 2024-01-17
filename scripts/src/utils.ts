@@ -2,7 +2,7 @@ import { parse, resolve, sep } from 'node:path'
 import { access, readFile, readdir, writeFile } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
 import { cwd } from 'node:process'
-import { log, note, spinner } from '@clack/prompts'
+import { consola } from 'consola'
 import { hasProperty, setProperty } from 'dot-prop'
 import { execa } from 'execa'
 import colors from 'picocolors'
@@ -151,9 +151,9 @@ function showTerminalOutput(output: {
   stderr: 'Something wrong',
 }, title: string) {
   if (title)
-    note(getWrappedStr(output.stdout ?? output.stderr), `${title}`)
+    consola.box(output.stdout ?? output.stderr ?? '')
   else
-    note(getWrappedStr(output.stdout ?? output.stderr))
+    consola.box(output.stdout ?? output.stderr ?? '')
 }
 
 export async function exeCmd(params: ExecuteCmd = {
@@ -163,7 +163,6 @@ export async function exeCmd(params: ExecuteCmd = {
   title: '',
   isSubProcess: false,
 }) {
-  const s = spinner()
   const { cmd, showOutput, showSpinner, title, isSubProcess } = params
 
   if (isSubProcess) {
@@ -174,15 +173,15 @@ export async function exeCmd(params: ExecuteCmd = {
   else {
     if (showSpinner) {
       try {
-        s.start(`Started ${title}`)
+        consola.start(`Started ${title}`)
         const output = await execa(cmd)
-        s.stop(`Completed ${title}`)
+        consola.success(`Completed ${title}`)
         if (showOutput)
           showTerminalOutput(output, title)
       }
       catch (error) {
-        s.stop(`Error ${colors.red(title)}`)
-        log.error(String(error))
+        consola.success(`Error ${colors.red(title)}`)
+        consola.error(String(error))
       }
     }
     else {
@@ -200,16 +199,15 @@ export async function executeFn(params: ExecuteFn = {
   showSpinner: true,
   title: '',
 }) {
-  const s = spinner()
   const { fn, showOutput, showSpinner, title } = params
   const output = {
     stdout: '',
     stderr: '',
   }
   if (showSpinner) {
-    s.start(`Started ${title}`)
+    consola.start(`Started ${title}`)
     output.stdout = await fn()
-    s.stop(`Completed ${title}`)
+    consola.success(`Completed ${title}`)
   }
   else {
     output.stderr = await fn()
@@ -220,7 +218,7 @@ export async function executeFn(params: ExecuteFn = {
 
 export function stackNotes(path: string, isInstalled: boolean = false, packageManager: string = 'pnpm', showNote: boolean = true) {
   if (showNote)
-    note(getWrappedStr(`cd ${path}\n${isInstalled ? `${packageManager} dev` : `${packageManager} install\n${packageManager} dev`}`), 'Next steps.')
+    consola.box(`cd ${path}\n${isInstalled ? `${packageManager} dev` : `${packageManager} install\n${packageManager} dev`}`)
 }
 
 export async function updateTemplateAssets(name: string = '', packageManager: string = 'pnpm', dest: string = cwd(), replacement: {

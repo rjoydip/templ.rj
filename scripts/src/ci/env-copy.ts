@@ -1,7 +1,7 @@
 import { argv, cwd } from 'node:process'
 import { dirname, join } from 'node:path'
 import { cp } from 'node:fs/promises'
-import { log } from '@clack/prompts'
+import { consola } from 'consola'
 import colors from 'picocolors'
 import { globby } from 'globby'
 import parser from 'yargs-parser'
@@ -28,11 +28,11 @@ async function main() {
         await cp(f, join(dirname(f), '.env'), { force: true })
       }),
     )
-    files.length ? log.success(`Env copied`) : log.error('No env file found')
+    files.length ? consola.success(`Env copied`) : consola.error('No env file found')
   }
   else {
-    log.message(`Would be copied \n${files.map(d => colors.green(d)).join('\n')}`)
+    consola.box(`Would be copied \n${files.map(d => colors.green(d)).join('\n')}`)
   }
 }
 
-main().catch(console.error)
+main().catch(consola.error)

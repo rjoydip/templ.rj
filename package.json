@@ -21,6 +21,7 @@
   "scripts": {
     "prebuild": "pnpm run clean",
     "build": "turbo run build",
+    "postbuild": "pnpm run -C scripts dist-check",
     "bench": "turbo run bench",
     "changelog": "auto-changelog -p",
     "clean": "turbo run clean",

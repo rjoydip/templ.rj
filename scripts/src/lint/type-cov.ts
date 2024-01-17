@@ -2,7 +2,7 @@ import { join } from 'node:path'
 import { cwd } from 'node:process'
 import { lint as typeCoverage } from 'type-coverage-core'
 import { table } from 'table'
-import { note } from '@clack/prompts'
+import { consola } from 'consola'
 import { globby } from 'globby'
 import { ignorePatterns } from '../utils'
 
@@ -37,10 +37,10 @@ export async function typeCov(): Promise<TypeCoverage[]> {
 }
 
 export function typeCovRenderer(results: TypeCoverage[]) {
-  note(table([
+  consola.box(table([
     Object.keys(results[0] ?? {}),
     ...results.map(r => Object.values(r)),
-  ]), 'Type Coverage')
+  ]))
 }
 
 async function main() {
@@ -48,4 +48,4 @@ async function main() {
   typeCovRenderer(results)
 }
 
-main().catch(console.error)
+main().catch(consola.error)

@@ -68,6 +68,9 @@ importers:
 
   packages/cli:
     dependencies:
+      consola:
+        specifier: ^3.2.3
+        version: 3.2.3
       sade:
         specifier: ^1.8.1
         version: 1.8.1
@@ -126,6 +129,9 @@ importers:
 
   packages/logger:
     dependencies:
+      consola:
+        specifier: ^3.2.3
+        version: 3.2.3
       picocolors:
         specifier: ^1.0.0
         version: 1.0.0
@@ -173,6 +179,9 @@ importers:
       '@pnpm/config':
         specifier: ^20.4.1
         version: 20.4.1(@pnpm/logger@5.0.0)
+      consola:
+        specifier: ^3.2.3
+        version: 3.2.3
       create-next-app:
         specifier: ^14.0.4
         version: 14.0.4

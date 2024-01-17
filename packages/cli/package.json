@@ -39,6 +39,7 @@
     "postbuild": "pnpm link . && pnpm templjs -v"
   },
   "dependencies": {
+    "consola": "^3.2.3",
     "sade": "^1.8.1"
   },
   "devDependencies": {

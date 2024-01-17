@@ -1,6 +1,6 @@
 import { argv, cwd } from 'node:process'
 import { join } from 'node:path'
-import { log } from '@clack/prompts'
+import { consola } from 'consola'
 import { deleteAsync } from 'del'
 import colors from 'picocolors'
 import parser from 'yargs-parser'
@@ -22,7 +22,7 @@ async function main() {
     absolute: false,
   })
 
-  log.message(deletedPaths.length ? `Deleted files and directories:\n\n${deletedPaths.map(d => colors.green(d)).join('\n')}` : 'Nothing has been deleted')
+  deletedPaths.length ? consola.box(`Deleted files and directories:\n\n${deletedPaths.map(d => colors.green(d)).join('\n')}`) : consola.info('Nothing has been deleted')
 }
 
-main().catch(console.error)
+main().catch(consola.error)

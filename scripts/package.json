@@ -24,8 +24,8 @@
     "clean:others": "tsx ./src/clean/others.ts",
     "clean:turbo": "tsx ./src/clean/turbo.ts",
     "ci:env-copy": "tsx ./src/ci/env-copy.ts",
-    "ci:dist-check": "tsx ./src/ci/dist-check.ts",
     "ci:env-delete": "tsx ./src/ci/env-delete.ts",
+    "dist-check": "tsx ./src/dist-check.ts",
     "create": "tsx ./src/create/index.ts",
     "lint:size-limit": "tsx ./src/lint/size-limit.ts",
     "lint:size-report": "tsx ./src/lint/size-report.ts",
@@ -34,6 +34,7 @@
   "dependencies": {
     "@clack/prompts": "^0.7.0",
     "@pnpm/config": "^20.4.1",
+    "consola": "^3.2.3",
     "create-next-app": "^14.0.4",
     "del": "^7.1.0",
     "dot-prop": "^8.0.2",

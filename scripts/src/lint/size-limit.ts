@@ -3,7 +3,7 @@ import { cwd, exit } from 'node:process'
 import { readFile } from 'node:fs/promises'
 import { promisify } from 'node:util'
 import { brotliCompress, gzip } from 'node:zlib'
-import { note } from '@clack/prompts'
+import { consola } from 'consola'
 import { getProperty, hasProperty } from 'dot-prop'
 import colors from 'picocolors'
 import { table } from 'table'
@@ -77,10 +77,10 @@ async function sizeLimit(): Promise<SizeLimit> {
 
 function sizeLimitRenderer(data: SizeLimit) {
   if (data.results && data.results.length)
-    note(table([Object.keys(data.results[0] ?? {}), ...data.results.map(r => Object.values(r))]), 'Size Limit')
+    consola.box(table([Object.keys(data.results[0] ?? {}), ...data.results.map(r => Object.values(r))]))
 
   if (data.errors && data.errors.length) {
-    note(`\n ${data.errors.map(e => colors.red(`${e.name} has exceded ${e.limit}`)).join('\n')} \n`, 'Size Limit')
+    consola.box(`${data.errors.map(e => colors.red(`${e.name} has exceded ${e.limit}`)).join('\n')}`)
     exit(1)
   }
 }
@@ -90,4 +90,4 @@ async function main() {
   sizeLimitRenderer(results)
 }
 
-main().catch(console.error)
+main().catch(consola.error)

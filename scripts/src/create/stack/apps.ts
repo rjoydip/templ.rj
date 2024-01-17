@@ -3,11 +3,11 @@ import { platform } from 'node:os'
 import { mkdir } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
 import { exit } from 'node:process'
-import { cancel, confirm, group, log, select, text } from '@clack/prompts'
+import { consola } from 'consola'
+import { cancel, confirm, group, select, text } from '@clack/prompts'
 import colors from 'picocolors'
 import { downloadTemplate, startShell } from 'giget'
 import { exeCmd, stackNotes, updateTemplateAssets } from '../../utils'
-import type { SpinnerType } from '.'
 
 export interface AppsOptsType {
   name: symbol | string
@@ -85,7 +85,7 @@ export const defaultAppsOpts = {
   },
 }
 
-export async function create(root: string, packageManager: string, install: boolean = false, spinner: SpinnerType, apps: AppsOptsType) {
+export async function create(root: string, packageManager: string, install: boolean = false, apps: AppsOptsType) {
   let showStepNote = true
   const { type, next, nuxt, path, name } = apps
 
@@ -95,10 +95,10 @@ export async function create(root: string, packageManager: string, install: bool
   if (!existsSync(dest))
     await mkdir(dest, { recursive: true })
 
-  spinner.start(`Creating ${name.toString()} application`)
+  consola.start(`Creating ${name.toString()} application`)
 
   if (type === 'astro')
-    log.message('Coming soon')
+    consola.warn('Coming soon')
 
   if (type === 'next') {
     const { language, tailwind, eslint, app_route, src_dir, import_alias, import_alias_value } = next
@@ -140,19 +140,19 @@ export async function create(root: string, packageManager: string, install: bool
   }
 
   if (type === 'nitro')
-    log.message('Coming soon')
+    consola.warn('Coming soon')
 
   if (type === 'vite')
-    log.message('Coming soon')
+    consola.warn('Coming soon')
 
   if (type === 'vue')
-    log.message('Coming soon')
+    consola.warn('Coming soon')
 
-  spinner.stop(`Generated ${name.toString()} application`)
+  consola.success(`Generated ${name.toString()} application`)
 
   stackNotes(appPath, install, packageManager, showStepNote)
 
-  log.success(`${colors.green(name.toString())} package created`)
+  consola.success(`${colors.green(name.toString())} package created`)
 }
 export async function init() {
   return await group(

@@ -6,7 +6,7 @@ import { platform } from 'node:os'
 import { promisify } from 'node:util'
 import { brotliCompress, gzip } from 'node:zlib'
 import { cwd } from 'node:process'
-import { note } from '@clack/prompts'
+import { consola } from 'consola'
 import { table } from 'table'
 import { globby } from 'globby'
 import { rollup } from 'rollup'
@@ -254,11 +254,11 @@ export async function sizeReportRenderer(dir: string = cwd()) {
     ],
   })
 
-  note(output, 'Size Report')
+  consola.box(output)
 }
 
 async function main() {
   await sizeReportRenderer(join(cwd(), '..', 'artifacts'))
 }
 
-main().catch(console.error)
+main().catch(consola.error)

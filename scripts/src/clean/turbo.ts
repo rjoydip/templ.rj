@@ -1,6 +1,6 @@
 import { argv, cwd } from 'node:process'
 import { join } from 'node:path'
-import { log } from '@clack/prompts'
+import { consola } from 'consola'
 import { deleteAsync } from 'del'
 import colors from 'picocolors'
 import parser from 'yargs-parser'
@@ -22,7 +22,7 @@ async function main() {
     onlyDirectories: true,
   })
 
-  log.message(deletedPaths.length ? `Deleted turbo folders:\n${deletedPaths.map(d => colors.green(d)).join('\n')}` : 'No turbo folder deleted')
+  deletedPaths.length ? consola.box(`Deleted turbo folders:\n\n${deletedPaths.map(d => colors.green(d)).join('\n')}`) : consola.info('No turbo folder deleted')
 }
 
-main().catch(console.error)
+main().catch(consola.error)

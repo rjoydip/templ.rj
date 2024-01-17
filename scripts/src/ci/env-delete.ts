@@ -1,7 +1,7 @@
 import { argv, cwd } from 'node:process'
 import { rm } from 'node:fs/promises'
 import { join } from 'node:path'
-import { log } from '@clack/prompts'
+import { consola } from 'consola'
 import colors from 'picocolors'
 import { globby } from 'globby'
 import parser from 'yargs-parser'
@@ -30,11 +30,11 @@ async function main() {
         })
       }),
     )
-    files.length ? log.message(`Env file delete \n${files.map(d => colors.green(d)).join('\n')}`) : log.error('No env file found')
+    files.length ? consola.success(`Env file delete \n${files.map(d => colors.green(d)).join('\n')}`) : consola.error('No env file found')
   }
   else {
-    log.message(`Would be deleted \n${files.map(d => colors.green(d)).join('\n')}`)
+    consola.box(`Would be deleted \n${files.map(d => colors.green(d)).join('\n')}`)
   }
 }
 
-main().catch(console.error)
+main().catch(consola.error)
