@@ -19,8 +19,6 @@ async function main() {
       try {
         // eslint-disable-next-line no-console
         console.log(opts)
-        // eslint-disable-next-line no-console
-        console.log()
       }
       catch (error) {
         console.error(String(error))

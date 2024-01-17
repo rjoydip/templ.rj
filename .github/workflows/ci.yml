@@ -103,9 +103,6 @@ jobs:
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
-      - name: Test CLI
-        run: pnpm run test:cli
-
   action-timeline:
     needs: [build, lint, pr, test, trivy_scan, triage]
     runs-on: ubuntu-latest

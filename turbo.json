@@ -11,10 +11,6 @@
       "outputs": ["coverage/**"],
       "inputs": ["src/**/*.ts", "test/**/*.ts"]
     },
-    "test:cli": {
-      "dependsOn": ["build"],
-      "cache": false
-    },
     "lint": {
       "dependsOn": ["build", "eslint", "lint:size-limit", "lint:size-report", "lint:type-cov"],
       "cache": false

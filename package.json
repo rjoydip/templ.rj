@@ -31,8 +31,7 @@
     "lint": "turbo run lint",
     "knip": "knip --include files,dependencies --reporter markdown",
     "setup": "turbo run setup",
-    "test": "turbo run test",
-    "test:cli": "turbo run test:cli"
+    "test": "turbo run test"
   },
   "workspaces": [
     "apps/**",

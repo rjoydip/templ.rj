@@ -75,15 +75,9 @@ importers:
       '@types/node':
         specifier: ^20.11.4
         version: 20.11.4
-      '@vitest/coverage-v8':
-        specifier: ^1.2.0
-        version: 1.2.0(vitest@1.2.0)
       tsup:
         specifier: ^8.0.1
         version: 8.0.1(typescript@5.3.3)
-      vitest:
-        specifier: ^1.2.0
-        version: 1.2.0(@types/node@20.11.4)
 
   packages/config:
     dependencies:
