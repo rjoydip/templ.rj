@@ -1,13 +1,11 @@
 import { parse, resolve, sep } from 'node:path'
 import { access, readFile, readdir, writeFile } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
-import { cwd } from 'node:process'
+import { argv, cwd } from 'node:process'
 import { consola } from 'consola'
 import { hasProperty, setProperty } from 'dot-prop'
 import { execa } from 'execa'
-import colors from 'picocolors'
 import latestVersion from 'latest-version'
-import wrapAnsi from 'wrap-ansi'
 
 interface ExeCommon {
   showOutput?: boolean
@@ -24,10 +22,12 @@ interface ExecuteFn extends ExeCommon {
   fn: () => Promise<any> | any
 }
 
-type PM = 'npm' | 'yarn' | 'pnpm' | 'bun'
+export type PM = 'npm' | 'yarn' | 'pnpm' | 'bun'
 
 const unit = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
 export const ignorePatterns = ['.git/**', '**/node_modules/**', 'templates/**', '**/fixtures/**', '*templ.mjs', '*.code-workspace']
+
+export const hasDryRun = (_argv: string[] = argv.slice(2)) => !!_argv.includes('--dry-run')
 
 export function prettyBytes(bytes: number) {
   if (bytes === 0)
@@ -106,7 +106,7 @@ async function getTypeofLockFile(cwd = '.'): Promise<PM> {
   return value
 }
 
-export async function getPackageManagers({
+export async function getPkgManagers({
   cwd,
   incldeGlobaBun,
   includeLocal,
@@ -135,14 +135,10 @@ export async function getPackageManagers({
 
   return pms
 }
+
 export async function getPackagesAsync() {
   return await readdir(resolve(cwd(), '..', 'packages'))
 }
-
-export function getWrappedStr(msg: string, column: number = 100) {
-  return wrapAnsi(msg, column)
-}
-
 function showTerminalOutput(output: {
   stdout: string
   stderr: string
@@ -180,7 +176,6 @@ export async function exeCmd(params: ExecuteCmd = {
           showTerminalOutput(output, title)
       }
       catch (error) {
-        consola.success(`Error ${colors.red(title)}`)
         consola.error(String(error))
       }
     }
@@ -216,22 +211,38 @@ export async function executeFn(params: ExecuteFn = {
     showTerminalOutput(output, title)
 }
 
-export function stackNotes(path: string, isInstalled: boolean = false, packageManager: string = 'pnpm', showNote: boolean = true) {
+export function stackNotes(path: string, isInstalled: boolean = false, pkgManager: string = 'pnpm', showNote: boolean = true) {
   if (showNote)
-    consola.box(`cd ${path}\n${isInstalled ? `${packageManager} dev` : `${packageManager} install\n${packageManager} dev`}`)
+    consola.box(`cd ${path}\n${isInstalled ? `${pkgManager.toLowerCase()} dev` : `${pkgManager.toLowerCase()} install\n${pkgManager} dev`}`)
 }
 
-export async function updateTemplateAssets(name: string = '', packageManager: string = 'pnpm', dest: string = cwd(), replacement: {
-  from?: string | null
-  to?: string | null
+export async function updateTemplateAssets(options: {
+  name: string
+  pkgManager: PM
+  root: string
+  dest: string
+  replacement?: {
+    from?: string
+    to?: string
+  }
+  dotProps?: {
+    [x: string]: string | object
+  }
 } = {
-  from: null,
-  to: null,
-}, dotProps: object = {}) {
+  name: '',
+  pkgManager: 'npm',
+  root: cwd(),
+  dest: cwd(),
+  replacement: {
+    from: '',
+    to: '',
+  },
+  dotProps: {},
+}) {
   let pkgDataRaw = ''
+  const { dest, name, pkgManager, root, replacement, dotProps } = options
   const pkgPath = resolve(dest, 'package.json')
-  const root = resolve(cwd(), '..')
-  const pkgVersion = await latestVersion(packageManager)
+  const pkgVersion = await latestVersion(pkgManager.toLowerCase())
 
   if (!existsSync(pkgPath)) {
     const json = {}
@@ -267,19 +278,17 @@ export async function updateTemplateAssets(name: string = '', packageManager: st
     pkgDataRaw = await readFile(pkgPath, { encoding: 'utf8' })
   }
 
-  if ((hasProperty(replacement, 'from') && hasProperty(replacement, 'to')) && (!!replacement.from && !!replacement.to)) {
+  if (replacement && (hasProperty(replacement, 'from') && hasProperty(replacement, 'to')) && (!!replacement.from && !!replacement.to)) {
     const readmePath = resolve(dest, 'README.md')
     const readmeData = await readFile(readmePath, { encoding: 'utf8' })
-
     await writeFile(readmePath, readmeData.replace(replacement.from, replacement.to))
-
     pkgDataRaw = pkgDataRaw.replace(replacement.from, replacement.to)
   }
 
   const pkgData = JSON.parse(pkgDataRaw)
 
   setProperty(pkgData, 'name', name)
-  setProperty(pkgData, 'packageManager', packageManager.concat(`@${pkgVersion}`))
+  setProperty(pkgData, 'packageManager', pkgManager.toLowerCase().concat(`@${pkgVersion}`))
 
   if (dotProps) {
     for (const [key, value] of Object.entries(dotProps))

@@ -5,7 +5,7 @@ import { pathToFileURL } from 'node:url'
 import { platform } from 'node:os'
 import { promisify } from 'node:util'
 import { brotliCompress, gzip } from 'node:zlib'
-import { cwd } from 'node:process'
+import { cwd, exit } from 'node:process'
 import { consola } from 'consola'
 import { table } from 'table'
 import { globby } from 'globby'
@@ -261,4 +261,4 @@ async function main() {
   await sizeReportRenderer(join(cwd(), '..', 'artifacts'))
 }
 
-main().catch(consola.error)
+main().catch(consola.error).finally(() => exit(0))

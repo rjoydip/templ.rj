@@ -17,15 +17,10 @@ async function main() {
     .describe('Initialize')
     .example('init')
     .action(async (opts) => {
-      try {
-        consola.box(opts)
-      }
-      catch (error) {
-        consola.error(String(error))
-      }
+      consola.box(opts)
     })
 
   prog.parse(argv)
 }
 
-main().catch(consola.error)
+main().catch(consola.error).finally(() => exit(0))

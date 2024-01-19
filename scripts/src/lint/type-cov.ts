@@ -1,5 +1,5 @@
 import { join } from 'node:path'
-import { cwd } from 'node:process'
+import { cwd, exit } from 'node:process'
 import { lint as typeCoverage } from 'type-coverage-core'
 import { table } from 'table'
 import { consola } from 'consola'
@@ -48,4 +48,4 @@ async function main() {
   typeCovRenderer(results)
 }
 
-main().catch(consola.error)
+main().catch(consola.error).finally(() => exit(0))
