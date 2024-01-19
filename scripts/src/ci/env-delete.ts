@@ -1,20 +1,12 @@
-import { argv, cwd } from 'node:process'
+import { cwd, exit } from 'node:process'
 import { rm } from 'node:fs/promises'
 import { join } from 'node:path'
 import { consola } from 'consola'
-import colors from 'picocolors'
 import { globby } from 'globby'
-import parser from 'yargs-parser'
-import { ignorePatterns } from '../utils'
+import { colors } from 'consola/utils'
+import { hasDryRun, ignorePatterns } from '../utils'
 
 async function main() {
-  const {
-    dryRun,
-  } = parser(argv.slice(2), {
-    configuration: {
-      'boolean-negation': false,
-    },
-  })
   const files = await globby(['**/.env'], {
     ignore: ignorePatterns,
     gitignore: false,
@@ -22,7 +14,7 @@ async function main() {
     cwd: join(cwd(), '..'),
   })
 
-  if (!dryRun) {
+  if (!hasDryRun()) {
     await Promise.all(
       files.map(async (f) => {
         await rm(f, {
@@ -30,11 +22,11 @@ async function main() {
         })
       }),
     )
-    files.length ? consola.success(`Env file delete \n${files.map(d => colors.green(d)).join('\n')}`) : consola.error('No env file found')
+    files.length ? consola.box(`Env file delete \n${files.map(d => colors.magenta(d)).join('\n')}`) : consola.error('No env file found')
   }
   else {
-    consola.box(`Would be deleted \n${files.map(d => colors.green(d)).join('\n')}`)
+    consola.box(`Would be deleted \n${files.map(d => colors.magenta(d)).join('\n')}`)
   }
 }
 
-main().catch(consola.error)
+main().catch(consola.error).finally(() => exit(0))

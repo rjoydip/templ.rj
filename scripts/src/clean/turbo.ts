@@ -1,28 +1,21 @@
-import { argv, cwd } from 'node:process'
+import { cwd, exit } from 'node:process'
 import { join } from 'node:path'
 import { consola } from 'consola'
 import { deleteAsync } from 'del'
-import colors from 'picocolors'
-import parser from 'yargs-parser'
-import { ignorePatterns } from '../utils'
+import { colors } from 'consola/utils'
+import { hasDryRun, ignorePatterns } from '../utils'
 
 async function main() {
-  const { dryRun = false } = parser(argv.splice(2), {
-    configuration: {
-      'boolean-negation': false,
-    },
-  })
-
   const deletedPaths = await deleteAsync(['**/.turbo/**'], {
     ignore: ignorePatterns,
     cwd: join(cwd(), '..'),
-    dryRun,
+    dryRun: hasDryRun(),
     force: true,
     absolute: false,
     onlyDirectories: true,
   })
 
-  deletedPaths.length ? consola.box(`Deleted turbo folders:\n\n${deletedPaths.map(d => colors.green(d)).join('\n')}`) : consola.info('No turbo folder deleted')
+  deletedPaths.length ? consola.box(`Deleted turbo folders:\n\n${deletedPaths.map(d => colors.magenta(d)).join('\n')}`) : consola.info('No turbo folder deleted')
 }
 
-main().catch(consola.error)
+main().catch(consola.error).finally(() => exit(0))

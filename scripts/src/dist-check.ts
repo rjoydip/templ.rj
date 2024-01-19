@@ -1,5 +1,5 @@
 import { join } from 'node:path'
-import { cwd } from 'node:process'
+import { cwd, exit } from 'node:process'
 import { consola } from 'consola'
 import { globby } from 'globby'
 import { getPackagesAsync, ignorePatterns } from './utils'
@@ -14,4 +14,4 @@ async function main() {
   files.length === packages.length ? consola.success('Dist count matched') : consola.error('Dist count not match')
 }
 
-main().catch(consola.error)
+main().catch(consola.error).finally(() => exit(0))

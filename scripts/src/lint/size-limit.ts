@@ -5,8 +5,8 @@ import { promisify } from 'node:util'
 import { brotliCompress, gzip } from 'node:zlib'
 import { consola } from 'consola'
 import { getProperty, hasProperty } from 'dot-prop'
-import colors from 'picocolors'
 import { table } from 'table'
+import { colors } from 'consola/utils'
 import { getPackagesAsync, prettyBytes, prettyBytesToNumber } from '../utils'
 
 const gzipAsync = promisify(gzip)
@@ -90,4 +90,4 @@ async function main() {
   sizeLimitRenderer(results)
 }
 
-main().catch(consola.error)
+main().catch(consola.error).finally(() => exit(0))
