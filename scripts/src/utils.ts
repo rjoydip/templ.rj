@@ -1,25 +1,19 @@
 import { parse, resolve, sep } from 'node:path'
-import { access, readFile, readdir, writeFile } from 'node:fs/promises'
+import { access, readFile, writeFile } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
 import { argv, cwd } from 'node:process'
 import { consola } from 'consola'
 import { hasProperty, setProperty } from 'dot-prop'
 import { execa } from 'execa'
 import latestVersion from 'latest-version'
+import { shell } from './shell'
 
-interface ExeCommon {
+interface Execute {
+  f: string | Promise<string | boolean | number> | Function
   showOutput?: boolean
   showSpinner?: boolean
   title: string
   isSubProcess?: boolean
-}
-
-interface ExecuteCmd extends ExeCommon {
-  cmd: string
-}
-
-interface ExecuteFn extends ExeCommon {
-  fn: () => Promise<any> | any
 }
 
 export type PM = 'npm' | 'yarn' | 'pnpm' | 'bun'
@@ -136,79 +130,38 @@ export async function getPkgManagers({
   return pms
 }
 
-export async function getPackagesAsync() {
-  return await readdir(resolve(cwd(), '..', 'packages'))
-}
-function showTerminalOutput(output: {
-  stdout: string
-  stderr: string
-} = {
-  stdout: 'All good',
-  stderr: 'Something wrong',
-}, title: string) {
-  if (title)
-    consola.box(output.stdout ?? output.stderr ?? '')
-  else
-    consola.box(output.stdout ?? output.stderr ?? '')
-}
-
-export async function exeCmd(params: ExecuteCmd = {
-  cmd: '',
+export async function execute(params: Execute = {
+  f: '',
   showOutput: true,
   showSpinner: true,
   title: '',
   isSubProcess: false,
 }) {
-  const { cmd, showOutput, showSpinner, title, isSubProcess } = params
+  const { f, showOutput, showSpinner, title, isSubProcess } = params
 
-  if (isSubProcess) {
-    await execa(cmd, {
-      stdio: 'inherit',
-    })
+  if (isSubProcess && f instanceof String) {
+    await shell(f.toString(), [])
   }
   else {
     if (showSpinner) {
       try {
         consola.start(`Started ${title}`)
-        const output = await execa(cmd)
+        const output = f instanceof Function ? f() : f instanceof Promise ? await f : null
         consola.success(`Completed ${title}`)
-        if (showOutput)
-          showTerminalOutput(output, title)
+        if (showOutput && output)
+          consola.box(output.stdout ?? output.stderr ?? '')
       }
       catch (error) {
-        consola.error(String(error))
+        if (showOutput)
+          consola.error(String(error))
       }
     }
     else {
-      const output = await execa(cmd)
-
-      if (showOutput)
-        showTerminalOutput(output, title)
+      const output = f instanceof Function ? f() : f instanceof Promise ? await f : null
+      if (showOutput && output)
+        consola.box(output.stdout ?? output.stderr ?? '')
     }
   }
-}
-
-export async function executeFn(params: ExecuteFn = {
-  fn: () => null,
-  showOutput: true,
-  showSpinner: true,
-  title: '',
-}) {
-  const { fn, showOutput, showSpinner, title } = params
-  const output = {
-    stdout: '',
-    stderr: '',
-  }
-  if (showSpinner) {
-    consola.start(`Started ${title}`)
-    output.stdout = await fn()
-    consola.success(`Completed ${title}`)
-  }
-  else {
-    output.stderr = await fn()
-  }
-  if (showOutput)
-    showTerminalOutput(output, title)
 }
 
 export function stackNotes(path: string, isInstalled: boolean = false, pkgManager: string = 'pnpm', showNote: boolean = true) {

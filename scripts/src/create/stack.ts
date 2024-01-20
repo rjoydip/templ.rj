@@ -8,7 +8,7 @@ import { downloadTemplate, startShell } from 'giget'
 import { installDependencies } from 'nypm'
 import { colors } from 'consola/utils'
 import latestVersion from 'latest-version'
-import { type PM, exeCmd, getPkgManagers, hasDryRun, stackNotes, updateTemplateAssets } from '../utils'
+import { type PM, execute, getPkgManagers, hasDryRun, stackNotes, updateTemplateAssets } from '../utils'
 
 interface OptsCommon {
   pkgManager: PM
@@ -69,7 +69,6 @@ interface AppOptsType extends OptsCommon {
     name: string
     path: string
     template: string
-    force: boolean
     gitInit: boolean
     shell: boolean
   }
@@ -174,7 +173,6 @@ async function main() {
         name: '',
         path: '',
         template: '',
-        force: false,
         gitInit: false,
         shell: false,
       },
@@ -301,11 +299,6 @@ async function main() {
         type: 'select',
         options: nuxtOptions.map(i => i.label),
         initial: '',
-      })
-
-      appOpts.nuxt.force = await consola.prompt('Override existing directory?', {
-        type: 'confirm',
-        initial: false,
       })
 
       appOpts.nuxt.gitInit = await consola.prompt('Initialize git repository?', {
@@ -457,9 +450,9 @@ async function main() {
       if (!existsSync(dest))
         await mkdir(dest, { recursive: true })
 
-      await exeCmd({
+      await execute({
         title: 'Next Application',
-        cmd: `npx create-next-app ${dest} ${language === 'javascript' ? '--js' : '--ts'} ${tailwind ? '--tailwind' : ''} ${eslint ? '--eslint' : ''} ${app_route ? '--app' : ''} --src-dir ${src_dir} ${import_alias ? `--import-alias ${import_alias_value}` : '--import-alias'} ${install ? `--use-${pkgManager}` : `--no-use-${pkgManager}`}`,
+        f: `npx create-next-app ${dest} ${language === 'javascript' ? '--js' : '--ts'} ${tailwind ? '--tailwind' : ''} ${eslint ? '--eslint' : ''} ${app_route ? '--app' : ''} --src-dir ${src_dir} ${import_alias ? `--import-alias ${import_alias_value}` : '--import-alias'} ${install ? `--use-${pkgManager}` : `--no-use-${pkgManager}`}`,
         showOutput: true,
         showSpinner: true,
       })
@@ -469,7 +462,7 @@ async function main() {
     }
 
     if (type === 'Nuxt') {
-      const { template, force, gitInit, shell, name, path } = nuxt
+      const { template, gitInit, shell, name, path } = nuxt
 
       const appPath = join(path, name)
       const dest = platform() === 'win32' ? resolve(root, appPath).replace(sep, '\\\\') : resolve(root, appPath)
@@ -484,7 +477,6 @@ async function main() {
       if (nuxtTemplIndex) {
         await downloadTemplate(nuxtOptions[nuxtTemplIndex]?.value ?? 'v3', {
           dir: dest,
-          force: !!force,
           install,
           registry: 'https://raw.githubusercontent.com/nuxt/starter/templates/templates',
         })
@@ -497,9 +489,9 @@ async function main() {
         })
 
         if (gitInit) {
-          await exeCmd({
+          await execute({
             title: 'Git Init',
-            cmd: `git init ${dest}`,
+            f: `git init ${dest}`,
             showOutput: true,
             showSpinner: true,
           })
@@ -637,8 +629,6 @@ async function main() {
 
         await downloadTemplate(`github:facebook/docusaurus/create-docusaurus/templates/${(language === 'ts' ? 'classic-typescript' : 'classic')}`, {
           dir: dest,
-          force: true,
-          forceClean: true,
           install,
         })
 
