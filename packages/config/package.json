@@ -37,7 +37,7 @@
     "bundle-require": "^4.0.2",
     "joycon": "^3.1.1",
     "strip-json-comments": "^5.0.1",
-    "valibot": "^0.25.0"
+    "valibot": "^0.26.0"
   },
   "devDependencies": {
     "@types/node": "^20.11.5",
