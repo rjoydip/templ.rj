@@ -1,16 +1,16 @@
 {
-  "name": "@templ/api",
+  "name": "@templ/server",
   "type": "module",
   "version": "0.0.0",
   "private": true,
   "packageManager": "pnpm@8.14.1",
-  "description": "TEMPL api service",
+  "description": "TEMPL server",
   "license": "MIT",
-  "homepage": "https://github.com/rjoydip/templ/tree/main/packages/api#readme",
+  "homepage": "https://github.com/rjoydip/templ/tree/main/packages/server#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rjoydip/templ.git",
-    "directory": "packages/api"
+    "directory": "apps/server"
   },
   "bugs": {
     "url": "https://github.com/rjoydip/templ/issues"
@@ -24,11 +24,20 @@
     "npm": ">=8"
   },
   "scripts": {
+    "dev": "tsx watch src/index.ts",
     "test": "vitest run"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.4.1",
+    "@hono/zod-openapi": "^0.9.5",
+    "@scalar/hono-api-reference": "^0.3.23",
+    "consola": "^3.2.3",
+    "hono": "^3.12.6"
   },
   "devDependencies": {
     "@types/node": "^20.11.5",
     "pactum": "^3.6.0",
+    "tsx": "^3.14.0",
     "vitest": "^1.2.1"
   }
 }

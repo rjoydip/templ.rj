@@ -1,6 +1,6 @@
 import { cwd, exit } from 'node:process'
 import { join } from 'node:path'
-import { consola } from 'consola'
+import consola from 'consola'
 import { colors } from 'consola/utils'
 import { deleteAsync } from 'del'
 import { hasDryRun, ignorePatterns } from '../utils'

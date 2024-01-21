@@ -1,6 +1,6 @@
 import { join } from 'node:path'
 import { cwd, exit } from 'node:process'
-import { consola } from 'consola'
+import consola from 'consola'
 import { globby } from 'globby'
 import { getPackagesAsync, ignorePatterns } from './utils'
 

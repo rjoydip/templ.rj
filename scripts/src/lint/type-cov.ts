@@ -2,7 +2,7 @@ import { join } from 'node:path'
 import { cwd, exit } from 'node:process'
 import { lint as typeCoverage } from 'type-coverage-core'
 import { table } from 'table'
-import { consola } from 'consola'
+import consola from 'consola'
 import { globby } from 'globby'
 import { ignorePatterns } from '../utils'
 

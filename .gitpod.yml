@@ -14,5 +14,6 @@ vscode:
     - editorconfig.editorconfig
     - folke.vscode-monorepo-workspace
     - foxundermoon.shell-format
+    - rangav.vscode-thunder-client
     - seatonjiang.gitmoji-vscode
     - zixuanchen.vitest-explorer
