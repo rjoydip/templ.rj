@@ -22,7 +22,11 @@
   },
   "scripts": {
     "bench": "pnpm run bench:utils:path",
+    "bench:apps:server": "tsx ./src/apps/server.bench.ts",
     "bench:utils:path": "tsx ./src/utils/path.bench.ts"
+  },
+  "dependencies": {
+    "autocannon": "^7.14.0"
   },
   "devDependencies": {
     "@templ/utils": "workspace:*",

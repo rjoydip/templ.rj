@@ -1,5 +1,5 @@
 import { Bench } from 'tinybench'
-import { consola } from 'consola'
+import consola from 'consola'
 import { table } from 'table'
 import { getRootDirAsync, getRootDirSync } from '@templ/utils'
 

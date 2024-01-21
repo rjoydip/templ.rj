@@ -1,5 +1,5 @@
 import { argv, exit } from 'node:process'
-import { consola } from 'consola'
+import consola from 'consola'
 import sade from 'sade'
 
 // eslint-disable-next-line node/prefer-global/process

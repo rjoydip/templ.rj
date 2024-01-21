@@ -10,6 +10,7 @@
     "editorconfig.editorconfig",
     "folke.vscode-monorepo-workspace",
     "ms-vscode-remote.remote-containers",
+    "rangav.vscode-thunder-client",
     "redhat.vscode-yaml",
     "zixuanchen.vitest-explorer"
   ]

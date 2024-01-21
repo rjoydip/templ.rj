@@ -1,7 +1,7 @@
 import { cwd, exit } from 'node:process'
 import { rm } from 'node:fs/promises'
 import { join } from 'node:path'
-import { consola } from 'consola'
+import consola from 'consola'
 import { globby } from 'globby'
 import { colors } from 'consola/utils'
 import { hasDryRun, ignorePatterns } from '../utils'
