@@ -21,28 +21,21 @@
   },
   "scripts": {
     "clean": "pnpm run clean:others && pnpm run clean:turbo",
+    "check": "tsx ./src/check.ts",
     "clean:others": "tsx ./src/clean/others.ts",
     "clean:turbo": "tsx ./src/clean/turbo.ts",
     "ci:env-copy": "tsx ./src/ci/env-copy.ts",
     "ci:env-delete": "tsx ./src/ci/env-delete.ts",
-    "dist-check": "tsx ./src/dist-check.ts",
-    "create:app": "tsx ./src/create/app.ts",
-    "create:doc": "tsx ./src/create/doc.ts",
-    "create:pkg": "tsx ./src/create/pkg.ts",
     "lint:size-limit": "tsx ./src/lint/size-limit.ts",
     "lint:size-report": "tsx ./src/lint/size-report.ts",
     "lint:type-cov": "tsx ./src/lint/type-cov.ts"
   },
   "dependencies": {
     "consola": "^3.2.3",
-    "create-next-app": "^14.1.0",
     "del": "^7.1.0",
     "dot-prop": "^8.0.2",
-    "execa": "^8.0.1",
-    "giget": "^1.2.1",
     "globby": "^14.0.0",
     "latest-version": "^7.0.0",
-    "nypm": "^0.3.4",
     "rollup": "^4.9.6",
     "table": "^6.8.1",
     "terser": "^5.27.0",
@@ -51,6 +44,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.11.5",
+    "create-next-app": "^14.1.0",
     "tsx": "^4.7.0"
   }
 }

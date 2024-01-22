@@ -4,7 +4,7 @@ import { resolve, sep } from 'node:path'
 import latestVersion from 'latest-version'
 import { downloadTemplate } from 'giget'
 import consola from 'consola'
-import { type PM, getPkgManagers, hasDryRun, stackNotes, updateTemplateAssets } from '../utils'
+import { type PM, getPkgManagers, hasDryRun, stackNotes, updateTemplateAssets } from 'utils'
 
 interface DocOptsType {
   pkgManager: PM
@@ -27,7 +27,7 @@ interface DocOptsType {
   }
 }
 
-async function main() {
+export async function run() {
   const root = resolve(cwd(), '..')
   const docOpts: DocOptsType = {
     tools: 'Nextra',
@@ -211,4 +211,4 @@ async function main() {
   stdin.on('data', key => (key.toString() === '\u0003') ? exit(0) : null)
 }
 
-main().catch(consola.error)
+run().catch(consola.error)

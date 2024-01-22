@@ -1,5 +1,5 @@
 import { resolve } from 'node:path'
-import { cwd, exit } from 'node:process'
+import { cwd } from 'node:process'
 import { lint as typeCoverage } from 'type-coverage-core'
 import { table } from 'table'
 import consola from 'consola'
@@ -43,9 +43,9 @@ export function typeCovRenderer(results: TypeCoverage[]) {
   ]))
 }
 
-async function main() {
+export async function run() {
   const results = await typeCov()
   typeCovRenderer(results)
 }
 
-main().catch(consola.error)
+run().catch(consola.error)

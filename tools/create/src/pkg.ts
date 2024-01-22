@@ -6,7 +6,7 @@ import { downloadTemplate } from 'giget'
 import { colors } from 'consola/utils'
 import consola from 'consola'
 import { installDependencies } from 'nypm'
-import { type PM, getPkgManagers, hasDryRun, stackNotes, updateTemplateAssets } from '../utils'
+import { type PM, getPkgManagers, hasDryRun, stackNotes, updateTemplateAssets } from 'utils'
 
 interface PkgOptsType {
   path: string
@@ -22,7 +22,7 @@ interface PkgOptsType {
   }
 }
 
-async function main() {
+export async function run() {
   const root = resolve(cwd(), '..')
   const pkgOpts: PkgOptsType = {
     path: './packages',
@@ -142,4 +142,4 @@ async function main() {
   }
 }
 
-main().catch(consola.error)
+run().catch(consola.error)

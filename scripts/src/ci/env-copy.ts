@@ -6,7 +6,7 @@ import { globby } from 'globby'
 import { colors } from 'consola/utils'
 import { hasDryRun, ignorePatterns } from '../utils'
 
-async function main() {
+export async function run() {
   const files = await globby(['**/.env.sample'], {
     ignore: ignorePatterns,
     gitignore: false,
@@ -22,8 +22,8 @@ async function main() {
     files.length ? consola.success(`Env copied`) : consola.error('No env file found')
   }
   else {
-    consola.box(`Would be copied \n${files.map(d => colors.magenta(d)).resolve('\n')}`)
+    consola.box(`Would be copied \n${files.map(d => colors.magenta(d)).join('\n')}`)
   }
 }
 
-main().catch(consola.error)
+run().catch(consola.error)

@@ -7,7 +7,7 @@ import { downloadTemplate, startShell } from 'giget'
 import { colors } from 'consola/utils'
 import consola from 'consola'
 import { installDependencies } from 'nypm'
-import { type PM, capitalize, execute, getPkgManagers, hasDryRun, stackNotes, updateTemplateAssets } from '../utils'
+import { type PM, capitalize, execute, getPkgManagers, hasDryRun, stackNotes, updateTemplateAssets } from 'utils'
 
 interface AppOptsType {
   type: string
@@ -103,7 +103,7 @@ const viteTSTemplates = [
   { value: 'qwik-ts', label: 'Qwik' },
 ]
 
-async function main() {
+export async function run() {
   const root = resolve(cwd(), '..')
   const astroTmplDir = resolve(tmpdir(), 'astro-templates')
   const appOpts: AppOptsType = {
@@ -552,4 +552,4 @@ async function main() {
     consola.warn('Coming soon')
 }
 
-main().catch(consola.error)
+run().catch(consola.error)

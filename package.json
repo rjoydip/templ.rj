@@ -19,17 +19,16 @@
     "yarn": ">=3"
   },
   "scripts": {
-    "prebuild": "pnpm run clean",
+    "prebuild": "pnpm run clean && taze -r -w -i -f -l",
     "build": "turbo run build",
-    "postbuild": "pnpm run -C scripts dist-check",
+    "postbuild": "pnpm run -C scripts check",
     "bench": "turbo run bench",
     "changelog": "auto-changelog -p",
     "clean": "turbo run clean",
-    "commit": "pnpm run deps:update && turbo run commit && pnpm run changelog && better-commits",
+    "commit": "turbo run commit && pnpm run changelog && better-commits",
     "eslint": "eslint -c eslint.config.js --color --cache --fix --cache-location .eslintcache .",
-    "deps:update": "taze -r -w -i -f -l",
     "lint": "turbo run lint && pnpm run knip",
-    "knip": "knip --include files,dependencies --reporter markdown",
+    "knip": "knip --include files,dependencies",
     "setup": "turbo run setup",
     "test": "turbo run test"
   },
@@ -38,8 +37,10 @@
     "benchmark",
     "docs",
     "packages/**",
-    "scripts"
+    "scripts",
+    "tools/**"
   ],
+  "dependencies": {},
   "devDependencies": {
     "@antfu/eslint-config": "2.6.3",
     "auto-changelog": "^2.4.0",
@@ -48,6 +49,7 @@
     "knip": "^4.2.1",
     "pnpm": "^8.14.2",
     "taze": "^0.13.1",
+    "tsx": "^4.7.0",
     "turbo": "^1.11.3"
   },
   "auto-changelog": {

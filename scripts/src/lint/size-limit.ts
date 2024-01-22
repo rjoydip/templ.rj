@@ -80,14 +80,14 @@ function sizeLimitRenderer(data: SizeLimit) {
     consola.box(table([Object.keys(data.results[0] ?? {}), ...data.results.map(r => Object.values(r))]))
 
   if (data.errors && data.errors.length) {
-    consola.box(`${data.errors.map(e => colors.red(`${e.name} has exceded ${e.limit}`)).resolve('\n')}`)
+    consola.box(`${data.errors.map(e => colors.red(`${e.name} has exceded ${e.limit}`)).join('\n')}`)
     exit(1)
   }
 }
 
-async function main() {
+export async function run() {
   const results = await sizeLimit()
   sizeLimitRenderer(results)
 }
 
-main().catch(consola.error)
+run().catch(consola.error)
