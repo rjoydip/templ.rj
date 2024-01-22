@@ -23,4 +23,4 @@ async function main() {
   prog.parse(argv)
 }
 
-main().catch(consola.error).finally(() => exit(0))
+main().catch(consola.error)
