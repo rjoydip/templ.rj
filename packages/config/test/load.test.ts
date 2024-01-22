@@ -1,9 +1,9 @@
-import { join } from 'node:path'
+import { resolve } from 'node:path'
 import { describe, expect, it } from 'vitest'
 import { loadPkg, loadTemplConfig } from '../src/load'
 
-const fixturePath = join(__dirname, 'fixtures')
-const fixture = (folder: string) => join(fixturePath, folder)
+const fixturePath = resolve(__dirname, 'fixtures')
+const fixture = (folder: string) => resolve(fixturePath, folder)
 
 const defaultData = {}
 

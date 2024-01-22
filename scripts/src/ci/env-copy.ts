@@ -1,5 +1,5 @@
-import { cwd, exit } from 'node:process'
-import { dirname, join } from 'node:path'
+import { cwd } from 'node:process'
+import { dirname, resolve } from 'node:path'
 import { cp } from 'node:fs/promises'
 import consola from 'consola'
 import { globby } from 'globby'
@@ -11,19 +11,19 @@ async function main() {
     ignore: ignorePatterns,
     gitignore: false,
     absolute: true,
-    cwd: join(cwd(), '..'),
+    cwd: resolve(cwd(), '..'),
   })
   if (!hasDryRun()) {
     await Promise.all(
       files.map(async (f) => {
-        await cp(f, join(dirname(f), '.env'), { force: true })
+        await cp(f, resolve(dirname(f), '.env'), { force: true, recursive: true })
       }),
     )
     files.length ? consola.success(`Env copied`) : consola.error('No env file found')
   }
   else {
-    consola.box(`Would be copied \n${files.map(d => colors.magenta(d)).join('\n')}`)
+    consola.box(`Would be copied \n${files.map(d => colors.magenta(d)).resolve('\n')}`)
   }
 }
 
-main().catch(consola.error).finally(() => exit(0))
+main().catch(consola.error)

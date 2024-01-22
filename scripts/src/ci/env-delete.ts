@@ -1,6 +1,6 @@
 import { cwd, exit } from 'node:process'
 import { rm } from 'node:fs/promises'
-import { join } from 'node:path'
+import { resolve } from 'node:path'
 import consola from 'consola'
 import { globby } from 'globby'
 import { colors } from 'consola/utils'
@@ -11,7 +11,7 @@ async function main() {
     ignore: ignorePatterns,
     gitignore: false,
     absolute: true,
-    cwd: join(cwd(), '..'),
+    cwd: resolve(cwd(), '..'),
   })
 
   if (!hasDryRun()) {
@@ -22,11 +22,11 @@ async function main() {
         })
       }),
     )
-    files.length ? consola.box(`Env file delete \n${files.map(d => colors.magenta(d)).join('\n')}`) : consola.error('No env file found')
+    files.length ? consola.box(`Env file delete \n${files.map(d => colors.magenta(d)).resolve('\n')}`) : consola.error('No env file found')
   }
   else {
-    consola.box(`Would be deleted \n${files.map(d => colors.magenta(d)).join('\n')}`)
+    consola.box(`Would be deleted \n${files.map(d => colors.magenta(d)).resolve('\n')}`)
   }
 }
 
-main().catch(consola.error).finally(() => exit(0))
+main().catch(consola.error)

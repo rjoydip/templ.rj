@@ -1,11 +1,11 @@
-import { join, parse, resolve } from 'node:path'
+import { parse, resolve } from 'node:path'
 import { existsSync } from 'node:fs'
 import { cp, mkdir, readdir, writeFile } from 'node:fs/promises'
 import { pathToFileURL } from 'node:url'
 import { platform } from 'node:os'
 import { promisify } from 'node:util'
 import { brotliCompress, gzip } from 'node:zlib'
-import { cwd, exit } from 'node:process'
+import { cwd } from 'node:process'
 import consola from 'consola'
 import { table } from 'table'
 import { globby } from 'globby'
@@ -31,7 +31,7 @@ interface BundleResult extends SizeResult {
 
 type PackageResult = Record<string, SizeResult & { name: string }>
 
-const artifacts = join(cwd(), '..', 'artifacts')
+const artifacts = resolve(cwd(), '..', 'artifacts')
 const currDir = resolve(artifacts, 'temp/size')
 const prevDir = resolve(artifacts, 'temp/size-prev')
 
@@ -57,7 +57,7 @@ async function generateBundle(preset: Preset) {
   const content = `export ${
     typeof preset.imports === 'string'
       ? preset.imports
-      : `{ ${preset.imports.join(', ')} }`
+      : `{ ${preset.imports.resolve(', ')} }`
   } from '${platform() === 'win32' ? preset.entry.replace(/\\/g, '\\\\') : preset.entry}'`
 
   const result = await rollup({
@@ -202,7 +202,7 @@ export async function sizeReportRenderer(dir: string = cwd()) {
     await Promise.all(
       dirs.map(async (d) => {
         const { name, ext } = parse(d)
-        await cp(d, resolve(prevDir, `${name}.${ext}`), { force: true })
+        await cp(d, resolve(prevDir, `${name}.${ext}`), { force: true, recursive: true })
       }),
     )
   }
@@ -258,7 +258,7 @@ export async function sizeReportRenderer(dir: string = cwd()) {
 }
 
 async function main() {
-  await sizeReportRenderer(join(cwd(), '..', 'artifacts'))
+  await sizeReportRenderer(resolve(cwd(), '..', 'artifacts'))
 }
 
-main().catch(consola.error).finally(() => exit(0))
+main().catch(consola.error)

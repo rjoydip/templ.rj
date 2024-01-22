@@ -1,5 +1,5 @@
 import { parse, resolve, sep } from 'node:path'
-import { access, readFile, writeFile } from 'node:fs/promises'
+import { access, readFile, readdir, writeFile } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
 import { argv, cwd } from 'node:process'
 import consola from 'consola'
@@ -21,6 +21,7 @@ export type PM = 'npm' | 'yarn' | 'pnpm' | 'bun'
 const unit = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
 export const ignorePatterns = ['.git/**', '**/node_modules/**', 'templates/**', '**/fixtures/**', '*templ.mjs', '*.code-workspace']
 
+export const capitalize = (s: string) => s && s.charAt(0).toUpperCase() + s.slice(1)
 export const hasDryRun = (_argv: string[] = argv.slice(2)) => !!_argv.includes('--dry-run')
 
 export function prettyBytes(bytes: number) {
@@ -249,4 +250,8 @@ export async function updateTemplateAssets(options: {
   }
 
   return await writeFile(pkgPath, JSON.stringify(pkgData, null, 2))
+}
+
+export async function getPackagesAsync() {
+  return await readdir(resolve(cwd(), '..', 'packages'))
 }

@@ -1,4 +1,4 @@
-import { join } from 'node:path'
+import { resolve } from 'node:path'
 import { cwd, exit } from 'node:process'
 import { lint as typeCoverage } from 'type-coverage-core'
 import { table } from 'table'
@@ -19,7 +19,7 @@ export async function typeCov(): Promise<TypeCoverage[]> {
   paths = await globby(['**/tsconfig.json'], {
     ignore: ignorePatterns,
     absolute: true,
-    cwd: join(cwd(), '..'),
+    cwd: resolve(cwd(), '..'),
   })
 
   const results = await Promise.all(paths.map(async (p) => {
@@ -48,4 +48,4 @@ async function main() {
   typeCovRenderer(results)
 }
 
-main().catch(consola.error).finally(() => exit(0))
+main().catch(consola.error)

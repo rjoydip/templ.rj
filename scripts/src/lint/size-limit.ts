@@ -1,4 +1,4 @@
-import { join } from 'node:path'
+import { resolve } from 'node:path'
 import { cwd, exit } from 'node:process'
 import { readFile } from 'node:fs/promises'
 import { promisify } from 'node:util'
@@ -33,12 +33,12 @@ interface SizeLimit {
 
 async function sizeLimit(): Promise<SizeLimit> {
   const results = await Promise.all((await getPackagesAsync()).map(async (p) => {
-    const pkgPath = join(cwd(), '..', 'packages', p)
-    const pkgRaw = await readFile(join(pkgPath, 'package.json'), {
+    const pkgPath = resolve(cwd(), '..', 'packages', p)
+    const pkgRaw = await readFile(resolve(pkgPath, 'package.json'), {
       encoding: 'utf-8',
     })
     const limit = getProperty(JSON.parse(pkgRaw), 'size-limit', '1024') || '1024'
-    const minified = (await readFile(join(pkgPath, 'dist', 'index.js'), {
+    const minified = (await readFile(resolve(pkgPath, 'dist', 'index.js'), {
       encoding: 'utf-8',
     }))
     const size = prettyBytes(minified.length)
@@ -80,7 +80,7 @@ function sizeLimitRenderer(data: SizeLimit) {
     consola.box(table([Object.keys(data.results[0] ?? {}), ...data.results.map(r => Object.values(r))]))
 
   if (data.errors && data.errors.length) {
-    consola.box(`${data.errors.map(e => colors.red(`${e.name} has exceded ${e.limit}`)).join('\n')}`)
+    consola.box(`${data.errors.map(e => colors.red(`${e.name} has exceded ${e.limit}`)).resolve('\n')}`)
     exit(1)
   }
 }
@@ -90,4 +90,4 @@ async function main() {
   sizeLimitRenderer(results)
 }
 
-main().catch(consola.error).finally(() => exit(0))
+main().catch(consola.error)
