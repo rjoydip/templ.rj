@@ -21,7 +21,7 @@
   "scripts": {
     "prebuild": "pnpm run clean",
     "build": "turbo run build",
-    "postbuild": "pnpm run -C scripts dist-check",
+    "postbuild": "pnpm run -C scripts check",
     "bench": "turbo run bench",
     "changelog": "auto-changelog -p",
     "clean": "turbo run clean",
@@ -38,8 +38,15 @@
     "benchmark",
     "docs",
     "packages/**",
-    "scripts"
+    "scripts",
+    "tools/**"
   ],
+  "dependencies": {
+    "consola": "^3.2.3",
+    "giget": "^1.2.1",
+    "latest-version": "^7.0.0",
+    "nypm": "^0.3.4"
+  },
   "devDependencies": {
     "@antfu/eslint-config": "2.6.3",
     "auto-changelog": "^2.4.0",
@@ -48,6 +55,7 @@
     "knip": "^3.13.2",
     "pnpm": "^8.14.2",
     "taze": "^0.13.1",
+    "tsx": "^4.7.0",
     "turbo": "^1.11.3"
   },
   "auto-changelog": {

@@ -21,14 +21,11 @@
   },
   "scripts": {
     "clean": "pnpm run clean:others && pnpm run clean:turbo",
+    "check": "tsx ./src/check.ts",
     "clean:others": "tsx ./src/clean/others.ts",
     "clean:turbo": "tsx ./src/clean/turbo.ts",
     "ci:env-copy": "tsx ./src/ci/env-copy.ts",
     "ci:env-delete": "tsx ./src/ci/env-delete.ts",
-    "dist-check": "tsx ./src/dist-check.ts",
-    "create:app": "tsx ./src/create/app.ts",
-    "create:doc": "tsx ./src/create/doc.ts",
-    "create:pkg": "tsx ./src/create/pkg.ts",
     "lint:size-limit": "tsx ./src/lint/size-limit.ts",
     "lint:size-report": "tsx ./src/lint/size-report.ts",
     "lint:type-cov": "tsx ./src/lint/type-cov.ts"

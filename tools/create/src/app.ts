@@ -7,7 +7,7 @@ import { downloadTemplate, startShell } from 'giget'
 import { colors } from 'consola/utils'
 import consola from 'consola'
 import { installDependencies } from 'nypm'
-import { type PM, capitalize, execute, getPkgManagers, hasDryRun, stackNotes, updateTemplateAssets } from '../utils'
+import { type PM, capitalize, execute, getPkgManagers, hasDryRun, stackNotes, updateTemplateAssets } from 'utils'
 
 interface AppOptsType {
   type: string

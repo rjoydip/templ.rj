@@ -78,7 +78,7 @@ jobs:
           pnpm run -C scripts ci:env-copy
           pnpm run build
           pnpm run -C scripts ci:env-delete
-          pnpm run -C scripts dist-check
+          pnpm run -C scripts check
 
   test:
     runs-on: ${{ matrix.os }}

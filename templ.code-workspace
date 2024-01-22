@@ -9,11 +9,22 @@
       "path": "templates"
     },
     {
-      "name": "🔨 @templ/scripts",
-      "path": "scripts"
+      "name": "📊 benchmark",
+      "path": "benchmark"
+    },{
+      "name": "🛡️ artifacts",
+      "path": "artifacts"
     },
     {
-      "name": "☢️ @templ/core",
+      "name": "📜 @templ/scripts",
+      "path": "scripts"
+    },,
+    {
+      "name": "🛠️ @templ/tools",
+      "path": "tools"
+    }
+    {
+      "name": "⚙️ @templ/core",
       "path": "packages/core"
     },
     {
@@ -25,7 +36,7 @@
       "path": "packages/cli"
     },
     {
-      "name": "🔊 @templ/logger",
+      "name": "🌲 @templ/logger",
       "path": "packages/logger"
     },
     {
@@ -33,16 +44,20 @@
       "path": "packages/utils"
     },
     {
-      "name": "📜 @templ/docs",
+      "name": "📄 @templ/docs",
       "path": "docs"
-    },
-    {
-      "name": "🕸️ @templ/apps/web",
-      "path": "apps/web"
     },
     {
       "name": "🖥️ @templ/apps/desktop",
       "path": "apps/desktop"
-    }
+    },
+    {
+      "name": "🗄️ @templ/apps/server",
+      "path": "apps/server"
+    },
+    {
+      "name": "🌐 @templ/apps/www",
+      "path": "apps/www"
+    },
   ]
 }
