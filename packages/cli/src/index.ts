@@ -8,7 +8,7 @@ process.on('unhandledRejection', (reason, _) => {
   exit(0)
 })
 
-async function main() {
+export async function run() {
   const prog = sade('@templ/cli')
   prog.version('0.0.0')
 
@@ -23,4 +23,4 @@ async function main() {
   prog.parse(argv)
 }
 
-main().catch(consola.error)
+run().catch(consola.error)

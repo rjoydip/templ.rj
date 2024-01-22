@@ -103,7 +103,7 @@ const viteTSTemplates = [
   { value: 'qwik-ts', label: 'Qwik' },
 ]
 
-async function main() {
+export async function run() {
   const root = resolve(cwd(), '..')
   const astroTmplDir = resolve(tmpdir(), 'astro-templates')
   const appOpts: AppOptsType = {
@@ -552,4 +552,4 @@ async function main() {
     consola.warn('Coming soon')
 }
 
-main().catch(consola.error)
+run().catch(consola.error)

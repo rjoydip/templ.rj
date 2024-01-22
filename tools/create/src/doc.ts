@@ -27,7 +27,7 @@ interface DocOptsType {
   }
 }
 
-async function main() {
+export async function run() {
   const root = resolve(cwd(), '..')
   const docOpts: DocOptsType = {
     tools: 'Nextra',
@@ -211,4 +211,4 @@ async function main() {
   stdin.on('data', key => (key.toString() === '\u0003') ? exit(0) : null)
 }
 
-main().catch(consola.error)
+run().catch(consola.error)

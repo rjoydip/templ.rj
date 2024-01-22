@@ -57,7 +57,7 @@ async function generateBundle(preset: Preset) {
   const content = `export ${
     typeof preset.imports === 'string'
       ? preset.imports
-      : `{ ${preset.imports.resolve(', ')} }`
+      : `{ ${preset.imports.join(', ')} }`
   } from '${platform() === 'win32' ? preset.entry.replace(/\\/g, '\\\\') : preset.entry}'`
 
   const result = await rollup({
@@ -257,8 +257,8 @@ export async function sizeReportRenderer(dir: string = cwd()) {
   consola.box(output)
 }
 
-async function main() {
+export async function run() {
   await sizeReportRenderer(resolve(cwd(), '..', 'artifacts'))
 }
 
-main().catch(consola.error)
+run().catch(consola.error)

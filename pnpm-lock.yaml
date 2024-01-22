@@ -7,19 +7,6 @@ settings:
 importers:
 
   .:
-    dependencies:
-      consola:
-        specifier: ^3.2.3
-        version: 3.2.3
-      giget:
-        specifier: ^1.2.1
-        version: 1.2.1
-      latest-version:
-        specifier: ^7.0.0
-        version: 7.0.0
-      nypm:
-        specifier: ^0.3.4
-        version: 0.3.4
     devDependencies:
       '@antfu/eslint-config':
         specifier: 2.6.3
@@ -120,6 +107,9 @@ importers:
       tsup:
         specifier: ^8.0.1
         version: 8.0.1(typescript@5.3.3)
+      tsx:
+        specifier: ^4.7.0
+        version: 4.7.0
 
   packages/config:
     dependencies:
@@ -193,30 +183,18 @@ importers:
       consola:
         specifier: ^3.2.3
         version: 3.2.3
-      create-next-app:
-        specifier: ^14.1.0
-        version: 14.1.0
       del:
         specifier: ^7.1.0
         version: 7.1.0
       dot-prop:
         specifier: ^8.0.2
         version: 8.0.2
-      execa:
-        specifier: ^8.0.1
-        version: 8.0.1
-      giget:
-        specifier: ^1.2.1
-        version: 1.2.1
       globby:
         specifier: ^14.0.0
         version: 14.0.0
       latest-version:
         specifier: ^7.0.0
         version: 7.0.0
-      nypm:
-        specifier: ^0.3.4
-        version: 0.3.4
       rollup:
         specifier: ^4.9.6
         version: 4.9.6
@@ -236,6 +214,9 @@ importers:
       '@types/node':
         specifier: ^20.11.5
         version: 20.11.5
+      create-next-app:
+        specifier: ^14.1.0
+        version: 14.1.0
       tsx:
         specifier: ^4.7.0
         version: 4.7.0
@@ -3731,7 +3712,7 @@ packages:
     resolution: {integrity: sha512-9gkzJBgT4Koq0OU7pv1rxXgsww9U8OlcKyIE/CP7GObJoHGt3sKuVt50GTpKK8qxPXyZNpLOjB/K+zJix0FJOg==}
     engines: {node: '>=18.17.0'}
     hasBin: true
-    dev: false
+    dev: true
 
   /crelt@1.0.6:
     resolution: {integrity: sha512-VQ2MBenTq1fWZUH9DJNGti7kKv6EeAuYr3cLwxUWhIu1baTaXh4Ib5W2CqHVqib4/MqbYGJqiL3Zb8GJZr3l4g==}

@@ -22,7 +22,7 @@ interface PkgOptsType {
   }
 }
 
-async function main() {
+export async function run() {
   const root = resolve(cwd(), '..')
   const pkgOpts: PkgOptsType = {
     path: './packages',
@@ -142,4 +142,4 @@ async function main() {
   }
 }
 
-main().catch(consola.error)
+run().catch(consola.error)

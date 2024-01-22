@@ -4,7 +4,6 @@ import { existsSync } from 'node:fs'
 import { argv, cwd } from 'node:process'
 import consola from 'consola'
 import { hasProperty, setProperty } from 'dot-prop'
-import { execa } from 'execa'
 import latestVersion from 'latest-version'
 import { shell } from './shell'
 
@@ -58,7 +57,7 @@ function hasGlobalInstallation(pm: PM): Promise<boolean> {
   if (cache.has(key))
     return Promise.resolve(cache.get(key))
 
-  return execa(pm, ['--version'])
+  return shell(pm, ['--version'])
     .then((res) => {
       return /^\d+.\d+.\d+$/.test(res.stdout)
     })

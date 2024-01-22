@@ -1,7 +1,7 @@
 import autocannon from 'autocannon'
 import consola from 'consola'
 
-async function main() {
+export async function run() {
   consola.start('Server benchmark started')
   const { statusCodeStats } = await autocannon({
     url: 'http://localhost:3000',
@@ -13,4 +13,4 @@ async function main() {
   consola.success('Server benchmark completed')
 }
 
-main().catch(consola.error)
+run().catch(consola.error)
