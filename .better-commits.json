@@ -66,35 +66,51 @@
   "commit_scope": {
     "enable": true,
     "custom_scope": false,
-    "initial_value": "apps",
+    "initial_value": "none",
     "options": [
       {
         "value": "apps",
-        "label": "apps"
+        "label": "📱 apps"
+      },
+      {
+        "value": "server",
+        "label": "🗄️ server"
+      },
+      {
+        "value": "desktop",
+        "label": "🖥️ desktop"
+      },
+      {
+        "value": "web",
+        "label": "🌐 web"
       },
       {
         "value": "scripts",
-        "label": "scripts"
+        "label": "✍ scripts"
       },
       {
         "value": "templates",
-        "label": "templates"
+        "label": "📑 templates"
       },
       {
         "value": "packages",
-        "label": "packages"
+        "label": "📦 packages"
       },
       {
         "value": "docs",
-        "label": "docs"
+        "label": "📄 docs"
       },
       {
         "value": "benchmark",
-        "label": "benchmark"
+        "label": "📊 benchmark"
+      },
+      {
+        "value": "tools",
+        "label": "🛠️ tools"
       },
       {
         "value": "none",
-        "label": "none"
+        "label": "🚫 none"
       }
     ]
   },

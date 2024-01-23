@@ -2,9 +2,9 @@ import { cwd, exit, stdin } from 'node:process'
 import { platform, type } from 'node:os'
 import { resolve, sep } from 'node:path'
 import latestVersion from 'latest-version'
-import { downloadTemplate } from 'giget'
 import consola from 'consola'
-import { type PM, getPkgManagers, hasDryRun, stackNotes, updateTemplateAssets } from 'utils'
+import type { PM } from '../utils'
+import { downloadTemplate, getPkgManagers, hasDryRun, stackNotes, updateTemplateAssets } from '../utils'
 
 interface DocOptsType {
   pkgManager: PM
@@ -128,36 +128,40 @@ export async function run() {
       const { name, language, path } = Docusaurus
       consola.start(`Creating ${type} documentation`)
 
-      const appPath = resolve(path, name)
-      const dest = platform() === 'win32' ? resolve(root, appPath).replace(sep, '\\\\') : resolve(root, appPath)
+      const dir = platform() === 'win32' ? resolve(root, path, name).replace(sep, '\\\\') : resolve(root, path, name)
 
-      await downloadTemplate(`github:facebook/docusaurus/create-docusaurus/templates/${(language === 'ts' ? 'classic-typescript' : 'classic')}`, {
-        dir: dest,
-        install,
+      await downloadTemplate({
+        repo: `github:facebook/docusaurus/create-docusaurus/templates/${(language === 'ts' ? 'classic-typescript' : 'classic')}`,
+        dtOps: {
+          dir,
+          install,
+        },
       })
 
       await updateTemplateAssets({
         name: `@templ/${name}`,
         pkgManager,
         root,
-        dest,
+        dir,
       })
 
       consola.success(`Generated ${type} documentation`)
 
-      stackNotes(appPath, install, pkgManager)
+      stackNotes(dir, install, pkgManager)
     }
 
     if (tools === 'Mintlify') {
       const { name, path } = Mintlify
       consola.start(`Creating ${type} documentation`)
 
-      const appPath = resolve(path, name)
-      const dest = platform() === 'win32' ? resolve(root, appPath).replace(sep, '\\\\') : resolve(root, appPath)
+      const dir = platform() === 'win32' ? resolve(root, path, name).replace(sep, '\\\\') : resolve(root, path, name)
 
-      await downloadTemplate('github:mintlify/starter', {
-        dir: dest,
-        install,
+      await downloadTemplate({
+        repo: 'github:mintlify/starter',
+        dtOps: {
+          dir,
+          install,
+        },
       })
 
       const mintilifyLV = await latestVersion('mintlify')
@@ -166,7 +170,7 @@ export async function run() {
         name: `@templ/${name}`,
         pkgManager,
         root,
-        dest,
+        dir,
         dotProps: {
           scripts: {
             dev: 'mintlify dev',
@@ -179,7 +183,7 @@ export async function run() {
 
       consola.success(`Generated ${type} documentation`)
 
-      stackNotes(appPath, install, pkgManager)
+      stackNotes(dir, install, pkgManager)
     }
 
     if (tools === 'Nextra') {
@@ -187,24 +191,26 @@ export async function run() {
       consola.start(`Creating ${type} documentation`)
 
       const themeName = theme === 'SWR' ? 'swr-site' : theme.toLowerCase()
-      const appPath = resolve(path, name)
-      const dest = resolve(root, appPath)
+      const dir = resolve(root, path, name)
 
-      await downloadTemplate(`github:shuding/nextra/examples/${themeName}`, {
-        dir: dest,
-        install,
+      await downloadTemplate({
+        repo: `github:shuding/nextra/examples/${themeName}`,
+        dtOps: {
+          dir,
+          install,
+        },
       })
 
       await updateTemplateAssets({
         name: `@templ/${name}`,
         pkgManager,
         root,
-        dest,
+        dir,
       })
 
       consola.success(`Generated ${type} documentation`)
 
-      stackNotes(appPath, install, pkgManager)
+      stackNotes(dir, install, pkgManager)
     }
   }
 

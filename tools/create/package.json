@@ -16,17 +16,17 @@
     "url": "https://github.com/rjoydip/templ/issues"
   },
   "files": [
-    "*.d.ts",
-    "dist"
+    "src"
   ],
   "engines": {
     "node": "^18.8.0 || >=20.6.0",
     "npm": ">=8"
   },
   "scripts": {
-    "app": "tsx ./src/app.ts",
-    "doc": "tsx ./src/doc.ts",
-    "pkg": "tsx ./src/pkg.ts"
+    "app": "tsx ./src/stacks/app.ts",
+    "doc": "tsx ./src/stacks/doc.ts",
+    "pkg": "tsx ./src/stacks/pkg.ts",
+    "server": "tsx ./src/stacks/server.ts"
   },
   "dependencies": {
     "consola": "^3.2.3",

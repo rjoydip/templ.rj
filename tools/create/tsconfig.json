@@ -3,9 +3,6 @@
     "baseUrl": ".",
     "module": "esnext",
     "moduleResolution": "node",
-    "paths": {
-      "utils": ["../../scripts/src/utils"]
-    },
     "resolveJsonModule": false,
     "strict": true,
     "noFallthroughCasesInSwitch": true,

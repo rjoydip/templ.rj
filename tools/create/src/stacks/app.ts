@@ -3,11 +3,12 @@ import { platform, tmpdir } from 'node:os'
 import { existsSync } from 'node:fs'
 import { cp, mkdir, readdir } from 'node:fs/promises'
 import { resolve, sep } from 'node:path'
-import { downloadTemplate, startShell } from 'giget'
+import { startShell } from 'giget'
 import { colors } from 'consola/utils'
 import consola from 'consola'
 import { installDependencies } from 'nypm'
-import { type PM, capitalize, execute, getPkgManagers, hasDryRun, stackNotes, updateTemplateAssets } from 'utils'
+import type { PM } from '../utils'
+import { capitalize, downloadTemplate, execute, getPkgManagers, hasDryRun, stackNotes, updateTemplateAssets } from '../utils'
 
 interface AppOptsType {
   type: string
@@ -181,13 +182,16 @@ export async function run() {
       placeholder: '',
     })
 
-    if (!existsSync(astroTmplDir) && appOpts.astro.path && appOpts.astro.name) {
-      await downloadTemplate(`github:withastro/astro/examples`, {
-        dir: astroTmplDir,
-        force: false,
-        install: false,
-        offline: true,
-        preferOffline: true,
+    if (appOpts.astro.path && appOpts.astro.name) {
+      await downloadTemplate({
+        repo: `github:withastro/astro/examples`,
+        dtOps: {
+          dir: astroTmplDir,
+          force: false,
+          install: false,
+          offline: true,
+          preferOffline: true,
+        },
       })
     }
 
@@ -439,24 +443,25 @@ export async function run() {
 
   if (type === 'Astro') {
     const { name, path, template_name, template_path } = astro
-    const appPath = resolve(path, name)
-    const dest = platform() === 'win32' ? resolve(root, appPath).replace(sep, '\\\\') : resolve(root, appPath)
+    const dir = platform() === 'win32' ? resolve(root, path, name).replace(sep, '\\\\') : resolve(root, path, name)
 
-    if (!existsSync(dest))
-      await mkdir(dest, { recursive: true })
+    consola.start(`Creating ${colors.cyan(type.toLowerCase())} application`)
 
-    await cp(resolve(template_path, template_name.toLowerCase()), resolve(appPath), { force: true, recursive: true })
+    if (!existsSync(dir))
+      await mkdir(dir, { recursive: true })
+
+    await cp(resolve(template_path, template_name.toLowerCase()), resolve(root, path, name), { force: true, recursive: true })
 
     await updateTemplateAssets({
       name: `@templ/${name}`,
       root,
-      dest,
+      dir,
       pkgManager,
     })
 
     if (install) {
       await installDependencies({
-        cwd: dest,
+        cwd: dir,
         packageManager: {
           name: pkgManager as PM,
           command: pkgManager === 'npm' ? 'npm install' : `${pkgManager}`,
@@ -466,14 +471,12 @@ export async function run() {
     }
 
     consola.success(`Generated ${colors.cyan(type.toLowerCase())} application`)
-    stackNotes(appPath, install, pkgManager, false)
+    stackNotes(dir, install, pkgManager, false)
   }
 
   if (type === 'Next') {
     const { language, tailwind, eslint, app_route, src_dir, import_alias, import_alias_value, path, name } = next
-
-    const appPath = resolve(path, name)
-    const dest = platform() === 'win32' ? resolve(root, appPath).replace(sep, '\\\\') : resolve(root, appPath)
+    const dest = platform() === 'win32' ? resolve(root, path, name).replace(sep, '\\\\') : resolve(root, path, name)
 
     consola.start(`Creating ${colors.cyan(type.toLowerCase())} application`)
 
@@ -488,50 +491,48 @@ export async function run() {
     })
 
     consola.success(`Generated ${colors.cyan(type.toLowerCase())} application`)
-    stackNotes(appPath, install, pkgManager)
+    stackNotes(dest, install, pkgManager)
   }
 
   if (type === 'Nuxt') {
     const { template, gitInit, shell, name, path } = nuxt
-
-    const appPath = resolve(path, name)
-    const dest = platform() === 'win32' ? resolve(root, appPath).replace(sep, '\\\\') : resolve(root, appPath)
+    const dir = platform() === 'win32' ? resolve(root, path, name).replace(sep, '\\\\') : resolve(root, path, name)
 
     consola.start(`Creating ${colors.cyan(type.toLowerCase())} application`)
-
-    if (!existsSync(dest))
-      await mkdir(dest, { recursive: true })
 
     const nuxtTemplIndex = nuxtOptions.findIndex(i => i.label.toLowerCase() === template.toLowerCase()) || 0
 
     if (nuxtTemplIndex) {
-      await downloadTemplate(nuxtOptions[nuxtTemplIndex]?.value ?? 'v3', {
-        dir: dest,
-        install,
-        registry: 'https://raw.githubusercontent.com/nuxt/starter/templates/templates',
+      await downloadTemplate({
+        repo: nuxtOptions[nuxtTemplIndex]?.value ?? 'v3',
+        dtOps: {
+          dir,
+          install,
+          registry: 'https://raw.githubusercontent.com/nuxt/starter/templates/templates',
+        },
       })
 
       await updateTemplateAssets({
         name: `@templ/${name}`,
         root,
-        dest,
+        dir,
         pkgManager,
       })
 
       if (gitInit) {
         await execute({
           title: 'Git Init',
-          f: `git init ${dest}`,
+          f: `git init ${dir}`,
           showOutput: true,
           showSpinner: true,
         })
       }
 
       if (shell)
-        startShell(dest)
+        startShell(dir)
 
       consola.success(`Generated ${colors.cyan(type.toLowerCase())} application`)
-      stackNotes(appPath, install, pkgManager, false)
+      stackNotes(dir, install, pkgManager, false)
     }
     else {
       consola.error('Invalid template options')
