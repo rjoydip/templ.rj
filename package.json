@@ -2,7 +2,7 @@
   "name": "templ",
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@8.14.2",
+  "packageManager": "pnpm@8.14.3",
   "description": "A modern monorepo project template",
   "author": "Joydip Roy <joydipand@gmail.com> (https://github.com/rjoydip)",
   "license": "MIT",
@@ -47,7 +47,7 @@
     "better-commits": "^1.8.1",
     "eslint": "^8.56.0",
     "knip": "^4.2.1",
-    "pnpm": "^8.14.2",
+    "pnpm": "^8.14.3",
     "taze": "^0.13.1",
     "tsx": "^4.7.0",
     "turbo": "^1.11.3"
