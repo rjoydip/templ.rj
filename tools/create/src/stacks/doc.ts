@@ -3,11 +3,12 @@ import { platform, type } from 'node:os'
 import { resolve, sep } from 'node:path'
 import latestVersion from 'latest-version'
 import consola from 'consola'
+import { colors } from 'consola/utils'
 import type { PM } from '../utils'
 import { downloadTemplate, getPkgManagers, hasDryRun, stackNotes, updateTemplateAssets } from '../utils'
 
 interface DocOptsType {
-  pkgManager: PM
+  pm: PM
   install: boolean
   Docusaurus: {
     name: string
@@ -31,7 +32,7 @@ export async function run() {
   const root = resolve(cwd(), '..')
   const docOpts: DocOptsType = {
     tools: 'Nextra',
-    pkgManager: 'npm',
+    pm: 'npm',
     install: true,
     Docusaurus: {
       name: 'docs',
@@ -107,10 +108,10 @@ export async function run() {
     docOpts[tools].language = lang ? 'typescript' : ''
   }
 
-  docOpts.pkgManager = await consola.prompt('Select package manager.', {
+  docOpts.pm = await consola.prompt('Select package manager.', {
     type: 'select',
     options: (await getPkgManagers()).map((pm: string) => pm.toUpperCase()),
-    initial: docOpts.pkgManager,
+    initial: docOpts.pm,
   }) as PM
 
   docOpts.install = await consola.prompt('Do you want to install dependencies?', {
@@ -122,11 +123,11 @@ export async function run() {
     consola.box(docOpts)
   }
   else {
-    const { tools, Docusaurus, Mintlify, Nextra, pkgManager, install } = docOpts
+    const { tools, Docusaurus, Mintlify, Nextra, pm, install } = docOpts
 
     if (tools === 'Docusaurus') {
       const { name, language, path } = Docusaurus
-      consola.start(`Creating ${type} documentation`)
+      consola.start(`\nCreating ${colors.cyan(type.toString())} documentation\n`)
 
       const dir = platform() === 'win32' ? resolve(root, path, name).replace(sep, '\\\\') : resolve(root, path, name)
 
@@ -140,19 +141,19 @@ export async function run() {
 
       await updateTemplateAssets({
         name: `@templ/${name}`,
-        pkgManager,
+        pm,
         root,
         dir,
       })
 
-      consola.success(`Generated ${type} documentation`)
+      consola.success(`Generated ${colors.cyan(type.toString())} documentation`)
 
-      stackNotes(dir, install, pkgManager)
+      stackNotes(dir, install, pm)
     }
 
     if (tools === 'Mintlify') {
       const { name, path } = Mintlify
-      consola.start(`Creating ${type} documentation`)
+      consola.start(`\nCreating ${colors.cyan(type.toString())} documentation\n`)
 
       const dir = platform() === 'win32' ? resolve(root, path, name).replace(sep, '\\\\') : resolve(root, path, name)
 
@@ -168,7 +169,7 @@ export async function run() {
 
       await updateTemplateAssets({
         name: `@templ/${name}`,
-        pkgManager,
+        pm,
         root,
         dir,
         dotProps: {
@@ -181,14 +182,14 @@ export async function run() {
         },
       })
 
-      consola.success(`Generated ${type} documentation`)
+      consola.success(`Generated ${colors.cyan(type.toString())} documentation`)
 
-      stackNotes(dir, install, pkgManager)
+      stackNotes(dir, install, pm)
     }
 
     if (tools === 'Nextra') {
       const { name, theme, path } = Nextra
-      consola.start(`Creating ${type} documentation`)
+      consola.start(`\nCreating ${colors.cyan(type.toString())} documentation\n`)
 
       const themeName = theme === 'SWR' ? 'swr-site' : theme.toLowerCase()
       const dir = resolve(root, path, name)
@@ -203,14 +204,14 @@ export async function run() {
 
       await updateTemplateAssets({
         name: `@templ/${name}`,
-        pkgManager,
+        pm,
         root,
         dir,
       })
 
-      consola.success(`Generated ${type} documentation`)
+      consola.success(`Generated ${colors.cyan(type.toString())} documentation`)
 
-      stackNotes(dir, install, pkgManager)
+      stackNotes(dir, install, pm)
     }
   }
 

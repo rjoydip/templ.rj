@@ -12,7 +12,7 @@ import { capitalize, downloadTemplate, execute, getPkgManagers, hasDryRun, stack
 
 interface AppOptsType {
   type: string
-  pkgManager: PM
+  pm: PM
   install: boolean
   astro: {
     name: string
@@ -23,13 +23,6 @@ interface AppOptsType {
   next: {
     name: string
     path: string
-    src_dir: boolean
-    app_route: boolean
-    eslint: boolean
-    import_alias: boolean
-    import_alias_value: string
-    language: string
-    tailwind: boolean
     template: string
   }
   nitro: {
@@ -107,6 +100,7 @@ const viteTSTemplates = [
 export async function run() {
   const root = resolve(cwd(), '..')
   const astroTmplDir = resolve(tmpdir(), 'astro-templates')
+  const nextTmplDir = resolve(tmpdir(), 'next-templates')
   const appOpts: AppOptsType = {
     type: '',
     astro: {
@@ -118,13 +112,6 @@ export async function run() {
     next: {
       name: '',
       path: '',
-      src_dir: false,
-      app_route: false,
-      eslint: false,
-      import_alias: false,
-      import_alias_value: '',
-      language: '',
-      tailwind: false,
       template: '',
     },
     nitro: {
@@ -157,7 +144,7 @@ export async function run() {
       eslint: false,
       prettier: false,
     },
-    pkgManager: 'npm',
+    pm: 'npm',
     install: true,
   }
 
@@ -183,13 +170,14 @@ export async function run() {
     })
 
     if (appOpts.astro.path && appOpts.astro.name) {
+      consola.start('\nPulling Astro Templates\n')
+
       await downloadTemplate({
         repo: `github:withastro/astro/examples`,
         dtOps: {
           dir: astroTmplDir,
           force: false,
           install: false,
-          offline: true,
           preferOffline: true,
         },
       })
@@ -225,45 +213,23 @@ export async function run() {
     else {
       appOpts.next.name = 'apps'
     }
-    const lang = await consola.prompt('Would you like to use JavaeScript?', {
-      type: 'confirm',
-      initial: false,
-    })
-    appOpts.next.language = lang ? 'javascript' : 'typescript'
 
-    appOpts.next.eslint = await consola.prompt('Would you like to use ESLint?', {
-      type: 'confirm',
-      initial: true,
-    })
+    consola.start('\nPulling Next Templates\n')
 
-    appOpts.next.tailwind = await consola.prompt('Would you like to use Tailwind CSS?', {
-      type: 'confirm',
-      initial: true,
+    await downloadTemplate({
+      repo: 'github:vercel/next.js/examples',
+      dtOps: {
+        dir: nextTmplDir,
+        force: true,
+        install: false,
+        preferOffline: true,
+      },
     })
 
-    appOpts.next.src_dir = await consola.prompt(`Initialize inside a ${colors.cyan('src')} directory`, {
-      type: 'confirm',
-      initial: false,
+    appOpts.next.template = await consola.prompt(`Select a ${colors.cyan('next')} template.`, {
+      type: 'select',
+      options: ((await readdir(nextTmplDir)) || []).map(i => i),
     })
-
-    appOpts.next.app_route = await consola.prompt(`Would you like to use App Router? (${colors.cyan('recommended')})`, {
-      type: 'confirm',
-      initial: true,
-    })
-
-    appOpts.next.import_alias = await consola.prompt('Would you like to customize the default import alias?', {
-      type: 'confirm',
-      initial: false,
-    })
-
-    if (appOpts.next.import_alias) {
-      appOpts.next.import_alias_value = await consola.prompt('Specify import alias to use (default "@/*")', {
-        type: 'text',
-        default: '@/*',
-        placeholder: '@/*',
-        initial: '@/*',
-      })
-    }
   }
 
   if (appOpts.type === 'Nuxt') {
@@ -423,10 +389,10 @@ export async function run() {
     })
   }
 
-  appOpts.pkgManager = await consola.prompt('Select package manager.', {
+  appOpts.pm = await consola.prompt('Select package manager.', {
     type: 'select',
     options: (await getPkgManagers()).map((pm: string) => pm.toUpperCase()),
-    initial: appOpts.pkgManager,
+    initial: appOpts.pm,
   }) as PM
 
   appOpts.install = await consola.prompt('Do you want to install dependencies?', {
@@ -439,13 +405,13 @@ export async function run() {
     return
   }
 
-  const { astro, next, nuxt, install, pkgManager, type } = appOpts
+  const { astro, next, nuxt, install, pm, type } = appOpts
 
   if (type === 'Astro') {
     const { name, path, template_name, template_path } = astro
     const dir = platform() === 'win32' ? resolve(root, path, name).replace(sep, '\\\\') : resolve(root, path, name)
 
-    consola.start(`Creating ${colors.cyan(type.toLowerCase())} application`)
+    consola.start(`\nCreating ${colors.cyan(type.toLowerCase())} application\n`)
 
     if (!existsSync(dir))
       await mkdir(dir, { recursive: true })
@@ -456,49 +422,61 @@ export async function run() {
       name: `@templ/${name}`,
       root,
       dir,
-      pkgManager,
+      pm,
     })
 
     if (install) {
       await installDependencies({
         cwd: dir,
         packageManager: {
-          name: pkgManager as PM,
-          command: pkgManager === 'npm' ? 'npm install' : `${pkgManager}`,
+          name: pm as PM,
+          command: pm === 'npm' ? 'npm install' : `${pm}`,
         },
         silent: true,
       })
     }
 
     consola.success(`Generated ${colors.cyan(type.toLowerCase())} application`)
-    stackNotes(dir, install, pkgManager, false)
+    stackNotes(dir, install, pm, false)
   }
 
   if (type === 'Next') {
-    const { language, tailwind, eslint, app_route, src_dir, import_alias, import_alias_value, path, name } = next
-    const dest = platform() === 'win32' ? resolve(root, path, name).replace(sep, '\\\\') : resolve(root, path, name)
+    const { path, name, template } = next
+    const dir = platform() === 'win32' ? resolve(root, path, name).replace(sep, '\\\\') : resolve(root, path, name)
 
-    consola.start(`Creating ${colors.cyan(type.toLowerCase())} application`)
+    consola.start(`\nCreating ${colors.cyan(type.toLowerCase())} application\n`)
 
-    if (!existsSync(dest))
-      await mkdir(dest, { recursive: true })
+    if (!existsSync(dir))
+      await mkdir(dir, { recursive: true })
 
-    await execute({
-      title: 'Next Application',
-      f: `npx create-next-app ${dest} ${language === 'javascript' ? '--js' : '--ts'} ${tailwind ? '--tailwind' : ''} ${eslint ? '--eslint' : ''} ${app_route ? '--app' : ''} --src-dir ${src_dir} ${import_alias ? `--import-alias ${import_alias_value}` : '--import-alias'} ${install ? `--use-${pkgManager}` : `--no-use-${pkgManager}`}`,
-      showOutput: true,
-      showSpinner: true,
+    await cp(resolve(nextTmplDir, template), resolve(root, path, name), { force: true, recursive: true })
+
+    await updateTemplateAssets({
+      name: `@templ/${name}`,
+      root,
+      dir,
+      pm,
     })
 
+    if (install) {
+      await installDependencies({
+        cwd: dir,
+        packageManager: {
+          name: pm as PM,
+          command: pm === 'npm' ? 'npm install' : `${pm}`,
+        },
+        silent: true,
+      })
+    }
     consola.success(`Generated ${colors.cyan(type.toLowerCase())} application`)
-    stackNotes(dest, install, pkgManager)
+    stackNotes(dir, install, pm)
   }
 
   if (type === 'Nuxt') {
     const { template, gitInit, shell, name, path } = nuxt
     const dir = platform() === 'win32' ? resolve(root, path, name).replace(sep, '\\\\') : resolve(root, path, name)
 
-    consola.start(`Creating ${colors.cyan(type.toLowerCase())} application`)
+    consola.start(`\nCreating ${colors.cyan(type.toLowerCase())} application\n`)
 
     const nuxtTemplIndex = nuxtOptions.findIndex(i => i.label.toLowerCase() === template.toLowerCase()) || 0
 
@@ -516,7 +494,7 @@ export async function run() {
         name: `@templ/${name}`,
         root,
         dir,
-        pkgManager,
+        pm,
       })
 
       if (gitInit) {
@@ -532,7 +510,7 @@ export async function run() {
         startShell(dir)
 
       consola.success(`Generated ${colors.cyan(type.toLowerCase())} application`)
-      stackNotes(dir, install, pkgManager, false)
+      stackNotes(dir, install, pm, false)
     }
     else {
       consola.error('Invalid template options')

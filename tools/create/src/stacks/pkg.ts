@@ -1,8 +1,8 @@
 import { cwd } from 'node:process'
 import { cp } from 'node:fs/promises'
 import { basename, resolve } from 'node:path'
-import { colors } from 'consola/utils'
 import consola from 'consola'
+import { colors } from 'consola/utils'
 import { installDependencies } from 'nypm'
 import type { PM } from '../utils'
 import { downloadTemplate, getPkgManagers, hasDryRun, stackNotes, updateTemplateAssets } from '../utils'
@@ -10,7 +10,7 @@ import { downloadTemplate, getPkgManagers, hasDryRun, stackNotes, updateTemplate
 interface PkgOptsType {
   path: string
   template: string
-  pkgManager: PM
+  pm: PM
   install: boolean
   remote: {
     repo: string
@@ -22,18 +22,18 @@ interface PkgOptsType {
 }
 
 export async function run() {
-  const root = resolve(cwd(), '..')
+  const root = resolve(cwd(), '..', '..')
   const pkgOpts: PkgOptsType = {
-    path: './packages',
-    template: 'Local',
+    path: '',
+    template: '',
     remote: {
       repo: 'github:username/repo',
     },
     local: {
-      name: 'package',
+      name: '',
       language: 'ts',
     },
-    pkgManager: 'npm',
+    pm: 'npm',
     install: true,
   }
 
@@ -77,10 +77,10 @@ export async function run() {
     })
   }
 
-  pkgOpts.pkgManager = await consola.prompt('Select package manager.', {
+  pkgOpts.pm = await consola.prompt('Select package manager.', {
     type: 'select',
     options: (await getPkgManagers()).map((pm: string) => pm.toUpperCase()),
-    initial: pkgOpts.pkgManager,
+    initial: pkgOpts.pm,
   }) as PM
 
   pkgOpts.install = await consola.prompt('Do you want to install dependencies?', {
@@ -93,10 +93,10 @@ export async function run() {
     return
   }
 
-  const { template, path, remote, pkgManager, install, local } = pkgOpts
+  const { template, path, remote, pm, install, local } = pkgOpts
 
   if (template === 'Remote') {
-    consola.start(`Creating ${basename(remote.repo)} package`)
+    consola.start(`\nCreating ${colors.cyan(basename(remote.repo))} package\n`)
     const dir = resolve(root, path, basename(remote.repo))
 
     await downloadTemplate({
@@ -106,20 +106,20 @@ export async function run() {
         install,
       },
     })
-    consola.success(`Generated ${basename(remote.repo)} package`)
-    stackNotes(dir, install, pkgManager)
+    consola.success(`Generated ${colors.cyan(basename(remote.repo))} package`)
+    stackNotes(dir, install, pm)
   }
 
   if (template === 'Local') {
-    consola.start(`Creating ${local.name} package`)
+    consola.start(`\nCreating ${colors.cyan(local.name)} package\n`)
     const dir = resolve(root, path, local.name)
-    await cp(resolve(root, 'templates', `basic-${local.language}`), dir, {
+    await cp(resolve(cwd(), '..', 'templates', `basic-${local.language}`), dir, {
       recursive: true,
       force: true,
     })
     await updateTemplateAssets({
       name: `@templ/${local.name}`,
-      pkgManager,
+      pm,
       root,
       dir,
       replacement: {
@@ -131,15 +131,15 @@ export async function run() {
       await installDependencies({
         cwd: dir,
         packageManager: {
-          name: pkgManager as PM,
-          command: pkgManager === 'npm' ? 'npm install' : `${pkgManager}`,
+          name: pm as PM,
+          command: pm === 'npm' ? 'npm install' : `${pm}`,
         },
         silent: true,
       })
     }
 
-    consola.success(`Generated ${local.name} package`)
-    stackNotes(dir, install, pkgManager)
+    consola.success(`Generated ${colors.cyan(local.name)} package`)
+    stackNotes(dir, install, pm)
   }
 }
 
