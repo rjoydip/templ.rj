@@ -1,6 +1,6 @@
 import { existsSync } from 'node:fs'
 import { join, parse, resolve, sep } from 'node:path'
-import { access, mkdir, readFile, readdir, writeFile } from 'node:fs/promises'
+import { access, mkdir, readFile, writeFile } from 'node:fs/promises'
 import { argv, cwd } from 'node:process'
 import { tmpdir } from 'node:os'
 import consola from 'consola'
@@ -200,7 +200,8 @@ export async function execute(params: {
 }) {
   const { f, showOutput, showSpinner, title, isSubProcess } = params
 
-  if (isSubProcess && f instanceof String) {
+  consola.log('Here', isSubProcess, f instanceof String)
+  if (isSubProcess || f instanceof String) {
     await shell(f.toString(), [])
   }
   else {
@@ -225,13 +226,9 @@ export async function execute(params: {
   }
 }
 
-export async function getPackagesAsync() {
-  return await readdir(resolve(cwd(), '..', 'packages'))
-}
-
-export function stackNotes(path: string, isInstalled: boolean = false, pkgManager: string = 'pnpm', showNote: boolean = true) {
+export function stackNotes(path: string, isInstalled: boolean = false, pm: string = 'pnpm', showNote: boolean = true) {
   if (showNote)
-    consola.box(`cd ${path.replace(`${join(cwd(), '..', '..')}${sep}`, '')}\n${isInstalled ? `${pkgManager.toLowerCase()} dev` : `${pkgManager.toLowerCase()} install\n${pkgManager.toLowerCase()} dev`}`)
+    consola.box(`cd ${path.replace(`${join(cwd(), '..', '..')}${sep}`, '')}\n${isInstalled ? `${pm.toLowerCase()} dev` : `${pm.toLowerCase()} install\n${pm.toLowerCase()} dev`}`)
 }
 
 export async function downloadTemplate(options: {

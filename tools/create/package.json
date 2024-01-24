@@ -30,11 +30,13 @@
   },
   "dependencies": {
     "consola": "^3.2.3",
+    "dot-prop": "^8.0.2",
     "giget": "^1.2.1",
     "latest-version": "^7.0.0",
     "nypm": "^0.3.6"
   },
   "devDependencies": {
-    "@types/node": "^20.11.5"
+    "@types/node": "^20.11.6",
+    "tsx": "^4.7.0"
   }
 }

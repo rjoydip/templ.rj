@@ -23,7 +23,7 @@ interface ServerOptsType {
   express: Record<string, string>
   koa: Record<string, string>
   hapi: Record<string, string>
-  pkgManager: string
+  pm: string
   install: boolean
 }
 
@@ -43,7 +43,7 @@ export async function run() {
     express: {},
     koa: {},
     hapi: {},
-    pkgManager: 'npm',
+    pm: 'npm',
     install: true,
   }
 
@@ -74,6 +74,8 @@ export async function run() {
   }) as Servers
 
   if (serverOpts.type.toString() === 'Hono') {
+    consola.start(`\nPulling Hono Templates\n`)
+
     await downloadTemplate({
       repo: 'github:honojs/starter/templates',
       dtOps: {
@@ -109,10 +111,10 @@ export async function run() {
   const p = await consola.prompt('Select package manager.', {
     type: 'select',
     options: (await getPkgManagers()).map((pm: string) => pm.toUpperCase()),
-    initial: serverOpts.pkgManager,
+    initial: serverOpts.pm,
   }) as PM
 
-  serverOpts.pkgManager = p.toLowerCase()
+  serverOpts.pm = p.toLowerCase()
 
   serverOpts.install = await consola.prompt('Do you want to install dependencies?', {
     type: 'confirm',
@@ -124,13 +126,12 @@ export async function run() {
     return
   }
 
-  const { name, type, path, pkgManager, install, hono, fastify } = serverOpts
-  const pm = pkgManager
+  const { name, type, path, pm, install, hono, fastify } = serverOpts
 
   if (type.toString() === 'Hono') {
     const dir = resolve(root, path, name)
 
-    consola.start(`Creating ${type} server`)
+    consola.start(`\nCreating ${colors.cyan(type.toString())} server\n`)
 
     await cp(join(honoTmplDir, hono.name), dir, { force: true, recursive: true })
 
@@ -143,24 +144,24 @@ export async function run() {
     })
 
     if (install) {
-      consola.start(`Installaing via ${pm}`)
+      consola.start(`\nInstallaing via ${pm}\n`)
       await installDependencies({
         cwd: dir,
         packageManager: {
-          name: pkgManager as PM,
+          name: pm as PM,
           command: pm === 'npm' ? 'npm install' : `${pm}`,
         },
         silent: true,
       })
     }
 
-    consola.success(`Generated ${type} server`)
-    stackNotes(dir, install, pkgManager)
+    consola.success(`Generated ${colors.cyan(type.toString())} server`)
+    stackNotes(dir, install, pm)
   }
 
   if (type.toString() === 'Fastify') {
     const dir = resolve(root, path, name)
-    consola.start(`Creating ${type} server`)
+    consola.start(`\nCreating ${colors.cyan(type.toString())} server\n`)
 
     await downloadTemplate({
       repo: fastify.repo !== '' ? fastify.repo : 'github:fastify/fastify-starter-codesandbox#master',
@@ -181,18 +182,19 @@ export async function run() {
     })
 
     if (install) {
+      consola.start(`\nInstallaing via ${pm}\n`)
       await installDependencies({
         cwd: dir,
         packageManager: {
-          name: pkgManager as PM,
-          command: pkgManager === 'npm' ? 'npm install' : `${pkgManager}`,
+          name: pm as PM,
+          command: pm === 'npm' ? 'npm install' : `${pm}`,
         },
         silent: true,
       })
     }
 
-    consola.success(`Generated ${type} server`)
-    stackNotes(dir, install, pkgManager)
+    consola.success(`Generated ${colors.cyan(type.toString())} server`)
+    stackNotes(dir, install, pm)
   }
 }
 
