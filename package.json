@@ -19,7 +19,8 @@
     "yarn": ">=3"
   },
   "scripts": {
-    "prebuild": "pnpm run clean && taze -r -w -i -f -l",
+    "postinstall": "taze -r -w -i -f -l",
+    "prebuild": "pnpm run clean",
     "build": "turbo run build",
     "postbuild": "pnpm run -C scripts check",
     "bench": "turbo run bench",

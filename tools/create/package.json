@@ -36,7 +36,7 @@
     "nypm": "^0.3.6"
   },
   "devDependencies": {
-    "@types/node": "^20.11.5",
+    "@types/node": "^20.11.6",
     "tsx": "^4.7.0"
   }
 }
