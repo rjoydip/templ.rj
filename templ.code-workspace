@@ -9,14 +9,18 @@
       "path": "templates"
     },
     {
-      "name": "📊 benchmark",
+      "name": "📑 tools",
+      "path": "tools"
+    },
+    {
+      "name": "📊 @templ/benchmark",
       "path": "benchmark"
     },{
       "name": "🛡️ artifacts",
       "path": "artifacts"
     },
     {
-      "name": "📜 @templ/scripts",
+      "name": "✍ @templ/scripts",
       "path": "scripts"
     },,
     {
@@ -56,8 +60,8 @@
       "path": "apps/server"
     },
     {
-      "name": "🌐 @templ/apps/www",
-      "path": "apps/www"
+      "name": "🌐 @templ/apps/web",
+      "path": "apps/web"
     },
   ]
 }

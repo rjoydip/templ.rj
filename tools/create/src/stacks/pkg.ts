@@ -1,12 +1,11 @@
 import { cwd } from 'node:process'
-import { existsSync } from 'node:fs'
-import { cp, mkdir } from 'node:fs/promises'
+import { cp } from 'node:fs/promises'
 import { basename, resolve } from 'node:path'
-import { downloadTemplate } from 'giget'
 import { colors } from 'consola/utils'
 import consola from 'consola'
 import { installDependencies } from 'nypm'
-import { type PM, getPkgManagers, hasDryRun, stackNotes, updateTemplateAssets } from 'utils'
+import type { PM } from '../utils'
+import { downloadTemplate, getPkgManagers, hasDryRun, stackNotes, updateTemplateAssets } from '../utils'
 
 interface PkgOptsType {
   path: string
@@ -98,21 +97,23 @@ export async function run() {
 
   if (template === 'Remote') {
     consola.start(`Creating ${basename(remote.repo)} package`)
-    const dest = resolve(root, path, basename(remote.repo))
-    if (!existsSync(dest))
-      await mkdir(dest, { recursive: true })
-    await downloadTemplate(remote.repo, {
-      dir: dest,
-      install,
+    const dir = resolve(root, path, basename(remote.repo))
+
+    await downloadTemplate({
+      repo: remote.repo,
+      dtOps: {
+        dir,
+        install,
+      },
     })
     consola.success(`Generated ${basename(remote.repo)} package`)
-    stackNotes(dest, install, pkgManager)
+    stackNotes(dir, install, pkgManager)
   }
 
   if (template === 'Local') {
     consola.start(`Creating ${local.name} package`)
-    const dest = resolve(root, path, local.name)
-    await cp(resolve(root, 'templates', `basic-${local.language}`), dest, {
+    const dir = resolve(root, path, local.name)
+    await cp(resolve(root, 'templates', `basic-${local.language}`), dir, {
       recursive: true,
       force: true,
     })
@@ -120,7 +121,7 @@ export async function run() {
       name: `@templ/${local.name}`,
       pkgManager,
       root,
-      dest,
+      dir,
       replacement: {
         from: `basic-${local.language}`,
         to: local.name,
@@ -128,7 +129,7 @@ export async function run() {
     })
     if (install) {
       await installDependencies({
-        cwd: dest,
+        cwd: dir,
         packageManager: {
           name: pkgManager as PM,
           command: pkgManager === 'npm' ? 'npm install' : `${pkgManager}`,
@@ -138,7 +139,7 @@ export async function run() {
     }
 
     consola.success(`Generated ${local.name} package`)
-    stackNotes(dest, install, pkgManager)
+    stackNotes(dir, install, pkgManager)
   }
 }
 

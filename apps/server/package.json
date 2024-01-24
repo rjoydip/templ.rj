@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.0",
   "private": true,
-  "packageManager": "pnpm@8.14.2",
+  "packageManager": "pnpm@8.14.3",
   "description": "TEMPL server",
   "license": "MIT",
   "homepage": "https://github.com/rjoydip/templ/tree/main/packages/server#readme",
@@ -28,9 +28,9 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@hono/node-server": "^1.4.1",
+    "@hono/node-server": "^1.5.0",
     "@hono/zod-openapi": "^0.9.5",
-    "@scalar/hono-api-reference": "^0.3.23",
+    "@scalar/hono-api-reference": "^0.3.25",
     "consola": "^3.2.3",
     "hono": "^3.12.6"
   },
