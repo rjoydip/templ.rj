@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@templ/utils": "workspace:*",
-    "@types/node": "^20.11.6",
+    "@types/node": "^20.11.7",
     "consola": "^3.2.3",
     "table": "^6.8.1",
     "tinybench": "^2.6.0",

@@ -1,6 +1,7 @@
 {
   "name": "templ",
   "type": "module",
+  "version": "0.0.0",
   "private": true,
   "packageManager": "pnpm@8.14.3",
   "description": "A modern monorepo project template",
@@ -24,12 +25,12 @@
     "build": "turbo run build",
     "postbuild": "pnpm run -C scripts check",
     "bench": "turbo run bench",
-    "changelog": "auto-changelog -p",
     "clean": "turbo run clean",
     "commit": "turbo run commit && pnpm run changelog && better-commits",
     "eslint": "eslint -c eslint.config.js --color --cache --fix --cache-location .eslintcache .",
     "lint": "turbo run lint && pnpm run knip",
     "knip": "knip -c ./config/knip.ts --include files,dependencies",
+    "release": "changelogen --output --release && npm publish && git push --follow-tags",
     "setup": "turbo run setup",
     "test": "turbo run test"
   },
@@ -41,24 +42,17 @@
     "scripts",
     "tools/**"
   ],
-  "dependencies": {},
   "devDependencies": {
     "@antfu/eslint-config": "2.6.3",
-    "auto-changelog": "^2.4.0",
-    "better-commits": "^1.8.1",
+    "better-commits": "^1.10.0",
+    "changelogen": "^0.5.5",
     "eslint": "^8.56.0",
     "knip": "^4.2.1",
     "pnpm": "^8.14.3",
     "taze": "^0.13.1",
     "turbo": "^1.11.3"
   },
-  "auto-changelog": {
-    "output": "CHANGELOG.md",
-    "template": "keepachangelog",
-    "unreleased": true,
-    "commitLimit": false
-  },
   "stackblitz": {
-    "startCommand": "pnpm run build"
+    "startCommand": "pnpm i"
   }
 }

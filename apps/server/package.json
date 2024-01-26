@@ -29,13 +29,13 @@
   },
   "dependencies": {
     "@hono/node-server": "^1.5.0",
-    "@hono/zod-openapi": "^0.9.5",
-    "@scalar/hono-api-reference": "^0.3.25",
+    "@hono/zod-openapi": "^0.9.6",
+    "@scalar/hono-api-reference": "^0.3.26",
     "consola": "^3.2.3",
-    "hono": "^3.12.6"
+    "hono": "^3.12.7"
   },
   "devDependencies": {
-    "@types/node": "^20.11.6",
+    "@types/node": "^20.11.7",
     "pactum": "^3.6.0",
     "tsx": "^4.7.0",
     "vitest": "^1.2.1"
