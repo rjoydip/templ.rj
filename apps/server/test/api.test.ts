@@ -1,20 +1,12 @@
-import { spec } from 'pactum'
-import { afterAll, beforeAll, describe, it } from 'vitest'
-import mockApi from './mocks/api'
+import { describe, expect, it } from 'vitest'
+import app from '../src/app'
 
 describe('api', () => {
-  beforeAll(() => {
-    mockApi.start(3000)
-  })
-
-  afterAll(() => {
-    mockApi.stop()
-  })
-
-  it('should get 200 for endpoint api/hello', async () => {
-    await spec()
-      .get('http://localhost:3000/api/hello')
-      .expectStatus(200)
-      .expectBody('Hello, 👋')
+  it('should be valid GET /hello', async () => {
+    const res = await app.request('/hello')
+    expect(res.status).toBe(200)
+    expect(await res.json()).toStrictEqual({
+      message: 'Hello, 👋',
+    })
   })
 })

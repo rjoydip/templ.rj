@@ -98,11 +98,6 @@ jobs:
       - name: Test
         run: pnpm run test
 
-      - name: Codecov
-        uses: codecov/codecov-action@v3
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-
   action-timeline:
     needs: [build, lint, pr, test, trivy_scan, triage]
     runs-on: ubuntu-latest
