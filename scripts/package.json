@@ -1,9 +1,9 @@
 {
   "name": "@templ/scripts",
   "type": "module",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
-  "description": "TEMPL root scripts",
+  "description": "Scripts",
   "license": "MIT",
   "homepage": "https://github.com/rjoydip/templ/tree/main/scripts#readme",
   "repository": {

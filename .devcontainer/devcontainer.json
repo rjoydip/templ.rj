@@ -18,18 +18,12 @@
       "extensions": [
         "aaron-bond.better-comments",
         "bierner.markdown-emoji",
-        "codecov.codecov",
         "christian-kohler.npm-intellisense",
         "dbaeumer.vscode-eslint",
         "davidanson.vscode-markdownlint",
         "eamodio.gitlens",
         "editorconfig.editorconfig",
-        "esbenp.prettier-vscode",
-        "ms-vscode-remote.remote-containers",
-        "rangav.vscode-thunder-client",
-        "redhat.vscode-yaml",
-        "zixuanchen.vitest-explorer",
-        "streetsidesoftware.code-spell-checker"
+        "zixuanchen.vitest-explorer"
       ]
     }
   },

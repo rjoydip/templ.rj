@@ -2,8 +2,8 @@
   "name": "@templ/cli",
   "cliname": "TEMPL",
   "type": "module",
-  "version": "0.0.0",
-  "description": "TEMPL cli service",
+  "version": "0.0.1",
+  "description": "Cli",
   "license": "MIT",
   "homepage": "https://github.com/rjoydip/templ/tree/main/packages/cli#readme",
   "repository": {

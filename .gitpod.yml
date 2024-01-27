@@ -8,12 +8,9 @@ tasks:
 vscode:
   extensions:
     - aaron-bond.better-comments
-    - codecov.codecov
     - davidanson.vscode-markdownlint
     - eamodio.gitlens
     - editorconfig.editorconfig
-    - folke.vscode-monorepo-workspace
-    - foxundermoon.shell-format
-    - rangav.vscode-thunder-client
-    - seatonjiang.gitmoji-vscode
     - zixuanchen.vitest-explorer
+    - christian-kohler.npm-intellisense
+    - dbaeumer.vscode-eslint

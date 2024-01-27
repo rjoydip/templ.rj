@@ -1,3 +1,3 @@
 import consola from 'consola'
 
-consola.log('Templ service')
+consola.log('Templ')

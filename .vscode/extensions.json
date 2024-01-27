@@ -1,17 +1,11 @@
 {
   "recommendations": [
     "aaron-bond.better-comments",
-    "bierner.markdown-emoji",
     "christian-kohler.npm-intellisense",
-    "codecov.codecov",
     "dbaeumer.vscode-eslint",
     "davidanson.vscode-markdownlint",
     "eamodio.gitlens",
     "editorconfig.editorconfig",
-    "folke.vscode-monorepo-workspace",
-    "ms-vscode-remote.remote-containers",
-    "rangav.vscode-thunder-client",
-    "redhat.vscode-yaml",
     "zixuanchen.vitest-explorer"
   ]
 }
