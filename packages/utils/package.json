@@ -31,6 +31,7 @@
   },
   "scripts": {
     "build": "tsup src/index.ts --dts --clean --minify --no-splitting --no-sourcemap --target esnext --format esm --platform node",
+    "bench": "vitest bench --run",
     "test": "vitest run"
   },
   "dependencies": {

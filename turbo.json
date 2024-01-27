@@ -7,9 +7,9 @@
       "inputs": ["src/**/*.ts"]
     },
     "test": {
-      "dependsOn": ["^build", "bench"],
+      "dependsOn": ["^build"],
       "outputs": ["coverage/**"],
-      "inputs": ["src/**/*.ts", "test/**/*.ts"]
+      "inputs": ["test/**/*.test.ts"]
     },
     "lint": {
       "dependsOn": ["build", "eslint", "lint:size-limit", "lint:size-report", "lint:type-cov"],
@@ -24,7 +24,7 @@
       "cache": false
     },
     "setup": {
-      "dependsOn": ["commit", "test"],
+      "dependsOn": ["commit", "test", "bench"],
       "cache": false
     },
     "clean": {
