@@ -35,9 +35,9 @@
   },
   "devDependencies": {
     "@types/node": "^20.11.7",
-    "@vitest/coverage-v8": "^1.2.1",
+    "@vitest/coverage-v8": "^1.2.2",
     "tsup": "^8.0.1",
-    "vitest": "^1.2.1"
+    "vitest": "^1.2.2"
   },
   "size-limit": "100 B"
 }

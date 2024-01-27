@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-describe('@templ', () => {
+describe('@templ/basic-ts', () => {
   it('index', () => {
     expect(true).toBeTruthy()
   })

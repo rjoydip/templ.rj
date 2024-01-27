@@ -1,16 +1,16 @@
 {
-  "name": "@templ/basic-ts",
+  "name": "@templ/schema",
   "type": "module",
   "version": "0.0.0",
   "private": true,
   "packageManager": "pnpm@8.14.3",
-  "description": "TEMPL basic-ts service",
+  "description": "TEMPL schema service",
   "license": "MIT",
-  "homepage": "https://github.com/rjoydip/templ/tree/main/packages/basic-ts#readme",
+  "homepage": "https://github.com/rjoydip/templ/tree/main/packages/schema#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rjoydip/templ.git",
-    "directory": "packages/basic-ts"
+    "directory": "packages/schema"
   },
   "bugs": {
     "url": "https://github.com/rjoydip/templ/issues"
@@ -34,11 +34,18 @@
     "build": "tsup src/index.ts --dts --clean --minify --no-splitting --no-sourcemap --target esnext --format esm --platform node",
     "test": "vitest run"
   },
-  "dependencies": {},
+  "dependencies": {
+    "consola": "^3.2.3",
+    "pkg-types": "^1.0.3",
+    "scule": "^1.2.0",
+    "std-env": "^3.7.0",
+    "untyped": "^1.4.2"
+  },
   "devDependencies": {
     "@types/node": "^20.11.7",
     "@vitest/coverage-v8": "^1.2.2",
     "tsup": "^7.3.0",
     "vitest": "^1.2.2"
-  }
+  },
+  "size-limit": "1.3 KB"
 }

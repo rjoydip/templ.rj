@@ -11,6 +11,7 @@ yarn-error.log*
 .log
 .env
 .cache
+.conf
 .idea
 .vite-node
 .DS_Store

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-describe('@templ/basic-js', () => {
+describe('@templ/schema', () => {
   it('index', () => {
     expect(true).toBeTruthy()
   })
