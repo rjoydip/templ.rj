@@ -42,7 +42,7 @@
     "untyped": "^1.4.2"
   },
   "devDependencies": {
-    "@types/node": "^20.11.8",
+    "@types/node": "^20.11.9",
     "@vitest/coverage-v8": "^1.2.2",
     "tsup": "^7.3.0",
     "vitest": "^1.2.2"

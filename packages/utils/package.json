@@ -39,7 +39,7 @@
     "wrap-ansi": "^9.0.0"
   },
   "devDependencies": {
-    "@types/node": "^20.11.8",
+    "@types/node": "^20.11.9",
     "@vitest/coverage-v8": "^1.2.2",
     "tsup": "^8.0.1",
     "vitest": "^1.2.2"

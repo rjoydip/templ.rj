@@ -37,7 +37,7 @@
     "consola": "^3.2.3"
   },
   "devDependencies": {
-    "@types/node": "^20.11.8",
+    "@types/node": "^20.11.9",
     "tsup": "^7.3.0"
   },
   "size-limit": "100 B"
