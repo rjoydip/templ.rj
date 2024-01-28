@@ -37,7 +37,7 @@
     "@templ/schema": "workspace:*",
     "c12": "^1.6.1",
     "untyped": "^1.4.2",
-    "valibot": "^0.26.0"
+    "valibot": "^0.27.1"
   },
   "devDependencies": {
     "@types/node": "^20.11.9",
