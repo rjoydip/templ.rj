@@ -24,8 +24,9 @@ export function prettyBytesToNumber(prettyBytes: string = '') {
 }
 
 export async function getPackagesAsync() {
-  return await globby(['\packages/**/package.json'], {
+  return await globby(['packages/**/dist/index.js'], {
     ignore: ignorePatterns,
     cwd: resolve(cwd(), '..'),
+    markDirectories: true,
   })
 }

@@ -215,6 +215,9 @@ importers:
       rollup:
         specifier: ^4.9.6
         version: 4.9.6
+      scule:
+        specifier: ^1.2.0
+        version: 1.2.0
       table:
         specifier: ^6.8.1
         version: 6.8.1
