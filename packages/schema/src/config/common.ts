@@ -1,4 +1,4 @@
-import { resolve } from 'node:path'
+import { normalize } from 'node:path'
 import { cwd } from 'node:process'
 import { findWorkspaceDir } from 'pkg-types'
 import { defineUntypedSchema } from 'untyped'
@@ -14,7 +14,7 @@ export default defineUntypedSchema({
    * It is normally not needed to configure this option.
    */
   rootDir: {
-    $resolve: val => typeof val === 'string' ? resolve(val) : cwd(),
+    $resolve: async (val) => { return normalize(typeof val === 'string' ? await findWorkspaceDir(val) : await findWorkspaceDir(cwd())) },
   },
 
   /**
@@ -27,9 +27,6 @@ export default defineUntypedSchema({
    */
   workspaceDir: {
     $default: cwd(),
-    $resolve: async (val, get) => {
-      const rootDir = ((await get('rootDir')) || cwd()) as string
-      return val ? resolve(rootDir.toString(), val.toString()) : await findWorkspaceDir(rootDir).catch(() => rootDir)
-    },
+    $resolve: val => val,
   },
 })

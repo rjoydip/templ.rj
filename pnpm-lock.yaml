@@ -22,10 +22,10 @@ importers:
         version: 8.56.0
       knip:
         specifier: ^4.2.1
-        version: 4.2.1(@types/node@20.11.7)(typescript@5.3.3)
+        version: 4.2.1(@types/node@20.11.8)(typescript@5.3.3)
       pnpm:
-        specifier: ^8.14.3
-        version: 8.14.3
+        specifier: ^8.15.0
+        version: 8.15.0
       taze:
         specifier: ^0.13.1
         version: 0.13.1
@@ -40,23 +40,23 @@ importers:
         version: 1.5.0
       '@hono/zod-openapi':
         specifier: ^0.9.6
-        version: 0.9.6(hono@3.12.7)(zod@3.22.4)
+        version: 0.9.6(hono@3.12.8)(zod@3.22.4)
       '@scalar/hono-api-reference':
-        specifier: ^0.3.29
-        version: 0.3.29(@codemirror/lang-html@6.4.8)(@codemirror/lang-java@6.0.1)(@codemirror/lang-javascript@6.2.1)(@codemirror/lang-json@6.0.1)(@codemirror/lang-python@6.1.3)(@codemirror/language@6.10.0)(@codemirror/legacy-modes@6.3.3)(@codemirror/state@6.4.0)(@codemirror/view@6.23.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@lezer/lr@1.4.0)(@uiw/codemirror-themes@4.21.21)(codemirror@6.0.1)(hono@3.12.7)(nanoid@5.0.4)(postcss@8.4.33)(typescript@5.3.3)(unified@11.0.4)(vue@3.4.15)
+        specifier: ^0.3.30
+        version: 0.3.30(@codemirror/lang-html@6.4.8)(@codemirror/lang-java@6.0.1)(@codemirror/lang-javascript@6.2.1)(@codemirror/lang-json@6.0.1)(@codemirror/lang-python@6.1.3)(@codemirror/language@6.10.0)(@codemirror/legacy-modes@6.3.3)(@codemirror/state@6.4.0)(@codemirror/view@6.23.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@lezer/lr@1.4.0)(@uiw/codemirror-themes@4.21.21)(codemirror@6.0.1)(hono@3.12.8)(nanoid@5.0.4)(postcss@8.4.33)(typescript@5.3.3)(unified@11.0.4)(vue@3.4.15)
       consola:
         specifier: ^3.2.3
         version: 3.2.3
       hono:
-        specifier: ^3.12.7
-        version: 3.12.7
+        specifier: ^3.12.8
+        version: 3.12.8
     devDependencies:
       '@types/autocannon':
         specifier: ^7.12.5
         version: 7.12.5
       '@types/node':
-        specifier: ^20.11.7
-        version: 20.11.7
+        specifier: ^20.11.8
+        version: 20.11.8
       autocannon:
         specifier: ^7.14.0
         version: 7.14.0
@@ -68,7 +68,7 @@ importers:
         version: 4.7.0
       vitest:
         specifier: ^1.2.2
-        version: 1.2.2(@types/node@20.11.7)
+        version: 1.2.2(@types/node@20.11.8)
 
   packages/cli:
     dependencies:
@@ -80,8 +80,8 @@ importers:
         version: 1.8.1
     devDependencies:
       '@types/node':
-        specifier: ^20.11.7
-        version: 20.11.7
+        specifier: ^20.11.8
+        version: 20.11.8
       tsup:
         specifier: ^8.0.1
         version: 8.0.1(postcss@8.4.33)(typescript@5.3.3)
@@ -97,9 +97,6 @@ importers:
       c12:
         specifier: ^1.6.1
         version: 1.6.1
-      joycon:
-        specifier: ^3.1.1
-        version: 3.1.1
       untyped:
         specifier: ^1.4.2
         version: 1.4.2
@@ -108,8 +105,8 @@ importers:
         version: 0.26.0
     devDependencies:
       '@types/node':
-        specifier: ^20.11.7
-        version: 20.11.7
+        specifier: ^20.11.8
+        version: 20.11.8
       '@vitest/coverage-v8':
         specifier: ^1.2.2
         version: 1.2.2(vitest@1.2.2)
@@ -118,15 +115,15 @@ importers:
         version: 8.0.1(postcss@8.4.33)(typescript@5.3.3)
       vitest:
         specifier: ^1.2.2
-        version: 1.2.2(@types/node@20.11.7)
+        version: 1.2.2(@types/node@20.11.8)
 
   packages/config/test/fixtures: {}
 
   packages/core:
     devDependencies:
       '@types/node':
-        specifier: ^20.11.7
-        version: 20.11.7
+        specifier: ^20.11.8
+        version: 20.11.8
       '@vitest/coverage-v8':
         specifier: ^1.2.2
         version: 1.2.2(vitest@1.2.2)
@@ -135,7 +132,7 @@ importers:
         version: 8.0.1(postcss@8.4.33)(typescript@5.3.3)
       vitest:
         specifier: ^1.2.2
-        version: 1.2.2(@types/node@20.11.7)
+        version: 1.2.2(@types/node@20.11.8)
 
   packages/schema:
     dependencies:
@@ -156,8 +153,8 @@ importers:
         version: 1.4.2
     devDependencies:
       '@types/node':
-        specifier: ^20.11.7
-        version: 20.11.7
+        specifier: ^20.11.8
+        version: 20.11.8
       '@vitest/coverage-v8':
         specifier: ^1.2.2
         version: 1.2.2(vitest@1.2.2)
@@ -166,7 +163,7 @@ importers:
         version: 7.3.0(typescript@5.3.3)
       vitest:
         specifier: ^1.2.2
-        version: 1.2.2(@types/node@20.11.7)
+        version: 1.2.2(@types/node@20.11.8)
 
   packages/templ:
     dependencies:
@@ -175,8 +172,8 @@ importers:
         version: 3.2.3
     devDependencies:
       '@types/node':
-        specifier: ^20.11.7
-        version: 20.11.7
+        specifier: ^20.11.8
+        version: 20.11.8
       tsup:
         specifier: ^7.3.0
         version: 7.3.0(typescript@5.3.3)
@@ -191,8 +188,8 @@ importers:
         version: 9.0.0
     devDependencies:
       '@types/node':
-        specifier: ^20.11.7
-        version: 20.11.7
+        specifier: ^20.11.8
+        version: 20.11.8
       '@vitest/coverage-v8':
         specifier: ^1.2.2
         version: 1.2.2(vitest@1.2.2)
@@ -201,7 +198,7 @@ importers:
         version: 8.0.1(postcss@8.4.33)(typescript@5.3.3)
       vitest:
         specifier: ^1.2.2
-        version: 1.2.2(@types/node@20.11.7)
+        version: 1.2.2(@types/node@20.11.8)
 
   scripts:
     dependencies:
@@ -234,8 +231,8 @@ importers:
         version: 5.3.3
     devDependencies:
       '@types/node':
-        specifier: ^20.11.7
-        version: 20.11.7
+        specifier: ^20.11.8
+        version: 20.11.8
       tsx:
         specifier: ^4.7.0
         version: 4.7.0
@@ -259,8 +256,8 @@ importers:
         version: 0.3.6
     devDependencies:
       '@types/node':
-        specifier: ^20.11.7
-        version: 20.11.7
+        specifier: ^20.11.8
+        version: 20.11.8
       tsx:
         specifier: ^4.7.0
         version: 4.7.0
@@ -268,20 +265,20 @@ importers:
   tools/templates/basic-js:
     devDependencies:
       '@types/node':
-        specifier: ^20.11.7
-        version: 20.11.7
+        specifier: ^20.11.8
+        version: 20.11.8
       '@vitest/coverage-v8':
         specifier: ^1.2.2
         version: 1.2.2(vitest@1.2.2)
       vitest:
         specifier: ^1.2.2
-        version: 1.2.2(@types/node@20.11.7)
+        version: 1.2.2(@types/node@20.11.8)
 
   tools/templates/basic-ts:
     devDependencies:
       '@types/node':
-        specifier: ^20.11.7
-        version: 20.11.7
+        specifier: ^20.11.8
+        version: 20.11.8
       '@vitest/coverage-v8':
         specifier: ^1.2.2
         version: 1.2.2(vitest@1.2.2)
@@ -290,7 +287,7 @@ importers:
         version: 7.3.0(typescript@5.3.3)
       vitest:
         specifier: ^1.2.2
-        version: 1.2.2(@types/node@20.11.7)
+        version: 1.2.2(@types/node@20.11.8)
 
 packages:
 
@@ -1319,7 +1316,7 @@ packages:
     engines: {node: '>=18.14.1'}
     dev: false
 
-  /@hono/zod-openapi@0.9.6(hono@3.12.7)(zod@3.22.4):
+  /@hono/zod-openapi@0.9.6(hono@3.12.8)(zod@3.22.4):
     resolution: {integrity: sha512-MLF8xpd4fEwbEaylFqAt1qci4wOTXu3oq3BKb01trccapYfodP50VCO0YDNBQTyMT/Iapq6GMO4+RAIFBgG5WQ==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
@@ -1327,18 +1324,18 @@ packages:
       zod: 3.*
     dependencies:
       '@asteasolutions/zod-to-openapi': 5.5.0(zod@3.22.4)
-      '@hono/zod-validator': 0.1.11(hono@3.12.7)(zod@3.22.4)
-      hono: 3.12.7
+      '@hono/zod-validator': 0.1.11(hono@3.12.8)(zod@3.22.4)
+      hono: 3.12.8
       zod: 3.22.4
     dev: false
 
-  /@hono/zod-validator@0.1.11(hono@3.12.7)(zod@3.22.4):
+  /@hono/zod-validator@0.1.11(hono@3.12.8)(zod@3.22.4):
     resolution: {integrity: sha512-PQXeHUP0+36qpRt8yfeD7N2jbK3ETlGvSN6dMof/HwUC/APRokQRjpXZm4rrlG71Ft0aWE01+Bm4XejqPie5Uw==}
     peerDependencies:
       hono: '>=3.9.0'
       zod: ^3.19.1
     dependencies:
-      hono: 3.12.7
+      hono: 3.12.8
       zod: 3.22.4
     dev: false
 
@@ -1901,15 +1898,15 @@ packages:
     requiresBuild: true
     optional: true
 
-  /@scalar/api-client@0.9.3(@codemirror/lang-html@6.4.8)(@codemirror/lang-java@6.0.1)(@codemirror/lang-javascript@6.2.1)(@codemirror/lang-json@6.0.1)(@codemirror/lang-python@6.1.3)(@codemirror/language@6.10.0)(@codemirror/legacy-modes@6.3.3)(@codemirror/state@6.4.0)(@codemirror/view@6.23.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@lezer/lr@1.4.0)(@uiw/codemirror-themes@4.21.21)(codemirror@6.0.1)(vue@3.4.15):
-    resolution: {integrity: sha512-mfTlCAy2cA2kMoDIZWC6PEW7NdCIHJ7DxKcc+YqRdmM1wJHFRQ8RqPB7kqHSaoRFMk0atJtQnzgjdIU63T9fZQ==}
+  /@scalar/api-client@0.9.4(@codemirror/lang-html@6.4.8)(@codemirror/lang-java@6.0.1)(@codemirror/lang-javascript@6.2.1)(@codemirror/lang-json@6.0.1)(@codemirror/lang-python@6.1.3)(@codemirror/language@6.10.0)(@codemirror/legacy-modes@6.3.3)(@codemirror/state@6.4.0)(@codemirror/view@6.23.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@lezer/lr@1.4.0)(@uiw/codemirror-themes@4.21.21)(codemirror@6.0.1)(vue@3.4.15):
+    resolution: {integrity: sha512-AAumpaOLdhHV1I36yTPlHBu7P78FO9AA3bxdg0CKmjPapU8Oy7l0dW4CS686+csZ1pxfNO8aufyR5TjLnBNPgQ==}
     engines: {node: '>=18'}
     peerDependencies:
       vue: ^3.3.0
     dependencies:
       '@headlessui/vue': 1.7.17(vue@3.4.15)
       '@scalar/themes': 0.5.4(vue@3.4.15)
-      '@scalar/use-codemirror': 0.7.19(@codemirror/lang-html@6.4.8)(@codemirror/lang-java@6.0.1)(@codemirror/lang-javascript@6.2.1)(@codemirror/lang-json@6.0.1)(@codemirror/lang-python@6.1.3)(@codemirror/language@6.10.0)(@codemirror/legacy-modes@6.3.3)(@codemirror/state@6.4.0)(@codemirror/view@6.23.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@lezer/lr@1.4.0)(@uiw/codemirror-themes@4.21.21)(codemirror@6.0.1)(vue@3.4.15)
+      '@scalar/use-codemirror': 0.7.20(@codemirror/lang-html@6.4.8)(@codemirror/lang-java@6.0.1)(@codemirror/lang-javascript@6.2.1)(@codemirror/lang-json@6.0.1)(@codemirror/lang-python@6.1.3)(@codemirror/language@6.10.0)(@codemirror/legacy-modes@6.3.3)(@codemirror/state@6.4.0)(@codemirror/view@6.23.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@lezer/lr@1.4.0)(@uiw/codemirror-themes@4.21.21)(codemirror@6.0.1)(vue@3.4.15)
       '@scalar/use-keyboard-event': 0.5.8(vue@3.4.15)
       '@scalar/use-modal': 0.2.3(@headlessui/vue@1.7.17)(vue@3.4.15)
       '@vueuse/core': 10.7.2(vue@3.4.15)
@@ -1939,8 +1936,8 @@ packages:
       - debug
     dev: false
 
-  /@scalar/api-reference@1.13.18(@codemirror/lang-html@6.4.8)(@codemirror/lang-java@6.0.1)(@codemirror/lang-javascript@6.2.1)(@codemirror/lang-json@6.0.1)(@codemirror/lang-python@6.1.3)(@codemirror/language@6.10.0)(@codemirror/legacy-modes@6.3.3)(@codemirror/state@6.4.0)(@codemirror/view@6.23.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@lezer/lr@1.4.0)(@uiw/codemirror-themes@4.21.21)(codemirror@6.0.1)(nanoid@5.0.4)(postcss@8.4.33)(typescript@5.3.3)(unified@11.0.4)(vue@3.4.15):
-    resolution: {integrity: sha512-K9p/cxH1mwwyiQf5q38Y+lBofxesleUsMJBT/ZxAHLaiO+1urXDnaEeyIAonXoEaprltvfhICWLvG8W+J6CmyA==}
+  /@scalar/api-reference@1.13.19(@codemirror/lang-html@6.4.8)(@codemirror/lang-java@6.0.1)(@codemirror/lang-javascript@6.2.1)(@codemirror/lang-json@6.0.1)(@codemirror/lang-python@6.1.3)(@codemirror/language@6.10.0)(@codemirror/legacy-modes@6.3.3)(@codemirror/state@6.4.0)(@codemirror/view@6.23.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@lezer/lr@1.4.0)(@uiw/codemirror-themes@4.21.21)(codemirror@6.0.1)(nanoid@5.0.4)(postcss@8.4.33)(typescript@5.3.3)(unified@11.0.4)(vue@3.4.15):
+    resolution: {integrity: sha512-qR5QzKpMLMnTARIbN9WFAGBDQEDgqQYzaEGoDhXNFVTzHgmyyQSrL+9HWu/s2+jUao6UWyuwxnCSMNLDE0zWHQ==}
     engines: {node: '>=18'}
     peerDependencies:
       unified: ^11.0.0
@@ -1948,14 +1945,14 @@ packages:
     dependencies:
       '@floating-ui/vue': 1.0.5(vue@3.4.15)
       '@headlessui/vue': 1.7.17(vue@3.4.15)
-      '@scalar/api-client': 0.9.3(@codemirror/lang-html@6.4.8)(@codemirror/lang-java@6.0.1)(@codemirror/lang-javascript@6.2.1)(@codemirror/lang-json@6.0.1)(@codemirror/lang-python@6.1.3)(@codemirror/language@6.10.0)(@codemirror/legacy-modes@6.3.3)(@codemirror/state@6.4.0)(@codemirror/view@6.23.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@lezer/lr@1.4.0)(@uiw/codemirror-themes@4.21.21)(codemirror@6.0.1)(vue@3.4.15)
+      '@scalar/api-client': 0.9.4(@codemirror/lang-html@6.4.8)(@codemirror/lang-java@6.0.1)(@codemirror/lang-javascript@6.2.1)(@codemirror/lang-json@6.0.1)(@codemirror/lang-python@6.1.3)(@codemirror/language@6.10.0)(@codemirror/legacy-modes@6.3.3)(@codemirror/state@6.4.0)(@codemirror/view@6.23.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@lezer/lr@1.4.0)(@uiw/codemirror-themes@4.21.21)(codemirror@6.0.1)(vue@3.4.15)
       '@scalar/components': 0.2.2(typescript@5.3.3)
       '@scalar/snippetz': 0.1.5
-      '@scalar/swagger-editor': 0.9.8(@codemirror/lang-html@6.4.8)(@codemirror/lang-java@6.0.1)(@codemirror/lang-javascript@6.2.1)(@codemirror/lang-json@6.0.1)(@codemirror/lang-python@6.1.3)(@codemirror/language@6.10.0)(@codemirror/legacy-modes@6.3.3)(@codemirror/view@6.23.1)(@headlessui/vue@1.7.17)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@lezer/lr@1.4.0)(@uiw/codemirror-themes@4.21.21)(codemirror@6.0.1)(typescript@5.3.3)(unified@11.0.4)(vue@3.4.15)
+      '@scalar/swagger-editor': 0.9.9(@codemirror/lang-html@6.4.8)(@codemirror/lang-java@6.0.1)(@codemirror/lang-javascript@6.2.1)(@codemirror/lang-json@6.0.1)(@codemirror/lang-python@6.1.3)(@codemirror/language@6.10.0)(@codemirror/legacy-modes@6.3.3)(@codemirror/view@6.23.1)(@headlessui/vue@1.7.17)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@lezer/lr@1.4.0)(@uiw/codemirror-themes@4.21.21)(codemirror@6.0.1)(typescript@5.3.3)(unified@11.0.4)(vue@3.4.15)
       '@scalar/swagger-parser': 0.5.15(openapi-types@12.1.3)
       '@scalar/themes': 0.5.4(vue@3.4.15)
       '@scalar/use-clipboard': 0.5.13(@scalar/use-toasts@0.5.13)(nanoid@5.0.4)
-      '@scalar/use-codemirror': 0.7.19(@codemirror/lang-html@6.4.8)(@codemirror/lang-java@6.0.1)(@codemirror/lang-javascript@6.2.1)(@codemirror/lang-json@6.0.1)(@codemirror/lang-python@6.1.3)(@codemirror/language@6.10.0)(@codemirror/legacy-modes@6.3.3)(@codemirror/state@6.4.0)(@codemirror/view@6.23.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@lezer/lr@1.4.0)(@uiw/codemirror-themes@4.21.21)(codemirror@6.0.1)(vue@3.4.15)
+      '@scalar/use-codemirror': 0.7.20(@codemirror/lang-html@6.4.8)(@codemirror/lang-java@6.0.1)(@codemirror/lang-javascript@6.2.1)(@codemirror/lang-json@6.0.1)(@codemirror/lang-python@6.1.3)(@codemirror/language@6.10.0)(@codemirror/legacy-modes@6.3.3)(@codemirror/state@6.4.0)(@codemirror/view@6.23.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@lezer/lr@1.4.0)(@uiw/codemirror-themes@4.21.21)(codemirror@6.0.1)(vue@3.4.15)
       '@scalar/use-keyboard-event': 0.5.8(vue@3.4.15)
       '@scalar/use-modal': 0.2.3(@headlessui/vue@1.7.17)(vue@3.4.15)
       '@scalar/use-toasts': 0.5.13(nanoid@5.0.4)(vue@3.4.15)
@@ -2024,14 +2021,14 @@ packages:
       - typescript
     dev: false
 
-  /@scalar/hono-api-reference@0.3.29(@codemirror/lang-html@6.4.8)(@codemirror/lang-java@6.0.1)(@codemirror/lang-javascript@6.2.1)(@codemirror/lang-json@6.0.1)(@codemirror/lang-python@6.1.3)(@codemirror/language@6.10.0)(@codemirror/legacy-modes@6.3.3)(@codemirror/state@6.4.0)(@codemirror/view@6.23.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@lezer/lr@1.4.0)(@uiw/codemirror-themes@4.21.21)(codemirror@6.0.1)(hono@3.12.7)(nanoid@5.0.4)(postcss@8.4.33)(typescript@5.3.3)(unified@11.0.4)(vue@3.4.15):
-    resolution: {integrity: sha512-JKGwToiBBaLr2kuxPzoP+rDbceT2ILDBKACTK1c/LTvnLKJL/CcB6BiRfRjAKuVoIecPC7nVFoka/GXQkbUd7Q==}
+  /@scalar/hono-api-reference@0.3.30(@codemirror/lang-html@6.4.8)(@codemirror/lang-java@6.0.1)(@codemirror/lang-javascript@6.2.1)(@codemirror/lang-json@6.0.1)(@codemirror/lang-python@6.1.3)(@codemirror/language@6.10.0)(@codemirror/legacy-modes@6.3.3)(@codemirror/state@6.4.0)(@codemirror/view@6.23.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@lezer/lr@1.4.0)(@uiw/codemirror-themes@4.21.21)(codemirror@6.0.1)(hono@3.12.8)(nanoid@5.0.4)(postcss@8.4.33)(typescript@5.3.3)(unified@11.0.4)(vue@3.4.15):
+    resolution: {integrity: sha512-iPDTCauEfLk1wcCc7PdZ+9gXlo5ao5nZ1K4LrrJIrgSqi4MltWchGeYZaWQD7NGpmbxusGXEE9WXMOEq13gEPA==}
     engines: {node: '>=18'}
     peerDependencies:
       hono: ^3.0.0
     dependencies:
-      '@scalar/api-reference': 1.13.18(@codemirror/lang-html@6.4.8)(@codemirror/lang-java@6.0.1)(@codemirror/lang-javascript@6.2.1)(@codemirror/lang-json@6.0.1)(@codemirror/lang-python@6.1.3)(@codemirror/language@6.10.0)(@codemirror/legacy-modes@6.3.3)(@codemirror/state@6.4.0)(@codemirror/view@6.23.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@lezer/lr@1.4.0)(@uiw/codemirror-themes@4.21.21)(codemirror@6.0.1)(nanoid@5.0.4)(postcss@8.4.33)(typescript@5.3.3)(unified@11.0.4)(vue@3.4.15)
-      hono: 3.12.7
+      '@scalar/api-reference': 1.13.19(@codemirror/lang-html@6.4.8)(@codemirror/lang-java@6.0.1)(@codemirror/lang-javascript@6.2.1)(@codemirror/lang-json@6.0.1)(@codemirror/lang-python@6.1.3)(@codemirror/language@6.10.0)(@codemirror/legacy-modes@6.3.3)(@codemirror/state@6.4.0)(@codemirror/view@6.23.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@lezer/lr@1.4.0)(@uiw/codemirror-themes@4.21.21)(codemirror@6.0.1)(nanoid@5.0.4)(postcss@8.4.33)(typescript@5.3.3)(unified@11.0.4)(vue@3.4.15)
+      hono: 3.12.8
     transitivePeerDependencies:
       - '@codemirror/lang-html'
       - '@codemirror/lang-java'
@@ -2090,8 +2087,8 @@ packages:
       '@scalar/snippetz-plugin-node-undici': 0.1.5
     dev: false
 
-  /@scalar/swagger-editor@0.9.8(@codemirror/lang-html@6.4.8)(@codemirror/lang-java@6.0.1)(@codemirror/lang-javascript@6.2.1)(@codemirror/lang-json@6.0.1)(@codemirror/lang-python@6.1.3)(@codemirror/language@6.10.0)(@codemirror/legacy-modes@6.3.3)(@codemirror/view@6.23.1)(@headlessui/vue@1.7.17)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@lezer/lr@1.4.0)(@uiw/codemirror-themes@4.21.21)(codemirror@6.0.1)(typescript@5.3.3)(unified@11.0.4)(vue@3.4.15):
-    resolution: {integrity: sha512-VxhbqaZVwEy7Od29Kxbg6a/6AM7md/ugcD2pNCw2wUv1PcV/ru+9imJkfClI3HfUXZN/IyLDaZpaNZadCB4Rrw==}
+  /@scalar/swagger-editor@0.9.9(@codemirror/lang-html@6.4.8)(@codemirror/lang-java@6.0.1)(@codemirror/lang-javascript@6.2.1)(@codemirror/lang-json@6.0.1)(@codemirror/lang-python@6.1.3)(@codemirror/language@6.10.0)(@codemirror/legacy-modes@6.3.3)(@codemirror/view@6.23.1)(@headlessui/vue@1.7.17)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@lezer/lr@1.4.0)(@uiw/codemirror-themes@4.21.21)(codemirror@6.0.1)(typescript@5.3.3)(unified@11.0.4)(vue@3.4.15):
+    resolution: {integrity: sha512-Ln14f0jIr0pnh8heVAuEJ9tZCSF2z1hdqwYfwLu1ZFEDWoA8WWFeRadP3jF91HoIGhmUcw7jsUFzE1MBHv7CmA==}
     engines: {node: '>=18'}
     peerDependencies:
       unified: ^11.0.0
@@ -2100,7 +2097,7 @@ packages:
       '@codemirror/state': 6.4.0
       '@scalar/components': 0.2.2(typescript@5.3.3)
       '@scalar/themes': 0.5.4(vue@3.4.15)
-      '@scalar/use-codemirror': 0.7.19(@codemirror/lang-html@6.4.8)(@codemirror/lang-java@6.0.1)(@codemirror/lang-javascript@6.2.1)(@codemirror/lang-json@6.0.1)(@codemirror/lang-python@6.1.3)(@codemirror/language@6.10.0)(@codemirror/legacy-modes@6.3.3)(@codemirror/state@6.4.0)(@codemirror/view@6.23.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@lezer/lr@1.4.0)(@uiw/codemirror-themes@4.21.21)(codemirror@6.0.1)(vue@3.4.15)
+      '@scalar/use-codemirror': 0.7.20(@codemirror/lang-html@6.4.8)(@codemirror/lang-java@6.0.1)(@codemirror/lang-javascript@6.2.1)(@codemirror/lang-json@6.0.1)(@codemirror/lang-python@6.1.3)(@codemirror/language@6.10.0)(@codemirror/legacy-modes@6.3.3)(@codemirror/state@6.4.0)(@codemirror/view@6.23.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@lezer/lr@1.4.0)(@uiw/codemirror-themes@4.21.21)(codemirror@6.0.1)(vue@3.4.15)
       '@scalar/use-modal': 0.2.3(@headlessui/vue@1.7.17)(vue@3.4.15)
       '@vueuse/core': 10.7.2(vue@3.4.15)
       nanoid: 5.0.4
@@ -2165,8 +2162,8 @@ packages:
       nanoid: 5.0.4
     dev: false
 
-  /@scalar/use-codemirror@0.7.19(@codemirror/lang-html@6.4.8)(@codemirror/lang-java@6.0.1)(@codemirror/lang-javascript@6.2.1)(@codemirror/lang-json@6.0.1)(@codemirror/lang-python@6.1.3)(@codemirror/language@6.10.0)(@codemirror/legacy-modes@6.3.3)(@codemirror/state@6.4.0)(@codemirror/view@6.23.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@lezer/lr@1.4.0)(@uiw/codemirror-themes@4.21.21)(codemirror@6.0.1)(vue@3.4.15):
-    resolution: {integrity: sha512-xS6/JsVeQ983K6B/6RJMfmgl5GNst7zPbspSPxKwRCbwV5qBZaVWMhop6HQ5mnmanJTXxeh6krRG3K8tFbsuyg==}
+  /@scalar/use-codemirror@0.7.20(@codemirror/lang-html@6.4.8)(@codemirror/lang-java@6.0.1)(@codemirror/lang-javascript@6.2.1)(@codemirror/lang-json@6.0.1)(@codemirror/lang-python@6.1.3)(@codemirror/language@6.10.0)(@codemirror/legacy-modes@6.3.3)(@codemirror/state@6.4.0)(@codemirror/view@6.23.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@lezer/lr@1.4.0)(@uiw/codemirror-themes@4.21.21)(codemirror@6.0.1)(vue@3.4.15):
+    resolution: {integrity: sha512-G5jnVUTWaw53bi4KAZ/1UD9VPMdKsPTwwaJR3YupWsEKe5Opvjzuk5s58EwKXfz5sTF755AjwPdFH0zwAyZ9rw==}
     engines: {node: '>=18'}
     peerDependencies:
       '@codemirror/lang-html': ^6.0.0
@@ -2416,7 +2413,7 @@ packages:
   /@types/autocannon@7.12.5:
     resolution: {integrity: sha512-IGxnlq0ip0DTDOpShCDOjsBW+lclASdli1Jep+YSEOeUwylwyMai3WCVLi0mnXjHPD1cIziz3eiVyX6i7toB7Q==}
     dependencies:
-      '@types/node': 20.11.7
+      '@types/node': 20.11.8
     dev: true
 
   /@types/debug@4.1.12:
@@ -2479,8 +2476,8 @@ packages:
     resolution: {integrity: sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==}
     dev: true
 
-  /@types/node@20.11.7:
-    resolution: {integrity: sha512-GPmeN1C3XAyV5uybAf4cMLWT9fDWcmQhZVtMFu7OR32WjrqGG+Wnk2V1d0bmtUyE/Zy1QJ9BxyiTih9z8Oks8A==}
+  /@types/node@20.11.8:
+    resolution: {integrity: sha512-i7omyekpPTNdv4Jb/Rgqg0RU8YqLcNsI12quKSDkRXNfx7Wxdm6HhK1awT3xTgEkgxPn3bvnSpiEAc7a7Lpyow==}
     dependencies:
       undici-types: 5.26.5
     dev: true
@@ -2700,7 +2697,7 @@ packages:
       std-env: 3.7.0
       test-exclude: 6.0.0
       v8-to-istanbul: 9.2.0
-      vitest: 1.2.2(@types/node@20.11.7)
+      vitest: 1.2.2(@types/node@20.11.8)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -5199,8 +5196,8 @@ packages:
     engines: {node: '>=12.0.0'}
     dev: false
 
-  /hono@3.12.7:
-    resolution: {integrity: sha512-jfyIoE8D5I1PGj0tXAGqpQ2miAWBBuHFjJsWjh0hbBVludQ8QO4lF6KTbPvjMi4venp8Q6DyMoJ51CwP6L5LNA==}
+  /hono@3.12.8:
+    resolution: {integrity: sha512-vnOEIRdqsp4uHE/dkOBr9EYmTsR86sD/FyG2xhfAQzR9udDRglN1nuO7SGc/7U3HfSorc6PSCNGN6upnVtCmfg==}
     engines: {node: '>=16.0.0'}
     dev: false
 
@@ -5704,6 +5701,7 @@ packages:
   /joycon@3.1.1:
     resolution: {integrity: sha512-34wB/Y7MW7bzjKRjUKTa46I2Z7eV62Rkhva+KkopW7Qvv/OSWBqvkSY7vusOPrNuZcUG3tApvdVgNB8POj3SPw==}
     engines: {node: '>=10'}
+    dev: true
 
   /js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
@@ -5829,7 +5827,7 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /knip@4.2.1(@types/node@20.11.7)(typescript@5.3.3):
+  /knip@4.2.1(@types/node@20.11.8)(typescript@5.3.3):
     resolution: {integrity: sha512-KG++YCus11YyQQeiBxhXxv6NCJzol4AYER9q1kwZGFw+gwDzG/0Q6MN87McYFN74nGRX4O2xM5CA3TTPcbpn5A==}
     engines: {node: '>=18.6.0'}
     hasBin: true
@@ -5845,7 +5843,7 @@ packages:
       '@pnpm/logger': 5.0.0
       '@pnpm/workspace.pkgs-graph': 2.0.13(@pnpm/logger@5.0.0)
       '@snyk/github-codeowners': 1.1.0
-      '@types/node': 20.11.7
+      '@types/node': 20.11.8
       '@types/picomatch': 2.3.3
       easy-table: 1.2.0
       fast-glob: 3.3.2
@@ -7327,8 +7325,8 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /pnpm@8.14.3:
-    resolution: {integrity: sha512-w+2A61g74+K37zHrlri5z6oFA+XUTscXUUEgtRh7L5M3NukDjFGlojrVgnkLpB1Kt4RhjIn6fiNl9mZWhdYS7g==}
+  /pnpm@8.15.0:
+    resolution: {integrity: sha512-6kVRfVKF0SPqwCw3k1Bfof1tqQovxg0ejZ4MHpKSiG7Pr/UT8GK50cyAIbuGFQM7GsW+o7LuP8FlptcDS75rAw==}
     engines: {node: '>=16.14'}
     hasBin: true
     dev: true
@@ -9111,7 +9109,7 @@ packages:
       vfile-message: 4.0.2
     dev: false
 
-  /vite-node@1.2.2(@types/node@20.11.7):
+  /vite-node@1.2.2(@types/node@20.11.8):
     resolution: {integrity: sha512-1as4rDTgVWJO3n1uHmUYqq7nsFgINQ9u+mRcXpjeOMJUmviqNKjcZB7UfRZrlM7MjYXMKpuWp5oGkjaFLnjawg==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -9120,7 +9118,7 @@ packages:
       debug: 4.3.4
       pathe: 1.1.2
       picocolors: 1.0.0
-      vite: 5.0.12(@types/node@20.11.7)
+      vite: 5.0.12(@types/node@20.11.8)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -9132,7 +9130,7 @@ packages:
       - terser
     dev: true
 
-  /vite@5.0.12(@types/node@20.11.7):
+  /vite@5.0.12(@types/node@20.11.8):
     resolution: {integrity: sha512-4hsnEkG3q0N4Tzf1+t6NdN9dg/L3BM+q8SWgbSPnJvrgH2kgdyzfVJwbR1ic69/4uMJJ/3dqDZZE5/WwqW8U1w==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -9160,7 +9158,7 @@ packages:
       terser:
         optional: true
     dependencies:
-      '@types/node': 20.11.7
+      '@types/node': 20.11.8
       esbuild: 0.19.12
       postcss: 8.4.33
       rollup: 4.9.6
@@ -9168,7 +9166,7 @@ packages:
       fsevents: 2.3.3
     dev: true
 
-  /vitest@1.2.2(@types/node@20.11.7):
+  /vitest@1.2.2(@types/node@20.11.8):
     resolution: {integrity: sha512-d5Ouvrnms3GD9USIK36KG8OZ5bEvKEkITFtnGv56HFaSlbItJuYr7hv2Lkn903+AvRAgSixiamozUVfORUekjw==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -9193,7 +9191,7 @@ packages:
       jsdom:
         optional: true
     dependencies:
-      '@types/node': 20.11.7
+      '@types/node': 20.11.8
       '@vitest/expect': 1.2.2
       '@vitest/runner': 1.2.2
       '@vitest/snapshot': 1.2.2
@@ -9212,8 +9210,8 @@ packages:
       strip-literal: 1.3.0
       tinybench: 2.6.0
       tinypool: 0.8.2
-      vite: 5.0.12(@types/node@20.11.7)
-      vite-node: 1.2.2(@types/node@20.11.7)
+      vite: 5.0.12(@types/node@20.11.8)
+      vite-node: 1.2.2(@types/node@20.11.8)
       why-is-node-running: 2.2.2
     transitivePeerDependencies:
       - less

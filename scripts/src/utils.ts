@@ -1,9 +1,9 @@
 import { resolve } from 'node:path'
-import { readdir } from 'node:fs/promises'
 import { argv, cwd } from 'node:process'
+import { globby } from 'globby'
 
 const unit = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
-export const ignorePatterns = ['.git/**', '**/node_modules/**', 'templates/**', '**/fixtures/**', '*templ.mjs', '*.code-workspace']
+export const ignorePatterns = ['.git/**', '**/node_modules/**', '**/templates/**', '**/fixtures/**', '*templ.mjs', '*.code-workspace']
 export const hasDryRun = (_argv: string[] = argv.slice(2)) => !!_argv.includes('--dry-run')
 
 export function prettyBytes(bytes: number) {
@@ -24,5 +24,8 @@ export function prettyBytesToNumber(prettyBytes: string = '') {
 }
 
 export async function getPackagesAsync() {
-  return await readdir(resolve(cwd(), '..', 'packages'))
+  return await globby(['\packages/**/package.json'], {
+    ignore: ignorePatterns,
+    cwd: resolve(cwd(), '..'),
+  })
 }

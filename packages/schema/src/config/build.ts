@@ -4,35 +4,35 @@ import { defineUntypedSchema } from 'untyped'
 
 export default defineUntypedSchema({
   /**
-   * The builder to use for bundling the Vue part of your application.
-   * @type {'tsup' | 'unbuild'}
+   * The builder to use for bundling the your application.
+   * @type {'tsup' | 'unbuild' | 'vite' }
    */
   builder: {
-    $default: 'tsup',
-    $resolve: async (val, get) => {
-      if (!val)
-        return null
-
+    $default: 'vite',
+    $resolve: async (val: string) => {
       if (typeof val === 'object')
         return val
 
-      const map = {
+      const map: {
+        [x: string]: string
+      } = {
         tsup: 'tsup',
         unbuild: 'unbuild',
+        vite: 'vite',
       }
-      return val || (await get('tsup') === false ? map.unbuild : map.tsup)
+      return val || map[val.toString()]
     },
   },
   /**
    * Log level when building logs.
    *
    * Defaults to 'silent' when running in CI or when a TTY is not available.
-   * This option is then used as 'silent' in Vite and 'none' in Webpack
+   * This option is then used as 'silent' in Vite
    * @type {'silent' | 'info' | 'verbose'}
    */
   logLevel: {
     $default: 'silent',
-    $resolve: (val) => {
+    $resolve: (val: string) => {
       if (typeof val === 'object')
         return val
 
