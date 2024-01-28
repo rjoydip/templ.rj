@@ -12,7 +12,7 @@
       "inputs": ["test/**/*.test.ts"]
     },
     "lint": {
-      "dependsOn": ["build", "eslint", "lint:size-limit", "lint:size-report", "lint:type-cov"],
+      "dependsOn": ["build", "lint:size-limit", "lint:size-report", "lint:type-cov"],
       "cache": false
     },
     "commit": {
@@ -33,9 +33,6 @@
     "dev": {
       "cache": false,
       "persistent": true
-    },
-    "eslint": {
-      "cache": false
     },
     "lint:size-limit": {
       "cache": false

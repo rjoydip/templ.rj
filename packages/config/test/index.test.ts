@@ -1,11 +1,14 @@
 import { resolve } from 'node:path'
 import { describe, expect, it } from 'vitest'
-import { getBuildConfig } from '../src'
+import { loadTeamplConfig } from '../src'
 
-const fixture = (folder: string) => resolve(__dirname, 'fixtures', folder)
+const fixturePath = resolve(__dirname, 'fixtures')
 
 describe('@templ/config', () => {
   it('should be validate build data', async () => {
-    expect(await getBuildConfig(fixture('1'))).toStrictEqual({})
+    const pkgData = await loadTeamplConfig({
+      cwd: fixturePath,
+    })
+    expect(pkgData).toBeDefined()
   })
 })

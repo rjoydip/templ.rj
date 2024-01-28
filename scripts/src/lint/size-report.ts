@@ -10,6 +10,7 @@ import consola from 'consola'
 import { table } from 'table'
 import { globby } from 'globby'
 import { rollup } from 'rollup'
+import { splitByCase, upperFirst } from 'scule'
 import { minify } from 'terser'
 import { getPackagesAsync, prettyBytes } from '../utils'
 
@@ -175,7 +176,7 @@ export async function renderPackages() {
     })
     .filter((usage): usage is string[] => !!usage)
 
-  return [['Paclages', '', '', ''], ['Name', ...sizeHeaders], ...data]
+  return [['Packages', '', '', ''], ['Name', ...sizeHeaders], ...data]
 }
 
 export async function sizeReportRenderer(dir: string = cwd()) {
@@ -215,10 +216,12 @@ export async function sizeReportRenderer(dir: string = cwd()) {
     })
   }
 
-  const presets: Preset[] = packages.map(pkgName => ({
-    name: pkgName,
+  const presets: Preset[] = packages.map(p => ({
+    name: upperFirst(
+      splitByCase(p, ['\\', '/'])[1] ?? '',
+    ),
     imports: '*',
-    entry: resolve(cwd(), '..', pkgName, 'dist', 'index.js'),
+    entry: resolve(cwd(), '..', p),
   }))
 
   const gData = await generateData(presets)

@@ -1,10 +1,10 @@
 {
   "name": "@templ/basic-js",
   "type": "module",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "packageManager": "",
-  "description": "TEMPL basic-js package",
+  "description": "basic-js",
   "license": "MIT",
   "homepage": "https://github.com/rjoydip/templ/tree/main/packages/basic-js#readme",
   "repository": {
@@ -35,8 +35,8 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@types/node": "^20.11.7",
-    "@vitest/coverage-v8": "^1.2.1",
-    "vitest": "^1.2.1"
+    "@types/node": "^20.11.9",
+    "@vitest/coverage-v8": "^1.2.2",
+    "vitest": "^1.2.2"
   }
 }

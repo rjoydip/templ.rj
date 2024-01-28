@@ -1,9 +1,9 @@
 {
   "name": "@templ/utils",
   "type": "module",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
-  "description": "TEMPL utils service",
+  "description": "Utils",
   "license": "MIT",
   "homepage": "https://github.com/rjoydip/templ/tree/main/packages/utils#readme",
   "repository": {
@@ -39,10 +39,10 @@
     "wrap-ansi": "^9.0.0"
   },
   "devDependencies": {
-    "@types/node": "^20.11.7",
-    "@vitest/coverage-v8": "^1.2.1",
+    "@types/node": "^20.11.9",
+    "@vitest/coverage-v8": "^1.2.2",
     "tsup": "^8.0.1",
-    "vitest": "^1.2.1"
+    "vitest": "^1.2.2"
   },
   "size-limit": "2 KB"
 }

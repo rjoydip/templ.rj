@@ -12,12 +12,8 @@ const config: KnipConfig = {
     'packages/*': {
       entry: ['src/**/.ts', 'test/**/.test.ts'],
     },
-    'scripts': {
-      entry: ['src/**/.ts'],
-    },
     'apps/server': {
       entry: ['src/**/.ts', 'test/**/.test.ts'],
-      ignore: ['**/mocks/**', '**/api.test.ts'],
     },
   },
 }

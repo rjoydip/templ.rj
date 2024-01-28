@@ -53,8 +53,8 @@ jobs:
       - name: Install
         run: pnpm install --no-frozen-lockfile
 
-      - name: ESlint
-        run: pnpm run eslint
+      - name: Lint
+        run: pnpm run lint
 
       - name: Type Coverage
         run: pnpm run -C scripts lint:type-cov

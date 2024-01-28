@@ -1,10 +1,10 @@
 {
   "name": "@templ/server",
   "type": "module",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
-  "packageManager": "pnpm@8.14.3",
-  "description": "TEMPL server",
+  "packageManager": "pnpm@8.15.0",
+  "description": "Server",
   "license": "MIT",
   "homepage": "https://github.com/rjoydip/templ/tree/main/packages/server#readme",
   "repository": {
@@ -32,16 +32,16 @@
   "dependencies": {
     "@hono/node-server": "^1.5.0",
     "@hono/zod-openapi": "^0.9.6",
-    "@scalar/hono-api-reference": "^0.3.28",
+    "@scalar/hono-api-reference": "^0.3.31",
     "consola": "^3.2.3",
-    "hono": "^3.12.7"
+    "hono": "^3.12.8"
   },
   "devDependencies": {
     "@types/autocannon": "^7.12.5",
-    "@types/node": "^20.11.7",
+    "@types/node": "^20.11.9",
     "autocannon": "^7.14.0",
     "tsup": "^8.0.1",
     "tsx": "^4.7.0",
-    "vitest": "^1.2.1"
+    "vitest": "^1.2.2"
   }
 }

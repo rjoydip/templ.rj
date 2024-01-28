@@ -4,9 +4,10 @@ import { readFile } from 'node:fs/promises'
 import { promisify } from 'node:util'
 import { brotliCompress, gzip } from 'node:zlib'
 import consola from 'consola'
+import { colors } from 'consola/utils'
 import { getProperty, hasProperty } from 'dot-prop'
 import { table } from 'table'
-import { colors } from 'consola/utils'
+import { splitByCase, upperFirst } from 'scule'
 import { getPackagesAsync, prettyBytes, prettyBytesToNumber } from '../utils'
 
 const gzipAsync = promisify(gzip)
@@ -32,13 +33,17 @@ interface SizeLimit {
 }
 
 async function sizeLimit(): Promise<SizeLimit> {
-  const results = await Promise.all((await getPackagesAsync()).map(async (p) => {
-    const pkgPath = resolve(cwd(), '..', 'packages', p)
-    const pkgRaw = await readFile(resolve(pkgPath, 'package.json'), {
+  const root = resolve(cwd(), '..')
+  const packages = await getPackagesAsync()
+  const results = await Promise.all(packages.map(async (p) => {
+    const splittedEle = splitByCase(p, ['\\', '/'])
+    const name = upperFirst(splittedEle[1] ?? '')
+    const pkgPath = resolve(root, splittedEle[0] ?? '', splittedEle[1] ?? '', 'package.json')
+    const pkgRaw = await readFile(pkgPath, {
       encoding: 'utf-8',
     })
     const limit = getProperty(JSON.parse(pkgRaw), 'size-limit', '1024') || '1024'
-    const minified = (await readFile(resolve(pkgPath, 'dist', 'index.js'), {
+    const minified = (await readFile(resolve(root, p), {
       encoding: 'utf-8',
     }))
     const size = prettyBytes(minified.length)
@@ -49,7 +54,7 @@ async function sizeLimit(): Promise<SizeLimit> {
     const inLimit = sizeInBytes < limitInBytes
 
     return {
-      name: p,
+      name,
       size,
       gzip,
       brotli,

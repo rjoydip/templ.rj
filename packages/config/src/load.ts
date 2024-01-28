@@ -1,103 +1,22 @@
-// Copied - https://github.com/egoist/tsup/blob/dev/src/utils.ts
+import type { JSValue } from 'untyped'
+import { applyDefaults } from 'untyped'
+import type { LoadConfigOptions } from 'c12'
+import { loadConfig } from 'c12'
+import type { TemplConfig, TemplOptions } from '@templ/schema'
+import { TemplConfigSchema } from '@templ/schema'
 
-import fs from 'node:fs'
-import path from 'node:path'
-import { cwd } from 'node:process'
-import { bundleRequire } from 'bundle-require'
-import JoyCon from 'joycon'
-import strip from 'strip-json-comments'
-import type { defineConfig } from './'
+export interface LoadTemplConfigOptions extends LoadConfigOptions<TemplConfig> {}
 
-const joycon = new JoyCon()
-
-function jsoncParse(data: string) {
-  try {
-    // eslint-disable-next-line no-new-func
-    return new Function(`return ${strip(data).trim()}`)()
-  }
-  catch {
-    // Silently ignore any error
-    // That's what tsc/jsonc-parser did after all
-    return {}
-  }
-}
-
-async function loadJson(filepath: string) {
-  try {
-    return jsoncParse(await fs.promises.readFile(filepath, 'utf8'))
-  }
-  catch (error) {
-    if (error instanceof Error) {
-      throw new TypeError(
-        `Failed to parse ${path.relative(cwd(), filepath)}: ${
-          error.message
-        }`,
-      )
-    }
-    else {
-      throw error
-    }
-  }
-}
-
-const jsonLoader = {
-  test: /\.json$/,
-  load(filepath: string) {
-    return loadJson(filepath)
-  },
-}
-
-joycon.addLoader(jsonLoader)
-
-export async function loadTemplConfig(
-  cwd: string,
-  configFile?: string,
-): Promise<{ path?: string, data?: ReturnType<typeof defineConfig> }> {
-  const configJoycon = new JoyCon()
-  const configPath = await configJoycon.resolve({
-    files: configFile
-      ? [configFile]
-      : [
-          'templ.config.ts',
-          'templ.config.js',
-          'templ.config.cjs',
-          'templ.config.mjs',
-          'templ.config.json',
-          'package.json',
-        ],
-    cwd,
-    stopDir: path.parse(cwd).root,
-    packageKey: 'templ',
+export async function loadTeamplConfig(opts: LoadTemplConfigOptions): Promise<TemplOptions> {
+  (globalThis as any).defineTemplConfig = (c: any) => c
+  const result = await loadConfig<TemplConfig>({
+    rcFile: '.templrc',
+    extend: { extendKey: ['extends'] },
+    dotenv: true,
+    globalRc: true,
+    ...opts,
   })
-
-  if (configPath) {
-    if (configPath.endsWith('.json')) {
-      let data = await loadJson(configPath)
-      if (configPath.endsWith('package.json'))
-        data = data.templ
-
-      if (data)
-        return { path: configPath, data }
-
-      return {}
-    }
-
-    const config = await bundleRequire({
-      filepath: configPath,
-    })
-    return {
-      path: configPath,
-      data: config.mod.templ || config.mod.default || config.mod,
-    }
-  }
-
-  return {}
-}
-
-export async function loadPkg(cwd: string, clearCache: boolean = false) {
-  if (clearCache)
-    joycon.clearCache()
-
-  const { data } = await joycon.load(['package.json'], cwd, path.dirname(cwd))
-  return data || {}
+  delete (globalThis as any).defineTemplConfig
+  const { config } = result
+  return await applyDefaults(TemplConfigSchema, config! as TemplConfig & Record<string, JSValue>) as unknown as TemplOptions
 }
