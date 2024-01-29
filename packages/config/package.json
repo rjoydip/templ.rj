@@ -30,7 +30,7 @@
     "npm": ">=8"
   },
   "scripts": {
-    "build": "tsup src/index.ts --dts --clean --minify --no-splitting --no-sourcemap --target esnext --format esm --platform node",
+    "build": "esbuild src/index.ts --bundle --minify --tree-shaking=true --target=node20 --packages=external --format=esm --platform=node --outfile=dist/index.js",
     "test": "vitest run"
   },
   "dependencies": {
@@ -40,9 +40,9 @@
     "valibot": "^0.26.0"
   },
   "devDependencies": {
-    "@types/node": "^20.11.9",
+    "@types/node": "^20.11.10",
     "@vitest/coverage-v8": "^1.2.2",
-    "tsup": "^8.0.1",
+    "esbuild": "^0.20.0",
     "vitest": "^1.2.2"
   },
   "size-limit": "1.3 KB"

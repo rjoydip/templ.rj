@@ -24,8 +24,8 @@
     "npm": ">=8"
   },
   "scripts": {
-    "dev": "tsup src/index.ts --watch --clean --target esnext --format esm --platform node --onSuccess 'node dist/index.js'",
-    "build": "tsup src/index.ts --dts --clean --minify --no-splitting --no-sourcemap --target esnext --format esm --platform node",
+    "dev": "esbuild src/index.ts --watch --bundle --minify --tree-shaking=true --target=node20 --packages=external --format=esm --platform=node --outfile=dist/index.js",
+    "build": "esbuild src/index.ts --bundle --minify --tree-shaking=true --target=node20 --packages=external --format=esm --platform=node --outfile=dist/index.js",
     "server:load": "tsx ./test/server.load.ts",
     "test": "vitest run"
   },
@@ -37,8 +37,9 @@
     "hono": "^3.12.8"
   },
   "devDependencies": {
+    "@templ/config": "workspace:*",
     "@types/autocannon": "^7.12.5",
-    "@types/node": "^20.11.9",
+    "@types/node": "^20.11.10",
     "autocannon": "^7.14.0",
     "tsup": "^8.0.1",
     "tsx": "^4.7.0",

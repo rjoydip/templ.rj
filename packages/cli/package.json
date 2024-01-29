@@ -35,8 +35,8 @@
     "npm": ">=8"
   },
   "scripts": {
-    "build": "tsup src/index.ts --dts --clean --minify --no-splitting --no-sourcemap --target esnext --format esm --platform node",
-    "dev": "tsx src/index.ts",
+    "build": "esbuild src/index.ts --bundle --minify --tree-shaking=true --target=node20 --packages=external --format=esm --platform=node --outfile=dist/index.js",
+    "dev": "esbuild src/index.ts --watch --bundle --minify --tree-shaking=true --target=node20 --packages=external --format=esm --platform=node --outfile=dist/index.js",
     "postbuild": "pnpm link . && pnpm templjs -v"
   },
   "dependencies": {
@@ -44,9 +44,8 @@
     "sade": "^1.8.1"
   },
   "devDependencies": {
-    "@types/node": "^20.11.9",
-    "tsup": "^8.0.1",
-    "tsx": "^4.7.0"
+    "@types/node": "^20.11.10",
+    "esbuild": "^0.20.0"
   },
   "size-limit": "400 KB"
 }
