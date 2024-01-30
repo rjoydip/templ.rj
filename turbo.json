@@ -15,10 +15,6 @@
       "dependsOn": ["build", "lint:size-limit", "lint:size-report", "lint:type-cov"],
       "cache": false
     },
-    "commit": {
-      "dependsOn": ["build", "lint"],
-      "cache": false
-    },
     "bench": {
       "dependsOn": ["^build"],
       "cache": false

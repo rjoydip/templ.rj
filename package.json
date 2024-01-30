@@ -11,6 +11,12 @@
     "url": "git+https://github.com/rjoydip/templ.git"
   },
   "sideEffects": true,
+  "workspaces": [
+    "apps/**",
+    "packages/**",
+    "scripts",
+    "tools/**"
+  ],
   "engines": {
     "node": ">=18",
     "npm": ">=8",
@@ -19,25 +25,21 @@
     "yarn": ">=3"
   },
   "scripts": {
-    "postinstall": "taze -r -w -i -f -l",
+    "prepare": "simple-git-hooks",
+    "postinstall": "pnpm run deps:update",
     "prebuild": "pnpm run clean",
     "build": "turbo run build",
     "postbuild": "pnpm run -C scripts check",
     "bench": "turbo run bench",
     "clean": "turbo run clean",
-    "commit": "turbo run commit && better-commits",
+    "commit": "better-commits",
+    "deps:update": "taze -r -w -i -f -l",
     "lint": "eslint . && turbo run lint",
     "knip": "knip -c ./config/knip.ts --include files,dependencies",
     "release": "npm publish && git push --follow-tags",
     "setup": "turbo run setup",
     "test": "turbo run test"
   },
-  "workspaces": [
-    "apps/**",
-    "packages/**",
-    "scripts",
-    "tools/**"
-  ],
   "devDependencies": {
     "@antfu/eslint-config": "2.6.3",
     "@changesets/cli": "^2.27.1",
@@ -45,7 +47,13 @@
     "eslint": "^8.56.0",
     "knip": "^4.2.3",
     "pnpm": "^8.15.1",
+    "simple-git-hooks": "^2.9.0",
     "taze": "^0.13.1",
     "turbo": "^1.11.3"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm run deps:update && pnpm run build && pnpm run lint",
+    "pre-push": "pnpm run test",
+    "preserveUnused": ["commit-msg"]
   }
 }
