@@ -63,6 +63,9 @@ importers:
       autocannon:
         specifier: ^7.14.0
         version: 7.14.0
+      esbuild:
+        specifier: ^0.20.0
+        version: 0.20.0
       tsup:
         specifier: ^8.0.1
         version: 8.0.1(postcss@8.4.33)(typescript@5.3.3)

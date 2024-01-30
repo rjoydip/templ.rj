@@ -82,7 +82,7 @@ async function sizeLimit(): Promise<SizeLimit> {
 
 function sizeLimitRenderer(data: SizeLimit) {
   if (data.results && data.results.length)
-    consola.box(table([Object.keys(data.results[0] ?? {}), ...data.results.map(r => Object.values(r))]))
+    consola.box(table([Object.keys(data.results[0] ?? {}).map(i => upperFirst(i)), ...data.results.map(r => Object.values(r))]))
 
   if (data.errors && data.errors.length) {
     consola.box(`${data.errors.map(e => colors.red(`${e.name} has exceded ${e.limit}`)).join('\n')}`)

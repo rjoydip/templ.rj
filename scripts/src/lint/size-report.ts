@@ -194,7 +194,7 @@ export async function sizeReportRenderer(dir: string = cwd()) {
   }
 
   if (existsSync(currDir)) {
-    const dirs = await globby(['*.json'], {
+    const dirs = await globby(['**/*.json'], {
       cwd: currDir,
       absolute: true,
       gitignore: false,
