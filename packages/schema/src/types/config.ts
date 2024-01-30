@@ -43,6 +43,6 @@ export interface TemplBuilder {
 // Normalized Templ options available as `templ.options.*`
 export interface TemplOptions {
   sourcemap: boolean
-  builder: 'tsup' | 'unbuildr' | 'vite' | TemplBuilder
+  builder: 'esbuild' | 'unbuildr' | 'vite' | TemplBuilder
   layers: TemplConfigLayer[]
 }

@@ -5,7 +5,7 @@ import { defineUntypedSchema } from 'untyped'
 export default defineUntypedSchema({
   /**
    * The builder to use for bundling the your application.
-   * @type {'tsup' | 'unbuild' | 'vite' }
+   * @type {'esbuild' | 'unbuild' | 'vite' }
    */
   builder: {
     $default: 'vite',
@@ -16,7 +16,7 @@ export default defineUntypedSchema({
       const map: {
         [x: string]: string
       } = {
-        tsup: 'tsup',
+        esbuild: 'esbuild',
         unbuild: 'unbuild',
         vite: 'vite',
       }
