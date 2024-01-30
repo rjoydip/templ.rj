@@ -32,7 +32,7 @@
   "dependencies": {
     "@hono/node-server": "^1.7.0",
     "@hono/zod-openapi": "^0.9.6",
-    "@scalar/hono-api-reference": "^0.3.32",
+    "@scalar/hono-api-reference": "^0.3.34",
     "consola": "^3.2.3",
     "hono": "^3.12.8"
   },

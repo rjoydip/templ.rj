@@ -32,6 +32,7 @@
     "postbuild": "pnpm run -C scripts check",
     "bench": "turbo run bench",
     "clean": "turbo run clean",
+    "precommit": "pnpm run deps:update && pnpm run build && pnpm run lint",
     "commit": "better-commits",
     "deps:update": "taze -r -w -i -f -l",
     "lint": "eslint . && turbo run lint",
@@ -52,8 +53,9 @@
     "turbo": "^1.11.3"
   },
   "simple-git-hooks": {
-    "pre-commit": "pnpm run deps:update && pnpm run build && pnpm run lint",
     "pre-push": "pnpm run test",
-    "preserveUnused": ["commit-msg"]
+    "preserveUnused": [
+      "commit-msg"
+    ]
   }
 }
