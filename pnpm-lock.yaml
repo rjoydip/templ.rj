@@ -21,11 +21,11 @@ importers:
         specifier: ^8.56.0
         version: 8.56.0
       knip:
-        specifier: ^4.2.1
-        version: 4.2.1(@types/node@20.11.10)(typescript@5.3.3)
+        specifier: ^4.2.3
+        version: 4.2.3(@types/node@20.11.10)(typescript@5.3.3)
       pnpm:
-        specifier: ^8.15.0
-        version: 8.15.0
+        specifier: ^8.15.1
+        version: 8.15.1
       taze:
         specifier: ^0.13.1
         version: 0.13.1
@@ -36,14 +36,14 @@ importers:
   apps/server:
     dependencies:
       '@hono/node-server':
-        specifier: ^1.5.0
-        version: 1.5.0
+        specifier: ^1.7.0
+        version: 1.7.0
       '@hono/zod-openapi':
         specifier: ^0.9.6
         version: 0.9.6(hono@3.12.8)(zod@3.22.4)
       '@scalar/hono-api-reference':
-        specifier: ^0.3.31
-        version: 0.3.31(@codemirror/lang-html@6.4.8)(@codemirror/lang-java@6.0.1)(@codemirror/lang-javascript@6.2.1)(@codemirror/lang-json@6.0.1)(@codemirror/lang-python@6.1.3)(@codemirror/language@6.10.0)(@codemirror/legacy-modes@6.3.3)(@codemirror/state@6.4.0)(@codemirror/view@6.23.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@lezer/lr@1.4.0)(@uiw/codemirror-themes@4.21.21)(codemirror@6.0.1)(hono@3.12.8)(nanoid@5.0.4)(postcss@8.4.33)(typescript@5.3.3)(unified@11.0.4)(vue@3.4.15)
+        specifier: ^0.3.32
+        version: 0.3.32(@codemirror/lang-html@6.4.8)(@codemirror/lang-java@6.0.1)(@codemirror/lang-javascript@6.2.1)(@codemirror/lang-json@6.0.1)(@codemirror/lang-python@6.1.3)(@codemirror/language@6.10.0)(@codemirror/legacy-modes@6.3.3)(@codemirror/state@6.4.0)(@codemirror/view@6.23.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@lezer/lr@1.4.0)(@uiw/codemirror-themes@4.21.21)(codemirror@6.0.1)(hono@3.12.8)(nanoid@5.0.4)(postcss@8.4.33)(typescript@5.3.3)(unified@11.0.4)(vue@3.4.15)
       consola:
         specifier: ^3.2.3
         version: 3.2.3
@@ -1519,8 +1519,8 @@ packages:
       vue: 3.4.15(typescript@5.3.3)
     dev: false
 
-  /@hono/node-server@1.5.0:
-    resolution: {integrity: sha512-xMZW2tuHLdUtx5B28E5bsLazJe9NVU2z4QW/Xefgvg41U84r4L1mTxNutTMNwt6BrRujy7hs1aKyUpIuSqcXtQ==}
+  /@hono/node-server@1.7.0:
+    resolution: {integrity: sha512-W+Gy16xWZMgB8hYU4XInCwE746y8V3VDTH1J3+EhUBqbCzk4zEXo1p6dv3BiCD5O6Z4aHuoCW+mRKoJgUn3ZCA==}
     engines: {node: '>=18.14.1'}
     dev: false
 
@@ -1868,7 +1868,9 @@ packages:
   /@pkgjs/parseargs@0.11.0:
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
     engines: {node: '>=14'}
+    requiresBuild: true
     dev: true
+    optional: true
 
   /@pnpm/config.env-replace@1.1.0:
     resolution: {integrity: sha512-htyl8TWnKL7K/ESFa1oW2UB5lVDxuF5DpM7tBi6Hu2LNL3mWkIzNLG6N4zoCUP1lCKNxWy/3iu8mS8MvToGd6w==}
@@ -1947,8 +1949,8 @@ packages:
       validate-npm-package-name: 4.0.0
     dev: true
 
-  /@pnpm/npm-resolver@18.0.2(@pnpm/logger@5.0.0):
-    resolution: {integrity: sha512-YfjSHpaFgYvqMomKNLMa49pVabGvaSeEBX3J9j1v7FGtzad7SPZ+BH7ObPLHkIm4rA9K5zvuTJ8gBwMiGQJcQg==}
+  /@pnpm/npm-resolver@18.1.0(@pnpm/logger@5.0.0):
+    resolution: {integrity: sha512-fUYKX/iHiHldL0VRVvkQI35YK2jWhZEkPO6rrGke8309+LKAo12v833nBttMDpQrtHefmqhB4mhCzQq6L2Xqmg==}
     engines: {node: '>=16.14'}
     peerDependencies:
       '@pnpm/logger': ^5.0.0
@@ -1959,7 +1961,7 @@ packages:
       '@pnpm/graceful-fs': 3.2.0
       '@pnpm/logger': 5.0.0
       '@pnpm/resolve-workspace-range': 5.0.1
-      '@pnpm/resolver-base': 11.0.2
+      '@pnpm/resolver-base': 11.1.0
       '@pnpm/types': 9.4.2
       '@zkochan/retry': 0.2.0
       encode-registry: 3.0.1
@@ -1990,8 +1992,8 @@ packages:
       semver: 7.5.4
     dev: true
 
-  /@pnpm/resolver-base@11.0.2:
-    resolution: {integrity: sha512-g6VXB/LK7DugXiCPG62qmYtuypVt44nnwyXYkTv86FKudI5d5Wy1FLkYAYKCj+No9h1GG3eSSwGH1NL0y4IbYg==}
+  /@pnpm/resolver-base@11.1.0:
+    resolution: {integrity: sha512-y2qKaj18pwe1VWc3YXEitdYFo+WqOOt60aqTUuOVkJAirUzz0DzuYh3Ifct4znYWPdgUXHaN5DMphNF5iL85rA==}
     engines: {node: '>=16.14'}
     dependencies:
       '@pnpm/types': 9.4.2
@@ -2002,12 +2004,12 @@ packages:
     engines: {node: '>=16.14'}
     dev: true
 
-  /@pnpm/workspace.pkgs-graph@2.0.13(@pnpm/logger@5.0.0):
-    resolution: {integrity: sha512-XwpApD7dGCxL0xAwNANakxq4Ou91WMWZDF/IkMDnVGS1I3Xxh9tpQExpfpuxFPd//WofPJnxOi6AlXQS4D9bFA==}
+  /@pnpm/workspace.pkgs-graph@2.0.14(@pnpm/logger@5.0.0):
+    resolution: {integrity: sha512-SBXXyWDkPEoaLTjLRyQzRHoBYH+P0NLcIjX1yPUxuJiMTvGOMzjpLWTuxYNVe/P0V0VQMrjpJFaJPjlViNLhzg==}
     engines: {node: '>=16.14'}
     dependencies:
       '@pnpm/npm-package-arg': 1.0.0
-      '@pnpm/npm-resolver': 18.0.2(@pnpm/logger@5.0.0)
+      '@pnpm/npm-resolver': 18.1.0(@pnpm/logger@5.0.0)
       '@pnpm/resolve-workspace-range': 5.0.1
       ramda: /@pnpm/ramda@0.28.1
     transitivePeerDependencies:
@@ -2144,8 +2146,8 @@ packages:
       - debug
     dev: false
 
-  /@scalar/api-reference@1.14.0(@codemirror/lang-html@6.4.8)(@codemirror/lang-java@6.0.1)(@codemirror/lang-javascript@6.2.1)(@codemirror/lang-json@6.0.1)(@codemirror/lang-python@6.1.3)(@codemirror/language@6.10.0)(@codemirror/legacy-modes@6.3.3)(@codemirror/state@6.4.0)(@codemirror/view@6.23.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@lezer/lr@1.4.0)(@uiw/codemirror-themes@4.21.21)(codemirror@6.0.1)(nanoid@5.0.4)(postcss@8.4.33)(typescript@5.3.3)(unified@11.0.4)(vue@3.4.15):
-    resolution: {integrity: sha512-UY5Y7Qzk8N+9IYh+3++sbuW7XW4xuhMHu4dEuhUlx+Xn/H/HkNxRLemhxhdnvYyTWKM/XhLkSI2GzqqK//rkDA==}
+  /@scalar/api-reference@1.14.1(@codemirror/lang-html@6.4.8)(@codemirror/lang-java@6.0.1)(@codemirror/lang-javascript@6.2.1)(@codemirror/lang-json@6.0.1)(@codemirror/lang-python@6.1.3)(@codemirror/language@6.10.0)(@codemirror/legacy-modes@6.3.3)(@codemirror/state@6.4.0)(@codemirror/view@6.23.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@lezer/lr@1.4.0)(@uiw/codemirror-themes@4.21.21)(codemirror@6.0.1)(nanoid@5.0.4)(postcss@8.4.33)(typescript@5.3.3)(unified@11.0.4)(vue@3.4.15):
+    resolution: {integrity: sha512-JKFXXcGylDJoESOuR01DwaJiMCDhsvQSkoGWg0V5gIZYi1iNgcKltR6axa0RY7cHTMGo+enlUL8x4RylwAixrQ==}
     engines: {node: '>=18'}
     peerDependencies:
       unified: ^11.0.0
@@ -2229,13 +2231,13 @@ packages:
       - typescript
     dev: false
 
-  /@scalar/hono-api-reference@0.3.31(@codemirror/lang-html@6.4.8)(@codemirror/lang-java@6.0.1)(@codemirror/lang-javascript@6.2.1)(@codemirror/lang-json@6.0.1)(@codemirror/lang-python@6.1.3)(@codemirror/language@6.10.0)(@codemirror/legacy-modes@6.3.3)(@codemirror/state@6.4.0)(@codemirror/view@6.23.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@lezer/lr@1.4.0)(@uiw/codemirror-themes@4.21.21)(codemirror@6.0.1)(hono@3.12.8)(nanoid@5.0.4)(postcss@8.4.33)(typescript@5.3.3)(unified@11.0.4)(vue@3.4.15):
-    resolution: {integrity: sha512-bcHd8HK1+DDotWV+25WC3X0d+8AUmgKXrOHu0RlyI+z8d01aG9bROYFUgZuBUPGe3oLtNz3/N7QxKS9wzzZ0Ew==}
+  /@scalar/hono-api-reference@0.3.32(@codemirror/lang-html@6.4.8)(@codemirror/lang-java@6.0.1)(@codemirror/lang-javascript@6.2.1)(@codemirror/lang-json@6.0.1)(@codemirror/lang-python@6.1.3)(@codemirror/language@6.10.0)(@codemirror/legacy-modes@6.3.3)(@codemirror/state@6.4.0)(@codemirror/view@6.23.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@lezer/lr@1.4.0)(@uiw/codemirror-themes@4.21.21)(codemirror@6.0.1)(hono@3.12.8)(nanoid@5.0.4)(postcss@8.4.33)(typescript@5.3.3)(unified@11.0.4)(vue@3.4.15):
+    resolution: {integrity: sha512-2Iz+Lvjwa2coSt3oz5vSm9Mf6rNR0qY3A8klNLBONik3VI82/ftNeLd79VuPxQHwFzD92IQ3mNG+6UvcUEeRFw==}
     engines: {node: '>=18'}
     peerDependencies:
       hono: ^3.0.0
     dependencies:
-      '@scalar/api-reference': 1.14.0(@codemirror/lang-html@6.4.8)(@codemirror/lang-java@6.0.1)(@codemirror/lang-javascript@6.2.1)(@codemirror/lang-json@6.0.1)(@codemirror/lang-python@6.1.3)(@codemirror/language@6.10.0)(@codemirror/legacy-modes@6.3.3)(@codemirror/state@6.4.0)(@codemirror/view@6.23.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@lezer/lr@1.4.0)(@uiw/codemirror-themes@4.21.21)(codemirror@6.0.1)(nanoid@5.0.4)(postcss@8.4.33)(typescript@5.3.3)(unified@11.0.4)(vue@3.4.15)
+      '@scalar/api-reference': 1.14.1(@codemirror/lang-html@6.4.8)(@codemirror/lang-java@6.0.1)(@codemirror/lang-javascript@6.2.1)(@codemirror/lang-json@6.0.1)(@codemirror/lang-python@6.1.3)(@codemirror/language@6.10.0)(@codemirror/legacy-modes@6.3.3)(@codemirror/state@6.4.0)(@codemirror/view@6.23.1)(@lezer/common@1.2.1)(@lezer/highlight@1.2.0)(@lezer/lr@1.4.0)(@uiw/codemirror-themes@4.21.21)(codemirror@6.0.1)(nanoid@5.0.4)(postcss@8.4.33)(typescript@5.3.3)(unified@11.0.4)(vue@3.4.15)
       hono: 3.12.8
     transitivePeerDependencies:
       - '@codemirror/lang-html'
@@ -6066,8 +6068,8 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /knip@4.2.1(@types/node@20.11.10)(typescript@5.3.3):
-    resolution: {integrity: sha512-KG++YCus11YyQQeiBxhXxv6NCJzol4AYER9q1kwZGFw+gwDzG/0Q6MN87McYFN74nGRX4O2xM5CA3TTPcbpn5A==}
+  /knip@4.2.3(@types/node@20.11.10)(typescript@5.3.3):
+    resolution: {integrity: sha512-X1OE/Uks6hIAXmaxrJn/mjywFRwpeXr11wAtGNT+n7R5vSWOUEfVbtG2C4wAMDu6AfBx5tVUGLm5+2eK5rwNEw==}
     engines: {node: '>=18.6.0'}
     hasBin: true
     peerDependencies:
@@ -6078,9 +6080,8 @@ packages:
       '@nodelib/fs.walk': 2.0.0
       '@npmcli/map-workspaces': 3.0.4
       '@npmcli/package-json': 5.0.0
-      '@pkgjs/parseargs': 0.11.0
       '@pnpm/logger': 5.0.0
-      '@pnpm/workspace.pkgs-graph': 2.0.13(@pnpm/logger@5.0.0)
+      '@pnpm/workspace.pkgs-graph': 2.0.14(@pnpm/logger@5.0.0)
       '@snyk/github-codeowners': 1.1.0
       '@types/node': 20.11.10
       '@types/picomatch': 2.3.3
@@ -6092,8 +6093,8 @@ packages:
       minimist: 1.2.8
       picocolors: 1.0.0
       picomatch: 3.0.1
-      pretty-ms: 8.0.0
-      smol-toml: 1.1.3
+      pretty-ms: 9.0.0
+      smol-toml: 1.1.4
       strip-json-comments: 5.0.1
       summary: 2.1.0
       typescript: 5.3.3
@@ -7448,6 +7449,12 @@ packages:
   /parse-ms@3.0.0:
     resolution: {integrity: sha512-Tpb8Z7r7XbbtBTrM9UhpkzzaMrqA2VXMT3YChzYltwV3P3pM6t8wl7TvpMnSTosz1aQAdVib7kdoys7vYOPerw==}
     engines: {node: '>=12'}
+    dev: false
+
+  /parse-ms@4.0.0:
+    resolution: {integrity: sha512-TXfryirbmq34y8QBwgqCVLi+8oA3oWx2eAnSn62ITyEhEYaWRlVZ2DvMM9eZbMs/RfxPu/PK/aBLyGj4IrqMHw==}
+    engines: {node: '>=18'}
+    dev: true
 
   /parse-npm-tarball-url@3.0.0:
     resolution: {integrity: sha512-InpdgIdNe5xWMEUcrVQUniQKwnggBtJ7+SCwh7zQAZwbbIYZV9XdgJyhtmDSSvykFyQXoe4BINnzKTfCwWLs5g==}
@@ -7564,8 +7571,8 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /pnpm@8.15.0:
-    resolution: {integrity: sha512-6kVRfVKF0SPqwCw3k1Bfof1tqQovxg0ejZ4MHpKSiG7Pr/UT8GK50cyAIbuGFQM7GsW+o7LuP8FlptcDS75rAw==}
+  /pnpm@8.15.1:
+    resolution: {integrity: sha512-gxz0xfi4N0r3FSHU0VPbSdcIbeYVwq98tenX64umMN2sRv6kldZD5VLvLmijqpmj5en77oaWcClnUE31xZyycw==}
     engines: {node: '>=16.14'}
     hasBin: true
     dev: true
@@ -7657,6 +7664,14 @@ packages:
     engines: {node: '>=14.16'}
     dependencies:
       parse-ms: 3.0.0
+    dev: false
+
+  /pretty-ms@9.0.0:
+    resolution: {integrity: sha512-E9e9HJ9R9NasGOgPaPE8VMeiPKAyWR5jcFpNnwIejslIhWqdqOrb2wShBsncMPUb+BcCd2OPYfh7p2W6oemTng==}
+    engines: {node: '>=18'}
+    dependencies:
+      parse-ms: 4.0.0
+    dev: true
 
   /proc-log@3.0.0:
     resolution: {integrity: sha512-++Vn7NS4Xf9NacaU9Xq3URUuqZETPsf8L4j5/ckhaRYsfPeRyzGw+iDjFhV/Jr3uNmTvvddEJFWh5R1gRgUH8A==}
@@ -8268,8 +8283,8 @@ packages:
       yargs: 15.4.1
     dev: true
 
-  /smol-toml@1.1.3:
-    resolution: {integrity: sha512-qTyy6Owjho1ISBmxj4HdrFWB2kMQ5RczU6J04OqslSfdSH656OIHuomHS4ZDvhwm37nig/uXyiTMJxlC9zIVfw==}
+  /smol-toml@1.1.4:
+    resolution: {integrity: sha512-Y0OT8HezWsTNeEOSVxDnKOW/AyNXHQ4BwJNbAXlLTF5wWsBvrcHhIkE5Rf8kQMLmgf7nDX3PVOlgC6/Aiggu3Q==}
     engines: {node: '>= 18', pnpm: '>= 8'}
     dev: true
 
