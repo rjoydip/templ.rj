@@ -19,7 +19,7 @@ export async function run() {
     const coverage = await typeCoverage(parse(p).dir, { strict: true, notOnlyInCWD: true })
     const percentage = (coverage.correctCount / coverage.totalCount) * 100
     return {
-      path: upperFirst(path ?? ''),
+      path: path?.split('-').map(i => upperFirst(i)).join(' '),
       correctCount: coverage.correctCount,
       totalCount: coverage.totalCount,
       percentage: percentage > 0 ? Number((percentage).toFixed(2)) : 0,
