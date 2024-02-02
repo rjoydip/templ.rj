@@ -57,7 +57,7 @@ describe('@templ/config > load config', () => {
     expect(data).toBeDefined()
     expect(data).toStrictEqual({
       ...defaultData,
-      builder: 'tsup',
+      builder: 'esbuild',
     })
   })
 
@@ -70,7 +70,7 @@ describe('@templ/config > load config', () => {
     expect(data).toBeDefined()
     expect(data).toStrictEqual({
       ...defaultData,
-      builder: 'tsup',
+      builder: 'esbuild',
     })
   })
 

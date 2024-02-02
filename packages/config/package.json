@@ -30,20 +30,26 @@
     "npm": ">=8"
   },
   "scripts": {
-    "build": "tsup src/index.ts --dts --clean --minify --no-splitting --no-sourcemap --target esnext --format esm --platform node",
+    "build": "tsx esbuild.config.ts",
+    "dev": "tsx esbuild.config.ts --watch",
     "test": "vitest run"
   },
   "dependencies": {
-    "@templ/schema": "workspace:*",
     "c12": "^1.6.1",
-    "untyped": "^1.4.2",
-    "valibot": "^0.26.0"
+    "consola": "^3.2.3",
+    "pkg-types": "^1.0.3",
+    "scule": "^1.2.0",
+    "std-env": "^3.7.0",
+    "untyped": "^1.4.2"
   },
   "devDependencies": {
-    "@types/node": "^20.11.9",
+    "@templ/esbuild-plugin-templ": "workspace:*",
+    "@templ/tsconfig": "workspace:*",
+    "@types/node": "^20.11.16",
     "@vitest/coverage-v8": "^1.2.2",
-    "tsup": "^8.0.1",
+    "esbuild": "^0.20.0",
+    "tsx": "^4.7.0",
     "vitest": "^1.2.2"
   },
-  "size-limit": "1.3 KB"
+  "size-limit": "2 KB"
 }

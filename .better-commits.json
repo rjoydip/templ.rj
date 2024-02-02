@@ -69,99 +69,43 @@
     "initial_value": "none",
     "options": [
       {
-        "value": "apps",
-        "label": "📱 apps"
-      },
-      {
         "value": "server",
-        "label": "🗄️ server"
+        "label": "Server"
       },
       {
         "value": "desktop",
-        "label": "🖥️ desktop"
+        "label": "Desktop"
       },
       {
         "value": "web",
-        "label": "🌐 web"
+        "label": "Web"
       },
       {
         "value": "scripts",
-        "label": "✍ scripts"
-      },
-      {
-        "value": "templates",
-        "label": "📑 templates"
+        "label": "Scripts"
       },
       {
         "value": "packages",
-        "label": "📦 packages"
+        "label": "Packages"
       },
       {
         "value": "docs",
-        "label": "📄 docs"
+        "label": "Docs"
       },
       {
-        "value": "benchmark",
-        "label": "📊 benchmark"
+        "value": "plugins",
+        "label": "Plugins"
       },
       {
         "value": "tools",
-        "label": "🛠️ tools"
+        "label": "Tools"
       },
       {
         "value": "none",
-        "label": "🚫 none"
+        "label": "None"
       }
     ]
   },
-  "check_ticket": {
-    "infer_ticket": true,
-    "confirm_ticket": true,
-    "add_to_title": true,
-    "append_hashtag": false,
-    "title_position": "start"
-  },
-  "commit_body": {
-    "enable": true,
-    "required": false
-  },
-  "commit_footer": {
-    "enable": false,
-    "initial_value": [],
-    "options": [
-      "closes",
-      "breaking-change",
-      "deprecated",
-      "custom"
-    ]
-  },
-  "breaking_change": {
-    "add_exclamation_to_title": true
-  },
-  "confirm_commit": true,
-  "print_commit_output": true,
-  "branch_pre_commands": [],
-  "branch_post_commands": [],
-  "worktree_pre_commands": [],
-  "worktree_post_commands": [],
-  "branch_user": {
-    "enable": true,
-    "required": false,
-    "separator": "/"
-  },
-  "branch_type": {
-    "enable": true,
-    "separator": "/"
-  },
-  "branch_ticket": {
-    "enable": true,
-    "required": false,
-    "separator": "-"
-  },
-  "branch_description": {
-    "max_length": 70
-  },
-  "branch_action_default": "branch",
-  "enable_worktrees": true,
-  "overrides": {}
+  "confirm_commit": false,
+  "print_commit_output": true
 }

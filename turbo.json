@@ -7,41 +7,14 @@
       "inputs": ["src/**/*.ts"]
     },
     "test": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["^build", "^test"],
       "outputs": ["coverage/**"],
       "inputs": ["test/**/*.test.ts"]
     },
-    "lint": {
-      "dependsOn": ["build", "lint:size-limit", "lint:size-report", "lint:type-cov"],
-      "cache": false
-    },
-    "commit": {
-      "dependsOn": ["build", "lint"],
-      "cache": false
-    },
-    "bench": {
-      "dependsOn": ["^build"],
-      "cache": false
-    },
-    "setup": {
-      "dependsOn": ["commit", "test", "bench"],
-      "cache": false
-    },
-    "clean": {
-      "cache": false
-    },
     "dev": {
+      "dependsOn": ["^build"],
       "cache": false,
       "persistent": true
-    },
-    "lint:size-limit": {
-      "cache": false
-    },
-    "lint:size-report": {
-      "cache": false
-    },
-    "lint:type-cov": {
-      "cache": false
     }
   }
 }

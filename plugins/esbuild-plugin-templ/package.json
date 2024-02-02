@@ -1,0 +1,46 @@
+{
+  "name": "@templ/esbuild-plugin-templ",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "packageManager": "pnpm@8.15.1",
+  "description": "esbuild-plugin-templ",
+  "license": "MIT",
+  "homepage": "https://github.com/rjoydip/templ/tree/main/plugins/esbuild-plugin-templ#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rjoydip/templ.git",
+    "directory": "plugins/esbuild-plugin-templ"
+  },
+  "bugs": {
+    "url": "https://github.com/rjoydip/templ/issues"
+  },
+  "exports": {
+    "types": "./dist/index.d.ts",
+    "import": "./dist/index.js",
+    "require": "./dist/index.js"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "*.d.ts",
+    "dist"
+  ],
+  "engines": {
+    "node": "^18.8.0 || >=20.6.0",
+    "npm": ">=8"
+  },
+  "scripts": {
+    "build": "tsx ./esbuild.config.ts"
+  },
+  "dependencies": {
+    "consola": "^3.2.3",
+    "esbuild": "^0.20.0",
+    "typescript": "^5.3.3"
+  },
+  "devDependencies": {
+    "@templ/tsconfig": "workspace:*",
+    "@types/node": "^20.11.16",
+    "tsx": "^4.7.0"
+  }
+}

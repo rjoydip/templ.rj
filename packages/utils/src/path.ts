@@ -27,27 +27,3 @@ export async function getAppsDirAsync() {
   const root = await getRootDirAsync()
   return resolve(root, 'apps')
 }
-// Artifacts
-export function getArtifactsDirSync() {
-  return resolve(getRootDirSync(), 'artifacts')
-}
-export async function getArtifactsDirAsync() {
-  const root = await getRootDirAsync()
-  return resolve(root, 'artifacts')
-}
-// Scripts
-export function getScriptsDirSync() {
-  return resolve(getRootDirSync(), 'scripts')
-}
-export async function getScriptsDirAsync() {
-  const root = await getRootDirAsync()
-  return resolve(root, 'scripts')
-}
-// Templates
-export function getTemplatesDirSync() {
-  return resolve(getRootDirSync(), 'templates')
-}
-export async function getTemplatesDirAsync() {
-  const root = await getRootDirAsync()
-  return resolve(root, 'templates')
-}

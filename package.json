@@ -2,7 +2,7 @@
   "name": "@templ/workspace",
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@8.15.0",
+  "packageManager": "pnpm@8.15.1",
   "description": "A modern monorepo project template",
   "author": "Joydip Roy <joydipand@gmail.com> (https://github.com/rjoydip)",
   "license": "MIT",
@@ -11,6 +11,13 @@
     "url": "git+https://github.com/rjoydip/templ.git"
   },
   "sideEffects": true,
+  "workspaces": [
+    "apps/**",
+    "packages/**",
+    "plugins/**",
+    "scripts",
+    "tools/**"
+  ],
   "engines": {
     "node": ">=18",
     "npm": ">=8",
@@ -19,33 +26,30 @@
     "yarn": ">=3"
   },
   "scripts": {
-    "postinstall": "taze -r -w -i -f -l",
-    "prebuild": "pnpm run clean",
-    "build": "turbo run build",
-    "postbuild": "pnpm run -C scripts check",
-    "bench": "turbo run bench",
-    "clean": "turbo run clean",
-    "commit": "turbo run commit && better-commits",
-    "lint": "eslint . && turbo run lint",
-    "knip": "knip -c ./config/knip.ts --include files,dependencies",
-    "release": "npm publish && git push --follow-tags",
-    "setup": "turbo run setup",
+    "prepare": "simple-git-hooks",
+    "postinstall": "nr deps:update",
+    "all": "nr deps:update && nr build && nr lint",
+    "build": "nr -C scripts clean && turbo run build && nr -C scripts check",
+    "commit": "better-commits",
+    "deps:update": "taze -r -w -i -f -l",
+    "lint": "nr build && eslint . && nr knip && nr -C scripts type-cov",
+    "knip": "knip -c ./tools/knip.config.ts",
+    "release": "changeset version && npm publish && git push --follow-tags",
     "test": "turbo run test"
   },
-  "workspaces": [
-    "apps/**",
-    "packages/**",
-    "scripts",
-    "tools/**"
-  ],
   "devDependencies": {
     "@antfu/eslint-config": "2.6.3",
+    "@antfu/ni": "^0.21.12",
     "@changesets/cli": "^2.27.1",
     "better-commits": "^1.11.0",
     "eslint": "^8.56.0",
-    "knip": "^4.2.1",
-    "pnpm": "^8.15.0",
-    "taze": "^0.13.1",
-    "turbo": "^1.11.3"
+    "knip": "^4.3.0",
+    "pnpm": "^8.15.1",
+    "simple-git-hooks": "^2.9.0",
+    "taze": "^0.13.2",
+    "turbo": "^1.12.2"
+  },
+  "simple-git-hooks": {
+    "pre-push": "pnpm run test"
   }
 }

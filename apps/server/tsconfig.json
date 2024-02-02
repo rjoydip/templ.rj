@@ -1,32 +1,14 @@
 {
+  "extends": "@templ/tsconfig/base.json",
   "compilerOptions": {
     "jsx": "react-jsx",
     "jsxImportSource": "hono/jsx",
-    "baseUrl": ".",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": false,
     "types": [
       "vitest/importMeta"
-    ],
-    "strict": true,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitOverride": true,
-    "noImplicitReturns": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noUncheckedIndexedAccess": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "declaration": true,
-    "newLine": "lf",
-    "noEmitOnError": true,
-    "outDir": "dist",
-    "stripInternal": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "pretty": true,
-    "skipLibCheck": true
+    ]
   },
-  "include": ["src/**/*.ts", "**/*.d.ts"]
+  "include": [
+    "src/**/*.ts",
+    "esbuild.config.ts"
+  ]
 }

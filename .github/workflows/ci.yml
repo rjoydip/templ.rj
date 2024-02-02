@@ -57,13 +57,13 @@ jobs:
         run: pnpm run lint
 
       - name: Type Coverage
-        run: pnpm run -C scripts lint:type-cov
+        run: pnpm run -C scripts type-cov
 
       - name: Size Limit
-        run: pnpm run -C scripts lint:size-limit
+        run: pnpm run -C scripts size-limit
 
       - name: Size Report
-        run: pnpm run -C scripts lint:size-report
+        run: pnpm run -C scripts size-report
 
   build:
     runs-on: ubuntu-latest

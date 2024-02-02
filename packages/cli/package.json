@@ -23,7 +23,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
-    "templjs": "templ.mjs"
+    "templ-cli": "templ.mjs"
   },
   "files": [
     "*.d.ts",
@@ -35,17 +35,19 @@
     "npm": ">=8"
   },
   "scripts": {
-    "build": "tsup src/index.ts --dts --clean --minify --no-splitting --no-sourcemap --target esnext --format esm --platform node",
-    "dev": "tsx src/index.ts",
-    "postbuild": "pnpm link . && pnpm templjs -v"
+    "build": "tsx esbuild.config.ts",
+    "dev": "tsx ./src/index",
+    "postbuild": "pnpm link . && pnpm templ-cli -v"
   },
   "dependencies": {
     "consola": "^3.2.3",
     "sade": "^1.8.1"
   },
   "devDependencies": {
-    "@types/node": "^20.11.9",
-    "tsup": "^8.0.1",
+    "@templ/config": "workspace:*",
+    "@templ/tsconfig": "workspace:*",
+    "@types/node": "^20.11.16",
+    "esbuild": "^0.20.0",
     "tsx": "^4.7.0"
   },
   "size-limit": "400 KB"

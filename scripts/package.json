@@ -20,15 +20,13 @@
     "npm": ">=8"
   },
   "scripts": {
-    "clean": "pnpm run clean:others && pnpm run clean:turbo",
-    "check": "tsx ./src/check.ts",
-    "clean:others": "tsx ./src/clean/others.ts",
-    "clean:turbo": "tsx ./src/clean/turbo.ts",
+    "clean": "tsx ./src/clean/others.ts && tsx ./src/clean/turbo.ts",
+    "check": "tsx ./src/dist-check.ts && nr size-limit && nr size-report",
     "ci:env-copy": "tsx ./src/ci/env-copy.ts",
     "ci:env-delete": "tsx ./src/ci/env-delete.ts",
-    "lint:size-limit": "tsx ./src/lint/size-limit.ts",
-    "lint:size-report": "tsx ./src/lint/size-report.ts",
-    "lint:type-cov": "tsx ./src/lint/type-cov.ts"
+    "size-limit": "tsx ./src/lint/size-limit.ts",
+    "size-report": "tsx ./src/lint/size-report.ts",
+    "type-cov": "tsx ./src/lint/type-cov.ts"
   },
   "dependencies": {
     "consola": "^3.2.3",
@@ -39,11 +37,12 @@
     "scule": "^1.2.0",
     "table": "^6.8.1",
     "terser": "^5.27.0",
-    "type-coverage-core": "^2.27.1",
-    "typescript": "^5.3.3"
+    "type-coverage-core": "^2.27.1"
   },
   "devDependencies": {
-    "@types/node": "^20.11.9",
+    "@antfu/ni": "^0.21.12",
+    "@templ/tsconfig": "workspace:*",
+    "@types/node": "^20.11.16",
     "tsx": "^4.7.0"
   }
 }

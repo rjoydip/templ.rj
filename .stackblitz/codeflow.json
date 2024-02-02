@@ -4,7 +4,6 @@
       "@templ/cli": "./packages/cli",
       "@templ/config": "./packages/config",
       "@templ/core": "./packages/core",
-      "@templ/schema": "./packages/schema",
       "@templ/utils": "./packages/utils",
       "templ": "./packages/templ"
     }

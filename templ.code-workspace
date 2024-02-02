@@ -5,28 +5,9 @@
       "path": "."
     },
     {
-      "name": "📑 templates",
-      "path": "templates"
-    },
-    {
-      "name": "📑 tools",
-      "path": "tools"
-    },
-    {
-      "name": "📊 @templ/benchmark",
-      "path": "benchmark"
-    },{
-      "name": "🛡️ artifacts",
-      "path": "artifacts"
-    },
-    {
       "name": "✍ @templ/scripts",
       "path": "scripts"
-    },,
-    {
-      "name": "🛠️ @templ/tools",
-      "path": "tools"
-    }
+    },
     {
       "name": "⚙️ @templ/core",
       "path": "packages/core"
@@ -37,30 +18,25 @@
     },
     {
       "name": "📟 @templ/cli",
-      "path": "packages/cli"
-    },
-    {
-      "name": "🌲 @templ/logger",
-      "path": "packages/logger"
-    },
+
     {
       "name": "🪛 @templ/utils",
       "path": "packages/utils"
     },
     {
       "name": "📄 @templ/docs",
-      "path": "docs"
+      "path": "apps/docs"
     },
     {
-      "name": "🖥️ @templ/apps/desktop",
+      "name": "🖥️ @templ/desktop",
       "path": "apps/desktop"
     },
     {
-      "name": "🗄️ @templ/apps/server",
+      "name": "🗄️ @templ/server",
       "path": "apps/server"
     },
     {
-      "name": "🌐 @templ/apps/web",
+      "name": "🌐 @templ/web",
       "path": "apps/web"
     },
   ]
