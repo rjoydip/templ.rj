@@ -1,13 +1,13 @@
+import { argv } from 'node:process'
 import * as esbuild from 'esbuild'
+import { getBuildConfig } from '@templ/config'
 
-await esbuild.build({
-  entryPoints: ['src/index.ts'],
-  bundle: true,
-  minify: true,
-  sourcemap: false,
-  treeShaking: true,
-  target: ['node20'],
-  packages: 'external',
-  format: 'esm',
-  outfile: 'dist/index.js',
-})
+const config = getBuildConfig()
+
+if (argv.slice(2).includes('--watch')) {
+  const ctx = await esbuild.context(config)
+  await ctx.watch()
+}
+else {
+  await esbuild.build(config)
+}

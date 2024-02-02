@@ -322,6 +322,9 @@ importers:
 
   tools/generator/templates/basic-js:
     devDependencies:
+      '@templ/config':
+        specifier: workspace:*
+        version: link:../../../../packages/config
       '@types/node':
         specifier: ^20.11.16
         version: 20.11.16
@@ -337,6 +340,9 @@ importers:
 
   tools/generator/templates/basic-ts:
     devDependencies:
+      '@templ/config':
+        specifier: workspace:*
+        version: link:../../../../packages/config
       '@types/node':
         specifier: ^20.11.16
         version: 20.11.16
