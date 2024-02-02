@@ -69,10 +69,6 @@
     "initial_value": "none",
     "options": [
       {
-        "value": "apps",
-        "label": "Apps"
-      },
-      {
         "value": "server",
         "label": "Server"
       },
@@ -89,10 +85,6 @@
         "label": "Scripts"
       },
       {
-        "value": "templates",
-        "label": "Templates"
-      },
-      {
         "value": "packages",
         "label": "Packages"
       },
@@ -101,8 +93,8 @@
         "label": "Docs"
       },
       {
-        "value": "benchmark",
-        "label": "Benchmark"
+        "value": "plugins",
+        "label": "Plugins"
       },
       {
         "value": "tools",
