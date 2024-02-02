@@ -32,7 +32,7 @@
     "build": "nr -C scripts clean && turbo run build && nr -C scripts check",
     "commit": "better-commits",
     "deps:update": "taze -r -w -i -f -l",
-    "lint": "eslint . && nr knip && nr -C scripts type-cov",
+    "lint": "nr build && eslint . && nr knip && nr -C scripts type-cov",
     "knip": "knip -c ./tools/knip.config.ts",
     "release": "changeset version && npm publish && git push --follow-tags",
     "test": "turbo run test"
