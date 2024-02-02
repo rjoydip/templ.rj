@@ -12,7 +12,7 @@ import { globby } from 'globby'
 import { rollup } from 'rollup'
 import { splitByCase, upperFirst } from 'scule'
 import { minify } from 'terser'
-import { getPackagesAsync, prettyBytes } from '../utils'
+import { getPackagesAsync, prettyBytes, root } from '../utils'
 
 export interface Preset {
   name: string
@@ -32,9 +32,8 @@ interface BundleResult extends SizeResult {
 
 type PackageResult = Record<string, SizeResult & { name: string }>
 
-const artifacts = resolve(cwd(), '..', 'artifacts')
-const currDir = resolve(artifacts, 'temp/size')
-const prevDir = resolve(artifacts, 'temp/size-prev')
+const currDir = resolve(root, 'artifacts', 'temp/size')
+const prevDir = resolve(root, 'artifacts', 'temp/size-prev')
 
 const sizeHeaders = ['Size', 'Gzip', 'Brotli']
 
@@ -179,13 +178,12 @@ export async function renderPackages() {
   return [['Packages', '', '', ''], ['Name', ...sizeHeaders], ...data]
 }
 
-export async function sizeReportRenderer(dir: string = cwd()) {
+export async function sizeReportRenderer(dir: string = resolve(root, 'artifacts')) {
   const packages = await getPackagesAsync()
-  const artifacts = dir
 
-  const tempDir = `${artifacts}/temp`
-  const currDir = `${artifacts}/temp/size`
-  const prevDir = `${artifacts}/temp/size-prev`
+  const tempDir = `${dir}/temp`
+  const currDir = `${dir}/temp/size`
+  const prevDir = `${dir}/temp/size-prev`
 
   if (!existsSync(tempDir)) {
     await mkdir(tempDir, {
@@ -261,7 +259,7 @@ export async function sizeReportRenderer(dir: string = cwd()) {
 }
 
 export async function run() {
-  await sizeReportRenderer(resolve(cwd(), '..', 'artifacts'))
+  await sizeReportRenderer()
 }
 
 run().catch(consola.error)

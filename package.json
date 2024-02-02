@@ -14,6 +14,7 @@
   "workspaces": [
     "apps/**",
     "packages/**",
+    "plugins/**",
     "scripts",
     "tools/**"
   ],
@@ -26,36 +27,29 @@
   },
   "scripts": {
     "prepare": "simple-git-hooks",
-    "postinstall": "pnpm run deps:update",
-    "prebuild": "pnpm run clean",
-    "build": "turbo run build",
-    "postbuild": "pnpm run -C scripts check",
-    "bench": "turbo run bench",
-    "clean": "turbo run clean",
-    "precommit": "pnpm run deps:update && pnpm run build && pnpm run lint",
+    "postinstall": "nr deps:update",
+    "all": "nr deps:update && nr build && nr lint",
+    "build": "nr -C scripts clean && turbo run build && nr -C scripts check",
     "commit": "better-commits",
     "deps:update": "taze -r -w -i -f -l",
-    "lint": "eslint . && turbo run lint",
-    "knip": "knip -c ./config/knip.ts --include files,dependencies",
-    "release": "npm publish && git push --follow-tags",
-    "setup": "turbo run setup",
+    "lint": "eslint . && nr knip && nr -C scripts type-cov",
+    "knip": "knip -c ./tools/knip.config.ts",
+    "release": "changeset version && npm publish && git push --follow-tags",
     "test": "turbo run test"
   },
   "devDependencies": {
     "@antfu/eslint-config": "2.6.3",
+    "@antfu/ni": "^0.21.12",
     "@changesets/cli": "^2.27.1",
     "better-commits": "^1.11.0",
     "eslint": "^8.56.0",
-    "knip": "^4.2.3",
+    "knip": "^4.3.0",
     "pnpm": "^8.15.1",
     "simple-git-hooks": "^2.9.0",
-    "taze": "^0.13.1",
-    "turbo": "^1.11.3"
+    "taze": "^0.13.2",
+    "turbo": "^1.12.2"
   },
   "simple-git-hooks": {
-    "pre-push": "pnpm run test",
-    "preserveUnused": [
-      "commit-msg"
-    ]
+    "pre-push": "pnpm run test"
   }
 }

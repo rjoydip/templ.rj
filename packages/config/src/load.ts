@@ -2,10 +2,10 @@ import type { JSValue } from 'untyped'
 import { applyDefaults } from 'untyped'
 import type { LoadConfigOptions } from 'c12'
 import { loadConfig } from 'c12'
-import type { TemplConfig, TemplOptions } from '@templ/schema'
-import { TemplConfigSchema } from '@templ/schema'
+import type { TemplConfig, TemplOptions } from './schema'
+import { TemplConfigSchema } from './schema'
 
-export interface LoadTemplConfigOptions extends LoadConfigOptions<TemplConfig> {}
+interface LoadTemplConfigOptions extends LoadConfigOptions<TemplConfig> {}
 
 export async function loadTeamplConfig(opts: LoadTemplConfigOptions): Promise<TemplOptions> {
   (globalThis as any).defineTemplConfig = (c: any) => c

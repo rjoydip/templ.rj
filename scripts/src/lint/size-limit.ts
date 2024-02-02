@@ -1,5 +1,5 @@
 import { resolve } from 'node:path'
-import { cwd, exit } from 'node:process'
+import { exit } from 'node:process'
 import { readFile } from 'node:fs/promises'
 import { promisify } from 'node:util'
 import { brotliCompress, gzip } from 'node:zlib'
@@ -8,7 +8,7 @@ import { colors } from 'consola/utils'
 import { getProperty, hasProperty } from 'dot-prop'
 import { table } from 'table'
 import { splitByCase, upperFirst } from 'scule'
-import { getPackagesAsync, prettyBytes, prettyBytesToNumber } from '../utils'
+import { getPackagesAsync, prettyBytes, prettyBytesToNumber, root } from '../utils'
 
 const gzipAsync = promisify(gzip)
 const brotliAsync = promisify(brotliCompress)
@@ -33,7 +33,6 @@ interface SizeLimit {
 }
 
 async function sizeLimit(): Promise<SizeLimit> {
-  const root = resolve(cwd(), '..')
   const packages = await getPackagesAsync()
   const results = await Promise.all(packages.map(async (p) => {
     const splittedEle = splitByCase(p, ['\\', '/'])

@@ -1,13 +1,6 @@
 /// <reference types='vitest' />
 
 import { defineConfig } from 'vitest/config'
+import { getVitestConfig } from './src'
 
-export default defineConfig({
-  test: {
-    include: ['test/**/*.test.ts'],
-    coverage: {
-      enabled: true,
-      reporter: ['text', 'json', 'html'],
-    },
-  },
-})
+export default defineConfig(getVitestConfig())

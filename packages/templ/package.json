@@ -31,15 +31,18 @@
     "npm": ">=8"
   },
   "scripts": {
-    "build": "esbuild src/index.ts --bundle --minify --tree-shaking=true --target=node20 --packages=external --format=esm --platform=node --outfile=dist/index.js",
-    "dev": "esbuild src/index.ts --watch --bundle --minify --tree-shaking=true --target=node20 --packages=external --format=esm --platform=node --outfile=dist/index.js"
+    "build": "tsx esbuild.config.ts",
+    "dev": "tsx ./src/index"
   },
   "dependencies": {
     "consola": "^3.2.3"
   },
   "devDependencies": {
-    "@types/node": "^20.11.10",
-    "esbuild": "^0.20.0"
+    "@templ/config": "workspace:*",
+    "@templ/tsconfig": "workspace:*",
+    "@types/node": "^20.11.16",
+    "esbuild": "^0.20.0",
+    "tsx": "^4.7.0"
   },
   "size-limit": "100 B"
 }

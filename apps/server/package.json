@@ -24,22 +24,23 @@
     "npm": ">=8"
   },
   "scripts": {
-    "dev": "esbuild src/index.ts --watch --bundle --minify --tree-shaking=true --target=node20 --packages=external --format=esm --platform=node --outfile=dist/index.js",
-    "build": "esbuild src/index.ts --bundle --minify --tree-shaking=true --target=node20 --packages=external --format=esm --platform=node --outfile=dist/index.js",
+    "build": "tsx esbuild.config.ts",
+    "dev": "tsx ./src/index",
     "server:load": "tsx ./test/server.load.ts",
     "test": "vitest run"
   },
   "dependencies": {
     "@hono/node-server": "^1.7.0",
     "@hono/zod-openapi": "^0.9.6",
-    "@scalar/hono-api-reference": "^0.3.34",
+    "@scalar/hono-api-reference": "^0.3.39",
     "consola": "^3.2.3",
-    "hono": "^3.12.8"
+    "hono": "^3.12.10"
   },
   "devDependencies": {
     "@templ/config": "workspace:*",
+    "@templ/tsconfig": "workspace:*",
     "@types/autocannon": "^7.12.5",
-    "@types/node": "^20.11.10",
+    "@types/node": "^20.11.16",
     "autocannon": "^7.14.0",
     "esbuild": "^0.20.0",
     "tsx": "^4.7.0",

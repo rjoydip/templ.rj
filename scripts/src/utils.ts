@@ -3,6 +3,7 @@ import { argv, cwd } from 'node:process'
 import { globby } from 'globby'
 
 const unit = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+export const root = resolve(cwd(), '..')
 export const ignorePatterns = ['.git/**', '**/node_modules/**', '**/templates/**', '**/fixtures/**', '*templ.mjs', '*.code-workspace']
 export const hasDryRun = (_argv: string[] = argv.slice(2)) => !!_argv.includes('--dry-run')
 
@@ -26,7 +27,7 @@ export function prettyBytesToNumber(prettyBytes: string = '') {
 export async function getPackagesAsync() {
   return await globby(['packages/**/dist/index.js'], {
     ignore: ignorePatterns,
-    cwd: resolve(cwd(), '..'),
+    cwd: root,
     markDirectories: true,
   })
 }

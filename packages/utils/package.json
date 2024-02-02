@@ -30,19 +30,21 @@
     "npm": ">=8"
   },
   "scripts": {
-    "build": "esbuild src/index.ts --bundle --minify --tree-shaking=true --target=node20 --packages=external --format=esm --platform=node --outfile=dist/index.js",
-    "dev": "esbuild src/index.ts --watch --bundle --minify --tree-shaking=true --target=node20 --packages=external --format=esm --platform=node --outfile=dist/index.js",
-    "bench": "vitest bench --run",
-    "test": "vitest run"
+    "build": "tsx esbuild.config.ts",
+    "dev": "tsx esbuild.config.ts --watch",
+    "test": "vitest run && vitest bench --run"
   },
   "dependencies": {
     "find-up": "^7.0.0",
     "wrap-ansi": "^9.0.0"
   },
   "devDependencies": {
-    "@types/node": "^20.11.10",
+    "@templ/config": "workspace:*",
+    "@templ/tsconfig": "workspace:*",
+    "@types/node": "^20.11.16",
     "@vitest/coverage-v8": "^1.2.2",
     "esbuild": "^0.20.0",
+    "tsx": "^4.7.0",
     "vitest": "^1.2.2"
   },
   "size-limit": "2 KB"

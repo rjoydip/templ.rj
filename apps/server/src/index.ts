@@ -1,16 +1,9 @@
-import { cwd } from 'node:process'
 import { serve } from '@hono/node-server'
 import consola from 'consola'
 import { colors } from 'consola/utils'
-import { loadTeamplConfig } from '@templ/config'
 import app from './app'
 
 async function run() {
-  const config = await loadTeamplConfig({
-    cwd: cwd(),
-
-  })
-  consola.log(config)
   const server = serve({
     fetch: app.fetch,
     port: 3000,

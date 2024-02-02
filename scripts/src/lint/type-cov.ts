@@ -1,14 +1,12 @@
-import { parse, resolve } from 'node:path'
-import { cwd } from 'node:process'
+import { parse } from 'node:path'
 import consola from 'consola'
 import { globby } from 'globby'
 import { splitByCase, upperFirst } from 'scule'
 import { table } from 'table'
 import { lint as typeCoverage } from 'type-coverage-core'
-import { ignorePatterns } from '../utils'
+import { ignorePatterns, root } from '../utils'
 
 export async function run() {
-  const root = resolve(cwd(), '..')
   const paths = await globby(['**/tsconfig.json'], {
     ignore: ignorePatterns,
     absolute: true,
