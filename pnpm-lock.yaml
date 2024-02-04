@@ -112,9 +112,6 @@ importers:
 
   packages/config:
     dependencies:
-      '@t3-oss/env-core':
-        specifier: ^0.8.0
-        version: 0.8.0(typescript@5.3.3)(zod@3.22.4)
       c12:
         specifier: ^1.6.1
         version: 1.6.1
@@ -133,12 +130,6 @@ importers:
       untyped:
         specifier: ^1.4.2
         version: 1.4.2
-      valibot:
-        specifier: ^0.27.1
-        version: 0.27.1
-      zod:
-        specifier: ^3.22.4
-        version: 3.22.4
     devDependencies:
       '@templ/esbuild-plugin-templ':
         specifier: workspace:*
@@ -2639,19 +2630,6 @@ packages:
     engines: {node: '>=14.16'}
     dependencies:
       defer-to-connect: 2.0.1
-    dev: false
-
-  /@t3-oss/env-core@0.8.0(typescript@5.3.3)(zod@3.22.4):
-    resolution: {integrity: sha512-Tc1pg0KH/tJeI0Z1s/Isp1VsGDj1N03ZAYFV8GjWgMxytF/ve0Dv+opjmTapHICRv8qiB1Y/fsTjkWNMpKPRCQ==}
-    peerDependencies:
-      typescript: '>=5.0.0'
-      zod: ^3.0.0
-    peerDependenciesMeta:
-      typescript:
-        optional: true
-    dependencies:
-      typescript: 5.3.3
-      zod: 3.22.4
     dev: false
 
   /@tanstack/virtual-core@3.0.0:
@@ -9200,10 +9178,6 @@ packages:
       '@types/istanbul-lib-coverage': 2.0.6
       convert-source-map: 2.0.0
     dev: true
-
-  /valibot@0.27.1:
-    resolution: {integrity: sha512-k57/5/kMwMjiVP0LUMpa+n4ihSemuXshz1ND4fftKw1bkHZYN/TnHcbjaEie3K7FwAceiOgugLZPjSaNxdygeg==}
-    dev: false
 
   /validate-npm-package-license@3.0.4:
     resolution: {integrity: sha512-DpKm2Ui/xN7/HQKCtpZxoRWBhZ9Z0kqtygG8XCgNQ8ZlDnxuQmWhj566j8fN4Cu3/JmbhsDo7fcAJq4s9h27Ew==}
