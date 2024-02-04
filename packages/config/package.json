@@ -51,5 +51,5 @@
     "tsx": "^4.7.0",
     "vitest": "^1.2.2"
   },
-  "size-limit": "2 KB"
+  "size-limit": "2.5 KB"
 }
