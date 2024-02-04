@@ -38,7 +38,7 @@
     "test": "turbo run test"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "2.6.3",
+    "@antfu/eslint-config": "2.6.4",
     "@antfu/ni": "^0.21.12",
     "@changesets/cli": "^2.27.1",
     "better-commits": "^1.11.0",
