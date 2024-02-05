@@ -13,10 +13,11 @@
   "sideEffects": true,
   "workspaces": [
     "apps/**",
+    "config/**",
     "packages/**",
     "plugins/**",
     "scripts",
-    "tools/**"
+    "generator"
   ],
   "engines": {
     "node": ">=18",

@@ -1,6 +1,6 @@
 import { cwd } from 'node:process'
 import { cp } from 'node:fs/promises'
-import { basename, resolve } from 'node:path'
+import { basename, join, resolve } from 'node:path'
 import consola from 'consola'
 import { colors } from 'consola/utils'
 import { installDependencies } from 'nypm'
@@ -113,7 +113,7 @@ export async function run() {
   if (template === 'Local') {
     consola.start(`\nCreating ${colors.cyan(local.name)} package\n`)
     const dir = resolve(root, path, local.name)
-    await cp(resolve(cwd(), 'templates', `basic-${local.language}`), dir, {
+    await cp(resolve(join('..', '..'), 'templates', `basic-${local.language}`), dir, {
       recursive: true,
       force: true,
     })

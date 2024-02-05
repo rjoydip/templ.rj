@@ -1,0 +1,47 @@
+{
+  "name": "@templ/desktop",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "packageManager": "",
+  "description": "desktop",
+  "license": "MIT",
+  "homepage": "https://github.com/rjoydip/templ/tree/main/packages/desktop#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rjoydip/templ.git",
+    "directory": "packages/desktop"
+  },
+  "bugs": {
+    "url": "https://github.com/rjoydip/templ/issues"
+  },
+  "exports": {
+    "types": "types.d.ts",
+    "import": "./src/index.js",
+    "require": "./src/index.js"
+  },
+  "main": "src/index.js",
+  "types": "types.d.ts",
+  "files": [
+    "*.d.ts",
+    "src"
+  ],
+  "engines": {
+    "node": "^18.8.0 || >=20.6.0",
+    "npm": ">=8"
+  },
+  "scripts": {
+    "build": "tsx esbuild.config.ts",
+    "dev": "tsx esbuild.config.ts --watch",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@templ/config": "workspace:*",
+    "@templ/tsconfig": "workspace:*",
+    "@types/node": "^20.11.16",
+    "@vitest/coverage-v8": "^1.2.2",
+    "esbuild": "^0.20.0",
+    "tsx": "^4.7.0",
+    "vitest": "^1.2.2"
+  }
+}

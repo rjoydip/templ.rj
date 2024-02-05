@@ -1,30 +1,30 @@
 {
-  "name": "@templ/basic-ts",
+  "name": "@templ/docs",
   "type": "module",
   "version": "0.0.1",
   "private": true,
-  "packageManager": "pnpm@8.15.1",
-  "description": "basic-ts",
+  "packageManager": "",
+  "description": "docs",
   "license": "MIT",
-  "homepage": "https://github.com/rjoydip/templ/tree/main/packages/basic-ts#readme",
+  "homepage": "https://github.com/rjoydip/templ/tree/main/packages/docs#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rjoydip/templ.git",
-    "directory": "packages/basic-ts"
+    "directory": "packages/docs"
   },
   "bugs": {
     "url": "https://github.com/rjoydip/templ/issues"
   },
   "exports": {
-    "types": "./dist/index.d.ts",
-    "import": "./dist/index.js",
-    "require": "./dist/index.js"
+    "types": "types.d.ts",
+    "import": "./src/index.js",
+    "require": "./src/index.js"
   },
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "src/index.js",
+  "types": "types.d.ts",
   "files": [
     "*.d.ts",
-    "dist"
+    "src"
   ],
   "engines": {
     "node": "^18.8.0 || >=20.6.0",
@@ -37,6 +37,7 @@
   },
   "devDependencies": {
     "@templ/config": "workspace:*",
+    "@templ/tsconfig": "workspace:*",
     "@types/node": "^20.11.16",
     "@vitest/coverage-v8": "^1.2.2",
     "esbuild": "^0.20.0",

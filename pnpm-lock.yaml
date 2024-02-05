@@ -36,6 +36,54 @@ importers:
         specifier: ^1.12.2
         version: 1.12.2
 
+  apps/desktop:
+    devDependencies:
+      '@templ/config':
+        specifier: workspace:*
+        version: link:../../packages/config
+      '@templ/tsconfig':
+        specifier: workspace:*
+        version: link:../../config/tsconfig
+      '@types/node':
+        specifier: ^20.11.16
+        version: 20.11.16
+      '@vitest/coverage-v8':
+        specifier: ^1.2.2
+        version: 1.2.2(vitest@1.2.2)
+      esbuild:
+        specifier: ^0.20.0
+        version: 0.20.0
+      tsx:
+        specifier: ^4.7.0
+        version: 4.7.0
+      vitest:
+        specifier: ^1.2.2
+        version: 1.2.2(@types/node@20.11.16)
+
+  apps/docs:
+    devDependencies:
+      '@templ/config':
+        specifier: workspace:*
+        version: link:../../packages/config
+      '@templ/tsconfig':
+        specifier: workspace:*
+        version: link:../../config/tsconfig
+      '@types/node':
+        specifier: ^20.11.16
+        version: 20.11.16
+      '@vitest/coverage-v8':
+        specifier: ^1.2.2
+        version: 1.2.2(vitest@1.2.2)
+      esbuild:
+        specifier: ^0.20.0
+        version: 0.20.0
+      tsx:
+        specifier: ^4.7.0
+        version: 4.7.0
+      vitest:
+        specifier: ^1.2.2
+        version: 1.2.2(@types/node@20.11.16)
+
   apps/server:
     dependencies:
       '@hono/node-server':
@@ -59,7 +107,7 @@ importers:
         version: link:../../packages/config
       '@templ/tsconfig':
         specifier: workspace:*
-        version: link:../../tools/tsconfig
+        version: link:../../config/tsconfig
       '@types/autocannon':
         specifier: ^7.12.5
         version: 7.12.5
@@ -111,10 +159,40 @@ importers:
         version: 2.8.1(@babel/core@7.23.9)(preact@10.19.3)(vite@5.0.12)
       '@templ/tsconfig':
         specifier: workspace:*
-        version: link:../../tools/tsconfig
+        version: link:../../config/tsconfig
       vite:
         specifier: ^5.0.12
         version: 5.0.12(@types/node@20.11.16)
+
+  config/tsconfig: {}
+
+  generator:
+    dependencies:
+      consola:
+        specifier: ^3.2.3
+        version: 3.2.3
+      dot-prop:
+        specifier: ^8.0.2
+        version: 8.0.2
+      giget:
+        specifier: ^1.2.1
+        version: 1.2.1
+      latest-version:
+        specifier: ^8.0.0
+        version: 8.0.0
+      nypm:
+        specifier: ^0.3.6
+        version: 0.3.6
+    devDependencies:
+      '@templ/tsconfig':
+        specifier: workspace:*
+        version: link:../config/tsconfig
+      '@types/node':
+        specifier: ^20.11.16
+        version: 20.11.16
+      tsx:
+        specifier: ^4.7.0
+        version: 4.7.0
 
   packages/cli:
     dependencies:
@@ -130,7 +208,7 @@ importers:
         version: link:../config
       '@templ/tsconfig':
         specifier: workspace:*
-        version: link:../../tools/tsconfig
+        version: link:../../config/tsconfig
       '@types/node':
         specifier: ^20.11.16
         version: 20.11.16
@@ -167,7 +245,7 @@ importers:
         version: link:../../plugins/esbuild-plugin-templ
       '@templ/tsconfig':
         specifier: workspace:*
-        version: link:../../tools/tsconfig
+        version: link:../../config/tsconfig
       '@types/node':
         specifier: ^20.11.16
         version: 20.11.16
@@ -191,7 +269,7 @@ importers:
         version: link:../config
       '@templ/tsconfig':
         specifier: workspace:*
-        version: link:../../tools/tsconfig
+        version: link:../../config/tsconfig
       '@types/node':
         specifier: ^20.11.16
         version: 20.11.16
@@ -219,7 +297,7 @@ importers:
         version: link:../config
       '@templ/tsconfig':
         specifier: workspace:*
-        version: link:../../tools/tsconfig
+        version: link:../../config/tsconfig
       '@types/node':
         specifier: ^20.11.16
         version: 20.11.16
@@ -244,7 +322,7 @@ importers:
         version: link:../config
       '@templ/tsconfig':
         specifier: workspace:*
-        version: link:../../tools/tsconfig
+        version: link:../../config/tsconfig
       '@types/node':
         specifier: ^20.11.16
         version: 20.11.16
@@ -275,7 +353,7 @@ importers:
     devDependencies:
       '@templ/tsconfig':
         specifier: workspace:*
-        version: link:../../tools/tsconfig
+        version: link:../../config/tsconfig
       '@types/node':
         specifier: ^20.11.16
         version: 20.11.16
@@ -318,82 +396,13 @@ importers:
         version: 0.21.12
       '@templ/tsconfig':
         specifier: workspace:*
-        version: link:../tools/tsconfig
+        version: link:../config/tsconfig
       '@types/node':
         specifier: ^20.11.16
         version: 20.11.16
       tsx:
         specifier: ^4.7.0
         version: 4.7.0
-
-  tools/generator:
-    dependencies:
-      consola:
-        specifier: ^3.2.3
-        version: 3.2.3
-      dot-prop:
-        specifier: ^8.0.2
-        version: 8.0.2
-      giget:
-        specifier: ^1.2.1
-        version: 1.2.1
-      latest-version:
-        specifier: ^8.0.0
-        version: 8.0.0
-      nypm:
-        specifier: ^0.3.6
-        version: 0.3.6
-    devDependencies:
-      '@templ/tsconfig':
-        specifier: workspace:*
-        version: link:../tsconfig
-      '@types/node':
-        specifier: ^20.11.16
-        version: 20.11.16
-      tsx:
-        specifier: ^4.7.0
-        version: 4.7.0
-
-  tools/generator/templates/basic-js:
-    devDependencies:
-      '@templ/config':
-        specifier: workspace:*
-        version: link:../../../../packages/config
-      '@types/node':
-        specifier: ^20.11.16
-        version: 20.11.16
-      '@vitest/coverage-v8':
-        specifier: ^1.2.2
-        version: 1.2.2(vitest@1.2.2)
-      esbuild:
-        specifier: ^0.20.0
-        version: 0.20.0
-      vitest:
-        specifier: ^1.2.2
-        version: 1.2.2(@types/node@20.11.16)
-
-  tools/generator/templates/basic-ts:
-    devDependencies:
-      '@templ/config':
-        specifier: workspace:*
-        version: link:../../../../packages/config
-      '@types/node':
-        specifier: ^20.11.16
-        version: 20.11.16
-      '@vitest/coverage-v8':
-        specifier: ^1.2.2
-        version: 1.2.2(vitest@1.2.2)
-      esbuild:
-        specifier: ^0.20.0
-        version: 0.20.0
-      tsx:
-        specifier: ^4.7.0
-        version: 4.7.0
-      vitest:
-        specifier: ^1.2.2
-        version: 1.2.2(@types/node@20.11.16)
-
-  tools/tsconfig: {}
 
 packages:
 

@@ -69,36 +69,36 @@
     "initial_value": "none",
     "options": [
       {
-        "value": "server",
-        "label": "Server"
+        "value": "config",
+        "label": "Config"
       },
       {
         "value": "desktop",
         "label": "Desktop"
       },
       {
-        "value": "web",
-        "label": "Web"
-      },
-      {
-        "value": "scripts",
-        "label": "Scripts"
+        "value": "docs",
+        "label": "Docs"
       },
       {
         "value": "packages",
         "label": "Packages"
       },
       {
-        "value": "docs",
-        "label": "Docs"
-      },
-      {
         "value": "plugins",
         "label": "Plugins"
       },
       {
-        "value": "tools",
-        "label": "Tools"
+        "value": "scripts",
+        "label": "Scripts"
+      },
+      {
+        "value": "server",
+        "label": "Server"
+      },
+      {
+        "value": "web",
+        "label": "Web"
       },
       {
         "value": "none",
