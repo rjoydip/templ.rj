@@ -21,12 +21,13 @@
   },
   "scripts": {
     "clean": "tsx ./src/clean/others.ts && tsx ./src/clean/turbo.ts",
-    "check": "tsx ./src/dist-check.ts && nr size-limit && nr size-report",
+    "build:check": "nr build:folder-count && nr build:size-limit && nr build:size-report",
+    "build:folder-count": "tsx ./src/build/folder-count.ts",
+    "build:size-limit": "tsx ./src/build/size-limit.ts",
+    "build:size-report": "tsx ./src/build/size-report.ts",
     "ci:env-copy": "tsx ./src/ci/env-copy.ts",
     "ci:env-delete": "tsx ./src/ci/env-delete.ts",
-    "size-limit": "tsx ./src/lint/size-limit.ts",
-    "size-report": "tsx ./src/lint/size-report.ts",
-    "type-cov": "tsx ./src/lint/type-cov.ts"
+    "lint:type-cov": "tsx ./src/lint/type-cov.ts"
   },
   "dependencies": {
     "consola": "^3.2.3",

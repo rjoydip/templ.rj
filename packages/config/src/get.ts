@@ -44,22 +44,3 @@ export function getBuildConfig(): BuildOptions {
     plugins: [clean(), dts()],
   }
 }
-/**
- * Retrieves the Vitest configuration.
- * @example
- * ```ts
- * import { getVitestConfig } from '@templ/config'
- * ```
- * @return {object} the Vitest configuration object
- */
-export function getVitestConfig() {
-  return {
-    test: {
-      include: ['test/**/*.test.ts'],
-      coverage: {
-        enabled: true,
-        reporter: ['text', 'json', 'html'],
-      },
-    },
-  }
-}

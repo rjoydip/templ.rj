@@ -1,5 +1,5 @@
 image:
-  file: tools/.gitpod.Dockerfile
+  file: config/.gitpod.Dockerfile
 
 tasks:
   - name: Install Dependencies
