@@ -17,8 +17,7 @@
   },
   "files": [
     "./base.json",
-    "./next.json",
-    "./react.json"
+    "./preact.json"
   ],
   "engines": {
     "node": "^18.8.0 || >=20.6.0",

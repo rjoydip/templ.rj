@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { createFileRoute, useRouter } from '@tanstack/react-router'
 import { z } from 'zod'
 

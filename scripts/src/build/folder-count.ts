@@ -1,6 +1,6 @@
 import consola from 'consola'
 import { globby } from 'globby'
-import { ignorePatterns, root } from './utils'
+import { ignorePatterns, root } from '../utils'
 
 export async function run() {
   const cwd = root

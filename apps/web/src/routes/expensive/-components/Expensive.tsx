@@ -1,5 +1,3 @@
-import * as React from 'react'
-
 export default function Expensive() {
   return (
     <div className="p-2">

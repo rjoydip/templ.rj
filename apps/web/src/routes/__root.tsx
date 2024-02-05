@@ -1,4 +1,3 @@
-import * as React from 'react'
 import {
   Link,
   Outlet,
@@ -22,7 +21,7 @@ export const Route = createRootRouteWithContext<{
 
 function RootComponent() {
   return (
-    <>
+    <div>
       <div className="min-h-screen flex flex-col">
         <div className="flex items-center border-b gap-2">
           <h1 className="text-3xl p-2">Kitchen Sink</h1>
@@ -48,13 +47,11 @@ function RootComponent() {
                 <div key={to}>
                   <Link
                     to={to}
-                    activeOptions={
-                      {
-                        // If the route points to the root of it's parent,
-                        // make sure it's only active if it's exact
-                        // exact: to === '.',
-                      }
-                    }
+                    activeOptions={{
+                      // If the route points to the root of it's parent,
+                      // make sure it's only active if it's exact
+                      // exact: to === '.',
+                    }}
                     preload="intent"
                     className="block py-2 px-3 text-blue-700"
                     // Make "active" links bold
@@ -73,6 +70,6 @@ function RootComponent() {
         </div>
       </div>
       <TanStackRouterDevtools position="bottom-right" />
-    </>
+    </div>
   )
 }

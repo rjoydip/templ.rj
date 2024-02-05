@@ -9,7 +9,7 @@ export interface Invoice {
   body: string
 }
 
-export interface User {
+interface User {
   id: number
   name: string
   username: string
@@ -20,7 +20,7 @@ export interface User {
   company: Company
 }
 
-export interface Address {
+interface Address {
   street: string
   suite: string
   city: string
@@ -28,12 +28,12 @@ export interface Address {
   geo: Geo
 }
 
-export interface Geo {
+interface Geo {
   lat: string
   lng: string
 }
 
-export interface Company {
+interface Company {
   name: string
   catchPhrase: string
   bs: string
@@ -130,7 +130,7 @@ export async function patchInvoice({
   })
 }
 
-export type UsersSortBy = 'name' | 'id' | 'email'
+type UsersSortBy = 'name' | 'id' | 'email'
 
 export async function fetchUsers({
   filterBy,
@@ -163,8 +163,8 @@ export async function fetchUserById(id: number) {
   )
 }
 
-export async function fetchRandomNumber() {
+/* export async function fetchRandomNumber() {
   return loaderDelayFn(() => {
     return Math.random()
   })
-}
+} */

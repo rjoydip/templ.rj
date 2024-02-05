@@ -15,4 +15,9 @@ export default antfu({
   rules: {
     'test/consistent-test-it': 'off',
   },
+}, {
+  files: ['**/*.gen.ts'],
+  rules: {
+    'eslint-comments/no-unlimited-disable': 'off',
+  },
 })

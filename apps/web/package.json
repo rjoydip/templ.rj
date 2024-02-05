@@ -15,15 +15,12 @@
     "@tanstack/router-vite-plugin": "^1.15.18",
     "axios": "^1.6.7",
     "immer": "^10.0.3",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "preact": "^10.19.3",
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@preact/preset-vite": "^2.8.1",
     "@templ/tsconfig": "workspace:*",
-    "@types/react": "^18.2.53",
-    "@types/react-dom": "^18.2.18",
-    "@vitejs/plugin-react": "^4.2.1",
     "vite": "^5.0.12"
   }
 }

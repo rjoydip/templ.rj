@@ -1,6 +1,7 @@
-import { resolve } from 'node:path'
+import { join, resolve } from 'node:path'
 import { cwd } from 'node:process'
-import { beforeAll, describe, expect, it } from 'vitest'
+import { afterAll, beforeAll, describe, expect, it } from 'vitest'
+import { isCI } from 'std-env'
 import { loadTeamplConfig } from '../src/load'
 
 describe('@templ/config > load config', () => {
@@ -8,82 +9,130 @@ describe('@templ/config > load config', () => {
 
   beforeAll(() => {
     defaultData = {
-      app: {
-        baseURL: '/',
-      },
-      builder: 'vite',
-      devServer: {
-        host: 'localhost',
-        https: false,
-        port: 3000,
-        url: 'http://localhost:3000',
-      },
-      logLevel: 'silent',
-      rootDir: resolve(cwd(), '..', '..'),
-      workspaceDir: resolve(cwd()),
+      APP_BASE_URL: '/',
+      FRONTEND_BUILDER: 'vite',
+      DATABASE_URL: './db.sqlite',
+      HTTPS: false,
+      NODE_ENV: 'production',
+      OPEN_AI_API_KEY: '',
+      PORT: 3000,
+      URL: 'http://localhost:3000',
+      LOG_LEVEL: 'silent',
+      PACKAGE_BUILDER: 'esbuild',
+      ROOT_DIR: resolve(cwd(), '..', '..'),
+      WORKSPACE_DIR: resolve(cwd()),
     }
 
-    fixturePath = resolve(__dirname, 'fixtures')
-    fixture = (folder?: string, file?: string) => file && folder ? resolve(fixturePath, folder, file) : folder ? resolve(fixturePath, folder) : resolve(fixturePath)
+    fixturePath = resolve(cwd(), 'test', 'fixtures')
+    fixture = (folder?: string | string[], file?: string) => file && folder ? resolve(fixturePath, Array.isArray(folder) ? join(...folder) : folder, file) : folder ? resolve(fixturePath, Array.isArray(folder) ? join(...folder) : folder) : resolve(fixturePath)
   })
 
-  it('should be load .templrc', async () => {
-    const data = await loadTeamplConfig({
-      rcFile: fixture(fixturePath, '.templrc'),
-    })
-    expect(data).toBeDefined()
-    expect(data).toStrictEqual({
-      ...defaultData,
-      logLevel: 'info',
-    })
+  afterAll(() => {
+    defaultData = null
+    fixture = null
+    fixturePath = null
   })
 
-  it('should be load templrc file', async () => {
+  it('should be load templrc file with directory', async () => {
     const data = await loadTeamplConfig({
-      cwd: fixturePath,
+      cwd: fixture('rc'),
       rcFile: '.templrc',
+      globalRc: false,
     })
-    expect(data).toBeDefined()
     expect(data).toStrictEqual({
       ...defaultData,
-      logLevel: 'info',
+      LOG_LEVEL: 'info',
     })
   })
 
-  it('should be load configFile templ.config.ts', async () => {
+  it('should be load config from conf/templ enable rcFile', async () => {
     const data = await loadTeamplConfig({
-      configFile: fixture(fixturePath, 'templ.config'),
+      cwd: fixture(['conf', 'templ']),
+      configFile: 'templ.config',
+      rcFile: '.templrc',
+      globalRc: false,
     })
-    expect(data).toBeDefined()
     expect(data).toStrictEqual({
       ...defaultData,
-      builder: 'esbuild',
+      LOG_LEVEL: 'info',
+      PORT: 5000,
     })
   })
 
-  it('should be load configFile templ.config disabling rcFile', async () => {
+  it('should be load config from conf/templ disable rcFile', async () => {
     const data = await loadTeamplConfig({
-      cwd: fixturePath,
+      cwd: fixture(['conf', 'templ']),
       configFile: 'templ.config',
       rcFile: false,
     })
-    expect(data).toBeDefined()
     expect(data).toStrictEqual({
       ...defaultData,
-      builder: 'esbuild',
+      PORT: 5000,
     })
   })
 
-  it('should be load theme/config.ts', async () => {
+  it('should be load config from conf directory', async () => {
     const data = await loadTeamplConfig({
-      cwd: fixture('theme'),
+      cwd: fixture('conf'),
+      rcFile: false,
+      globalRc: false,
     })
-    expect(data).toBeDefined()
     expect(data).toStrictEqual({
       ...defaultData,
-      app: {
-        baseURL: '/theme',
+      APP_BASE_URL: '/config',
+    })
+  })
+
+  it('should be load config from conf directory with dotenv', async () => {
+    const data = await loadTeamplConfig({
+      cwd: fixture('conf'),
+      rcFile: false,
+      globalRc: false,
+      dotenv: !isCI,
+    })
+    expect(data).toStrictEqual({
+      ...defaultData,
+      APP_BASE_URL: '/config',
+    })
+
+    isCI && expect(process.env.OPEN_AI_API_KEY).toBeUndefined()
+    !isCI && expect(process.env.OPEN_AI_API_KEY).toBe('openai api key')
+  })
+
+  it('should be load config from dev directory', async () => {
+    const data = await loadTeamplConfig({
+      cwd: fixture('dev'),
+      rcFile: false,
+      globalRc: false,
+      dotenv: false,
+    })
+    expect(data).toStrictEqual({
+      ...defaultData,
+      configFile: true,
+      overriden: false,
+      APP_BASE_URL: '/dev',
+      NODE_ENV: 'development',
+    })
+  })
+
+  it('should be load config from dev directory with dotenv and interpolate', async () => {
+    const data = await loadTeamplConfig({
+      cwd: fixture('dev'),
+      rcFile: false,
+      globalRc: false,
+      dotenv: {
+        cwd: fixture('dev'),
+        fileName: '.env.dev',
+        interpolate: true,
       },
     })
+    expect(data).toStrictEqual({
+      ...defaultData,
+      configFile: true,
+      overriden: false,
+      APP_BASE_URL: '/dev',
+      NODE_ENV: 'development',
+    })
+    expect(process.env.URL).toBe('http://templ.local:1111')
   })
 })

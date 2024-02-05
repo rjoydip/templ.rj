@@ -1,4 +1,3 @@
-import * as React from 'react'
 import {
   ErrorComponent,
   RouterProvider,
@@ -9,7 +8,7 @@ import { Spinner } from './components/Spinner'
 import { routeTree } from './routeTree.gen'
 import { useSessionStorage } from './hooks/useSessionStorage'
 
-export const router = createRouter({
+const router = createRouter({
   routeTree,
   defaultPendingComponent: () => (
     <div className="p-2 text-2xl">
@@ -23,14 +22,20 @@ export const router = createRouter({
   defaultPreload: 'intent',
 })
 
-function App() {
+declare module '@tanstack/react-router' {
+  interface Register {
+    router: typeof router
+  }
+}
+
+export function App() {
   // This stuff is just to tweak our sandbox setup in real-time
   const [loaderDelay, setLoaderDelay] = useSessionStorage('loaderDelay', 500)
   const [pendingMs, setPendingMs] = useSessionStorage('pendingMs', 1000)
   const [pendingMinMs, setPendingMinMs] = useSessionStorage('pendingMinMs', 500)
 
   return (
-    <>
+    <div>
       <div className="text-xs fixed w-52 shadow-md shadow-black/20 rounded bottom-2 left-2 bg-white bg-opacity-75 border-b flex flex-col gap-1 flex-wrap items-left divide-y divide-gray-500/20">
         <div className="p-2 space-y-2">
           <div className="flex gap-2">
@@ -71,7 +76,12 @@ function App() {
               max="5000"
               step="100"
               value={loaderDelay}
-              onChange={e => setLoaderDelay(e.target.valueAsNumber)}
+              onChange={(e) => {
+                if (e.target) {
+                  const { valueAsNumber } = e.target as HTMLInputElement
+                  setLoaderDelay(valueAsNumber)
+                }
+              }}
               className="w-full"
             />
           </div>
@@ -100,7 +110,12 @@ function App() {
               max="5000"
               step="100"
               value={pendingMs}
-              onChange={e => setPendingMs(e.target.valueAsNumber)}
+              onChange={(e) => {
+                if (e.target) {
+                  const { valueAsNumber } = e.target as HTMLInputElement
+                  setPendingMs(valueAsNumber)
+                }
+              }}
               className="w-full"
             />
           </div>
@@ -116,7 +131,12 @@ function App() {
               max="5000"
               step="100"
               value={pendingMinMs}
-              onChange={e => setPendingMinMs(e.target.valueAsNumber)}
+              onChange={(e) => {
+                if (e.target) {
+                  const { valueAsNumber } = e.target as HTMLInputElement
+                  setPendingMinMs(valueAsNumber)
+                }
+              }}
               className="w-full"
             />
           </div>
@@ -131,8 +151,6 @@ function App() {
           auth,
         }}
       />
-    </>
+    </div>
   )
 }
-
-export default App

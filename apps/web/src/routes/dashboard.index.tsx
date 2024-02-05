@@ -1,5 +1,4 @@
-import * as React from 'react'
-import { Link, Outlet, createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router'
 import { fetchInvoices } from '../utils/mockTodos'
 
 export const Route = createFileRoute('/dashboard/')({

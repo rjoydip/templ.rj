@@ -1,18 +1,18 @@
-import * as React from 'react'
+import { useCallback, useState } from 'preact/hooks'
 
 export function useMutation<TVariables, TData, TError = Error>(opts: {
   fn: (variables: TVariables) => Promise<TData>
   onSuccess?: (ctx: { data: TData }) => void | Promise<void>
 }) {
-  const [submittedAt, setSubmittedAt] = React.useState<number | undefined>()
-  const [variables, setVariables] = React.useState<TVariables | undefined>()
-  const [error, setError] = React.useState<TError | undefined>()
-  const [data, setData] = React.useState<TData | undefined>()
-  const [status, setStatus] = React.useState<
+  const [submittedAt, setSubmittedAt] = useState<number | undefined>()
+  const [variables, setVariables] = useState<TVariables | undefined>()
+  const [error, setError] = useState<TError | undefined>()
+  const [data, setData] = useState<TData | undefined>()
+  const [status, setStatus] = useState<
     'idle' | 'pending' | 'success' | 'error'
   >('idle')
 
-  const mutate = React.useCallback(
+  const mutate = useCallback(
     async (variables: TVariables): Promise<TData | undefined> => {
       setStatus('pending')
       setSubmittedAt(Date.now())
