@@ -1,6 +1,7 @@
 import { join, resolve } from 'node:path'
 import { cwd } from 'node:process'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
+import { isCI } from 'std-env'
 import { loadTeamplConfig } from '../src/load'
 
 describe('@templ/config > load config', () => {
@@ -87,14 +88,15 @@ describe('@templ/config > load config', () => {
       cwd: fixture('conf'),
       rcFile: false,
       globalRc: false,
-      dotenv: true,
+      dotenv: !isCI,
     })
     expect(data).toStrictEqual({
       ...defaultData,
       APP_BASE_URL: '/config',
     })
 
-    expect(process.env.OPEN_AI_API_KEY).toBe('openai api key')
+    isCI && expect(process.env.OPEN_AI_API_KEY).toBe('')
+    !isCI && expect(process.env.OPEN_AI_API_KEY).toBe('openai api key')
   })
 
   it('should be load config from dev directory', async () => {
