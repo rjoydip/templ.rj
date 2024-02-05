@@ -45,8 +45,24 @@ jobs:
     steps:
       - uses: actions/labeler@v4
 
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/setup-node
+      - name: Install
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Build
+        run: |
+          pnpm run -C scripts ci:env-copy
+          pnpm run build
+          pnpm run -C scripts ci:env-delete
+          pnpm run -C scripts check
+
   lint:
     runs-on: ubuntu-latest
+    needs: [build]
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup-node
@@ -64,21 +80,6 @@ jobs:
 
       - name: Size Report
         run: pnpm run -C scripts size-report
-
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/setup-node
-      - name: Install
-        run: pnpm install --no-frozen-lockfile
-
-      - name: Build
-        run: |
-          pnpm run -C scripts ci:env-copy
-          pnpm run build
-          pnpm run -C scripts ci:env-delete
-          pnpm run -C scripts check
 
   test:
     runs-on: ${{ matrix.os }}
