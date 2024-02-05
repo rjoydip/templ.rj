@@ -1,4 +1,6 @@
 import type { SnakeCase } from 'scule'
+import { generateTypes, resolveSchema } from 'untyped'
+import * as TemplConfigSchema from './schema'
 
 // type DeepPartial<T> = T extends Function ? T : T extends Record<string, any> ? { [P in keyof T]?: DeepPartial<T[P]> } : T
 type UpperSnakeCase<S extends string> = Uppercase<SnakeCase<S>>
@@ -45,3 +47,5 @@ export interface TemplOptions {
   builder: 'esbuild' | 'unbuildr' | 'vite' | TemplBuilder
   layers: TemplConfigLayer[]
 }
+
+export const getTemplConfigTypes = async () => generateTypes(await resolveSchema(TemplConfigSchema))

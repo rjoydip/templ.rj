@@ -1,6 +1,7 @@
-/// <reference types='vitest' />
+import { defineProject, mergeConfig } from 'vitest/config'
+import configShared from '../../../../config/vitest.shared.js'
 
-import { defineConfig } from 'vitest/config'
-import { getVitestConfig } from '@templ/config'
-
-export default defineConfig(getVitestConfig())
+export default mergeConfig(
+  configShared,
+  defineProject({}),
+)
