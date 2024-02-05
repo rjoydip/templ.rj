@@ -1,0 +1,4 @@
+{
+  "extends": "@templ/tsconfig/react.json",
+  "include": ["*tsconfig.json", "vite.config.ts"]
+}

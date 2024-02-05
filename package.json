@@ -30,7 +30,7 @@
     "postinstall": "nr deps:update",
     "all": "nr deps:update && nr build && nr lint",
     "build": "nr -C scripts clean && turbo run build && nr -C scripts check",
-    "commit": "better-commits",
+    "commit": "nr all && better-commits",
     "deps:update": "taze -r -w -i -f -l",
     "lint": "nr build && eslint . && nr knip && nr -C scripts type-cov",
     "knip": "knip -c ./tools/knip.config.ts",
@@ -38,12 +38,12 @@
     "test": "turbo run test"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "2.6.3",
+    "@antfu/eslint-config": "2.6.4",
     "@antfu/ni": "^0.21.12",
     "@changesets/cli": "^2.27.1",
     "better-commits": "^1.11.0",
     "eslint": "^8.56.0",
-    "knip": "^4.3.0",
+    "knip": "^4.3.1",
     "pnpm": "^8.15.1",
     "simple-git-hooks": "^2.9.0",
     "taze": "^0.13.2",
