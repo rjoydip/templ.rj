@@ -95,7 +95,7 @@ describe('@templ/config > load config', () => {
       APP_BASE_URL: '/config',
     })
 
-    isCI && expect(process.env.OPEN_AI_API_KEY).toBe('')
+    isCI && expect(process.env.OPEN_AI_API_KEY).toBeUndefined()
     !isCI && expect(process.env.OPEN_AI_API_KEY).toBe('openai api key')
   })
 
