@@ -3,6 +3,6 @@ import { title } from '../src'
 
 describe('@templ/docs', () => {
   it('title', () => {
-    expect(title).toBe('desktop')
+    expect(title).toBe('docs')
   })
 })
