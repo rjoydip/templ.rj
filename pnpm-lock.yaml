@@ -133,11 +133,11 @@ importers:
   apps/web:
     dependencies:
       '@tanstack/react-router':
-        specifier: ^1.15.17
-        version: 1.15.17(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^1.15.19
+        version: 1.15.19(react-dom@18.2.0)(react@18.2.0)
       '@tanstack/router-devtools':
-        specifier: ^1.15.17
-        version: 1.15.17(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^1.15.19
+        version: 1.15.19(react-dom@18.2.0)(react@18.2.0)
       '@tanstack/router-vite-plugin':
         specifier: ^1.15.18
         version: 1.15.18
@@ -2772,8 +2772,8 @@ packages:
     engines: {node: '>=12'}
     dev: false
 
-  /@tanstack/react-router@1.15.17(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-s9zmdsdOOrJvbD9KuLj4Kul5EuykqtzsDO3hBXT4GXA3JElEJZifSWh6vL5EPWNUedPqtJ7LXJyzTzmpgTwL6w==}
+  /@tanstack/react-router@1.15.19(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-oZq+7WYz8cQq0Mdpb7Y/4SAXI4djpQiA8D2ZIl3XjDmYfi7twFZdjjnAL8V1P/DURss3QjZ8PK//AAnr+fcT4w==}
     engines: {node: '>=12'}
     peerDependencies:
       react: '>=16'
@@ -2799,14 +2799,14 @@ packages:
       use-sync-external-store: 1.2.0(react@18.2.0)
     dev: false
 
-  /@tanstack/router-devtools@1.15.17(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-EpVzmTEJNLX3qd5Gbftf6i80PLfunigyF5riumpx22+pqj3Iand23w4ODWsxzsT4ieOWmbeVfn4eDlASQ39pGQ==}
+  /@tanstack/router-devtools@1.15.19(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-e/ZnqvfQigXJHteShpBsQeYaU1EpbcMM19IT6GI72WkDVPJKMLQ9tPRqdkK4mhtv2RfdRHtKKn3A8u4/vJ5VIA==}
     engines: {node: '>=12'}
     peerDependencies:
       react: '>=16'
       react-dom: '>=16'
     dependencies:
-      '@tanstack/react-router': 1.15.17(react-dom@18.2.0)(react@18.2.0)
+      '@tanstack/react-router': 1.15.19(react-dom@18.2.0)(react@18.2.0)
       date-fns: 2.30.0
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)

@@ -7,6 +7,7 @@ import { auth } from './utils/auth'
 import { Spinner } from './components/Spinner'
 import { routeTree } from './routeTree.gen'
 import { useSessionStorage } from './hooks/useSessionStorage'
+import './app.css'
 
 const router = createRouter({
   routeTree,
@@ -29,7 +30,6 @@ declare module '@tanstack/react-router' {
 }
 
 export function App() {
-  // This stuff is just to tweak our sandbox setup in real-time
   const [loaderDelay, setLoaderDelay] = useSessionStorage('loaderDelay', 500)
   const [pendingMs, setPendingMs] = useSessionStorage('pendingMs', 1000)
   const [pendingMinMs, setPendingMinMs] = useSessionStorage('pendingMinMs', 500)
