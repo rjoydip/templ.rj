@@ -4,11 +4,11 @@ import { ignorePatterns, root } from '../utils'
 
 export async function run() {
   const cwd = root
-  const workingDirectories = await globby(['{packages,apps}/**/package.json'], {
+  const workingDirectories = await globby(['{packages,apps,plugins}/**/package.json'], {
     ignore: ignorePatterns,
     cwd,
   })
-  const files = await globby(['{packages,apps}/**/dist/index.js'], {
+  const files = await globby(['{packages,apps,plugins}/**/dist/index.{js,html}'], {
     ignore: ignorePatterns,
     cwd,
   })

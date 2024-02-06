@@ -4,14 +4,20 @@ const config: KnipConfig = {
   'rules': {
     files: 'warn',
   },
-  'ignore': ['**/test/**'],
+  'ignore': ['**/test/**', '**/templates/**', '**/apps/web/**'],
   'ignoreBinaries': ['templ-cli'],
   'workspaces': {
-    'packages/*': {
-      entry: ['src/**/.ts', 'esbuild.config.ts'],
+    '.': {
+      entry: ['config/vitest.shared.js'],
     },
-    'apps/server': {
-      entry: ['src/**/.ts', 'esbuild.config.ts', 'package.json'],
+    'config/*': {
+      entry: ['src/**/.ts', '*.shared.js'],
+    },
+    'packages/*': {
+      entry: ['src/**/.ts', '*.config.ts'],
+    },
+    'apps/*': {
+      entry: ['src/**/.ts', '*.config.ts'],
     },
   },
   'eslint': {
@@ -42,6 +48,9 @@ const config: KnipConfig = {
   },
   'typescript': {
     config: ['tsconfig.json', 'tsconfig.*.json'],
+  },
+  'vite': {
+    config: ['vite*.config.{js,mjs,ts,cjs,mts,cts}'],
   },
   'vitest': {
     config: [

@@ -11,8 +11,3 @@ updates:
     target-branch: main
     labels:
       - 🤖dependabot
-    ignore:
-      - dependency-name: react
-        versions: [18.x]
-      - dependency-name: react-dom
-        versions: [18.x]

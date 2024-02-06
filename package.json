@@ -13,10 +13,11 @@
   "sideEffects": true,
   "workspaces": [
     "apps/**",
+    "config/**",
     "packages/**",
     "plugins/**",
     "scripts",
-    "tools/**"
+    "generator"
   ],
   "engines": {
     "node": ">=18",
@@ -26,7 +27,6 @@
     "yarn": ">=3"
   },
   "scripts": {
-    "prepare": "simple-git-hooks",
     "postinstall": "nr deps:update",
     "all": "nr deps:update && nr build && nr lint",
     "build": "nr clean && turbo run build && nr build:check",
@@ -48,11 +48,7 @@
     "eslint": "^8.56.0",
     "knip": "^4.3.1",
     "pnpm": "^8.15.1",
-    "simple-git-hooks": "^2.9.0",
     "taze": "^0.13.2",
     "turbo": "^1.12.2"
-  },
-  "simple-git-hooks": {
-    "pre-push": "pnpm run test"
   }
 }
