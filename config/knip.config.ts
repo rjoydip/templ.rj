@@ -5,6 +5,7 @@ const config: KnipConfig = {
     files: 'warn',
   },
   'ignore': ['**/test/**', '**/templates/**'],
+  'ignoreDependencies': ['react-dom', '@types/react-dom'],
   'ignoreBinaries': ['templ-cli'],
   'workspaces': {
     '.': {
