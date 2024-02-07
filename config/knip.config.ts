@@ -4,7 +4,8 @@ const config: KnipConfig = {
   'rules': {
     files: 'warn',
   },
-  'ignore': ['**/test/**', '**/templates/**', '**/apps/web/**'],
+  'ignore': ['**/test/**', '**/templates/**'],
+  'ignoreDependencies': ['react-dom', '@types/react-dom'],
   'ignoreBinaries': ['templ-cli'],
   'workspaces': {
     '.': {
@@ -14,10 +15,11 @@ const config: KnipConfig = {
       entry: ['src/**/.ts', '*.shared.js'],
     },
     'packages/*': {
-      entry: ['src/**/.ts', '*.config.ts'],
+      entry: ['src/**/.{ts,tsx}'],
+      ignore: ['**/{app,main}.tsx'],
     },
     'apps/*': {
-      entry: ['src/**/.ts', '*.config.ts'],
+      entry: ['src/**/.{ts,tsx}'],
     },
   },
   'eslint': {
@@ -41,10 +43,34 @@ const config: KnipConfig = {
       '.git/hooks/post-{checkout,commit,merge,rewrite}',
     ],
   },
+  'next': {
+    entry: [
+      'next.config.{js,ts,cjs,mjs}',
+      '{instrumentation,middleware}.{js,ts}',
+      'app/global-error.{js,jsx,ts,tsx}',
+      'app/**/{error,layout,loading,not-found,page,template}.{js,jsx,ts,tsx}',
+      'app/**/{route,default}.{js,ts}',
+      'app/{manifest,sitemap,robots}.{js,ts}',
+      'app/**/{icon,apple-icon}.{js,jsx,ts,tsx}',
+      'app/**/{opengraph,twitter}-image.{js,jsx,ts,tsx}',
+      'pages/**/*.{js,jsx,ts,tsx}',
+      'src/{instrumentation,middleware}.{js,ts}',
+      'src/app/global-error.{js,jsx,ts,tsx}',
+      'src/app/**/{error,layout,loading,not-found,page,template}.{js,jsx,ts,tsx}',
+      'src/app/**/{route,default}.{js,ts}',
+      'src/app/{manifest,sitemap,robots}.{js,ts}',
+      'src/app/**/{icon,apple-icon}.{js,jsx,ts,tsx}',
+      'src/app/**/{opengraph,twitter}-image.{js,jsx,ts,tsx}',
+      'src/pages/**/*.{js,jsx,ts,tsx}',
+    ],
+  },
   'npm-package-json-lint': {
     config: [
       'package.json',
     ],
+  },
+  'tailwind': {
+    config: ['tailwind.config.{js,cjs,mjs,ts}'],
   },
   'typescript': {
     config: ['tsconfig.json', 'tsconfig.*.json'],

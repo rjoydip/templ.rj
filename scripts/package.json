@@ -27,6 +27,7 @@
     "build:size-report": "tsx ./src/build/size-report.ts",
     "ci:env-copy": "tsx ./src/ci/env-copy.ts",
     "ci:env-delete": "tsx ./src/ci/env-delete.ts",
+    "lint": "nr lint:type-cov",
     "lint:type-cov": "tsx ./src/lint/type-cov.ts"
   },
   "dependencies": {
@@ -35,7 +36,7 @@
     "dot-prop": "^8.0.2",
     "globby": "^14.0.0",
     "rollup": "^4.9.6",
-    "scule": "^1.2.0",
+    "scule": "^1.3.0",
     "table": "^6.8.1",
     "terser": "^5.27.0",
     "type-coverage-core": "^2.27.1"
