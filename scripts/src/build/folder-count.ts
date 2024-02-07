@@ -1,9 +1,10 @@
 import consola from 'consola'
 import { globby } from 'globby'
-import { ignorePatterns, root } from '../utils'
+import { root } from '../utils'
 
 export async function run() {
   const cwd = root
+  const ignorePatterns = ['.git/**', '**/node_modules/**', '*templ.mjs', '*.code-workspace']
   const workingDirectories = await globby(['{packages,apps,plugins}/**/package.json'], {
     ignore: ignorePatterns,
     cwd,
