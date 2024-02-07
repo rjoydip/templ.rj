@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      '@templ/workspace':
+        specifier: 'link:'
+        version: 'link:'
     devDependencies:
       '@antfu/eslint-config':
         specifier: 2.6.4
