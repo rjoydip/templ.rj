@@ -1,16 +1,16 @@
 {
-  "name": "@templ/server",
+  "name": "@templ/api",
   "type": "module",
   "version": "0.0.1",
   "private": true,
   "packageManager": "pnpm@8.15.1",
-  "description": "Server",
+  "description": "API",
   "license": "MIT",
-  "homepage": "https://github.com/rjoydip/templ/tree/main/packages/server#readme",
+  "homepage": "https://github.com/rjoydip/templ/tree/main/packages/api#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rjoydip/templ.git",
-    "directory": "apps/server"
+    "directory": "apps/api"
   },
   "bugs": {
     "url": "https://github.com/rjoydip/templ/issues"
@@ -26,7 +26,7 @@
   "scripts": {
     "build": "tsx esbuild.config.ts",
     "dev": "tsx ./src/index",
-    "server:load": "tsx ./test/server.load.ts",
+    "api:load": "tsx ./test/api.load.ts",
     "test": "vitest run"
   },
   "dependencies": {
@@ -46,5 +46,6 @@
     "esbuild": "^0.20.0",
     "tsx": "^4.7.0",
     "vitest": "^1.2.2"
-  }
+  },
+  "size-limit": "1024 B"
 }

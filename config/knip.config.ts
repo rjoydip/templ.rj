@@ -13,11 +13,11 @@ const config: KnipConfig = {
       ignore: ['**/{env,flag}/**'],
     },
     'packages/*': {
-      entry: ['src/**/.{ts,tsx}'],
+      entry: ['src/**/.{ts,tsx}', 'test/**/.test.{ts,tsx}', '**/*.load.ts'],
       ignore: ['**/{app,main}.tsx'],
     },
     'apps/*': {
-      entry: ['src/**/.{ts,tsx}'],
+      entry: ['src/**/.{ts,tsx}', 'test/**/.test.{ts,tsx}'],
     },
   },
   'eslint': {
@@ -66,6 +66,9 @@ const config: KnipConfig = {
     config: [
       'package.json',
     ],
+  },
+  'postcss': {
+    config: ['postcss.config.{cjs,js}', 'postcss.config.json', 'package.json'],
   },
   'tailwind': {
     config: ['tailwind.config.{js,cjs,mjs,ts}'],

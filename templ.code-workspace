@@ -18,7 +18,16 @@
     },
     {
       "name": "📟 @templ/cli",
-
+      "path": "packages/cli"
+    },
+    {
+      "name": "⚙️ @templ/fflag",
+      "path": "packages/fflag"
+    },
+    {
+      "name": "⚙️ @templ/ui",
+      "path": "packages/ui"
+    },
     {
       "name": "🪛 @templ/utils",
       "path": "packages/utils"
@@ -32,8 +41,8 @@
       "path": "apps/desktop"
     },
     {
-      "name": "🗄️ @templ/server",
-      "path": "apps/server"
+      "name": "🗄️ @templ/api",
+      "path": "packages/api"
     },
     {
       "name": "🌐 @templ/web",

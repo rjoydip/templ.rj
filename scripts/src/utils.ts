@@ -21,6 +21,8 @@ export function prettyBytesToNumber(prettyBytes: string = '') {
     return 0
   if (bytes < 1024 && exp === 'B')
     return bytes
+  if (bytes === 1024)
+    return bytes
   return Math.ceil((bytes * 1024) * (unit.indexOf(exp)))
 }
 
