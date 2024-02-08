@@ -4,9 +4,7 @@ import { cp, readdir } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { colors } from 'consola/utils'
 import consola from 'consola'
-import { installDependencies } from 'nypm'
-import type { PM } from '../utils'
-import { downloadTemplate, getPkgManagers, hasDryRun, stackNotes, updateTemplateAssets } from '../utils'
+import { downloadTemplate, hasDryRun, stackNotes, updateTemplateAssets } from '../utils'
 
 type Servers = 'Hono' | 'Fastify' | 'Express' | 'Koa' | 'Hapi'
 
@@ -23,8 +21,6 @@ interface ServerOptsType {
   express: Record<string, string>
   koa: Record<string, string>
   hapi: Record<string, string>
-  pm: string
-  install: boolean
 }
 
 export async function run() {
@@ -43,8 +39,6 @@ export async function run() {
     express: {},
     koa: {},
     hapi: {},
-    pm: 'npm',
-    install: true,
   }
 
   serverOpts.path = await consola.prompt(`Where should we generate your ${colors.cyan('server')}?`, {
@@ -108,25 +102,12 @@ export async function run() {
     }
   }
 
-  const p = await consola.prompt('Select package manager.', {
-    type: 'select',
-    options: (await getPkgManagers()).map((pm: string) => pm.toUpperCase()),
-    initial: serverOpts.pm,
-  }) as PM
-
-  serverOpts.pm = p.toLowerCase()
-
-  serverOpts.install = await consola.prompt('Do you want to install dependencies?', {
-    type: 'confirm',
-    initial: true,
-  })
-
   if (hasDryRun()) {
     consola.box(serverOpts)
     return
   }
 
-  const { name, type, path, pm, install, hono, fastify } = serverOpts
+  const { name, type, path, hono, fastify } = serverOpts
 
   if (type.toString() === 'Hono') {
     const dir = resolve(root, path, name)
@@ -137,26 +118,13 @@ export async function run() {
 
     await updateTemplateAssets({
       name: `@templ/${name}`,
-      pm,
       root,
       dir,
       replacement: {},
     })
 
-    if (install) {
-      consola.start(`\nInstallaing via ${pm}\n`)
-      await installDependencies({
-        cwd: dir,
-        packageManager: {
-          name: pm as PM,
-          command: pm === 'npm' ? 'npm install' : `${pm}`,
-        },
-        silent: true,
-      })
-    }
-
     consola.success(`Generated ${colors.cyan(type.toString())} server`)
-    stackNotes(dir, install, pm)
+    stackNotes({ path: dir })
   }
 
   if (type.toString() === 'Fastify') {
@@ -175,26 +143,13 @@ export async function run() {
 
     await updateTemplateAssets({
       name: `@templ/${name}`,
-      pm,
       root,
       dir,
       replacement: {},
     })
 
-    if (install) {
-      consola.start(`\nInstallaing via ${pm}\n`)
-      await installDependencies({
-        cwd: dir,
-        packageManager: {
-          name: pm as PM,
-          command: pm === 'npm' ? 'npm install' : `${pm}`,
-        },
-        silent: true,
-      })
-    }
-
     consola.success(`Generated ${colors.cyan(type.toString())} server`)
-    stackNotes(dir, install, pm)
+    stackNotes({ path: dir })
   }
 }
 

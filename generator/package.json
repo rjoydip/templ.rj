@@ -32,8 +32,7 @@
     "consola": "^3.2.3",
     "dot-prop": "^8.0.2",
     "giget": "^1.2.1",
-    "latest-version": "^8.0.0",
-    "nypm": "^0.3.6"
+    "latest-version": "^8.0.0"
   },
   "devDependencies": {
     "@templ/tsconfig": "workspace:*",

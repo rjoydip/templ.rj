@@ -1,6 +1,6 @@
 import { existsSync } from 'node:fs'
 import { join, parse, resolve, sep } from 'node:path'
-import { access, mkdir, readFile, writeFile } from 'node:fs/promises'
+import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { argv, cwd } from 'node:process'
 import { tmpdir } from 'node:os'
 import consola from 'consola'
@@ -10,103 +10,12 @@ import type { DownloadTemplateOptions } from 'giget'
 import { downloadTemplate as dt } from 'giget'
 import { shell } from './shell'
 
-export type PM = 'npm' | 'yarn' | 'pnpm' | 'bun'
 export const hasDryRun = ($argv?: string[]) => !!($argv ?? argv.slice(2)).includes('--dry-run')
 export const capitalize = (s: string) => s && s.charAt(0).toUpperCase() + s.slice(1)
 
-const cache = new Map()
-
-async function pathExists(p: string) {
-  try {
-    await access(p)
-    return true
-  }
-  catch {
-    return false
-  }
-}
-
-function hasGlobalInstallation(pm: PM): Promise<boolean> {
-  const key = `has_global_${pm}`
-  if (cache.has(key))
-    return Promise.resolve(cache.get(key))
-
-  return shell(pm, ['--version'])
-    .then((res) => {
-      return /^\d+.\d+.\d+$/.test(res.stdout)
-    })
-    .then((value) => {
-      cache.set(key, value)
-      return value
-    })
-    .catch(() => false)
-}
-
-async function getTypeofLockFile(cwd = '.'): Promise<PM> {
-  const key = `lockfile_${cwd}`
-  if (cache.has(key))
-    return Promise.resolve(cache.get(key))
-
-  const [isYarn, isNpm, isPnpm, isBun] = await Promise.all([
-    pathExists(resolve(cwd, 'yarn.lock')),
-    pathExists(resolve(cwd, 'package-lock.json')),
-    pathExists(resolve(cwd, 'pnpm-lock.yaml')),
-    pathExists(resolve(cwd, 'bun.lockb')),
-  ])
-
-  let value: PM | null = null
-
-  if (isYarn)
-    value = 'yarn'
-
-  else if (isPnpm)
-    value = 'pnpm'
-
-  else if (isBun)
-    value = 'bun'
-
-  else if (isNpm)
-    value = 'npm'
-
-  else
-    value = 'npm'
-  cache.set(key, value)
-  return value
-}
-
-export async function getPkgManagers({
-  cwd,
-  incldeGlobaBun,
-  includeLocal,
-}: { cwd?: string, incldeGlobaBun?: boolean, includeLocal?: boolean } = {}): Promise<PM[]> {
-  const pms: PM[] = []
-
-  if (includeLocal && cwd) {
-    const localPM = await getTypeofLockFile(cwd)
-    return [localPM]
-  }
-
-  const [hasYarn, hasPnpm, hasBun] = await Promise.all([
-    hasGlobalInstallation('yarn'),
-    hasGlobalInstallation('pnpm'),
-    incldeGlobaBun && hasGlobalInstallation('bun'),
-  ])
-
-  if (hasYarn)
-    pms.push('yarn')
-
-  if (hasPnpm)
-    pms.push('pnpm')
-
-  if (hasBun)
-    pms.push('bun')
-
-  return pms
-}
-
 export async function updateTemplateAssets(options: {
   name: string
-  pm: string
+  pm?: string
   root: string
   dir: string
   replacement?: {
@@ -118,7 +27,7 @@ export async function updateTemplateAssets(options: {
   }
 } = {
   name: '',
-  pm: 'npm',
+  pm: 'pnpm',
   root: cwd(),
   dir: cwd(),
   replacement: {
@@ -130,7 +39,7 @@ export async function updateTemplateAssets(options: {
   let pkgDataRaw = ''
   const { dir, name, pm, root, replacement, dotProps } = options
   const pkgPath = resolve(dir, 'package.json')
-  const pkgVersion = await latestVersion(pm)
+  const pkgVersion = await latestVersion(pm!)
   if (!existsSync(pkgPath)) {
     const json = {}
     if (!hasProperty(json, 'name')) {
@@ -175,7 +84,10 @@ export async function updateTemplateAssets(options: {
   const pkgData = JSON.parse(pkgDataRaw)
 
   setProperty(pkgData, 'name', name)
-  setProperty(pkgData, 'packageManager', pm.concat(`@${pkgVersion}`))
+  setProperty(pkgData, 'packageManager', pm?.concat(`@${pkgVersion}`))
+
+  if (dir.match('packages'))
+    setProperty(pkgData, 'size-limit', '1024 B')
 
   if (dotProps) {
     for (const [key, value] of Object.entries(dotProps))
@@ -200,7 +112,6 @@ export async function execute(params: {
 }) {
   const { f, showOutput, showSpinner, title, isSubProcess } = params
 
-  consola.log('Here', isSubProcess, f instanceof String)
   if (isSubProcess || f instanceof String) {
     await shell(f.toString(), [])
   }
@@ -226,9 +137,18 @@ export async function execute(params: {
   }
 }
 
-export function stackNotes(path: string, isInstalled: boolean = false, pm: string = 'pnpm', showNote: boolean = true) {
-  if (showNote)
-    consola.box(`cd ${path.replace(`${join(cwd(), '..', '..')}${sep}`, '')}\n${isInstalled ? `${pm.toLowerCase()} dev` : `${pm.toLowerCase()} install\n${pm.toLowerCase()} dev`}`)
+export function stackNotes(opts: {
+  path?: string
+  isInstalled?: boolean
+  pm?: string
+  showNote?: boolean
+} = {
+  isInstalled: false,
+  pm: 'pnpm',
+  showNote: true,
+}) {
+  if (opts.showNote)
+    consola.box(`cd ${(opts.path ?? cwd()).replace(`${join(cwd(), '..', '..')}${sep}`, '')}\n${opts.isInstalled ? `${opts.pm?.toLowerCase()} dev` : `${opts.pm?.toLowerCase()} install\n${opts.pm?.toLowerCase()} dev`}`)
 }
 
 export async function downloadTemplate(options: {
