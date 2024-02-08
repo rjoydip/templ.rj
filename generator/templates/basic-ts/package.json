@@ -36,7 +36,6 @@
     "test": "vitest run"
   },
   "devDependencies": {
-    "@templ/config": "workspace:*",
     "@templ/tsconfig": "workspace:*",
     "@types/node": "^20.11.16",
     "@vitest/coverage-v8": "^1.2.2",

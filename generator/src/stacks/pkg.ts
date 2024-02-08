@@ -1,17 +1,13 @@
 import { cwd } from 'node:process'
 import { cp } from 'node:fs/promises'
-import { basename, join, resolve } from 'node:path'
+import { basename, resolve } from 'node:path'
 import consola from 'consola'
 import { colors } from 'consola/utils'
-import { installDependencies } from 'nypm'
-import type { PM } from '../utils'
-import { downloadTemplate, getPkgManagers, hasDryRun, stackNotes, updateTemplateAssets } from '../utils'
+import { downloadTemplate, hasDryRun, stackNotes, updateTemplateAssets } from '../utils'
 
 interface PkgOptsType {
   path: string
   template: string
-  pm: PM
-  install: boolean
   remote: {
     repo: string
   }
@@ -22,7 +18,7 @@ interface PkgOptsType {
 }
 
 export async function run() {
-  const root = resolve(cwd(), '..', '..')
+  const root = resolve(cwd(), '..')
   const pkgOpts: PkgOptsType = {
     path: '',
     template: '',
@@ -33,18 +29,16 @@ export async function run() {
       name: '',
       language: 'ts',
     },
-    pm: 'npm',
-    install: true,
   }
 
-  pkgOpts.path = await consola.prompt(`Where should we generate your ${colors.cyan(pkgOpts.local.name)}?`, {
+  pkgOpts.path = await consola.prompt(`Where should we generate your package?`, {
     type: 'text',
     initial: pkgOpts.path,
     default: pkgOpts.path,
     placeholder: pkgOpts.path,
   })
 
-  pkgOpts.template = await consola.prompt(`Select a ${colors.cyan(pkgOpts.local.name)} tyoe.`, {
+  pkgOpts.template = await consola.prompt(`Select a package type.`, {
     type: 'select',
     options: [
       'Remote',
@@ -69,7 +63,7 @@ export async function run() {
 
     pkgOpts.local.language = language ? 'ts' : 'js'
 
-    pkgOpts.local.name = await consola.prompt(`What is your ${colors.cyan(pkgOpts.local.name)} name?`, {
+    pkgOpts.local.name = await consola.prompt(`What is your package name?`, {
       type: 'text',
       default: pkgOpts.local.name,
       placeholder: pkgOpts.local.name,
@@ -77,23 +71,12 @@ export async function run() {
     })
   }
 
-  pkgOpts.pm = await consola.prompt('Select package manager.', {
-    type: 'select',
-    options: (await getPkgManagers()).map((pm: string) => pm.toUpperCase()),
-    initial: pkgOpts.pm,
-  }) as PM
-
-  pkgOpts.install = await consola.prompt('Do you want to install dependencies?', {
-    type: 'confirm',
-    initial: true,
-  })
-
   if (hasDryRun()) {
     consola.box(pkgOpts)
     return
   }
 
-  const { template, path, remote, pm, install, local } = pkgOpts
+  const { template, path, remote, local } = pkgOpts
 
   if (template === 'Remote') {
     consola.start(`\nCreating ${colors.cyan(basename(remote.repo))} package\n`)
@@ -103,23 +86,23 @@ export async function run() {
       repo: remote.repo,
       dtOps: {
         dir,
-        install,
+        install: false,
       },
     })
     consola.success(`Generated ${colors.cyan(basename(remote.repo))} package`)
-    stackNotes(dir, install, pm)
+    stackNotes({ path: dir })
   }
 
   if (template === 'Local') {
     consola.start(`\nCreating ${colors.cyan(local.name)} package\n`)
     const dir = resolve(root, path, local.name)
-    await cp(resolve(join('..', '..'), 'templates', `basic-${local.language}`), dir, {
+    await cp(resolve('.', 'templates', `basic-${local.language}`), dir, {
       recursive: true,
       force: true,
     })
     await updateTemplateAssets({
       name: `@templ/${local.name}`,
-      pm,
+      pm: 'pnpm',
       root,
       dir,
       replacement: {
@@ -127,19 +110,9 @@ export async function run() {
         to: local.name,
       },
     })
-    if (install) {
-      await installDependencies({
-        cwd: dir,
-        packageManager: {
-          name: pm as PM,
-          command: pm === 'npm' ? 'npm install' : `${pm}`,
-        },
-        silent: true,
-      })
-    }
 
     consola.success(`Generated ${colors.cyan(local.name)} package`)
-    stackNotes(dir, install, pm)
+    stackNotes({ path: dir })
   }
 }
 

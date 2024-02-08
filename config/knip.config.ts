@@ -1,9 +1,6 @@
 import type { KnipConfig } from 'knip'
 
 const config: KnipConfig = {
-  'rules': {
-    files: 'warn',
-  },
   'ignore': ['**/test/**', '**/templates/**'],
   'ignoreDependencies': ['react-dom', '@types/react-dom'],
   'ignoreBinaries': ['templ-cli'],
@@ -13,6 +10,7 @@ const config: KnipConfig = {
     },
     'config/*': {
       entry: ['src/**/.ts', '*.shared.js'],
+      ignore: ['**/{env,flag}/**'],
     },
     'packages/*': {
       entry: ['src/**/.{ts,tsx}'],

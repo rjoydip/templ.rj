@@ -4,12 +4,9 @@ import { resolve, sep } from 'node:path'
 import latestVersion from 'latest-version'
 import consola from 'consola'
 import { colors } from 'consola/utils'
-import type { PM } from '../utils'
-import { downloadTemplate, getPkgManagers, hasDryRun, stackNotes, updateTemplateAssets } from '../utils'
+import { downloadTemplate, hasDryRun, stackNotes, updateTemplateAssets } from '../utils'
 
 interface DocOptsType {
-  pm: PM
-  install: boolean
   Docusaurus: {
     name: string
     path: string
@@ -32,8 +29,6 @@ export async function run() {
   const root = resolve(cwd(), '..')
   const docOpts: DocOptsType = {
     tools: 'Nextra',
-    pm: 'npm',
-    install: true,
     Docusaurus: {
       name: 'docs',
       path: './docs',
@@ -108,22 +103,11 @@ export async function run() {
     docOpts[tools].language = lang ? 'typescript' : ''
   }
 
-  docOpts.pm = await consola.prompt('Select package manager.', {
-    type: 'select',
-    options: (await getPkgManagers()).map((pm: string) => pm.toUpperCase()),
-    initial: docOpts.pm,
-  }) as PM
-
-  docOpts.install = await consola.prompt('Do you want to install dependencies?', {
-    type: 'confirm',
-    initial: true,
-  })
-
   if (hasDryRun()) {
     consola.box(docOpts)
   }
   else {
-    const { tools, Docusaurus, Mintlify, Nextra, pm, install } = docOpts
+    const { tools, Docusaurus, Mintlify, Nextra } = docOpts
 
     if (tools === 'Docusaurus') {
       const { name, language, path } = Docusaurus
@@ -135,20 +119,19 @@ export async function run() {
         repo: `github:facebook/docusaurus/generate-docusaurus/templates/${(language === 'ts' ? 'classic-typescript' : 'classic')}`,
         dtOps: {
           dir,
-          install,
+          install: false,
         },
       })
 
       await updateTemplateAssets({
         name: `@templ/${name}`,
-        pm,
         root,
         dir,
       })
 
       consola.success(`Generated ${colors.cyan(type.toString())} documentation`)
 
-      stackNotes(dir, install, pm)
+      stackNotes({ path: dir })
     }
 
     if (tools === 'Mintlify') {
@@ -161,7 +144,7 @@ export async function run() {
         repo: 'github:mintlify/starter',
         dtOps: {
           dir,
-          install,
+          install: false,
         },
       })
 
@@ -169,7 +152,6 @@ export async function run() {
 
       await updateTemplateAssets({
         name: `@templ/${name}`,
-        pm,
         root,
         dir,
         dotProps: {
@@ -184,7 +166,7 @@ export async function run() {
 
       consola.success(`Generated ${colors.cyan(type.toString())} documentation`)
 
-      stackNotes(dir, install, pm)
+      stackNotes({ path: dir })
     }
 
     if (tools === 'Nextra') {
@@ -198,20 +180,19 @@ export async function run() {
         repo: `github:shuding/nextra/examples/${themeName}`,
         dtOps: {
           dir,
-          install,
+          install: false,
         },
       })
 
       await updateTemplateAssets({
         name: `@templ/${name}`,
-        pm,
         root,
         dir,
       })
 
       consola.success(`Generated ${colors.cyan(type.toString())} documentation`)
 
-      stackNotes(dir, install, pm)
+      stackNotes({ path: dir })
     }
   }
 

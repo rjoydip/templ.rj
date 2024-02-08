@@ -6,14 +6,10 @@ import { resolve, sep } from 'node:path'
 import { startShell } from 'giget'
 import { colors } from 'consola/utils'
 import consola from 'consola'
-import { installDependencies } from 'nypm'
-import type { PM } from '../utils'
-import { capitalize, downloadTemplate, execute, getPkgManagers, hasDryRun, stackNotes, updateTemplateAssets } from '../utils'
+import { capitalize, downloadTemplate, execute, hasDryRun, stackNotes, updateTemplateAssets } from '../utils'
 
 interface AppOptsType {
   type: string
-  pm: PM
-  install: boolean
   astro: {
     name: string
     path: string
@@ -144,8 +140,6 @@ export async function run() {
       eslint: false,
       prettier: false,
     },
-    pm: 'npm',
-    install: true,
   }
 
   appOpts.type = await consola.prompt('Select frontend framework.', {
@@ -389,23 +383,12 @@ export async function run() {
     })
   }
 
-  appOpts.pm = await consola.prompt('Select package manager.', {
-    type: 'select',
-    options: (await getPkgManagers()).map((pm: string) => pm.toUpperCase()),
-    initial: appOpts.pm,
-  }) as PM
-
-  appOpts.install = await consola.prompt('Do you want to install dependencies?', {
-    type: 'confirm',
-    initial: true,
-  })
-
   if (hasDryRun()) {
     consola.box(appOpts)
     return
   }
 
-  const { astro, next, nuxt, install, pm, type } = appOpts
+  const { astro, next, nuxt, type } = appOpts
 
   if (type === 'Astro') {
     const { name, path, template_name, template_path } = astro
@@ -422,22 +405,10 @@ export async function run() {
       name: `@templ/${name}`,
       root,
       dir,
-      pm,
     })
 
-    if (install) {
-      await installDependencies({
-        cwd: dir,
-        packageManager: {
-          name: pm as PM,
-          command: pm === 'npm' ? 'npm install' : `${pm}`,
-        },
-        silent: true,
-      })
-    }
-
     consola.success(`Generated ${colors.cyan(type.toLowerCase())} application`)
-    stackNotes(dir, install, pm, false)
+    stackNotes({ path: dir, showNote: false })
   }
 
   if (type === 'Next') {
@@ -455,21 +426,11 @@ export async function run() {
       name: `@templ/${name}`,
       root,
       dir,
-      pm,
+      pm: 'pnpm',
     })
 
-    if (install) {
-      await installDependencies({
-        cwd: dir,
-        packageManager: {
-          name: pm as PM,
-          command: pm === 'npm' ? 'npm install' : `${pm}`,
-        },
-        silent: true,
-      })
-    }
     consola.success(`Generated ${colors.cyan(type.toLowerCase())} application`)
-    stackNotes(dir, install, pm)
+    stackNotes({ path: dir })
   }
 
   if (type === 'Nuxt') {
@@ -485,7 +446,7 @@ export async function run() {
         repo: nuxtOptions[nuxtTemplIndex]?.value ?? 'v3',
         dtOps: {
           dir,
-          install,
+          install: false,
           registry: 'https://raw.githubusercontent.com/nuxt/starter/templates/templates',
         },
       })
@@ -494,7 +455,6 @@ export async function run() {
         name: `@templ/${name}`,
         root,
         dir,
-        pm,
       })
 
       if (gitInit) {
@@ -510,7 +470,7 @@ export async function run() {
         startShell(dir)
 
       consola.success(`Generated ${colors.cyan(type.toLowerCase())} application`)
-      stackNotes(dir, install, pm, false)
+      stackNotes({ path: dir, showNote: false })
     }
     else {
       consola.error('Invalid template options')

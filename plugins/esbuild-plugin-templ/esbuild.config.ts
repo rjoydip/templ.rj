@@ -1,3 +1,4 @@
+/* v8 ignore start */
 import { argv } from 'node:process'
 import * as esbuild from 'esbuild'
 import type { BuildOptions } from 'esbuild'
@@ -23,3 +24,4 @@ if (argv.slice(2).includes('--watch')) {
 else {
   await esbuild.build(config)
 }
+/* v8 ignore end */
