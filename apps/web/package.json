@@ -1,7 +1,23 @@
 {
   "name": "@templ/web",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "private": true,
+  "packageManager": "pnpm@8.15.1",
+  "description": "UI",
+  "license": "MIT",
+  "homepage": "https://github.com/rjoydip/templ/tree/main/apps/web#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rjoydip/templ.git",
+    "directory": "apps/web"
+  },
+  "bugs": {
+    "url": "https://github.com/rjoydip/templ/issues"
+  },
+  "engines": {
+    "node": "^18.8.0 || >=20.6.0",
+    "npm": ">=8"
+  },
   "scripts": {
     "dev": "next dev --port=3001",
     "build": "next build",
@@ -14,8 +30,7 @@
     "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache"
   },
   "dependencies": {
-    "@radix-ui/react-slot": "^1.0.2",
-    "class-variance-authority": "^0.7.0",
+    "@templ/ui": "workspace:*",
     "clsx": "^2.1.0",
     "lucide-react": "0.323.0",
     "next": "^14.1.0",
