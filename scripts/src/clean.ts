@@ -3,12 +3,12 @@ import consola from 'consola'
 import { colors } from 'consola/utils'
 import { deleteAsync } from 'del'
 import { splitByCase } from 'scule'
-import { hasDryRun, ignorePatterns, root } from '../utils'
+import { hasDryRun, ignorePatterns, root } from './utils'
 
 export async function run() {
   let deletedPaths: string[] = []
 
-  deletedPaths = await deleteAsync(['**/dist/**', '**/temp/**', '**/coverage/**'], {
+  deletedPaths = await deleteAsync(['**/.next/**', '**/.turbo/**', '**/dist/**', '**/temp/**', '**/coverage/**'], {
     ignore: ignorePatterns,
     cwd: root,
     dryRun: hasDryRun(),

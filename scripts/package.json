@@ -20,7 +20,7 @@
     "npm": ">=8"
   },
   "scripts": {
-    "clean": "tsx ./src/clean/others.ts && tsx ./src/clean/turbo.ts",
+    "clean": "tsx ./src/clean.ts",
     "build:check": "nr build:folder-count && nr build:size-limit && nr build:size-report",
     "build:folder-count": "tsx ./src/build/folder-count.ts",
     "build:size-limit": "tsx ./src/build/size-limit.ts",
