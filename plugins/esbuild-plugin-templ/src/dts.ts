@@ -1,5 +1,6 @@
 import { cwd } from 'node:process'
 import { parse, resolve } from 'node:path'
+import { format } from '@lukeed/ms'
 import type { PartialMessage, PluginBuild } from 'esbuild'
 import ts from 'typescript'
 import consola from 'consola'
@@ -133,7 +134,7 @@ export function dts(opts: DTSOptions = {
 
         consola.info(
           colors.green(`Finished compiling declarations in ${
-              Date.now() - startTime
+            format(Date.now() - startTime)
           }ms`),
         )
 

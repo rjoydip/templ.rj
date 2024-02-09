@@ -1,23 +1,22 @@
 import type { KnipConfig } from 'knip'
 
 const config: KnipConfig = {
-  'ignore': ['**/test/**', '**/templates/**'],
-  'ignoreDependencies': ['react-dom', '@types/react-dom'],
+  'ignore': ['**/templates/**'],
   'ignoreBinaries': ['templ-cli'],
   'workspaces': {
     '.': {
       entry: ['config/vitest.shared.js'],
     },
     'config/*': {
-      entry: ['src/**/.ts', '*.shared.js'],
+      entry: ['src/**/*.ts', '*.shared.js'],
       ignore: ['**/{env,flag}/**'],
     },
     'packages/*': {
-      entry: ['src/**/.{ts,tsx}', 'test/**/.test.{ts,tsx}', '**/*.load.ts'],
-      ignore: ['**/{app,main}.tsx'],
+      entry: ['src/**/*.{ts,tsx}', 'test/**/*.test.{ts,tsx}', '**/*.load.ts'],
+      ignore: ['**/test/**'],
     },
     'apps/*': {
-      entry: ['src/**/.{ts,tsx}', 'test/**/.test.{ts,tsx}'],
+      entry: ['src/**/*.{ts,tsx}', 'test/**/*.test.{ts,tsx}'],
     },
   },
   'eslint': {
