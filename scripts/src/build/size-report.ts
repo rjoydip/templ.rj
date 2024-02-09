@@ -21,6 +21,7 @@ export interface Preset {
 }
 
 interface SizeResult {
+  name: string
   size: number
   gzip: number
   brotli: number
@@ -41,8 +42,15 @@ const gzipAsync = promisify(gzip)
 const brotliAsync = promisify(brotliCompress)
 
 const tasks: ReturnType<typeof generateBundle>[] = []
-
-export async function generateData(presets: Preset[]) {
+/**
+ * Asynchronously generates data based on the given presets.
+ *
+ * @param {Preset[]} presets - an array of presets
+ * @return {Promise<{[k: string]: {name: string; size: number; gzip: number; brotli: number;}}>} a promise that resolves to an object containing the generated data
+ */
+export async function generateData(presets: Preset[]): Promise<{
+  [k: string]: SizeResult
+}> {
   for (const preset of presets)
     tasks.push(generateBundle(preset))
 
@@ -51,8 +59,18 @@ export async function generateData(presets: Preset[]) {
   )
   return results
 }
-
-async function generateBundle(preset: Preset) {
+/**
+ * Async function to generate a bundle based on the given preset.
+ *
+ * @param {Preset} preset - the preset object used to generate the bundle
+ * @return {Promise<{ name: string, size: number, gzip: number, brotli: number }>} an object containing the name, size, gzip, and brotli of the generated bundle
+ */
+async function generateBundle(preset: Preset): Promise<{
+  name: string
+  size: number
+  gzip: number
+  brotli: number
+}> {
   const id = 'virtual:entry'
   const content = `export ${
     typeof preset.imports === 'string'
@@ -102,14 +120,25 @@ async function generateBundle(preset: Preset) {
     brotli,
   }
 }
-
+/**
+ * Asynchronously imports a JSON file from the specified path.
+ *
+ * @param {string} path - The path to the JSON file.
+ * @return {Promise<T | undefined>} The imported JSON data, or undefined if the file does not exist.
+ */
 async function importJSON<T>(path: string): Promise<T | undefined> {
   if (!existsSync(path))
     return undefined
   return (await import(platform() === 'win32' ? pathToFileURL(path).href : path, { assert: { type: 'json' } })).default
 }
-
-function getDiff(curr: number, prev?: number) {
+/**
+ * Calculates the difference between the current and previous number and returns a formatted string indicating the sign and magnitude of the difference.
+ *
+ * @param {number} curr - The current number
+ * @param {number} [prev] - The previous number (optional)
+ * @return {string} formatted string indicating the sign and magnitude of the difference
+ */
+function getDiff(curr: number, prev?: number): string {
   if (prev === undefined)
     return ''
   const diff = curr - prev
@@ -118,8 +147,12 @@ function getDiff(curr: number, prev?: number) {
   const sign = diff > 0 ? '+' : ''
   return ` (**${sign ?? '-'}${prettyBytes(diff) ?? 0}**)`
 }
-
-export async function renderBundles() {
+/**
+ * Renders the bundles and returns a 2D array containing information about the bundles.
+ *
+ * @return {Promise<string[][]>} a 2D array containing information about the bundles
+ */
+export async function renderBundles(): Promise<string[][]> {
   const filterFiles = (files: string[]) => files.filter(file => !file.startsWith('_'))
 
   const curr = filterFiles(await readdir(currDir))
@@ -150,8 +183,12 @@ export async function renderBundles() {
 
   return [['Bundles', '', '', ''], ['Entry', ...sizeHeaders], ...rows]
 }
-
-export async function renderPackages() {
+/**
+ * Render the packages and return a 2D array containing package data.
+ *
+ * @return {Promise<string[][]>} 2D array containing package data
+ */
+export async function renderPackages(): Promise<string[][]> {
   const curr = (await importJSON<PackageResult>(
     resolve(currDir, '_packages.json'),
   )) || {}
@@ -177,8 +214,13 @@ export async function renderPackages() {
 
   return [['Packages', '', '', ''], ['Name', ...sizeHeaders], ...data]
 }
-
-export async function sizeReportRenderer(dir: string = resolve(root, 'artifacts')) {
+/**
+ * This function renders a size report for the given directory.
+ *
+ * @param {string} dir - the directory to render the report for (default: resolved 'artifacts' directory)
+ * @return {Promise<void>} a promise that resolves when the size report has been rendered
+ */
+export async function sizeReportRenderer(dir: string = resolve(root, 'artifacts')): Promise<void> {
   const packages = await getPackagesAsync()
 
   const tempDir = `${dir}/temp`
@@ -257,8 +299,12 @@ export async function sizeReportRenderer(dir: string = resolve(root, 'artifacts'
 
   consola.box(output)
 }
-
-export async function run() {
+/**
+ * Run the function asynchronously and await the size report renderer.
+ *
+ * @returns {Promise<void>} A promise that resolves when the function completes execution.
+ */
+export async function run(): Promise<void> {
   await sizeReportRenderer()
 }
 

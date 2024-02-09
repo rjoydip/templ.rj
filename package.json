@@ -32,7 +32,7 @@
     "build": "nr clean && turbo run build && nr build:check",
     "clean": "nr -C scripts clean",
     "build:check": "nr -C scripts build:check",
-    "commit": "nr all && better-commits",
+    "commit": "pnpm i && nr all && better-commits",
     "deps:update": "taze -r -w -i -f -l",
     "lint": "turbo run lint && eslint . && nr knip",
     "knip": "knip -c ./config/knip.config.ts",

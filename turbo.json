@@ -3,13 +3,13 @@
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**"],
-      "inputs": ["src/**/*.ts"]
+      "outputs": ["dist/**", ".next/**"],
+      "inputs": ["src/**/*.{ts,tsx}"]
     },
     "test": {
       "dependsOn": ["^build", "^test"],
       "outputs": ["coverage/**"],
-      "inputs": ["test/**/*.test.ts"]
+      "inputs": ["test/**/*.test.{ts,tsx}"]
     },
     "dev": {
       "dependsOn": ["^build"],
