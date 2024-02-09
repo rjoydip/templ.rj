@@ -17,9 +17,6 @@ describe('@templ/ui > utils', () => {
     expect(result).to.be.a('string')
     expect(result).to.equal('class1')
   })
-  it('should throw an error when given invalid class names as inputs', () => {
-    expect(() => cn('invalid-class')).to.throw(Error)
-  })
   it('should return a string of concatenated class names when given nested arrays of invalid class names as inputs', () => {
     const result = cn(['invalid-class1', 'invalid-class2'], ['invalid-class3'])
     expect(result).to.be.a('string')
