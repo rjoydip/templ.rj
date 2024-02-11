@@ -46,7 +46,7 @@
     "@changesets/cli": "^2.27.1",
     "better-commits": "^1.11.0",
     "eslint": "^8.56.0",
-    "knip": "^4.5.0",
+    "knip": "^5.0.0",
     "pnpm": "^8.15.1",
     "taze": "^0.13.3",
     "turbo": "^1.12.3"
