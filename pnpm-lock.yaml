@@ -93,8 +93,8 @@ importers:
         specifier: ^2.1.0
         version: 2.1.0
       lucide-react:
-        specifier: 0.323.0
-        version: 0.323.0(react@18.2.0)
+        specifier: 0.325.0
+        version: 0.325.0(react@18.2.0)
       next:
         specifier: ^14.1.0
         version: 14.1.0(@babel/core@7.23.9)(react-dom@18.2.0)(react@18.2.0)
@@ -174,16 +174,16 @@ importers:
         version: 1.7.0
       '@hono/zod-openapi':
         specifier: ^0.9.6
-        version: 0.9.6(hono@3.12.12)(zod@3.22.4)
+        version: 0.9.6(hono@4.0.1)(zod@3.22.4)
       '@scalar/hono-api-reference':
         specifier: ^0.3.47
-        version: 0.3.47(hono@3.12.12)(nanoid@5.0.4)(postcss@8.4.35)(typescript@5.3.3)(unified@11.0.4)(vue@3.4.15)(yjs@13.6.11)
+        version: 0.3.47(hono@4.0.1)(nanoid@5.0.4)(postcss@8.4.35)(typescript@5.3.3)(unified@11.0.4)(vue@3.4.15)(yjs@13.6.11)
       consola:
         specifier: ^3.2.3
         version: 3.2.3
       hono:
-        specifier: ^3.12.12
-        version: 3.12.12
+        specifier: ^4.0.1
+        version: 4.0.1
     devDependencies:
       '@templ/config':
         specifier: workspace:*
@@ -523,8 +523,8 @@ importers:
         specifier: ^14.0.1
         version: 14.0.1
       lucide-react:
-        specifier: 0.323.0
-        version: 0.323.0(react@18.2.0)
+        specifier: 0.325.0
+        version: 0.325.0(react@18.2.0)
       storybook:
         specifier: ^7.6.14
         version: 7.6.14
@@ -3182,7 +3182,7 @@ packages:
     engines: {node: '>=18.14.1'}
     dev: false
 
-  /@hono/zod-openapi@0.9.6(hono@3.12.12)(zod@3.22.4):
+  /@hono/zod-openapi@0.9.6(hono@4.0.1)(zod@3.22.4):
     resolution: {integrity: sha512-MLF8xpd4fEwbEaylFqAt1qci4wOTXu3oq3BKb01trccapYfodP50VCO0YDNBQTyMT/Iapq6GMO4+RAIFBgG5WQ==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
@@ -3190,18 +3190,18 @@ packages:
       zod: 3.*
     dependencies:
       '@asteasolutions/zod-to-openapi': 5.5.0(zod@3.22.4)
-      '@hono/zod-validator': 0.1.11(hono@3.12.12)(zod@3.22.4)
-      hono: 3.12.12
+      '@hono/zod-validator': 0.1.11(hono@4.0.1)(zod@3.22.4)
+      hono: 4.0.1
       zod: 3.22.4
     dev: false
 
-  /@hono/zod-validator@0.1.11(hono@3.12.12)(zod@3.22.4):
+  /@hono/zod-validator@0.1.11(hono@4.0.1)(zod@3.22.4):
     resolution: {integrity: sha512-PQXeHUP0+36qpRt8yfeD7N2jbK3ETlGvSN6dMof/HwUC/APRokQRjpXZm4rrlG71Ft0aWE01+Bm4XejqPie5Uw==}
     peerDependencies:
       hono: '>=3.9.0'
       zod: ^3.19.1
     dependencies:
-      hono: 3.12.12
+      hono: 4.0.1
       zod: 3.22.4
     dev: false
 
@@ -5608,14 +5608,14 @@ packages:
       - typescript
     dev: false
 
-  /@scalar/hono-api-reference@0.3.47(hono@3.12.12)(nanoid@5.0.4)(postcss@8.4.35)(typescript@5.3.3)(unified@11.0.4)(vue@3.4.15)(yjs@13.6.11):
+  /@scalar/hono-api-reference@0.3.47(hono@4.0.1)(nanoid@5.0.4)(postcss@8.4.35)(typescript@5.3.3)(unified@11.0.4)(vue@3.4.15)(yjs@13.6.11):
     resolution: {integrity: sha512-8jrjuZrF1MH6JMyw8MUsXpf++4pl0syQ6MnHa8EpnxMi/w6pWLqYpOnrlkdjkS0sru8G9sGXHxMwysBC3Uowjw==}
     engines: {node: '>=18'}
     peerDependencies:
       hono: ^3.0.0
     dependencies:
       '@scalar/api-reference': 1.15.5(nanoid@5.0.4)(postcss@8.4.35)(typescript@5.3.3)(unified@11.0.4)(vue@3.4.15)(yjs@13.6.11)
-      hono: 3.12.12
+      hono: 4.0.1
     transitivePeerDependencies:
       - '@vue/composition-api'
       - debug
@@ -10671,8 +10671,8 @@ packages:
     engines: {node: '>=12.0.0'}
     dev: false
 
-  /hono@3.12.12:
-    resolution: {integrity: sha512-5IAMJOXfpA5nT+K0MNjClchzz0IhBHs2Szl7WFAhrFOsbtQsYmNynFyJRg/a3IPsmCfxcrf8txUGiNShXpK5Rg==}
+  /hono@4.0.1:
+    resolution: {integrity: sha512-S9cREGPJIAK437RhroOf1PGlJPIlt5itl69OmQ6onPLo5pdCbSHGL8v4uAKxrdHjcTyuoyvKPqWm5jv0dGkdFA==}
     engines: {node: '>=16.0.0'}
     dev: false
 
@@ -11768,8 +11768,8 @@ packages:
     dependencies:
       yallist: 4.0.0
 
-  /lucide-react@0.323.0(react@18.2.0):
-    resolution: {integrity: sha512-rTXZFILl2Y4d1SG9p1Mdcf17AcPvPvpc/egFIzUrp7IUy60MUQo3Oi1mu8LGYXUVwuRZYsSMt3csHRW5mAovJg==}
+  /lucide-react@0.325.0(react@18.2.0):
+    resolution: {integrity: sha512-/H6IPtPMQUwXjHTFylCYBq/j8J3AJKG5Uil3mcm1E58wKkCfoKVzJH7toZU3U20wJrL7dP51dNX3yLgAPod+qQ==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0
     dependencies:
