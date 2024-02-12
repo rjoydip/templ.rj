@@ -41,7 +41,7 @@
     "@types/node": "^20.11.17",
     "@vitest/coverage-v8": "^1.2.2",
     "esbuild": "^0.20.0",
-    "tsx": "^4.7.0",
+    "tsx": "^4.7.1",
     "vitest": "^1.2.2"
   }
 }
