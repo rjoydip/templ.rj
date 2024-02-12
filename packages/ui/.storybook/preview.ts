@@ -1,7 +1,7 @@
 import type { Preview } from '@storybook/react'
 import { withThemeByDataAttribute } from '@storybook/addon-themes'
 
-import '../src/styles/tailwind.css'
+import '../styles/global.css'
 
 export const decorators = [
   withThemeByDataAttribute({
@@ -16,6 +16,7 @@ export const decorators = [
 
 export const preview: Preview = {
   parameters: {
+    actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
       matchers: {
         color: /(background|color)$/i,

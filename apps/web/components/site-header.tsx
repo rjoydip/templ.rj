@@ -1,6 +1,8 @@
+'use client'
+
 import Link from 'next/link'
 
-import { buttonVariants } from '@templ/ui'
+import { buttonVariants } from '@templ/ui/registry'
 import { siteConfig } from '@/config/site'
 import { Icons } from '@/components/icons'
 import { MainNav } from '@/components/main-nav'

@@ -13,7 +13,7 @@ const config: KnipConfig = {
     },
     'packages/*': {
       entry: ['src/**/*.{ts,tsx}', 'test/**/*.test.{ts,tsx}', '**/*.load.ts'],
-      ignore: ['**/test/**'],
+      ignore: ['**/test/**', '**/*.story.{ts,tsx}'],
     },
     'apps/*': {
       entry: ['src/**/*.{ts,tsx}', 'test/**/*.test.{ts,tsx}'],
@@ -68,6 +68,14 @@ const config: KnipConfig = {
   },
   'postcss': {
     config: ['postcss.config.{cjs,js}', 'postcss.config.json', 'package.json'],
+  },
+  'storybook': {
+    config: ['.storybook/{main,test-runner}.{js,ts}'],
+    entry: [
+      '.storybook/{manager,preview}.{js,jsx,ts,tsx}',
+      '**/*.@(mdx|stories.@(mdx|js|jsx|mjs|ts|tsx))',
+    ],
+    project: ['.storybook/**/*.{js,jsx,ts,tsx}'],
   },
   'tailwind': {
     config: ['tailwind.config.{js,cjs,mjs,ts}'],

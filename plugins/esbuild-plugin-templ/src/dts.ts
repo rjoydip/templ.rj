@@ -135,7 +135,7 @@ export function dts(opts: DTSOptions = {
         consola.info(
           colors.green(`Finished compiling declarations in ${
             format(Date.now() - startTime)
-          }ms`),
+          }`),
         )
 
         return {

@@ -1,7 +1,14 @@
 {
   "extends": "@templ/tsconfig/react.json",
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    },
     "noEmit": false
   },
-  "include": ["src", "index.ts"]
+  "include": [
+    "**/*.ts",
+    "**/*.tsx"
+  ]
 }
