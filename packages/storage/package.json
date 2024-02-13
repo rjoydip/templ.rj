@@ -1,16 +1,16 @@
 {
-  "name": "@templ/esbuild-plugin-templ",
+  "name": "@templ/storage",
   "type": "module",
   "version": "0.0.1",
   "private": true,
   "packageManager": "pnpm@8.15.2",
-  "description": "esbuild-plugin-templ",
+  "description": "basic-ts",
   "license": "MIT",
-  "homepage": "https://github.com/rjoydip/templ/tree/main/plugins/esbuild-plugin-templ#readme",
+  "homepage": "https://github.com/rjoydip/templ/tree/main/packages/basic-ts#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rjoydip/templ.git",
-    "directory": "plugins/esbuild-plugin-templ"
+    "directory": "packages/basic-ts"
   },
   "bugs": {
     "url": "https://github.com/rjoydip/templ/issues"
@@ -31,17 +31,23 @@
     "npm": ">=8"
   },
   "scripts": {
-    "build": "tsx ./esbuild.config.ts"
+    "build": "tsx esbuild.config.ts",
+    "dev": "tsx esbuild.config.ts --watch",
+    "test": "vitest run"
   },
   "dependencies": {
-    "@lukeed/ms": "^2.0.2",
-    "consola": "^3.2.3",
-    "esbuild": "^0.20.0",
-    "typescript": "^5.3.3"
+    "salteen": "^1.0.0",
+    "unstorage": "^1.10.1",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@templ/config": "workspace:*",
     "@templ/tsconfig": "workspace:*",
     "@types/node": "^20.11.17",
-    "tsx": "^4.7.1"
-  }
+    "@vitest/coverage-v8": "^1.2.2",
+    "esbuild": "^0.20.0",
+    "tsx": "^4.7.1",
+    "vitest": "^1.2.2"
+  },
+  "size-limit": "1.2 KB"
 }

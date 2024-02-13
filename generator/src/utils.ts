@@ -6,6 +6,7 @@ import { tmpdir } from 'node:os'
 import consola from 'consola'
 import { hasProperty, setProperty } from 'dot-prop'
 import latestVersion from 'latest-version'
+import replaceString from 'replace-string'
 import type { DownloadTemplateOptions } from 'giget'
 import { downloadTemplate as dt } from 'giget'
 import { shell } from './shell'
@@ -77,8 +78,13 @@ export async function updateTemplateAssets(options: {
   if (replacement && (hasProperty(replacement, 'from') && hasProperty(replacement, 'to')) && (!!replacement.from && !!replacement.to)) {
     const readmePath = resolve(dir, 'README.md')
     const readmeData = await readFile(readmePath, { encoding: 'utf8' })
-    await writeFile(readmePath, readmeData.replace(replacement.from, replacement.to))
-    pkgDataRaw = pkgDataRaw.replace(replacement.from, replacement.to)
+    await writeFile(readmePath, replaceString(readmeData, replacement.from, replacement.to))
+
+    const changelogPath = resolve(dir, 'CHANGELOG.md')
+    const changelogData = await readFile(changelogPath, { encoding: 'utf8' })
+    await writeFile(changelogPath, replaceString(changelogData, replacement.from, replacement.to))
+
+    pkgDataRaw = replaceString(pkgDataRaw, replacement.from, replacement.to)
   }
 
   const pkgData = JSON.parse(pkgDataRaw)
