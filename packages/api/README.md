@@ -27,9 +27,6 @@ bunx @templ/api@0.0.1 .
 # ✨ Auto-detect
 npx nypm i @templ/api@^0.0.1
 
-# ✨ Auto-detect
-npx nypm i @templ/api@^0.0.1
-
 # npm
 npm install @templ/api@^0.0.1
 
@@ -54,5 +51,8 @@ Open file in browser
 ```sh
 open http://localhost:3000
 ```
+
+<!-- automd:jsdocs src="./src/index" -->
+<!-- /automd -->
 
 [GitHub](https://github.com/rjoydip/templ/tree/main/apps/api)
