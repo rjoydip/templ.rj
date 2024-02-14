@@ -3,6 +3,11 @@ import consola from 'consola'
 import { colors } from 'consola/utils'
 import app from './app'
 
+/**
+ * Asynchronous function to run the server and handle SIGINT signal.
+ *
+ * @return {Promise<void>} This function does not return anything.
+ */
 async function run() {
   const server = serve({
     fetch: app.fetch,

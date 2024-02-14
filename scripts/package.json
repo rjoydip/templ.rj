@@ -20,6 +20,7 @@
     "npm": ">=8"
   },
   "scripts": {
+    "automd": "tsx ./src/update/automd.ts",
     "clean": "tsx ./src/clean.ts",
     "build:check": "nr build:folder-count && nr build:size-limit && nr build:size-report",
     "build:folder-count": "tsx ./src/build/folder-count.ts",
@@ -27,10 +28,11 @@
     "build:size-report": "tsx ./src/build/size-report.ts",
     "ci:env-copy": "tsx ./src/ci/env-copy.ts",
     "ci:env-delete": "tsx ./src/ci/env-delete.ts",
-    "lint": "nr lint:type-cov",
+    "lint": "nr lint:type-cov && nr automd",
     "lint:type-cov": "tsx ./src/lint/type-cov.ts"
   },
   "dependencies": {
+    "automd": "^0.2.0",
     "consola": "^3.2.3",
     "del": "^7.1.0",
     "dot-prop": "^8.0.2",

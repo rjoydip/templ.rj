@@ -2,7 +2,7 @@
   "name": "@templ/workspace",
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@8.15.1",
+  "packageManager": "pnpm@8.15.2",
   "description": "A modern monorepo project template",
   "author": "Joydip Roy <joydipand@gmail.com> (https://github.com/rjoydip)",
   "license": "MIT",
@@ -29,6 +29,7 @@
   "scripts": {
     "postinstall": "nr deps:update",
     "all": "nr deps:update && nr build && nr lint",
+    "automd": "nr -C scripts automd",
     "build": "nr clean && turbo run build && nr build:check",
     "clean": "nr -C scripts clean",
     "build:check": "nr -C scripts build:check",
@@ -46,8 +47,8 @@
     "@changesets/cli": "^2.27.1",
     "better-commits": "^1.12.0",
     "eslint": "^8.56.0",
-    "knip": "^5.0.0",
-    "pnpm": "^8.15.1",
+    "knip": "^5.0.1",
+    "pnpm": "^8.15.2",
     "taze": "^0.13.3",
     "turbo": "^1.12.3"
   }
