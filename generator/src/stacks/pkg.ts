@@ -1,9 +1,10 @@
 import { cwd } from 'node:process'
-import { cp } from 'node:fs/promises'
 import { basename, resolve } from 'node:path'
+import { cp } from 'node:fs/promises'
 import consola from 'consola'
 import { colors } from 'consola/utils'
-import { downloadTemplate, hasDryRun, stackNotes, updateTemplateAssets } from '../utils'
+import { globby } from 'globby'
+import { downloadTemplate, hasDryRun, stackNotes, updateTemplateAssets, vitestConfigPathModification } from '../utils'
 
 interface PkgOptsType {
   path: string
@@ -79,7 +80,7 @@ export async function run() {
   const { template, path, remote, local } = pkgOpts
 
   if (template === 'Remote') {
-    consola.start(`\nCreating ${colors.cyan(basename(remote.repo))} package\n`)
+    consola.start(`Creating ${colors.cyan(basename(remote.repo))} package\n`)
     const dir = resolve(root, path, basename(remote.repo))
 
     await downloadTemplate({
@@ -94,12 +95,18 @@ export async function run() {
   }
 
   if (template === 'Local') {
-    consola.start(`\nCreating ${colors.cyan(local.name)} package\n`)
+    consola.start(`Creating ${colors.cyan(local.name)} package\n`)
     const dir = resolve(root, path, local.name)
-    await cp(resolve('.', 'templates', `basic-${local.language}`), dir, {
-      recursive: true,
-      force: true,
+    const sourceDir = resolve('templates', `basic-${local.language}`)
+    const filesToCopy = await globby(['**/*'], {
+      ignore: ['**/coverage/**', '**/dist/**', '!**/node_modules/**'],
+      cwd: sourceDir,
     })
+
+    await Promise.all(
+      filesToCopy.map(file => cp(resolve(sourceDir, file), resolve(dir, file), { recursive: true, force: true })),
+    )
+
     await updateTemplateAssets({
       name: `@templ/${local.name}`,
       pm: 'pnpm',
@@ -109,6 +116,11 @@ export async function run() {
         from: `basic-${local.language}`,
         to: local.name,
       },
+    })
+
+    await vitestConfigPathModification({
+      path: dir,
+      lang: local.language,
     })
 
     consola.success(`Generated ${colors.cyan(local.name)} package`)

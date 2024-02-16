@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "private": true,
-  "packageManager": "pnpm@8.15.2",
+  "packageManager": "pnpm@8.15.3",
   "description": "basic-ts",
   "license": "MIT",
   "homepage": "https://github.com/rjoydip/templ/tree/main/packages/basic-ts#readme",
@@ -38,7 +38,7 @@
   "devDependencies": {
     "@templ/config": "workspace:*",
     "@templ/tsconfig": "workspace:*",
-    "@types/node": "^20.11.17",
+    "@types/node": "^20.11.19",
     "@vitest/coverage-v8": "^1.2.2",
     "esbuild": "^0.20.0",
     "tsx": "^4.7.1",

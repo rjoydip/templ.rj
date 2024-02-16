@@ -394,7 +394,7 @@ export async function run() {
     const { name, path, template_name, template_path } = astro
     const dir = platform() === 'win32' ? resolve(root, path, name).replace(sep, '\\\\') : resolve(root, path, name)
 
-    consola.start(`\nCreating ${colors.cyan(type.toLowerCase())} application\n`)
+    consola.start(`Creating ${colors.cyan(type.toLowerCase())} application\n`)
 
     if (!existsSync(dir))
       await mkdir(dir, { recursive: true })
@@ -415,7 +415,7 @@ export async function run() {
     const { path, name, template } = next
     const dir = platform() === 'win32' ? resolve(root, path, name).replace(sep, '\\\\') : resolve(root, path, name)
 
-    consola.start(`\nCreating ${colors.cyan(type.toLowerCase())} application\n`)
+    consola.start(`Creating ${colors.cyan(type.toLowerCase())} application\n`)
 
     if (!existsSync(dir))
       await mkdir(dir, { recursive: true })
@@ -437,7 +437,7 @@ export async function run() {
     const { template, gitInit, shell, name, path } = nuxt
     const dir = platform() === 'win32' ? resolve(root, path, name).replace(sep, '\\\\') : resolve(root, path, name)
 
-    consola.start(`\nCreating ${colors.cyan(type.toLowerCase())} application\n`)
+    consola.start(`Creating ${colors.cyan(type.toLowerCase())} application\n`)
 
     const nuxtTemplIndex = nuxtOptions.findIndex(i => i.label.toLowerCase() === template.toLowerCase()) || 0
 

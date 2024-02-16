@@ -68,7 +68,7 @@ export async function run() {
   }) as Servers
 
   if (serverOpts.type.toString() === 'Hono') {
-    consola.start(`\nPulling Hono Templates\n`)
+    consola.start(`Pulling Hono Templates\n`)
 
     await downloadTemplate({
       repo: 'github:honojs/starter/templates',
@@ -112,7 +112,7 @@ export async function run() {
   if (type.toString() === 'Hono') {
     const dir = resolve(root, path, name)
 
-    consola.start(`\nCreating ${colors.cyan(type.toString())} server\n`)
+    consola.start(`Creating ${colors.cyan(type.toString())} server\n`)
 
     await cp(join(honoTmplDir, hono.name), dir, { force: true, recursive: true })
 
@@ -129,7 +129,7 @@ export async function run() {
 
   if (type.toString() === 'Fastify') {
     const dir = resolve(root, path, name)
-    consola.start(`\nCreating ${colors.cyan(type.toString())} server\n`)
+    consola.start(`Creating ${colors.cyan(type.toString())} server\n`)
 
     await downloadTemplate({
       repo: fastify.repo !== '' ? fastify.repo : 'github:fastify/fastify-starter-codesandbox#master',
