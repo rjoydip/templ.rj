@@ -2,6 +2,16 @@
 
 TEMPL utils module.
 
+## `badges`
+
+<!-- automd:badges license provider=shields -->
+
+[![npm version](https://flat.badgen.net/npm/v/@templ/utils)](https://npmjs.com/package/@templ/utils)
+[![npm downloads](https://flat.badgen.net/npm/dm/@templ/utils)](https://npmjs.com/package/@templ/utils)
+[![license](https://flat.badgen.net/github/license/rjoydip/templ)](https://github.com/rjoydip/templ/blob/main/LICENSE)
+
+<!-- /automd -->
+
 ## `pm-x`
 
 <!-- automd:pm-x args=. -->

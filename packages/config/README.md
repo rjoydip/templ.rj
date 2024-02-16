@@ -2,6 +2,16 @@
 
 TEMPL config module.
 
+## `badges`
+
+<!-- automd:badges license provider=shields -->
+
+[![npm version](https://flat.badgen.net/npm/v/@templ/config)](https://npmjs.com/package/@templ/config)
+[![npm downloads](https://flat.badgen.net/npm/dm/@templ/config)](https://npmjs.com/package/@templ/config)
+[![license](https://flat.badgen.net/github/license/rjoydip/templ)](https://github.com/rjoydip/templ/blob/main/LICENSE)
+
+<!-- /automd -->
+
 ## `pm-x`
 
 <!-- automd:pm-x args=. -->
@@ -24,6 +34,9 @@ bunx @templ/config@0.0.1 .
 <!-- automd:pm-install -->
 
 ```sh
+# ✨ Auto-detect
+npx nypm i @templ/config@^0.0.1
+
 # ✨ Auto-detect
 npx nypm i @templ/config@^0.0.1
 

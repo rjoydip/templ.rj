@@ -2,6 +2,16 @@
 
 TEMPL fflag module.
 
+## `badges`
+
+<!-- automd:badges license provider=shields -->
+
+[![npm version](https://flat.badgen.net/npm/v/@templ/fflag)](https://npmjs.com/package/@templ/fflag)
+[![npm downloads](https://flat.badgen.net/npm/dm/@templ/fflag)](https://npmjs.com/package/@templ/fflag)
+[![license](https://flat.badgen.net/github/license/rjoydip/templ)](https://github.com/rjoydip/templ/blob/main/LICENSE)
+
+<!-- /automd -->
+
 ## `pm-x`
 
 <!-- automd:pm-x args=. -->
