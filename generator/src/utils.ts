@@ -1,17 +1,32 @@
 import { existsSync } from 'node:fs'
-import { join, parse, resolve, sep } from 'node:path'
+import { basename, dirname, extname, join, parse, resolve, sep } from 'node:path'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { argv, cwd } from 'node:process'
 import { tmpdir } from 'node:os'
 import consola from 'consola'
 import { hasProperty, setProperty } from 'dot-prop'
-import latestVersion from 'latest-version'
+import { findUp } from 'find-up'
 import type { DownloadTemplateOptions } from 'giget'
 import { downloadTemplate as dt } from 'giget'
+import latestVersion from 'latest-version'
+import { globby } from 'globby'
+import recast from 'recast'
+import babelParser from 'recast/parsers/babel'
+import replaceString from 'replace-string'
+import slash from 'slash'
 import { shell } from './shell'
 
 export const hasDryRun = ($argv?: string[]) => !!($argv ?? argv.slice(2)).includes('--dry-run')
 export const capitalize = (s: string) => s && s.charAt(0).toUpperCase() + s.slice(1)
+
+async function findRoot() {
+  const pnpmWorkspace = await findUp('pnpm-workspace.yaml') || await findUp('pnpm-lock.yaml')
+  const npmPackageLock = await findUp('package-lock.json')
+  const yarnLock = await findUp('yarn.lock')
+  const bunWorkspace = await findUp('bun.lockb')
+
+  return parse(pnpmWorkspace || npmPackageLock || yarnLock || bunWorkspace || join(cwd(), 'package.json')).dir
+}
 
 export async function updateTemplateAssets(options: {
   name: string
@@ -164,4 +179,65 @@ export async function downloadTemplate(options: {
   return await dt(options.repo, {
     ...options.dtOps,
   })
+}
+
+export async function vitestConfigPathModification(opts: {
+  path: string
+  lang: string
+} = {
+  path: '',
+  lang: 'js',
+}) {
+  let newPath = ''
+  const root = await findRoot()
+  const sharedFileName = `shared.${opts.lang}`
+  const sharedFilePath = resolve(root, 'config', 'vitest', sharedFileName)
+
+  if (sharedFilePath && opts.path) {
+    const sharedPath = resolve(parse(sharedFilePath).dir).replace(`${root}${sep}`, '')
+    const sourcePath = resolve(opts.path).replace(`${root}${sep}`, '').replace(/[a-zA-Z0-9]+/gm, '..')
+    newPath = slash(
+      join(sourcePath, sharedPath, sharedFileName),
+    )
+  }
+
+  const files = await globby(['**/vitest.config.{mts,mjs}'], {
+    absolute: true,
+    cwd: root,
+    ignore: ['**/node_modules/**'],
+  })
+
+  await Promise.all(files.map(async (file) => {
+    let hasModifications
+    const content = await readFile(file, 'utf-8')
+    const ast = recast.parse(content, {
+      parser: babelParser,
+    })
+    recast.types.visit(ast, {
+      visitImportDeclaration(path) {
+        const { node } = path
+        consola.log(`Found import`)
+        const specifiers = node?.specifiers?.filter(
+          specifier => specifier.type === 'ImportDefaultSpecifier',
+        )
+        if (specifiers && specifiers.length > 0) {
+          const newSpecifiers = specifiers.filter(
+            specifier => specifier.local?.type === 'Identifier' && specifier.local?.name === 'configShared',
+          )
+          const importWithPathChanged = recast.types.builders.importDeclaration(
+            newSpecifiers,
+            recast.types.builders.literal(newPath),
+          )
+          path.replace(importWithPathChanged)
+          hasModifications = true
+        }
+        return false
+      },
+    })
+
+    if (hasModifications) {
+      await writeFile(join(dirname(file), `${basename(file, extname(file))}${extname(file)}`), replaceString(recast.print(ast).code, ';', ''), 'utf-8')
+      consola.log('Updated imports')
+    }
+  }))
 }

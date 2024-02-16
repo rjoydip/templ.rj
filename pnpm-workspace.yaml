@@ -5,4 +5,4 @@ packages:
   - packages/**
   - plugins/**
   - scripts
-  - generator
+  - generator/**

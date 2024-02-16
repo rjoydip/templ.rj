@@ -5,11 +5,7 @@ const config: KnipConfig = {
   'ignoreBinaries': ['templ-cli'],
   'workspaces': {
     '.': {
-      entry: ['config/vitest.shared.js'],
-    },
-    'config/*': {
-      entry: ['src/**/*.ts', '*.shared.js'],
-      ignore: ['**/{env,flag}/**'],
+      entry: ['config/vitest/shared.js', 'config/vitest/shared.ts'],
     },
     'packages/*': {
       entry: ['src/**/*.{ts,tsx}', 'test/**/*.test.{ts,tsx}', '**/*.load.ts'],

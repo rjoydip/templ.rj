@@ -31,15 +31,12 @@
     "npm": ">=8"
   },
   "scripts": {
-    "build": "node esbuild.config.js",
-    "dev": "node esbuild.config.js --watch",
+    "start": "node src/index.js",
     "test": "vitest run"
   },
   "devDependencies": {
-    "@templ/config": "workspace:*",
-    "@types/node": "^20.11.17",
+    "@types/node": "^20.11.19",
     "@vitest/coverage-v8": "^1.2.2",
-    "esbuild": "^0.20.0",
     "vitest": "^1.2.2"
   }
 }
