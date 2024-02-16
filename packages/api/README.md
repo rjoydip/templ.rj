@@ -1,6 +1,16 @@
 # @templ/api
 
-TEMPL api.
+TEMPL API.
+
+## `badges`
+
+<!-- automd:badges license provider=shields -->
+
+[![npm version](https://flat.badgen.net/npm/v/@templ/api)](https://npmjs.com/package/@templ/api)
+[![npm downloads](https://flat.badgen.net/npm/dm/@templ/api)](https://npmjs.com/package/@templ/api)
+[![license](https://flat.badgen.net/github/license/rjoydip/templ)](https://github.com/rjoydip/templ/blob/main/LICENSE)
+
+<!-- /automd -->
 
 ## `pm-x`
 
@@ -24,9 +34,6 @@ bunx @templ/api@0.0.1 .
 <!-- automd:pm-install -->
 
 ```sh
-# ✨ Auto-detect
-npx nypm i @templ/api@^0.0.1
-
 # ✨ Auto-detect
 npx nypm i @templ/api@^0.0.1
 

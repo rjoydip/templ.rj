@@ -2,6 +2,16 @@
 
 A Next.js 14 template for building apps with Radix UI and Tailwind CSS.
 
+## `badges`
+
+<!-- automd:badges license provider=shields -->
+
+[![npm version](https://flat.badgen.net/npm/v/@templ/web)](https://npmjs.com/package/@templ/web)
+[![npm downloads](https://flat.badgen.net/npm/dm/@templ/web)](https://npmjs.com/package/@templ/web)
+[![license](https://flat.badgen.net/github/license/rjoydip/templ)](https://github.com/rjoydip/templ/blob/main/LICENSE)
+
+<!-- /automd -->
+
 ## Usage
 
 ```bash
