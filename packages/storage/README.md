@@ -23,10 +23,6 @@ bunx @templ/storage@0.0.1 .
 
 <!-- automd:jsdocs -->
 
-### `getServerStorage(options)`
-
-Retrieves server storage based on the provided options.
-
 ### `getStorage(options)`
 
 Retrieves the appropriate storage based on the provided options.
@@ -39,11 +35,21 @@ Retrieves the storage instance.
 
 Get the storage option.
 
-### `initStore(options)`
-
-Initializes the storage with the given options.
-
 ### `isValid(data, schema)`
+
+Validates the provided data against the given schema.
+
+### `retriveConf(key, opts?)`
+
+Retrieve a configuration value from the storage.
+
+### `retriveEnv(key, opts?)`
+
+Retrieves the value of the specified environment variable from the storage using the provided options.
+
+### `retriveFF(key, opts?)`
+
+Retrieves an item from the storage with the given key using the specified options.
 
 ### `setStorageOption(opts)`
 
@@ -51,15 +57,15 @@ Set the store option with the given options.
 
 ### `storeConf(key, value, opts?)`
 
-Store configuration in the storage.
+Store the given key-value pair in the configuration storage.
 
 ### `storeEnv(key, value, opts?)`
 
-Store the environment variable with the specified key and value.
+Store the given key-value pair in the environment storage.
 
 ### `storeFF(key, value, opts?)`
 
-Store a key-value pair in the storage.
+Asynchronously stores the given key-value pair in the storage with the option to provide additional storage options.
 
 <!-- /automd -->
 
