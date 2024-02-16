@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "private": true,
-  "packageManager": "pnpm@8.15.2",
+  "packageManager": "pnpm@8.15.3",
   "description": "Generator",
   "license": "MIT",
   "homepage": "https://github.com/rjoydip/templ/tree/main/generator#readme",
@@ -31,12 +31,17 @@
   "dependencies": {
     "consola": "^3.2.3",
     "dot-prop": "^8.0.2",
+    "find-up": "^7.0.0",
     "giget": "^1.2.1",
-    "latest-version": "^8.0.0"
+    "globby": "^14.0.1",
+    "latest-version": "^8.0.0",
+    "recast": "^0.23.4",
+    "replace-string": "^4.0.0",
+    "slash": "^5.1.0"
   },
   "devDependencies": {
     "@templ/tsconfig": "workspace:*",
-    "@types/node": "^20.11.17",
+    "@types/node": "^20.11.19",
     "tsx": "^4.7.1"
   }
 }

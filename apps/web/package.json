@@ -2,7 +2,7 @@
   "name": "@templ/web",
   "version": "0.0.1",
   "private": true,
-  "packageManager": "pnpm@8.15.2",
+  "packageManager": "pnpm@8.15.3",
   "description": "UI",
   "license": "MIT",
   "homepage": "https://github.com/rjoydip/templ/tree/main/apps/web#readme",
@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "@templ/tsconfig": "workspace:*",
-    "@types/node": "^20.11.17",
+    "@types/node": "^20.11.19",
     "@types/react": "^18.2.55",
     "autoprefixer": "^10.4.17",
     "postcss": "^8.4.35",

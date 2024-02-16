@@ -111,7 +111,7 @@ export async function run() {
 
     if (tools === 'Docusaurus') {
       const { name, language, path } = Docusaurus
-      consola.start(`\nCreating ${colors.cyan(type.toString())} documentation\n`)
+      consola.start(`Creating ${colors.cyan(type.toString())} documentation\n`)
 
       const dir = platform() === 'win32' ? resolve(root, path, name).replace(sep, '\\\\') : resolve(root, path, name)
 
@@ -136,7 +136,7 @@ export async function run() {
 
     if (tools === 'Mintlify') {
       const { name, path } = Mintlify
-      consola.start(`\nCreating ${colors.cyan(type.toString())} documentation\n`)
+      consola.start(`Creating ${colors.cyan(type.toString())} documentation\n`)
 
       const dir = platform() === 'win32' ? resolve(root, path, name).replace(sep, '\\\\') : resolve(root, path, name)
 
@@ -171,7 +171,7 @@ export async function run() {
 
     if (tools === 'Nextra') {
       const { name, theme, path } = Nextra
-      consola.start(`\nCreating ${colors.cyan(type.toString())} documentation\n`)
+      consola.start(`Creating ${colors.cyan(type.toString())} documentation\n`)
 
       const themeName = theme === 'SWR' ? 'swr-site' : theme.toLowerCase()
       const dir = resolve(root, path, name)
