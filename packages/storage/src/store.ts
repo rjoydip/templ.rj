@@ -1,47 +1,103 @@
-import { type CreateStorageOptions, prefixStorage } from 'unstorage'
-import { getStorageInstance } from './get'
-import { getStorageOption } from './option'
-import { encoder } from './utils'
+import type { CreateStorageOptions, Storage, StorageValue } from 'unstorage'
+import { createStorage, prefixStorage } from 'unstorage'
+import memoryDriver from 'unstorage/drivers/memory'
+import { prefix } from './constant'
+
+let storage: Storage<StorageValue> | null = null
+const defaultOption: CreateStorageOptions = {
+  driver: memoryDriver(),
+}
+
+let options = defaultOption
 
 /**
- * Asynchronously stores the given key-value pair in the storage with the option to provide additional storage options.
+ * Creates a storage with the given options.
  *
- * @param {string} key - The key to store the value under
- * @param {boolean} value - The value to be stored
- * @param {CreateStorageOptions} [opts] - Additional storage options
- * @return {Promise<void>} A Promise that resolves when the key-value pair is successfully stored
+ * @param {CreateStorageOptions} opts - the options for creating the storage
+ * @return {Storage} the created storage
  */
-export async function storeFF(key: string, value: boolean, opts?: CreateStorageOptions) {
-  const options = getStorageOption()
-  const storage = getStorageInstance(options)
-  const ffStorage = prefixStorage(storage, encoder('ff'))
-  return await ffStorage.setItem(key, value, opts)
+export function createStore(opts?: CreateStorageOptions) {
+  if (!storage)
+    storage = createStorage(opts ?? defaultOption)
+  return storage
 }
+
 /**
- * Store the given key-value pair in the environment storage.
+ * Sets the options for creating storage.
  *
- * @param {string} key - The key to store the value under
- * @param {string} value - The value to be stored
- * @param {CreateStorageOptions} [opts] - Optional storage options
- * @return {Promise<void>} A promise that resolves when the value is stored
+ * @param {CreateStorageOptions} opts - the options for creating storage
+ * @return {CreateStorageOptions} the updated options
  */
-export async function storeEnv(key: string, value: string, opts?: CreateStorageOptions) {
-  const options = getStorageOption()
-  const storage = getStorageInstance(options)
-  const envStorage = prefixStorage(storage, encoder('env'))
-  return await envStorage.setItem(key, encoder(value), opts)
+export function setOptions(opts: CreateStorageOptions) {
+  if (!options)
+    options = opts
+
+  return options
 }
+
 /**
- * Store the given key-value pair in the configuration storage.
+ * Creates a storage with the given options and returns a storage with the prefix 'conf'.
  *
- * @param {string} key - The key for the value to be stored
- * @param {string} value - The value to be stored
- * @param {CreateStorageOptions} [opts] - Optional storage options
- * @return {Promise<void>} A promise that resolves when the value is stored
+ * @param {CreateStorageOptions} opts - the options for creating the storage
+ * @return {Storage} the storage with the prefix 'conf'
  */
-export async function storeConf(key: string, value: string, opts?: CreateStorageOptions) {
-  const options = getStorageOption()
-  const storage = getStorageInstance(options)
-  const confStorage = prefixStorage(storage, encoder('conf'))
-  return await confStorage.setItem(key, value, opts)
+export function confStore(opts?: CreateStorageOptions) {
+  const storage = createStore(opts)
+  return prefixStorage(storage, prefix.conf)
+}
+
+/**
+ * Create a storage with the given options and return a prefixed storage with the 'conf' prefix.
+ *
+ * @param {CreateStorageOptions} opts - the options for creating the storage
+ * @return {Storage} the prefixed storage with the 'conf' prefix
+ */
+export function envStore(opts?: CreateStorageOptions) {
+  const storage = createStore(opts ?? defaultOption)
+  return prefixStorage(storage, prefix.env)
+}
+
+/**
+ * Creates a storage environment using the provided options and returns a prefixed storage.
+ *
+ * @param {CreateStorageOptions} opts - the options for creating the storage
+ * @return {PrefixStorage} the prefixed storage
+ */
+export function ffStore(opts?: CreateStorageOptions) {
+  const storage = createStore(opts ?? defaultOption)
+  return prefixStorage(storage, prefix.ff)
+}
+
+/**
+ * Clear the specified type of storage.
+ *
+ * @param {'all' | 'conf' | 'env' | 'ff'} type - The type of storage to clear
+ * @return {Promise<boolean>} A promise that resolves when the storage is cleared
+ */
+export async function clearStorage(type: 'all' | 'conf' | 'env' | 'ff' = 'all'): Promise<boolean> {
+  if (type === prefix.conf) {
+    await confStore().clear()
+    await confStore().dispose()
+    return true
+  }
+  if (type === prefix.env) {
+    await envStore().clear()
+    await envStore().dispose()
+    return true
+  }
+  if (type === prefix.ff) {
+    await ffStore().clear()
+    await ffStore().dispose()
+    return true
+  }
+  if (type === 'all') {
+    await confStore().clear()
+    await confStore().dispose()
+    await envStore().clear()
+    await envStore().dispose()
+    await ffStore().clear()
+    await ffStore().dispose()
+    return true
+  }
+  return false
 }

@@ -2,6 +2,16 @@
 
 TEMPL esbuild plugin module.
 
+## `badges`
+
+<!-- automd:badges license provider=shields -->
+
+[![npm version](https://img.shields.io/npm/v/@templ/esbuild-plugin-templ)](https://npmjs.com/package/@templ/esbuild-plugin-templ)
+[![npm downloads](https://img.shields.io/npm/dm/@templ/esbuild-plugin-templ)](https://npmjs.com/package/@templ/esbuild-plugin-templ)
+[![license](https://img.shields.io/github/license/rjoydip/templ)](https://github.com/rjoydip/templ/blob/main/LICENSE)
+
+<!-- /automd -->
+
 ## `pm-x`
 
 <!-- automd:pm-x args=. -->

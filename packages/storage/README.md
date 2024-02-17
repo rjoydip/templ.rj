@@ -23,49 +23,61 @@ bunx @templ/storage@0.0.1 .
 
 <!-- automd:jsdocs -->
 
-### `getStorage(options)`
+### `clearStorage(type)`
 
-Retrieves the appropriate storage based on the provided options.
+Clear the specified type of storage.
 
-### `getStorageInstance(options)`
+### `confStore(opts?)`
 
-Retrieves the storage instance.
+Creates a storage with the given options and returns a storage with the prefix 'conf'.
 
-### `getStorageOption()`
+### `createStore(opts?)`
 
-Get the storage option.
+Creates a storage with the given options.
+
+### `decoder()`
+
+### `encoder()`
+
+### `envStore(opts?)`
+
+Create a storage with the given options and return a prefixed storage with the 'conf' prefix.
+
+### `ffStore(opts?)`
+
+Creates a storage environment using the provided options and returns a prefixed storage.
+
+### `getConf(key)`
+
+Retrieve a configuration value from the storage.
+
+### `getEnv(key)`
+
+Retrieves the value of the specified environment variable from the storage using the provided options.
+
+### `getFF(key)`
+
+Retrieves an item from the storage with the given key using the specified options.
 
 ### `isValid(data, schema)`
 
 Validates the provided data against the given schema.
 
-### `retriveConf(key, opts?)`
-
-Retrieve a configuration value from the storage.
-
-### `retriveEnv(key, opts?)`
-
-Retrieves the value of the specified environment variable from the storage using the provided options.
-
-### `retriveFF(key, opts?)`
-
-Retrieves an item from the storage with the given key using the specified options.
-
-### `setStorageOption(opts)`
-
-Set the store option with the given options.
-
-### `storeConf(key, value, opts?)`
+### `setConf(key, value)`
 
 Store the given key-value pair in the configuration storage.
 
-### `storeEnv(key, value, opts?)`
+### `setEnv(key, value)`
 
 Store the given key-value pair in the environment storage.
 
-### `storeFF(key, value, opts?)`
+### `setFF(key, value)`
 
-Asynchronously stores the given key-value pair in the storage with the option to provide additional storage options.
+Set a feature flag in the storage.
+
+### `setOptions(opts)`
+
+Sets the options for creating storage.
 
 <!-- /automd -->
 

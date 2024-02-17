@@ -30,11 +30,11 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@hono/node-server": "^1.7.0",
+    "@hono/node-server": "^1.8.0",
     "@hono/zod-openapi": "^0.9.6",
     "@scalar/hono-api-reference": "^0.3.51",
     "consola": "^3.2.3",
-    "hono": "^4.0.3"
+    "hono": "^4.0.4"
   },
   "devDependencies": {
     "@templ/config": "workspace:*",
