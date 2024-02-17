@@ -6,9 +6,9 @@ TEMPL cli module.
 
 <!-- automd:badges license provider=shields -->
 
-[![npm version](https://flat.badgen.net/npm/v/@templ/cli)](https://npmjs.com/package/@templ/cli)
-[![npm downloads](https://flat.badgen.net/npm/dm/@templ/cli)](https://npmjs.com/package/@templ/cli)
-[![license](https://flat.badgen.net/github/license/rjoydip/templ)](https://github.com/rjoydip/templ/blob/main/LICENSE)
+[![npm version](https://img.shields.io/npm/v/@templ/cli)](https://npmjs.com/package/@templ/cli)
+[![npm downloads](https://img.shields.io/npm/dm/@templ/cli)](https://npmjs.com/package/@templ/cli)
+[![license](https://img.shields.io/github/license/rjoydip/templ)](https://github.com/rjoydip/templ/blob/main/LICENSE)
 
 <!-- /automd -->
 
@@ -34,6 +34,12 @@ bunx @templ/cli@0.0.1 .
 <!-- automd:pm-install -->
 
 ```sh
+# ✨ Auto-detect
+npx nypm i @templ/cli@^0.0.1
+
+# ✨ Auto-detect
+npx nypm i @templ/cli@^0.0.1
+
 # ✨ Auto-detect
 npx nypm i @templ/cli@^0.0.1
 

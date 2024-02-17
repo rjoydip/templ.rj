@@ -1,20 +1,27 @@
 {
-  "name": "@templ/api",
+  "name": "@templ/storage",
   "type": "module",
   "version": "0.0.1",
   "private": true,
   "packageManager": "pnpm@8.15.3",
-  "description": "API",
+  "description": "basic-ts",
   "license": "MIT",
-  "homepage": "https://github.com/rjoydip/templ/tree/main/packages/api#readme",
+  "homepage": "https://github.com/rjoydip/templ/tree/main/packages/basic-ts#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rjoydip/templ.git",
-    "directory": "apps/api"
+    "directory": "packages/basic-ts"
   },
   "bugs": {
     "url": "https://github.com/rjoydip/templ/issues"
   },
+  "exports": {
+    "types": "./dist/index.d.ts",
+    "import": "./dist/index.js",
+    "require": "./dist/index.js"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
     "*.d.ts",
     "dist"
@@ -25,27 +32,22 @@
   },
   "scripts": {
     "build": "tsx esbuild.config.ts",
-    "dev": "tsx ./src/index",
-    "api:load": "tsx ./test/api.load.ts",
+    "dev": "tsx esbuild.config.ts --watch",
     "test": "vitest run"
   },
   "dependencies": {
-    "@hono/node-server": "^1.8.0",
-    "@hono/zod-openapi": "^0.9.6",
-    "@scalar/hono-api-reference": "^0.3.51",
-    "consola": "^3.2.3",
-    "hono": "^4.0.4"
+    "salteen": "^1.0.0",
+    "unstorage": "^1.10.1",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@templ/config": "workspace:*",
     "@templ/tsconfig": "workspace:*",
-    "@types/autocannon": "^7.12.5",
     "@types/node": "^20.11.19",
     "@vitest/coverage-v8": "^1.3.0",
-    "autocannon": "^7.15.0",
     "esbuild": "^0.20.0",
     "tsx": "^4.7.1",
     "vitest": "^1.3.0"
   },
-  "size-limit": "1024 B"
+  "size-limit": "1.4 KB"
 }

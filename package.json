@@ -35,7 +35,7 @@
     "build:check": "nr -C scripts build:check",
     "commit": "pnpm i && nr all && better-commits",
     "deps:update": "taze -r -w -i -f -l",
-    "lint": "turbo run lint && eslint . && nr knip",
+    "lint": "turbo run lint && eslint . --fix && nr knip",
     "knip": "knip -c ./config/knip.config.ts",
     "release": "changeset version && npm publish && git push --follow-tags",
     "lint:type-cov": "nr -C scripts lint:type-cov",

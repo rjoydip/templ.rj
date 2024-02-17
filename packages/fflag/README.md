@@ -6,9 +6,9 @@ TEMPL fflag module.
 
 <!-- automd:badges license provider=shields -->
 
-[![npm version](https://flat.badgen.net/npm/v/@templ/fflag)](https://npmjs.com/package/@templ/fflag)
-[![npm downloads](https://flat.badgen.net/npm/dm/@templ/fflag)](https://npmjs.com/package/@templ/fflag)
-[![license](https://flat.badgen.net/github/license/rjoydip/templ)](https://github.com/rjoydip/templ/blob/main/LICENSE)
+[![npm version](https://img.shields.io/npm/v/@templ/fflag)](https://npmjs.com/package/@templ/fflag)
+[![npm downloads](https://img.shields.io/npm/dm/@templ/fflag)](https://npmjs.com/package/@templ/fflag)
+[![license](https://img.shields.io/github/license/rjoydip/templ)](https://github.com/rjoydip/templ/blob/main/LICENSE)
 
 <!-- /automd -->
 
@@ -34,6 +34,9 @@ bunx @templ/fflag@0.0.1 .
 <!-- automd:pm-install -->
 
 ```sh
+# ✨ Auto-detect
+npx nypm i @templ/fflag@^0.0.1
+
 # ✨ Auto-detect
 npx nypm i @templ/fflag@^0.0.1
 
