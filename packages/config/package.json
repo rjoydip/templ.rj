@@ -44,7 +44,6 @@
   },
   "devDependencies": {
     "@templ/esbuild-plugin-templ": "workspace:*",
-    "@templ/tsconfig": "workspace:*",
     "@types/node": "^20.11.19",
     "@vitest/coverage-v8": "^1.3.0",
     "esbuild": "^0.20.0",

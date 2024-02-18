@@ -43,12 +43,6 @@ npx nypm i @templ/core@^0.0.1
 # ✨ Auto-detect
 npx nypm i @templ/core@^0.0.1
 
-# ✨ Auto-detect
-npx nypm i @templ/core@^0.0.1
-
-# ✨ Auto-detect
-npx nypm i @templ/core@^0.0.1
-
 # npm
 npm install @templ/core@^0.0.1
 

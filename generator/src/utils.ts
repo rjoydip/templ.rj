@@ -188,15 +188,13 @@ export async function downloadTemplate(options: {
 
 export async function vitestConfigPathModification(opts: {
   path: string
-  lang: string
 } = {
   path: '',
-  lang: 'js',
 }) {
   let newPath = ''
   const root = await findRoot()
-  const sharedFileName = `shared.${opts.lang}`
-  const sharedFilePath = resolve(root, 'config', 'vitest', sharedFileName)
+  const sharedFileName = `vitest.shared.js`
+  const sharedFilePath = resolve(root, '.config', sharedFileName)
 
   if (sharedFilePath && opts.path) {
     const sharedPath = resolve(parse(sharedFilePath).dir).replace(`${root}${sep}`, '')

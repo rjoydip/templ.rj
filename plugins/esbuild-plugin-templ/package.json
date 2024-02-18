@@ -36,11 +36,12 @@
   "dependencies": {
     "@lukeed/ms": "^2.0.2",
     "consola": "^3.2.3",
+    "cpy": "^11.0.0",
     "esbuild": "^0.20.0",
+    "globby": "^14.0.1",
     "typescript": "^5.3.3"
   },
   "devDependencies": {
-    "@templ/tsconfig": "workspace:*",
     "@types/node": "^20.11.19",
     "tsx": "^4.7.1"
   }

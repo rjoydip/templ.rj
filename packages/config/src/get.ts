@@ -20,9 +20,6 @@ export function getTemplConfigSchema() {
  * ```ts
  * import { getBuildConfig } from '@templ/config'
  * const buildConfig = getBuildConfig()
- * const ctx = await esbuild.build(buildConfig)
- * await ctx.watch()
- * await esbuild.build(buildConfig)
  * ```
  * @see https://esbuild.github.io/api/#BuildOptions
  * @see https://esbuild.github.io/api/#watch

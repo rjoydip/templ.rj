@@ -41,9 +41,6 @@ importers:
       '@templ/config':
         specifier: workspace:*
         version: link:../../packages/config
-      '@templ/tsconfig':
-        specifier: workspace:*
-        version: link:../../config/tsconfig
       '@types/node':
         specifier: ^20.11.19
         version: 20.11.19
@@ -65,9 +62,6 @@ importers:
       '@templ/config':
         specifier: workspace:*
         version: link:../../packages/config
-      '@templ/tsconfig':
-        specifier: workspace:*
-        version: link:../../config/tsconfig
       '@types/node':
         specifier: ^20.11.19
         version: 20.11.19
@@ -114,9 +108,9 @@ importers:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@3.4.1)
     devDependencies:
-      '@templ/tsconfig':
+      '@templ/config':
         specifier: workspace:*
-        version: link:../../config/tsconfig
+        version: link:../../packages/config
       '@types/node':
         specifier: ^20.11.19
         version: 20.11.19
@@ -135,12 +129,6 @@ importers:
       typescript:
         specifier: ^5.3.3
         version: 5.3.3
-
-  config/env: {}
-
-  config/flag: {}
-
-  config/tsconfig: {}
 
   generator:
     dependencies:
@@ -172,9 +160,9 @@ importers:
         specifier: ^5.1.0
         version: 5.1.0
     devDependencies:
-      '@templ/tsconfig':
+      '@templ/config':
         specifier: workspace:*
-        version: link:../config/tsconfig
+        version: link:../packages/config
       '@types/node':
         specifier: ^20.11.19
         version: 20.11.19
@@ -199,9 +187,6 @@ importers:
       '@templ/config':
         specifier: workspace:*
         version: link:../../../packages/config
-      '@templ/tsconfig':
-        specifier: workspace:*
-        version: link:../../../config/tsconfig
       '@types/node':
         specifier: ^20.11.19
         version: 20.11.19
@@ -239,9 +224,6 @@ importers:
       '@templ/config':
         specifier: workspace:*
         version: link:../config
-      '@templ/tsconfig':
-        specifier: workspace:*
-        version: link:../../config/tsconfig
       '@types/autocannon':
         specifier: ^7.12.5
         version: 7.12.5
@@ -276,9 +258,6 @@ importers:
       '@templ/config':
         specifier: workspace:*
         version: link:../config
-      '@templ/tsconfig':
-        specifier: workspace:*
-        version: link:../../config/tsconfig
       '@types/node':
         specifier: ^20.11.19
         version: 20.11.19
@@ -310,18 +289,21 @@ importers:
         specifier: ^1.4.2
         version: 1.4.2
     devDependencies:
+      '@templ/config':
+        specifier: workspace:*
+        version: 'link:'
       '@templ/esbuild-plugin-templ':
         specifier: workspace:*
         version: link:../../plugins/esbuild-plugin-templ
-      '@templ/tsconfig':
-        specifier: workspace:*
-        version: link:../../config/tsconfig
       '@types/node':
         specifier: ^20.11.19
         version: 20.11.19
       '@vitest/coverage-v8':
         specifier: ^1.3.0
         version: 1.3.0(vitest@1.3.0)
+      cpy-cli:
+        specifier: ^5.0.0
+        version: 5.0.0
       esbuild:
         specifier: ^0.20.0
         version: 0.20.0
@@ -337,9 +319,6 @@ importers:
       '@templ/config':
         specifier: workspace:*
         version: link:../config
-      '@templ/tsconfig':
-        specifier: workspace:*
-        version: link:../../config/tsconfig
       '@types/node':
         specifier: ^20.11.19
         version: 20.11.19
@@ -365,9 +344,6 @@ importers:
       '@templ/config':
         specifier: workspace:*
         version: link:../config
-      '@templ/tsconfig':
-        specifier: workspace:*
-        version: link:../../config/tsconfig
       '@types/node':
         specifier: ^20.11.19
         version: 20.11.19
@@ -399,9 +375,6 @@ importers:
       '@templ/config':
         specifier: workspace:*
         version: link:../config
-      '@templ/tsconfig':
-        specifier: workspace:*
-        version: link:../../config/tsconfig
       '@types/node':
         specifier: ^20.11.19
         version: 20.11.19
@@ -586,9 +559,6 @@ importers:
       '@templ/config':
         specifier: workspace:*
         version: link:../config
-      '@templ/tsconfig':
-        specifier: workspace:*
-        version: link:../../config/tsconfig
       '@types/node':
         specifier: ^20.11.19
         version: 20.11.19
@@ -635,9 +605,6 @@ importers:
       '@templ/config':
         specifier: workspace:*
         version: link:../config
-      '@templ/tsconfig':
-        specifier: workspace:*
-        version: link:../../config/tsconfig
       '@types/node':
         specifier: ^20.11.19
         version: 20.11.19
@@ -662,16 +629,22 @@ importers:
       consola:
         specifier: ^3.2.3
         version: 3.2.3
+      cpy:
+        specifier: ^11.0.0
+        version: 11.0.0
       esbuild:
         specifier: ^0.20.0
         version: 0.20.0
+      globby:
+        specifier: ^14.0.1
+        version: 14.0.1
       typescript:
         specifier: ^5.3.3
         version: 5.3.3
     devDependencies:
-      '@templ/tsconfig':
+      '@templ/config':
         specifier: workspace:*
-        version: link:../../config/tsconfig
+        version: link:../../packages/config
       '@types/node':
         specifier: ^20.11.19
         version: 20.11.19
@@ -721,9 +694,9 @@ importers:
       '@antfu/ni':
         specifier: ^0.21.12
         version: 0.21.12
-      '@templ/tsconfig':
+      '@templ/config':
         specifier: workspace:*
-        version: link:../config/tsconfig
+        version: link:../packages/config
       '@types/node':
         specifier: ^20.11.19
         version: 20.11.19
@@ -3917,6 +3890,7 @@ packages:
     dependencies:
       is-glob: 4.0.3
       micromatch: 4.0.5
+      napi-wasm: 1.1.0
     dev: false
     bundledDependencies:
       - napi-wasm
@@ -7833,7 +7807,6 @@ packages:
     dependencies:
       clean-stack: 4.2.0
       indent-string: 5.0.0
-    dev: false
 
   /ajv-draft-04@1.0.0(ajv@8.12.0):
     resolution: {integrity: sha512-mv00Te6nmYbRp5DCwclxtt7yV/joXJPGS7nM+97GdxvuttCOfgI3K4U25zboyeX0O+myI8ERluxQe5wljMmVIw==}
@@ -7987,6 +7960,11 @@ packages:
   /arrify@1.0.1:
     resolution: {integrity: sha512-3CYzex9M9FGQjCGMGyi6/31c8GJbgb0qGyrx5HWxPd0aCwh4cB2YjMb2Xf9UuoogrMrlO9cTqnB5rI5GHZTcUA==}
     engines: {node: '>=0.10.0'}
+    dev: true
+
+  /arrify@3.0.0:
+    resolution: {integrity: sha512-tLkvA81vQG/XqE2mjDkGQHoOINtMHtysSnemrmoGe6PydDPMRbVugqyk4A6V/WDWEfm3l+0d8anA9r8cv/5Jaw==}
+    engines: {node: '>=12'}
     dev: true
 
   /assert@2.1.0:
@@ -8590,7 +8568,6 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       escape-string-regexp: 5.0.0
-    dev: false
 
   /cli-cursor@3.1.0:
     resolution: {integrity: sha512-I/zHAwsKf9FqGoXM4WWRACob9+SNukZTd94DWF57E4toouRulbCxcUh6RKUEOQlYTHJnzkPMySvPNaaSLNfLZw==}
@@ -8852,6 +8829,14 @@ packages:
     engines: {node: '>= 0.6'}
     dev: true
 
+  /copy-file@11.0.0:
+    resolution: {integrity: sha512-mFsNh/DIANLqFt5VHZoGirdg7bK5+oTWlhnGu6tgRhzBlnEKWaPX2xrFaLltii/6rmhqFMJqffUgknuRdpYlHw==}
+    engines: {node: '>=18'}
+    dependencies:
+      graceful-fs: 4.2.11
+      p-event: 6.0.0
+    dev: false
+
   /core-js-compat@3.35.1:
     resolution: {integrity: sha512-sftHa5qUJY3rs9Zht1WEnmkvXputCyDBczPnr7QDgL8n3qrF3CMXY4VPSYtOLLiOUJcah2WNXREd48iOl6mQIw==}
     dependencies:
@@ -8861,6 +8846,50 @@ packages:
   /core-util-is@1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
     dev: true
+
+  /cp-file@10.0.0:
+    resolution: {integrity: sha512-vy2Vi1r2epK5WqxOLnskeKeZkdZvTKfFZQCplE3XWsP+SUJyd5XAUFC9lFgTjjXJF2GMne/UML14iEmkAaDfFg==}
+    engines: {node: '>=14.16'}
+    dependencies:
+      graceful-fs: 4.2.11
+      nested-error-stacks: 2.1.1
+      p-event: 5.0.1
+    dev: true
+
+  /cpy-cli@5.0.0:
+    resolution: {integrity: sha512-fb+DZYbL9KHc0BC4NYqGRrDIJZPXUmjjtqdw4XRRg8iV8dIfghUX/WiL+q4/B/KFTy3sK6jsbUhBaz0/Hxg7IQ==}
+    engines: {node: '>=16'}
+    hasBin: true
+    dependencies:
+      cpy: 10.1.0
+      meow: 12.1.1
+    dev: true
+
+  /cpy@10.1.0:
+    resolution: {integrity: sha512-VC2Gs20JcTyeQob6UViBLnyP0bYHkBh6EiKzot9vi2DmeGlFT9Wd7VG3NBrkNx/jYvFBeyDOMMHdHQhbtKLgHQ==}
+    engines: {node: '>=16'}
+    dependencies:
+      arrify: 3.0.0
+      cp-file: 10.0.0
+      globby: 13.2.2
+      junk: 4.0.1
+      micromatch: 4.0.5
+      nested-error-stacks: 2.1.1
+      p-filter: 3.0.0
+      p-map: 6.0.0
+    dev: true
+
+  /cpy@11.0.0:
+    resolution: {integrity: sha512-vA71mFQyIxCrqvP/9JBLCj05UJV/+WpvAxZK2/EiK5ndD090cjuChfJ3ExVVuZXHoTJ/3HLedOPYDWyxnNHjrg==}
+    engines: {node: '>=18'}
+    dependencies:
+      copy-file: 11.0.0
+      globby: 13.2.2
+      junk: 4.0.1
+      micromatch: 4.0.5
+      p-filter: 3.0.0
+      p-map: 6.0.0
+    dev: false
 
   /crelt@1.0.6:
     resolution: {integrity: sha512-VQ2MBenTq1fWZUH9DJNGti7kKv6EeAuYr3cLwxUWhIu1baTaXh4Ib5W2CqHVqib4/MqbYGJqiL3Zb8GJZr3l4g==}
@@ -9551,7 +9580,6 @@ packages:
   /escape-string-regexp@5.0.0:
     resolution: {integrity: sha512-/veY75JbMK4j1yjvuUxuVsiS/hr/4iHs9FTT6cgTexxdE0Ly/glccBAkloH/DofkjRbZU3bnoj38mOmhkZ0lHw==}
     engines: {node: '>=12'}
-    dev: false
 
   /escodegen@2.1.0:
     resolution: {integrity: sha512-2NlIDTwUWJN0mRPQOdtQBzbUHvdGY2P1VXSyU83Q3xKxM7WHX2Ql8dKq782Q9TgQUNOLEzEYu9bzLNj1q88I5w==}
@@ -10658,7 +10686,6 @@ packages:
       ignore: 5.3.0
       merge2: 1.4.1
       slash: 4.0.0
-    dev: false
 
   /globby@14.0.1:
     resolution: {integrity: sha512-jOMLD2Z7MAhyG8aJpNOpmziMOP4rPLcc95oQPKXBazW82z+CEgPFBQvEpRUa1KeIMUJo4Wsm+q6uzO/Q/4BksQ==}
@@ -11141,7 +11168,6 @@ packages:
   /indent-string@5.0.0:
     resolution: {integrity: sha512-m6FAo/spmsW2Ab2fU35JTYwtOKa2yAwXSwgjSv1TJzh4Mh7mC3lzAOVLBprb72XsTrgkEIsl7YrFNAiDiRhIGg==}
     engines: {node: '>=12'}
-    dev: false
 
   /individual@3.0.0:
     resolution: {integrity: sha512-rUY5vtT748NMRbEMrTNiFfy29BgGZwGXUi2NFUVMWQrogSLzlJvQV9eeMWi+g1aVaQ53tpyLAQtd5x/JH0Nh1g==}
@@ -11832,6 +11858,10 @@ packages:
     engines: {'0': node >= 0.2.0}
     dev: true
 
+  /junk@4.0.1:
+    resolution: {integrity: sha512-Qush0uP+G8ZScpGMZvHUiRfI0YBWuB3gVBYlI0v0vvOJt5FLicco+IkP0a50LqTTQhmts/m6tP5SWE+USyIvcQ==}
+    engines: {node: '>=12.20'}
+
   /keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
     dependencies:
@@ -12446,6 +12476,11 @@ packages:
       map-or-similar: 1.5.0
     dev: true
 
+  /meow@12.1.1:
+    resolution: {integrity: sha512-BhXM0Au22RwUneMPwSCnyhTOizdWoIEPU9sp0Aqa1PnDMR5Wv2FGXYDjuzJEIX+Eo2Rb8xuYe5jrnm5QowQFkw==}
+    engines: {node: '>=16.10'}
+    dev: true
+
   /meow@6.1.1:
     resolution: {integrity: sha512-3YffViIt2QWgTy6Pale5QpopX/IvU3LPL03jOTqp6pGj3VjesdO/U8CuHMKpnQr4shCNCM5fd5XFFvIIl6JBHg==}
     engines: {node: '>=8'}
@@ -12959,6 +12994,10 @@ packages:
     hasBin: true
     dev: false
 
+  /napi-wasm@1.1.0:
+    resolution: {integrity: sha512-lHwIAJbmLSjF9VDRm9GoVOy9AGp3aIvkjv+Kvz9h16QR3uSVYH78PNQUnT2U4X53mhlnV2M7wrhibQ3GHicDmg==}
+    dev: false
+
   /natural-compare-lite@1.4.0:
     resolution: {integrity: sha512-Tj+HTDSJJKaZnfiuw+iaF9skdPpTo2GtEly5JHnWV/hfv2Qj/9RKsGISQtLh2ox3l5EAGw487hnBee0sIJ6v2g==}
     dev: true
@@ -12986,6 +13025,10 @@ packages:
 
   /neo-async@2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
+    dev: true
+
+  /nested-error-stacks@2.1.1:
+    resolution: {integrity: sha512-9iN1ka/9zmX1ZvLV9ewJYEk9h7RyRRtqdK0woXcqohu8EWIerfPUjYJPg0ULy0UqP7cslmdGc8xKDJcojlKiaw==}
     dev: true
 
   /next-themes@0.2.1(next@14.1.0)(react-dom@18.2.0)(react@18.2.0):
@@ -13398,12 +13441,32 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
+  /p-event@5.0.1:
+    resolution: {integrity: sha512-dd589iCQ7m1L0bmC5NLlVYfy3TbBEsMUfWx9PyAgPeIcFZ/E2yaTZ4Rz4MiBmmJShviiftHVXOqfnfzJ6kyMrQ==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    dependencies:
+      p-timeout: 5.1.0
+    dev: true
+
+  /p-event@6.0.0:
+    resolution: {integrity: sha512-Xbfxd0CfZmHLGKXH32k1JKjQYX6Rkv0UtQdaFJ8OyNcf+c0oWCeXHc1C4CX/IESZLmcvfPa5aFIO/vCr5gqtag==}
+    engines: {node: '>=16.17'}
+    dependencies:
+      p-timeout: 6.1.2
+    dev: false
+
   /p-filter@2.1.0:
     resolution: {integrity: sha512-ZBxxZ5sL2HghephhpGAQdoskxplTwr7ICaehZwLIlfL6acuVgZPm8yBNuRAFBGEqtD/hmUeq9eqLg2ys9Xr/yw==}
     engines: {node: '>=8'}
     dependencies:
       p-map: 2.1.0
     dev: true
+
+  /p-filter@3.0.0:
+    resolution: {integrity: sha512-QtoWLjXAW++uTX67HZQz1dbTpqBfiidsB6VtQUC9iR85S120+s0T5sO6s+B5MLzFcZkrEd/DGMmCjR+f2Qpxwg==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    dependencies:
+      p-map: 5.5.0
 
   /p-limit@2.3.0:
     resolution: {integrity: sha512-//88mFWSJx8lxCzwdAABTJL2MyWB12+eIY7MDL2SqLmAkeKU9qxRvWuSyTjm3FUmpBEMuFfckAIqEaVGUDxb6w==}
@@ -13478,7 +13541,10 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       aggregate-error: 4.0.1
-    dev: false
+
+  /p-map@6.0.0:
+    resolution: {integrity: sha512-T8BatKGY+k5rU+Q/GTYgrEf2r4xRMevAN5mtXc2aPc4rS1j3s+vWTaO2Wag94neXuCAUAs8cxBL9EeB5EA6diw==}
+    engines: {node: '>=16'}
 
   /p-memoize@4.0.1:
     resolution: {integrity: sha512-km0sP12uE0dOZ5qP+s7kGVf07QngxyG0gS8sYFvFWhqlgzOsSy+m71aUejf/0akxj5W7gE//2G74qTv6b4iMog==}
@@ -13487,6 +13553,16 @@ packages:
       mem: 6.1.1
       mimic-fn: 3.1.0
     dev: true
+
+  /p-timeout@5.1.0:
+    resolution: {integrity: sha512-auFDyzzzGZZZdHz3BtET9VEz0SE/uMEAx7uWfGPucfzEwwe/xH0iVeZibQmANYE/hp9T2+UUZT5m+BKyrDp3Ew==}
+    engines: {node: '>=12'}
+    dev: true
+
+  /p-timeout@6.1.2:
+    resolution: {integrity: sha512-UbD77BuZ9Bc9aABo74gfXhNvzC9Tx7SxtHSh1fxvx3jTLLYvmVhiQZZrJzqqU0jKbN32kb5VOKiLEQI/3bIjgQ==}
+    engines: {node: '>=14.16'}
+    dev: false
 
   /p-try@2.2.0:
     resolution: {integrity: sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==}
@@ -14913,7 +14989,6 @@ packages:
   /slash@4.0.0:
     resolution: {integrity: sha512-3dOsAHXXUkQTpOYcoAxLIorMTp4gIQr5IW3iVb7A7lFIp0VHhnynm9izx6TssdrIcVIESAlVjtnO2K8bg+Coew==}
     engines: {node: '>=12'}
-    dev: false
 
   /slash@5.1.0:
     resolution: {integrity: sha512-ZA6oR3T/pEyuqwMgAKT0/hAv8oAXckzbkmR0UkUosQ+Mc4RxGoJkRmwHgHufaenlyAgE1Mxgpdcrf75y6XcnDg==}

@@ -1,4 +1,4 @@
-# @templ/basic-ts
+# @templ/esbuild-plugin-templ
 
 ## 0.0.1
 
