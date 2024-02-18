@@ -40,7 +40,6 @@
     "slash": "^5.1.0"
   },
   "devDependencies": {
-    "@templ/tsconfig": "workspace:*",
     "@types/node": "^20.11.19",
     "tsx": "^4.7.1"
   }

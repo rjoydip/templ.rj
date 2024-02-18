@@ -41,9 +41,6 @@ importers:
       '@templ/config':
         specifier: workspace:*
         version: link:../../packages/config
-      '@templ/tsconfig':
-        specifier: workspace:*
-        version: link:../../config/tsconfig
       '@types/node':
         specifier: ^20.11.19
         version: 20.11.19
@@ -65,9 +62,6 @@ importers:
       '@templ/config':
         specifier: workspace:*
         version: link:../../packages/config
-      '@templ/tsconfig':
-        specifier: workspace:*
-        version: link:../../config/tsconfig
       '@types/node':
         specifier: ^20.11.19
         version: 20.11.19
@@ -114,9 +108,6 @@ importers:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@3.4.1)
     devDependencies:
-      '@templ/tsconfig':
-        specifier: workspace:*
-        version: link:../../config/tsconfig
       '@types/node':
         specifier: ^20.11.19
         version: 20.11.19
@@ -135,12 +126,6 @@ importers:
       typescript:
         specifier: ^5.3.3
         version: 5.3.3
-
-  config/env: {}
-
-  config/flag: {}
-
-  config/tsconfig: {}
 
   generator:
     dependencies:
@@ -172,9 +157,6 @@ importers:
         specifier: ^5.1.0
         version: 5.1.0
     devDependencies:
-      '@templ/tsconfig':
-        specifier: workspace:*
-        version: link:../config/tsconfig
       '@types/node':
         specifier: ^20.11.19
         version: 20.11.19
@@ -199,9 +181,6 @@ importers:
       '@templ/config':
         specifier: workspace:*
         version: link:../../../packages/config
-      '@templ/tsconfig':
-        specifier: workspace:*
-        version: link:../../../config/tsconfig
       '@types/node':
         specifier: ^20.11.19
         version: 20.11.19
@@ -239,9 +218,6 @@ importers:
       '@templ/config':
         specifier: workspace:*
         version: link:../config
-      '@templ/tsconfig':
-        specifier: workspace:*
-        version: link:../../config/tsconfig
       '@types/autocannon':
         specifier: ^7.12.5
         version: 7.12.5
@@ -276,9 +252,6 @@ importers:
       '@templ/config':
         specifier: workspace:*
         version: link:../config
-      '@templ/tsconfig':
-        specifier: workspace:*
-        version: link:../../config/tsconfig
       '@types/node':
         specifier: ^20.11.19
         version: 20.11.19
@@ -313,9 +286,6 @@ importers:
       '@templ/esbuild-plugin-templ':
         specifier: workspace:*
         version: link:../../plugins/esbuild-plugin-templ
-      '@templ/tsconfig':
-        specifier: workspace:*
-        version: link:../../config/tsconfig
       '@types/node':
         specifier: ^20.11.19
         version: 20.11.19
@@ -337,9 +307,6 @@ importers:
       '@templ/config':
         specifier: workspace:*
         version: link:../config
-      '@templ/tsconfig':
-        specifier: workspace:*
-        version: link:../../config/tsconfig
       '@types/node':
         specifier: ^20.11.19
         version: 20.11.19
@@ -365,9 +332,6 @@ importers:
       '@templ/config':
         specifier: workspace:*
         version: link:../config
-      '@templ/tsconfig':
-        specifier: workspace:*
-        version: link:../../config/tsconfig
       '@types/node':
         specifier: ^20.11.19
         version: 20.11.19
@@ -399,9 +363,6 @@ importers:
       '@templ/config':
         specifier: workspace:*
         version: link:../config
-      '@templ/tsconfig':
-        specifier: workspace:*
-        version: link:../../config/tsconfig
       '@types/node':
         specifier: ^20.11.19
         version: 20.11.19
@@ -586,9 +547,6 @@ importers:
       '@templ/config':
         specifier: workspace:*
         version: link:../config
-      '@templ/tsconfig':
-        specifier: workspace:*
-        version: link:../../config/tsconfig
       '@types/node':
         specifier: ^20.11.19
         version: 20.11.19
@@ -635,9 +593,6 @@ importers:
       '@templ/config':
         specifier: workspace:*
         version: link:../config
-      '@templ/tsconfig':
-        specifier: workspace:*
-        version: link:../../config/tsconfig
       '@types/node':
         specifier: ^20.11.19
         version: 20.11.19
@@ -662,16 +617,19 @@ importers:
       consola:
         specifier: ^3.2.3
         version: 3.2.3
+      cpy:
+        specifier: ^11.0.0
+        version: 11.0.0
       esbuild:
         specifier: ^0.20.0
         version: 0.20.0
+      globby:
+        specifier: ^14.0.1
+        version: 14.0.1
       typescript:
         specifier: ^5.3.3
         version: 5.3.3
     devDependencies:
-      '@templ/tsconfig':
-        specifier: workspace:*
-        version: link:../../config/tsconfig
       '@types/node':
         specifier: ^20.11.19
         version: 20.11.19
@@ -714,16 +672,10 @@ importers:
       terser:
         specifier: ^5.27.1
         version: 5.27.1
-      type-coverage-core:
-        specifier: ^2.27.1
-        version: 2.27.1(typescript@5.3.3)
     devDependencies:
       '@antfu/ni':
         specifier: ^0.21.12
         version: 0.21.12
-      '@templ/tsconfig':
-        specifier: workspace:*
-        version: link:../config/tsconfig
       '@types/node':
         specifier: ^20.11.19
         version: 20.11.19
@@ -3917,6 +3869,7 @@ packages:
     dependencies:
       is-glob: 4.0.3
       micromatch: 4.0.5
+      napi-wasm: 1.1.0
     dev: false
     bundledDependencies:
       - napi-wasm
@@ -8852,6 +8805,14 @@ packages:
     engines: {node: '>= 0.6'}
     dev: true
 
+  /copy-file@11.0.0:
+    resolution: {integrity: sha512-mFsNh/DIANLqFt5VHZoGirdg7bK5+oTWlhnGu6tgRhzBlnEKWaPX2xrFaLltii/6rmhqFMJqffUgknuRdpYlHw==}
+    engines: {node: '>=18'}
+    dependencies:
+      graceful-fs: 4.2.11
+      p-event: 6.0.0
+    dev: false
+
   /core-js-compat@3.35.1:
     resolution: {integrity: sha512-sftHa5qUJY3rs9Zht1WEnmkvXputCyDBczPnr7QDgL8n3qrF3CMXY4VPSYtOLLiOUJcah2WNXREd48iOl6mQIw==}
     dependencies:
@@ -8861,6 +8822,18 @@ packages:
   /core-util-is@1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
     dev: true
+
+  /cpy@11.0.0:
+    resolution: {integrity: sha512-vA71mFQyIxCrqvP/9JBLCj05UJV/+WpvAxZK2/EiK5ndD090cjuChfJ3ExVVuZXHoTJ/3HLedOPYDWyxnNHjrg==}
+    engines: {node: '>=18'}
+    dependencies:
+      copy-file: 11.0.0
+      globby: 13.2.2
+      junk: 4.0.1
+      micromatch: 4.0.5
+      p-filter: 3.0.0
+      p-map: 6.0.0
+    dev: false
 
   /crelt@1.0.6:
     resolution: {integrity: sha512-VQ2MBenTq1fWZUH9DJNGti7kKv6EeAuYr3cLwxUWhIu1baTaXh4Ib5W2CqHVqib4/MqbYGJqiL3Zb8GJZr3l4g==}
@@ -11832,6 +11805,11 @@ packages:
     engines: {'0': node >= 0.2.0}
     dev: true
 
+  /junk@4.0.1:
+    resolution: {integrity: sha512-Qush0uP+G8ZScpGMZvHUiRfI0YBWuB3gVBYlI0v0vvOJt5FLicco+IkP0a50LqTTQhmts/m6tP5SWE+USyIvcQ==}
+    engines: {node: '>=12.20'}
+    dev: false
+
   /keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
     dependencies:
@@ -12959,6 +12937,10 @@ packages:
     hasBin: true
     dev: false
 
+  /napi-wasm@1.1.0:
+    resolution: {integrity: sha512-lHwIAJbmLSjF9VDRm9GoVOy9AGp3aIvkjv+Kvz9h16QR3uSVYH78PNQUnT2U4X53mhlnV2M7wrhibQ3GHicDmg==}
+    dev: false
+
   /natural-compare-lite@1.4.0:
     resolution: {integrity: sha512-Tj+HTDSJJKaZnfiuw+iaF9skdPpTo2GtEly5JHnWV/hfv2Qj/9RKsGISQtLh2ox3l5EAGw487hnBee0sIJ6v2g==}
     dev: true
@@ -13398,12 +13380,26 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
+  /p-event@6.0.0:
+    resolution: {integrity: sha512-Xbfxd0CfZmHLGKXH32k1JKjQYX6Rkv0UtQdaFJ8OyNcf+c0oWCeXHc1C4CX/IESZLmcvfPa5aFIO/vCr5gqtag==}
+    engines: {node: '>=16.17'}
+    dependencies:
+      p-timeout: 6.1.2
+    dev: false
+
   /p-filter@2.1.0:
     resolution: {integrity: sha512-ZBxxZ5sL2HghephhpGAQdoskxplTwr7ICaehZwLIlfL6acuVgZPm8yBNuRAFBGEqtD/hmUeq9eqLg2ys9Xr/yw==}
     engines: {node: '>=8'}
     dependencies:
       p-map: 2.1.0
     dev: true
+
+  /p-filter@3.0.0:
+    resolution: {integrity: sha512-QtoWLjXAW++uTX67HZQz1dbTpqBfiidsB6VtQUC9iR85S120+s0T5sO6s+B5MLzFcZkrEd/DGMmCjR+f2Qpxwg==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    dependencies:
+      p-map: 5.5.0
+    dev: false
 
   /p-limit@2.3.0:
     resolution: {integrity: sha512-//88mFWSJx8lxCzwdAABTJL2MyWB12+eIY7MDL2SqLmAkeKU9qxRvWuSyTjm3FUmpBEMuFfckAIqEaVGUDxb6w==}
@@ -13480,6 +13476,11 @@ packages:
       aggregate-error: 4.0.1
     dev: false
 
+  /p-map@6.0.0:
+    resolution: {integrity: sha512-T8BatKGY+k5rU+Q/GTYgrEf2r4xRMevAN5mtXc2aPc4rS1j3s+vWTaO2Wag94neXuCAUAs8cxBL9EeB5EA6diw==}
+    engines: {node: '>=16'}
+    dev: false
+
   /p-memoize@4.0.1:
     resolution: {integrity: sha512-km0sP12uE0dOZ5qP+s7kGVf07QngxyG0gS8sYFvFWhqlgzOsSy+m71aUejf/0akxj5W7gE//2G74qTv6b4iMog==}
     engines: {node: '>=10'}
@@ -13487,6 +13488,11 @@ packages:
       mem: 6.1.1
       mimic-fn: 3.1.0
     dev: true
+
+  /p-timeout@6.1.2:
+    resolution: {integrity: sha512-UbD77BuZ9Bc9aABo74gfXhNvzC9Tx7SxtHSh1fxvx3jTLLYvmVhiQZZrJzqqU0jKbN32kb5VOKiLEQI/3bIjgQ==}
+    engines: {node: '>=14.16'}
+    dev: false
 
   /p-try@2.2.0:
     resolution: {integrity: sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==}
@@ -15635,19 +15641,10 @@ packages:
 
   /tslib@1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
+    dev: true
 
   /tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
-
-  /tsutils@3.21.0(typescript@5.3.3):
-    resolution: {integrity: sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==}
-    engines: {node: '>= 6'}
-    peerDependencies:
-      typescript: '>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta'
-    dependencies:
-      tslib: 1.14.1
-      typescript: 5.3.3
-    dev: false
 
   /tsx@4.7.1:
     resolution: {integrity: sha512-8d6VuibXHtlN5E3zFkgY8u4DX7Y3Z27zvvPKVmLon/D4AjuKzarkUBTLDBgj9iTQ0hg5xM7c/mYiRVM+HETf0g==}
@@ -15755,19 +15752,6 @@ packages:
     dependencies:
       prelude-ls: 1.2.1
     dev: true
-
-  /type-coverage-core@2.27.1(typescript@5.3.3):
-    resolution: {integrity: sha512-W+PMYbhUsq+UWkrb7UkmyO7zF3zt4qZuQukyDM6eaiCIkMJclcVmR3O02clDk4FKpKPbzHictOmoIu3fYp+53g==}
-    peerDependencies:
-      typescript: 2 || 3 || 4 || 5
-    dependencies:
-      fast-glob: 3.3.2
-      minimatch: 9.0.3
-      normalize-path: 3.0.0
-      tslib: 2.6.2
-      tsutils: 3.21.0(typescript@5.3.3)
-      typescript: 5.3.3
-    dev: false
 
   /type-detect@4.0.8:
     resolution: {integrity: sha512-0fr/mIH1dlO+x7TlcMy+bIDqKPsw/70tVyeHW787goQjhmqaZe10uwLujubK9q9Lg6Fiho1KUKDYz0Z7k7g5/g==}
