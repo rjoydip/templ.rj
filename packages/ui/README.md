@@ -49,6 +49,9 @@ npx nypm i @templ/ui@^0.0.1
 # ✨ Auto-detect
 npx nypm i @templ/ui@^0.0.1
 
+# ✨ Auto-detect
+npx nypm i @templ/ui@^0.0.1
+
 # npm
 npm install @templ/ui@^0.0.1
 
