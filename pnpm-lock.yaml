@@ -750,8 +750,8 @@ importers:
         specifier: ^6.8.1
         version: 6.8.1
       terser:
-        specifier: ^5.27.1
-        version: 5.27.1
+        specifier: ^5.27.2
+        version: 5.27.2
     devDependencies:
       '@antfu/ni':
         specifier: ^0.21.12
@@ -15516,8 +15516,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /terser@5.27.1:
-    resolution: {integrity: sha512-29wAr6UU/oQpnTw5HoadwjUZnFQXGdOfj0LjZ4sVxzqwHh/QVkvr7m8y9WoR4iN3FRitVduTc6KdjcW38Npsug==}
+  /terser@5.27.2:
+    resolution: {integrity: sha512-sHXmLSkImesJ4p5apTeT63DsV4Obe1s37qT8qvwHRmVxKTBH7Rv9Wr26VcAMmLbmk9UliiwK8z+657NyJHHy/w==}
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
