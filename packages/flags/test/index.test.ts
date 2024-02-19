@@ -2,7 +2,7 @@ import { cwd } from 'node:process'
 import { beforeAll, beforeEach, describe, expect, it } from 'vitest'
 import { type RCOptions, getOptions, rcOptions, readFF, setOptions, toggleFF, updateFF, writeFF } from '../src'
 
-describe('@templ/fflag', () => {
+describe('@templ/flags', () => {
   beforeEach(() => {
     setOptions(rcOptions)
   })

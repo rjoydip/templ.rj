@@ -187,6 +187,9 @@ importers:
 
   generator/templates/basic-js:
     devDependencies:
+      '@templ/config':
+        specifier: workspace:*
+        version: link:../../../packages/config
       '@types/node':
         specifier: ^20.11.19
         version: 20.11.19
@@ -303,12 +306,24 @@ importers:
 
   packages/config:
     dependencies:
+      '@lukeed/ms':
+        specifier: ^2.0.2
+        version: 2.0.2
       c12:
         specifier: ^1.8.0
         version: 1.8.0
       consola:
         specifier: ^3.2.3
         version: 3.2.3
+      cpy:
+        specifier: ^11.0.0
+        version: 11.0.0
+      esbuild:
+        specifier: ^0.20.1
+        version: 0.20.1
+      globby:
+        specifier: ^14.0.1
+        version: 14.0.1
       pkg-types:
         specifier: ^1.0.3
         version: 1.0.3
@@ -322,9 +337,6 @@ importers:
         specifier: ^1.4.2
         version: 1.4.2
     devDependencies:
-      '@templ/esbuild-plugin-templ':
-        specifier: workspace:*
-        version: link:../../plugins/esbuild-plugin-templ
       '@templ/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
@@ -334,9 +346,6 @@ importers:
       '@vitest/coverage-v8':
         specifier: ^1.3.0
         version: 1.3.0(vitest@1.3.0)
-      esbuild:
-        specifier: ^0.20.1
-        version: 0.20.1
       tsx:
         specifier: ^4.7.1
         version: 4.7.1
@@ -374,7 +383,7 @@ importers:
         specifier: ^1.3.0
         version: 1.3.0(@types/node@20.11.19)
 
-  packages/fflag:
+  packages/flags:
     dependencies:
       rc9:
         specifier: ^2.1.1
@@ -685,37 +694,6 @@ importers:
       vitest:
         specifier: ^1.3.0
         version: 1.3.0(@types/node@20.11.19)
-
-  plugins/esbuild-plugin-templ:
-    dependencies:
-      '@lukeed/ms':
-        specifier: ^2.0.2
-        version: 2.0.2
-      consola:
-        specifier: ^3.2.3
-        version: 3.2.3
-      cpy:
-        specifier: ^11.0.0
-        version: 11.0.0
-      esbuild:
-        specifier: ^0.20.1
-        version: 0.20.1
-      globby:
-        specifier: ^14.0.1
-        version: 14.0.1
-      typescript:
-        specifier: ^5.3.3
-        version: 5.3.3
-    devDependencies:
-      '@templ/tsconfig':
-        specifier: workspace:*
-        version: link:../../packages/tsconfig
-      '@types/node':
-        specifier: ^20.11.19
-        version: 20.11.19
-      tsx:
-        specifier: ^4.7.1
-        version: 4.7.1
 
   scripts:
     dependencies:

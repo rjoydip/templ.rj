@@ -1,6 +1,6 @@
 import type { BuildOptions, Plugin } from 'esbuild'
-import { clean, dts } from '@templ/esbuild-plugin-templ'
 import { TemplConfigSchema } from './schema'
+import { clean, dts } from './plugins'
 
 /**
  * Retrieves the TemplConfigSchema.

@@ -1,8 +1,8 @@
 import { defineProject, mergeConfig } from 'vitest/config'
-import configShared from '../../.config/vitest.shared.js'
+import { getVitestConfig } from '@templ/config'
 
 export default mergeConfig(
-  configShared,
+  getVitestConfig(),
   defineProject({
     test: {
       alias: {

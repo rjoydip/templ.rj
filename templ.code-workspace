@@ -21,8 +21,8 @@
       "path": "packages/cli"
     },
     {
-      "name": "⚙️ @templ/fflag",
-      "path": "packages/fflag"
+      "name": "⚙️ @templ/flags",
+      "path": "packages/flags"
     },
     {
       "name": "⚙️ @templ/ui",
