@@ -42,7 +42,12 @@
     "eslint": "^8.56.0",
     "knip": "^5.0.1",
     "pnpm": "^8.15.3",
+    "simple-git-hooks": "^2.9.0",
     "taze": "^0.13.3",
     "turbo": "^1.12.4"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm i && pnpm run deps:update && pnpm run build && pnpm run lint && pnpm run test",
+    "preserveUnused": true
   }
 }

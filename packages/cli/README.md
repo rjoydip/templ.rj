@@ -40,6 +40,9 @@ npx nypm i @templ/cli@^0.0.1
 # ✨ Auto-detect
 npx nypm i @templ/cli@^0.0.1
 
+# ✨ Auto-detect
+npx nypm i @templ/cli@^0.0.1
+
 # npm
 npm install @templ/cli@^0.0.1
 

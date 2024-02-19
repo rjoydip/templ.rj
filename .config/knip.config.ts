@@ -1,7 +1,7 @@
 import type { KnipConfig } from 'knip'
 
 const config: KnipConfig = {
-  'ignoreBinaries': ['templ-cli'],
+  'ignoreBinaries': ['simple-git-hooks', 'templ-cli'],
   'ignoreDependencies': ['typecheck'],
   'workspaces': {
     '.': {
