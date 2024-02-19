@@ -1,0 +1,29 @@
+{
+  "name": "@templ/tsconfig",
+  "version": "0.0.1",
+  "description": "Shared TypeScript config",
+  "license": "MIT",
+  "homepage": "https://github.com/rjoydip/templ/tree/main/packages/tsconfig#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rjoydip/templ.git",
+    "directory": "packages/tsconfig"
+  },
+  "keywords": [
+    "tsconfig",
+    "typescript",
+    "ts",
+    "config",
+    "configuration"
+  ],
+  "main": "basic.json",
+  "files": [
+    "basic.json",
+    "next.json",
+    "react.json"
+  ],
+  "engines": {
+    "node": "^18.8.0 || >=20.6.0",
+    "npm": ">=8"
+  }
+}

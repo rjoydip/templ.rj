@@ -1,9 +1,8 @@
-/* v8 ignore start */
 import { argv } from 'node:process'
 import * as esbuild from 'esbuild'
 import type { BuildOptions } from 'esbuild'
 import consola from 'consola'
-import { clean, copy, dts } from './src'
+import { clean, dts } from './src'
 
 const config: BuildOptions = {
   entryPoints: ['src/index.ts'],
@@ -15,7 +14,7 @@ const config: BuildOptions = {
   packages: 'external',
   format: 'esm',
   outfile: 'dist/index.js',
-  plugins: [clean(), dts(), copy({})],
+  plugins: [clean(), dts()],
 }
 
 async function run() {
@@ -29,5 +28,3 @@ async function run() {
 }
 
 run().catch(consola.error)
-
-/* v8 ignore end */
