@@ -1,4 +1,4 @@
-import type { BuildOptions } from 'esbuild'
+import type { BuildOptions, Plugin } from 'esbuild'
 import { clean, dts } from '@templ/esbuild-plugin-templ'
 import { TemplConfigSchema } from './schema'
 
@@ -27,7 +27,11 @@ export function getTemplConfigSchema() {
  *
  * @return {BuildOptions} the build configuration options
  */
-export function getBuildConfig(): BuildOptions {
+export function getBuildConfig({
+  plugins = [],
+}: {
+  plugins?: Plugin[]
+}): BuildOptions {
   return {
     entryPoints: ['src/index.ts'],
     bundle: true,
@@ -38,6 +42,32 @@ export function getBuildConfig(): BuildOptions {
     packages: 'external',
     format: 'esm',
     outdir: 'dist',
-    plugins: [clean(), dts()],
+    plugins: [clean(), dts(), ...plugins],
+  }
+}
+
+/**
+ * Retrieves the Vitest configuration settings.
+ *
+ * @example
+ * ```ts
+ * import { getVitestConfig } from '@templ/config'
+ * const vitestConfig = getVitestConfig()
+ * ```
+ * @see https://vitest.dev/config
+ * @see https://vitest.dev/api
+ * @see https://github.com/vitest-dev/vitest
+ *
+ * @return {object} The Vitest configuration object.
+ */
+export function getVitestConfig() {
+  return {
+    test: {
+      include: ['{test,tests}/**/*.test.{ts,js}'],
+      coverage: {
+        enabled: true,
+        reporter: ['text', 'json', 'html'],
+      },
+    },
   }
 }

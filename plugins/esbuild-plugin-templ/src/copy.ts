@@ -52,9 +52,9 @@ export interface CopyOptions {
    * you can specify "cwd" or process.cwd() to resolve from current working directory,
    * also, you can specify somewhere else to resolve from.
    *
-   * @default "out"
+   * @default "cwd"
    */
-  resolveFrom?: 'cwd' | 'out' | (string & object)
+  resolveFrom?: string
 
   /**
    * use dry run mode to see what's happening.
@@ -64,6 +64,14 @@ export interface CopyOptions {
    * @default false
    */
   dryRun?: boolean
+  /**
+   * use flat mode when not copying directories.
+   *
+   * by default, enable this option means enable `flat` option in the same time
+   *
+   * @default false
+   */
+  flat?: boolean
 }
 
 export function copy(options: CopyOptions) {
@@ -72,12 +80,16 @@ export function copy(options: CopyOptions) {
     async setup(build: PluginBuild) {
       const {
         patterns = [],
-        toDir = '',
         dryRun = false,
+        flat = false,
         once = false,
-        resolveFrom = 'out',
         globbyOptions = {},
         verbose: _verbose = false,
+      } = options
+
+      let {
+        toDir = '',
+        resolveFrom = 'cwd',
       } = options
 
       const verbose = dryRun === true || _verbose
@@ -96,66 +108,27 @@ export function copy(options: CopyOptions) {
         if (!patterns.length)
           return null
 
-        // the base destination dir that will resolve with asset.to value
-        let outDirResolveFrom: string
+        toDir = !toDir ? (build.initialOptions.outdir ?? dirname(build.initialOptions.outfile!)) : toDir
 
-        // resolve from cwd
-        if (resolveFrom === 'cwd') {
-          outDirResolveFrom = cwd()
-          // resolve from outdir or outfile
-        }
-        else if (resolveFrom === 'out') {
-          // outdir takes precedence over outfile because it should be used more widely
-          const outDir = build.initialOptions.outdir
-            // for outfile, use the directory it located in
-            ?? dirname(build.initialOptions.outfile!)
-
-          // This log should not be displayed as ESBuild will ensure one of options provided
-          if (!outDir) {
-            verboseLog({
-              method: 'info',
-              msg: colors.red(
-                `You should provide valid ${colors.white(
-                  'outdir',
-                )} or ${colors.white(
-                  'outfile',
-                )} for assets copy. received outdir:${
-                  build.initialOptions.outdir
-                }, received outfile:${build.initialOptions.outfile}`,
-              ),
-              verbose,
-            })
-
-            return
-          }
-
-          outDirResolveFrom = outDir
-        }
-        else {
-          // use custom resolveFrom dir
-          outDirResolveFrom = resolveFrom
-        }
-
-        // the final value of outDirResolveFrom will be used by all asset pairs
         verboseLog({
           method: 'info',
-          msg: `Resolve assert pair to path from: ${resolve(
-            outDirResolveFrom,
-          )}`,
+          msg: `Resolved toDir to ${colors.white(toDir)}`,
           verbose,
         })
 
+        resolveFrom = resolveFrom === 'cwd' ? resolve(cwd()) : resolve(cwd(), resolveFrom)
+
         const fromPaths = await globby(patterns, {
-          // we don't expand directories be default
           expandDirectories: false,
-          // ensure outputs contains only file path
           onlyFiles: true,
+          absolute: true,
+          cwd: resolveFrom,
           ...globbyOptions,
         })
 
         if (!fromPaths.length) {
           verboseLog({
-            method: 'info',
+            method: 'box',
             msg: `No files matched using current glob pattern: ${colors.white(
                 fromPaths.join(','),
               )}, maybe you need to configure globby by ${colors.white(
@@ -166,10 +139,11 @@ export function copy(options: CopyOptions) {
         }
 
         await copyHandler({
+          dryRun,
+          flat,
           fromPaths,
           toDir,
           verbose,
-          dryRun,
         })
 
         return null

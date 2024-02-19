@@ -45,6 +45,7 @@
   },
   "devDependencies": {
     "@antfu/ni": "^0.21.12",
+    "@templ/tsconfig": "workspace:*",
     "@types/node": "^20.11.19",
     "tsx": "^4.7.1"
   }

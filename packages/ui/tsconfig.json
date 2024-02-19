@@ -1,5 +1,5 @@
 {
-  "extends": "../../.config/tsconfig/react.json",
+  "extends": "@templ/tsconfig/react.json",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {

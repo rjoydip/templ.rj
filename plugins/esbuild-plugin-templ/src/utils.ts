@@ -21,11 +21,13 @@ export async function copyHandler({
   toDir,
   verbose = false,
   dryRun = false,
+  flat = false,
 }: {
   fromPaths: string[]
   toDir: string
   verbose: boolean
   dryRun: boolean
+  flat: boolean
 }) {
   if (!fromPaths.length) {
     verboseLog({
@@ -42,6 +44,7 @@ export async function copyHandler({
       overwrite: true,
       ignoreJunk: true,
       ignore: ['.git', 'node_modules', 'dist', 'temp', 'coverage'],
+      flat,
     })
   }
 

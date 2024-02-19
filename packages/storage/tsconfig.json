@@ -1,4 +1,7 @@
 {
-  "extends": "../../.config/tsconfig/base.json",
-  "include": ["src/**/*.ts", "*.config.ts", "storage.d.ts"]
+  "extends": "@templ/tsconfig/base.json",
+  "compilerOptions": {
+    "outDir": "dist"
+  },
+  "include": ["src/**/*.ts", "*.config.ts", "*.d.ts"]
 }
