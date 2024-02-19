@@ -23,6 +23,10 @@ runs:
       shell: bash
       run: echo "${{ toJson(steps.resolve-package-versions.outputs) }}"
 
-    - name: Install
+    - name: Install ni
       shell: bash
-      run: pnpm i
+      run: npm i -g @antfu/ni
+
+    - name: Clean install
+      shell: bash
+      run: nci

@@ -1,3 +1,5 @@
 export * from './get'
 export * from './load'
+export * from './plugins'
 export * from './types'
+export * from './schema'

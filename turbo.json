@@ -12,6 +12,10 @@
       "persistent": true,
       "inputs": ["**/*.test.{ts,tsx}"]
     },
+    "lint": {
+      "dependsOn": ["^build"],
+      "inputs": ["**/*.{ts,tsx}"]
+    },
     "test": {
       "dependsOn": ["^build", "^test"],
       "outputs": ["coverage/**"],

@@ -37,9 +37,6 @@ bunx @templ/api@0.0.1 .
 # ✨ Auto-detect
 npx nypm i @templ/api@^0.0.1
 
-# ✨ Auto-detect
-npx nypm i @templ/api@^0.0.1
-
 # npm
 npm install @templ/api@^0.0.1
 

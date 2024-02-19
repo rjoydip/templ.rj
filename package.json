@@ -27,9 +27,9 @@
   "scripts": {
     "postinstall": "nr deps:update",
     "all": "ni && nr deps:update && nr build && nr lint && nr test",
-    "build": "nr -C scripts clean && turbo run build && nr -C scripts build:check",
+    "build": "nr -r clean && turbo run build && nr -r build:check && nr -r typecheck",
     "deps:update": "taze -r -w -i -f -l",
-    "lint": "eslint . --fix && knip -c .config/knip.config.ts && nr -C scripts automd && nr -r typecheck",
+    "lint": "eslint . --fix && knip -c .config/knip.config.ts && nr -r automd",
     "release": "changeset version && npm publish && git push --follow-tags",
     "test": "turbo run test"
   },
@@ -45,7 +45,7 @@
     "turbo": "^1.12.4"
   },
   "simple-git-hooks": {
-    "pre-commit": "pnpm i && pnpm run deps:update && pnpm run build && pnpm run lint && pnpm run test",
+    "pre-commit": "ni && nr deps:update && nr build && nr lint && nr test",
     "preserveUnused": true
   }
 }

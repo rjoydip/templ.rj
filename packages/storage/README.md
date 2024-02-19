@@ -37,9 +37,7 @@ Creates a storage with the given options.
 
 ### `decoder()`
 
-
 ### `encoder()`
-
 
 ### `envStore(opts?)`
 
@@ -80,7 +78,6 @@ Set a feature flag in the storage.
 ### `setOptions(opts)`
 
 Sets the options for creating storage.
-
 
 <!-- /automd -->
 

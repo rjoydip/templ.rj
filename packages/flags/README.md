@@ -46,6 +46,15 @@ npx nypm i @templ/flags@^0.0.1
 # ✨ Auto-detect
 npx nypm i @templ/flags@^0.0.1
 
+# ✨ Auto-detect
+npx nypm i @templ/flags@^0.0.1
+
+# ✨ Auto-detect
+npx nypm i @templ/flags@^0.0.1
+
+# ✨ Auto-detect
+npx nypm i @templ/flags@^0.0.1
+
 # npm
 npm install @templ/flags@^0.0.1
 
