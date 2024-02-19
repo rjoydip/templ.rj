@@ -29,14 +29,10 @@
   "scripts": {
     "postinstall": "nr deps:update",
     "all": "nr deps:update && nr build && nr lint && nr test",
-    "automd": "nr -C scripts automd",
-    "build": "nr clean && turbo run build && nr build:check",
-    "clean": "nr -C scripts clean",
-    "build:check": "nr -C scripts build:check",
+    "build": "nr -C scripts clean && turbo run build && nr -C scripts build:check",
     "commit": "ni && nr all && better-commits",
     "deps:update": "taze -r -w -i -f -l",
-    "lint": "turbo run lint && eslint . --fix && nr knip",
-    "knip": "knip -c .config/knip.config.ts",
+    "lint": "eslint . --fix && knip -c .config/knip.config.ts && nr -C scripts automd && nr -r typecheck",
     "release": "changeset version && npm publish && git push --follow-tags",
     "test": "turbo run test"
   },

@@ -28,7 +28,7 @@
     "build:size-report": "tsx ./src/build/size-report.ts",
     "ci:env-copy": "tsx ./src/ci/env-copy.ts",
     "ci:env-delete": "tsx ./src/ci/env-delete.ts",
-    "lint": "nr automd"
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "automd": "^0.3.0",
@@ -47,6 +47,7 @@
     "@antfu/ni": "^0.21.12",
     "@templ/tsconfig": "workspace:*",
     "@types/node": "^20.11.19",
-    "tsx": "^4.7.1"
+    "tsx": "^4.7.1",
+    "typescript": "^5.3.3"
   }
 }

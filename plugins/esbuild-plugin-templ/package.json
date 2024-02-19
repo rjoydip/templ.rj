@@ -31,7 +31,8 @@
     "npm": ">=8"
   },
   "scripts": {
-    "build": "tsx ./esbuild.config.ts"
+    "build": "tsx ./esbuild.config.ts",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@lukeed/ms": "^2.0.2",

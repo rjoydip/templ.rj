@@ -2,6 +2,7 @@ import type { KnipConfig } from 'knip'
 
 const config: KnipConfig = {
   'ignoreBinaries': ['templ-cli'],
+  'ignoreDependencies': ['typecheck'],
   'workspaces': {
     '.': {
       entry: ['eslint.config.js', '.config/vitest.shared.js'],
