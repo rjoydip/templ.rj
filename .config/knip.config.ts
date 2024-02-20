@@ -1,7 +1,7 @@
 import type { KnipConfig } from 'knip'
 
 const config: KnipConfig = {
-  'ignoreBinaries': ['simple-git-hooks', 'templ-cli'],
+  'ignoreBinaries': ['templ-cli'],
   'ignoreDependencies': ['typecheck'],
   'workspaces': {
     '.': {
@@ -62,7 +62,7 @@ const config: KnipConfig = {
     config: [
       'package.json',
     ],
-    project: ['app/**', 'packages/**', 'generator', 'scripts', 'plugins/**'],
+    project: ['app/**', 'packages/**', 'generator', 'scripts'],
   },
   'postcss': {
     config: ['postcss.config.{cjs,js}', 'postcss.config.json', 'package.json'],

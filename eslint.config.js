@@ -10,9 +10,4 @@ export default antfu({
   rules: {
     'antfu/no-import-dist': 'off',
   },
-}, {
-  files: ['**/*.bench.ts'],
-  rules: {
-    'test/consistent-test-it': 'off',
-  },
 })
