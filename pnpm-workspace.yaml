@@ -1,8 +1,6 @@
 ---
 packages:
   - apps/**
-  - .config/**
   - packages/**
-  - plugins/**
   - scripts
   - generator/**

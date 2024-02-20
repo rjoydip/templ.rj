@@ -40,7 +40,7 @@ async function sizeLimit(): Promise<SizeLimit> {
   const packages = await getPackagesAsync()
   const results = await Promise.all(packages.map(async (p) => {
     const splittedEle = splitByCase(p, ['\\', '/'])
-    const name = upperFirst(splittedEle[1]?.toLowerCase() ?? '')
+    const name = splittedEle[1] && splittedEle[1].length <= 3 ? splittedEle[1]?.toUpperCase() : upperFirst(splittedEle[1]?.toLowerCase() ?? '')
     const pkgPath = resolve(root, splittedEle[0] ?? '', splittedEle[1] ?? '', 'package.json')
     const pkgRaw = await readFile(pkgPath, {
       encoding: 'utf-8',

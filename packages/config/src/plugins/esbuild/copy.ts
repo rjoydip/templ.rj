@@ -3,7 +3,7 @@ import { dirname, resolve } from 'node:path'
 import { colors } from 'consola/utils'
 import type { PluginBuild } from 'esbuild'
 import { type Options as GlobbyOptions, globby } from 'globby'
-import { copyHandler, verboseLog } from './utils'
+import { copyHandler, verboseLog } from '../utils'
 
 export type MaybeArray<T> = T | T[]
 

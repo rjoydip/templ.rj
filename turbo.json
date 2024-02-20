@@ -6,19 +6,20 @@
       "outputs": ["dist/**", ".next/**"],
       "inputs": ["src/**/*.{ts,tsx}"]
     },
+    "dev": {
+      "dependsOn": ["^dev", "^build"],
+      "cache": false,
+      "persistent": true,
+      "inputs": ["**/*.test.{ts,tsx}"]
+    },
+    "lint": {
+      "dependsOn": ["^build"],
+      "inputs": ["**/*.{ts,tsx}"]
+    },
     "test": {
       "dependsOn": ["^build", "^test"],
       "outputs": ["coverage/**"],
       "inputs": ["test/**/*.test.{ts,tsx}"]
-    },
-    "dev": {
-      "dependsOn": ["^build"],
-      "cache": false,
-      "persistent": true
-    },
-    "lint": {
-      "cache": false,
-      "persistent": true
     }
   }
 }

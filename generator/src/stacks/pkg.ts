@@ -120,7 +120,6 @@ export async function run() {
 
     await vitestConfigPathModification({
       path: dir,
-      lang: local.language,
     })
 
     consola.success(`Generated ${colors.cyan(local.name)} package`)

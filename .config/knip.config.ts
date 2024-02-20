@@ -2,6 +2,7 @@ import type { KnipConfig } from 'knip'
 
 const config: KnipConfig = {
   'ignoreBinaries': ['templ-cli'],
+  'ignoreDependencies': ['typecheck'],
   'workspaces': {
     '.': {
       entry: ['eslint.config.js', '.config/vitest.shared.js'],
@@ -61,7 +62,7 @@ const config: KnipConfig = {
     config: [
       'package.json',
     ],
-    project: ['app/**', 'packages/**', 'generator', 'scripts', 'plugins/**'],
+    project: ['app/**', 'packages/**', 'generator', 'scripts'],
   },
   'postcss': {
     config: ['postcss.config.{cjs,js}', 'postcss.config.json', 'package.json'],

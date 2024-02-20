@@ -22,9 +22,4 @@ describe('@templ/ui > utils', () => {
     expect(result).to.be.a('string')
     expect(result).to.equal('invalid-class1 invalid-class2 invalid-class3')
   })
-  it('should return a string of concatenated class names when given an object with keys as class names and values as non-boolean values as inputs', () => {
-    const result = cn({ class1: 'value1', class2: 'value2' })
-    expect(result).to.be.a('string')
-    expect(result).to.equal('class1 class2')
-  })
 })

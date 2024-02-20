@@ -13,9 +13,7 @@
   "sideEffects": true,
   "workspaces": [
     "apps/**",
-    ".config/**",
     "packages/**",
-    "plugins/**",
     "scripts",
     "generator"
   ],
@@ -27,15 +25,12 @@
     "yarn": ">=3"
   },
   "scripts": {
-    "postinstall": "nr deps:update",
-    "all": "nr deps:update && nr build && nr lint && nr test",
-    "automd": "nr -C scripts automd",
-    "build": "nr clean && turbo run build && nr build:check",
-    "clean": "nr -C scripts clean",
-    "build:check": "nr -C scripts build:check",
-    "commit": "ni && nr all && better-commits",
-    "deps:update": "taze -r -w -i -f -l",
-    "lint": "turbo run lint && eslint . --fix && nr knip",
+    "prepare": "husky",
+    "postinstall": "taze -r -w -i -f -l",
+    "postbuild": "nr -C scripts build:check && nr -r typecheck && nr knip",
+    "all": "ni && nr build && nr lint && nr test",
+    "build": "nr -C scripts clean && turbo run build",
+    "lint": "eslint . --fix && nr -C scripts automd",
     "knip": "knip -c .config/knip.config.ts",
     "release": "changeset version && npm publish && git push --follow-tags",
     "test": "turbo run test"
@@ -44,8 +39,8 @@
     "@antfu/eslint-config": "2.6.4",
     "@antfu/ni": "^0.21.12",
     "@changesets/cli": "^2.27.1",
-    "better-commits": "^1.12.0",
     "eslint": "^8.56.0",
+    "husky": "^9.0.11",
     "knip": "^5.0.1",
     "pnpm": "^8.15.3",
     "taze": "^0.13.3",

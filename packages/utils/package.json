@@ -32,7 +32,8 @@
   "scripts": {
     "build": "tsx esbuild.config.ts",
     "dev": "tsx esbuild.config.ts --watch",
-    "test": "vitest run && vitest bench --run"
+    "test": "vitest run && vitest bench --run",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "find-up": "^7.0.0",
@@ -45,6 +46,7 @@
     "@vitest/coverage-v8": "^1.3.0",
     "esbuild": "^0.20.1",
     "tsx": "^4.7.1",
+    "typescript": "^5.3.3",
     "vitest": "^1.3.0"
   },
   "size-limit": "2 KB"

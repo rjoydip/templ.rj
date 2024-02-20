@@ -26,7 +26,8 @@
     "app": "tsx ./src/stacks/app.ts",
     "doc": "tsx ./src/stacks/doc.ts",
     "pkg": "tsx ./src/stacks/pkg.ts",
-    "server": "tsx ./src/stacks/server.ts"
+    "server": "tsx ./src/stacks/server.ts",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "consola": "^3.2.3",
@@ -42,6 +43,7 @@
   "devDependencies": {
     "@templ/tsconfig": "workspace:*",
     "@types/node": "^20.11.19",
-    "tsx": "^4.7.1"
+    "tsx": "^4.7.1",
+    "typescript": "^5.3.3"
   }
 }
