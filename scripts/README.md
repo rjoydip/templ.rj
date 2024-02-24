@@ -18,13 +18,13 @@ TEMPL scripts module.
 
 ```sh
 # npm
-npx @templ/scripts@0.0.1 .
+npx @templ/scripts .
 
 # pnpm
-pnpm dlx @templ/scripts@0.0.1 .
+pnpm dlx @templ/scripts .
 
 # bun
-bunx @templ/scripts@0.0.1 .
+bunx @templ/scripts .
 ```
 
 <!-- /automd -->

@@ -18,13 +18,13 @@ TEMPL cli module.
 
 ```sh
 # npm
-npx @templ/cli@0.0.1 .
+npx @templ/cli .
 
 # pnpm
-pnpm dlx @templ/cli@0.0.1 .
+pnpm dlx @templ/cli .
 
 # bun
-bunx @templ/cli@0.0.1 .
+bunx @templ/cli .
 ```
 
 <!-- /automd -->
@@ -35,28 +35,19 @@ bunx @templ/cli@0.0.1 .
 
 ```sh
 # ✨ Auto-detect
-npx nypm i @templ/cli@^0.0.1
-
-# ✨ Auto-detect
-npx nypm i @templ/cli@^0.0.1
-
-# ✨ Auto-detect
-npx nypm i @templ/cli@^0.0.1
-
-# ✨ Auto-detect
-npx nypm i @templ/cli@^0.0.1
+npx nypm install @templ/cli
 
 # npm
-npm install @templ/cli@^0.0.1
+npm install @templ/cli
 
 # yarn
-yarn add @templ/cli@^0.0.1
+yarn add @templ/cli
 
 # pnpm
-pnpm install @templ/cli@^0.0.1
+pnpm install @templ/cli
 
 # bun
-bun install @templ/cli@^0.0.1
+bun install @templ/cli
 ```
 
 <!-- /automd -->

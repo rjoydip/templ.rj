@@ -18,13 +18,13 @@ TEMPL config module.
 
 ```sh
 # npm
-npx @templ/config@0.0.1 .
+npx @templ/config .
 
 # pnpm
-pnpm dlx @templ/config@0.0.1 .
+pnpm dlx @templ/config .
 
 # bun
-bunx @templ/config@0.0.1 .
+bunx @templ/config .
 ```
 
 <!-- /automd -->
@@ -35,22 +35,19 @@ bunx @templ/config@0.0.1 .
 
 ```sh
 # ✨ Auto-detect
-npx nypm i @templ/config@^0.0.1
-
-# ✨ Auto-detect
-npx nypm i @templ/config@^0.0.1
+npx nypm install @templ/config
 
 # npm
-npm install @templ/config@^0.0.1
+npm install @templ/config
 
 # yarn
-yarn add @templ/config@^0.0.1
+yarn add @templ/config
 
 # pnpm
-pnpm install @templ/config@^0.0.1
+pnpm install @templ/config
 
 # bun
-bun install @templ/config@^0.0.1
+bun install @templ/config
 ```
 
 <!-- /automd -->

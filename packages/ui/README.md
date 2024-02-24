@@ -18,13 +18,13 @@ TEMPL ui module.
 
 ```sh
 # npm
-npx @templ/ui@0.0.1 .
+npx @templ/ui .
 
 # pnpm
-pnpm dlx @templ/ui@0.0.1 .
+pnpm dlx @templ/ui .
 
 # bun
-bunx @templ/ui@0.0.1 .
+bunx @templ/ui .
 ```
 
 <!-- /automd -->
@@ -35,31 +35,19 @@ bunx @templ/ui@0.0.1 .
 
 ```sh
 # ✨ Auto-detect
-npx nypm i @templ/ui@^0.0.1
-
-# ✨ Auto-detect
-npx nypm i @templ/ui@^0.0.1
-
-# ✨ Auto-detect
-npx nypm i @templ/ui@^0.0.1
-
-# ✨ Auto-detect
-npx nypm i @templ/ui@^0.0.1
-
-# ✨ Auto-detect
-npx nypm i @templ/ui@^0.0.1
+npx nypm install @templ/ui
 
 # npm
-npm install @templ/ui@^0.0.1
+npm install @templ/ui
 
 # yarn
-yarn add @templ/ui@^0.0.1
+yarn add @templ/ui
 
 # pnpm
-pnpm install @templ/ui@^0.0.1
+pnpm install @templ/ui
 
 # bun
-bun install @templ/ui@^0.0.1
+bun install @templ/ui
 ```
 
 <!-- /automd -->

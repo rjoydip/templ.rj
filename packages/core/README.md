@@ -18,13 +18,13 @@ TEMPL core module.
 
 ```sh
 # npm
-npx @templ/core@0.0.1 .
+npx @templ/core .
 
 # pnpm
-pnpm dlx @templ/core@0.0.1 .
+pnpm dlx @templ/core .
 
 # bun
-bunx @templ/core@0.0.1 .
+bunx @templ/core .
 ```
 
 <!-- /automd -->
@@ -35,34 +35,19 @@ bunx @templ/core@0.0.1 .
 
 ```sh
 # ✨ Auto-detect
-npx nypm i @templ/core@^0.0.1
-
-# ✨ Auto-detect
-npx nypm i @templ/core@^0.0.1
-
-# ✨ Auto-detect
-npx nypm i @templ/core@^0.0.1
-
-# ✨ Auto-detect
-npx nypm i @templ/core@^0.0.1
-
-# ✨ Auto-detect
-npx nypm i @templ/core@^0.0.1
-
-# ✨ Auto-detect
-npx nypm i @templ/core@^0.0.1
+npx nypm install @templ/core
 
 # npm
-npm install @templ/core@^0.0.1
+npm install @templ/core
 
 # yarn
-yarn add @templ/core@^0.0.1
+yarn add @templ/core
 
 # pnpm
-pnpm install @templ/core@^0.0.1
+pnpm install @templ/core
 
 # bun
-bun install @templ/core@^0.0.1
+bun install @templ/core
 ```
 
 <!-- /automd -->

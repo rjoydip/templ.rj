@@ -18,13 +18,13 @@ Generator module.
 
 ```sh
 # npm
-npx @templ/generator@0.0.1 .
+npx @templ/generator .
 
 # pnpm
-pnpm dlx @templ/generator@0.0.1 .
+pnpm dlx @templ/generator .
 
 # bun
-bunx @templ/generator@0.0.1 .
+bunx @templ/generator .
 ```
 
 <!-- /automd -->

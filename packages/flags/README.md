@@ -18,13 +18,13 @@ TEMPL flags module.
 
 ```sh
 # npm
-npx @templ/flags@0.0.1 .
+npx @templ/flags .
 
 # pnpm
-pnpm dlx @templ/flags@0.0.1 .
+pnpm dlx @templ/flags .
 
 # bun
-bunx @templ/flags@0.0.1 .
+bunx @templ/flags .
 ```
 
 <!-- /automd -->
@@ -35,37 +35,19 @@ bunx @templ/flags@0.0.1 .
 
 ```sh
 # ✨ Auto-detect
-npx nypm i @templ/flags@^0.0.1
-
-# ✨ Auto-detect
-npx nypm i @templ/flags@^0.0.1
-
-# ✨ Auto-detect
-npx nypm i @templ/flags@^0.0.1
-
-# ✨ Auto-detect
-npx nypm i @templ/flags@^0.0.1
-
-# ✨ Auto-detect
-npx nypm i @templ/flags@^0.0.1
-
-# ✨ Auto-detect
-npx nypm i @templ/flags@^0.0.1
-
-# ✨ Auto-detect
-npx nypm i @templ/flags@^0.0.1
+npx nypm install @templ/flags
 
 # npm
-npm install @templ/flags@^0.0.1
+npm install @templ/flags
 
 # yarn
-yarn add @templ/flags@^0.0.1
+yarn add @templ/flags
 
 # pnpm
-pnpm install @templ/flags@^0.0.1
+pnpm install @templ/flags
 
 # bun
-bun install @templ/flags@^0.0.1
+bun install @templ/flags
 ```
 
 <!-- /automd -->
