@@ -2,7 +2,7 @@
   "name": "@templ/workspace",
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@8.15.3",
+  "packageManager": "pnpm@8.15.4",
   "description": "A modern monorepo project template",
   "author": "Joydip Roy <joydipand@gmail.com> (https://github.com/rjoydip)",
   "license": "MIT",
@@ -26,11 +26,10 @@
   },
   "scripts": {
     "prepare": "husky",
-    "postbuild": "nr -C scripts build:check && nr -r typecheck",
     "all": "ni && nr deps:update && nr build && nr lint && nr test",
-    "build": "nr -C scripts clean && turbo run build",
+    "build": "nr -C scripts clean && turbo run build && knip && nr -C scripts build:check && nr -r typecheck",
     "deps:update": "taze -r -w -i -f -l",
-    "lint": "eslint . --fix && nr -C scripts automd && knip",
+    "lint": "eslint . --fix && nr -C scripts automd",
     "release": "changeset version && npm publish && git push --follow-tags",
     "test": "turbo run test"
   },
@@ -41,7 +40,7 @@
     "eslint": "^8.57.0",
     "husky": "^9.0.11",
     "knip": "^5.0.2",
-    "pnpm": "^8.15.3",
+    "pnpm": "^8.15.4",
     "taze": "^0.13.3",
     "turbo": "^1.12.4"
   }
