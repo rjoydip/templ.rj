@@ -18,13 +18,13 @@ TEMPL API.
 
 ```sh
 # npm
-npx @templ/api@0.0.1 .
+npx @templ/api .
 
 # pnpm
-pnpm dlx @templ/api@0.0.1 .
+pnpm dlx @templ/api .
 
 # bun
-bunx @templ/api@0.0.1 .
+bunx @templ/api .
 ```
 
 <!-- /automd -->
@@ -35,19 +35,19 @@ bunx @templ/api@0.0.1 .
 
 ```sh
 # ✨ Auto-detect
-npx nypm i @templ/api@^0.0.1
+npx nypm install @templ/api
 
 # npm
-npm install @templ/api@^0.0.1
+npm install @templ/api
 
 # yarn
-yarn add @templ/api@^0.0.1
+yarn add @templ/api
 
 # pnpm
-pnpm install @templ/api@^0.0.1
+pnpm install @templ/api
 
 # bun
-bun install @templ/api@^0.0.1
+bun install @templ/api
 ```
 
 <!-- /automd -->

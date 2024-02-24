@@ -12,6 +12,7 @@ yarn-error.log*
 .env
 .cache
 .conf
+.feature
 .idea
 .vite-node
 .DS_Store
@@ -26,8 +27,5 @@ tsconfig.tsbuildinfo
 coverage
 node_modules
 temp
-
-# Fixtures
-fixtures/output/*
-!fixtures/output/.gitkeep
-
+.config/*.toml
+!.config/*.example.toml

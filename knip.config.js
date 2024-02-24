@@ -1,19 +1,17 @@
-import type { KnipConfig } from 'knip'
-
-const config: KnipConfig = {
+const config = {
   'ignoreBinaries': ['templ-cli'],
   'ignoreDependencies': ['typecheck'],
   'workspaces': {
     '.': {
-      entry: ['eslint.config.js', '.config/vitest.shared.js'],
-      ignore: ['**/templates/**'],
+      entry: ['eslint.config.js'],
+      ignore: ['**/templates/**', '**/example/**', '**/.config/**'],
     },
     'packages/*': {
       entry: ['src/**/*.{ts,tsx}', 'test/**/*.test.{ts,tsx}', '**/*.load.ts'],
       ignore: ['**/test/**', '**/*.story.{ts,tsx}'],
     },
     'apps/*': {
-      entry: ['src/**/*.{ts,tsx}', 'test/**/*.test.{ts,tsx}'],
+      entry: ['src/**/*.{ts,tsx}', 'test/**/*.test.{ts,tsx}', '**/*.config.js'],
     },
   },
   'eslint': {

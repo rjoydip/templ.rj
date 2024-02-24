@@ -26,12 +26,11 @@
   },
   "scripts": {
     "prepare": "husky",
-    "postinstall": "taze -r -w -i -f -l",
-    "postbuild": "nr -C scripts build:check && nr -r typecheck && nr knip",
-    "all": "ni && nr build && nr lint && nr test",
+    "postbuild": "nr -C scripts build:check && nr -r typecheck",
+    "all": "ni && nr deps:update && nr build && nr lint && nr test",
     "build": "nr -C scripts clean && turbo run build",
-    "lint": "eslint . --fix && nr -C scripts automd",
-    "knip": "knip -c .config/knip.config.ts",
+    "deps:update": "taze -r -w -i -f -l",
+    "lint": "eslint . --fix && nr -C scripts automd && knip",
     "release": "changeset version && npm publish && git push --follow-tags",
     "test": "turbo run test"
   },
@@ -39,9 +38,9 @@
     "@antfu/eslint-config": "2.6.4",
     "@antfu/ni": "^0.21.12",
     "@changesets/cli": "^2.27.1",
-    "eslint": "^8.56.0",
+    "eslint": "^8.57.0",
     "husky": "^9.0.11",
-    "knip": "^5.0.1",
+    "knip": "^5.0.2",
     "pnpm": "^8.15.3",
     "taze": "^0.13.3",
     "turbo": "^1.12.4"

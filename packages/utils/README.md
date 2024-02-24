@@ -18,13 +18,13 @@ TEMPL utils module.
 
 ```sh
 # npm
-npx @templ/utils@0.0.1 .
+npx @templ/utils .
 
 # pnpm
-pnpm dlx @templ/utils@0.0.1 .
+pnpm dlx @templ/utils .
 
 # bun
-bunx @templ/utils@0.0.1 .
+bunx @templ/utils .
 ```
 
 <!-- /automd -->
@@ -35,25 +35,19 @@ bunx @templ/utils@0.0.1 .
 
 ```sh
 # ✨ Auto-detect
-npx nypm i @templ/utils@^0.0.1
-
-# ✨ Auto-detect
-npx nypm i @templ/utils@^0.0.1
-
-# ✨ Auto-detect
-npx nypm i @templ/utils@^0.0.1
+npx nypm install @templ/utils
 
 # npm
-npm install @templ/utils@^0.0.1
+npm install @templ/utils
 
 # yarn
-yarn add @templ/utils@^0.0.1
+yarn add @templ/utils
 
 # pnpm
-pnpm install @templ/utils@^0.0.1
+pnpm install @templ/utils
 
 # bun
-bun install @templ/utils@^0.0.1
+bun install @templ/utils
 ```
 
 <!-- /automd -->

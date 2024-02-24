@@ -1,19 +1,6 @@
 import type { BuildOptions, Plugin } from 'esbuild'
-import { TemplConfigSchema } from './schema'
 import { clean, dts } from './plugins'
 
-/**
- * Retrieves the TemplConfigSchema.
- * @example
- * ```ts
- * import { getTemplConfigSchema } from '@templ/config'
- * const config = getTemplConfigSchema()
- * ```
- * @return {TemplConfigSchema} The retrieved TemplConfigSchema
- */
-export function getTemplConfigSchema() {
-  return TemplConfigSchema
-}
 /**
  * Retrieves the build configuration options.
  * @example
@@ -64,10 +51,6 @@ export function getVitestConfig() {
   return {
     test: {
       include: ['{test,tests}/**/*.test.{ts,js}'],
-      coverage: {
-        enabled: true,
-        reporter: ['text', 'json', 'html'],
-      },
     },
   }
 }

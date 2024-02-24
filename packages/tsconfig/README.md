@@ -8,13 +8,13 @@
 
 ```sh
 # npm
-npx @templ/tsconfig@0.0.1 .
+npx @templ/tsconfig .
 
 # pnpm
-pnpm dlx @templ/tsconfig@0.0.1 .
+pnpm dlx @templ/tsconfig .
 
 # bun
-bunx @templ/tsconfig@0.0.1 .
+bunx @templ/tsconfig .
 ```
 
 <!-- /automd -->
@@ -23,9 +23,7 @@ bunx @templ/tsconfig@0.0.1 .
 
 <!-- automd:jsdocs -->
 
-<!-- ⚠️  (jsdocs) Cannot find module 'C:/Users/rjoydip/codebase/templ/packages/tsconfig/src/index'
-Require stack:
-- C:\Users\rjoydip\codebase\templ\scripts\index.js -->
+<!-- ⚠️  (jsdocs) Cannot read properties of undefined (reading 'startsWith') -->
 
 <!-- /automd -->
 
