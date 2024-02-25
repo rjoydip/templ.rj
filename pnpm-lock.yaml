@@ -93,8 +93,8 @@ importers:
         specifier: ^2.1.0
         version: 2.1.0
       lucide-react:
-        specifier: 0.333.0
-        version: 0.333.0(react@18.2.0)
+        specifier: 0.340.0
+        version: 0.340.0(react@18.2.0)
       next:
         specifier: ^14.1.0
         version: 14.1.0(@babel/core@7.23.9)(react-dom@18.2.0)(react@18.2.0)
@@ -610,8 +610,8 @@ importers:
         specifier: ^14.0.1
         version: 14.0.1
       lucide-react:
-        specifier: 0.333.0
-        version: 0.333.0(react@18.2.0)
+        specifier: 0.340.0
+        version: 0.340.0(react@18.2.0)
       storybook:
         specifier: ^7.6.17
         version: 7.6.17
@@ -12085,8 +12085,8 @@ packages:
     dependencies:
       yallist: 4.0.0
 
-  /lucide-react@0.333.0(react@18.2.0):
-    resolution: {integrity: sha512-K/TIOTaLy5qAZBlhIBIY16MVPXchlFOeOtz2GE3/hXvKRffl5QjX9USkFKSSc8oSGXglbftSBzs2s0zkLHknaw==}
+  /lucide-react@0.340.0(react@18.2.0):
+    resolution: {integrity: sha512-mWzYhbyy2d+qKuKHh+GWElPwa+kIquTnKbmSLGWOuZy+bjfZCkYD8DQWVFlqI4mQwc4HNxcqcOvtQ7ZS2PwURg==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0
     dependencies:
