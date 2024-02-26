@@ -1,3 +1,3 @@
 export default {
-  PORT: 5000,
+  HTTPS: true,
 }

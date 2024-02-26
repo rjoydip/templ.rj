@@ -10,14 +10,14 @@ interface Options {}
 /**
  * Retrieves the configuration options based on the provided parameters.
  *
- * @param {{ cwd: string, config?: Omit<T, 'cwd'>, env?: Omit<T, 'cwd'>, flag?: Omit<T, 'cwd'> }} options - The options object containing cwd, config, env, and flag properties.
+ * @param {{ cwd: string, config?: Pick<T, 'cwd' | 'configFile' | 'envName' | 'defaultConfig' | 'overrides'> }} options - The options object containing cwd, config, env, and flag properties.
  * @return {Promise<Options>} A promise that resolves to the configuration options.
  */
 export async function loadConfig<T extends LoadConfigOptions>(options: {
   cwd: string
-  config?: boolean | Omit<T, 'cwd'>
-  env?: boolean | Omit<T, 'cwd'>
-  flag?: boolean | Omit<T, 'cwd'>
+  config?: boolean | Pick<T, 'cwd' | 'configFile' | 'envName' | 'defaultConfig' | 'overrides'>
+  env?: boolean | Pick<T, 'cwd' | 'configFile' | 'envName' | 'defaultConfig' | 'overrides'>
+  flag?: boolean | Pick<T, 'cwd' | 'configFile' | 'envName' | 'defaultConfig' | 'overrides'>
 } = {
   cwd: cwd(),
   config: true,
@@ -31,8 +31,16 @@ export async function loadConfig<T extends LoadConfigOptions>(options: {
   }
 
   if (options.config) {
-    const restOpts = typeof options.config === 'boolean' ? { configFile: 'conf.ts' } : options.config
-    const { config } = await lc({ cwd: options.cwd, ...restOpts })
+    const defaultConfOpions = {
+      cwd: options.cwd,
+      configFile: 'conf.ts',
+      dotenv: false,
+      envName: 'default',
+      defaultConfig: {},
+      overrides: {},
+    }
+    const restOpts = typeof options.config === 'boolean' ? defaultConfOpions : { ...defaultConfOpions, ...options.config }
+    const { config } = await lc({ ...restOpts })
     const { server, client, shared } = configSchema
     data.config = createConf({
       client,

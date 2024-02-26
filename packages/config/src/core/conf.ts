@@ -1,5 +1,6 @@
 import { z } from 'zod'
 import type { ZodError } from 'zod'
+import { isTest } from 'std-env'
 import type { BaseOptions, ClientType, ReturnOptions, ServerClientOptions, ServerType, SharedType } from '../types'
 
 interface LooseOptions<
@@ -47,10 +48,12 @@ export function createConf<
   const onValidationError
     = opts.onValidationError
     ?? ((error: ZodError) => {
-      console.error(
-        '❌ Invalid config variables:',
-        error.flatten().fieldErrors,
-      )
+      if (!isTest) {
+        console.error(
+          '❌ Invalid config variables:',
+          error.flatten().fieldErrors,
+        )
+      }
       throw new Error('Invalid config variables')
     })
 

@@ -1,4 +1,4 @@
-import { env } from 'std-env'
+import { env, isTest } from 'std-env'
 import { z } from 'zod'
 import type { ZodError } from 'zod'
 import type { BaseOptions, ClientType, ReturnOptions, ServerClientOptions, ServerType, SharedType } from '../types'
@@ -95,10 +95,12 @@ export function createEnv<
   const onValidationError
     = opts.onValidationError
     ?? ((error: ZodError) => {
-      console.error(
-        '❌ Invalid environment variables:',
-        error.flatten().fieldErrors,
-      )
+      if (!isTest) {
+        console.error(
+          '❌ Invalid environment variables:',
+          error.flatten().fieldErrors,
+        )
+      }
       throw new Error('Invalid environment variables')
     })
 

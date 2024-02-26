@@ -42,7 +42,7 @@
     "@hono/zod-openapi": "^0.9.6",
     "@scalar/hono-api-reference": "^0.3.57",
     "consola": "^3.2.3",
-    "hono": "^4.0.6"
+    "hono": "^4.0.7"
   },
   "devDependencies": {
     "@templ/config": "workspace:*",
