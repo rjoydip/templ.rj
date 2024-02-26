@@ -1,3 +1,4 @@
 pnpm run deps:update
 pnpm run build
 pnpm run lint
+git add .

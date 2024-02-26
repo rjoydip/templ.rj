@@ -1,181 +1,283 @@
 import { cwd } from 'node:process'
-import { join, resolve } from 'node:path'
+import { resolve } from 'node:path'
+import { findWorkspaceDir } from 'pkg-types'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
-import { isCI } from 'std-env'
+import { z } from 'zod'
 import { loadConfig } from '../src'
 
-describe.skip('@templ/config > load', () => {
-  describe('should valid config object', () => {
-    let defaultConfigData, fixturePath, fixture
+describe('@templ/config > load', () => {
+  const fixturePath = resolve(cwd(), 'test', 'fixtures', '.config')
+  describe('load config', () => {
+    let defaultConfigData
 
-    beforeAll(() => {
+    beforeAll(async () => {
+      const DIR = await findWorkspaceDir(cwd())
       defaultConfigData = {
-        APP_BASE_URL: '/',
-        DATABASE_URL: './db.sqlite',
-        HTTPS: false,
-        NODE_ENV: 'production',
-        PORT: 3000,
-        URL: 'http://localhost:3000',
+        BASE_URL: '/',
+        BUILDER: 'vite',
+        DIR,
         LOG_LEVEL: 'silent',
-        APP_BUILDER: 'vite',
-        PACKAGE_BUILDER: 'esbuild',
-        ROOT_DIR: resolve(cwd(), '..', '..'),
-        WORKSPACE_DIR: resolve(cwd()),
+        PUBLIC_URL: 'http://127.0.0.1:3000',
+        WORKSPACE_DIR: cwd(),
       }
-
-      fixturePath = resolve(cwd(), 'test', 'fixtures')
-      fixture = (folder?: string | string[], file?: string) => file && folder ? resolve(fixturePath, Array.isArray(folder) ? join(...folder) : folder, file) : folder ? resolve(fixturePath, Array.isArray(folder) ? join(...folder) : folder) : resolve(fixturePath)
     })
 
     afterAll(() => {
       defaultConfigData = null
-      fixture = null
-      fixturePath = null
     })
 
-    it('should be load templrc file with directory', async () => {
+    it('should be loaded config from fixture/.config/conf.ts file', async () => {
       const data = await loadConfig({
-        cwd: fixture('rc'),
-        config: {
-          rcFile: '.templrc',
-          globalRc: false,
-        },
+        cwd: fixturePath,
+        config: true,
       })
       expect(data).toStrictEqual({
         config: {
           ...defaultConfigData,
-          LOG_LEVEL: 'info',
+          PUBLIC_URL: 'http://127.0.0.1:3000/test',
         },
         env: {},
         flag: {},
       })
     })
 
-    it('should be load config from conf/templ enable rcFile', async () => {
+    it('should be loaded config from .config/templ.config.ts', async () => {
       const data = await loadConfig({
-        cwd: fixture(['conf', 'templ']),
+        cwd: fixturePath,
         config: {
           configFile: 'templ.config',
-          rcFile: '.templrc',
-          globalRc: false,
         },
       })
       expect(data).toStrictEqual({
         config: {
           ...defaultConfigData,
-          LOG_LEVEL: 'info',
-          PORT: 5000,
+          PUBLIC_URL: 'http://127.0.0.1:3000/test',
         },
         env: {},
         flag: {},
       })
     })
 
-    it('should be load config from conf/templ disable rcFile', async () => {
+    it('should be loaded config from .config/config.ts with envName test', async () => {
       const data = await loadConfig({
-        cwd: fixture(['conf', 'templ']),
+        cwd: fixturePath,
         config: {
-          configFile: 'templ.config',
-          rcFile: false,
+          envName: 'test',
         },
       })
+
       expect(data).toStrictEqual({
         config: {
           ...defaultConfigData,
-          PORT: 5000,
+          PUBLIC_URL: 'http://127.0.0.1:3000/test',
         },
         env: {},
         flag: {},
       })
     })
 
-    it('should be load config from conf directory', async () => {
+    it('should be loaded config from .config/config.ts using with defaultConfig', async () => {
       const data = await loadConfig({
-        cwd: fixture('conf'),
+        cwd: fixturePath,
         config: {
-          rcFile: false,
-          globalRc: false,
+          defaultConfig: defaultConfigData,
         },
       })
       expect(data).toStrictEqual({
         config: {
           ...defaultConfigData,
-          APP_BASE_URL: '/config',
+          PUBLIC_URL: 'http://127.0.0.1:3000/test',
         },
         env: {},
         flag: {},
       })
     })
 
-    it('should be load config from conf directory with dotenv', async () => {
+    it('should be loaded config from conf directory with dotenv', async () => {
       const data = await loadConfig({
-        cwd: fixture('conf'),
+        cwd: fixturePath,
         config: {
-          rcFile: false,
-          globalRc: false,
-          dotenv: !isCI,
-        },
-      })
-      expect(data).toStrictEqual({
-        config: {
-          ...defaultConfigData,
-          APP_BASE_URL: '/config',
-        },
-        env: {},
-        flag: {},
-      })
-
-      isCI && expect(process.env.OPEN_AI_API_KEY).toBeUndefined()
-      !isCI && expect(process.env.OPEN_AI_API_KEY).toBe('openai api key')
-    })
-
-    it('should be load config from dev directory', async () => {
-      const data = await loadConfig({
-        cwd: fixture('dev'),
-        config: {
-          rcFile: false,
-          globalRc: false,
-          dotenv: false,
-        },
-      })
-      expect(data).toStrictEqual({
-        config: {
-          ...defaultConfigData,
-          configFile: true,
-          overriden: false,
-          APP_BASE_URL: '/dev',
-          NODE_ENV: 'development',
-        },
-        env: {},
-        flag: {},
-      })
-    })
-
-    it('should be load config from dev directory with dotenv and interpolate', async () => {
-      const data = await loadConfig({
-        cwd: fixture('dev'),
-        config: {
-          rcFile: false,
-          globalRc: false,
-          dotenv: {
-            cwd: fixture('dev'),
-            fileName: '.env.dev',
-            interpolate: true,
+          overrides: {
+            LOG_LEVEL: 'info',
           },
         },
       })
       expect(data).toStrictEqual({
         config: {
           ...defaultConfigData,
-          configFile: true,
-          overriden: false,
-          APP_BASE_URL: '/dev',
-          NODE_ENV: 'development',
+          PUBLIC_URL: 'http://127.0.0.1:3000/test',
+          LOG_LEVEL: 'info',
         },
         env: {},
         flag: {},
       })
-      expect(process.env.URL).toBe('http://templ.local:1111')
+    })
+
+    it('should should not throw error when wrong config key-value passed as overwrides', async () => {
+      const data = await loadConfig({
+        cwd: fixturePath,
+        config: {
+          overrides: {
+            WRONG_Key: 'WRONG_VALUE',
+          },
+        },
+      })
+      expect(data).toStrictEqual({
+        config: {
+          ...defaultConfigData,
+          PUBLIC_URL: 'http://127.0.0.1:3000/test',
+        },
+        env: {},
+        flag: {},
+      })
+    })
+    it('should should not throw error when wrong config key-value passed', async () => {
+      try {
+        await loadConfig({
+          cwd: fixturePath,
+          config: {
+            configFile: 'wrong.config',
+          },
+        })
+      }
+      catch (err) {
+        if (err instanceof z.ZodError)
+          expect(err.issues).toBe('❌ Invalid config variables: { PUBLIC_URL: [ \'Required\' ] }')
+      }
+    })
+  })
+
+  describe('load env', () => {
+    let defaultEnvData
+
+    beforeAll(async () => {
+      defaultEnvData = {
+        DATABASE_URL: 'postgres//127.0.0.1:5432/mydb',
+        OPEN_AI_API_KEY: 'OPEN_AI_API_KEY',
+      }
+    })
+
+    afterAll(() => {
+      defaultEnvData = null
+    })
+
+    it('should load environment values from .env file', async () => {
+      const data = await loadConfig({
+        cwd: fixturePath,
+        env: true,
+      })
+      expect(data).toStrictEqual({
+        config: {},
+        env: {
+          ...defaultEnvData,
+        },
+        flag: {},
+      })
+      expect(process.env.DATABASE_URL).toBe('postgres//127.0.0.1:5432/mydb')
+      expect(process.env.OPEN_AI_API_KEY).toBe('OPEN_AI_API_KEY')
+    })
+
+    it('should load environment values from .env.local file', async () => {
+      const data = await loadConfig({
+        cwd: fixturePath,
+        env: {
+          configFile: 'env.local',
+        },
+      })
+      expect(data).toStrictEqual({
+        config: {},
+        env: {
+          ...defaultEnvData,
+        },
+        flag: {},
+      })
+      expect(process.env.DATABASE_URL).toBe('postgres//127.0.0.1:5432/mydb')
+      expect(process.env.OPEN_AI_API_KEY).toBe('OPEN_AI_API_KEY')
+    })
+
+    it('should throw error when wrong value is being provided instead of right', async () => {
+      try {
+        await loadConfig({
+          cwd: fixturePath,
+          env: {
+            overrides: {
+              ...defaultEnvData,
+              OPEN_AI_API_KEY: true,
+            },
+          },
+        })
+      }
+      catch (err) {
+        if (err instanceof z.ZodError)
+          expect(err.issues).toBe('❌ Invalid environment variables: { HEADER: [ \'Expected string, received boolean\' ] }')
+      }
+    })
+  })
+
+  describe('load flag', () => {
+    let defaultFlagData
+
+    beforeAll(async () => {
+      defaultFlagData = {
+        HTTPS: true,
+      }
+    })
+
+    afterAll(() => {
+      defaultFlagData = null
+    })
+
+    it('should load flags from flag file', async () => {
+      const data = await loadConfig({
+        cwd: fixturePath,
+        flag: true,
+      })
+      expect(data).toStrictEqual({
+        config: {},
+        env: {},
+        flag: {
+          ...defaultFlagData,
+          HEADER: false,
+        },
+      })
+    })
+
+    it('should load flags from flag file when undefined value', async () => {
+      const data = await loadConfig({
+        cwd: fixturePath,
+        flag: {
+          overrides: {
+            ...defaultFlagData,
+            HEADER: undefined,
+          },
+        },
+      })
+      expect(data).toStrictEqual({
+        config: {},
+        env: {},
+        flag: {
+          ...defaultFlagData,
+          HEADER: false,
+        },
+      })
+    })
+
+    it('should throw error when string is being provided instead of boolean', async () => {
+      try {
+        await loadConfig({
+          cwd: fixturePath,
+          flag: {
+            overrides: {
+              ...defaultFlagData,
+              HEADER: 'undefined',
+            },
+          },
+        })
+      }
+      catch (err) {
+        if (err instanceof z.ZodError)
+          expect(err.issues).toBe('❌ Invalid feature flag variables: { HEADER: [ \'Expected boolean, received string\' ] }')
+      }
     })
   })
 })
