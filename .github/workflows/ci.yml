@@ -58,6 +58,16 @@ jobs:
           nr -r ci:env-delete
           nr -r build:check
 
+  coverage:
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/setup-node
+
+      - name: Coverage
+        run: nr coverage
+
   lint:
     runs-on: ubuntu-latest
     needs: [build]

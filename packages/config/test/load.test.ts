@@ -5,17 +5,17 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import { z } from 'zod'
 import { loadConfig } from '../src'
 
-describe('@templ/config > load', () => {
-  const fixturePath = resolve(cwd(), 'test', 'fixtures', '.config')
+describe('@templ/config > load', async () => {
+  const root = await findWorkspaceDir(cwd())
+  const fixturePath = resolve(root, 'fixtures', '.config')
   describe('load config', () => {
     let defaultConfigData
 
     beforeAll(async () => {
-      const DIR = await findWorkspaceDir(cwd())
       defaultConfigData = {
         BASE_URL: '/',
         BUILDER: 'vite',
-        DIR,
+        DIR: root,
         LOG_LEVEL: 'silent',
         PUBLIC_URL: 'http://127.0.0.1:3000',
         WORKSPACE_DIR: cwd(),
