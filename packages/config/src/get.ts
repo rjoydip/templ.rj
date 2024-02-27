@@ -1,4 +1,6 @@
 import type { BuildOptions, Plugin } from 'esbuild'
+import type { UserConfig } from 'vitest'
+import { mergeConfig } from 'vitest/config'
 import { clean, dts } from './plugins'
 
 /**
@@ -47,10 +49,18 @@ export function getBuildConfig({
  *
  * @return {object} The Vitest configuration object.
  */
-export function getVitestConfig() {
-  return {
-    test: {
-      include: ['{test,tests}/**/*.test.{ts,js}'],
+export function getVitestConfig(opts: UserConfig = {}) {
+  const exclude = ['**/*esbuild.config.ts', '**/coverage/**', '**/dist/**', '**/.config/**', '**/scripts/**', '**/.storybook/**']
+  return mergeConfig(
+    {
+      test: {
+        include: ['{test,tests}/**/*.test.{ts,js}'],
+        exclude,
+        coverage: {
+          exclude,
+        },
+      },
     },
-  }
+    opts,
+  )
 }

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { cn } from '@/lib/utils'
+import { cn } from '../../lib/utils'
 
 describe('@templ/ui > utils', () => {
   it('should return a string of concatenated class names when given valid class names as inputs', () => {

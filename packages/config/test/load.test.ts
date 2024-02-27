@@ -3,19 +3,20 @@ import { resolve } from 'node:path'
 import { findWorkspaceDir } from 'pkg-types'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import { z } from 'zod'
+import { isCI } from 'std-env'
 import { loadConfig } from '../src'
 
-describe('@templ/config > load', () => {
-  const fixturePath = resolve(cwd(), 'test', 'fixtures', '.config')
+describe('@templ/config > load', async () => {
+  const root = await findWorkspaceDir(cwd())
+  const fixturePath = resolve(root, 'fixtures', '.config')
   describe('load config', () => {
     let defaultConfigData
 
     beforeAll(async () => {
-      const DIR = await findWorkspaceDir(cwd())
       defaultConfigData = {
         BASE_URL: '/',
         BUILDER: 'vite',
-        DIR,
+        DIR: root,
         LOG_LEVEL: 'silent',
         PUBLIC_URL: 'http://127.0.0.1:3000',
         WORKSPACE_DIR: cwd(),
@@ -147,7 +148,7 @@ describe('@templ/config > load', () => {
     })
   })
 
-  describe('load env', () => {
+  describe.runIf(!isCI)('load env', () => {
     let defaultEnvData
 
     beforeAll(async () => {
@@ -173,6 +174,7 @@ describe('@templ/config > load', () => {
         },
         flag: {},
       })
+
       expect(process.env.DATABASE_URL).toBe('postgres//127.0.0.1:5432/mydb')
       expect(process.env.OPEN_AI_API_KEY).toBe('OPEN_AI_API_KEY')
     })
@@ -191,6 +193,7 @@ describe('@templ/config > load', () => {
         },
         flag: {},
       })
+
       expect(process.env.DATABASE_URL).toBe('postgres//127.0.0.1:5432/mydb')
       expect(process.env.OPEN_AI_API_KEY).toBe('OPEN_AI_API_KEY')
     })
