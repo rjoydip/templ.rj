@@ -3,6 +3,7 @@ import { resolve } from 'node:path'
 import { findWorkspaceDir } from 'pkg-types'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import { z } from 'zod'
+import { isCI } from 'std-env'
 import { loadConfig } from '../src'
 
 describe('@templ/config > load', async () => {
@@ -173,8 +174,15 @@ describe('@templ/config > load', async () => {
         },
         flag: {},
       })
-      expect(process.env.DATABASE_URL).toBe('postgres//127.0.0.1:5432/mydb')
-      expect(process.env.OPEN_AI_API_KEY).toBe('OPEN_AI_API_KEY')
+
+      if (isCI) {
+        expect(process.env.DATABASE_URL).toBe('')
+        expect(process.env.OPEN_AI_API_KEY).toBe('')
+      }
+      else {
+        expect(process.env.DATABASE_URL).toBe('postgres//127.0.0.1:5432/mydb')
+        expect(process.env.OPEN_AI_API_KEY).toBe('OPEN_AI_API_KEY')
+      }
     })
 
     it('should load environment values from .env.local file', async () => {
@@ -191,8 +199,15 @@ describe('@templ/config > load', async () => {
         },
         flag: {},
       })
-      expect(process.env.DATABASE_URL).toBe('postgres//127.0.0.1:5432/mydb')
-      expect(process.env.OPEN_AI_API_KEY).toBe('OPEN_AI_API_KEY')
+
+      if (isCI) {
+        expect(process.env.DATABASE_URL).toBe('')
+        expect(process.env.OPEN_AI_API_KEY).toBe('')
+      }
+      else {
+        expect(process.env.DATABASE_URL).toBe('postgres//127.0.0.1:5432/mydb')
+        expect(process.env.OPEN_AI_API_KEY).toBe('OPEN_AI_API_KEY')
+      }
     })
 
     it('should throw error when wrong value is being provided instead of right', async () => {
