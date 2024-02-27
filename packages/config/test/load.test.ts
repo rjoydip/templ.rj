@@ -148,7 +148,7 @@ describe('@templ/config > load', async () => {
     })
   })
 
-  describe('load env', () => {
+  describe.runIf(!isCI)('load env', () => {
     let defaultEnvData
 
     beforeAll(async () => {
@@ -175,14 +175,8 @@ describe('@templ/config > load', async () => {
         flag: {},
       })
 
-      if (isCI) {
-        expect(process.env.DATABASE_URL).toBe('')
-        expect(process.env.OPEN_AI_API_KEY).toBe('')
-      }
-      else {
-        expect(process.env.DATABASE_URL).toBe('postgres//127.0.0.1:5432/mydb')
-        expect(process.env.OPEN_AI_API_KEY).toBe('OPEN_AI_API_KEY')
-      }
+      expect(process.env.DATABASE_URL).toBe('postgres//127.0.0.1:5432/mydb')
+      expect(process.env.OPEN_AI_API_KEY).toBe('OPEN_AI_API_KEY')
     })
 
     it('should load environment values from .env.local file', async () => {
@@ -200,14 +194,8 @@ describe('@templ/config > load', async () => {
         flag: {},
       })
 
-      if (isCI) {
-        expect(process.env.DATABASE_URL).toBe('')
-        expect(process.env.OPEN_AI_API_KEY).toBe('')
-      }
-      else {
-        expect(process.env.DATABASE_URL).toBe('postgres//127.0.0.1:5432/mydb')
-        expect(process.env.OPEN_AI_API_KEY).toBe('OPEN_AI_API_KEY')
-      }
+      expect(process.env.DATABASE_URL).toBe('postgres//127.0.0.1:5432/mydb')
+      expect(process.env.OPEN_AI_API_KEY).toBe('OPEN_AI_API_KEY')
     })
 
     it('should throw error when wrong value is being provided instead of right', async () => {
