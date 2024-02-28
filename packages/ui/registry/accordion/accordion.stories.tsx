@@ -1,6 +1,6 @@
 import * as React from 'react'
-
 import type { Meta, StoryObj } from '@storybook/react'
+import { within } from '@storybook/testing-library'
 import {
   Accordion,
   AccordionContent,
@@ -15,7 +15,6 @@ import {
 const meta = {
   title: 'ui/Accordion',
   component: Accordion,
-  tags: ['autodocs'],
   argTypes: {
     type: {
       options: ['single', 'multiple'],
@@ -25,6 +24,9 @@ const meta = {
   args: {
     type: 'single',
     collapsible: true,
+  },
+  parameters: {
+    direction: 'ltr',
   },
   render: args => (
     <Accordion {...args}>
@@ -51,11 +53,16 @@ const meta = {
   ),
 } satisfies Meta<typeof Accordion>
 
-export default meta
-
 type Story = StoryObj<typeof meta>
 
 /**
  * The default behavior of the accordion allows only one item to be open.
  */
-export const Default: Story = {}
+export const Base: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await canvas.getByText('Is it accessible?')
+  },
+}
+
+export default meta

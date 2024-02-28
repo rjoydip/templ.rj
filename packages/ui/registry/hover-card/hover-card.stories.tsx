@@ -13,7 +13,6 @@ import {
 const meta = {
   title: 'ui/HoverCard',
   component: HoverCard,
-  tags: ['autodocs'],
   argTypes: {},
   args: {},
   render: args => (
@@ -36,7 +35,7 @@ type Story = StoryObj<typeof meta>
 /**
  * The default form of the hover card.
  */
-export const Default: Story = {}
+export const Base: Story = {}
 
 /**
  * Use the `openDelay` and `closeDelay` props to control the delay before the

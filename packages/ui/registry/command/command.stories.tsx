@@ -17,7 +17,6 @@ import {
 const meta = {
   title: 'ui/Command',
   component: Command,
-  tags: ['autodocs'],
   argTypes: {},
   args: {
     className: 'rounded-lg w-96 border shadow-md',
@@ -53,4 +52,4 @@ type Story = StoryObj<typeof meta>
 /**
  * The default form of the command.
  */
-export const Default: Story = {}
+export const Base: Story = {}

@@ -8,7 +8,6 @@ import { Label } from './label'
 const meta = {
   title: 'ui/Label',
   component: Label,
-  tags: ['autodocs'],
   argTypes: {
     children: {
       control: { type: 'text' },
@@ -27,4 +26,4 @@ type Story = StoryObj<typeof Label>
 /**
  * The default form of the label.
  */
-export const Default: Story = {}
+export const Base: Story = {}

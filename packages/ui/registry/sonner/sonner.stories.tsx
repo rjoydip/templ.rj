@@ -11,7 +11,6 @@ import { Sonner } from './sonner'
 const meta: Meta<typeof Sonner> = {
   title: 'ui/Sonner',
   component: Sonner,
-  tags: ['autodocs'],
   argTypes: {},
   args: {
     position: 'bottom-right',
@@ -28,7 +27,7 @@ type Story = StoryObj<typeof meta>
 /**
  * The default form of the toaster.
  */
-export const Default: Story = {
+export const Base: Story = {
   render: args => (
     <div className="flex min-h-96 items-center justify-center space-x-2">
       <button

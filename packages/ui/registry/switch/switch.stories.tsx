@@ -9,7 +9,6 @@ import { Switch } from './switch'
 const meta = {
   title: 'ui/Switch',
   component: Switch,
-  tags: ['autodocs'],
   argTypes: {},
   parameters: {
     layout: 'centered',
@@ -31,7 +30,7 @@ type Story = StoryObj<typeof meta>
 /**
  * The default form of the switch.
  */
-export const Default: Story = {
+export const Base: Story = {
   args: {
     id: 'default-switch',
   },

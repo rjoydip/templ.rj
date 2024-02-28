@@ -13,7 +13,6 @@ import {
 const meta = {
   title: 'ui/Popover',
   component: Popover,
-  tags: ['autodocs'],
   argTypes: {},
 
   render: args => (
@@ -34,4 +33,4 @@ type Story = StoryObj<typeof meta>
 /**
  * The default form of the popover.
  */
-export const Default: Story = {}
+export const Base: Story = {}

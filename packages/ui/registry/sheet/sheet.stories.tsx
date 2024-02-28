@@ -19,7 +19,6 @@ import {
 const meta: Meta<typeof SheetContent> = {
   title: 'ui/Sheet',
   component: Sheet,
-  tags: ['autodocs'],
   argTypes: {
     side: {
       options: ['top', 'bottom', 'left', 'right'],
@@ -65,4 +64,4 @@ type Story = StoryObj<typeof meta>
 /**
  * The default form of the sheet.
  */
-export const Default: Story = {}
+export const Base: Story = {}

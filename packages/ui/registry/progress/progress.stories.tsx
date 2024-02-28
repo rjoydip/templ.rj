@@ -9,7 +9,6 @@ import { Progress } from './progress'
 const meta = {
   title: 'ui/Progress',
   component: Progress,
-  tags: ['autodocs'],
   argTypes: {},
   args: {
     value: 30,
@@ -24,7 +23,7 @@ type Story = StoryObj<typeof meta>
 /**
  * The default form of the progress.
  */
-export const Default: Story = {}
+export const Base: Story = {}
 
 /**
  * When the progress is indeterminate.

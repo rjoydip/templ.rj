@@ -44,7 +44,6 @@ const invoices = [
 const meta = {
   title: 'ui/Table',
   component: Table,
-  tags: ['autodocs'],
   argTypes: {},
   render: args => (
     <Table {...args}>
@@ -78,4 +77,4 @@ type Story = StoryObj<typeof meta>
 /**
  * The default form of the table.
  */
-export const Default: Story = {}
+export const Base: Story = {}

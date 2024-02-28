@@ -13,7 +13,6 @@ import {
 const meta = {
   title: 'ui/Avatar',
   component: Avatar,
-  tags: ['autodocs'],
   argTypes: {},
   render: args => (
     <Avatar {...args}>
@@ -33,4 +32,4 @@ type Story = StoryObj<typeof meta>
 /**
  * The default form of the avatar.
  */
-export const Default: Story = {}
+export const Base: Story = {}

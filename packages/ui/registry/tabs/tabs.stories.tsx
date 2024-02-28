@@ -15,7 +15,6 @@ import {
 const meta = {
   title: 'ui/Tabs',
   component: Tabs,
-  tags: ['autodocs'],
   argTypes: {},
   args: {
     defaultValue: 'account',
@@ -45,4 +44,4 @@ type Story = StoryObj<typeof meta>
 /**
  * The default form of the tabs.
  */
-export const Default: Story = {}
+export const Base: Story = {}

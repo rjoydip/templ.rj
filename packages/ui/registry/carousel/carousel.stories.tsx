@@ -15,7 +15,6 @@ import {
 const meta: Meta<typeof Carousel> = {
   title: 'ui/Carousel',
   component: Carousel,
-  tags: ['autodocs'],
   argTypes: {},
   args: {
     className: 'w-full max-w-xs',
@@ -47,7 +46,7 @@ type Story = StoryObj<typeof meta>
 /**
  * The default form of the carousel.
  */
-export const Default: Story = {}
+export const Base: Story = {}
 
 /**
  * Use the `basis` utility class to change the size of the carousel.

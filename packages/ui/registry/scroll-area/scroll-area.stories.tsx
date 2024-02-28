@@ -8,7 +8,6 @@ import { ScrollArea } from './scroll-area'
 const meta = {
   title: 'ui/ScrollArea',
   component: ScrollArea,
-  tags: ['autodocs'],
   argTypes: {
     children: {
       control: 'text',
@@ -32,7 +31,7 @@ type Story = StoryObj<typeof meta>
 /**
  * The default form of the scroll area.
  */
-export const Default: Story = {}
+export const Base: Story = {}
 
 /**
  * Use the `type` prop with `always` to always show the scroll area.

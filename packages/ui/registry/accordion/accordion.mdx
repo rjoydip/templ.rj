@@ -1,0 +1,20 @@
+import { Controls, Meta, Canvas } from '@storybook/blocks'
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from './accordion'
+
+import * as AccordionStories from './accordion.stories'
+
+<Meta title="Accordion" of={AccordionStories} />
+
+# Accordion
+
+An `Accordion` is a vertically stacked set of interactive item, which contain a title or content snippet representing a section of content. It hides a lot of content and rolls it up.
+It consists of two children components: `AccordionItem`, `AccordionTrigger` and `AccordionContent`, which are just wrapper components. You can pass any component as children to `AccordionItem` and `Accordion.Content`.
+
+<Canvas of={AccordionStories.Base} />
+
+<Controls />

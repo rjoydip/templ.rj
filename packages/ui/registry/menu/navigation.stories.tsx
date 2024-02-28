@@ -17,7 +17,6 @@ import {
 const meta = {
   title: 'ui/NavigationMenu',
   component: NavigationMenu,
-  tags: ['autodocs'],
   argTypes: {},
   render: args => (
     <NavigationMenu {...args}>
@@ -77,4 +76,4 @@ type Story = StoryObj<typeof meta>
 /**
  * The default form of the navigation menu.
  */
-export const Default: Story = {}
+export const Base: Story = {}

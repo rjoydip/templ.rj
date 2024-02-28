@@ -15,7 +15,6 @@ import {
 const meta = {
   title: 'ui/Alert',
   component: Alert,
-  tags: ['autodocs'],
   argTypes: {
     variant: {
       options: ['default', 'destructive'],
@@ -41,7 +40,7 @@ type Story = StoryObj<typeof meta>
 /**
  * The default form of the alert.
  */
-export const Default: Story = {}
+export const Base: Story = {}
 
 /**
  * Use the `destructive` alert to indicate a destructive action.

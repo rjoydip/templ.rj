@@ -9,7 +9,6 @@ import { Textarea } from './textarea'
 const meta = {
   title: 'ui/Textarea',
   component: Textarea,
-  tags: ['autodocs'],
   argTypes: {},
   args: {
     placeholder: 'Type your message here.',
@@ -24,7 +23,7 @@ type Story = StoryObj<typeof meta>
 /**
  * The default form of the textarea.
  */
-export const Default: Story = {}
+export const Base: Story = {}
 
 /**
  * Use the `disabled` prop to disable the textarea.

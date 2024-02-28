@@ -13,7 +13,6 @@ import {
 const meta = {
   title: 'ui/ToggleGroup',
   component: ToggleGroup,
-  tags: ['autodocs'],
   argTypes: {
     type: {
       options: ['multiple', 'single'],
@@ -51,7 +50,7 @@ type Story = StoryObj<typeof meta>
 /**
  * The default form of the toggle group.
  */
-export const Default: Story = {}
+export const Base: Story = {}
 
 /**
  * Use the `outline` variant to emphasizing the individuality of each button

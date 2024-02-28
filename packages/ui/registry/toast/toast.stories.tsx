@@ -18,7 +18,6 @@ import { useToast } from './use-toast'
 const meta = {
   title: 'ui/Toast',
   component: Toast,
-  tags: ['autodocs'],
   argTypes: {},
   parameters: {
     layout: 'centered',
@@ -58,7 +57,7 @@ function ToastExample(args: Story['args']) {
 /**
  * The default form of the toast.
  */
-export const Default: Story = {
+export const Base: Story = {
   args: {
     description: 'Your message has been sent.',
   },

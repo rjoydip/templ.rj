@@ -9,7 +9,6 @@ import { Skeleton } from './skeleton'
 const meta = {
   title: 'ui/Skeleton',
   component: Skeleton,
-  tags: ['autodocs'],
   argTypes: {},
   parameters: {
     layout: 'centered',
@@ -23,7 +22,7 @@ type Story = StoryObj<typeof Skeleton>
 /**
  * The default form of the skeleton.
  */
-export const Default: Story = {
+export const Base: Story = {
   render: args => (
     <div className="flex items-center space-x-4">
       <Skeleton {...args} className="h-12 w-12 rounded-full" />

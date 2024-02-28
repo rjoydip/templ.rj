@@ -14,7 +14,6 @@ import {
 const meta = {
   title: 'ui/Collapsible',
   component: Collapsible,
-  tags: ['autodocs'],
   argTypes: {},
   args: {
     className: 'w-96',
@@ -44,7 +43,7 @@ type Story = StoryObj<typeof meta>
 /**
  * The default form of the collapsible.
  */
-export const Default: Story = {}
+export const Base: Story = {}
 
 /**
  * Use the `disabled` prop to disable the interaction.

@@ -19,7 +19,6 @@ import {
 const meta = {
   title: 'ui/Dialog',
   component: Dialog,
-  tags: ['autodocs'],
   argTypes: {},
   render: args => (
     <Dialog {...args}>
@@ -55,4 +54,4 @@ type Story = StoryObj<typeof meta>
 /**
  * The default form of the dialog.
  */
-export const Default: Story = {}
+export const Base: Story = {}

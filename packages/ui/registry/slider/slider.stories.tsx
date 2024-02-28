@@ -8,7 +8,6 @@ import { Slider } from './slider'
 const meta = {
   title: 'ui/Slider',
   component: Slider,
-  tags: ['autodocs'],
   argTypes: {},
   args: {
     defaultValue: [33],
@@ -24,7 +23,7 @@ type Story = StoryObj<typeof meta>
 /**
  * The default form of the slider.
  */
-export const Default: Story = {}
+export const Base: Story = {}
 
 /**
  * Use the `inverted` prop to have the slider fill from right to left.

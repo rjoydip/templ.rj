@@ -26,7 +26,6 @@ import {
 const meta = {
   title: 'ui/Menubar',
   component: Menubar,
-  tags: ['autodocs'],
   argTypes: {},
 
   render: args => (
@@ -60,7 +59,7 @@ type Story = StoryObj<typeof meta>
 /**
  * The default form of the menubar.
  */
-export const Default: Story = {}
+export const Base: Story = {}
 
 /**
  * A menubar with a submenu.

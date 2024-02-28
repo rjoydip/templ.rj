@@ -8,7 +8,6 @@ import { Badge } from './badge'
 const meta = {
   title: 'ui/Badge',
   component: Badge,
-  tags: ['autodocs'],
   argTypes: {
     children: {
       control: 'text',
@@ -29,7 +28,7 @@ type Story = StoryObj<typeof meta>
 /**
  * The default form of the badge.
  */
-export const Default: Story = {}
+export const Base: Story = {}
 
 /**
  * Use the `secondary` badge to call for less urgent information, blending

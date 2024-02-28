@@ -9,7 +9,6 @@ import { Input } from './input'
 const meta = {
   title: 'ui/Input',
   component: Input,
-  tags: ['autodocs'],
   argTypes: {},
   args: {
     className: 'w-96',
@@ -29,7 +28,7 @@ type Story = StoryObj<typeof meta>
 /**
  * The default form of the input field.
  */
-export const Default: Story = {}
+export const Base: Story = {}
 
 /**
  * Use the `disabled` prop to make the input non-interactive and appears faded,

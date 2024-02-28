@@ -10,7 +10,6 @@ import { RadioGroup, RadioGroupItem } from './radio-group'
 const meta = {
   title: 'ui/RadioGroup',
   component: RadioGroup,
-  tags: ['autodocs'],
   argTypes: {},
   args: {
     defaultValue: 'comfortable',
@@ -35,4 +34,4 @@ type Story = StoryObj<typeof meta>
 /**
  * The default form of the radio group.
  */
-export const Default: Story = {}
+export const Base: Story = {}

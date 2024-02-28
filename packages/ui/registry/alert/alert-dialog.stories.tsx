@@ -20,7 +20,6 @@ import {
 const meta = {
   title: 'ui/AlertDialog',
   component: AlertDialog,
-  tags: ['autodocs'],
   argTypes: {},
   render: args => (
     <AlertDialog {...args}>
@@ -52,4 +51,4 @@ type Story = StoryObj<typeof meta>
 /**
  * The default form of the alert dialog.
  */
-export const Default: Story = {}
+export const Base: Story = {}

@@ -10,7 +10,6 @@ import { AspectRatio } from './aspect-ratio'
 const meta: Meta<typeof AspectRatio> = {
   title: 'ui/AspectRatio',
   component: AspectRatio,
-  tags: ['autodocs'],
   argTypes: {},
   render: args => (
     <AspectRatio {...args} className="bg-slate-50 dark:bg-slate-800">
@@ -37,7 +36,7 @@ type Story = StoryObj<typeof meta>
 /**
  * The default form of the aspect ratio.
  */
-export const Default: Story = {
+export const Base: Story = {
   args: {
     ratio: 16 / 9,
   },

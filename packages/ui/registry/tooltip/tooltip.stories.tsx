@@ -16,7 +16,6 @@ import {
 const meta: Meta<typeof TooltipContent> = {
   title: 'ui/Tooltip',
   component: TooltipContent,
-  tags: ['autodocs'],
   argTypes: {
     side: {
       options: ['top', 'bottom', 'left', 'right'],
@@ -55,7 +54,7 @@ type Story = StoryObj<typeof meta>
 /**
  * The default form of the tooltip.
  */
-export const Default: Story = {}
+export const Base: Story = {}
 
 /**
  * Use the `bottom` side to display the tooltip below the element.

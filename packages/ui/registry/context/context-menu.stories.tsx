@@ -24,7 +24,6 @@ import {
 const meta = {
   title: 'ui/ContextMenu',
   component: ContextMenu,
-  tags: ['autodocs'],
   argTypes: {},
   args: {},
   render: args => (
@@ -52,7 +51,7 @@ type Story = StoryObj<typeof meta>
 /**
  * The default form of the context menu.
  */
-export const Default: Story = {}
+export const Base: Story = {}
 
 /**
  * A context menu with shortcuts.

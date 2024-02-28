@@ -10,7 +10,6 @@ import { Toggle } from './toggle'
 const meta: Meta<typeof Toggle> = {
   title: 'ui/Toggle',
   component: Toggle,
-  tags: ['autodocs'],
   argTypes: {
     children: {
       control: { disable: true },
@@ -31,7 +30,7 @@ type Story = StoryObj<typeof Toggle>
 /**
  * The default form of the toggle.
  */
-export const Default: Story = {}
+export const Base: Story = {}
 
 /**
  * Use the `outline` variant for a distinct outline, emphasizing the boundary

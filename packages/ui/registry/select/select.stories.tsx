@@ -18,7 +18,6 @@ import {
 const meta: Meta<typeof Select> = {
   title: 'ui/Select',
   component: Select,
-  tags: ['autodocs'],
   argTypes: {},
   render: args => (
     <Select {...args}>
@@ -68,4 +67,4 @@ type Story = StoryObj<typeof meta>
 /**
  * The default form of the select.
  */
-export const Default: Story = {}
+export const Base: Story = {}

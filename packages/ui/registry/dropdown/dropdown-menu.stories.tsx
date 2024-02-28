@@ -33,7 +33,6 @@ import {
 const meta = {
   title: 'ui/DropdownMenu',
   component: DropdownMenu,
-  tags: ['autodocs'],
   argTypes: {},
   render: args => (
     <DropdownMenu {...args}>
@@ -60,7 +59,7 @@ type Story = StoryObj<typeof meta>
 /**
  * The default form of the dropdown menu.
  */
-export const Default: Story = {}
+export const Base: Story = {}
 
 /**
  * A dropdown menu with shortcuts.

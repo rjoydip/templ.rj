@@ -9,7 +9,6 @@ import { Checkbox } from './checkbox'
 const meta: Meta<typeof Checkbox> = {
   title: 'ui/Checkbox',
   component: Checkbox,
-  tags: ['autodocs'],
   argTypes: {},
   args: {
     id: 'terms',
@@ -38,7 +37,7 @@ type Story = StoryObj<typeof meta>
 /**
  * The default form of the checkbox.
  */
-export const Default: Story = {}
+export const Base: Story = {}
 
 /**
  * Use the `disabled` prop to disable the checkbox.

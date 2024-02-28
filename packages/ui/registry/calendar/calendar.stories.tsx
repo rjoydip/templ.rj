@@ -10,7 +10,6 @@ import { Calendar } from './calendar'
 const meta = {
   title: 'ui/Calendar',
   component: Calendar,
-  tags: ['autodocs'],
   argTypes: {},
   args: {
     mode: 'single',
@@ -30,7 +29,7 @@ type Story = StoryObj<typeof meta>
 /**
  * The default form of the calendar.
  */
-export const Default: Story = {}
+export const Base: Story = {}
 
 /**
  * Use the `multiple` mode to select multiple dates.
