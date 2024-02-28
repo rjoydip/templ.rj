@@ -10,6 +10,9 @@ export default mergeConfig(
         '@': resolve('./'),
       },
       environment: 'happy-dom',
+      exclude: [
+        'registry/**/*.stories.{jsx,tsx}',
+      ],
       include: ['registry/**/*.test.{jsx,tsx}'],
       setupFiles: ['./setupTests.ts'],
       threads: false,
