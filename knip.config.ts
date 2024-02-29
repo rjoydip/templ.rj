@@ -1,19 +1,25 @@
 import type { KnipConfig } from 'knip'
 
 const config: KnipConfig = {
+  'rules': {
+    dependencies: 'off',
+  },
   'ignoreBinaries': ['templ-cli'],
   'ignoreDependencies': ['@storybook/blocks'],
   'workspaces': {
     '.': {
       entry: ['eslint.config.js'],
-      ignore: ['**/templates/**', '**/.config/**'],
+      ignore: ['**/.config/**', '**/generator/**', '**/templates/**'],
     },
     'packages/*': {
-      entry: ['src/**/*.{ts,tsx}', 'test/**/*.test.{ts,tsx}', '**/*.load.ts', 'registry/**/*.mdx'],
+      entry: ['src/**/*.{js,jsx,ts,tsx}', 'test/**/*.test.{js,jsx,ts,tsx}', '**/*.{load,config}.{js,ts}'],
       ignore: ['**/test/**'],
     },
+    'packages/ui': {
+      entry: ['{registry,components}/**/*.mdx', '**/*.{load,config}.{js,ts}', '*setupTests.ts'],
+    },
     'apps/*': {
-      entry: ['src/**/*.{ts,tsx}', 'test/**/*.test.{ts,tsx}'],
+      entry: ['src/**/*.{ts,tsx}', 'test/**/*.test.{ts,tsx}', '**/*.config.{js,ts}'],
     },
   },
   'eslint': {
