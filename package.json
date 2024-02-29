@@ -27,11 +27,12 @@
   "scripts": {
     "prepare": "husky",
     "all": "ni && nr deps:update && nr build && nr lint && nr test",
-    "build": "nr clean && turbo run build && knip && nr -C scripts build:check && nr -r typecheck",
-    "clean": "nr -C scripts clean",
+    "build": "nr clean && turbo run build",
+    "clean": "nr -r clean",
     "coverage": "vitest run --coverage",
+    "check": "knip && nr -r build:check && nr -r typecheck",
     "deps:update": "taze -r -w -i -f -l",
-    "lint": "eslint . --fix && nr -C scripts automd",
+    "lint": "eslint . --fix && nr -r automd",
     "release": "changeset version && npm publish && git push --follow-tags",
     "test": "turbo run test"
   },
