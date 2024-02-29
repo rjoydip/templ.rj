@@ -109,6 +109,7 @@
     "@chromatic-com/storybook": "^1.1.12",
     "@hookform/resolvers": "^3.3.4",
     "@storybook/addon-actions": "^7.6.17",
+    "@storybook/addon-controls": "^7.6.17",
     "@storybook/addon-essentials": "^7.6.17",
     "@storybook/addon-interactions": "^7.6.17",
     "@storybook/addon-links": "^7.6.17",
