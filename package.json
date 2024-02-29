@@ -26,15 +26,15 @@
   },
   "scripts": {
     "prepare": "husky",
-    "all": "ni && nr deps:update && nr build && nr lint && nr test",
-    "build": "nr clean && turbo run build",
-    "clean": "nr -r clean",
-    "coverage": "vitest run --coverage",
-    "check": "knip && nr -r build:check && nr -r typecheck",
+    "all": "ni && nr deps:update && nr clean && nr build && nr lint && nr test",
+    "build": "turbo run build",
+    "clean": "nr -C scripts clean",
     "deps:update": "taze -r -w -i -f -l",
-    "lint": "eslint . --fix && nr -r automd",
+    "lint": "eslint . --fix && nr -C scripts automd && knip && nr typecheck",
     "release": "changeset version && npm publish && git push --follow-tags",
-    "test": "turbo run test"
+    "test": "turbo run test",
+    "test:coverage": "vitest run --coverage",
+    "typecheck": "nr -C scripts typecheck"
   },
   "devDependencies": {
     "@antfu/eslint-config": "2.6.4",

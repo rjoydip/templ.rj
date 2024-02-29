@@ -52,16 +52,16 @@ jobs:
       - uses: ./.github/actions/setup-node
 
       - name: Build Setup
-        run: nr -r ci:env-copy
+        run: nr -C scripts ci:env-copy
 
       - name: Build
         run: nr build
 
-      - name: After build - check
-        run: nr check
-        
+      - name: Build Check
+        run: nr -C scripts build:check
+
       - name: Cleanup
-        run: nr -r ci:env-delete
+        run: nr -C scripts ci:env-delete
 
   lint:
     runs-on: ubuntu-latest
@@ -92,4 +92,4 @@ jobs:
         run: nr test
 
       - name: Coverage
-        run: nr coverage
+        run: nr test:coverage

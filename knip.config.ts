@@ -1,13 +1,13 @@
 const config = {
   'ignoreBinaries': ['templ-cli'],
-  'ignoreDependencies': ['typecheck', '@storybook/blocks'],
+  'ignoreDependencies': ['@storybook/blocks'],
   'workspaces': {
     '.': {
       entry: ['eslint.config.js'],
       ignore: ['**/templates/**', '**/example/**', '**/.config/**'],
     },
     'packages/*': {
-      entry: ['src/**/*.{ts,tsx}', 'test/**/*.test.{ts,tsx}', '**/*.load.ts'],
+      entry: ['src/**/*.{ts,tsx}', 'test/**/*.test.{ts,tsx}', '**/*.load.ts', 'registry/**/*.mdx'],
       ignore: ['**/test/**'],
     },
     'apps/*': {
