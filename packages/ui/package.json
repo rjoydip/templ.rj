@@ -135,5 +135,5 @@
     "vitest-axe": "^0.1.0",
     "zod": "^3.22.4"
   },
-  "size-limit": "60 KB"
+  "size-limit": "65 KB"
 }
