@@ -58,7 +58,8 @@ jobs:
         run: nr build
 
       - name: Build Check
-        run: nr -C scripts build:check
+        run: |
+          nr build:check
 
       - name: Cleanup
         run: nr -C scripts ci:env-delete

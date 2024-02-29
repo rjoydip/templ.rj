@@ -1,17 +1,19 @@
-const config = {
+import type { KnipConfig } from 'knip'
+
+const config: KnipConfig = {
   'ignoreBinaries': ['templ-cli'],
   'ignoreDependencies': ['@storybook/blocks'],
   'workspaces': {
     '.': {
       entry: ['eslint.config.js'],
-      ignore: ['**/templates/**', '**/example/**', '**/.config/**'],
+      ignore: ['**/templates/**', '**/.config/**'],
     },
     'packages/*': {
       entry: ['src/**/*.{ts,tsx}', 'test/**/*.test.{ts,tsx}', '**/*.load.ts', 'registry/**/*.mdx'],
       ignore: ['**/test/**'],
     },
     'apps/*': {
-      entry: ['src/**/*.{ts,tsx}', 'test/**/*.test.{ts,tsx}', '**/*.config.js'],
+      entry: ['src/**/*.{ts,tsx}', 'test/**/*.test.{ts,tsx}'],
     },
   },
   'eslint': {
@@ -25,15 +27,6 @@ const config = {
   },
   'github-actions': {
     config: ['.github/workflows/*.{yml,yaml}', '.github/**/action.{yml,yaml}'],
-  },
-  'lefthook': {
-    config: [
-      'lefthook.yml',
-      '.git/hooks/prepare-commit-msg',
-      '.git/hooks/commit-msg',
-      '.git/hooks/pre-{applypatch,commit,merge-commit,push,rebase,receive}',
-      '.git/hooks/post-{checkout,commit,merge,rewrite}',
-    ],
   },
   'next': {
     entry: [
