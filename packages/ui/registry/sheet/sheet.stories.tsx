@@ -19,7 +19,6 @@ import {
 const meta: Meta<typeof SheetContent> = {
   title: 'ui/Sheet',
   component: Sheet,
-  tags: ['autodocs'],
   argTypes: {
     side: {
       options: ['top', 'bottom', 'left', 'right'],
@@ -31,6 +30,20 @@ const meta: Meta<typeof SheetContent> = {
   args: {
     side: 'right',
   },
+  parameters: {
+    badges: ['beta', 'stable'],
+    layout: 'centered',
+  },
+} satisfies Meta<typeof SheetContent>
+
+export default meta
+
+type Story = StoryObj<typeof meta>
+
+/**
+ * The default form of the sheet.
+ */
+export const Default: Story = {
   render: args => (
     <Sheet>
       <SheetTrigger>Open</SheetTrigger>
@@ -53,16 +66,4 @@ const meta: Meta<typeof SheetContent> = {
       </SheetContent>
     </Sheet>
   ),
-  parameters: {
-    layout: 'centered',
-  },
-} satisfies Meta<typeof SheetContent>
-
-export default meta
-
-type Story = StoryObj<typeof meta>
-
-/**
- * The default form of the sheet.
- */
-export const Default: Story = {}
+}

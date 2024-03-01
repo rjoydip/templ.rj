@@ -9,8 +9,10 @@ import { Separator } from './separator'
 const meta = {
   title: 'ui/Separator',
   component: Separator,
-  tags: ['autodocs'],
   argTypes: {},
+  parameters: {
+    badges: ['beta', 'stable'],
+  },
 } satisfies Meta<typeof Separator>
 
 export default meta

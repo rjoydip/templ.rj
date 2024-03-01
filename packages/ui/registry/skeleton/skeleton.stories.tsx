@@ -9,9 +9,9 @@ import { Skeleton } from './skeleton'
 const meta = {
   title: 'ui/Skeleton',
   component: Skeleton,
-  tags: ['autodocs'],
   argTypes: {},
   parameters: {
+    badges: ['beta', 'stable'],
     layout: 'centered',
   },
 } satisfies Meta<typeof Skeleton>

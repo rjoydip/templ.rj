@@ -1,0 +1,18 @@
+import { Meta, Canvas } from '@storybook/blocks';
+import * as AccordionStories from './accordion.stories.tsx';
+import AccordionMDX from './accordion.mdx?raw';
+
+<Meta title="Hooks/accordion" />
+
+# Accordion
+
+This is a test description
+
+<Canvas
+  of={AccordionStories.Docs}
+  source={{
+    code: AccordionMDX,
+    language: 'tsx',
+  }}
+  sourceState="shown"
+/>

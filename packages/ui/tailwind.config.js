@@ -1,8 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ['class'],
+  // darkMode: ['class', '[data-mode="dark"]'],
+  darkMode: ['variant', [
+    '@media (prefers-color-scheme: dark) { &:not(.light *) }',
+    '&:is(.dark *)',
+  ]],
   content: [
-    './src/**/*.{ts,tsx}',
+    './regitry/**/*.{ts,tsx}',
   ],
   prefix: '',
   theme: {

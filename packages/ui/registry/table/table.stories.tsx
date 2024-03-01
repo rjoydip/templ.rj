@@ -44,8 +44,20 @@ const invoices = [
 const meta = {
   title: 'ui/Table',
   component: Table,
-  tags: ['autodocs'],
   argTypes: {},
+  parameters: {
+    badges: ['beta', 'stable'],
+  },
+} satisfies Meta<typeof Table>
+
+export default meta
+
+type Story = StoryObj<typeof meta>
+
+/**
+ * The default form of the table.
+ */
+export const Default: Story = {
   render: args => (
     <Table {...args}>
       <TableCaption>A list of your recent invoices.</TableCaption>
@@ -69,13 +81,4 @@ const meta = {
       </TableBody>
     </Table>
   ),
-} satisfies Meta<typeof Table>
-
-export default meta
-
-type Story = StoryObj<typeof meta>
-
-/**
- * The default form of the table.
- */
-export const Default: Story = {}
+}

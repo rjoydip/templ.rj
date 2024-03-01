@@ -9,11 +9,13 @@ import { Progress } from './progress'
 const meta = {
   title: 'ui/Progress',
   component: Progress,
-  tags: ['autodocs'],
   argTypes: {},
   args: {
     value: 30,
     max: 100,
+  },
+  parameters: {
+    badges: ['beta', 'stable'],
   },
 } satisfies Meta<typeof Progress>
 

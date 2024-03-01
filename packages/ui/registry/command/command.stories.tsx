@@ -17,11 +17,24 @@ import {
 const meta = {
   title: 'ui/Command',
   component: Command,
-  tags: ['autodocs'],
   argTypes: {},
   args: {
     className: 'rounded-lg w-96 border shadow-md',
   },
+  parameters: {
+    badges: ['beta', 'stable'],
+    layout: 'centered',
+  },
+} satisfies Meta<typeof Command>
+
+export default meta
+
+type Story = StoryObj<typeof meta>
+
+/**
+ * The default form of the command.
+ */
+export const Default: Story = {
   render: args => (
     <Command {...args}>
       <CommandInput placeholder="Type a command or search..." />
@@ -41,16 +54,4 @@ const meta = {
       </CommandList>
     </Command>
   ),
-  parameters: {
-    layout: 'centered',
-  },
-} satisfies Meta<typeof Command>
-
-export default meta
-
-type Story = StoryObj<typeof meta>
-
-/**
- * The default form of the command.
- */
-export const Default: Story = {}
+}

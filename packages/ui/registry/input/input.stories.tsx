@@ -9,7 +9,6 @@ import { Input } from './input'
 const meta = {
   title: 'ui/Input',
   component: Input,
-  tags: ['autodocs'],
   argTypes: {},
   args: {
     className: 'w-96',
@@ -18,6 +17,7 @@ const meta = {
     disabled: false,
   },
   parameters: {
+    badges: ['beta', 'stable'],
     layout: 'centered',
   },
 } satisfies Meta<typeof Input>

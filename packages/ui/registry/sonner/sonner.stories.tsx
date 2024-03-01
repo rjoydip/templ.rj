@@ -11,12 +11,12 @@ import { Sonner } from './sonner'
 const meta: Meta<typeof Sonner> = {
   title: 'ui/Sonner',
   component: Sonner,
-  tags: ['autodocs'],
   argTypes: {},
   args: {
     position: 'bottom-right',
   },
   parameters: {
+    badges: ['beta', 'stable'],
     layout: 'fullscreen',
   },
 } satisfies Meta<typeof Sonner>

@@ -10,7 +10,6 @@ import { Calendar } from './calendar'
 const meta = {
   title: 'ui/Calendar',
   component: Calendar,
-  tags: ['autodocs'],
   argTypes: {},
   args: {
     mode: 'single',
@@ -19,6 +18,7 @@ const meta = {
     className: 'rounded-md border w-fit',
   },
   parameters: {
+    badges: ['beta', 'stable'],
     layout: 'centered',
   },
 } satisfies Meta<typeof Calendar>

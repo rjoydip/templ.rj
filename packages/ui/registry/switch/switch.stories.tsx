@@ -9,19 +9,11 @@ import { Switch } from './switch'
 const meta = {
   title: 'ui/Switch',
   component: Switch,
-  tags: ['autodocs'],
   argTypes: {},
   parameters: {
+    badges: ['beta', 'stable'],
     layout: 'centered',
   },
-  render: args => (
-    <div className="flex items-center space-x-2">
-      <Switch {...args} />
-      <label htmlFor={args.id} className="peer-disabled:text-foreground/50">
-        Airplane Mode
-      </label>
-    </div>
-  ),
 } satisfies Meta<typeof Switch>
 
 export default meta
@@ -35,6 +27,14 @@ export const Default: Story = {
   args: {
     id: 'default-switch',
   },
+  render: args => (
+    <div className="flex items-center space-x-2">
+      <Switch {...args} />
+      <label htmlFor={args.id} className="peer-disabled:text-foreground/50">
+        Airplane Mode
+      </label>
+    </div>
+  ),
 }
 
 /**
@@ -45,4 +45,12 @@ export const Disabled: Story = {
     id: 'disabled-switch',
     disabled: true,
   },
+  render: args => (
+    <div className="flex items-center space-x-2">
+      <Switch {...args} />
+      <label htmlFor={args.id} className="peer-disabled:text-foreground/50">
+        Airplane Mode
+      </label>
+    </div>
+  ),
 }

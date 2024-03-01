@@ -16,7 +16,6 @@ import {
 const meta: Meta<typeof TooltipContent> = {
   title: 'ui/Tooltip',
   component: TooltipContent,
-  tags: ['autodocs'],
   argTypes: {
     side: {
       options: ['top', 'bottom', 'left', 'right'],
@@ -33,7 +32,38 @@ const meta: Meta<typeof TooltipContent> = {
     children: 'Add to library',
   },
   parameters: {
+    badges: ['beta', 'stable'],
     layout: 'centered',
+  },
+} satisfies Meta<typeof TooltipContent>
+
+export default meta
+
+type Story = StoryObj<typeof meta>
+
+/**
+ * The default form of the tooltip.
+ */
+export const Default: Story = {
+  render: args => (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger>
+          <Plus className="h-4 w-4" />
+          <span className="sr-only">Add</span>
+        </TooltipTrigger>
+        <TooltipContent {...args} />
+      </Tooltip>
+    </TooltipProvider>
+  ),
+}
+
+/**
+ * Use the `bottom` side to display the tooltip below the element.
+ */
+export const Bottom: Story = {
+  args: {
+    side: 'bottom',
   },
   render: args => (
     <TooltipProvider>
@@ -46,24 +76,6 @@ const meta: Meta<typeof TooltipContent> = {
       </Tooltip>
     </TooltipProvider>
   ),
-} satisfies Meta<typeof TooltipContent>
-
-export default meta
-
-type Story = StoryObj<typeof meta>
-
-/**
- * The default form of the tooltip.
- */
-export const Default: Story = {}
-
-/**
- * Use the `bottom` side to display the tooltip below the element.
- */
-export const Bottom: Story = {
-  args: {
-    side: 'bottom',
-  },
 }
 
 /**
@@ -73,6 +85,17 @@ export const Left: Story = {
   args: {
     side: 'left',
   },
+  render: args => (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger>
+          <Plus className="h-4 w-4" />
+          <span className="sr-only">Add</span>
+        </TooltipTrigger>
+        <TooltipContent {...args} />
+      </Tooltip>
+    </TooltipProvider>
+  ),
 }
 
 /**
@@ -82,4 +105,15 @@ export const Right: Story = {
   args: {
     side: 'right',
   },
+  render: args => (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger>
+          <Plus className="h-4 w-4" />
+          <span className="sr-only">Add</span>
+        </TooltipTrigger>
+        <TooltipContent {...args} />
+      </Tooltip>
+    </TooltipProvider>
+  ),
 }

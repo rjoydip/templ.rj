@@ -8,7 +8,6 @@ import { Label } from './label'
 const meta = {
   title: 'ui/Label',
   component: Label,
-  tags: ['autodocs'],
   argTypes: {
     children: {
       control: { type: 'text' },
@@ -17,6 +16,9 @@ const meta = {
   args: {
     children: 'Your email address',
     htmlFor: 'email',
+  },
+  parameters: {
+    badges: ['beta', 'stable'],
   },
 } satisfies Meta<typeof Label>
 

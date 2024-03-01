@@ -10,17 +10,10 @@ import { AspectRatio } from './aspect-ratio'
 const meta: Meta<typeof AspectRatio> = {
   title: 'ui/AspectRatio',
   component: AspectRatio,
-  tags: ['autodocs'],
   argTypes: {},
-  render: args => (
-    <AspectRatio {...args} className="bg-slate-50 dark:bg-slate-800">
-      <img
-        src="https://images.unsplash.com/photo-1576075796033-848c2a5f3696?w=800&dpr=2&q=80"
-        alt="Photo by Alvaro Pinot"
-        className="rounded-md object-cover"
-      />
-    </AspectRatio>
-  ),
+  parameters: {
+    badges: ['beta', 'stable'],
+  },
   decorators: [
     Story => (
       <div className="w-1/2">
@@ -41,6 +34,15 @@ export const Default: Story = {
   args: {
     ratio: 16 / 9,
   },
+  render: args => (
+    <AspectRatio {...args} className="bg-slate-50 dark:bg-slate-800">
+      <img
+        src="https://images.unsplash.com/photo-1576075796033-848c2a5f3696?w=800&dpr=2&q=80"
+        alt="Photo by Alvaro Pinot"
+        className="rounded-md object-cover"
+      />
+    </AspectRatio>
+  ),
 }
 
 /**
@@ -50,6 +52,15 @@ export const Square: Story = {
   args: {
     ratio: 1,
   },
+  render: args => (
+    <AspectRatio {...args} className="bg-slate-50 dark:bg-slate-800">
+      <img
+        src="https://images.unsplash.com/photo-1576075796033-848c2a5f3696?w=800&dpr=2&q=80"
+        alt="Photo by Alvaro Pinot"
+        className="rounded-md object-cover"
+      />
+    </AspectRatio>
+  ),
 }
 
 /**
@@ -59,6 +70,15 @@ export const Landscape: Story = {
   args: {
     ratio: 4 / 3,
   },
+  render: args => (
+    <AspectRatio {...args} className="bg-slate-50 dark:bg-slate-800">
+      <img
+        src="https://images.unsplash.com/photo-1576075796033-848c2a5f3696?w=800&dpr=2&q=80"
+        alt="Photo by Alvaro Pinot"
+        className="rounded-md object-cover"
+      />
+    </AspectRatio>
+  ),
 }
 
 /**
@@ -68,4 +88,13 @@ export const Cinemascope: Story = {
   args: {
     ratio: 2.35 / 1,
   },
+  render: args => (
+    <AspectRatio {...args} className="bg-slate-50 dark:bg-slate-800">
+      <img
+        src="https://images.unsplash.com/photo-1576075796033-848c2a5f3696?w=800&dpr=2&q=80"
+        alt="Photo by Alvaro Pinot"
+        className="rounded-md object-cover"
+      />
+    </AspectRatio>
+  ),
 }

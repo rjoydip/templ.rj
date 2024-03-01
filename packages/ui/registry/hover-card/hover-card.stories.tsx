@@ -13,18 +13,10 @@ import {
 const meta = {
   title: 'ui/HoverCard',
   component: HoverCard,
-  tags: ['autodocs'],
   argTypes: {},
   args: {},
-  render: args => (
-    <HoverCard {...args}>
-      <HoverCardTrigger>Hover</HoverCardTrigger>
-      <HoverCardContent>
-        The React Framework - created and maintained by @vercel.
-      </HoverCardContent>
-    </HoverCard>
-  ),
   parameters: {
+    badges: ['beta', 'stable'],
     layout: 'centered',
   },
 } satisfies Meta<typeof HoverCard>
@@ -36,7 +28,16 @@ type Story = StoryObj<typeof meta>
 /**
  * The default form of the hover card.
  */
-export const Default: Story = {}
+export const Default: Story = {
+  render: args => (
+    <HoverCard {...args}>
+      <HoverCardTrigger>Hover</HoverCardTrigger>
+      <HoverCardContent>
+        The React Framework - created and maintained by @vercel.
+      </HoverCardContent>
+    </HoverCard>
+  ),
+}
 
 /**
  * Use the `openDelay` and `closeDelay` props to control the delay before the

@@ -13,7 +13,6 @@ import {
 const meta = {
   title: 'ui/ToggleGroup',
   component: ToggleGroup,
-  tags: ['autodocs'],
   argTypes: {
     type: {
       options: ['multiple', 'single'],
@@ -25,6 +24,43 @@ const meta = {
     size: 'default',
     type: 'multiple',
     disabled: false,
+  },
+  parameters: {
+    badges: ['beta', 'stable'],
+    layout: 'centered',
+  },
+} satisfies Meta<typeof ToggleGroup>
+
+export default meta
+
+type Story = StoryObj<typeof meta>
+
+/**
+ * The default form of the toggle group.
+ */
+export const Default: Story = {
+  render: args => (
+    <ToggleGroup {...args}>
+      <ToggleGroupItem value="bold" aria-label="Toggle bold">
+        <Bold className="h-4 w-4" />
+      </ToggleGroupItem>
+      <ToggleGroupItem value="italic" aria-label="Toggle italic">
+        <Italic className="h-4 w-4" />
+      </ToggleGroupItem>
+      <ToggleGroupItem value="underline" aria-label="Toggle underline">
+        <Underline className="h-4 w-4" />
+      </ToggleGroupItem>
+    </ToggleGroup>
+  ),
+}
+
+/**
+ * Use the `outline` variant to emphasizing the individuality of each button
+ * while keeping them visually cohesive.
+ */
+export const Outline: Story = {
+  args: {
+    variant: 'outline',
   },
   render: args => (
     <ToggleGroup {...args}>
@@ -39,28 +75,6 @@ const meta = {
       </ToggleGroupItem>
     </ToggleGroup>
   ),
-  parameters: {
-    layout: 'centered',
-  },
-} satisfies Meta<typeof ToggleGroup>
-
-export default meta
-
-type Story = StoryObj<typeof meta>
-
-/**
- * The default form of the toggle group.
- */
-export const Default: Story = {}
-
-/**
- * Use the `outline` variant to emphasizing the individuality of each button
- * while keeping them visually cohesive.
- */
-export const Outline: Story = {
-  args: {
-    variant: 'outline',
-  },
 }
 
 /**
@@ -71,6 +85,19 @@ export const Single: Story = {
   args: {
     type: 'single',
   },
+  render: args => (
+    <ToggleGroup {...args}>
+      <ToggleGroupItem value="bold" aria-label="Toggle bold">
+        <Bold className="h-4 w-4" />
+      </ToggleGroupItem>
+      <ToggleGroupItem value="italic" aria-label="Toggle italic">
+        <Italic className="h-4 w-4" />
+      </ToggleGroupItem>
+      <ToggleGroupItem value="underline" aria-label="Toggle underline">
+        <Underline className="h-4 w-4" />
+      </ToggleGroupItem>
+    </ToggleGroup>
+  ),
 }
 
 /**
@@ -81,6 +108,19 @@ export const Small: Story = {
   args: {
     size: 'sm',
   },
+  render: args => (
+    <ToggleGroup {...args}>
+      <ToggleGroupItem value="bold" aria-label="Toggle bold">
+        <Bold className="h-4 w-4" />
+      </ToggleGroupItem>
+      <ToggleGroupItem value="italic" aria-label="Toggle italic">
+        <Italic className="h-4 w-4" />
+      </ToggleGroupItem>
+      <ToggleGroupItem value="underline" aria-label="Toggle underline">
+        <Underline className="h-4 w-4" />
+      </ToggleGroupItem>
+    </ToggleGroup>
+  ),
 }
 
 /**
@@ -91,6 +131,19 @@ export const Large: Story = {
   args: {
     size: 'lg',
   },
+  render: args => (
+    <ToggleGroup {...args}>
+      <ToggleGroupItem value="bold" aria-label="Toggle bold">
+        <Bold className="h-4 w-4" />
+      </ToggleGroupItem>
+      <ToggleGroupItem value="italic" aria-label="Toggle italic">
+        <Italic className="h-4 w-4" />
+      </ToggleGroupItem>
+      <ToggleGroupItem value="underline" aria-label="Toggle underline">
+        <Underline className="h-4 w-4" />
+      </ToggleGroupItem>
+    </ToggleGroup>
+  ),
 }
 
 /**
@@ -100,4 +153,17 @@ export const Disabled: Story = {
   args: {
     disabled: true,
   },
+  render: args => (
+    <ToggleGroup {...args}>
+      <ToggleGroupItem value="bold" aria-label="Toggle bold">
+        <Bold className="h-4 w-4" />
+      </ToggleGroupItem>
+      <ToggleGroupItem value="italic" aria-label="Toggle italic">
+        <Italic className="h-4 w-4" />
+      </ToggleGroupItem>
+      <ToggleGroupItem value="underline" aria-label="Toggle underline">
+        <Underline className="h-4 w-4" />
+      </ToggleGroupItem>
+    </ToggleGroup>
+  ),
 }

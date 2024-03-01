@@ -21,9 +21,10 @@ import {
 const meta: Meta<typeof Form> = {
   title: 'ui/Form',
   component: Form,
-  tags: ['autodocs'],
   argTypes: {},
-  render: args => <ProfileForm {...args} />,
+  parameters: {
+    badges: ['beta', 'stable'],
+  },
 } satisfies Meta<typeof Form>
 
 export default meta
@@ -83,4 +84,6 @@ function ProfileForm(args: Story['args']) {
 /**
  * The default form of the form.
  */
-export const Default: Story = {}
+export const Default: Story = {
+  render: args => <ProfileForm {...args} />,
+}

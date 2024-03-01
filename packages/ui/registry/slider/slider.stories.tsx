@@ -8,12 +8,14 @@ import { Slider } from './slider'
 const meta = {
   title: 'ui/Slider',
   component: Slider,
-  tags: ['autodocs'],
   argTypes: {},
   args: {
     defaultValue: [33],
     max: 100,
     step: 1,
+  },
+  parameters: {
+    badges: ['beta', 'stable'],
   },
 } satisfies Meta<typeof Slider>
 

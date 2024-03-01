@@ -10,12 +10,24 @@ import { RadioGroup, RadioGroupItem } from './radio-group'
 const meta = {
   title: 'ui/RadioGroup',
   component: RadioGroup,
-  tags: ['autodocs'],
   argTypes: {},
   args: {
     defaultValue: 'comfortable',
     className: 'grid gap-2 grid-cols-[1rem_1fr] items-center',
   },
+  parameters: {
+    badges: ['beta', 'stable'],
+  },
+} satisfies Meta<typeof RadioGroup>
+
+export default meta
+
+type Story = StoryObj<typeof meta>
+
+/**
+ * The default form of the radio group.
+ */
+export const Default: Story = {
   render: args => (
     <RadioGroup {...args}>
       <RadioGroupItem value="default" id="r1" />
@@ -26,13 +38,4 @@ const meta = {
       <label htmlFor="r3">Compact</label>
     </RadioGroup>
   ),
-} satisfies Meta<typeof RadioGroup>
-
-export default meta
-
-type Story = StoryObj<typeof meta>
-
-/**
- * The default form of the radio group.
- */
-export const Default: Story = {}
+}

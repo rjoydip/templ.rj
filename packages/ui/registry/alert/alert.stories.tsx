@@ -15,7 +15,6 @@ import {
 const meta = {
   title: 'ui/Alert',
   component: Alert,
-  tags: ['autodocs'],
   argTypes: {
     variant: {
       options: ['default', 'destructive'],
@@ -25,14 +24,9 @@ const meta = {
   args: {
     variant: 'default',
   },
-  render: args => (
-    <Alert {...args}>
-      <AlertTitle>Heads up!</AlertTitle>
-      <AlertDescription>
-        You can add components to your app using the cli.
-      </AlertDescription>
-    </Alert>
-  ),
+  parameters: {
+    badges: ['beta', 'stable'],
+  },
 } satisfies Meta<typeof Alert>
 
 export default meta
@@ -41,7 +35,16 @@ type Story = StoryObj<typeof meta>
 /**
  * The default form of the alert.
  */
-export const Default: Story = {}
+export const Default: Story = {
+  render: args => (
+    <Alert {...args}>
+      <AlertTitle>Heads up!</AlertTitle>
+      <AlertDescription>
+        You can add components to your app using the cli.
+      </AlertDescription>
+    </Alert>
+  ),
+}
 
 /**
  * Use the `destructive` alert to indicate a destructive action.

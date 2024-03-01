@@ -1,21 +1,14 @@
+import { HIGHLIGHT } from '@storybook/addon-highlight'
+import { useChannel } from '@storybook/preview-api'
 import type { Preview } from '@storybook/react'
-import { withThemeByDataAttribute } from '@storybook/addon-themes'
+import { themes } from '@storybook/theming'
+import { withPerformance } from 'storybook-addon-performance'
 
 import '../styles/global.css'
 
-export const decorators = [
-  withThemeByDataAttribute({
-    themes: {
-      light: 'light',
-      dark: 'dark',
-    },
-    defaultTheme: 'light',
-    attributeName: 'data-mode',
-  }),
-]
-
 export const preview: Preview = {
   parameters: {
+    previewTabs: {},
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
       matchers: {
@@ -23,5 +16,23 @@ export const preview: Preview = {
         date: /Date$/i,
       },
     },
+    darkMode: {
+      current: 'light',
+      dark: { ...themes.dark },
+      light: { ...themes.light },
+    },
   },
+  loaders: [],
+  decorators: [
+    withPerformance,
+    (storyFn) => {
+      const emit = useChannel({})
+      emit(HIGHLIGHT, {
+        elements: ['.title', '.subtitle'],
+        color: 'red',
+        style: 'solid', // 'dotted' | 'dashed' | 'solid' | 'double'
+      })
+      return storyFn()
+    },
+  ],
 }

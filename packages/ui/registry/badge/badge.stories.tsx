@@ -8,7 +8,6 @@ import { Badge } from './badge'
 const meta = {
   title: 'ui/Badge',
   component: Badge,
-  tags: ['autodocs'],
   argTypes: {
     children: {
       control: 'text',
@@ -18,6 +17,7 @@ const meta = {
     children: 'Badge',
   },
   parameters: {
+    badges: ['beta', 'stable'],
     layout: 'centered',
   },
 } satisfies Meta<typeof Badge>

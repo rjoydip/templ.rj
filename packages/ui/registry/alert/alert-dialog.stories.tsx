@@ -1,6 +1,5 @@
 import * as React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-
 import {
   AlertDialog,
   AlertDialogAction,
@@ -20,8 +19,21 @@ import {
 const meta = {
   title: 'ui/AlertDialog',
   component: AlertDialog,
-  tags: ['autodocs'],
   argTypes: {},
+  parameters: {
+    badges: ['beta', 'stable'],
+    layout: 'centered',
+  },
+} satisfies Meta<typeof AlertDialog>
+
+export default meta
+
+type Story = StoryObj<typeof meta>
+
+/**
+ * The default form of the alert dialog.
+ */
+export const Default: Story = {
   render: args => (
     <AlertDialog {...args}>
       <AlertDialogTrigger>Open</AlertDialogTrigger>
@@ -40,16 +52,4 @@ const meta = {
       </AlertDialogContent>
     </AlertDialog>
   ),
-  parameters: {
-    layout: 'centered',
-  },
-} satisfies Meta<typeof AlertDialog>
-
-export default meta
-
-type Story = StoryObj<typeof meta>
-
-/**
- * The default form of the alert dialog.
- */
-export const Default: Story = {}
+}

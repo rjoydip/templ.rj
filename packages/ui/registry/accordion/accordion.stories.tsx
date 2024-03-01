@@ -1,5 +1,4 @@
 import * as React from 'react'
-
 import type { Meta, StoryObj } from '@storybook/react'
 import {
   Accordion,
@@ -7,6 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from './accordion'
+import mdx from './accordion.mdx'
 
 /**
  * A vertically stacked set of interactive headings that each reveal a section
@@ -15,7 +15,6 @@ import {
 const meta = {
   title: 'ui/Accordion',
   component: Accordion,
-  tags: ['autodocs'],
   argTypes: {
     type: {
       options: ['single', 'multiple'],
@@ -26,6 +25,22 @@ const meta = {
     type: 'single',
     collapsible: true,
   },
+  parameters: {
+    badges: ['beta', 'stable'],
+    docs: {
+      page: mdx,
+    },
+  },
+} satisfies Meta<typeof Accordion>
+
+export default meta
+
+type Story = StoryObj<typeof meta>
+
+/**
+ * The default behavior of the accordion allows only one item to be open.
+ */
+export const Default: Story = {
   render: args => (
     <Accordion {...args}>
       <AccordionItem value="item-1">
@@ -49,13 +64,4 @@ const meta = {
       </AccordionItem>
     </Accordion>
   ),
-} satisfies Meta<typeof Accordion>
-
-export default meta
-
-type Story = StoryObj<typeof meta>
-
-/**
- * The default behavior of the accordion allows only one item to be open.
- */
-export const Default: Story = {}
+}
