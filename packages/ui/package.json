@@ -57,7 +57,9 @@
     "build-storybook": "storybook build",
     "dev": "tsx esbuild.config.ts --watch",
     "storybook": "storybook dev -p 6006",
-    "test": "vitest run && test-storybook",
+    "test": "vitest run",
+    "test:storybook": "test-storybook",
+    "test:storybook:ci": "test-storybook --ci",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
@@ -119,6 +121,7 @@
     "@storybook/preview-api": "^7.6.17",
     "@storybook/react": "^7.6.17",
     "@storybook/react-vite": "^7.6.17",
+    "@storybook/test-runner": "^0.16.0",
     "@storybook/theming": "^7.6.17",
     "@templ/config": "workspace:*",
     "@templ/tsconfig": "workspace:*",
