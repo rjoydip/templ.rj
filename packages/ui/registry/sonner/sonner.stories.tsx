@@ -9,7 +9,7 @@ import { Sonner } from './sonner'
  * An opinionated toast component for React.
  */
 const meta: Meta<typeof Sonner> = {
-  title: 'ui/Sonner',
+  title: 'components/Sonner',
   component: Sonner,
   argTypes: {},
   args: {

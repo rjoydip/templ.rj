@@ -31,7 +31,7 @@ import {
  * triggered by a button.
  */
 const meta = {
-  title: 'ui/DropdownMenu',
+  title: 'components/DropdownMenu',
   component: DropdownMenu,
   argTypes: {},
   parameters: {

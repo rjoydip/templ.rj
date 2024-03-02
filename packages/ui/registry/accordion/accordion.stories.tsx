@@ -6,14 +6,13 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from './accordion'
-import mdx from './accordion.mdx'
 
 /**
  * A vertically stacked set of interactive headings that each reveal a section
  * of content.
  */
 const meta = {
-  title: 'ui/Accordion',
+  title: 'components/Accordion',
   component: Accordion,
   argTypes: {
     type: {
@@ -27,9 +26,6 @@ const meta = {
   },
   parameters: {
     badges: ['beta', 'stable'],
-    docs: {
-      page: mdx,
-    },
   },
 } satisfies Meta<typeof Accordion>
 

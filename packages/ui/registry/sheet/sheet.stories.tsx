@@ -17,7 +17,7 @@ import {
  * content of the screen.
  */
 const meta: Meta<typeof SheetContent> = {
-  title: 'ui/Sheet',
+  title: 'components/Sheet',
   component: Sheet,
   argTypes: {
     side: {

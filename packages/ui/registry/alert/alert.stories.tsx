@@ -13,7 +13,7 @@ import {
  * Displays a callout for user attention.
  */
 const meta = {
-  title: 'ui/Alert',
+  title: 'components/Alert',
   component: Alert,
   argTypes: {
     variant: {

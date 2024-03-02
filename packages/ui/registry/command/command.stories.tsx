@@ -15,7 +15,7 @@ import {
  * Fast, composable, unstyled command menu for React.
  */
 const meta = {
-  title: 'ui/Command',
+  title: 'components/Command',
   component: Command,
   argTypes: {},
   args: {

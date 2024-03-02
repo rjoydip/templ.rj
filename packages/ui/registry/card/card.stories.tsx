@@ -30,7 +30,7 @@ const notifications = [
  * Displays a card with header, content, and footer.
  */
 const meta = {
-  title: 'ui/Card',
+  title: 'components/Card',
   component: Card,
   argTypes: {},
   args: {

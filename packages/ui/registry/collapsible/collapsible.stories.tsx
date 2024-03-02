@@ -12,7 +12,7 @@ import {
  * An interactive component which expands/collapses a panel.
  */
 const meta = {
-  title: 'ui/Collapsible',
+  title: 'components/Collapsible',
   component: Collapsible,
   argTypes: {},
   args: {

@@ -1,6 +1,6 @@
 const config = {
   'ignoreBinaries': ['templ-cli'],
-  'ignoreDependencies': ['typecheck', '@storybook/addon-themes'],
+  'ignoreDependencies': ['typecheck'],
   'workspaces': {
     '.': {
       entry: ['eslint.config.js'],

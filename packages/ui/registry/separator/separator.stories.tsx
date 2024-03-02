@@ -7,7 +7,7 @@ import { Separator } from './separator'
  * Visually or semantically separates content.
  */
 const meta = {
-  title: 'ui/Separator',
+  title: 'components/Separator',
   component: Separator,
   argTypes: {},
   parameters: {

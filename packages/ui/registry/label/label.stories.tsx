@@ -6,7 +6,7 @@ import { Label } from './label'
  * Renders an accessible label associated with controls.
  */
 const meta = {
-  title: 'ui/Label',
+  title: 'components/Label',
   component: Label,
   argTypes: {
     children: {

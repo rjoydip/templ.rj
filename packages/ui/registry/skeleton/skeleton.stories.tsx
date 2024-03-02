@@ -7,7 +7,7 @@ import { Skeleton } from './skeleton'
  * Use to show a placeholder while content is loading.
  */
 const meta = {
-  title: 'ui/Skeleton',
+  title: 'components/Skeleton',
   component: Skeleton,
   argTypes: {},
   parameters: {

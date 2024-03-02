@@ -42,7 +42,7 @@ const invoices = [
  * Powerful table and datagrids built using TanStack Table.
  */
 const meta = {
-  title: 'ui/Table',
+  title: 'components/Table',
   component: Table,
   argTypes: {},
   parameters: {

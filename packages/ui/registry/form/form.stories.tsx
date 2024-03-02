@@ -19,7 +19,7 @@ import {
  * Building forms with React Hook Form and Zod.
  */
 const meta: Meta<typeof Form> = {
-  title: 'ui/Form',
+  title: 'components/Form',
   component: Form,
   argTypes: {},
   parameters: {

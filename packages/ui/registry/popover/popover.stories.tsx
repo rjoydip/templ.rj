@@ -11,7 +11,7 @@ import {
  * Displays rich content in a portal, triggered by a button.
  */
 const meta = {
-  title: 'ui/Popover',
+  title: 'components/Popover',
   component: Popover,
   argTypes: {},
   parameters: {

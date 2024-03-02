@@ -8,7 +8,7 @@ import { AspectRatio } from './aspect-ratio'
  * Displays content within a desired ratio.
  */
 const meta: Meta<typeof AspectRatio> = {
-  title: 'ui/AspectRatio',
+  title: 'components/AspectRatio',
   component: AspectRatio,
   argTypes: {},
   parameters: {

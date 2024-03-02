@@ -13,7 +13,7 @@ import {
  * one at a time.
  */
 const meta = {
-  title: 'ui/Tabs',
+  title: 'components/Tabs',
   component: Tabs,
   argTypes: {},
   args: {

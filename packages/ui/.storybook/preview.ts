@@ -8,7 +8,6 @@ import '../styles/global.css'
 
 export const preview: Preview = {
   parameters: {
-    previewTabs: {},
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
       matchers: {
@@ -22,7 +21,6 @@ export const preview: Preview = {
       light: { ...themes.light },
     },
   },
-  loaders: [],
   decorators: [
     withPerformance,
     (storyFn) => {

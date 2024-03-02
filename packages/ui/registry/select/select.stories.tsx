@@ -16,7 +16,7 @@ import {
  * Displays a list of options for the user to pick from—triggered by a button.
  */
 const meta: Meta<typeof Select> = {
-  title: 'ui/Select',
+  title: 'components/Select',
   component: Select,
   argTypes: {},
   parameters: {

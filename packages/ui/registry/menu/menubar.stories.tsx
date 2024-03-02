@@ -24,7 +24,7 @@ import {
  * quick access to a consistent set of commands.
  */
 const meta = {
-  title: 'ui/Menubar',
+  title: 'components/Menubar',
   component: Menubar,
   argTypes: {},
   parameters: {

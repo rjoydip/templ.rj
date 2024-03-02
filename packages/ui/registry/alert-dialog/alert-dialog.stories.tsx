@@ -17,7 +17,7 @@ import {
  * a response.
  */
 const meta = {
-  title: 'ui/AlertDialog',
+  title: 'components/AlertDialog',
   component: AlertDialog,
   argTypes: {},
   parameters: {

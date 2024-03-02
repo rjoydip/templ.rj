@@ -7,7 +7,7 @@ import { Input } from './input'
  * Displays a form input field or a component that looks like an input field.
  */
 const meta = {
-  title: 'ui/Input',
+  title: 'components/Input',
   component: Input,
   argTypes: {},
   args: {

@@ -16,7 +16,7 @@ import { useToast } from './use-toast'
  * A succinct message that is displayed temporarily.
  */
 const meta = {
-  title: 'ui/Toast',
+  title: 'components/Toast',
   component: Toast,
   argTypes: {},
   parameters: {

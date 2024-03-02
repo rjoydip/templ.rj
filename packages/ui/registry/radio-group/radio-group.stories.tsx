@@ -8,7 +8,7 @@ import { RadioGroup, RadioGroupItem } from './radio-group'
  * the buttons can be checked at a time.
  */
 const meta = {
-  title: 'ui/RadioGroup',
+  title: 'components/RadioGroup',
   component: RadioGroup,
   argTypes: {},
   args: {

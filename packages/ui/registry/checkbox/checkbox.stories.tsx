@@ -7,7 +7,7 @@ import { Checkbox } from './checkbox'
  * A control that allows the user to toggle between checked and not checked.
  */
 const meta: Meta<typeof Checkbox> = {
-  title: 'ui/Checkbox',
+  title: 'components/Checkbox',
   component: Checkbox,
   argTypes: {},
   args: {

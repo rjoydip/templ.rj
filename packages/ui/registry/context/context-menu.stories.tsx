@@ -22,7 +22,7 @@ import {
  * triggered by a button.
  */
 const meta = {
-  title: 'ui/ContextMenu',
+  title: 'components/ContextMenu',
   component: ContextMenu,
   argTypes: {},
   args: {},

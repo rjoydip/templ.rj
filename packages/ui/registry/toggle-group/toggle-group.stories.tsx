@@ -11,7 +11,7 @@ import {
  * A set of two-state buttons that can be toggled on or off.
  */
 const meta = {
-  title: 'ui/ToggleGroup',
+  title: 'components/Toggle Group',
   component: ToggleGroup,
   argTypes: {
     type: {
