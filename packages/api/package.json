@@ -40,15 +40,15 @@
   "dependencies": {
     "@hono/node-server": "^1.8.2",
     "@hono/zod-openapi": "^0.9.6",
-    "@scalar/hono-api-reference": "^0.3.57",
+    "@scalar/hono-api-reference": "^0.3.64",
     "consola": "^3.2.3",
-    "hono": "^4.0.7"
+    "hono": "^4.0.8"
   },
   "devDependencies": {
     "@templ/config": "workspace:*",
     "@templ/tsconfig": "workspace:*",
     "@types/autocannon": "^7.12.5",
-    "@types/node": "^20.11.20",
+    "@types/node": "^20.11.24",
     "autocannon": "^7.15.0",
     "esbuild": "^0.20.1",
     "tsx": "^4.7.1",

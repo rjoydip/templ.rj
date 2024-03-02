@@ -8,9 +8,8 @@ import { Toggle } from './toggle'
  * A two-state button that can be either on or off.
  */
 const meta: Meta<typeof Toggle> = {
-  title: 'ui/Toggle',
+  title: 'components/Toggle',
   component: Toggle,
-  tags: ['autodocs'],
   argTypes: {
     children: {
       control: { disable: true },
@@ -21,6 +20,7 @@ const meta: Meta<typeof Toggle> = {
     'aria-label': 'Toggle bold',
   },
   parameters: {
+    badges: ['beta', 'stable'],
     layout: 'centered',
   },
 }

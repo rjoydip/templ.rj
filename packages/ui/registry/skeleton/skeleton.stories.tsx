@@ -7,11 +7,11 @@ import { Skeleton } from './skeleton'
  * Use to show a placeholder while content is loading.
  */
 const meta = {
-  title: 'ui/Skeleton',
+  title: 'components/Skeleton',
   component: Skeleton,
-  tags: ['autodocs'],
   argTypes: {},
   parameters: {
+    badges: ['beta', 'stable'],
     layout: 'centered',
   },
 } satisfies Meta<typeof Skeleton>

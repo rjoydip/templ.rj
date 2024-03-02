@@ -8,9 +8,8 @@ import { Calendar } from './calendar'
  * A date field component that allows users to enter and edit date.
  */
 const meta = {
-  title: 'ui/Calendar',
+  title: 'components/Calendar',
   component: Calendar,
-  tags: ['autodocs'],
   argTypes: {},
   args: {
     mode: 'single',
@@ -19,6 +18,7 @@ const meta = {
     className: 'rounded-md border w-fit',
   },
   parameters: {
+    badges: ['beta', 'stable'],
     layout: 'centered',
   },
 } satisfies Meta<typeof Calendar>

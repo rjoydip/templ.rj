@@ -15,10 +15,23 @@ import {
  * A collection of links for navigating websites.
  */
 const meta = {
-  title: 'ui/NavigationMenu',
+  title: 'components/NavigationMenu',
   component: NavigationMenu,
-  tags: ['autodocs'],
   argTypes: {},
+  parameters: {
+    badges: ['beta', 'stable'],
+    layout: 'centered',
+  },
+} satisfies Meta<typeof NavigationMenu>
+
+export default meta
+
+type Story = StoryObj<typeof meta>
+
+/**
+ * The default form of the navigation menu.
+ */
+export const Default: Story = {
   render: args => (
     <NavigationMenu {...args}>
       <NavigationMenuList>
@@ -65,16 +78,4 @@ const meta = {
       </NavigationMenuList>
     </NavigationMenu>
   ),
-  parameters: {
-    layout: 'centered',
-  },
-} satisfies Meta<typeof NavigationMenu>
-
-export default meta
-
-type Story = StoryObj<typeof meta>
-
-/**
- * The default form of the navigation menu.
- */
-export const Default: Story = {}
+}

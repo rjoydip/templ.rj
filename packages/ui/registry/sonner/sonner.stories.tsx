@@ -9,14 +9,14 @@ import { Sonner } from './sonner'
  * An opinionated toast component for React.
  */
 const meta: Meta<typeof Sonner> = {
-  title: 'ui/Sonner',
+  title: 'components/Sonner',
   component: Sonner,
-  tags: ['autodocs'],
   argTypes: {},
   args: {
     position: 'bottom-right',
   },
   parameters: {
+    badges: ['beta', 'stable'],
     layout: 'fullscreen',
   },
 } satisfies Meta<typeof Sonner>

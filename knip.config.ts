@@ -1,5 +1,5 @@
 const config = {
-  'ignoreBinaries': ['templ-cli'],
+  'ignoreBinaries': ['templ-cli', 'test-storybook'],
   'ignoreDependencies': ['typecheck'],
   'workspaces': {
     '.': {
@@ -7,7 +7,7 @@ const config = {
       ignore: ['**/templates/**', '**/example/**', '**/.config/**'],
     },
     'packages/*': {
-      entry: ['src/**/*.{ts,tsx}', 'test/**/*.test.{ts,tsx}', '**/*.load.ts'],
+      entry: ['src/**/*.{ts,tsx}', 'test/**/*.test.{ts,tsx}', '**/*.load.ts', '**/.storybook/*.{js,ts}'],
       ignore: ['**/test/**', '**/*.story.{ts,tsx}'],
     },
     'apps/*': {

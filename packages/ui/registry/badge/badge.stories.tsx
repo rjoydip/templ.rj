@@ -6,9 +6,8 @@ import { Badge } from './badge'
  * Displays a badge or a component that looks like a badge.
  */
 const meta = {
-  title: 'ui/Badge',
+  title: 'components/Badge',
   component: Badge,
-  tags: ['autodocs'],
   argTypes: {
     children: {
       control: 'text',
@@ -18,6 +17,7 @@ const meta = {
     children: 'Badge',
   },
   parameters: {
+    badges: ['beta', 'stable'],
     layout: 'centered',
   },
 } satisfies Meta<typeof Badge>

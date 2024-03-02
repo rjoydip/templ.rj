@@ -7,9 +7,8 @@ import { Input } from './input'
  * Displays a form input field or a component that looks like an input field.
  */
 const meta = {
-  title: 'ui/Input',
+  title: 'components/Input',
   component: Input,
-  tags: ['autodocs'],
   argTypes: {},
   args: {
     className: 'w-96',
@@ -18,6 +17,7 @@ const meta = {
     disabled: false,
   },
   parameters: {
+    badges: ['beta', 'stable'],
     layout: 'centered',
   },
 } satisfies Meta<typeof Input>

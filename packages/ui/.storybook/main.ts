@@ -1,20 +1,25 @@
 import type { StorybookConfig } from '@storybook/react-vite'
+import { mergeConfig } from 'vite'
 
 const config: StorybookConfig = {
-  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+  stories: ['../stories/**/*.mdx', '../registry/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [
-    '@storybook/addon-onboarding',
-    '@storybook/addon-links',
+    '@geometricpanda/storybook-addon-badges',
     '@storybook/addon-essentials',
-    '@chromatic-com/storybook',
-    '@storybook/addon-interactions',
+    // '@storybook/addon-interactions',
+    '@storybook/addon-links',
+    '@storybook/addon-storysource',
+    'storybook-dark-mode',
+    'storybook-addon-performance',
+    'storybook-addon-pseudo-states',
   ],
-  framework: {
-    name: '@storybook/react-vite',
-    options: {},
-  },
-  docs: {
-    autodocs: true,
+  framework: '@storybook/react-vite',
+  async viteFinal(config) {
+    return mergeConfig(config, {
+      optimizeDeps: {
+        include: [],
+      },
+    })
   },
 }
 export default config

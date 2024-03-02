@@ -7,13 +7,15 @@ import { Progress } from './progress'
  * displayed as a progress bar.
  */
 const meta = {
-  title: 'ui/Progress',
+  title: 'components/Progress',
   component: Progress,
-  tags: ['autodocs'],
   argTypes: {},
   args: {
     value: 30,
     max: 100,
+  },
+  parameters: {
+    badges: ['beta', 'stable'],
   },
 } satisfies Meta<typeof Progress>
 

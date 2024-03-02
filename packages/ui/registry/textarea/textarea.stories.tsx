@@ -7,13 +7,15 @@ import { Textarea } from './textarea'
  * Displays a form textarea or a component that looks like a textarea.
  */
 const meta = {
-  title: 'ui/Textarea',
+  title: 'components/Textarea',
   component: Textarea,
-  tags: ['autodocs'],
   argTypes: {},
   args: {
     placeholder: 'Type your message here.',
     disabled: false,
+  },
+  parameters: {
+    badges: ['beta', 'stable'],
   },
 } satisfies Meta<typeof Textarea>
 
@@ -33,6 +35,12 @@ export const Disabled: Story = {
   args: {
     disabled: true,
   },
+  render: args => (
+    <div className="grid w-full gap-1.5">
+      <label htmlFor="message">Your message</label>
+      <Textarea {...args} id="message" />
+    </div>
+  ),
 }
 
 /**

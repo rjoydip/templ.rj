@@ -39,7 +39,7 @@
   "devDependencies": {
     "@templ/config": "workspace:*",
     "@templ/tsconfig": "workspace:*",
-    "@types/node": "^20.11.20",
+    "@types/node": "^20.11.24",
     "esbuild": "^0.20.1",
     "tsx": "^4.7.1",
     "typescript": "^5.3.3",

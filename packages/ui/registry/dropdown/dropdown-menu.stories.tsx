@@ -31,10 +31,23 @@ import {
  * triggered by a button.
  */
 const meta = {
-  title: 'ui/DropdownMenu',
+  title: 'components/DropdownMenu',
   component: DropdownMenu,
-  tags: ['autodocs'],
   argTypes: {},
+  parameters: {
+    badges: ['beta', 'stable'],
+    layout: 'centered',
+  },
+} satisfies Meta<typeof DropdownMenu>
+
+export default meta
+
+type Story = StoryObj<typeof meta>
+
+/**
+ * The default form of the dropdown menu.
+ */
+export const Default: Story = {
   render: args => (
     <DropdownMenu {...args}>
       <DropdownMenuTrigger>Open</DropdownMenuTrigger>
@@ -48,19 +61,7 @@ const meta = {
       </DropdownMenuContent>
     </DropdownMenu>
   ),
-  parameters: {
-    layout: 'centered',
-  },
-} satisfies Meta<typeof DropdownMenu>
-
-export default meta
-
-type Story = StoryObj<typeof meta>
-
-/**
- * The default form of the dropdown menu.
- */
-export const Default: Story = {}
+}
 
 /**
  * A dropdown menu with shortcuts.

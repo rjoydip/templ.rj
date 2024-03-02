@@ -1,4 +1,4 @@
-import '@/styles/globals.css'
+import '@/styles/global.css'
 import type { Metadata, Viewport } from 'next'
 
 import { siteConfig } from '@/config/site'
