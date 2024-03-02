@@ -1,5 +1,5 @@
 const config = {
-  'ignoreBinaries': ['templ-cli'],
+  'ignoreBinaries': ['templ-cli', 'test-storybook'],
   'ignoreDependencies': ['typecheck'],
   'workspaces': {
     '.': {

@@ -52,6 +52,7 @@
     "npm": ">=8"
   },
   "scripts": {
+    "postinstall": "pnpm exec playwright install",
     "build": "tsx esbuild.config.ts",
     "build-storybook": "storybook build",
     "dev": "tsx esbuild.config.ts --watch",
@@ -109,11 +110,8 @@
     "@geometricpanda/storybook-addon-badges": "^2.0.2",
     "@hookform/resolvers": "^3.3.4",
     "@storybook/addon-actions": "^7.6.17",
-    "@storybook/addon-controls": "^7.6.17",
-    "@storybook/addon-docs": "^7.6.17",
     "@storybook/addon-essentials": "^7.6.17",
     "@storybook/addon-highlight": "^7.6.17",
-    "@storybook/addon-interactions": "^7.6.17",
     "@storybook/addon-links": "^7.6.17",
     "@storybook/addon-storysource": "^7.6.17",
     "@storybook/blocks": "^7.6.17",
@@ -126,7 +124,6 @@
     "@templ/tsconfig": "workspace:*",
     "@types/node": "^20.11.24",
     "@types/react": "^18.2.61",
-    "concurrently": "^8.2.2",
     "date-fns": "^3.3.1",
     "esbuild": "^0.20.1",
     "globby": "^14.0.1",
