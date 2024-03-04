@@ -19,13 +19,13 @@ import {
  * Building forms with React Hook Form and Zod.
  */
 const meta: Meta<typeof Form> = {
-  title: 'ui/Form',
+  title: 'components/Form',
   component: Form,
   argTypes: {},
-  render: args => <ProfileForm {...args} />,
+  parameters: {
+    badges: ['beta', 'stable'],
+  },
 } satisfies Meta<typeof Form>
-
-export default meta
 
 type Story = StoryObj<typeof meta>
 
@@ -79,7 +79,8 @@ function ProfileForm(args: Story['args']) {
   )
 }
 
-/**
- * The default form of the form.
- */
-export const Base: Story = {}
+export const Default: Story = {
+  render: args => <ProfileForm {...args} />,
+}
+
+export default meta

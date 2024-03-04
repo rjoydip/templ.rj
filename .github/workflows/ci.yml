@@ -91,6 +91,9 @@ jobs:
 
       - name: Test
         run: nr test
+      
+      - name: Storybook test
+        run: nr test-storybook:ci
 
       - name: Coverage
         run: nr test:coverage

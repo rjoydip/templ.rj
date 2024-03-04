@@ -6,7 +6,7 @@ import { Label } from './label'
  * Renders an accessible label associated with controls.
  */
 const meta = {
-  title: 'ui/Label',
+  title: 'components/Label',
   component: Label,
   argTypes: {
     children: {
@@ -17,13 +17,16 @@ const meta = {
     children: 'Your email address',
     htmlFor: 'email',
   },
+  parameters: {
+    badges: ['beta', 'stable'],
+  },
 } satisfies Meta<typeof Label>
-
-export default meta
 
 type Story = StoryObj<typeof Label>
 
 /**
  * The default form of the label.
  */
-export const Base: Story = {}
+export const Default: Story = {}
+
+export default meta

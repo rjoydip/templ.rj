@@ -36,13 +36,13 @@
     "giget": "^1.2.1",
     "globby": "^14.0.1",
     "latest-version": "^8.0.0",
-    "recast": "^0.23.4",
+    "recast": "^0.23.5",
     "replace-string": "^4.0.0",
     "slash": "^5.1.0"
   },
   "devDependencies": {
     "@templ/tsconfig": "workspace:*",
-    "@types/node": "^20.11.22",
+    "@types/node": "^20.11.24",
     "tsx": "^4.7.1",
     "typescript": "^5.3.3"
   }

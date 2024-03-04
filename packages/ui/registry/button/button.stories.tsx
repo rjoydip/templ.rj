@@ -5,38 +5,40 @@ import React from 'react'
 import { Button } from './button'
 
 const meta: Meta<typeof Button> = {
-  title: 'ui/Button',
+  title: 'components/Button',
   component: Button,
   argTypes: {},
+  parameters: {
+    badges: ['beta', 'stable'],
+  },
 }
-export default meta
 
 type Story = StoryObj<typeof Button>
 
-export const Base: Story = {
-  render: args => <Button {...args}>Button</Button>,
+export const Default: Story = {
+  render: args => <Button {...args}>Default</Button>,
   args: {},
 }
 export const Outline: Story = {
-  render: args => <Button {...args}>Button</Button>,
+  render: args => <Button {...args}>Outline</Button>,
   args: {
     variant: 'outline',
   },
 }
 export const Ghost: Story = {
-  render: args => <Button {...args}>Button</Button>,
+  render: args => <Button {...args}>Ghost</Button>,
   args: {
     variant: 'ghost',
   },
 }
 export const Secondary: Story = {
-  render: args => <Button {...args}>Button</Button>,
+  render: args => <Button {...args}>Secondary</Button>,
   args: {
     variant: 'secondary',
   },
 }
 export const Link: Story = {
-  render: args => <Button {...args}>Button</Button>,
+  render: args => <Button {...args}>Link</Button>,
   args: {
     variant: 'link',
   },
@@ -45,7 +47,7 @@ export const Loading: Story = {
   render: args => (
     <Button {...args}>
       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-      Button
+      Loading
     </Button>
   ),
   args: {
@@ -64,3 +66,5 @@ export const WithIcon: Story = {
     variant: 'secondary',
   },
 }
+
+export default meta

@@ -16,16 +16,14 @@ import { useToast } from './use-toast'
  * A succinct message that is displayed temporarily.
  */
 const meta = {
-  title: 'ui/Toast',
+  title: 'components/Toast',
   component: Toast,
   argTypes: {},
   parameters: {
+    badges: ['beta', 'stable'],
     layout: 'centered',
   },
-  render: args => <ToastExample {...args} />,
 } satisfies Meta<typeof Toast>
-
-export default meta
 
 type Story = Omit<StoryObj<typeof meta>, 'args'> & {
   args: Omit<ToasterToast, 'id'>
@@ -57,10 +55,11 @@ function ToastExample(args: Story['args']) {
 /**
  * The default form of the toast.
  */
-export const Base: Story = {
+export const Default: Story = {
   args: {
     description: 'Your message has been sent.',
   },
+  render: args => <ToastExample {...args} />,
 }
 
 /**
@@ -71,6 +70,7 @@ export const WithTitle: Story = {
     title: 'Uh oh! Something went wrong.',
     description: 'There was a problem with your request.',
   },
+  render: args => <ToastExample {...args} />,
 }
 
 /**
@@ -82,6 +82,7 @@ export const WithAction: Story = {
     description: 'There was a problem with your request.',
     action: <ToastAction altText="Try again">Try again</ToastAction>,
   },
+  render: args => <ToastExample {...args} />,
 }
 
 /**
@@ -94,4 +95,7 @@ export const Destructive: Story = {
     description: 'There was a problem with your request.',
     action: <ToastAction altText="Try again">Try again</ToastAction>,
   },
+  render: args => <ToastExample {...args} />,
 }
+
+export default meta

@@ -7,11 +7,23 @@ import { Switch } from './switch'
  * A control that allows the user to toggle between checked and not checked.
  */
 const meta = {
-  title: 'ui/Switch',
+  title: 'components/Switch',
   component: Switch,
   argTypes: {},
   parameters: {
+    badges: ['beta', 'stable'],
     layout: 'centered',
+  },
+} satisfies Meta<typeof Switch>
+
+type Story = StoryObj<typeof meta>
+
+/**
+ * The default form of the switch.
+ */
+export const Default: Story = {
+  args: {
+    id: 'default-switch',
   },
   render: args => (
     <div className="flex items-center space-x-2">
@@ -21,19 +33,6 @@ const meta = {
       </label>
     </div>
   ),
-} satisfies Meta<typeof Switch>
-
-export default meta
-
-type Story = StoryObj<typeof meta>
-
-/**
- * The default form of the switch.
- */
-export const Base: Story = {
-  args: {
-    id: 'default-switch',
-  },
 }
 
 /**
@@ -44,4 +43,14 @@ export const Disabled: Story = {
     id: 'disabled-switch',
     disabled: true,
   },
+  render: args => (
+    <div className="flex items-center space-x-2">
+      <Switch {...args} />
+      <label htmlFor={args.id} className="peer-disabled:text-foreground/50">
+        Airplane Mode
+      </label>
+    </div>
+  ),
 }
+
+export default meta

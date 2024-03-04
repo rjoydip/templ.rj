@@ -15,12 +15,24 @@ import {
  * Fast, composable, unstyled command menu for React.
  */
 const meta = {
-  title: 'ui/Command',
+  title: 'components/Command',
   component: Command,
   argTypes: {},
   args: {
     className: 'rounded-lg w-96 border shadow-md',
   },
+  parameters: {
+    badges: ['beta', 'stable'],
+    layout: 'centered',
+  },
+} satisfies Meta<typeof Command>
+
+type Story = StoryObj<typeof meta>
+
+/**
+ * The default form of the command.
+ */
+export const Default: Story = {
   render: args => (
     <Command {...args}>
       <CommandInput placeholder="Type a command or search..." />
@@ -40,16 +52,6 @@ const meta = {
       </CommandList>
     </Command>
   ),
-  parameters: {
-    layout: 'centered',
-  },
 } satisfies Meta<typeof Command>
 
 export default meta
-
-type Story = StoryObj<typeof meta>
-
-/**
- * The default form of the command.
- */
-export const Base: Story = {}

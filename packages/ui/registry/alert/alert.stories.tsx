@@ -13,7 +13,7 @@ import {
  * Displays a callout for user attention.
  */
 const meta = {
-  title: 'ui/Alert',
+  title: 'components/Alert',
   component: Alert,
   argTypes: {
     variant: {
@@ -24,6 +24,16 @@ const meta = {
   args: {
     variant: 'default',
   },
+  parameters: {
+    badges: ['beta', 'stable'],
+  },
+} satisfies Meta<typeof Alert>
+
+type Story = StoryObj<typeof meta>
+/**
+ * The default form of the alert.
+ */
+export const Default: Story = {
   render: args => (
     <Alert {...args}>
       <AlertTitle>Heads up!</AlertTitle>
@@ -32,15 +42,7 @@ const meta = {
       </AlertDescription>
     </Alert>
   ),
-} satisfies Meta<typeof Alert>
-
-export default meta
-
-type Story = StoryObj<typeof meta>
-/**
- * The default form of the alert.
- */
-export const Base: Story = {}
+}
 
 /**
  * Use the `destructive` alert to indicate a destructive action.
@@ -59,3 +61,5 @@ export const Destructive: Story = {
     variant: 'destructive',
   },
 }
+
+export default meta

@@ -8,13 +8,24 @@ import { RadioGroup, RadioGroupItem } from './radio-group'
  * the buttons can be checked at a time.
  */
 const meta = {
-  title: 'ui/RadioGroup',
+  title: 'components/RadioGroup',
   component: RadioGroup,
   argTypes: {},
   args: {
     defaultValue: 'comfortable',
     className: 'grid gap-2 grid-cols-[1rem_1fr] items-center',
   },
+  parameters: {
+    badges: ['beta', 'stable'],
+  },
+} satisfies Meta<typeof RadioGroup>
+
+type Story = StoryObj<typeof meta>
+
+/**
+ * The default form of the radio group.
+ */
+export const Default: Story = {
   render: args => (
     <RadioGroup {...args}>
       <RadioGroupItem value="default" id="r1" />
@@ -28,10 +39,3 @@ const meta = {
 } satisfies Meta<typeof RadioGroup>
 
 export default meta
-
-type Story = StoryObj<typeof meta>
-
-/**
- * The default form of the radio group.
- */
-export const Base: Story = {}

@@ -11,10 +11,22 @@ import {
  * For sighted users to preview content available behind a link.
  */
 const meta = {
-  title: 'ui/HoverCard',
+  title: 'components/HoverCard',
   component: HoverCard,
   argTypes: {},
   args: {},
+  parameters: {
+    badges: ['beta', 'stable'],
+    layout: 'centered',
+  },
+} satisfies Meta<typeof HoverCard>
+
+type Story = StoryObj<typeof meta>
+
+/**
+ * The default form of the hover card.
+ */
+export const Default: Story = {
   render: args => (
     <HoverCard {...args}>
       <HoverCardTrigger>Hover</HoverCardTrigger>
@@ -23,19 +35,7 @@ const meta = {
       </HoverCardContent>
     </HoverCard>
   ),
-  parameters: {
-    layout: 'centered',
-  },
-} satisfies Meta<typeof HoverCard>
-
-export default meta
-
-type Story = StoryObj<typeof meta>
-
-/**
- * The default form of the hover card.
- */
-export const Base: Story = {}
+}
 
 /**
  * Use the `openDelay` and `closeDelay` props to control the delay before the
@@ -47,3 +47,5 @@ export const Instant: Story = {
     closeDelay: 0,
   },
 }
+
+export default meta

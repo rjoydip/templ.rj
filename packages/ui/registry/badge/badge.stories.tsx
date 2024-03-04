@@ -6,7 +6,7 @@ import { Badge } from './badge'
  * Displays a badge or a component that looks like a badge.
  */
 const meta = {
-  title: 'ui/Badge',
+  title: 'components/Badge',
   component: Badge,
   argTypes: {
     children: {
@@ -17,18 +17,16 @@ const meta = {
     children: 'Badge',
   },
   parameters: {
+    badges: ['beta', 'stable'],
     layout: 'centered',
   },
 } satisfies Meta<typeof Badge>
 
-export default meta
-
 type Story = StoryObj<typeof meta>
 
-/**
- * The default form of the badge.
- */
-export const Base: Story = {}
+export const Default: Story = {
+  args: {},
+}
 
 /**
  * Use the `secondary` badge to call for less urgent information, blending
@@ -59,3 +57,5 @@ export const Outline: Story = {
     variant: 'outline',
   },
 }
+
+export default meta

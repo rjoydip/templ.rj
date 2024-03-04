@@ -22,10 +22,22 @@ import {
  * triggered by a button.
  */
 const meta = {
-  title: 'ui/ContextMenu',
+  title: 'components/ContextMenu',
   component: ContextMenu,
   argTypes: {},
   args: {},
+  parameters: {
+    badges: ['beta', 'stable'],
+    layout: 'centered',
+  },
+} satisfies Meta<typeof ContextMenu>
+
+type Story = StoryObj<typeof meta>
+
+/**
+ * The default form of the context menu.
+ */
+export const Default: Story = {
   render: args => (
     <ContextMenu {...args}>
       <ContextMenuTrigger className="flex h-48 w-96 items-center justify-center rounded-md border border-dashed bg-accent text-sm">
@@ -39,19 +51,7 @@ const meta = {
       </ContextMenuContent>
     </ContextMenu>
   ),
-  parameters: {
-    layout: 'centered',
-  },
 } satisfies Meta<typeof ContextMenu>
-
-export default meta
-
-type Story = StoryObj<typeof meta>
-
-/**
- * The default form of the context menu.
- */
-export const Base: Story = {}
 
 /**
  * A context menu with shortcuts.
@@ -151,3 +151,5 @@ export const WithRadioGroup: Story = {
     </ContextMenu>
   ),
 }
+
+export default meta

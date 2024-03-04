@@ -13,12 +13,24 @@ import {
  * A carousel with motion and swipe built using Embla.
  */
 const meta: Meta<typeof Carousel> = {
-  title: 'ui/Carousel',
+  title: 'components/Carousel',
   component: Carousel,
   argTypes: {},
   args: {
     className: 'w-full max-w-xs',
   },
+  parameters: {
+    badges: ['beta', 'stable'],
+    layout: 'centered',
+  },
+} satisfies Meta<typeof Carousel>
+
+type Story = StoryObj<typeof meta>
+
+/**
+ * The default form of the carousel.
+ */
+export const Default: Story = {
   render: args => (
     <Carousel {...args}>
       <CarouselContent>
@@ -34,19 +46,7 @@ const meta: Meta<typeof Carousel> = {
       <CarouselNext />
     </Carousel>
   ),
-  parameters: {
-    layout: 'centered',
-  },
 } satisfies Meta<typeof Carousel>
-
-export default meta
-
-type Story = StoryObj<typeof meta>
-
-/**
- * The default form of the carousel.
- */
-export const Base: Story = {}
 
 /**
  * Use the `basis` utility class to change the size of the carousel.
@@ -71,3 +71,5 @@ export const Size: Story = {
     className: 'mx-12 w-full max-w-xs',
   },
 }
+
+export default meta

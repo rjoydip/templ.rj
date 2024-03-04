@@ -16,9 +16,21 @@ import {
  * Displays a list of options for the user to pick from—triggered by a button.
  */
 const meta: Meta<typeof Select> = {
-  title: 'ui/Select',
+  title: 'components/Select',
   component: Select,
   argTypes: {},
+  parameters: {
+    badges: ['beta', 'stable'],
+    layout: 'centered',
+  },
+} satisfies Meta<typeof Select>
+
+type Story = StoryObj<typeof meta>
+
+/**
+ * The default form of the select.
+ */
+export const Default: Story = {
   render: args => (
     <Select {...args}>
       <SelectTrigger className="w-96">
@@ -55,16 +67,6 @@ const meta: Meta<typeof Select> = {
       </SelectContent>
     </Select>
   ),
-  parameters: {
-    layout: 'centered',
-  },
 } satisfies Meta<typeof Select>
 
 export default meta
-
-type Story = StoryObj<typeof meta>
-
-/**
- * The default form of the select.
- */
-export const Base: Story = {}

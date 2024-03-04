@@ -30,12 +30,24 @@ const notifications = [
  * Displays a card with header, content, and footer.
  */
 const meta = {
-  title: 'ui/Card',
+  title: 'components/Card',
   component: Card,
   argTypes: {},
   args: {
     className: 'w-96',
   },
+  parameters: {
+    badges: ['beta', 'stable'],
+    layout: 'centered',
+  },
+} satisfies Meta<typeof Card>
+
+type Story = StoryObj<typeof meta>
+
+/**
+ * The default form of the card.
+ */
+export const Default: Story = {
   render: args => (
     <Card {...args}>
       <CardHeader>
@@ -58,16 +70,6 @@ const meta = {
       </CardFooter>
     </Card>
   ),
-  parameters: {
-    layout: 'centered',
-  },
 } satisfies Meta<typeof Card>
 
 export default meta
-
-type Story = StoryObj<typeof meta>
-
-/**
- * The default form of the card.
- */
-export const Base: Story = {}

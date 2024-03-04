@@ -13,13 +13,25 @@ import {
  * one at a time.
  */
 const meta = {
-  title: 'ui/Tabs',
+  title: 'components/Tabs',
   component: Tabs,
   argTypes: {},
   args: {
     defaultValue: 'account',
     className: 'w-96',
   },
+  parameters: {
+    badges: ['beta', 'stable'],
+    layout: 'centered',
+  },
+} satisfies Meta<typeof Tabs>
+
+type Story = StoryObj<typeof meta>
+
+/**
+ * The default form of the tabs.
+ */
+export const Default: Story = {
   render: args => (
     <Tabs {...args}>
       <TabsList className="grid grid-cols-2">
@@ -32,16 +44,6 @@ const meta = {
       <TabsContent value="password">Change your password here.</TabsContent>
     </Tabs>
   ),
-  parameters: {
-    layout: 'centered',
-  },
 } satisfies Meta<typeof Tabs>
 
 export default meta
-
-type Story = StoryObj<typeof meta>
-
-/**
- * The default form of the tabs.
- */
-export const Base: Story = {}

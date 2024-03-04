@@ -9,25 +9,24 @@ import { Sonner } from './sonner'
  * An opinionated toast component for React.
  */
 const meta: Meta<typeof Sonner> = {
-  title: 'ui/Sonner',
+  title: 'components/Sonner',
   component: Sonner,
   argTypes: {},
   args: {
     position: 'bottom-right',
   },
   parameters: {
+    badges: ['beta', 'stable'],
     layout: 'fullscreen',
   },
 } satisfies Meta<typeof Sonner>
-
-export default meta
 
 type Story = StoryObj<typeof meta>
 
 /**
  * The default form of the toaster.
  */
-export const Base: Story = {
+export const Default: Story = {
   render: args => (
     <div className="flex min-h-96 items-center justify-center space-x-2">
       <button
@@ -46,3 +45,5 @@ export const Base: Story = {
     </div>
   ),
 }
+
+export default meta

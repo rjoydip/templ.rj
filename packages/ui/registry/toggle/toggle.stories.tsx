@@ -8,7 +8,7 @@ import { Toggle } from './toggle'
  * A two-state button that can be either on or off.
  */
 const meta: Meta<typeof Toggle> = {
-  title: 'ui/Toggle',
+  title: 'components/Toggle',
   component: Toggle,
   argTypes: {
     children: {
@@ -20,17 +20,16 @@ const meta: Meta<typeof Toggle> = {
     'aria-label': 'Toggle bold',
   },
   parameters: {
+    badges: ['beta', 'stable'],
     layout: 'centered',
   },
 }
-export default meta
 
 type Story = StoryObj<typeof Toggle>
 
-/**
- * The default form of the toggle.
- */
-export const Base: Story = {}
+export const Default: Story = {
+  args: {},
+}
 
 /**
  * Use the `outline` variant for a distinct outline, emphasizing the boundary
@@ -85,3 +84,5 @@ export const Disabled: Story = {
     disabled: true,
   },
 }
+
+export default meta

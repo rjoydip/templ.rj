@@ -7,23 +7,23 @@ import { Progress } from './progress'
  * displayed as a progress bar.
  */
 const meta = {
-  title: 'ui/Progress',
+  title: 'components/Progress',
   component: Progress,
   argTypes: {},
   args: {
     value: 30,
     max: 100,
   },
+  parameters: {
+    badges: ['beta', 'stable'],
+  },
 } satisfies Meta<typeof Progress>
-
-export default meta
 
 type Story = StoryObj<typeof meta>
 
-/**
- * The default form of the progress.
- */
-export const Base: Story = {}
+export const Default: Story = {
+  args: {},
+}
 
 /**
  * When the progress is indeterminate.
@@ -42,3 +42,5 @@ export const Completed: Story = {
     value: 100,
   },
 }
+
+export default meta

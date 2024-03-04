@@ -8,7 +8,7 @@ import { Calendar } from './calendar'
  * A date field component that allows users to enter and edit date.
  */
 const meta = {
-  title: 'ui/Calendar',
+  title: 'components/Calendar',
   component: Calendar,
   argTypes: {},
   args: {
@@ -18,18 +18,18 @@ const meta = {
     className: 'rounded-md border w-fit',
   },
   parameters: {
+    badges: ['beta', 'stable'],
     layout: 'centered',
   },
 } satisfies Meta<typeof Calendar>
 
-export default meta
-
 type Story = StoryObj<typeof meta>
 
-/**
- * The default form of the calendar.
- */
-export const Base: Story = {}
+export const Default: Story = {
+  args: {
+    min: 1,
+  },
+}
 
 /**
  * Use the `multiple` mode to select multiple dates.
@@ -78,3 +78,5 @@ export const MultipleMonths: Story = {
     showOutsideDays: false,
   },
 }
+
+export default meta

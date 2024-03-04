@@ -24,10 +24,21 @@ import {
  * quick access to a consistent set of commands.
  */
 const meta = {
-  title: 'ui/Menubar',
+  title: 'components/Menubar',
   component: Menubar,
   argTypes: {},
+  parameters: {
+    badges: ['beta', 'stable'],
+    layout: 'centered',
+  },
+} satisfies Meta<typeof Menubar>
 
+type Story = StoryObj<typeof meta>
+
+/**
+ * The default form of the menubar.
+ */
+export const Default: Story = {
   render: args => (
     <Menubar {...args}>
       <MenubarMenu>
@@ -47,19 +58,7 @@ const meta = {
       </MenubarMenu>
     </Menubar>
   ),
-  parameters: {
-    layout: 'centered',
-  },
 } satisfies Meta<typeof Menubar>
-
-export default meta
-
-type Story = StoryObj<typeof meta>
-
-/**
- * The default form of the menubar.
- */
-export const Base: Story = {}
 
 /**
  * A menubar with a submenu.
@@ -126,3 +125,5 @@ export const WithCheckboxItems: Story = {
     </Menubar>
   ),
 }
+
+export default meta

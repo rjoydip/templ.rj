@@ -6,7 +6,7 @@ import { Slider } from './slider'
  * An input where the user selects a value from within a given range.
  */
 const meta = {
-  title: 'ui/Slider',
+  title: 'components/Slider',
   component: Slider,
   argTypes: {},
   args: {
@@ -14,16 +14,16 @@ const meta = {
     max: 100,
     step: 1,
   },
+  parameters: {
+    badges: ['beta', 'stable'],
+  },
 } satisfies Meta<typeof Slider>
-
-export default meta
 
 type Story = StoryObj<typeof meta>
 
-/**
- * The default form of the slider.
- */
-export const Base: Story = {}
+export const Default: Story = {
+  args: {},
+}
 
 /**
  * Use the `inverted` prop to have the slider fill from right to left.
@@ -42,3 +42,5 @@ export const Disabled: Story = {
     disabled: true,
   },
 }
+
+export default meta

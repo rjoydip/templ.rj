@@ -7,23 +7,29 @@ import { Textarea } from './textarea'
  * Displays a form textarea or a component that looks like a textarea.
  */
 const meta = {
-  title: 'ui/Textarea',
+  title: 'components/Textarea',
   component: Textarea,
   argTypes: {},
   args: {
     placeholder: 'Type your message here.',
     disabled: false,
   },
+  parameters: {
+    badges: ['beta', 'stable'],
+  },
 } satisfies Meta<typeof Textarea>
-
-export default meta
 
 type Story = StoryObj<typeof meta>
 
-/**
- * The default form of the textarea.
- */
-export const Base: Story = {}
+export const Default: Story = {
+  args: {},
+  render: args => (
+    <div className="grid w-full gap-1.5">
+      <label htmlFor="message">Your message</label>
+      <Textarea {...args} id="message" />
+    </div>
+  ),
+}
 
 /**
  * Use the `disabled` prop to disable the textarea.
@@ -32,6 +38,12 @@ export const Disabled: Story = {
   args: {
     disabled: true,
   },
+  render: args => (
+    <div className="grid w-full gap-1.5">
+      <label htmlFor="message">Your message</label>
+      <Textarea {...args} id="message" />
+    </div>
+  ),
 }
 
 /**
@@ -80,3 +92,5 @@ export const WithButton: Story = {
     </div>
   ),
 }
+
+export default meta

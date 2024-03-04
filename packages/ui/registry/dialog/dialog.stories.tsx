@@ -17,9 +17,21 @@ import {
  * rendering the content underneath inert.
  */
 const meta = {
-  title: 'ui/Dialog',
+  title: 'components/Dialog',
   component: Dialog,
   argTypes: {},
+  parameters: {
+    badges: ['beta', 'stable'],
+    layout: 'centered',
+  },
+} satisfies Meta<typeof Dialog>
+
+type Story = StoryObj<typeof meta>
+
+/**
+ * The default form of the dialog.
+ */
+export const Default: Story = {
   render: args => (
     <Dialog {...args}>
       <DialogTrigger>Open</DialogTrigger>
@@ -42,16 +54,6 @@ const meta = {
       </DialogContent>
     </Dialog>
   ),
-  parameters: {
-    layout: 'centered',
-  },
 } satisfies Meta<typeof Dialog>
 
 export default meta
-
-type Story = StoryObj<typeof meta>
-
-/**
- * The default form of the dialog.
- */
-export const Base: Story = {}

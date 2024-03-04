@@ -42,9 +42,20 @@ const invoices = [
  * Powerful table and datagrids built using TanStack Table.
  */
 const meta = {
-  title: 'ui/Table',
+  title: 'components/Table',
   component: Table,
   argTypes: {},
+  parameters: {
+    badges: ['beta', 'stable'],
+  },
+} satisfies Meta<typeof Table>
+
+type Story = StoryObj<typeof meta>
+
+/**
+ * The default form of the table.
+ */
+export const Default: Story = {
   render: args => (
     <Table {...args}>
       <TableCaption>A list of your recent invoices.</TableCaption>
@@ -71,10 +82,3 @@ const meta = {
 } satisfies Meta<typeof Table>
 
 export default meta
-
-type Story = StoryObj<typeof meta>
-
-/**
- * The default form of the table.
- */
-export const Base: Story = {}

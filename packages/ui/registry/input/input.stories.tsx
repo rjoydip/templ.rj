@@ -7,7 +7,7 @@ import { Input } from './input'
  * Displays a form input field or a component that looks like an input field.
  */
 const meta = {
-  title: 'ui/Input',
+  title: 'components/Input',
   component: Input,
   argTypes: {},
   args: {
@@ -17,18 +17,16 @@ const meta = {
     disabled: false,
   },
   parameters: {
+    badges: ['beta', 'stable'],
     layout: 'centered',
   },
 } satisfies Meta<typeof Input>
 
-export default meta
-
 type Story = StoryObj<typeof meta>
 
-/**
- * The default form of the input field.
- */
-export const Base: Story = {}
+export const Default: Story = {
+  args: { },
+}
 
 /**
  * Use the `disabled` prop to make the input non-interactive and appears faded,
@@ -82,3 +80,5 @@ export const WithButton: Story = {
     </div>
   ),
 }
+
+export default meta

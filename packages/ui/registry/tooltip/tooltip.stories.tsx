@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { Plus } from 'lucide-react'
-
 import React from 'react'
 import {
   Tooltip,
@@ -14,7 +13,7 @@ import {
  * receives keyboard focus or the mouse hovers over it.
  */
 const meta: Meta<typeof TooltipContent> = {
-  title: 'ui/Tooltip',
+  title: 'components/Tooltip',
   component: TooltipContent,
   argTypes: {
     side: {
@@ -32,7 +31,34 @@ const meta: Meta<typeof TooltipContent> = {
     children: 'Add to library',
   },
   parameters: {
+    badges: ['beta', 'stable'],
     layout: 'centered',
+  },
+} satisfies Meta<typeof TooltipContent>
+
+/**
+ * The default form of the tooltip.
+ */
+export const Default: Story = {
+  render: args => (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger>
+          <Plus className="h-4 w-4" />
+          <span className="sr-only">Add</span>
+        </TooltipTrigger>
+        <TooltipContent {...args} />
+      </Tooltip>
+    </TooltipProvider>
+  ),
+}
+
+/**
+ * Use the `bottom` side to display the tooltip below the element.
+ */
+export const Bottom: Story = {
+  args: {
+    side: 'bottom',
   },
   render: args => (
     <TooltipProvider>
@@ -47,23 +73,7 @@ const meta: Meta<typeof TooltipContent> = {
   ),
 } satisfies Meta<typeof TooltipContent>
 
-export default meta
-
 type Story = StoryObj<typeof meta>
-
-/**
- * The default form of the tooltip.
- */
-export const Base: Story = {}
-
-/**
- * Use the `bottom` side to display the tooltip below the element.
- */
-export const Bottom: Story = {
-  args: {
-    side: 'bottom',
-  },
-}
 
 /**
  * Use the `left` side to display the tooltip to the left of the element.
@@ -72,6 +82,17 @@ export const Left: Story = {
   args: {
     side: 'left',
   },
+  render: args => (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger>
+          <Plus className="h-4 w-4" />
+          <span className="sr-only">Add</span>
+        </TooltipTrigger>
+        <TooltipContent {...args} />
+      </Tooltip>
+    </TooltipProvider>
+  ),
 }
 
 /**
@@ -81,4 +102,17 @@ export const Right: Story = {
   args: {
     side: 'right',
   },
+  render: args => (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger>
+          <Plus className="h-4 w-4" />
+          <span className="sr-only">Add</span>
+        </TooltipTrigger>
+        <TooltipContent {...args} />
+      </Tooltip>
+    </TooltipProvider>
+  ),
 }
+
+export default meta

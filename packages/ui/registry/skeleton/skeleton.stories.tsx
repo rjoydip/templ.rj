@@ -7,22 +7,21 @@ import { Skeleton } from './skeleton'
  * Use to show a placeholder while content is loading.
  */
 const meta = {
-  title: 'ui/Skeleton',
+  title: 'components/Skeleton',
   component: Skeleton,
   argTypes: {},
   parameters: {
+    badges: ['beta', 'stable'],
     layout: 'centered',
   },
 } satisfies Meta<typeof Skeleton>
-
-export default meta
 
 type Story = StoryObj<typeof Skeleton>
 
 /**
  * The default form of the skeleton.
  */
-export const Base: Story = {
+export const Default: Story = {
   render: args => (
     <div className="flex items-center space-x-4">
       <Skeleton {...args} className="h-12 w-12 rounded-full" />
@@ -33,3 +32,5 @@ export const Base: Story = {
     </div>
   ),
 }
+
+export default meta
