@@ -12,7 +12,7 @@ const config: KnipConfig = {
       ignore: ['**/.config/**', '**/generator/**', '**/templates/**'],
     },
     'packages/*': {
-      entry: ['src/**/*.{ts,tsx}', 'test/**/*.test.{ts,tsx}', '**/*.load.ts', '**/.storybook/*.{js,ts}'],
+      entry: ['src/**/*.{ts,tsx}', 'test/**/*.test.{ts,tsx}', '**/*.load.ts', '**/.storybook/*.{js,ts}', '**/*.config.{js,ts}', '**/*setupTests.{js,ts}'],
       ignore: ['**/test/**', '**/*.story.{ts,tsx}'],
     },
     'apps/*': {

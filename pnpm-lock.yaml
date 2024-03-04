@@ -660,9 +660,6 @@ importers:
       lucide-react:
         specifier: 0.344.0
         version: 0.344.0(react@18.2.0)
-      playwright:
-        specifier: ^1.42.1
-        version: 1.42.1
       storybook:
         specifier: ^7.6.17
         version: 7.6.17
