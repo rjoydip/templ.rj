@@ -130,7 +130,7 @@
     "date-fns": "^3.3.1",
     "esbuild": "^0.20.1",
     "globby": "^14.0.1",
-    "lucide-react": "0.340.0",
+    "lucide-react": "0.344.0",
     "playwright": "^1.42.0",
     "storybook": "^7.6.17",
     "storybook-addon-performance": "^0.17.3",
