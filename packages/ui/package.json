@@ -52,14 +52,13 @@
     "npm": ">=8"
   },
   "scripts": {
-    "postinstall": "pnpm exec playwright install",
     "build": "tsx esbuild.config.ts",
     "build:storybook": "storybook build -o dist/storybook",
     "dev": "tsx esbuild.config.ts --watch",
     "storybook": "storybook dev -p 6006",
     "test": "vitest run",
     "test:storybook": "test-storybook",
-    "test-storybook:ci": "concurrently -k -s first -n \"SB,TEST\" -c \"magenta,blue\" \"nr build:storybook --quiet && npx http-server storybook-static --port 6006 --silent\" \"wait-on tcp:6006 && nr test:storybook --ci\"",
+    "test-storybook:ci": "concurrently -k -s first -n \"Storybook,Test\" -c \"magenta,blue\" \"nr build:storybook --quiet && npx http-server storybook-static --port 6006 --silent\" \"wait-on tcp:6006 && nr test:storybook --ci\"",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
@@ -140,7 +139,6 @@
     "happy-dom": "^13.6.2",
     "http-server": "^14.1.1",
     "lucide-react": "0.344.0",
-    "playwright": "^1.42.1",
     "storybook": "^7.6.17",
     "storybook-addon-performance": "^0.17.3",
     "storybook-addon-pseudo-states": "^2.2.0",
