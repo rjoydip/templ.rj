@@ -35,7 +35,7 @@
     "find-up": "^7.0.0",
     "giget": "^1.2.1",
     "globby": "^14.0.1",
-    "latest-version": "^8.0.0",
+    "latest-version": "^9.0.0",
     "recast": "^0.23.5",
     "replace-string": "^4.0.0",
     "slash": "^5.1.0"

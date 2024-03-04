@@ -139,7 +139,7 @@
     "globby": "^14.0.1",
     "happy-dom": "^13.6.2",
     "http-server": "^14.1.1",
-    "lucide-react": "^0.340.0",
+    "lucide-react": "0.344.0",
     "playwright": "^1.42.1",
     "storybook": "^7.6.17",
     "storybook-addon-performance": "^0.17.3",
