@@ -25,8 +25,6 @@ const meta = {
   },
 } satisfies Meta<typeof Collapsible>
 
-export default meta
-
 type Story = StoryObj<typeof meta>
 
 /**
@@ -45,7 +43,7 @@ export const Default: Story = {
       </CollapsibleContent>
     </Collapsible>
   ),
-}
+} satisfies Meta<typeof Collapsible>
 
 /**
  * Use the `disabled` prop to disable the interaction.
@@ -55,3 +53,5 @@ export const Disabled: Story = {
     disabled: true,
   },
 }
+
+export default meta

@@ -16,8 +16,6 @@ const meta = {
   },
 } satisfies Meta<typeof Switch>
 
-export default meta
-
 type Story = StoryObj<typeof meta>
 
 /**
@@ -54,3 +52,5 @@ export const Disabled: Story = {
     </div>
   ),
 }
+
+export default meta

@@ -27,8 +27,6 @@ const meta: Meta<typeof Form> = {
   },
 } satisfies Meta<typeof Form>
 
-export default meta
-
 type Story = StoryObj<typeof meta>
 
 const formSchema = z.object({
@@ -81,9 +79,8 @@ function ProfileForm(args: Story['args']) {
   )
 }
 
-/**
- * The default form of the form.
- */
 export const Default: Story = {
   render: args => <ProfileForm {...args} />,
 }
+
+export default meta

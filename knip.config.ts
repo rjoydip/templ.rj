@@ -1,17 +1,22 @@
-const config = {
+import type { KnipConfig } from 'knip'
+
+const config: KnipConfig = {
+  'rules': {
+    dependencies: 'off',
+  },
   'ignoreBinaries': ['templ-cli', 'test-storybook'],
   'ignoreDependencies': ['typecheck'],
   'workspaces': {
     '.': {
       entry: ['eslint.config.js'],
-      ignore: ['**/templates/**', '**/example/**', '**/.config/**'],
+      ignore: ['**/.config/**', '**/generator/**', '**/templates/**'],
     },
     'packages/*': {
-      entry: ['src/**/*.{ts,tsx}', 'test/**/*.test.{ts,tsx}', '**/*.load.ts', '**/.storybook/*.{js,ts}'],
+      entry: ['src/**/*.{ts,tsx}', 'test/**/*.test.{ts,tsx}', '**/*.load.ts', '**/.storybook/*.{js,ts}', '**/*.config.{js,ts}', '**/*setupTests.{js,ts}'],
       ignore: ['**/test/**', '**/*.story.{ts,tsx}'],
     },
     'apps/*': {
-      entry: ['src/**/*.{ts,tsx}', 'test/**/*.test.{ts,tsx}', '**/*.config.js'],
+      entry: ['src/**/*.{ts,tsx}', 'test/**/*.test.{ts,tsx}', '**/*.config.{js,ts}'],
     },
   },
   'eslint': {
@@ -25,15 +30,6 @@ const config = {
   },
   'github-actions': {
     config: ['.github/workflows/*.{yml,yaml}', '.github/**/action.{yml,yaml}'],
-  },
-  'lefthook': {
-    config: [
-      'lefthook.yml',
-      '.git/hooks/prepare-commit-msg',
-      '.git/hooks/commit-msg',
-      '.git/hooks/pre-{applypatch,commit,merge-commit,push,rebase,receive}',
-      '.git/hooks/post-{checkout,commit,merge,rewrite}',
-    ],
   },
   'next': {
     entry: [

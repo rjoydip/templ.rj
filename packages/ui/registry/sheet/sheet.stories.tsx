@@ -36,8 +36,6 @@ const meta: Meta<typeof SheetContent> = {
   },
 } satisfies Meta<typeof SheetContent>
 
-export default meta
-
 type Story = StoryObj<typeof meta>
 
 /**
@@ -66,4 +64,6 @@ export const Default: Story = {
       </SheetContent>
     </Sheet>
   ),
-}
+} satisfies Meta<typeof SheetContent>
+
+export default meta

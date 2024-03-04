@@ -24,14 +24,12 @@ const meta: Meta<typeof Toggle> = {
     layout: 'centered',
   },
 }
-export default meta
 
 type Story = StoryObj<typeof Toggle>
 
-/**
- * The default form of the toggle.
- */
-export const Default: Story = {}
+export const Default: Story = {
+  args: {},
+}
 
 /**
  * Use the `outline` variant for a distinct outline, emphasizing the boundary
@@ -86,3 +84,5 @@ export const Disabled: Story = {
     disabled: true,
   },
 }
+
+export default meta

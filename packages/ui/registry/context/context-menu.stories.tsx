@@ -32,8 +32,6 @@ const meta = {
   },
 } satisfies Meta<typeof ContextMenu>
 
-export default meta
-
 type Story = StoryObj<typeof meta>
 
 /**
@@ -53,7 +51,7 @@ export const Default: Story = {
       </ContextMenuContent>
     </ContextMenu>
   ),
-}
+} satisfies Meta<typeof ContextMenu>
 
 /**
  * A context menu with shortcuts.
@@ -153,3 +151,5 @@ export const WithRadioGroup: Story = {
     </ContextMenu>
   ),
 }
+
+export default meta

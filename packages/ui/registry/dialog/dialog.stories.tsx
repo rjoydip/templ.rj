@@ -26,8 +26,6 @@ const meta = {
   },
 } satisfies Meta<typeof Dialog>
 
-export default meta
-
 type Story = StoryObj<typeof meta>
 
 /**
@@ -56,4 +54,6 @@ export const Default: Story = {
       </DialogContent>
     </Dialog>
   ),
-}
+} satisfies Meta<typeof Dialog>
+
+export default meta

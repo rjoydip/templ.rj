@@ -12,7 +12,6 @@ const meta: Meta<typeof Button> = {
     badges: ['beta', 'stable'],
   },
 }
-export default meta
 
 type Story = StoryObj<typeof Button>
 
@@ -67,3 +66,5 @@ export const WithIcon: Story = {
     variant: 'secondary',
   },
 }
+
+export default meta

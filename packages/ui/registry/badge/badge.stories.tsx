@@ -22,14 +22,11 @@ const meta = {
   },
 } satisfies Meta<typeof Badge>
 
-export default meta
-
 type Story = StoryObj<typeof meta>
 
-/**
- * The default form of the badge.
- */
-export const Default: Story = {}
+export const Default: Story = {
+  args: {},
+}
 
 /**
  * Use the `secondary` badge to call for less urgent information, blending
@@ -60,3 +57,5 @@ export const Outline: Story = {
     variant: 'outline',
   },
 }
+
+export default meta

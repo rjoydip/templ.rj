@@ -25,8 +25,6 @@ const meta: Meta<typeof Carousel> = {
   },
 } satisfies Meta<typeof Carousel>
 
-export default meta
-
 type Story = StoryObj<typeof meta>
 
 /**
@@ -48,7 +46,7 @@ export const Default: Story = {
       <CarouselNext />
     </Carousel>
   ),
-}
+} satisfies Meta<typeof Carousel>
 
 /**
  * Use the `basis` utility class to change the size of the carousel.
@@ -73,3 +71,5 @@ export const Size: Story = {
     className: 'mx-12 w-full max-w-xs',
   },
 }
+
+export default meta

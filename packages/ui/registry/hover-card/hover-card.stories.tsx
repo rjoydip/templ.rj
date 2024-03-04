@@ -21,8 +21,6 @@ const meta = {
   },
 } satisfies Meta<typeof HoverCard>
 
-export default meta
-
 type Story = StoryObj<typeof meta>
 
 /**
@@ -49,3 +47,5 @@ export const Instant: Story = {
     closeDelay: 0,
   },
 }
+
+export default meta

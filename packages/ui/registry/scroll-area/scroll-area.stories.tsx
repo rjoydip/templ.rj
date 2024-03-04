@@ -25,14 +25,13 @@ const meta = {
   },
 } satisfies Meta<typeof ScrollArea>
 
-export default meta
-
 type Story = StoryObj<typeof meta>
 
-/**
- * The default form of the scroll area.
- */
-export const Default: Story = {}
+export const Default: Story = {
+  args: {
+    type: 'always',
+  },
+}
 
 /**
  * Use the `type` prop with `always` to always show the scroll area.
@@ -60,3 +59,5 @@ export const Scroll: Story = {
     type: 'scroll',
   },
 }
+
+export default meta

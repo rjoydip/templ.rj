@@ -21,8 +21,6 @@ const meta: Meta<typeof Sonner> = {
   },
 } satisfies Meta<typeof Sonner>
 
-export default meta
-
 type Story = StoryObj<typeof meta>
 
 /**
@@ -47,3 +45,5 @@ export const Default: Story = {
     </div>
   ),
 }
+
+export default meta

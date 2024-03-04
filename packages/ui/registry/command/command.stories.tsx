@@ -27,8 +27,6 @@ const meta = {
   },
 } satisfies Meta<typeof Command>
 
-export default meta
-
 type Story = StoryObj<typeof meta>
 
 /**
@@ -54,4 +52,6 @@ export const Default: Story = {
       </CommandList>
     </Command>
   ),
-}
+} satisfies Meta<typeof Command>
+
+export default meta

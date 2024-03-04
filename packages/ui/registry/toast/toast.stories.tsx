@@ -25,8 +25,6 @@ const meta = {
   },
 } satisfies Meta<typeof Toast>
 
-export default meta
-
 type Story = Omit<StoryObj<typeof meta>, 'args'> & {
   args: Omit<ToasterToast, 'id'>
 }
@@ -99,3 +97,5 @@ export const Destructive: Story = {
   },
   render: args => <ToastExample {...args} />,
 }
+
+export default meta

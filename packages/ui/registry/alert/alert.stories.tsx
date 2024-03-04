@@ -29,8 +29,6 @@ const meta = {
   },
 } satisfies Meta<typeof Alert>
 
-export default meta
-
 type Story = StoryObj<typeof meta>
 /**
  * The default form of the alert.
@@ -63,3 +61,5 @@ export const Destructive: Story = {
     variant: 'destructive',
   },
 }
+
+export default meta

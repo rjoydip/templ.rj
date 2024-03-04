@@ -40,8 +40,6 @@ const meta = {
   },
 } satisfies Meta<typeof DropdownMenu>
 
-export default meta
-
 type Story = StoryObj<typeof meta>
 
 /**
@@ -61,7 +59,7 @@ export const Default: Story = {
       </DropdownMenuContent>
     </DropdownMenu>
   ),
-}
+} satisfies Meta<typeof DropdownMenu>
 
 /**
  * A dropdown menu with shortcuts.
@@ -165,3 +163,5 @@ export const WithCheckboxes: Story = {
     </DropdownMenu>
   ),
 }
+
+export default meta

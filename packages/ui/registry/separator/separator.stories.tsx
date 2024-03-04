@@ -15,9 +15,17 @@ const meta = {
   },
 } satisfies Meta<typeof Separator>
 
-export default meta
-
 type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
+  render: () => (
+    <div className="flex gap-2">
+      <div>Left</div>
+      <Separator orientation="vertical" className="h-auto" />
+      <div>Right</div>
+    </div>
+  ),
+}
 
 /**
  * The default form of the separator.
@@ -44,3 +52,5 @@ export const Vertical: Story = {
     </div>
   ),
 }
+
+export default meta

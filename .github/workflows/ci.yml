@@ -16,7 +16,7 @@ permissions:
 
 jobs:
 
-  pr:
+  pr_title_check:
     runs-on: ubuntu-latest
     if: github.actor != 'dependabot[bot]'
     steps:
@@ -51,22 +51,18 @@ jobs:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup-node
 
+      - name: Build Setup
+        run: nr -C scripts ci:env-copy
+
       - name: Build
+        run: nr build
+
+      - name: Build Check
         run: |
-          nr -r ci:env-copy
-          nr build
-          nr -r ci:env-delete
-          nr -r build:check
+          nr build:check
 
-  coverage:
-    runs-on: ubuntu-latest
-    needs: [build]
-    steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/setup-node
-
-      - name: Coverage
-        run: nr coverage
+      - name: Cleanup
+        run: nr -C scripts ci:env-delete
 
   lint:
     runs-on: ubuntu-latest
@@ -95,9 +91,9 @@ jobs:
 
       - name: Test
         run: nr test
+      
+      # - name: Storybook test
+      #   run: nr test-storybook:ci
 
-  action-timeline:
-    needs: [build, lint, pr, test, trivy_scan, triage]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: Kesin11/actions-timeline@v1
+      - name: Coverage
+        run: nr test:coverage

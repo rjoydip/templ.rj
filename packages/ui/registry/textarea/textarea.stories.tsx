@@ -19,14 +19,17 @@ const meta = {
   },
 } satisfies Meta<typeof Textarea>
 
-export default meta
-
 type Story = StoryObj<typeof meta>
 
-/**
- * The default form of the textarea.
- */
-export const Default: Story = {}
+export const Default: Story = {
+  args: {},
+  render: args => (
+    <div className="grid w-full gap-1.5">
+      <label htmlFor="message">Your message</label>
+      <Textarea {...args} id="message" />
+    </div>
+  ),
+}
 
 /**
  * Use the `disabled` prop to disable the textarea.
@@ -89,3 +92,5 @@ export const WithButton: Story = {
     </div>
   ),
 }
+
+export default meta

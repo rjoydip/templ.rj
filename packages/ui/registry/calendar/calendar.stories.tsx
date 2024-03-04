@@ -23,14 +23,13 @@ const meta = {
   },
 } satisfies Meta<typeof Calendar>
 
-export default meta
-
 type Story = StoryObj<typeof meta>
 
-/**
- * The default form of the calendar.
- */
-export const Default: Story = {}
+export const Default: Story = {
+  args: {
+    min: 1,
+  },
+}
 
 /**
  * Use the `multiple` mode to select multiple dates.
@@ -79,3 +78,5 @@ export const MultipleMonths: Story = {
     showOutsideDays: false,
   },
 }
+
+export default meta

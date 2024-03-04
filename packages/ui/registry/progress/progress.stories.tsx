@@ -19,14 +19,11 @@ const meta = {
   },
 } satisfies Meta<typeof Progress>
 
-export default meta
-
 type Story = StoryObj<typeof meta>
 
-/**
- * The default form of the progress.
- */
-export const Default: Story = {}
+export const Default: Story = {
+  args: {},
+}
 
 /**
  * When the progress is indeterminate.
@@ -45,3 +42,5 @@ export const Completed: Story = {
     value: 100,
   },
 }
+
+export default meta

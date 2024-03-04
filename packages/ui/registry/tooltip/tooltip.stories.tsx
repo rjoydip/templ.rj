@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { Plus } from 'lucide-react'
-
 import React from 'react'
 import {
   Tooltip,
@@ -37,10 +36,6 @@ const meta: Meta<typeof TooltipContent> = {
   },
 } satisfies Meta<typeof TooltipContent>
 
-export default meta
-
-type Story = StoryObj<typeof meta>
-
 /**
  * The default form of the tooltip.
  */
@@ -76,7 +71,9 @@ export const Bottom: Story = {
       </Tooltip>
     </TooltipProvider>
   ),
-}
+} satisfies Meta<typeof TooltipContent>
+
+type Story = StoryObj<typeof meta>
 
 /**
  * Use the `left` side to display the tooltip to the left of the element.
@@ -117,3 +114,5 @@ export const Right: Story = {
     </TooltipProvider>
   ),
 }
+
+export default meta

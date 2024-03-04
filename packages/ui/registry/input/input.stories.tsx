@@ -22,14 +22,11 @@ const meta = {
   },
 } satisfies Meta<typeof Input>
 
-export default meta
-
 type Story = StoryObj<typeof meta>
 
-/**
- * The default form of the input field.
- */
-export const Default: Story = {}
+export const Default: Story = {
+  args: { },
+}
 
 /**
  * Use the `disabled` prop to make the input non-interactive and appears faded,
@@ -83,3 +80,5 @@ export const WithButton: Story = {
     </div>
   ),
 }
+
+export default meta

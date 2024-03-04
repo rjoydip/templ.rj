@@ -26,8 +26,6 @@ const meta = {
   },
 } satisfies Meta<typeof Tabs>
 
-export default meta
-
 type Story = StoryObj<typeof meta>
 
 /**
@@ -46,4 +44,6 @@ export const Default: Story = {
       <TabsContent value="password">Change your password here.</TabsContent>
     </Tabs>
   ),
-}
+} satisfies Meta<typeof Tabs>
+
+export default meta

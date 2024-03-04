@@ -19,14 +19,11 @@ const meta = {
   },
 } satisfies Meta<typeof Slider>
 
-export default meta
-
 type Story = StoryObj<typeof meta>
 
-/**
- * The default form of the slider.
- */
-export const Default: Story = {}
+export const Default: Story = {
+  args: {},
+}
 
 /**
  * Use the `inverted` prop to have the slider fill from right to left.
@@ -45,3 +42,5 @@ export const Disabled: Story = {
     disabled: true,
   },
 }
+
+export default meta

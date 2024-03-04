@@ -23,8 +23,6 @@ const meta: Meta<typeof AspectRatio> = {
   ],
 } satisfies Meta<typeof AspectRatio>
 
-export default meta
-
 type Story = StoryObj<typeof meta>
 
 /**
@@ -98,3 +96,5 @@ export const Cinemascope: Story = {
     </AspectRatio>
   ),
 }
+
+export default meta

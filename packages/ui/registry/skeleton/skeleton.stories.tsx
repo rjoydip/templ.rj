@@ -16,8 +16,6 @@ const meta = {
   },
 } satisfies Meta<typeof Skeleton>
 
-export default meta
-
 type Story = StoryObj<typeof Skeleton>
 
 /**
@@ -34,3 +32,5 @@ export const Default: Story = {
     </div>
   ),
 }
+
+export default meta

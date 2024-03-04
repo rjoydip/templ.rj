@@ -2,9 +2,14 @@ import antfu from '@antfu/eslint-config'
 
 export default antfu({
   stylistic: true,
+  javascript: true,
   typescript: true,
+  json: true,
   jsonc: true,
+  html: true,
   markdown: true,
+  yaml: true,
+  toml: true,
 }, {
   ignores: ['**/app/{docs,web}', '**/fixtures', '**/templates'],
   rules: {

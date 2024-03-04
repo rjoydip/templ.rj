@@ -1,5 +1,6 @@
 import * as React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
+import { within } from '@storybook/testing-library'
 import {
   Accordion,
   AccordionContent,
@@ -25,11 +26,10 @@ const meta = {
     collapsible: true,
   },
   parameters: {
+    direction: 'ltr',
     badges: ['beta', 'stable'],
   },
 } satisfies Meta<typeof Accordion>
-
-export default meta
 
 type Story = StoryObj<typeof meta>
 
@@ -60,4 +60,10 @@ export const Default: Story = {
       </AccordionItem>
     </Accordion>
   ),
-}
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    await canvas.getByText('Is it accessible?')
+  },
+} satisfies Meta<typeof Accordion>
+
+export default meta

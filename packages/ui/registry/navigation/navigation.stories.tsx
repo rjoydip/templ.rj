@@ -24,8 +24,6 @@ const meta = {
   },
 } satisfies Meta<typeof NavigationMenu>
 
-export default meta
-
 type Story = StoryObj<typeof meta>
 
 /**
@@ -78,4 +76,6 @@ export const Default: Story = {
       </NavigationMenuList>
     </NavigationMenu>
   ),
-}
+} satisfies Meta<typeof NavigationMenu>
+
+export default meta
