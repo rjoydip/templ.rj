@@ -39,10 +39,10 @@
   },
   "dependencies": {
     "@hono/node-server": "^1.8.2",
-    "@hono/zod-openapi": "^0.9.6",
-    "@scalar/hono-api-reference": "^0.3.64",
+    "@hono/zod-openapi": "^0.9.7",
+    "@scalar/hono-api-reference": "^0.3.67",
     "consola": "^3.2.3",
-    "hono": "^4.0.8"
+    "hono": "^4.0.10"
   },
   "devDependencies": {
     "@templ/config": "workspace:*",

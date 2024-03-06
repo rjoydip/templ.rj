@@ -96,6 +96,15 @@ jobs:
       - name: Test
         run: nr test
 
+      - name: Install package
+        run: ni -D concurrently http-server wait-on
+
+      - name: Storybook test
+        run: |
+          npx concurrently -k -s first -n "Storybook serve,Storybook test" \
+          "npx http-server storybook-static --port 6006 --silent" \
+          "npx wait-on tcp:6006 && npx test-storybook"
+
   action-timeline:
     needs: [build, lint, pr, test, trivy_scan, triage]
     runs-on: ubuntu-latest
