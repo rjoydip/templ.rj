@@ -99,7 +99,7 @@ jobs:
         run: nr test
 
       - name: Install package
-        run: ni concurrently http-server wait-on -D
+        run: pnpm add -D concurrently http-server wait-on
 
       - name: Storybook build
         run: nr -C packages/ui build:storybook
