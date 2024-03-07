@@ -98,11 +98,11 @@ jobs:
       - name: Test
         run: nr test
 
-      - name: Install package
-        run: pnpm add -D concurrently http-server wait-on
-
       - name: Storybook build
         run: nr -C packages/ui build:storybook
+
+      - name: Install package
+        run: pnpm add -D concurrently http-server wait-on
 
       - name: Storybook test
         if: ${{ matrix.os == 'ubuntu-latest' }}
