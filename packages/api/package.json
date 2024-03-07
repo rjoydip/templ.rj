@@ -39,8 +39,8 @@
   },
   "dependencies": {
     "@hono/node-server": "^1.8.2",
-    "@hono/zod-openapi": "^0.9.7",
-    "@scalar/hono-api-reference": "^0.3.67",
+    "@hono/zod-openapi": "^0.9.8",
+    "@scalar/hono-api-reference": "^0.3.68",
     "consola": "^3.2.3",
     "hono": "^4.0.10"
   },
@@ -48,11 +48,11 @@
     "@templ/config": "workspace:*",
     "@templ/tsconfig": "workspace:*",
     "@types/autocannon": "^7.12.5",
-    "@types/node": "^20.11.24",
+    "@types/node": "^20.11.25",
     "autocannon": "^7.15.0",
     "esbuild": "^0.20.1",
     "tsx": "^4.7.1",
-    "typescript": "^5.3.3",
+    "typescript": "^5.4.2",
     "vitest": "^1.3.1"
   },
   "size-limit": "1024 B"

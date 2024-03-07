@@ -89,27 +89,22 @@ jobs:
     needs: [build]
     steps:
       - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
       - uses: ./.github/actions/setup-node
         with:
           node-version: ${{ matrix.node_version }}
 
-      - name: Test
+      - name: Unit Test
         run: nr test
 
       - name: Storybook build
-        run: nr -C packages/ui build:storybook
-
-      - name: Install package
-        run: pnpm add -D concurrently http-server wait-on
+        run: |
+          rm -rf packages/ui/dist/storybook
+          nr -C packages/ui build:storybook
 
       - name: Storybook test
         if: ${{ matrix.os == 'ubuntu-latest' }}
         run: |
-          npx concurrently -k -s first -n "Storybook serve,Storybook test" \
-          "npx http-server dist/storybook --port 6006" \
-          "npx wait-on tcp:6006 && npx test-storybook"
+          pnpm -C packages/ui test:storybook:ci
 
   action-timeline:
     needs: [build, lint, pr, test, trivy_scan, triage]
