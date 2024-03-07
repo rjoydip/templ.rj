@@ -93,8 +93,16 @@ jobs:
         with:
           node-version: ${{ matrix.node_version }}
 
-      - name: Test
+      - name: Unit Test
         run: nr test
+
+      - name: Storybook build
+        run: nr -C packages/ui build:storybook
+
+      - name: Storybook test
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        run: |
+          pnpm -C packages/ui test:storybook:ci
 
   action-timeline:
     needs: [build, lint, pr, test, trivy_scan, triage]

@@ -11,5 +11,6 @@
     "**/*.ts",
     "**/*.tsx",
     "vitest.config.js"
-  ]
+  ],
+  "exclude": ["**/dist"]
 }

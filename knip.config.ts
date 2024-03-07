@@ -1,6 +1,6 @@
 const config = {
-  'ignoreBinaries': ['templ-cli', 'test-storybook'],
-  'ignoreDependencies': ['typecheck'],
+  'ignoreBinaries': ['concurrently', 'templ-cli', 'test-storybook', 'test:storybook:ci'],
+  'ignoreDependencies': ['serve', 'typecheck', 'wait-on'],
   'workspaces': {
     '.': {
       entry: ['eslint.config.js'],

@@ -1,5 +1,4 @@
 import type { StorybookConfig } from '@storybook/react-vite'
-import { mergeConfig } from 'vite'
 
 const config: StorybookConfig = {
   stories: ['../stories/**/*.mdx', '../registry/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
@@ -14,12 +13,5 @@ const config: StorybookConfig = {
     'storybook-addon-pseudo-states',
   ],
   framework: '@storybook/react-vite',
-  async viteFinal(config) {
-    return mergeConfig(config, {
-      optimizeDeps: {
-        include: [],
-      },
-    })
-  },
 }
 export default config
