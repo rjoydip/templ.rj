@@ -97,9 +97,7 @@ jobs:
         run: nr test
 
       - name: Storybook build
-        run: |
-          rm -rf packages/ui/dist/storybook
-          nr -C packages/ui build:storybook
+        run: nr -C packages/ui build:storybook
 
       - name: Storybook test
         if: ${{ matrix.os == 'ubuntu-latest' }}
