@@ -26,7 +26,6 @@ const config: StorybookConfig = {
     return mergeConfig(config, {
       sourcemap: false,
       target: 'esnext',
-      staticDirs: ['../public'],
       esbuild: {
         ignoreAnnotations: true,
         treeShaking: true,
@@ -39,7 +38,7 @@ const config: StorybookConfig = {
             // in bloating sourcemaps with another copy of it.
             sourcemapExcludeSources: true,
           },
-          external: ['next-themes', ...Object.keys(pkg.devDependencies), ...Object.keys(pkg.peerDependencies)],
+          external: ['next-themes', ...Object.keys(pkg.devDependencies)],
           /**
            * Ignore "use client" waning since we are not using SSR
            * @see {@link https://github.com/TanStack/query/pull/5161#issuecomment-1477389761 Preserve 'use client' directives TanStack/query#5161}
