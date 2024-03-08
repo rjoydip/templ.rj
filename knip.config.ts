@@ -4,7 +4,7 @@ const config = {
   'workspaces': {
     '.': {
       entry: ['eslint.config.js'],
-      ignore: ['**/templates/**', '**/example/**', '**/.config/**'],
+      ignore: ['**/example/**', '**/e2e-report/**', '**/.config/**', '**/templates/**'],
     },
     'packages/*': {
       entry: ['src/**/*.{ts,tsx}', 'test/**/*.test.{ts,tsx}', '**/*.load.ts', '**/.storybook/*.{js,ts}'],

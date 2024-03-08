@@ -27,6 +27,15 @@ export default defineConfig({
   reporter: [
     ['list', { printSteps: true }],
     ['html', { open: 'never', outputFolder: `${resolve('..', '..', 'artifacts', 'e2e-report')}` }],
+    [
+      '@argos-ci/playwright/reporter',
+      {
+        // Enable upload to Argos only when it runs on CI.
+        uploadToArgos: !!isCI,
+        // Set your Argos token (required only if you don't use GitHub Actions).
+        token: env.ARGOS_TOKEN,
+      },
+    ],
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {

@@ -6,7 +6,7 @@ export default antfu({
   jsonc: true,
   markdown: true,
 }, {
-  ignores: ['**/app/{docs,web}', '**/fixtures', '**/templates'],
+  ignores: ['**/artifacts/**', '**/fixtures/**', '**/templates/**'],
   rules: {
     'antfu/no-import-dist': 'off',
   },

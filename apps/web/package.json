@@ -21,7 +21,7 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev --port=3001",
-    "e2e:test:show-report": "playwright show-report",
+    "e2e:test:show-report": "playwright show-report ../../artifacts/e2e-report",
     "e2e:test": "playwright test",
     "e2e:test:ui": "nr e2e:test --ui",
     "preview": "next build && next start --port=3001",
@@ -41,6 +41,7 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@argos-ci/playwright": "^1.9.3",
     "@playwright/test": "^1.42.1",
     "@templ/tsconfig": "workspace:*",
     "@types/node": "^20.11.25",
