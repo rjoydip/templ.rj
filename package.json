@@ -26,6 +26,7 @@
   },
   "scripts": {
     "prepare": "husky",
+    "postinstall": "pnpm exec playwright install --with-deps",
     "all": "ni && nr deps:update && nr build && nr lint && nr test",
     "build": "nr clean && turbo run build && knip && nr -C scripts build:check && nr -r typecheck",
     "clean": "nr -C scripts clean",
@@ -43,6 +44,7 @@
     "eslint": "^8.57.0",
     "husky": "^9.0.11",
     "knip": "^5.0.3",
+    "playwright": "^1.42.1",
     "pnpm": "^8.15.4",
     "taze": "^0.13.3",
     "turbo": "^1.12.5",

@@ -23,7 +23,8 @@
         "davidanson.vscode-markdownlint",
         "eamodio.gitlens",
         "editorconfig.editorconfig",
-        "zixuanchen.vitest-explorer"
+        "zixuanchen.vitest-explorer",
+        "ms-playwright.playwright"
       ]
     }
   },

@@ -8,7 +8,7 @@ import { hasDryRun, ignorePatterns, root } from './utils'
 export async function run() {
   let deletedPaths: string[] = []
 
-  deletedPaths = await deleteAsync(['**/.next/**', '**/.turbo/**', '**/dist/**', '**/temp/**', '**/coverage/**'], {
+  deletedPaths = await deleteAsync(['**/.next/**', '**/.turbo/**', '**/dist/**', '**/temp/**', '**/coverage/**', '**/.nyc_output/**', '**/test-results/**', '**/playwright-report/**'], {
     ignore: ignorePatterns,
     cwd: root,
     dryRun: hasDryRun(),

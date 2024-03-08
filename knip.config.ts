@@ -1,5 +1,5 @@
 const config = {
-  'ignoreBinaries': ['concurrently', 'templ-cli', 'test-storybook', 'test:storybook:ci'],
+  'ignoreBinaries': ['concurrently', 'e2e:test', 'templ-cli', 'test-storybook', 'test:storybook:ci'],
   'ignoreDependencies': ['serve', 'typecheck', 'wait-on'],
   'workspaces': {
     '.': {
