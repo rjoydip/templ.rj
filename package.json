@@ -30,7 +30,7 @@
     "all": "ni && nr deps:update && nr build && nr lint && nr test",
     "build": "nr clean && turbo run build && knip && nr -C scripts build:check && nr -r typecheck",
     "clean": "nr -C scripts clean",
-    "coverage": "vitest run --coverage",
+    "test:ci": "vitest run --coverage",
     "deps:update": "taze -r -w -i -f -l",
     "lint": "eslint . --fix && nr -C scripts automd",
     "release": "changeset version && npm publish && git push --follow-tags",

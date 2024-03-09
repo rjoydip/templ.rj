@@ -11,6 +11,6 @@
   },
   "include": [
     "src/**/*.ts",
-    "esbuild.config.ts"
+    "vitest.config.mts"
   ]
 }

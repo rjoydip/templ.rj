@@ -1,17 +1,21 @@
-const config = {
+const filePattern = '**/*.?(bench|config|load|story).?(c|m)[jt]s'
+const srcPattern = '**/src/**/*.?(c|m)[jt]s?(x)'
+const testPattern = '**/test/**/*.test.?(c|m)[jt]s?(x)'
+
+export default {
   'ignoreBinaries': ['concurrently', 'e2e:test', 'templ-cli', 'test-storybook', 'test:storybook:ci'],
-  'ignoreDependencies': ['serve', 'typecheck', 'wait-on'],
+  'ignoreDependencies': ['@templ/config', '@vitest/coverage-v8', 'esbuild', 'serve', 'typecheck', 'wait-on'],
   'workspaces': {
     '.': {
-      entry: ['eslint.config.js'],
-      ignore: ['**/example/**', '**/e2e-report/**', '**/.config/**', '**/templates/**'],
+      ignore: ['**/{.config,coverage,dist,e2e-report,fixtures,templates}/**', filePattern],
     },
     'packages/*': {
-      entry: ['src/**/*.{ts,tsx}', 'test/**/*.test.{ts,tsx}', '**/*.load.ts', '**/.storybook/*.{js,ts}'],
-      ignore: ['**/test/**', '**/*.story.{ts,tsx}'],
+      entry: [srcPattern, testPattern, filePattern, '**/.storybook/*.?(c|m)[jt]s?(x)'],
+      ignore: [filePattern],
     },
     'apps/*': {
-      entry: ['src/**/*.{ts,tsx}', 'test/**/*.test.{ts,tsx}', '**/*.config.js'],
+      entry: [srcPattern, testPattern],
+      ignore: [filePattern],
     },
   },
   'eslint': {
@@ -79,16 +83,7 @@ const config = {
   'typescript': {
     config: ['tsconfig.json', 'tsconfig.*.json'],
   },
-  'vite': {
-    config: ['vite*.config.{js,mjs,ts,cjs,mts,cts}'],
-  },
-  'vitest': {
-    config: [
-      'vitest*.config.{js,mjs,ts,cjs,mts,cts}',
-      'vitest.{workspace,projects}.{ts,js,json}',
-    ],
-    entry: ['**/*.{test,test-d,spec}.?(c|m)[jt]s?(x)'],
-  },
+  // https://github.com/unjs/jiti/issues/194
+  'vite': false,
+  'vitest': false,
 }
-
-export default config

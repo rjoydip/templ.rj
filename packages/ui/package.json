@@ -56,7 +56,7 @@
     "build:storybook": "storybook build -o dist/storybook",
     "dev": "tsx esbuild.config.ts --watch",
     "storybook": "storybook dev -p 6006",
-    "test": "vitest run",
+    "test": "vitest run --typecheck",
     "test:storybook": "test-storybook",
     "test:storybook:ci": "concurrently -k -s first -n \"Serve🔥,Test🧪\" -c \"magenta,blue\" \"nr build:storybook && serve dist/storybook -l 6006\" \"wait-on http://127.0.0.1:6006 && pnpm test:storybook\"",
     "typecheck": "tsc --noEmit"

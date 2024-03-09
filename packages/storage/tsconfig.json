@@ -3,5 +3,5 @@
   "compilerOptions": {
     "outDir": "dist"
   },
-  "include": ["src/**/*.ts", "*.d.ts", "vitest.config.js"]
+  "include": ["src/**/*.ts", "*.d.ts", "vitest.config.mts"]
 }

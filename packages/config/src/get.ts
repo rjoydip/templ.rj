@@ -50,7 +50,7 @@ export function getBuildConfig({
  * @return {object} The Vitest configuration object.
  */
 export function getVitestConfig(opts: UserConfig = {}) {
-  const exclude = ['**/*esbuild.config.ts', '**/coverage/**', '**/dist/**', '**/.config/**', '**/scripts/**', '**/.storybook/**']
+  const exclude = ['**/*esbuild.config.ts', '**/coverage/**', '**/dist/**', '**/.config/**', '**/scripts/**', '**/.storybook/**', 'esbuild.config.ts', '**/*.stories.{js,ts,jsx,tsx}']
   return mergeConfig(
     {
       test: {
