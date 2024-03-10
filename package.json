@@ -27,12 +27,12 @@
   "scripts": {
     "prepare": "husky",
     "postinstall": "pnpm exec playwright install --with-deps",
-    "all": "ni && nr deps:update && knip && nr build && nr lint && nr test",
-    "build": "nr clean && turbo run build && nr -C scripts build:check && nr -r typecheck",
-    "clean": "nr -C scripts clean",
+    "all": "ni && nr deps:update && nr lint && nr build && nr test",
+    "build": "nr clean && turbo run build && nr -r build:check",
+    "clean": "nr -r clean",
     "test:ci": "vitest run --coverage",
     "deps:update": "taze -r -w -i -f -l",
-    "lint": "eslint . --fix && nr -C scripts automd",
+    "lint": "eslint . --fix && knip && nr -r typecheck && nr -C scripts automd",
     "release": "changeset version && npm publish && git push --follow-tags",
     "test": "turbo run test"
   },

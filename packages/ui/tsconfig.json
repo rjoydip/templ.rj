@@ -8,10 +8,10 @@
     "noEmit": false
   },
   "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    "*.d.ts",
-    "vitest.config.mts"
-  ],
-  "exclude": ["**/dist"]
+    "lib/**/*.ts",
+    ".storybook/**/*.ts",
+    "components/**/*.tsx",
+    "registry/**/*.ts",
+    "*.d.ts"
+  ]
 }
