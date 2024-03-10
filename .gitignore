@@ -23,9 +23,8 @@ yarn-error.log*
 tsconfig.tsbuildinfo
 
 # Folder
-**/dist/**
+dist
 coverage
+e2e-report
 node_modules
 temp
-.config/*.toml
-!.config/*.example.toml

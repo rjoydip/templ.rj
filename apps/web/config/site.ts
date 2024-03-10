@@ -11,6 +11,6 @@ export const siteConfig = {
   links: {
     twitter: 'https://twitter.com/Rjoydip11',
     github: 'https://github.com/rjoydip/templ',
-    docs: 'https://templ.com',
+    docs: 'https://github.com/rjoydip/templ/blob/main/README.md',
   },
 }
