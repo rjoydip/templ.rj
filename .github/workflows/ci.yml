@@ -60,7 +60,6 @@ jobs:
 
   lint:
     runs-on: ubuntu-latest
-    needs: [build]
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup-node
@@ -76,12 +75,14 @@ jobs:
         os: [ubuntu-latest, macos-latest, windows-latest]
         node_version: [18]
       fail-fast: false
-    needs: [build]
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup-node
         with:
           node-version: ${{ matrix.node_version }}
+
+      - name: 👷 Build
+        run: nr build
 
       - name: 🌐 E2E test
         run: pnpm -C apps/web e2e:test

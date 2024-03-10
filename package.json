@@ -27,8 +27,8 @@
   "scripts": {
     "prepare": "husky",
     "postinstall": "pnpm exec playwright install --with-deps",
-    "all": "ni && nr deps:update && nr build && nr lint && nr test",
-    "build": "nr clean && turbo run build && knip && nr -C scripts build:check && nr -r typecheck",
+    "all": "ni && nr deps:update && knip && nr build && nr lint && nr test",
+    "build": "nr clean && turbo run build && nr -C scripts build:check && nr -r typecheck",
     "clean": "nr -C scripts clean",
     "test:ci": "vitest run --coverage",
     "deps:update": "taze -r -w -i -f -l",
