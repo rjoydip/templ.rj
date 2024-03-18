@@ -2,7 +2,6 @@ import { HIGHLIGHT } from '@storybook/addon-highlight'
 import { useChannel } from '@storybook/preview-api'
 import type { Preview } from '@storybook/react'
 import { themes } from '@storybook/theming'
-import { withPerformance } from 'storybook-addon-performance'
 
 import '../styles/global.css'
 
@@ -22,7 +21,6 @@ export const preview: Preview = {
     },
   },
   decorators: [
-    withPerformance,
     (storyFn) => {
       const emit = useChannel({})
       emit(HIGHLIGHT, {
