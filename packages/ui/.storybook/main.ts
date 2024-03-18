@@ -1,22 +1,17 @@
-import { dirname, join } from 'node:path'
 import type { StorybookConfig } from '@storybook/react-vite'
 
-function getAbsolutePath(value: string): any {
-  return dirname(require.resolve(join(value, 'package.json')))
-}
-
 const config: StorybookConfig = {
-  stories: ['../registry/**/*.stories.@(js|jsx|mjs|ts|tsx)'], // '../stories/**/*.mdx',
+  stories: ['../stories/**/*.mdx', '../registry/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
 
   addons: [
-    getAbsolutePath('@geometricpanda/storybook-addon-badges'),
-    getAbsolutePath('@storybook/addon-essentials'),
-    getAbsolutePath('@storybook/addon-links'),
-    getAbsolutePath('@storybook/addon-storysource'),
-    getAbsolutePath('storybook-dark-mode'),
+    '@geometricpanda/storybook-addon-badges',
+    '@storybook/addon-essentials',
+    '@storybook/addon-links',
+    '@storybook/addon-storysource',
+    'storybook-dark-mode',
   ],
 
-  framework: getAbsolutePath('@storybook/react-vite'),
+  framework: '@storybook/react-vite',
 
   docs: {
     autodocs: false,
