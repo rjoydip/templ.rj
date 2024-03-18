@@ -11,7 +11,6 @@
     "lib/**/*.ts",
     ".storybook/**/*.ts",
     "components/**/*.tsx",
-    "registry/**/*.ts",
-    "*.d.ts"
+    "registry/**/*.ts"
   ]
 }

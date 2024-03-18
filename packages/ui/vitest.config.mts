@@ -1,7 +1,7 @@
 import { defineConfig, mergeConfig } from 'vitest/config'
 import { getVitestConfig } from '@templ/config'
 
-const exclude = ['{components,registry}/**', '*.config.{js,ts}', '*.d.ts']
+const exclude = ['{components,registry}/**', '*.config.{js,ts}']
 
 export default mergeConfig(
   getVitestConfig(),
