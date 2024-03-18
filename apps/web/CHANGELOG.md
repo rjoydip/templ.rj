@@ -1,1 +1,1 @@
-# @templ/changelog
+# @templ/web

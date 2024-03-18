@@ -15,4 +15,9 @@ export default antfu({
   rules: {
     'test/consistent-test-it': 'off',
   },
+}, {
+  files: ['apps/admin/**/*.tsx'],
+  rules: {
+    'unicorn/prefer-node-protocol': 'off',
+  },
 })
