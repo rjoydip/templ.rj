@@ -2,7 +2,7 @@
   "name": "@templ/workspace",
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@8.15.4",
+  "packageManager": "pnpm@8.15.5",
   "description": "A modern monorepo project template",
   "author": "Joydip Roy <joydipand@gmail.com> (https://github.com/rjoydip)",
   "license": "MIT",
@@ -37,17 +37,17 @@
     "test": "turbo run test"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "2.8.0",
+    "@antfu/eslint-config": "2.8.3",
     "@antfu/ni": "^0.21.12",
     "@changesets/cli": "^2.27.1",
-    "@vitest/coverage-v8": "^1.3.1",
+    "@vitest/coverage-v8": "^1.4.0",
     "eslint": "^8.57.0",
     "husky": "^9.0.11",
-    "knip": "^5.0.3",
+    "knip": "^5.1.2",
     "playwright": "^1.42.1",
-    "pnpm": "^8.15.4",
+    "pnpm": "^8.15.5",
     "taze": "^0.13.3",
     "turbo": "^1.12.5",
-    "vitest": "^1.3.1"
+    "vitest": "^1.4.0"
   }
 }
