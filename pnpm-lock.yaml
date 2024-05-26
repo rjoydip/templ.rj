@@ -1158,8 +1158,16 @@ packages:
     resolution: {integrity: sha512-803gmbQdqwdf4olxrX4AJyFBV/RTr3rSmOj0rKwesmzlfhYNDEs+/iOcznzpNWlJlIlTJC2QfPFcHB6DlzdVLQ==}
     engines: {node: '>=6.9.0'}
 
+  /@babel/helper-string-parser@7.24.6:
+    resolution: {integrity: sha512-WdJjwMEkmBicq5T9fm/cHND3+UlFa2Yj8ALLgmoSQAJZysYbBjw+azChSGPN4DSPLXOcooGRvDwZWMcF/mLO2Q==}
+    engines: {node: '>=6.9.0'}
+
   /@babel/helper-validator-identifier@7.22.20:
     resolution: {integrity: sha512-Y4OZ+ytlatR8AI+8KZfKuL5urKp7qey08ha31L8b3BwewJAoJamTzyvxPR/5D+KkdJCGPq/+8TukHBlY10FX9A==}
+    engines: {node: '>=6.9.0'}
+
+  /@babel/helper-validator-identifier@7.24.6:
+    resolution: {integrity: sha512-4yA7s865JHaqUdRbnaxarZREuPTHrjpDT+pXoAZ1yhyo6uFnIEpS8VMu16siFOHDpZNKYv5BObhsB//ycbICyw==}
     engines: {node: '>=6.9.0'}
 
   /@babel/helper-validator-option@7.23.5:
@@ -1199,6 +1207,13 @@ packages:
     hasBin: true
     dependencies:
       '@babel/types': 7.23.9
+
+  /@babel/parser@7.24.6:
+    resolution: {integrity: sha512-eNZXdfU35nJC2h24RznROuOpO94h6x8sg9ju0tT9biNtLZ2vuP8SduLqqV+/8+cebSLV9SJEAN5Z3zQbJG/M+Q==}
+    engines: {node: '>=6.0.0'}
+    hasBin: true
+    dependencies:
+      '@babel/types': 7.24.6
 
   /@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression@7.23.3(@babel/core@7.23.9):
     resolution: {integrity: sha512-iRkKcCqb7iGnq9+3G6rZ+Ciz5VywC4XNRHe57lKM+jOeYAoR0lVqdeeDRfh0tQcTfw/+vBhHn926FmQhLtlFLQ==}
@@ -2220,6 +2235,14 @@ packages:
     dependencies:
       '@babel/helper-string-parser': 7.23.4
       '@babel/helper-validator-identifier': 7.22.20
+      to-fast-properties: 2.0.0
+
+  /@babel/types@7.24.6:
+    resolution: {integrity: sha512-WaMsgi6Q8zMgMth93GvWPXkhAIEobfsIkLTacoVZoK1J0CevIPGYY2Vo5YvJGqyHqXM6P4ppOYGsIRU8MM9pFQ==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      '@babel/helper-string-parser': 7.24.6
+      '@babel/helper-validator-identifier': 7.24.6
       to-fast-properties: 2.0.0
 
   /@base2/pretty-print-object@1.0.1:
@@ -5122,7 +5145,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': 7.23.9
+      '@babel/runtime': 7.24.0
       '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.2.66)(react@18.2.0)
       '@types/react': 18.2.66
       react: 18.2.0
@@ -6266,7 +6289,7 @@ packages:
       '@radix-ui/react-select': 1.2.2(@types/react@18.2.66)(react-dom@18.2.0)(react@18.2.0)
       '@radix-ui/react-toolbar': 1.0.4(@types/react@18.2.66)(react-dom@18.2.0)(react@18.2.0)
       '@storybook/client-logger': 7.6.17
-      '@storybook/csf': 0.1.2
+      '@storybook/csf': 0.1.7
       '@storybook/global': 5.0.0
       '@storybook/theming': 7.6.17(react-dom@18.2.0)(react@18.2.0)
       '@storybook/types': 7.6.17
@@ -6431,6 +6454,12 @@ packages:
 
   /@storybook/csf@0.1.2:
     resolution: {integrity: sha512-ePrvE/pS1vsKR9Xr+o+YwdqNgHUyXvg+1Xjx0h9LrVx7Zq4zNe06pd63F5EvzTbCbJsHj7GHr9tkiaqm7U8WRA==}
+    dependencies:
+      type-fest: 2.19.0
+    dev: true
+
+  /@storybook/csf@0.1.7:
+    resolution: {integrity: sha512-53JeLZBibjQxi0Ep+/AJTfxlofJlxy1jXcSKENlnKxHjWEYyHQCumMP5yTFjf7vhNnMjEpV3zx6t23ssFiGRyw==}
     dependencies:
       type-fest: 2.19.0
     dev: true
@@ -7668,7 +7697,7 @@ packages:
   /@vue/compiler-core@3.4.15:
     resolution: {integrity: sha512-XcJQVOaxTKCnth1vCxEChteGuwG6wqnUHxAm1DO3gCz0+uXKaJNx8/digSz4dLALCy8n2lKq24jSUs8segoqIw==}
     dependencies:
-      '@babel/parser': 7.23.9
+      '@babel/parser': 7.24.6
       '@vue/shared': 3.4.15
       entities: 4.5.0
       estree-walker: 2.0.2
@@ -7683,7 +7712,7 @@ packages:
   /@vue/compiler-sfc@3.4.15:
     resolution: {integrity: sha512-LCn5M6QpkpFsh3GQvs2mJUOAlBQcCco8D60Bcqmf3O3w5a+KWS5GvYbrrJBkgvL1BDnTp+e8q0lXCLgHhKguBA==}
     dependencies:
-      '@babel/parser': 7.23.9
+      '@babel/parser': 7.24.6
       '@vue/compiler-core': 3.4.15
       '@vue/compiler-dom': 3.4.15
       '@vue/compiler-ssr': 3.4.15
@@ -15781,6 +15810,7 @@ packages:
 
   /rimraf@2.6.3:
     resolution: {integrity: sha512-mwqeW5XsA2qAejG46gYdENaxXjx9onRNCfn7L0duuP4hCuTIi/QO7PDK07KJfp1d+izWPrzEJDcSqBa0OZQriA==}
+    deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
     dependencies:
       glob: 7.2.3
