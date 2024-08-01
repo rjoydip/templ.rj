@@ -28,7 +28,7 @@ jobs:
   trivy_scan:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@master
       - name: Run Trivy vulnerability scanner in fs mode
         uses: aquasecurity/trivy-action@master
@@ -76,15 +76,15 @@ jobs:
       - name: 👷 Build
         run: pnpm run build
 
-      - name: 🌐 E2E test
+      - name: 🌐 E2E Test
         run: pnpm -C apps/web test:e2e
 
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: playwright-report
-          path: artifacts/e2e/reports
-          retention-days: 30
+      # - uses: actions/upload-artifact@v4
+      #   if: always()
+      #   with:
+      #     name: playwright-report
+      #     path: artifacts/e2e/reports
+      #     retention-days: 30
 
   test:
     runs-on: ${{ matrix.os }}
@@ -92,7 +92,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        node_version: [18]
+        node_version: [20]
       fail-fast: false
     steps:
       - uses: actions/checkout@v3
@@ -103,10 +103,13 @@ jobs:
       - name: 🧪 Unit Test
         run: pnpm run test
 
-      - name: 📚 Storybook build
-        run: pnpm run -C packages/ui build:storybook
+      - name: Install Storybook Deps
+        run: pnpm exec playwright install --with-deps
 
-      - name: 🚨 Storybook test
+      - name: 📚 Storybook build
+        run: pnpm run -C packages/ui build
+
+      - name: 🚨 Storybook Test
         if: ${{ matrix.os == 'ubuntu-latest' }}
         run: |
           pnpm -C packages/ui test:storybook:ci

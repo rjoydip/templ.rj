@@ -19,7 +19,6 @@
     "npm": ">=8"
   },
   "scripts": {
-    "postinstall": "pnpm exec playwright install --with-deps",
     "build": "next build",
     "clean": "del-cli .next .turbo test-results",
     "dev": "next dev --port=3001",

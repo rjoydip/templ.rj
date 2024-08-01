@@ -26,10 +26,9 @@
   },
   "scripts": {
     "build": "storybook build -o dist/storybook",
-    "build:storybook": "pnpm build:storybook",
     "storybook": "storybook dev -p 6006",
     "test:storybook": "test-storybook",
-    "test:storybook:ci": "concurrently -k -s first -n \"Serve🔥,Test🧪\" -c \"magenta,blue\" \"pnpm build:storybook && serve dist/storybook -l 6006\" \"wait-on http://127.0.0.1:6006 && pnpm test:storybook\"",
+    "test:storybook:ci": "concurrently -k -s first -n \"Serve🔥,Test🧪\" -c \"magenta,blue\" \"pnpm build && serve dist/storybook -l 6006\" \"wait-on http://127.0.0.1:6006 && pnpm test:storybook\"",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
