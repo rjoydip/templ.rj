@@ -53,10 +53,10 @@ jobs:
 
       - name: 👷 Build
         run: |
-          nr -r ci:env-copy
-          nr build
-          nr -r ci:env-delete
-          nr -r build:check
+          pnpm run -r ci:env-copy
+          pnpm run build
+          pnpm run -r ci:env-delete
+          pnpm run -r build:check
 
   lint:
     runs-on: ubuntu-latest
@@ -65,7 +65,7 @@ jobs:
       - uses: ./.github/actions/setup-node
 
       - name: 👕 Lint
-        run: nr lint
+        run: pnpm run lint
 
   e2e_test:
     runs-on: ubuntu-latest
@@ -74,7 +74,7 @@ jobs:
       - uses: ./.github/actions/setup-node
 
       - name: 👷 Build
-        run: nr build
+        run: pnpm run build
 
       - name: 🌐 E2E test
         run: pnpm -C apps/web test:e2e
@@ -101,10 +101,10 @@ jobs:
           node-version: ${{ matrix.node_version }}
 
       - name: 🧪 Unit Test
-        run: nr test:ci
+        run: pnpm run test
 
       - name: 📚 Storybook build
-        run: nr -C packages/ui build:storybook
+        run: pnpm run -C packages/ui build:storybook
 
       - name: 🚨 Storybook test
         if: ${{ matrix.os == 'ubuntu-latest' }}

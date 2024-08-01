@@ -21,7 +21,7 @@
   "scripts": {
     "automd": "tsx ./src/update/automd.ts",
     "clean": "del-cli .eslintcache .turbo",
-    "build:check": "nr build:folder-count && nr build:size-limit && nr build:size-report",
+    "build:check": "pnpm run build:folder-count && pnpm run build:size-limit && pnpm run build:size-report",
     "build:folder-count": "tsx ./src/build/folder-count.ts",
     "build:size-limit": "tsx ./src/build/size-limit.ts",
     "build:size-report": "tsx ./src/build/size-report.ts",
@@ -32,7 +32,6 @@
   "dependencies": {
     "automd": "^0.3.8",
     "consola": "^3.2.3",
-    "del": "^7.1.0",
     "dot-prop": "^8.0.2",
     "globby": "^14.0.2",
     "replace-string": "^4.0.0",
@@ -46,6 +45,7 @@
     "@antfu/ni": "^0.21.12",
     "@templ/tsconfig": "workspace:*",
     "@types/node": "^20.14.13",
+    "del-cli": "^5.1.0",
     "tsx": "^4.16.5",
     "typescript": "^5.5.4"
   }

@@ -29,6 +29,8 @@ async function deleteNodeModules(path) {
 export async function run() {
   await deleteNodeModules(cwd())
   console.log('Node modules deleted successfully')
+  await rm(`${cwd()}/.turbo`, { recursive: true, force: true })
+  console.log('.turbo (root) deleted successfully')
 }
 
 run().catch(console.error)

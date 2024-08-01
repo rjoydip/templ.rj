@@ -6,7 +6,6 @@
   "include": [
     "lib/utils.ts",
     ".storybook/**/*.ts",
-    "components/**/*.tsx",
     "modules/*.tsx"
   ]
 }

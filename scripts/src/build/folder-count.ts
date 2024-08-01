@@ -4,12 +4,12 @@ import { root } from '../utils'
 
 export async function run() {
   const cwd = root
-  const ignorePatterns = ['.git/**', '**/node_modules/**', '**/tsconfig/**']
-  const workingDirectories = await globby(['{packages,apps,plugins}/**/package.json'], {
+  const ignorePatterns = ['.git', '**/node_modules', '**/tsconfig', '**/ui']
+  const workingDirectories = await globby(['{packages,apps}/**/package.json'], {
     ignore: ignorePatterns,
     cwd,
   })
-  const files = await globby(['{packages,apps,plugins}/**/dist/index.{js,html}', '{packages,apps,plugins}/**/.next/package.json'], {
+  const files = await globby(['{packages,apps}/**/dist/index.{js,html}', '{packages,apps}/**/.next/package.json'], {
     ignore: ignorePatterns,
     cwd,
   })

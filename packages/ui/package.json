@@ -25,10 +25,11 @@
     "npm": ">=8"
   },
   "scripts": {
-    "build:storybook": "storybook build -o dist/storybook",
+    "build": "storybook build -o dist/storybook",
+    "build:storybook": "pnpm build:storybook",
     "storybook": "storybook dev -p 6006",
     "test:storybook": "test-storybook",
-    "test:storybook:ci": "concurrently -k -s first -n \"Serve🔥,Test🧪\" -c \"magenta,blue\" \"nr build:storybook && serve dist/storybook -l 6006\" \"wait-on http://127.0.0.1:6006 && pnpm test:storybook\"",
+    "test:storybook:ci": "concurrently -k -s first -n \"Serve🔥,Test🧪\" -c \"magenta,blue\" \"pnpm build:storybook && serve dist/storybook -l 6006\" \"wait-on http://127.0.0.1:6006 && pnpm test:storybook\"",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
@@ -65,6 +66,8 @@
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
     "embla-carousel-react": "8.1.8",
+    "next-theme": "^0.1.5",
+    "next-themes": "^0.3.0",
     "postcss": "^8.4.40",
     "react": "^18.3.1",
     "react-day-picker": "^8.10.1",

@@ -48,6 +48,8 @@
     "@templ/config": "workspace:*",
     "@templ/tsconfig": "workspace:*",
     "@types/node": "^20.14.13",
+    "@vitest/coverage-v8": "^1.6.0",
+    "del-cli": "^5.1.0",
     "esbuild": "^0.20.2",
     "tsx": "^4.16.5",
     "typescript": "^5.5.4"

@@ -19,6 +19,7 @@
     "npm": ">=8"
   },
   "scripts": {
+    "postinstall": "pnpm exec playwright install --with-deps",
     "build": "next build",
     "clean": "del-cli .next .turbo test-results",
     "dev": "next dev --port=3002",
@@ -47,8 +48,10 @@
     "@templ/tsconfig": "workspace:*",
     "@types/node": "^20.14.13",
     "@types/react": "^18.3.3",
+    "@vitest/coverage-v8": "^1.6.0",
     "autoprefixer": "^10.4.19",
     "date-fns": "^3.6.0",
+    "del-cli": "^5.1.0",
     "postcss": "^8.4.40",
     "react-day-picker": "^8.10.1",
     "std-env": "^3.7.0",
