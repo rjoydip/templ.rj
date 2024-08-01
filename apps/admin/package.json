@@ -52,6 +52,7 @@
     "autoprefixer": "^10.4.19",
     "date-fns": "^3.6.0",
     "del-cli": "^5.1.0",
+    "playwright": "^1.45.3",
     "postcss": "^8.4.40",
     "react-day-picker": "^8.10.1",
     "std-env": "^3.7.0",
