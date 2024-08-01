@@ -1,16 +1,12 @@
 {
   "extends": "@templ/tsconfig/react.json",
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./*"]
-    },
-    "noEmit": false
+    "baseUrl": "."
   },
   "include": [
-    "lib/**/*.ts",
+    "lib/utils.ts",
     ".storybook/**/*.ts",
     "components/**/*.tsx",
-    "registry/**/*.ts"
+    "modules/*.tsx"
   ]
 }

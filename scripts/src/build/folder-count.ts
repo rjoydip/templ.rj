@@ -14,7 +14,10 @@ export async function run() {
     cwd,
   })
 
-  files.length === workingDirectories.length ? consola.success('Build output count matched') : consola.error('Build output count not match')
+  if (files.length === workingDirectories.length)
+    consola.success('Build output count matched')
+  else
+    consola.error('Build output count not match')
 }
 
 run().catch(consola.error)

@@ -1,6 +1,7 @@
 import { resolve } from 'node:path'
 import { defineConfig, devices } from '@playwright/test'
 import { env, isCI } from 'std-env'
+import { name } from 'package.json'
 
 /**
  * Read environment variables from file.
@@ -8,7 +9,7 @@ import { env, isCI } from 'std-env'
  */
 // require('dotenv').config();
 
-const url = env.URL || 'http://localhost:3001'
+const url = env.URL || 'http://localhost:3002'
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -22,12 +23,12 @@ export default defineConfig({
   /* Retry on CI only */
   retries: isCI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
-  workers: isCI ? 1 : undefined,
+  workers: isCI ? 2 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
     ['list', { printSteps: true }],
-    ['html', { open: 'never', outputFolder: `${resolve('..', '..', 'artifacts', 'e2e-report')}` }],
-    [
+    ['html', { open: 'never', outputFolder: `${resolve('..', '..', 'artifacts', name, 'e2e-report')}` }],
+    /* [
       '@argos-ci/playwright/reporter',
       {
         // Enable upload to Argos only when it runs on CI.
@@ -35,7 +36,7 @@ export default defineConfig({
         // Set your Argos token (required only if you don't use GitHub Actions).
         token: env.ARGOS_TOKEN,
       },
-    ],
+    ], */
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
@@ -60,10 +61,10 @@ export default defineConfig({
       use: { ...devices['Desktop Firefox'] },
     },
 
-    {
+    /* {
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
-    },
+    }, */
 
     /* Test against mobile viewports. */
     // {

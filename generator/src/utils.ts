@@ -75,7 +75,7 @@ export async function updateTemplateAssets(options: {
         url: 'https://github.com/rjoydip/templ/issues',
       })
       setProperty(json, 'engines', {
-        node: '^18.8.0 || >=20.6.0',
+        node: '^18.8.0 || >=20.16.0',
         npm: '>=8',
       })
       setProperty(json, 'scripts', {})
@@ -118,6 +118,7 @@ export async function updateTemplateAssets(options: {
 }
 
 export async function execute(params: {
+  // eslint-disable-next-line ts/no-unsafe-function-type
   f: string | Promise<string | boolean | number> | Function
   showOutput?: boolean
   showSpinner?: boolean
@@ -198,7 +199,7 @@ export async function vitestConfigPathModification(opts: {
 
   if (sharedFilePath && opts.path) {
     const sharedPath = resolve(parse(sharedFilePath).dir).replace(`${root}${sep}`, '')
-    const sourcePath = resolve(opts.path).replace(`${root}${sep}`, '').replace(/[a-zA-Z0-9]+/gm, '..')
+    const sourcePath = resolve(opts.path).replace(`${root}${sep}`, '').replace(/[a-z0-9]+/gi, '..')
     newPath = slash(
       join(sourcePath, sharedPath, sharedFileName),
     )

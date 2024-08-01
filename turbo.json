@@ -1,10 +1,11 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env"],
-  "pipeline": {
+  "globalEnv": ["NODE_ENV"],
+  "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".next/**"],
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
       "inputs": ["src/**/*.{ts,tsx}"]
     },
     "dev": {
@@ -13,15 +14,23 @@
       "persistent": true,
       "inputs": ["**/*.test.{ts,tsx}"]
     },
+    "test:e2e": {},
+    "test:e2e:ui": {},
+    "check": {
+      "cache": false
+    },
     "lint": {
-      "dependsOn": ["^build"],
-      "inputs": ["**/*.{ts,tsx}"]
+      "cache": false,
+      "outputs": []
+    },
+    "lint:fix": {
+      "cache": false,
+      "outputs": []
     },
     "test": {
-      "dependsOn": ["^build", "^test"],
-      "outputs": ["coverage/**"],
-      "inputs": ["test/**/*.test.{ts,tsx}"]
-    }
-  },
-  "globalEnv": []
+      "cache": false,
+      "outputs": []
+    },
+    "typecheck": {}
+  }
 }

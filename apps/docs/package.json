@@ -27,11 +27,12 @@
     "src"
   ],
   "engines": {
-    "node": "^18.8.0 || >=20.6.0",
+    "node": "^18.0.0 || >=20.0.0",
     "npm": ">=8"
   },
   "scripts": {
     "build": "tsx esbuild.config.ts",
+    "clean": "del-cli .turbo dist",
     "dev": "tsx esbuild.config.ts --watch",
     "test": "vitest run",
     "typecheck": "tsc --noEmit"
@@ -39,10 +40,10 @@
   "devDependencies": {
     "@templ/config": "workspace:*",
     "@templ/tsconfig": "workspace:*",
-    "@types/node": "^20.11.25",
-    "esbuild": "^0.20.1",
-    "tsx": "^4.7.1",
-    "typescript": "^5.4.2",
-    "vitest": "^1.3.1"
+    "@types/node": "^20.14.13",
+    "esbuild": "^0.20.2",
+    "tsx": "^4.16.5",
+    "typescript": "^5.5.4",
+    "vitest": "^1.6.0"
   }
 }
