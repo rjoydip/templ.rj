@@ -2,7 +2,7 @@
   "name": "@templ/workspace",
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@8.15.5",
+  "packageManager": "pnpm@9.6.0",
   "description": "A modern monorepo project template",
   "author": "Joydip Roy <joydipand@gmail.com> (https://github.com/rjoydip)",
   "license": "MIT",
@@ -25,29 +25,30 @@
     "yarn": ">=3"
   },
   "scripts": {
+    "postinstall": "npx playwright install --with-deps",
     "prepare": "husky",
-    "postinstall": "pnpm exec playwright install --with-deps",
-    "all": "ni && nr deps:update && nr lint && nr build && nr test",
-    "build": "nr clean && turbo run build && nr -C scripts build:check",
-    "clean": "nr -C scripts clean",
-    "test:ci": "vitest run --coverage",
+    "build": "pnpm run clean && turbo run build",
+    "clean": "pnpm run -r clean",
+    "clean:all": "pnpm run clean && node ./scripts/src/clean.mjs",
     "deps:update": "taze -r -w -i -f -l",
-    "lint": "eslint . --fix && knip && nr -r typecheck && nr -C scripts automd",
+    "dev": "turbo run dev --parallel",
+    "check": "pnpm run lint && pnpm run typecheck && pnpm run --filter=scripts build:check automd",
+    "lint": "eslint . --fix",
     "release": "changeset version && npm publish && git push --follow-tags",
-    "test": "turbo run test"
+    "test": "turbo run test",
+    "test:e2e": "pnpm -C apps/admin test:e2e && pnpm -C apps/web test:e2e",
+    "typecheck": "pnpm run -r typecheck",
+    "validate": "pnpm run deps:update && pnpm run clean && pnpm run build && pnpm run check && pnpm run test"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "2.8.3",
-    "@antfu/ni": "^0.21.12",
-    "@changesets/cli": "^2.27.1",
-    "@vitest/coverage-v8": "^1.4.0",
+    "@antfu/eslint-config": "2.24.1",
+    "@changesets/cli": "^2.27.7",
     "eslint": "^8.57.0",
-    "husky": "^9.0.11",
-    "knip": "^5.1.2",
-    "playwright": "^1.42.1",
-    "pnpm": "^8.15.5",
-    "taze": "^0.13.3",
-    "turbo": "^1.12.5",
-    "vitest": "^1.4.0"
+    "eslint-plugin-vitest": "^0.5.4",
+    "husky": "^9.1.4",
+    "knip": "^5.27.0",
+    "playwright": "^1.45.3",
+    "taze": "^0.13.9",
+    "turbo": "^2.0.11"
   }
 }

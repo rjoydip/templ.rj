@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 
-import { buttonVariants } from '@templ/ui/registry'
+import { buttonVariants } from '@templ/ui/modules/button'
 import { siteConfig } from '@/config/site'
 
 export default function IndexPage() {

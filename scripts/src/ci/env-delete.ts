@@ -22,7 +22,10 @@ export async function run() {
         })
       }),
     )
-    files.length ? consola.box(`Env file delete env file from \n\n${files.map(d => colors.magenta((splitByCase(d, ['\\', '/']) ?? []).slice(0, 4).join(sep))).join('\n')}`) : consola.error('No env file found')
+    if (files.length)
+      consola.box(`Env file delete env file from \n\n${files.map(d => colors.magenta((splitByCase(d, ['\\', '/']) ?? []).slice(0, 4).join(sep))).join('\n')}`)
+    else
+      consola.error('No env file found')
   }
   else {
     consola.box(`Would be deleted env file from \n\n${files.map(d => colors.magenta((splitByCase(d, ['\\', '/']) ?? []).slice(0, 4).join(sep))).join('\n')}`)

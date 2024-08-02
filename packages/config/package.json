@@ -26,33 +26,36 @@
     "dist"
   ],
   "engines": {
-    "node": "^18.8.0 || >=20.6.0",
+    "node": "^18.0.0 || >=20.0.0",
     "npm": ">=8"
   },
   "scripts": {
     "build": "tsx esbuild.config.ts",
+    "clean": "del-cli .turbo dist coverage",
     "dev": "tsx esbuild.config.ts --watch",
-    "test": "vitest run",
+    "test": "vitest run --coverage",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@lukeed/ms": "^2.0.2",
-    "c12": "^1.10.0",
+    "c12": "^1.11.1",
     "consola": "^3.2.3",
-    "cpy": "^11.0.1",
+    "cpy": "^11.1.0",
     "esbuild": "^0.20.2",
-    "globby": "^14.0.1",
-    "pkg-types": "^1.0.3",
+    "globby": "^14.0.2",
+    "pkg-types": "^1.1.3",
     "std-env": "^3.7.0",
-    "zod": "^3.22.4"
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@templ/tsconfig": "workspace:*",
-    "@types/node": "^20.11.28",
+    "@types/node": "^20.14.13",
+    "@vitest/coverage-v8": "^1.6.0",
+    "del-cli": "^5.1.0",
     "esbuild": "^0.20.2",
-    "tsx": "^4.7.1",
-    "typescript": "^5.4.2",
-    "vitest": "^1.4.0"
+    "tsx": "^4.16.5",
+    "typescript": "^5.5.4",
+    "vitest": "^1.6.0"
   },
   "size-limit": "7.5 KB"
 }

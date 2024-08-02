@@ -27,16 +27,19 @@
     "src"
   ],
   "engines": {
-    "node": "^18.8.0 || >=20.6.0",
+    "node": "^18.0.0 || >=20.0.0",
     "npm": ">=8"
   },
   "scripts": {
+    "clean": "del-cli .turbo coverage",
     "start": "node src/index.js",
-    "test": "vitest run"
+    "test": "vitest run --coverage"
   },
   "devDependencies": {
     "@templ/config": "workspace:*",
-    "@types/node": "^20.11.28",
-    "vitest": "^1.4.0"
+    "@types/node": "^20.14.13",
+    "@vitest/coverage-v8": "^1.6.0",
+    "del-cli": "^5.1.0",
+    "vitest": "^1.6.0"
   }
 }

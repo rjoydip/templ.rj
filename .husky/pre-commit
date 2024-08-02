@@ -1,5 +1,4 @@
 pnpm run deps:update
 pnpm run build
 pnpm run lint
-pnpm run test:ci
 git add .

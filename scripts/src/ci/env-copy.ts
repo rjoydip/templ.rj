@@ -19,7 +19,10 @@ export async function run() {
         await cp(f, resolve(dirname(f), '.env'), { force: true, recursive: true })
       }),
     )
-    files.length ? consola.success(`Env copied`) : consola.error('No env file found')
+    if (files.length)
+      consola.success(`Env copied`)
+    else
+      consola.error('No env file found')
   }
   else {
     consola.box(`Would be copied \\n${files.map(d => colors.magenta((splitByCase(d, ['\\', '/']) ?? []).slice(0, 4).join(sep))).join('\n')}`)

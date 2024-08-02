@@ -39,8 +39,8 @@ export async function shell(
     [stdout, stderr] = await Promise.all([text(child.stdout), text(child.stderr)])
     await done
   }
-  catch (e) {
-    throw new Error(JSON.stringify({ stdout, stderr, exitCode: 1 }))
+  catch (error) {
+    throw new Error(JSON.stringify({ stdout, stderr, error, exitCode: 1 }))
   }
   const { exitCode } = child
   if (exitCode === null)

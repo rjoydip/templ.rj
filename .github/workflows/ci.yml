@@ -28,7 +28,7 @@ jobs:
   trivy_scan:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@master
       - name: Run Trivy vulnerability scanner in fs mode
         uses: aquasecurity/trivy-action@master
@@ -53,10 +53,10 @@ jobs:
 
       - name: 👷 Build
         run: |
-          nr -r ci:env-copy
-          nr build
-          nr -r ci:env-delete
-          nr -r build:check
+          pnpm run -r ci:env-copy
+          pnpm run build
+          pnpm run -r ci:env-delete
+          pnpm run -r build:check
 
   lint:
     runs-on: ubuntu-latest
@@ -65,7 +65,7 @@ jobs:
       - uses: ./.github/actions/setup-node
 
       - name: 👕 Lint
-        run: nr lint
+        run: pnpm run lint
 
   e2e_test:
     runs-on: ubuntu-latest
@@ -74,16 +74,20 @@ jobs:
       - uses: ./.github/actions/setup-node
 
       - name: 👷 Build
-        run: nr build
+        run: |
+          pnpm -C apps/admin build
+          pnpm -C apps/web build
 
-      - name: 🌐 E2E test
-        run: pnpm -C apps/web e2e:test
+      - name: 🌐 E2E Test
+        run: pnpm test:e2e
 
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: playwright-report
-          path: artifacts/e2e/reports
+          path: |
+            artifacts/@templ/admin/e2e-report/index.html
+            artifacts/@templ/web/e2e-report/index.html
           retention-days: 30
 
   test:
@@ -92,7 +96,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        node_version: [18]
+        node_version: [20]
       fail-fast: false
     steps:
       - uses: actions/checkout@v3
@@ -101,15 +105,14 @@ jobs:
           node-version: ${{ matrix.node_version }}
 
       - name: 🧪 Unit Test
-        run: nr test:ci
+        run: pnpm run test
 
       - name: 📚 Storybook build
-        run: nr -C packages/ui build:storybook
+        run: pnpm run -C packages/ui build
 
-      - name: 🚨 Storybook test
+      - name: 🚨 Storybook Test
         if: ${{ matrix.os == 'ubuntu-latest' }}
-        run: |
-          pnpm -C packages/ui test:storybook:ci
+        run: pnpm -C packages/ui test:storybook:ci
 
   action-timeline:
     needs: [build, e2e_test, lint, pr, test, trivy_scan, triage]

@@ -31,12 +31,12 @@
     "templ.mjs"
   ],
   "engines": {
-    "node": "^18.8.0 || >=20.6.0",
+    "node": "^18.0.0 || >=20.0.0",
     "npm": ">=8"
   },
   "scripts": {
-    "postbuild": "pnpm link . && pnpm templ-cli -v",
     "build": "tsx esbuild.config.ts",
+    "clean": "del-cli .turbo dist",
     "dev": "tsx ./src/index",
     "typecheck": "tsc --noEmit"
   },
@@ -47,10 +47,12 @@
   "devDependencies": {
     "@templ/config": "workspace:*",
     "@templ/tsconfig": "workspace:*",
-    "@types/node": "^20.11.28",
+    "@types/node": "^20.14.13",
+    "@vitest/coverage-v8": "^1.6.0",
+    "del-cli": "^5.1.0",
     "esbuild": "^0.20.2",
-    "tsx": "^4.7.1",
-    "typescript": "^5.4.2"
+    "tsx": "^4.16.5",
+    "typescript": "^5.5.4"
   },
   "size-limit": "400 KB"
 }

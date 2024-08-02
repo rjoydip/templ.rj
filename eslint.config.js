@@ -1,4 +1,5 @@
 import antfu from '@antfu/eslint-config'
+import vitest from 'eslint-plugin-vitest'
 
 export default antfu({
   stylistic: true,
@@ -11,8 +12,13 @@ export default antfu({
     'antfu/no-import-dist': 'off',
   },
 }, {
-  files: ['**/*.bench.ts'],
+  files: ['apps/admin/**/*.tsx'],
   rules: {
-    'test/consistent-test-it': 'off',
+    'unicorn/prefer-node-protocol': 'off',
+  },
+}, {
+  files: ['test/**'],
+  plugins: {
+    vitest,
   },
 })

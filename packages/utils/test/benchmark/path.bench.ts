@@ -1,12 +1,12 @@
-import { bench, describe } from 'vitest'
+import { describe, it } from 'vitest'
 import { getRootDirAsync, getRootDirSync } from '../../src'
 
 describe('path', () => {
-  bench.only('root dir async', async () => {
+  it('root dir async', async () => {
     await getRootDirAsync()
   })
 
-  bench.only('root dir sync', () => {
+  it('root dir sync', () => {
     getRootDirSync()
   })
 })

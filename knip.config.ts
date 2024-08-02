@@ -1,21 +1,21 @@
-const filePattern = '**/*.?(bench|config|load|story).?(c|m)[jt]s'
-const srcPattern = '**/src/**/*.?(c|m)[jt]s?(x)'
+const ignoreFilePattern = '**/*.?(bench|config|load|story).?(c|m)[jt]s'
+const entryPattern = '**/{src,modules}/**/*.?(c|m)[jt]s?(x)'
 const testPattern = '**/test/**/*.test.?(c|m)[jt]s?(x)'
 
 export default {
-  'ignoreBinaries': ['concurrently', 'e2e:test', 'templ-cli', 'test-storybook', 'test:storybook:ci'],
-  'ignoreDependencies': ['@templ/config', '@vitest/coverage-v8', 'esbuild', 'serve', 'typecheck', 'wait-on'],
+  'ignoreBinaries': ['test:e2e', 'templ-cli', 'test:storybook:ci'],
+  'ignoreDependencies': ['@templ/config', '@vitest/coverage-v8', '@types/autocannon', 'autocannon', 'serve', 'typecheck', 'wait-on'],
   'workspaces': {
     '.': {
-      ignore: ['**/{.config,coverage,dist,e2e-report,fixtures,templates}/**', filePattern],
+      ignore: ['**/{.config,coverage,dist,e2e-report,fixtures,templates}/**', ignoreFilePattern],
     },
     'packages/*': {
-      entry: [srcPattern, testPattern, filePattern, '**/.storybook/*.?(c|m)[jt]s?(x)'],
-      ignore: [filePattern],
+      entry: [entryPattern, testPattern, '**/.storybook/*.?(c|m)[jt]s?(x)'],
+      ignore: [ignoreFilePattern],
     },
     'apps/*': {
-      entry: [srcPattern, testPattern],
-      ignore: [filePattern],
+      entry: [entryPattern, testPattern],
+      ignore: [ignoreFilePattern],
     },
   },
   'eslint': {
