@@ -74,7 +74,7 @@ jobs:
       - uses: ./.github/actions/setup-node
 
       - name: Playwright Deps
-        run: pnpm exec playwright install --with-deps
+        run: npx playwright install --with-deps
 
       - name: 👷 Build
         run: |
@@ -116,6 +116,7 @@ jobs:
       - name: 🚨 Storybook Test
         if: ${{ matrix.os == 'ubuntu-latest' }}
         run: |
+          npx playwright install --with-deps
           pnpm -C packages/ui test:storybook:ci
 
   action-timeline:
