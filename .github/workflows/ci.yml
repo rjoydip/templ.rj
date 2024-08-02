@@ -73,9 +73,6 @@ jobs:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup-node
 
-      - name: Playwright Deps
-        run: npx playwright install --with-deps
-
       - name: 👷 Build
         run: |
           pnpm -C apps/admin build
@@ -115,9 +112,7 @@ jobs:
 
       - name: 🚨 Storybook Test
         if: ${{ matrix.os == 'ubuntu-latest' }}
-        run: |
-          npx playwright install --with-deps
-          pnpm -C packages/ui test:storybook:ci
+        run: pnpm -C packages/ui test:storybook:ci
 
   action-timeline:
     needs: [build, e2e_test, lint, pr, test, trivy_scan, triage]
