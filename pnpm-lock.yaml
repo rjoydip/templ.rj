@@ -3333,6 +3333,7 @@ packages:
   '@scalar/use-modal@0.2.10':
     resolution: {integrity: sha512-kaDzszLWvuA8ZA2baVBl0/ba5cclQWJ2lp/TET7L09jh/r32EpVNDz7GcAqlct3y2nj5gdDG86tRvwQ/huFwUw==}
     engines: {node: '>=18'}
+    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
     peerDependencies:
       '@headlessui/vue': ^1.7.0
       vue: ^3.3.0
