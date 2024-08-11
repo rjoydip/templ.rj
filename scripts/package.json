@@ -42,7 +42,7 @@
     "terser": "^5.31.3"
   },
   "devDependencies": {
-    "@antfu/ni": "^0.21.12",
+    "@antfu/ni": "^0.22.1",
     "@templ/tsconfig": "workspace:*",
     "@types/node": "^20.14.13",
     "del-cli": "^5.1.0",
