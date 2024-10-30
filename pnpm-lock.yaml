@@ -343,7 +343,7 @@ importers:
         version: 0.15.1(hono@4.5.3)(zod@3.23.8)
       '@scalar/hono-api-reference':
         specifier: ^0.5.132
-        version: 0.5.132(@jest/globals@29.7.0)(jest@29.7.0(@types/node@20.14.13))(postcss@8.4.40)(storybook@8.2.7(@babel/preset-env@7.25.3(@babel/core@7.25.2)))(tailwindcss@3.4.7)(typescript@5.5.4)(vitest@1.6.0(@types/node@20.14.13)(terser@5.31.3))
+        version: 0.5.132(@jest/globals@29.7.0)(jest@29.7.0(@types/node@20.14.13))(postcss@8.4.47)(storybook@8.2.7(@babel/preset-env@7.25.3(@babel/core@7.25.2)))(tailwindcss@3.4.7)(typescript@5.5.4)(vitest@1.6.0(@types/node@20.14.13)(terser@5.31.3))
       consola:
         specifier: ^3.2.3
         version: 3.2.3
@@ -7498,6 +7498,9 @@ packages:
   picocolors@1.0.1:
     resolution: {integrity: sha512-anP1Z8qwhkbmu7MFP5iTt+wQKXgwzf7zTyGlcdzabySa9vd0Xt392U0rVmz9poOaBj0uHJKyyo9/upk0HrEQew==}
 
+  picocolors@1.1.0:
+    resolution: {integrity: sha512-TQ92mBOW0l3LeMeyLV6mzy/kWr8lkd/hp3mTg7wYK7zJhuBStmGMBG0BdeDZS/dZx1IukaX6Bk11zcln25o1Aw==}
+
   picomatch@2.3.1:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
     engines: {node: '>=8.6'}
@@ -7594,6 +7597,10 @@ packages:
 
   postcss@8.4.40:
     resolution: {integrity: sha512-YF2kKIUzAofPMpfH6hOi2cGnv/HrUlfucspc7pDyvv7kGdqXrfj8SCl/t8owkEgKEuu8ZcRjSOxFxVLqwChZ2Q==}
+    engines: {node: ^10 || ^12 || >=14}
+
+  postcss@8.4.47:
+    resolution: {integrity: sha512-56rxCq7G/XfB4EkXq9Egn5GCqugWvDFjafDOThIdMBsI15iqPqR5r15TfSr1YPYeEI19YeaXMCbY6u88Y76GLQ==}
     engines: {node: ^10 || ^12 || >=14}
 
   preferred-pm@3.1.4:
@@ -8225,6 +8232,10 @@ packages:
 
   source-map-js@1.2.0:
     resolution: {integrity: sha512-itJW8lvSA0TXEphiRoawsCksnlf8SyvmFzIhltqAHluXd88pkCd+cXJVHTDwdCr0IzwptSm035IHQktUu1QUMg==}
+    engines: {node: '>=0.10.0'}
+
+  source-map-js@1.2.1:
+    resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
     engines: {node: '>=0.10.0'}
 
   source-map-support@0.5.13:
@@ -11991,7 +12002,7 @@ snapshots:
       - typescript
       - vitest
 
-  '@scalar/api-reference@1.24.71(@jest/globals@29.7.0)(jest@29.7.0(@types/node@20.14.13))(postcss@8.4.40)(storybook@8.2.7(@babel/preset-env@7.25.3(@babel/core@7.25.2)))(tailwindcss@3.4.7)(typescript@5.5.4)(vitest@1.6.0(@types/node@20.14.13)(terser@5.31.3))':
+  '@scalar/api-reference@1.24.71(@jest/globals@29.7.0)(jest@29.7.0(@types/node@20.14.13))(postcss@8.4.47)(storybook@8.2.7(@babel/preset-env@7.25.3(@babel/core@7.25.2)))(tailwindcss@3.4.7)(typescript@5.5.4)(vitest@1.6.0(@types/node@20.14.13)(terser@5.31.3))':
     dependencies:
       '@floating-ui/vue': 1.1.2(vue@3.4.35(typescript@5.5.4))
       '@headlessui/vue': 1.7.22(vue@3.4.35(typescript@5.5.4))
@@ -12011,7 +12022,7 @@ snapshots:
       github-slugger: 2.0.0
       httpsnippet-lite: 3.0.5
       nanoid: 5.0.7
-      postcss-nested: 6.2.0(postcss@8.4.40)
+      postcss-nested: 6.2.0(postcss@8.4.47)
       unhead: 1.9.16
       unified: 11.0.5
       vue: 3.4.35(typescript@5.5.4)
@@ -12080,9 +12091,9 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@scalar/hono-api-reference@0.5.132(@jest/globals@29.7.0)(jest@29.7.0(@types/node@20.14.13))(postcss@8.4.40)(storybook@8.2.7(@babel/preset-env@7.25.3(@babel/core@7.25.2)))(tailwindcss@3.4.7)(typescript@5.5.4)(vitest@1.6.0(@types/node@20.14.13)(terser@5.31.3))':
+  '@scalar/hono-api-reference@0.5.132(@jest/globals@29.7.0)(jest@29.7.0(@types/node@20.14.13))(postcss@8.4.47)(storybook@8.2.7(@babel/preset-env@7.25.3(@babel/core@7.25.2)))(tailwindcss@3.4.7)(typescript@5.5.4)(vitest@1.6.0(@types/node@20.14.13)(terser@5.31.3))':
     dependencies:
-      '@scalar/api-reference': 1.24.71(@jest/globals@29.7.0)(jest@29.7.0(@types/node@20.14.13))(postcss@8.4.40)(storybook@8.2.7(@babel/preset-env@7.25.3(@babel/core@7.25.2)))(tailwindcss@3.4.7)(typescript@5.5.4)(vitest@1.6.0(@types/node@20.14.13)(terser@5.31.3))
+      '@scalar/api-reference': 1.24.71(@jest/globals@29.7.0)(jest@29.7.0(@types/node@20.14.13))(postcss@8.4.47)(storybook@8.2.7(@babel/preset-env@7.25.3(@babel/core@7.25.2)))(tailwindcss@3.4.7)(typescript@5.5.4)(vitest@1.6.0(@types/node@20.14.13)(terser@5.31.3))
       hono: 4.5.3
     transitivePeerDependencies:
       - '@jest/globals'
@@ -17234,6 +17245,8 @@ snapshots:
 
   picocolors@1.0.1: {}
 
+  picocolors@1.1.0: {}
+
   picomatch@2.3.1: {}
 
   picomatch@4.0.2: {}
@@ -17298,6 +17311,11 @@ snapshots:
       postcss: 8.4.40
       postcss-selector-parser: 6.1.1
 
+  postcss-nested@6.2.0(postcss@8.4.47):
+    dependencies:
+      postcss: 8.4.47
+      postcss-selector-parser: 6.1.1
+
   postcss-selector-parser@6.1.1:
     dependencies:
       cssesc: 3.0.0
@@ -17316,6 +17334,12 @@ snapshots:
       nanoid: 3.3.7
       picocolors: 1.0.1
       source-map-js: 1.2.0
+
+  postcss@8.4.47:
+    dependencies:
+      nanoid: 3.3.7
+      picocolors: 1.1.0
+      source-map-js: 1.2.1
 
   preferred-pm@3.1.4:
     dependencies:
@@ -18080,6 +18104,8 @@ snapshots:
       react-dom: 18.3.1(react@18.3.1)
 
   source-map-js@1.2.0: {}
+
+  source-map-js@1.2.1: {}
 
   source-map-support@0.5.13:
     dependencies:
