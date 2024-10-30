@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "consola": "^3.2.3",
-    "dot-prop": "^8.0.2",
+    "dot-prop": "^9.0.0",
     "find-up": "^7.0.0",
     "giget": "^1.2.3",
     "globby": "^14.0.2",
