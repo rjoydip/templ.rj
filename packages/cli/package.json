@@ -48,7 +48,7 @@
     "@templ/config": "workspace:*",
     "@templ/tsconfig": "workspace:*",
     "@types/node": "^20.17.6",
-    "@vitest/coverage-v8": "^1.6.0",
+    "@vitest/coverage-v8": "^2.1.4",
     "del-cli": "^5.1.0",
     "esbuild": "^0.20.2",
     "tsx": "^4.19.2",

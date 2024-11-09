@@ -38,7 +38,7 @@
   "devDependencies": {
     "@templ/config": "workspace:*",
     "@types/node": "^20.17.6",
-    "@vitest/coverage-v8": "^1.6.0",
+    "@vitest/coverage-v8": "^2.1.4",
     "del-cli": "^5.1.0",
     "vitest": "^2.1.4"
   }

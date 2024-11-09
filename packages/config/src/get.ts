@@ -1,5 +1,5 @@
 import type { BuildOptions, Plugin } from 'esbuild'
-import type { UserConfig } from 'vitest'
+import type { UserConfig } from 'vitest/node'
 import { mergeConfig } from 'vitest/config'
 import { clean, dts } from './plugins'
 
