@@ -22,9 +22,9 @@ type ConfOptions<
   TShared extends SharedType,
 > =
   | (LooseOptions<TShared> &
-  ServerClientOptions<TPrefix, TServer, TClient>)
+    ServerClientOptions<TPrefix, TServer, TClient>)
   | (StrictOptions<TShared> &
-  ServerClientOptions<TPrefix, TServer, TClient>)
+    ServerClientOptions<TPrefix, TServer, TClient>)
 
 export function createConf<
   TPrefix extends string | undefined,

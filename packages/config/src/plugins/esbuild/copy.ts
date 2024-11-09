@@ -130,10 +130,10 @@ export function copy(options: CopyOptions) {
           verboseLog({
             method: 'box',
             msg: `No files matched using current glob pattern: ${colors.white(
-                fromPaths.join(','),
-              )}, maybe you need to configure globby by ${colors.white(
-                'options.globbyOptions',
-              )}?`,
+              fromPaths.join(','),
+            )}, maybe you need to configure globby by ${colors.white(
+              'options.globbyOptions',
+            )}?`,
             verbose,
           })
         }

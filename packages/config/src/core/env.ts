@@ -55,9 +55,9 @@ type EnvOptions<
   TShared extends SharedType,
 > =
   | (LooseOptions<TShared> &
-  ServerClientOptions<TPrefix, TServer, TClient>)
+    ServerClientOptions<TPrefix, TServer, TClient>)
   | (StrictOptions<TPrefix, TServer, TClient, TShared> &
-  ServerClientOptions<TPrefix, TServer, TClient>)
+    ServerClientOptions<TPrefix, TServer, TClient>)
 
 export function createEnv<
   TPrefix extends string | undefined,
