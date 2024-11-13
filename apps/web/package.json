@@ -45,7 +45,7 @@
     "@types/node": "^20.17.6",
     "@types/react": "^18.3.12",
     "autoprefixer": "^10.4.20",
-    "del-cli": "^5.1.0",
+    "del-cli": "^6.0.0",
     "playwright": "^1.48.2",
     "postcss": "^8.4.47",
     "std-env": "^3.8.0",
