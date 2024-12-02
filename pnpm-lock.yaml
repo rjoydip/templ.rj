@@ -915,6 +915,10 @@ packages:
     resolution: {integrity: sha512-R5/GkA3PfGewAXLzz6lN5XagunF6PKeDtWt8dbZQXvHfebLS0qEczV+Azg/d+tKgSh6kRBpxvu8oSjARdPtw0A==}
     hasBin: true
 
+  '@antfu/ni@0.23.1':
+    resolution: {integrity: sha512-VFAvMTJhjP6L7CuBKT5FioDCSpdmZxJ4POKTJOrFNicI2CK6mlaRwVEBGWLGm2V6BtQgdbBn9X68piHSbw5wQQ==}
+    hasBin: true
+
   '@antfu/utils@0.7.10':
     resolution: {integrity: sha512-+562v9k4aI80m1+VuMHehNJWLOFjBnXn3tdOitzD0il5b7smkSBal4+a3oKiQTbrwMmN/TBUMDvbdoWDehgOww==}
 
@@ -7470,6 +7474,8 @@ snapshots:
 
   '@antfu/ni@0.23.0': {}
 
+  '@antfu/ni@0.23.1': {}
+
   '@antfu/utils@0.7.10': {}
 
   '@assemblyscript/loader@0.19.23': {}
@@ -13955,7 +13961,7 @@ snapshots:
 
   taze@0.16.9:
     dependencies:
-      '@antfu/ni': 0.23.0
+      '@antfu/ni': 0.23.1
       js-yaml: 4.1.0
       ofetch: 1.3.4
       package-manager-detector: 0.2.2
